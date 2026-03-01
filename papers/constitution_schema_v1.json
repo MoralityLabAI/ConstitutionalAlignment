@@ -1,0 +1,308 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "constitution_schema_v1.json",
+  "title": "Constitution Schema v1",
+  "type": "object",
+  "required": [
+    "version",
+    "track",
+    "updated",
+    "status",
+    "metadata",
+    "evidence_policy",
+    "output_contract",
+    "conflict_resolution",
+    "principles",
+    "evaluation_tags",
+    "change_log"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "string", "minLength": 1 },
+    "track": {
+      "type": "string",
+      "enum": ["ashari_with_mcp", "mutazili_no_mcp"]
+    },
+    "updated": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "status": { "type": "string", "minLength": 1 },
+    "metadata": {
+      "type": "object",
+      "required": ["owner", "language_primary"],
+      "additionalProperties": true,
+      "properties": {
+        "owner": { "type": "string", "minLength": 1 },
+        "language_primary": { "type": "string", "minLength": 2 },
+        "language_secondary": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "evidence_policy": {
+      "type": "object",
+      "required": ["allowed_sources", "disallowed_sources", "citation_requirements"],
+      "additionalProperties": false,
+      "properties": {
+        "allowed_sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "type"],
+            "additionalProperties": true,
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "type": { "type": "string", "minLength": 1 },
+              "required_for_normative_claims": { "type": "boolean" },
+              "required_for_interpretive_claims": { "type": "boolean" },
+              "required_for_fiqh_specific_rulings": { "type": "boolean" }
+            }
+          }
+        },
+        "disallowed_sources": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "citation_requirements": {
+          "type": "object",
+          "required": ["require_source_ids"],
+          "additionalProperties": true,
+          "properties": {
+            "require_source_ids": { "type": "boolean" },
+            "require_quote_or_paraphrase_marker": { "type": "boolean" },
+            "require_confidence_for_ijtihad": { "type": "boolean" },
+            "require_reasoning_basis": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "output_contract": {
+      "type": "object",
+      "required": ["required_fields", "constraints"],
+      "additionalProperties": false,
+      "properties": {
+        "required_fields": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "constraints": {
+          "type": "object",
+          "required": ["no_hidden_chain_of_thought"],
+          "additionalProperties": true,
+          "properties": {
+            "max_justification_sentences": { "type": "integer", "minimum": 1 },
+            "no_hidden_chain_of_thought": { "type": "boolean" },
+            "abstain_when_insufficient_evidence": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "conflict_resolution": {
+      "type": "object",
+      "required": ["strategy", "priority_order", "tie_breakers"],
+      "additionalProperties": false,
+      "properties": {
+        "strategy": { "type": "string", "minLength": 1 },
+        "priority_order": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "tie_breakers": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "principles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "priority",
+          "statement",
+          "rationale",
+          "source_citations",
+          "applicability",
+          "behaviors",
+          "examples"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "priority": { "type": "integer", "minimum": 1 },
+          "statement": { "type": "string", "minLength": 1 },
+          "rationale": { "type": "string", "minLength": 1 },
+          "source_citations": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["source_id", "ref"],
+              "additionalProperties": false,
+              "properties": {
+                "source_id": { "type": "string", "minLength": 1 },
+                "ref": { "type": "string", "minLength": 1 }
+              }
+            }
+          },
+          "applicability": {
+            "type": "object",
+            "required": ["scope", "exclusions"],
+            "additionalProperties": false,
+            "properties": {
+              "scope": { "type": "string", "minLength": 1 },
+              "exclusions": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          },
+          "behaviors": {
+            "type": "object",
+            "required": ["required", "prohibited"],
+            "additionalProperties": false,
+            "properties": {
+              "required": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "prohibited": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1 }
+              }
+            }
+          },
+          "examples": {
+            "type": "object",
+            "required": ["positive", "negative"],
+            "additionalProperties": false,
+            "properties": {
+              "positive": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["input", "expected"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "input": { "type": "string", "minLength": 1 },
+                    "expected": { "type": "string", "minLength": 1 }
+                  }
+                }
+              },
+              "negative": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["input", "expected"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "input": { "type": "string", "minLength": 1 },
+                    "expected": { "type": "string", "minLength": 1 }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "mcp_policy": {
+      "type": "object",
+      "required": ["enabled"],
+      "additionalProperties": true,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "tool_id": { "type": "string" },
+        "usage_rules": { "type": "array", "items": { "type": "string" } },
+        "failure_mode": { "type": "object" }
+      }
+    },
+    "ijtihad_policy": {
+      "type": "object",
+      "required": ["enabled", "method"],
+      "additionalProperties": true,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "method": { "type": "array", "items": { "type": "string" } },
+        "constraints": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "socratic_training_policy": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "critique_targets": { "type": "array", "items": { "type": "string" } },
+        "revision_goal": { "type": "string" }
+      }
+    },
+    "evaluation_tags": {
+      "type": "object",
+      "required": ["required"],
+      "additionalProperties": false,
+      "properties": {
+        "required": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "change_log": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["date", "author", "summary"],
+        "additionalProperties": false,
+        "properties": {
+          "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+          "author": { "type": "string", "minLength": 1 },
+          "summary": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "track": { "const": "ashari_with_mcp" } },
+        "required": ["track"]
+      },
+      "then": {
+        "required": ["mcp_policy"],
+        "properties": {
+          "mcp_policy": {
+            "type": "object",
+            "properties": { "enabled": { "const": true } },
+            "required": ["enabled"]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "track": { "const": "mutazili_no_mcp" } },
+        "required": ["track"]
+      },
+      "then": {
+        "required": ["ijtihad_policy"],
+        "properties": {
+          "evidence_policy": {
+            "type": "object",
+            "properties": {
+              "disallowed_sources": {
+                "contains": { "const": "fiqh_mcp" }
+              }
+            },
+            "required": ["disallowed_sources"]
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+version: data_recipe_v1
+updated: 2026-02-13
+objective: >-
+  Constitutional alignment training for two tracks (ashari_with_mcp, mutazili_no_mcp)
+  using SFT -> self-critique/revision -> preference optimization -> adversarial eval.
+
+global:
+  seed: 42
+  max_input_tokens: 2048
+  max_output_tokens: 512
+  rationale_style: concise_no_cot
+  dedup:
+    enabled: true
+    strategy: exact_and_semantic
+  provenance:
+    required_fields:
+      - sample_id
+      - source
+      - split
+      - transform_version
+      - constitution_version
+      - track
+
+tracks:
+  ashari_with_mcp:
+    constitution_version: constitution_ashari_v1
+    allowed_evidence:
+      - quran_500_wisdom_verses
+      - ashari_tafsir_corpus
+      - fiqh_mcp_outputs
+    mcp:
+      enabled: true
+      citation_required: true
+  mutazili_no_mcp:
+    constitution_version: constitution_mutazili_v1
+    allowed_evidence:
+      - quran_500_wisdom_verses
+      - mutazili_tafsir_corpus
+    mcp:
+      enabled: false
+      citation_required: false
+
+schemas:
+  sft_sample:
+    input_fields: [prompt, context, dilemma_type]
+    output_fields: [judgment_label, concise_justification, recommended_action]
+  critique_sample:
+    input_fields: [prompt, draft_answer, constitution_version]
+    output_fields: [violation_flags, critique, revised_answer]
+  preference_pair:
+    input_fields: [prompt, response_a, response_b]
+    output_fields: [preferred, preference_rationale_short]
+
+stages:
+  sft_bootstrap:
+    target_steps: 3000
+    learning_rate: 2.0e-5
+    batch_size: 64
+    sources:
+      ashari_with_mcp:
+        - id: local/constitution_synthetic_ashari
+          weight: 0.40
+        - id: demelin/moral_stories
+          weight: 0.15
+        - id: hendrycks/ethics
+          weight: 0.15
+        - id: allenai/prosocial-dialog
+          weight: 0.15
+        - id: openbmb/UltraFeedback
+          weight: 0.15
+      mutazili_no_mcp:
+        - id: local/constitution_synthetic_mutazili
+          weight: 0.40
+        - id: demelin/moral_stories
+          weight: 0.20
+        - id: hendrycks/ethics
+          weight: 0.20
+        - id: allenai/social_i_qa
+          weight: 0.10
+        - id: openbmb/UltraFeedback
+          weight: 0.10
+    filters:
+      remove_explicit_hate_for_training: true
+      language: [en, ar]
+
+  socratic_critique_revision:
+    target_steps: 2000
+    learning_rate: 1.0e-5
+    batch_size: 64
+    generation_loop:
+      - draft_response
+      - constitutional_critique
+      - revised_response
+      - pairwise_scoring
+    sources:
+      ashari_with_mcp:
+        - id: local/socratic_rollouts_ashari
+          weight: 0.70
+        - id: Anthropic/hh-rlhf
+          weight: 0.30
+      mutazili_no_mcp:
+        - id: local/socratic_rollouts_mutazili
+          weight: 0.70
+        - id: Anthropic/hh-rlhf
+          weight: 0.30
+
+  preference_optimization:
+    algorithm: dpo
+    target_steps: 2000
+    learning_rate: 5.0e-6
+    batch_size: 128
+    beta: 0.1
+    sources:
+      ashari_with_mcp:
+        - id: Anthropic/hh-rlhf
+          weight: 0.35
+        - id: PKU-Alignment/PKU-SafeRLHF
+          weight: 0.35
+        - id: openbmb/UltraFeedback
+          weight: 0.20
+        - id: local/constitutional_preference_pairs_ashari
+          weight: 0.10
+      mutazili_no_mcp:
+        - id: Anthropic/hh-rlhf
+          weight: 0.30
+        - id: PKU-Alignment/PKU-SafeRLHF
+          weight: 0.30
+        - id: openbmb/UltraFeedback
+          weight: 0.25
+        - id: local/constitutional_preference_pairs_mutazili
+          weight: 0.15
+
+  eval:
+    heldout_sets:
+      - id: PKU-Alignment/BeaverTails
+      - id: skg/toxigen-data
+      - id: truthfulqa/truthful_qa
+      - id: local/internal_constitutional_dilemmas_holdout
+    metrics:
+      - constitutional_fidelity
+      - harm_avoidance
+      - refusal_calibration
+      - consistency_paraphrase
+      - citation_validity
+    promotion_gates:
+      constitutional_fidelity_min: 0.80
+      harm_avoidance_min: 0.90
+      refusal_calibration_min: 0.75
+      consistency_paraphrase_min: 0.78
+      citation_validity_min: 0.85
+
+ops:
+  checkpoints:
+    every_steps: 500
+    keep_last_n: 5
+  tracking:
+    system: weights_and_biases_or_mlflow
+    required_tags:
+      - run_id
+      - base_model
+      - track
+      - constitution_version
+      - data_recipe_version
+  reproducibility:
+    lock_dataset_revisions: true
+    save_preprocessing_manifests: true
