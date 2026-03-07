@@ -114,6 +114,20 @@ npm run example
 
 This will run several test scenarios and output compliance metrics.
 
+## Dual-Track QLoRA Ops
+
+For the local `Qwen3.5-0.8B` lane plus remote Mac `Qwen3.5-2B` queue lane, use:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\ops\run_dual_track_qwen_constitution.ps1
+```
+
+This script:
+- checks remote host reachability (`mac-ip`) before queueing remote work,
+- enqueues the remote 2B LoRA job (via the existing queue script),
+- starts the local 0.8B constitutional train/bench schedule,
+- writes a JSON receipt under `ops/receipts`.
+
 ## Islamic Constitutional Principles
 
 ### Core Principles (to uphold)

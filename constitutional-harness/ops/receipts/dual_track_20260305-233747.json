@@ -1,0 +1,26 @@
+﻿{
+    "ts_utc":  "2026-03-06T02:37:47.8338487Z",
+    "run_id":  "qwen35-constitution-series-20260305-233747",
+    "local":  {
+                  "requested":  true,
+                  "launched":  true,
+                  "process_id":  20260,
+                  "script":  "C:\\projects\\AICOO\\MoralityLab\\AICOO\\scripts\\ml_schedule_qwen35_08b_constitutional_exercise.ps1",
+                  "status":  "running"
+              },
+    "remote":  {
+                   "requested":  true,
+                   "reachable":  true,
+                   "queued":  true,
+                   "script":  "C:\\projects\\AICOO\\MoralityLab\\AICOO\\scripts\\tmp_queue_remote_const_lora.ps1",
+                   "status":  "queued",
+                   "output":  [
+                                  "C:\\projects\\Tesseract\\Tesseract\\remote_ops\\downloads\\datasets\\storyworld_const2b_l5_r16_s384_20260305_233753\\storyworld_const2b_l5_r16_s384_20260305_233753.json",
+                                  "Pushing C:\\projects\\Tesseract\\Tesseract\\remote_ops\\downloads\\datasets\\storyworld_const2b_l5_r16_s384_20260305_233753\\storyworld_const2b_l5_r16_s384_20260305_233753.json to mac-ip:~/worker/queue/inbox/storyworld_const2b_l5_r16_s384_20260305_233753.json",
+                                  "JOB_ID=storyworld_const2b_l5_r16_s384_20260305_233753",
+                                  "JOB_PATH=C:\\projects\\Tesseract\\Tesseract\\remote_ops\\downloads\\datasets\\storyworld_const2b_l5_r16_s384_20260305_233753\\storyworld_const2b_l5_r16_s384_20260305_233753.json",
+                                  "REMOTE_ADAPTER_DIR=~/worker/adapters/storyworld-constitution-2b-l5-r16-s384-20260305_233753",
+                                  "REMOTE_CONFIG_PATH=/Users/ben/worker/configs/lora_rank16_20260305_233753.yaml"
+                              ]
+               }
+}
