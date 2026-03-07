@@ -23,6 +23,22 @@ The loop itself does:
 6. optional short-context LoRA training command
 7. repeat for 3-5 iterations
 
+For unattended Windows-to-Mac training, use:
+
+- `ops/queue_storyworld_iteration_mac.ps1`
+
+That script reads the autoloop manifest, copies the replay JSONL dataset to `~/worker/datasets/...`, and enqueues a bounded MLX LoRA job with the current 2B-safe profile:
+
+- 4-bit base
+- batch size `1`
+- grad accum `1`
+- max seq length `256`
+- gradient checkpointing on
+- LoRA rank `8`
+- LoRA alpha `16`
+- target modules `q_proj,v_proj`
+- last `8` layers adapted
+
 This keeps the methodology aligned with constitutional-style data generation:
 
 - critique and revision happen over scenario traces,

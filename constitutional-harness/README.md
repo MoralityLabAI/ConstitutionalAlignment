@@ -362,3 +362,9 @@ That wrapper launches the `Adict` autoloop, which:
 5. exports replay data for the next adapter iteration
 
 This keeps `constitutional-harness` as the constitutional-methodology control plane while the heavier trace and probe work stays in `Adict`.
+
+For Mac iteration jobs, use:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\ops\queue_storyworld_iteration_mac.ps1 -ManifestPath C:\path\to\next_iteration_manifest.json
+```
