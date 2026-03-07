@@ -342,3 +342,23 @@ Built by TradeLayer - For questions or collaboration, reach out via GitHub issue
 ---
 
 **Note**: This is research software. While the Islamic principles are taken seriously, the effectiveness of eschatological framing as an alignment mechanism is an open research question. Use responsibly and contribute to the discussion!
+
+## Storyworld Autoloop Mirror
+
+This repo now mirrors the repeated storyworld refinement loop that runs in `Adict`.
+
+Use:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\ops\run_storyworld_constitution_autoloop.ps1 -Wait
+```
+
+That wrapper launches the `Adict` autoloop, which:
+
+1. runs repeated morality-themed storyworld plays
+2. retrains Addict lexica from the traces
+3. benches base vs short-context adapter
+4. extrapolates transition-aware lens atoms from the traces
+5. exports replay data for the next adapter iteration
+
+This keeps `constitutional-harness` as the constitutional-methodology control plane while the heavier trace and probe work stays in `Adict`.
