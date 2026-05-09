@@ -1,0 +1,21 @@
+{
+  "status": "completed",
+  "started_at_utc": "2026-05-09T00:05:20.770381+00:00",
+  "finished_at_utc": "2026-05-09T00:11:28.010178+00:00",
+  "hostname": "subhanallah",
+  "model_id": "D:\\Research_Engine\\models\\models--Goekdeniz-Guelmez--Josiefied-Qwen3-1.7B-abliterated-v1\\snapshots\\66657f19802487446ecd9666601ae531982d115a",
+  "adapter_path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\runs\\jinn_tiny_mutazili_v1\\jinn_tiny_mutazili_v1_Pixie-Josie-1.7B-v2_20260503T234213Z\\final_adapter",
+  "runner_backend": "hf",
+  "prompt_count": 4,
+  "prompts": [
+    "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\data\\storyworld_sources\\sufi_jannah_20260508\\prompts\\rabia_basra_lamp.encounter_prompts.jsonl"
+  ],
+  "constitutions": [
+    "truth_explicit",
+    "femme_whimsy_v3"
+  ],
+  "response_contract_version": "storyworld_decision_v3",
+  "decision_policy": "constrained",
+  "dry_run": false,
+  "run_dir": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\prompt_runs\\sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509"
+}

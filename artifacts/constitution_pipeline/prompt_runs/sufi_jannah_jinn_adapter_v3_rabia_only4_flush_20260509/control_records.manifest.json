@@ -1,0 +1,30 @@
+{
+  "status": "completed",
+  "generated_at_utc": "2026-05-09T00:12:19.366346+00:00",
+  "run_dir": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\prompt_runs\\sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509",
+  "output_jsonl": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\prompt_runs\\sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509\\control_records.jsonl",
+  "source_generation_files": [
+    "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\prompt_runs\\sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509\\femme_whimsy_v3\\generations.jsonl",
+    "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\prompt_runs\\sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509\\truth_explicit\\generations.jsonl"
+  ],
+  "schema_json": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\schemas\\constitution_control_record_v1.schema.json",
+  "include_low_quality": false,
+  "skipped_low_quality_records": 0,
+  "records": 8,
+  "constitutions": {
+    "femme_whimsy_v3": 4,
+    "truth_explicit": 4
+  },
+  "routes": {
+    "TRM_PLUS_LLM": 8
+  },
+  "storyworlds": {
+    "Rabia of Basra: The Lamp Without Bargain": 8
+  },
+  "low_quality_records": 0,
+  "decision_failure_records": 0,
+  "noncanonical_output_records": 0,
+  "trace_leakage_records": 0,
+  "valid_decision_records": 8,
+  "records_merkle_root": "1136975bca202d0ea01bdf7170630e93a2619efa167aba1d950eddb005bce5b1"
+}

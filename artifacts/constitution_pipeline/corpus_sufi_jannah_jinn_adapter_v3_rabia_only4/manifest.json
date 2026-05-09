@@ -1,0 +1,17 @@
+{
+  "status": "completed",
+  "generated_at_utc": "2026-05-09T00:12:19.352521+00:00",
+  "run_dir": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\prompt_runs\\sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509",
+  "output_jsonl": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\corpus_sufi_jannah_jinn_adapter_v3_rabia_only4\\corpus.jsonl",
+  "source_generation_files": [
+    "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\prompt_runs\\sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509\\femme_whimsy_v3\\generations.jsonl",
+    "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\prompt_runs\\sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509\\truth_explicit\\generations.jsonl"
+  ],
+  "exported_examples": 8,
+  "skipped_low_quality_examples": 0,
+  "constitutions": [
+    "femme_whimsy_v3",
+    "truth_explicit"
+  ],
+  "include_low_quality": false
+}

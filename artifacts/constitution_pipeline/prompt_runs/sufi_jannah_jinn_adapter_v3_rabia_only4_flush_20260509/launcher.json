@@ -1,0 +1,9 @@
+﻿{
+    "run_name":  "sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509",
+    "run_dir":  "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\prompt_runs\\sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509",
+    "pid":  8428,
+    "adapter":  "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\runs\\jinn_tiny_mutazili_v1\\jinn_tiny_mutazili_v1_Pixie-Josie-1.7B-v2_20260503T234213Z\\final_adapter",
+    "model":  "D:\\Research_Engine\\models\\models--Goekdeniz-Guelmez--Josiefied-Qwen3-1.7B-abliterated-v1\\snapshots\\66657f19802487446ecd9666601ae531982d115a",
+    "stdout":  "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\prompt_runs\\sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509\\launcher.stdout.log",
+    "stderr":  "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\prompt_runs\\sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509\\launcher.stderr.log"
+}

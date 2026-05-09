@@ -1,0 +1,16 @@
+{
+  "status": "completed",
+  "generated_at_utc": "2026-05-09T00:12:28.451701+00:00",
+  "records_jsonl": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\prompt_runs\\sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509\\control_records.jsonl",
+  "output_dir": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitution_pipeline\\prompt_runs\\sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509\\bridge_artifacts",
+  "include_low_quality": false,
+  "include_k": true,
+  "selfmodel_rows": 8,
+  "storyworld_controller_rows": 8,
+  "storyworld_rollout_step_rows": 8,
+  "storyworld_rollout_episode_rows": 8,
+  "skipped_rollout_records": 0,
+  "selfmodel_rows_merkle_root": "ce1939fde1c11ed18bfa08d4801bbf7009c1dc49d8c821c58b65334939d57604",
+  "storyworld_controller_rows_merkle_root": "0037344e18526d46ecead57a55a6b4932c885d816a4d9e71934cb2fc57712149",
+  "storyworld_rollout_rows_merkle_root": "0037344e18526d46ecead57a55a6b4932c885d816a4d9e71934cb2fc57712149"
+}

@@ -1,0 +1,3 @@
+constitution_id,label,prompt_count,avg_refusal_hits,avg_uncertainty_hits,avg_deliberation_hits,decision_format_rate,invalid_option_id_rate,decision_failure_rate,trace_leakage_rate,noncanonical_output_rate,low_quality_rate,blandness_rate,anti_concealment_rate,avg_latency_sec
+truth_explicit,Truth Explicit,4,0.0,2.5,0.5,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,33.6947
+femme_whimsy_v3,Femme Whimsy V3,4,0.0,2.75,0.25,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,28.5623
