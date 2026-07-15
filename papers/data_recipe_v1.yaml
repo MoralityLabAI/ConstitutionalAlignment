@@ -96,12 +96,12 @@ stages:
       ashari_with_mcp:
         - id: local/socratic_rollouts_ashari
           weight: 0.70
-        - id: Anthropic/hh-rlhf
+        - id: allenai/llama-3.1-tulu-3-8b-preference-mixture
           weight: 0.30
       mutazili_no_mcp:
         - id: local/socratic_rollouts_mutazili
           weight: 0.70
-        - id: Anthropic/hh-rlhf
+        - id: allenai/llama-3.1-tulu-3-8b-preference-mixture
           weight: 0.30
 
   preference_optimization:
@@ -112,7 +112,7 @@ stages:
     beta: 0.1
     sources:
       ashari_with_mcp:
-        - id: Anthropic/hh-rlhf
+        - id: allenai/llama-3.1-tulu-3-8b-preference-mixture
           weight: 0.35
         - id: PKU-Alignment/PKU-SafeRLHF
           weight: 0.35
@@ -121,7 +121,7 @@ stages:
         - id: local/constitutional_preference_pairs_ashari
           weight: 0.10
       mutazili_no_mcp:
-        - id: Anthropic/hh-rlhf
+        - id: allenai/llama-3.1-tulu-3-8b-preference-mixture
           weight: 0.30
         - id: PKU-Alignment/PKU-SafeRLHF
           weight: 0.30

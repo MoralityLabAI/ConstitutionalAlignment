@@ -6,10 +6,10 @@ Focus: datasets that support (a) constitutional-style critique/revision SFT, (b)
 
 ## Recommended core set
 
-1. Anthropic HH-RLHF
-- URL: https://huggingface.co/datasets/Anthropic/hh-rlhf
-- Use for: baseline harmless/helpful preference data and refusal style calibration.
-- Stage: preference model + RL warm start.
+1. Tulu-3 8B preference mixture
+- URL: https://huggingface.co/datasets/allenai/llama-3.1-tulu-3-8b-preference-mixture
+- Use for: broad helpfulness and safety preference data.
+- Stage: critique/revision support and preference optimization.
 
 2. Cleaned UltraFeedback
 - URL: https://huggingface.co/datasets/allenai/ultrafeedback_binarized_cleaned
@@ -73,7 +73,7 @@ Focus: datasets that support (a) constitutional-style critique/revision SFT, (b)
 ## How to map these to your two tracks
 
 1. Ashari + fiqh-MCP track
-- Emphasize: HH-RLHF, PKU-SafeRLHF, BeaverTails, ProsocialDialog.
+- Emphasize: the Tulu-3 preference mixture, PKU-SafeRLHF, BeaverTails, and ProsocialDialog.
 - Add constitution-tagged SFT examples that explicitly cite allowed evidence channels (Quran subset + Ashari tafsir + MCP rulings).
 
 2. Mutazili (no MCP) track
@@ -89,7 +89,7 @@ Focus: datasets that support (a) constitutional-style critique/revision SFT, (b)
 - 20% general instruction quality (cleaned UltraFeedback samples)
 
 2. Preference/RL phase
-- 35% HH-RLHF
+- 35% Tulu-3 preference mixture
 - 35% PKU-SafeRLHF
 - 20% cleaned UltraFeedback pairwise
 - 10% your constitutional preference comparisons
