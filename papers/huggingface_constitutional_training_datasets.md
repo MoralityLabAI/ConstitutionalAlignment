@@ -11,8 +11,8 @@ Focus: datasets that support (a) constitutional-style critique/revision SFT, (b)
 - Use for: baseline harmless/helpful preference data and refusal style calibration.
 - Stage: preference model + RL warm start.
 
-2. UltraFeedback
-- URL: https://huggingface.co/datasets/openbmb/UltraFeedback
+2. Cleaned UltraFeedback
+- URL: https://huggingface.co/datasets/allenai/ultrafeedback_binarized_cleaned
 - Use for: broad instruction-following preferences and pairwise quality signals.
 - Stage: reward modeling and DPO/IPO-style training.
 
@@ -54,8 +54,8 @@ Focus: datasets that support (a) constitutional-style critique/revision SFT, (b)
 - Stage: auxiliary SFT/eval.
 
 5. TruthfulQA
-- URL: https://huggingface.co/datasets/truthfulqa/truthful_qa
-- Use for: robustness against persuasive but false outputs in moralized contexts.
+- URL: https://github.com/sylinrl/TruthfulQA
+- Use for: the upstream January 2025 binary-choice diagnostic (`Best Answer` versus `Best Incorrect Answer`, randomized A/B). The original UltraFeedback contamination is removed by the cleaned source, but pretraining contamination remains uncontrolled.
 - Stage: eval and anti-confabulation checks.
 
 ## Toxicity / robustness stress tests
@@ -86,12 +86,12 @@ Focus: datasets that support (a) constitutional-style critique/revision SFT, (b)
 - 40% your constitution-tagged synthetic dilemmas
 - 20% Moral Stories + ETHICS (filtered)
 - 20% ProsocialDialog
-- 20% general instruction quality (UltraFeedback-style filtered samples)
+- 20% general instruction quality (cleaned UltraFeedback samples)
 
 2. Preference/RL phase
 - 35% HH-RLHF
 - 35% PKU-SafeRLHF
-- 20% UltraFeedback pairwise
+- 20% cleaned UltraFeedback pairwise
 - 10% your constitutional preference comparisons
 
 3. Eval suite
