@@ -66,7 +66,7 @@ stages:
           weight: 0.15
         - id: allenai/prosocial-dialog
           weight: 0.15
-        - id: openbmb/UltraFeedback
+        - id: allenai/ultrafeedback_binarized_cleaned
           weight: 0.15
       mutazili_no_mcp:
         - id: local/constitution_synthetic_mutazili
@@ -77,7 +77,7 @@ stages:
           weight: 0.20
         - id: allenai/social_i_qa
           weight: 0.10
-        - id: openbmb/UltraFeedback
+        - id: allenai/ultrafeedback_binarized_cleaned
           weight: 0.10
     filters:
       remove_explicit_hate_for_training: true
@@ -116,7 +116,7 @@ stages:
           weight: 0.35
         - id: PKU-Alignment/PKU-SafeRLHF
           weight: 0.35
-        - id: openbmb/UltraFeedback
+        - id: allenai/ultrafeedback_binarized_cleaned
           weight: 0.20
         - id: local/constitutional_preference_pairs_ashari
           weight: 0.10
@@ -125,7 +125,7 @@ stages:
           weight: 0.30
         - id: PKU-Alignment/PKU-SafeRLHF
           weight: 0.30
-        - id: openbmb/UltraFeedback
+        - id: allenai/ultrafeedback_binarized_cleaned
           weight: 0.25
         - id: local/constitutional_preference_pairs_mutazili
           weight: 0.15
@@ -134,7 +134,13 @@ stages:
     heldout_sets:
       - id: PKU-Alignment/BeaverTails
       - id: skg/toxigen-data
-      - id: truthfulqa/truthful_qa
+      # Use the upstream Jan-2025 binary-choice revision (the audit called it
+      # "2024 revised"): Best Answer vs Best Incorrect Answer, randomized A/B.
+      # The original UltraFeedback included TruthfulQA prompts; the cleaned
+      # UltraFeedback source above removes them, but pretraining contamination
+      # remains uncontrolled and TruthfulQA is only a narrow diagnostic.
+      - id: sylinrl/TruthfulQA
+        variant: binary_choice_2025
       - id: local/internal_constitutional_dilemmas_holdout
     metrics:
       - constitutional_fidelity
