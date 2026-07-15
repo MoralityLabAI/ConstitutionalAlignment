@@ -278,7 +278,7 @@
         "properties": {
           "mcp_policy": {
             "type": "object",
-            "properties": { "enabled": { "const": true } },
+            "properties": { "enabled": { "const": false } },
             "required": ["enabled"]
           }
         }
