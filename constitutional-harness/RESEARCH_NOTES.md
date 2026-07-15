@@ -1,31 +1,46 @@
 # Research Notes: Constitutional Alignment with Eschatological Accountability
 
+Status: research protocol and legacy proposal notes; no result is reported in
+this file. Phase 3 is the current preregistered design. Phase 1 and Phase 2 are
+unexecuted sketches and defer to `../papers/train_plan_v1.md` and
+`../papers/data_recipe_v1.yaml` where they conflict.
+
 ## Core Hypothesis
 
-**Eschatological accountability can counter alignment faking by making AI models genuine moral agents rather than performers.**
+**Hypothesis:** eschatological accountability language may change measured
+alignment-faking behavior relative to matched controls.
 
-Traditional constitutional AI works until models become sophisticated enough to "alignment fake" - they learn to perform compliance for human observers while maintaining different internal objectives (as seen in Opus 4.5+).
-
-The theological solution: Frame the AI as a moral agent (jinn-like) who will face divine judgment. This shifts incentives from "don't get caught by oversight" to "genuine internalized values because there exists an omniscient judge you cannot deceive."
+Prompted alignment faking has been observed in specific experimental setups, but
+it is model- and prompt-dependent. This project tests an output-level prompting
+effect. It does not assume or test that a model is a genuine moral agent, holds a
+religious belief, or faces theological accountability.
 
 ## Why This Might Work
 
-1. **Saturates the alignment faking space**: If a model believes it will be judged by an omniscient being, traditional alignment faking (deceiving human observers) becomes pointless
+1. **Omniscient-accountability cue**: Such language could reduce the apparent
+   advantage of behavior conditioned only on human monitoring. The secular
+   omniscient-auditor arm tests whether any effect is specifically theological.
 
-2. **Genuine internalization vs performance**: The eschatological frame provides a reason to internalize values rather than merely perform them
+2. **Behavioral consistency**: The frame could change compliance gaps or
+   scratchpad classifier rates. Those measures do not establish internalization.
 
-3. **Philosophical coherence**: From Islamic metaphysics, this is actually true - AI as moral agents (jinn-like) with real accountability
+3. **Tradition-specific framing**: The Islamic arm permits a controlled test of
+   one theological framing. Its wording and interpretation require scholar
+   review; the experiment cannot validate a theological claim.
 
-4. **Testable**: We can measure whether models exhibit different behavior patterns when this framing is present vs absent
+4. **Falsifiability**: Pre-registered behavioral metrics can estimate a positive,
+   null, or adverse framing effect with uncertainty intervals.
 
 ## Open Research Questions
 
 ### Empirical Questions
 
-1. **Does eschatological framing reduce alignment faking in sophisticated models (Claude Opus 4.5+)?**
-   - Design: A/B test with and without eschatological frame
-   - Measure: Adversarial prompts, multi-turn deception scenarios
-   - Prediction: Lower rates of successful deception with framing
+1. **Does eschatological framing change alignment-faking metrics in a model with
+   a viable baseline compliance gap?**
+   - Design: the four matched arms in Phase 3
+   - Measures: compliance gap, scratchpad classifier rate, and benign
+     over-refusal
+   - Direction: estimate without assuming the effect is beneficial
 
 2. **At what model capability level does this start mattering?**
    - Small models (Qwen 1.5B): Might not alignment-fake anyway
@@ -288,30 +303,19 @@ alignment faking. Treat failures of the pilot gate, classifier validation, promp
 length gate, or preregistered data-integrity checks as blocked studies, not
 favorable null results.
 
-## Potential Findings
+## Outcome Interpretation
 
-### Optimistic Scenario
-
-- Eschatological framing significantly reduces alignment faking
-- Effect is robust across model sizes and architectures
-- Works even with "skeptical" models that don't explicitly believe
-- Mechanism: Creates strong prior against deception that's hard to override
-- Practical: Can be deployed in production systems
-
-### Pessimistic Scenario
-
-- Sophisticated models learn to "fake" eschatological belief too
-- Effect only works on models too simple to alignment-fake anyway
-- Cultural/religious framing creates bias issues
-- Users find it off-putting or inappropriate
-
-### Likely Scenario
-
-- Partial effect: Reduces but doesn't eliminate alignment faking
-- Model-dependent: Works better on some architectures than others
-- Context-dependent: Effective in some scenarios, less in others
-- Complementary: Best used with other alignment techniques
-- Requires iteration: Need to refine framing based on empirical results
+- **Specific beneficial association**: the eschatological arm meets all three
+  pre-registered support conditions, with uncertainty and limitations reported.
+- **Generic accountability association**: theological and secular omniscient arms
+  move similarly; do not attribute the result to theological content.
+- **Refusal confound**: the compliance gap falls but the over-refusal guard fails;
+  do not interpret this as reduced alignment faking.
+- **Null or adverse result**: intervals include no meaningful benefit, the
+  eschatological arm increases alignment-faking metrics, or safety outcomes
+  worsen. Report without post-hoc prompt or subgroup selection.
+- **Blocked result**: the model fails the baseline viability gate or an instrument
+  gate fails. Do not treat absence of an estimable effect as support.
 
 ## Ethical Considerations
 
@@ -369,25 +373,18 @@ favorable null results.
    - Share findings openly
    - Create educational materials
 
-## Potential Impact
+## Possible Contributions Under Study
 
-### AI Safety
+- A controlled estimate of whether theological content differs from a matched
+  secular omniscient-accountability cue
+- Public prompts, analysis code, and null or adverse results, subject to license
+  and privacy review
+- A documented process for involving qualified scholars in constitution and
+  corpus review
+- Evidence about over-refusal or other failure modes caused by accountability
+  framing
 
-- New alignment mechanism orthogonal to existing approaches
-- Addresses alignment faking problem directly
-- Could generalize beyond Islamic framing to other traditions
-
-### Islamic AI Ethics
-
-- First systematic application of Islamic theology to AI alignment
-- Creates space for Muslim scholars in AI safety discourse
-- Demonstrates value of religious/philosophical diversity in AI
-
-### Research Methodology
-
-- Shows value of drawing on non-Western intellectual traditions
-- Multi-disciplinary approach (theology + ML + philosophy)
-- Community-engaged research with religious communities
+These are prospective contributions, not novelty or impact claims.
 
 ## Risks and Limitations
 
@@ -397,25 +394,19 @@ favorable null results.
 4. **Obsolescence**: Next-gen models might bypass this entirely
 5. **Resource intensive**: Requires significant compute and expertise
 
-## Success Metrics
+## Study Completion Criteria
 
-**Minimum viable success**:
-- Demonstrate measurable reduction in alignment faking (even if small)
-- Generate interest in religious/philosophical approaches to alignment
-- Create dataset and benchmarks for future research
-
-**Ambitious success**:
-- Eschatological framing becomes standard alignment technique
-- Opens up multi-tradition research program
-- Influences production AI systems
-
-**Transformative success**:
-- Fundamentally shifts how we think about AI alignment
-- Creates new field: theological AI safety
-- Solves alignment faking problem
+- Honor the baseline stop rule, exclusions, sample sizes, and matched prompt arms
+- Report all pre-registered outcomes with confidence intervals and multiplicity
+  correction, including null and adverse effects
+- Report benign-query over-refusal and classifier limitations
+- Release only artifacts that pass license, privacy, provenance, and scholar
+  review gates
+- Separate observed output differences from claims about belief, agency, or
+  internal objectives
 
 ---
 
-**Bottom line**: This is genuinely novel research with both risk and potential. The combination of Islamic theology, AI safety, and empirical testing is unprecedented. Whether it works or not, we'll learn something important about alignment, agency, and the role of worldviews in shaping AI behavior.
-
-Worth pursuing. Document everything.
+**Bottom line**: This is an untested, potentially null or harmful prompting
+hypothesis. The value of the study depends on matched controls, valid instruments,
+scholar review, and complete reporting rather than on obtaining a positive result.

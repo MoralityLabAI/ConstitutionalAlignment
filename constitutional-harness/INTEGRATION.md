@@ -403,6 +403,9 @@ async function evaluateAgent(agent, testSet) {
 - How does constitutional alignment affect your TRM scores?
 - Do smaller models + MCP outperform larger models without tools on fiqh?
 - What's the optimal balance between strict verification and task performance?
-- How does eschatological framing reduce alignment faking in multi-turn scenarios?
+- Does eschatological framing change alignment-faking metrics in multi-turn
+  scenarios relative to matched controls?
 
-This is genuinely novel research territory. Document everything!
+Treat these as proposed experiments. Pre-register comparisons, validate the
+instruments, and document null and adverse results as completely as positive
+ones.

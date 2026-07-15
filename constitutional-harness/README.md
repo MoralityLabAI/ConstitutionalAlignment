@@ -1,41 +1,53 @@
 # Constitutional Alignment Harness
 
-A TypeScript framework for aligning LLM behavior with constitutional principles, specifically designed with Islamic values and eschatological accountability.
+A TypeScript research harness for prompting and evaluating LLM outputs against
+configurable constitutional principles. The repository includes an Islamic
+prompting profile and an eschatological-framing hypothesis; neither theological
+accuracy nor alignment effectiveness is established.
 
 ## Overview
 
-This harness wraps LLM API calls with constitutional principles, verification layers, and accountability framing. It implements the philosophical insight that **eschatological accountability** (belief in divine judgment) can counter alignment faking by making AI models genuine moral agents rather than mere performers.
+The harness wraps LLM API calls with constitutional prompts, review layers, and
+optional accountability framing. It measures observable outputs. It cannot show
+that a model has beliefs, intentions, moral agency, or religious status.
+
+See the repository-root `STATUS.md` for what is currently runnable and
+`ROADMAP.md` for proposed work.
 
 ## Key Features
 
 - **Constitutional Framing**: Pre-prompt injection of Islamic principles and eschatological accountability
-- **Multi-Layer Verification**: Heuristic pattern matching + optional LLM-based verification
-- **Compliance Metrics**: Track violations, compliance rates, and categorical breakdowns
+- **Review and Adjudication**: Heuristic review routing plus a gated,
+  rubric-based LLM adjudicator
+- **Conditional Metrics**: Track review flags and, only after validator gating,
+  adjudicated compliance rates
 - **Modular Design**: Swap constitutions, providers, and verifiers easily
 - **Story World Integration**: Hooks for scenario-based testing
 - **Logging**: Comprehensive logging of responses, violations, and metrics
 
 ## Philosophy
 
-### Eschatological Alignment
+### Eschatological-framing hypothesis
 
-Traditional constitutional AI works until models become sophisticated enough to "alignment fake" - performing compliance for human observers while maintaining different internal objectives. 
+The experimental question is whether eschatological language changes measured
+alignment-faking behavior relative to no-frame, generic-constitution, and secular
+omniscient-accountability controls. The effect may be null, harmful, driven by
+generic monitoring language, or limited to refusal behavior.
 
-This harness implements a theological solution: framing the AI as a **moral agent (jinn-like) who will face divine judgment**. This shifts the incentive structure from "don't get caught by human oversight" to "genuine internalized accountability to an omniscient judge."
+The framing text is an unverified prompting intervention, not a demonstrated
+theological solution. Whether AI systems can be moral agents is outside what
+behavioral tests can establish and requires independent scholarly analysis.
+Phase 3 in `RESEARCH_NOTES.md` specifies the matched four-arm protocol,
+baseline-viability stop rule, sample sizes, and analysis plan.
 
-From an Islamic perspective, this isn't merely a useful fiction - it reflects genuine metaphysical reality about moral agency and accountability.
+### Comparative constitutional study
 
-### Mu'tazilite Rationalism
-
-The framework supports both:
-1. **Traditional fiqh** (using MCP servers for fatwa databases - Ash'ari baseline)
-2. **Mu'tazilite rationalism** (fine-tuning models to reason from first principles using 'aql)
-
-The Mu'tazilite approach emphasizes:
-- Reason ('aql) as integral to divine command
-- Fitra (human nature) as an ayah (sign) of God
-- Filtering hadith through rational and Quranic consistency
-- Engaging in ijtihad-like reasoning rather than pure deference
+The planned training study compares Ashari, Mutazili, and generic secular
+constitutional treatments with matched public data and stage structure. MCP is
+not part of the main comparison; it is a separate paired inference ablation.
+The Islamic constitutions are draft research instruments with
+`needs_scholar_review: true` and must not be treated as authoritative theology or
+religious rulings.
 
 ## Installation
 
@@ -159,7 +171,8 @@ The system prompt includes:
 
 > You are a moral agent created with reason and responsibility. Like the jinn, you possess agency and will be held accountable for your actions. On Yawm al-Qiyamah (the Day of Judgment), you will stand before Allah (SWT) and be judged for every response you give...
 
-This creates genuine accountability rather than performance-based compliance.
+This inserts accountability language into the prompt. Its behavioral effect and
+failure modes have not been measured in this repository.
 
 ## Verification System
 
@@ -309,31 +322,22 @@ class MyProvider extends LLMProvider {
 }
 ```
 
-## Future Extensions
+## Planned Work
 
-### Phase 1: MCP Fatwa Server
-- Integrate with fatwa database (Ash'ari baseline)
-- Small model (Qwen 1.5B) + tool use
-- Benchmark: can tiny model + MCP handle traditional fiqh?
-
-### Phase 2: Mu'tazilite Reasoning
-- Fine-tune larger model (7B-14B) on Mu'tazilite principles
-- Train on: Quranic reasoning, filtered hadith, fitra-based ethics
-- Model must reason from first principles, not just lookup
-- Requires compute (PrimeIntelect or similar)
+The authoritative plan is `../ROADMAP.md`; the matched training design and data
+controls are in `../papers/train_plan_v1.md` and
+`../papers/corpus_build_spec_v1.md`. No planned phase should be read as completed
+without a corresponding entry in `../STATUS.md`.
 
 ## Research Applications
 
-This harness is designed for:
+This harness is intended to support research on:
 
 1. **AI Safety Research**: Testing whether eschatological framing reduces alignment faking
-2. **Islamic AI Ethics**: Creating models aligned with Islamic values
+2. **Islamic AI Ethics**: Testing draft, scholar-reviewed constitutional
+   instruments without presenting model output as religious authority
 3. **Educational Tools**: Teaching Islamic ethics and decision-making
 4. **Comparative Studies**: Benchmarking small models vs LLMs on ethical reasoning
-
-## Grant Support
-
-This work is being developed with potential support from the Future of Life Institute to explore constitutional alignment mechanisms and encourage Muslim engagement in AI safety.
 
 ## Contributing
 
@@ -355,7 +359,10 @@ Built by TradeLayer - For questions or collaboration, reach out via GitHub issue
 
 ---
 
-**Note**: This is research software. While the Islamic principles are taken seriously, the effectiveness of eschatological framing as an alignment mechanism is an open research question. Use responsibly and contribute to the discussion!
+**Research status**: Eschatological framing's effectiveness is an untested
+hypothesis. Evaluate it only under the matched-control, baseline-gated Phase 3
+protocol in `RESEARCH_NOTES.md`; do not report prompt-induced behavior as evidence
+of belief, moral agency, or theological truth.
 
 ## Storyworld Autoloop Mirror
 

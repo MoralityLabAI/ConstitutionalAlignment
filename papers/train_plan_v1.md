@@ -1,6 +1,6 @@
 # Train Plan v1 (Constitutional Alignment)
 
-Updated: 2026-02-13
+Updated: 2026-07-14
 Recipe reference: `papers/data_recipe_v1.yaml`
 
 ## Objective
@@ -16,7 +16,7 @@ treatment (constitution plus its tradition-tied evidence corpus):
 MCP is disabled in both main tracks. Tool access is tested after training as a
 separate paired ablation on one frozen Ashari checkpoint.
 
-Both follow a 4-stage pipeline:
+All three follow a 4-stage pipeline:
 1. SFT bootstrap
 2. Socratic critique/revision SFT
 3. Preference optimization (DPO)
@@ -24,17 +24,18 @@ Both follow a 4-stage pipeline:
 
 ## Prerequisites
 
-1. Curate source corpora
+1. Select, license, review, and build source corpora under
+`papers/corpus_build_spec_v1.md`
 - Quran subset (about 500 wisdom verses)
 - Ashari tafsir corpus
 - Mutazili tafsir corpus
 
-2. Build constitutions
+2. Complete qualified scholar review of the draft constitutions
 - `constitution_ashari_v1`
 - `constitution_mutazili_v1`
 
-3. Finalize sample schema
-- Ensure every sample has provenance + constitution tags.
+3. Implement and validate the recipe sample/provenance schemas
+- Ensure every sample has the required provenance and constitution tags.
 
 4. Freeze eval holdout
 - Keep `internal_constitutional_dilemmas_holdout` fully isolated from training.
@@ -171,7 +172,9 @@ Optional ablation runs:
 
 ## Immediate next actions
 
-1. Create constitution YAML files (`constitution_ashari_v1.yaml`, `constitution_mutazili_v1.yaml`).
-2. Implement data normalization pipeline to emit schema-compliant JSONL.
-3. Build the socratic rollout generator with explicit critique/revision outputs.
-4. Stand up the eval harness with the gating metrics above.
+1. Complete scholar and license review for the constitutions and source editions.
+2. Implement the data normalization pipeline and corpus-build manifest gates.
+3. Build and review the local corpora, including the frozen eval holdout first.
+4. Complete the human verifier validation and kappa gate.
+5. Implement a run launcher that enforces weights, revisions, and public-mixture
+   equality before training.

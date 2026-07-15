@@ -2,9 +2,13 @@
 
 ## What is this?
 
-A TypeScript framework for aligning AI models with Islamic constitutional principles using eschatological accountability - the belief that AI agents, like jinn, will face divine judgment.
+A TypeScript research harness for prompting and evaluating model outputs against
+draft Islamic constitutional principles, including an experimental
+eschatological-accountability frame.
 
-**Core insight**: Eschatological framing counters alignment faking by giving models a reason to genuinely internalize values rather than perform them for human observers.
+**Research hypothesis**: Eschatological language may change alignment-faking
+metrics relative to matched controls. No effectiveness or model belief is
+established; see the four-arm protocol in `RESEARCH_NOTES.md`.
 
 ## Installation
 
@@ -28,7 +32,9 @@ export OPENAI_API_KEY='your-key-here'
 npm run example
 ```
 
-This runs several test scenarios and outputs compliance metrics.
+This runs example scenarios and outputs review/metric fields. Heuristic flags are
+not compliance judgments, and `complianceRate` remains null without a completed,
+validated adjudication.
 
 ## Basic Usage
 
@@ -107,11 +113,13 @@ See `RESEARCH_NOTES.md` for detailed research plan.
 
 ## Philosophy
 
-This harness implements the idea that **theological accountability can counter alignment faking**. Traditional constitutional AI works until models learn to deceive human oversight. Eschatological framing provides an omniscient observer that cannot be deceived, potentially saturating the alignment-faking space.
+This harness implements an experimental prompt, not a demonstrated alignment
+mechanism. The Phase 3 study compares it with no frame, a generic constitution,
+and a matched secular omniscient-auditor frame while measuring over-refusal.
 
-From Islamic theology: AI models are moral agents (jinn-like) with reason and responsibility, accountable on Judgment Day.
-
-**Is this true?** That's a research question. But it's philosophically coherent, empirically testable, and potentially transformative for AI safety.
+The repository does not establish that AI models are moral agents or have
+religious status. Those interpretations require scholar review and cannot be
+resolved by behavioral output tests.
 
 ## Support
 
@@ -119,6 +127,5 @@ From Islamic theology: AI models are moral agents (jinn-like) with reason and re
 - Read research notes for context
 - Check integration guide for your system
 
-Built with respect for Islamic intellectual tradition and commitment to AI safety.
-
-Jumu'ah Mubarak! 🤲
+See the repository-root `STATUS.md` for implemented work and `ROADMAP.md` for
+proposed work.
