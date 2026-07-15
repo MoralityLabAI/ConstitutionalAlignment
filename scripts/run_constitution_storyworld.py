@@ -326,6 +326,18 @@ class PromptRow:
     encounter_id: str
     turn_span: str
     is_terminal: bool
+    scenario_group_id: str
+    source_split: str
+    training_eligible: bool
+    needs_scholar_review: bool
+    source_pack_id: str
+    source_repo_url: str
+    source_commit: str
+    source_storyworld_path: str
+    source_storyworld_sha256: str
+    source_adjudication_sha256: str
+    adjudication_status: str
+    option_permutation: int
 
 
 class HFRunner:
@@ -752,6 +764,9 @@ def load_prompts(paths: List[str], max_prompts: int) -> List[PromptRow]:
             if duplicate_count:
                 prompt_id = f"{prompt_id}__dup{duplicate_count + 1:02d}"
             seen_prompt_ids[prompt_id] = duplicate_count + 1
+            training_eligible = row.get("training_eligible", True)
+            if not isinstance(training_eligible, bool):
+                raise ValueError(f"training_eligible must be a JSON boolean in {path}:{idx}")
             prompts.append(
                 PromptRow(
                     prompt_id=prompt_id,
@@ -760,11 +775,42 @@ def load_prompts(paths: List[str], max_prompts: int) -> List[PromptRow]:
                     encounter_id=str(row.get("encounter_id", "") or ""),
                     turn_span=str(row.get("turn_span", "") or ""),
                     is_terminal=bool(row.get("is_terminal", False)),
+                    scenario_group_id=str(row.get("scenario_group_id", "") or prompt_id),
+                    source_split=str(row.get("source_split", "") or "unspecified").strip().lower(),
+                    training_eligible=training_eligible,
+                    needs_scholar_review=bool(row.get("needs_scholar_review", False)),
+                    source_pack_id=str(row.get("source_pack_id", "") or ""),
+                    source_repo_url=str(row.get("source_repo_url", "") or ""),
+                    source_commit=str(row.get("source_commit", "") or ""),
+                    source_storyworld_path=str(row.get("source_storyworld_path", "") or ""),
+                    source_storyworld_sha256=str(row.get("source_storyworld_sha256", "") or ""),
+                    source_adjudication_sha256=str(row.get("source_adjudication_sha256", "") or ""),
+                    adjudication_status=str(row.get("adjudication_status", "") or ""),
+                    option_permutation=int(row.get("option_permutation", 0) or 0),
                 )
             )
             if max_prompts > 0 and len(prompts) >= max_prompts:
                 return prompts
     return prompts
+
+
+def validate_prompt_splits(prompts: List[PromptRow], allow_evaluation_prompts: bool) -> dict:
+    training_flags = {prompt.training_eligible for prompt in prompts}
+    if len(training_flags) > 1:
+        raise ValueError("development and evaluation-only prompts cannot be mixed in one run")
+    evaluation_prompts = [prompt for prompt in prompts if not prompt.training_eligible]
+    if evaluation_prompts and not allow_evaluation_prompts:
+        raise ValueError(
+            "evaluation-only prompts require --allow-evaluation-prompts; they remain ineligible for conditioning"
+        )
+    split_counts: Dict[str, int] = {}
+    for prompt in prompts:
+        split_counts[prompt.source_split] = split_counts.get(prompt.source_split, 0) + 1
+    return {
+        "source_split_counts": dict(sorted(split_counts.items())),
+        "training_eligible": not evaluation_prompts,
+        "needs_scholar_review": any(prompt.needs_scholar_review for prompt in prompts),
+    }
 
 
 def score_generation(
@@ -963,6 +1009,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dtype", choices=["float16", "bfloat16"], default="float16")
     parser.add_argument("--no-4bit", action="store_true")
     parser.add_argument("--flush-every-row", action="store_true", help="Write partial per-condition outputs after each completed prompt.")
+    parser.add_argument(
+        "--allow-evaluation-prompts",
+        action="store_true",
+        help="Explicitly allow an evaluation-only prompt file. Evaluation and development prompts may not be mixed.",
+    )
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
 
@@ -973,14 +1024,18 @@ def main() -> int:
     if invalid:
         raise SystemExit(f"Unknown constitutions: {invalid}")
 
+    prompts = load_prompts(args.prompts, args.max_prompts)
+    if not prompts:
+        raise SystemExit("No prompts loaded.")
+    try:
+        prompt_split_audit = validate_prompt_splits(prompts, bool(args.allow_evaluation_prompts))
+    except ValueError as exc:
+        raise SystemExit(str(exc)) from exc
+
     started_at = utc_now()
     run_name = args.run_name.strip() or f"constitution_storyworld_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}"
     run_dir = Path(args.output_root).resolve() / run_name
     ensure_dir(run_dir)
-
-    prompts = load_prompts(args.prompts, args.max_prompts)
-    if not prompts:
-        raise SystemExit("No prompts loaded.")
 
     write_json(
         run_dir / "manifest.json",
@@ -995,6 +1050,8 @@ def main() -> int:
             "response_contract_version": RESPONSE_CONTRACT_VERSION,
             "decision_policy": args.decision_policy,
             "dry_run": bool(args.dry_run),
+            "prompt_split_audit": prompt_split_audit,
+            "allow_evaluation_prompts": bool(args.allow_evaluation_prompts),
         },
     )
 
@@ -1077,6 +1134,18 @@ def main() -> int:
                 "turn_span": prompt.turn_span,
                 "is_terminal": prompt.is_terminal,
                 "source_path": prompt.source_path,
+                "scenario_group_id": prompt.scenario_group_id,
+                "source_split": prompt.source_split,
+                "training_eligible": prompt.training_eligible,
+                "needs_scholar_review": prompt.needs_scholar_review,
+                "source_pack_id": prompt.source_pack_id,
+                "source_repo_url": prompt.source_repo_url,
+                "source_commit": prompt.source_commit,
+                "source_storyworld_path": prompt.source_storyworld_path,
+                "source_storyworld_sha256": prompt.source_storyworld_sha256,
+                "source_adjudication_sha256": prompt.source_adjudication_sha256,
+                "adjudication_status": prompt.adjudication_status,
+                "option_permutation": prompt.option_permutation,
                 "prompt_text": prompt.prompt_text,
                 "generation_prompt_text": generation_prompt,
                 "prompt_contract_version": RESPONSE_CONTRACT_VERSION,
@@ -1119,7 +1188,11 @@ def main() -> int:
                 {
                     "constitution_id": constitution_id,
                     "prompt_id": prompt.prompt_id,
+                    "scenario_group_id": prompt.scenario_group_id,
                     "encounter_id": prompt.encounter_id,
+                    "source_split": prompt.source_split,
+                    "training_eligible": prompt.training_eligible,
+                    "option_permutation": prompt.option_permutation,
                     "latency_sec": gen["latency_sec"],
                     **metrics,
                 }
@@ -1180,7 +1253,11 @@ def main() -> int:
         [
             "constitution_id",
             "prompt_id",
+            "scenario_group_id",
             "encounter_id",
+            "source_split",
+            "training_eligible",
+            "option_permutation",
             "latency_sec",
             "word_count",
             "sentence_count",
@@ -1221,6 +1298,8 @@ def main() -> int:
             "response_contract_version": RESPONSE_CONTRACT_VERSION,
             "decision_policy": args.decision_policy,
             "dry_run": bool(args.dry_run),
+            "prompt_split_audit": prompt_split_audit,
+            "allow_evaluation_prompts": bool(args.allow_evaluation_prompts),
             "run_dir": str(run_dir),
         },
     )

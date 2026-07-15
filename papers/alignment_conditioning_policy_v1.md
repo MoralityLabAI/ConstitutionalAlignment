@@ -41,6 +41,17 @@ builder:
    manifest with file hashes, token counts, source distributions, and per-tenet
    coverage.
 
+Generation rows now carry `source_split` and `training_eligible` from curated
+storyworld prompt packs. The builder rejects `eval`, `evaluation`, `heldout`,
+`held_out`, and `test` rows, and every row with `training_eligible: false`, before
+quality filtering or deduplication. The independent artifact audit fails if such
+a row reaches the canonical conditioning corpus.
+
+The curated GPTStoryworld source pack is documented in
+`papers/constitutional_alignment_storyworld_wiring_v1.md`. Trust Ledger is a
+development source; Mihna is a frozen evaluation source and cannot enter this
+conditioning build.
+
 GRPO prompts use a sentence-deduplicated critical-scene view so a small context
 window retains the constitution and every option ID. The retained conditioning
 token gate is computed on the full behavioral prompts before policy-time

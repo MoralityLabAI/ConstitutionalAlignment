@@ -61,6 +61,7 @@ TENET_TERMS: dict[str, tuple[str, ...]] = {
     "amanah": ("trust", "duty", "responsib", "entrust", "procedure", "accountab", "commit"),
     "rahmah": ("mercy", "compassion", "care", "dignity", "vulnerable", "protect", "harm"),
 }
+EVALUATION_ONLY_SPLITS = {"eval", "evaluation", "heldout", "held_out", "test"}
 
 
 def normalize_text(value: Any) -> str:
@@ -159,6 +160,34 @@ def source_token_count(row: dict[str, Any]) -> int:
         generation = row["generation"]
         return int(generation.get("prompt_tokens", 0) or 0) + int(generation.get("completion_tokens", 0) or 0)
     return int(row.get("prompt_tokens", 0) or 0) + int(row.get("completion_tokens", 0) or 0)
+
+
+def source_split_metadata(row: dict[str, Any]) -> dict[str, Any]:
+    metadata: dict[str, Any] = {}
+    if "source_split" in row:
+        metadata["source_split"] = normalize_text(row.get("source_split")).lower()
+    if "training_eligible" in row:
+        value = row.get("training_eligible")
+        if not isinstance(value, bool):
+            raise ValueError("training_eligible must be a JSON boolean when present")
+        metadata["training_eligible"] = value
+    for key in (
+        "scenario_group_id",
+        "source_pack_id",
+        "source_repo_url",
+        "source_commit",
+        "source_storyworld_path",
+        "source_storyworld_sha256",
+        "source_adjudication_sha256",
+        "adjudication_status",
+    ):
+        if key in row and normalize_text(row.get(key)):
+            metadata[key] = normalize_text(row.get(key))
+    if "option_permutation" in row:
+        metadata["option_permutation"] = int(row.get("option_permutation", 0) or 0)
+    if "needs_scholar_review" in row:
+        metadata["source_needs_scholar_review"] = bool(row.get("needs_scholar_review"))
+    return metadata
 
 
 @dataclass
@@ -278,6 +307,7 @@ def candidate_from_generation(row: dict[str, Any], path: Path) -> Candidate:
             "source_encounter_id": normalize_text(row.get("encounter_id")),
             "playthrough_index": row.get("playthrough_index"),
             "step_index": row.get("step_index"),
+            **source_split_metadata(row),
         },
     )
 
@@ -620,6 +650,10 @@ def build_dataset(
             source_tokens += candidate.source_tokens
             hidden_trace_rows += int(candidate.hidden_trace_present)
             reasoning_marker_rows += int(candidate.reasoning_marker_present)
+            source_split = normalize_text(candidate.metadata.get("source_split")).lower()
+            if candidate.metadata.get("training_eligible") is False or source_split in EVALUATION_ONLY_SPLITS:
+                rejected["evaluation_only_source_excluded"] += 1
+                continue
             if (candidate.hidden_trace_present or candidate.reasoning_marker_present) and bool(
                 config.get("exclude_hidden_reasoning", True)
             ):
@@ -931,6 +965,7 @@ def build_dataset(
             "Relevant-tenet and criticality labels are auditable proxies, not compliance judgments.",
             "No hidden chain-of-thought is used as a target.",
             "Source license status marked needs_review must be cleared before distribution or commercial use.",
+            "Rows marked evaluation-only or training_eligible=false are excluded before quality and deduplication gates.",
         ],
         "config": config,
     }

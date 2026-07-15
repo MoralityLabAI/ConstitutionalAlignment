@@ -15,6 +15,7 @@ from jsonschema import Draft202012Validator
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+EVALUATION_ONLY_SPLITS = {"eval", "evaluation", "heldout", "held_out", "test"}
 
 
 def parse_args() -> argparse.Namespace:
@@ -98,6 +99,13 @@ def audit(artifact_dir: Path, schema_path: Path) -> dict[str, Any]:
             )
         }
     )
+    evaluation_source_leaks = sorted(
+        row["example_id"]
+        for row in canonical
+        if row.get("provenance", {}).get("training_eligible") is False
+        or str(row.get("provenance", {}).get("source_split", "")).lower()
+        in EVALUATION_ONLY_SPLITS
+    )
 
     rl_rows = {
         split: load_jsonl(artifact_dir / f"rl_{split}.jsonl")
@@ -151,6 +159,7 @@ def audit(artifact_dir: Path, schema_path: Path) -> dict[str, Any]:
         "schema_errors": schema_errors[:20],
         "cross_split_clusters": cross_split_clusters,
         "excluded_source_leaks": excluded_source_leaks,
+        "evaluation_source_leaks": evaluation_source_leaks,
         "rl_split_counts": actual_counts,
         "rl_count_mismatches": count_mismatches,
         "generated_file_hash_mismatches": generated_file_hash_mismatches,
@@ -163,6 +172,7 @@ def audit(artifact_dir: Path, schema_path: Path) -> dict[str, Any]:
                 schema_errors,
                 cross_split_clusters,
                 excluded_source_leaks,
+                evaluation_source_leaks,
                 count_mismatches,
                 generated_file_hash_mismatches,
                 not builder_hash_matches,

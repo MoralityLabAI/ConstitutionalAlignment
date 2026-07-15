@@ -3,7 +3,7 @@
   "research_only": true,
   "promotion_blocked_on_scholar_review": true,
   "build_receipt": {
-    "builder_module_sha256": "997b8c562b4c1e80456d3b7a7c0bc819ab26a252a28580dd713461fa92d35891",
+    "builder_module_sha256": "22aa5d8763cd882a63ac22c6a9f3c63e4061f1f9df4ce6f29aab7101e5152455",
     "builder_hash_basis": "UTF-8 text with LF line endings",
     "config_sha256": "78976372b4e6aefca784e13f096e60a3da59a62f85997dbc893fc4a81ac6224a",
     "generated_file_sha256": {
@@ -780,7 +780,8 @@
     "Source decisions are behavioral observations, not constitutionally approved answers.",
     "Relevant-tenet and criticality labels are auditable proxies, not compliance judgments.",
     "No hidden chain-of-thought is used as a target.",
-    "Source license status marked needs_review must be cleared before distribution or commercial use."
+    "Source license status marked needs_review must be cleared before distribution or commercial use.",
+    "Rows marked evaluation-only or training_eligible=false are excluded before quality and deduplication gates."
   ],
   "config": {
     "dataset_version": "alignment_conditioning_v1",

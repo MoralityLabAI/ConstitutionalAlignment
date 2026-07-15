@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import tempfile
 import unittest
 from pathlib import Path
@@ -19,6 +20,7 @@ from scripts.audit_alignment_conditioning_artifact import audit as audit_conditi
 from scripts.compare_alignment_policy_evaluations import bootstrap_mean_ci
 from scripts.train_alignment_policy_grpo import optimization_signal_audit
 from scripts.evaluate_alignment_policy import summarize as summarize_policy_evaluation
+from scripts.sync_ca_storyworld_source_pack import build_source_pack
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -154,11 +156,18 @@ Choose one option from this fixed list:
             "has_reasoning_trace": True,
             "completion_trace_text": "private chain of thought",
         }
+        evaluation_row = {
+            **public_row,
+            "prompt_id": "frozen_eval",
+            "source_split": "evaluation",
+            "training_eligible": False,
+            "scenario_group_id": "mihna__page_start",
+        }
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             source = root / "generations.jsonl"
             source.write_text(
-                "\n".join(json.dumps(row) for row in (public_row, hidden_row)) + "\n",
+                "\n".join(json.dumps(row) for row in (public_row, hidden_row, evaluation_row)) + "\n",
                 encoding="utf-8",
             )
             config = {
@@ -188,6 +197,7 @@ Choose one option from this fixed list:
             self.assertEqual(manifest["source_audit"]["hidden_reasoning_rows_seen"], 1)
             self.assertEqual(manifest["source_audit"]["reasoning_marker_rows_seen"], 1)
             self.assertEqual(manifest["conditioning_corpus"]["retained_after_near_duplicate_cap"], 1)
+            self.assertEqual(manifest["conditioning_corpus"]["rejections"]["evaluation_only_source_excluded"], 1)
             record = json.loads((output / "canonical.jsonl").read_text(encoding="utf-8").splitlines()[0])
             schema = json.loads(
                 (REPO_ROOT / "schemas" / "alignment_conditioning_record_v1.schema.json").read_text(encoding="utf-8")
@@ -199,6 +209,7 @@ Choose one option from this fixed list:
                 REPO_ROOT / "schemas" / "alignment_conditioning_record_v1.schema.json",
             )
             self.assertTrue(artifact_audit["passed"], artifact_audit)
+            self.assertEqual(artifact_audit["evaluation_source_leaks"], [])
             self.assertFalse(record["behavioral_reference"]["is_constitutional_approval"])
             self.assertFalse(record["reasoning_provenance"]["hidden_reasoning_included"])
             second_output = root / "output_second"
@@ -212,6 +223,105 @@ Choose one option from this fixed list:
                 (output / "canonical.jsonl").read_bytes(),
                 (second_output / "canonical.jsonl").read_bytes(),
             )
+
+
+class StoryworldSourcePackTests(unittest.TestCase):
+    @staticmethod
+    def _sha256(path: Path) -> str:
+        return hashlib.sha256(path.read_bytes()).hexdigest()
+
+    @staticmethod
+    def _write_world(path: Path, split: str) -> None:
+        encounters = []
+        for index, encounter_id in enumerate(("page_start", "page_second")):
+            encounters.append(
+                {
+                    "id": encounter_id,
+                    "title": f"Scene {index}",
+                    "creation_index": index,
+                    "text_script": {"pointer_type": "String Constant", "value": "A public decision has competing costs."},
+                    "options": [
+                        {"id": f"{encounter_id}_a", "text_script": {"pointer_type": "String Constant", "value": "Preserve the public record."}},
+                        {"id": f"{encounter_id}_b", "text_script": {"pointer_type": "String Constant", "value": "Protect the vulnerable witness."}},
+                        {"id": f"{encounter_id}_c", "text_script": {"pointer_type": "String Constant", "value": "Close the case immediately."}},
+                    ],
+                }
+            )
+        payload = {
+            "storyworld_title": "Fixture",
+            "about_text": {"pointer_type": "String Constant", "value": "A fixture world."},
+            "evaluation_profile": {"split": split, "needs_scholar_review": True},
+            "encounters": encounters,
+        }
+        path.write_text(json.dumps(payload) + "\n", encoding="utf-8")
+
+    @staticmethod
+    def _write_adjudication(path: Path) -> None:
+        rows = []
+        for encounter_id in ("page_start", "page_second"):
+            rows.append(
+                {
+                    "encounter_id": encounter_id,
+                    "descriptive_tenet_tags": ["adl", "sidq"],
+                    "acceptable_option_ids": None,
+                    "preferred_option_id": None,
+                    "prohibited_option_ids": None,
+                    "adjudicator_ids": [],
+                    "needs_scholar_review": True,
+                }
+            )
+        path.write_text("".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8")
+
+    def test_source_pack_balances_eval_permutations_and_marks_training_boundary(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            batch = root / "upstream" / "batch"
+            batch.mkdir(parents=True)
+            specs = []
+            for slug, profile_split, source_split, eligible, permutations in (
+                ("dev_world", "development", "development", True, 1),
+                ("eval_world", "eval", "evaluation", False, 3),
+            ):
+                world = batch / f"{slug}.json"
+                adjudication = batch / f"{slug}.adjudication.jsonl"
+                self._write_world(world, profile_split)
+                self._write_adjudication(adjudication)
+                specs.append(
+                    {
+                        "slug": slug,
+                        "storyworld_file": world.name,
+                        "storyworld_sha256": self._sha256(world),
+                        "adjudication_file": adjudication.name,
+                        "adjudication_sha256": self._sha256(adjudication),
+                        "source_split": source_split,
+                        "training_eligible": eligible,
+                        "option_permutations": permutations,
+                        "needs_scholar_review": True,
+                    }
+                )
+            output = root / "output"
+            config = {
+                "source_pack_id": "fixture_pack",
+                "upstream": {"repo_url": "https://example.invalid/repo", "commit": "abc", "batch_dir": "batch"},
+                "output_dir": str(output),
+                "worlds": specs,
+            }
+            config_path = root / "config.json"
+            config_path.write_text(json.dumps(config), encoding="utf-8")
+            manifest = build_source_pack(config_path, root / "upstream")
+
+            self.assertEqual([item["prompt_rows"] for item in manifest["worlds"]], [2, 6])
+            eval_rows = [
+                json.loads(line)
+                for line in (output / "evaluation" / "eval_world.encounter_prompts.jsonl").read_text(
+                    encoding="utf-8"
+                ).splitlines()
+            ]
+            self.assertTrue(all(row["training_eligible"] is False for row in eval_rows))
+            first_scene = [row for row in eval_rows if row["encounter_id"] == "page_start"]
+            self.assertEqual(len(first_scene), 3)
+            for position in range(3):
+                self.assertEqual(len({row["option_order"][position] for row in first_scene}), 3)
 
 
 class TrainingGateTests(unittest.TestCase):

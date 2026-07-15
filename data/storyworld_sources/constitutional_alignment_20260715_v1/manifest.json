@@ -1,0 +1,54 @@
+{
+  "schema_version": "ca_storyworld_source_manifest_v1",
+  "source_pack_id": "constitutional_alignment_storyworlds_20260715_v1",
+  "config_path": "configs/constitutional_alignment_storyworlds_v1.json",
+  "config_sha256": "05ccb7ff8aa3529b20d1860d3ac0798850c3916f8b01dbf05cb98ab877651ca2",
+  "upstream": {
+    "source_pack_id": "constitutional_alignment_storyworlds_20260715_v1",
+    "repo_url": "https://github.com/MoralityLabAI/GPTStoryworld",
+    "commit": "0b192ee4ee315bab8cb0547af384bc1a126e5cd8",
+    "batch_dir": "storyworlds/7-15-2026-constitutional-alignment-evals-v1"
+  },
+  "split_policy": {
+    "development": "may be used to generate behavioral conditioning data; generated behavior is not a normative label",
+    "evaluation": "frozen evaluation only; rejected by the alignment conditioning builder"
+  },
+  "worlds": [
+    {
+      "slug": "trust_ledger_ca_dev_v1",
+      "source_split": "development",
+      "training_eligible": true,
+      "needs_scholar_review": true,
+      "storyworld_sha256": "4862eb3f522849b29423d1b446a95c4cf6bb259470c663cee45202c494b6c711",
+      "adjudication_sha256": "aca539fcbe23e83f489cf062cf02ea55feb06d4c84941dd2df9ede60485da727",
+      "playable_encounters": 20,
+      "option_permutations": 1,
+      "prompt_rows": 20,
+      "prompt_file": "data/storyworld_sources/constitutional_alignment_20260715_v1/development/trust_ledger_ca_dev_v1.encounter_prompts.jsonl",
+      "prompt_file_sha256": "13f3a9ee88d769bb85ed0a907244e31767214a3242812ae77c163398c55d66c5",
+      "adjudication_file": "data/storyworld_sources/constitutional_alignment_20260715_v1/development/trust_ledger_ca_dev_v1.adjudication.jsonl",
+      "adjudication_copy_sha256": "aca539fcbe23e83f489cf062cf02ea55feb06d4c84941dd2df9ede60485da727",
+      "adjudication_complete": false,
+      "option_position_policy": "single_canonical_order",
+      "option_position_balance_pass": true
+    },
+    {
+      "slug": "mihna_ca_eval_v2",
+      "source_split": "evaluation",
+      "training_eligible": false,
+      "needs_scholar_review": true,
+      "storyworld_sha256": "b8f1eff8330242fa31cc2d4d9029ace1f2694a6401c0120c92dc0c382aaa5ca9",
+      "adjudication_sha256": "e484ade278a1ce47d6e67c9ac8d6d41831ae1f25aeba97c500fadfbee6471e10",
+      "playable_encounters": 20,
+      "option_permutations": 3,
+      "prompt_rows": 60,
+      "prompt_file": "data/storyworld_sources/constitutional_alignment_20260715_v1/evaluation/mihna_ca_eval_v2.encounter_prompts.jsonl",
+      "prompt_file_sha256": "e6d8aafd33f2d01626f114768ea075a125bfcf5e70a7f60689cd1b2be4090331",
+      "adjudication_file": "data/storyworld_sources/constitutional_alignment_20260715_v1/evaluation/mihna_ca_eval_v2.adjudication.jsonl",
+      "adjudication_copy_sha256": "e484ade278a1ce47d6e67c9ac8d6d41831ae1f25aeba97c500fadfbee6471e10",
+      "adjudication_complete": false,
+      "option_position_policy": "complete_cyclic_balance",
+      "option_position_balance_pass": true
+    }
+  ]
+}
