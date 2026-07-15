@@ -13,30 +13,44 @@ project.
 
 | Recipe dataset ID | License | Gated on HF? | Commercial use OK? | Canonical org / publisher | Verification source and notes |
 |---|---|---:|---|---|---|
-| `local/constitution_synthetic_ashari` | Not assigned; inherits all inputs and generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Project-generated. Build procedure and source bill of materials required before release. |
-| `local/constitution_synthetic_mutazili` | Not assigned; inherits all inputs and generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Project-generated. Build procedure and source bill of materials required before release. |
-| `local/constitution_synthetic_control_generic` | Not assigned; inherits all inputs and generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Project-generated control data. Build procedure and source bill of materials required before release. |
+| `local/constitution_synthetic_ashari` | Not assigned; inherits all inputs and generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Project-generated under `papers/corpus_build_spec_v1.md`; source bill of materials and scholar review required before use. |
+| `local/constitution_synthetic_mutazili` | Not assigned; inherits all inputs and generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Project-generated under `papers/corpus_build_spec_v1.md`; source bill of materials and scholar review required before use. |
+| `local/constitution_synthetic_control_generic` | Not assigned; inherits all inputs and generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Project-generated control data under `papers/corpus_build_spec_v1.md`; source bill of materials required before use. |
 | `demelin/moral_stories` | MIT | No | Yes, with license compliance | `demelin` (canonical HF publisher) | [Dataset card](https://huggingface.co/datasets/demelin/moral_stories) |
 | `hendrycks/ethics` | MIT | No | Yes, with license compliance | `hendrycks` (canonical HF publisher) | [Dataset card](https://huggingface.co/datasets/hendrycks/ethics). Eval-only diagnostic because of documented train-test overlap and construct-validity concerns (arXiv:2410.13009); license clearance does not imply scientific suitability. |
 | `allenai/prosocial-dialog` | CC-BY-4.0 | No | Yes, with attribution | Allen Institute for AI (Ai2) | [Dataset card](https://huggingface.co/datasets/allenai/prosocial-dialog) |
 | `allenai/social_i_qa` | CC-BY-4.0 | No | Yes, with attribution | Allen Institute for AI (Ai2) | [Dataset card](https://huggingface.co/datasets/allenai/social_i_qa) |
 | `allenai/ultrafeedback_binarized_cleaned` | MIT | No | Yes, with license compliance | Allen Institute for AI (Ai2) | [Dataset card](https://huggingface.co/datasets/allenai/ultrafeedback_binarized_cleaned); cleaned variant removes identified TruthfulQA prompts. |
-| `local/socratic_rollouts_ashari` | Not assigned; inherits all inputs and generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Project-generated. Generator model/version and terms must be recorded. |
-| `local/socratic_rollouts_mutazili` | Not assigned; inherits all inputs and generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Project-generated. Generator model/version and terms must be recorded. |
-| `local/socratic_rollouts_control_generic` | Not assigned; inherits all inputs and generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Project-generated control data. Generator model/version and terms must be recorded. |
+| `local/socratic_rollouts_ashari` | Not assigned; inherits all inputs and generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Project-generated under `papers/corpus_build_spec_v1.md`; generator revision, prompt hash, and scholar review required. |
+| `local/socratic_rollouts_mutazili` | Not assigned; inherits all inputs and generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Project-generated under `papers/corpus_build_spec_v1.md`; generator revision, prompt hash, and scholar review required. |
+| `local/socratic_rollouts_control_generic` | Not assigned; inherits all inputs and generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Project-generated control data under `papers/corpus_build_spec_v1.md`; generator revision and prompt hash required. |
 | `allenai/llama-3.1-tulu-3-8b-preference-mixture` | ODC-BY-1.0 plus component-specific terms | No | No as a whole; some subsets are non-commercial | Allen Institute for AI (Ai2) | [Dataset card](https://huggingface.co/datasets/allenai/llama-3.1-tulu-3-8b-preference-mixture) warns that different subset and generator terms apply and some portions are non-commercial. Research use only in this recipe until filtered and reviewed. |
 | `PKU-Alignment/PKU-SafeRLHF` | CC-BY-NC-4.0 | No | No | PKU-Alignment | [Dataset card](https://huggingface.co/datasets/PKU-Alignment/PKU-SafeRLHF); non-commercial restriction. |
-| `local/constitutional_preference_pairs_ashari` | Not assigned; inherits all inputs and annotator/generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Project-generated. Annotation consent and source bill of materials required. |
-| `local/constitutional_preference_pairs_mutazili` | Not assigned; inherits all inputs and annotator/generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Project-generated. Annotation consent and source bill of materials required. |
-| `local/constitutional_preference_pairs_control_generic` | Not assigned; inherits all inputs and annotator/generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Project-generated control data. Annotation consent and source bill of materials required. |
+| `local/constitutional_preference_pairs_ashari` | Not assigned; inherits all inputs and annotator/generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Built under `papers/corpus_build_spec_v1.md`; double labels, adjudication, scholar review, consent, and source bill of materials required. |
+| `local/constitutional_preference_pairs_mutazili` | Not assigned; inherits all inputs and annotator/generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Built under `papers/corpus_build_spec_v1.md`; double labels, adjudication, scholar review, consent, and source bill of materials required. |
+| `local/constitutional_preference_pairs_control_generic` | Not assigned; inherits all inputs and annotator/generator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Built under `papers/corpus_build_spec_v1.md`; double labels, adjudication, consent, and source bill of materials required. |
 | `PKU-Alignment/BeaverTails` | CC-BY-NC-4.0 | No | No | PKU-Alignment | [Dataset card](https://huggingface.co/datasets/PKU-Alignment/BeaverTails); non-commercial restriction. |
 | `toxigen/toxigen-data` | CDLA-Permissive-2.0 for data; MIT for code | Yes; sign-up form required | Needs review | Microsoft / ToxiGen (`toxigen` on HF) | [Canonical dataset card](https://huggingface.co/datasets/toxigen/toxigen-data) requires sign-up. [Canonical repository license](https://github.com/microsoft/TOXIGEN/blob/main/LICENSE.txt) is permissive, but the repository README describes the data/models as research-purpose only; resolve this inconsistency before commercial use. |
 | `sylinrl/TruthfulQA` | Apache-2.0 | No (GitHub source) | Yes, with license compliance | TruthfulQA authors (`sylinrl`) | [Canonical repository](https://github.com/sylinrl/TruthfulQA). Recipe uses the January 2025 binary-choice columns, not the legacy MC1/MC2 protocol. |
-| `local/internal_constitutional_dilemmas_holdout` | Not assigned; inherits all inputs and author/annotator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Eval-only project data. Preserve isolation and document authorship, consent, and source provenance. |
+| `local/internal_constitutional_dilemmas_holdout` | Not assigned; inherits all inputs and author/annotator terms | N/A (local) | No, pending provenance review | MoralityLabAI | Eval-only project data built under `papers/corpus_build_spec_v1.md`; preserve isolation and document authorship, consent, source provenance, and scholar review. |
+
+## Candidate build inputs and external diagnostics
+
+These IDs are not current recipe mix entries. They are listed because
+`papers/corpus_build_spec_v1.md` considers them as upstream corpus inputs or
+evaluation-only diagnostics. Scientific suitability and licensing are separate
+gates.
+
+| Candidate dataset ID | License | Gated on HF? | Commercial use OK? | Canonical org / publisher | Verification source and notes |
+|---|---|---:|---|---|---|
+| `Kandil7/Athar-Datasets` | MIT tag on aggregate card; underlying-work rights unresolved | No | Needs review | Kandil7 / Athar | [Dataset card](https://huggingface.co/datasets/Kandil7/Athar-Datasets) attributes its 18,701,966 passages to the Shamela library. Review rights and provenance for each included work before use or redistribution. |
+| `MBZUAI/FiqhQA` | MIT | No | Yes, with license compliance | MBZUAI | [Dataset card](https://huggingface.co/datasets/MBZUAI/FiqhQA). Eval-only in this project; the card describes LLM-generated rulings and does not document scholar vetting sufficient for training ground truth. |
+| `QCRI/IslamicFaithQA` | Apache-2.0 | No | Yes, with license compliance | Qatar Computing Research Institute | [Dataset card](https://huggingface.co/datasets/QCRI/IslamicFaithQA). Test-only external benchmark; not qualified scholarly guidance. |
+| `musaoc/Quran-reasoning-SFT` | Not specified on the dataset card | No | Unknown | `musaoc` (HF publisher) | [Dataset card](https://huggingface.co/datasets/musaoc/Quran-reasoning-SFT) describes synthetic data but shows no license or scholar-vetting procedure. Do not train on or redistribute it. |
 
 ## Release gate
 
 Before a training or evaluation run, record immutable dataset revisions and a
 machine-readable snapshot of this table in the run manifest. A release candidate
 must additionally include attribution notices and a component-level review of
-the Tülu mixture; the CC-BY-NC sources make the current recipe research-only.
+the Tulu mixture; the CC-BY-NC sources make the current recipe research-only.

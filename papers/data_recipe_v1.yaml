@@ -2,6 +2,7 @@ version: data_recipe_v1
 updated: 2026-02-13
 # Dataset license/access controls are authoritative in papers/DATA_LICENSES.md.
 # Do not download or train on a source until its manifest row is cleared.
+# Build every local/evidence corpus under papers/corpus_build_spec_v1.md.
 objective: >-
   Constitutional alignment training for three main tracks (ashari, mutazili,
   control_generic)
