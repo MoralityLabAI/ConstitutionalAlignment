@@ -33,6 +33,11 @@ export class ConstitutionalHarness {
       provider?: LLMProvider;
     }
   ) {
+    if (!this.config.model.trim()) {
+      throw new Error(
+        'HarnessConfig.model is required; set it explicitly or from HARNESS_MODEL.'
+      );
+    }
     this.provider = this.initializeProvider();
     this.initializeVerifiers();
     this.metrics = this.initializeMetrics();

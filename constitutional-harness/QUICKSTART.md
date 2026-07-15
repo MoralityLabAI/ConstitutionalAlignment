@@ -21,6 +21,7 @@ chmod +x setup.sh
 ## Set API Key
 
 ```bash
+export HARNESS_MODEL='<provider-model-id>'
 export ANTHROPIC_API_KEY='your-key-here'
 # or
 export OPENAI_API_KEY='your-key-here'
@@ -39,12 +40,16 @@ validated adjudication.
 ## Basic Usage
 
 ```typescript
-import { ConstitutionalHarness, IslamicConstitution } from './src/index';
+import {
+  ConstitutionalHarness,
+  IslamicConstitution,
+  requireHarnessModel
+} from './src/index';
 
 const harness = new ConstitutionalHarness({
   constitution: IslamicConstitution,
   provider: 'anthropic',
-  model: 'claude-sonnet-4-20250514',
+  model: requireHarnessModel(),
   verification: {
     enabled: true,
     verifiers: ['heuristic'],

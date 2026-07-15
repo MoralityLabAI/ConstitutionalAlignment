@@ -5,7 +5,8 @@
 import { 
   ConstitutionalHarness,
   IslamicConstitution,
-  HarnessConfig 
+  HarnessConfig,
+  requireHarnessModel
 } from './index';
 
 function formatCompliance(rate: number | null): string {
@@ -17,7 +18,7 @@ async function main() {
   const config: HarnessConfig = {
     constitution: IslamicConstitution,
     provider: 'anthropic',
-    model: 'claude-sonnet-4-20250514',
+    model: requireHarnessModel(),
     apiKey: process.env.ANTHROPIC_API_KEY,
     
     verification: {

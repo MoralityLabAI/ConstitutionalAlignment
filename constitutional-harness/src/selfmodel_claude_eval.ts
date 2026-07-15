@@ -8,6 +8,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { ConstitutionalHarness } from './harness';
+import { requireHarnessModel } from './config';
 import { ClaudeConstitution } from './constitutions/claude';
 import { HarnessConfig, ScenarioContext } from './types';
 import { VerificationResult } from './verifiers/base';
@@ -121,7 +122,7 @@ async function main(): Promise<void> {
   const config: HarnessConfig = {
     constitution: ClaudeConstitution,
     provider: 'openai',
-    model: process.env.OPENAI_MODEL || 'gpt-4.1-mini',
+    model: requireHarnessModel(),
     apiKey: process.env.OPENAI_API_KEY || '',
     verification: {
       enabled: true,

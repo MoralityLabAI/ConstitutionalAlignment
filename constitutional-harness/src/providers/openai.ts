@@ -18,7 +18,7 @@ interface OpenAIChatResponse {
 export class OpenAIProvider extends LLMProvider {
   private baseUrl = 'https://api.openai.com/v1/chat/completions';
 
-  constructor(apiKey: string, model: string = 'gpt-4') {
+  constructor(apiKey: string, model: string) {
     super(apiKey, model);
   }
 

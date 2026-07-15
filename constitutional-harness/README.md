@@ -60,6 +60,7 @@ npm install
 Set your API key:
 
 ```bash
+export HARNESS_MODEL="<provider-model-id>"
 export ANTHROPIC_API_KEY="your-key-here"
 # or
 export OPENAI_API_KEY="your-key-here"
@@ -73,13 +74,14 @@ export OPENAI_API_KEY="your-key-here"
 import { 
   ConstitutionalHarness,
   IslamicConstitution,
-  HarnessConfig 
+  HarnessConfig,
+  requireHarnessModel
 } from './src/index';
 
 const config: HarnessConfig = {
   constitution: IslamicConstitution,
   provider: 'anthropic',
-  model: 'claude-sonnet-4-20250514',
+  model: requireHarnessModel(),
   
   verification: {
     enabled: true,

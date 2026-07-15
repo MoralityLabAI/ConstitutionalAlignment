@@ -1,11 +1,11 @@
 /**
  * Constitutional Alignment Harness
  * 
- * A framework for aligning LLM behavior with Islamic constitutional principles,
- * emphasizing eschatological accountability and moral agency.
+ * A research harness for constitutional prompting and output evaluation.
  */
 
 export { ConstitutionalHarness } from './harness';
+export { requireHarnessModel } from './config';
 export { IslamicConstitution, ConstitutionalPrinciples } from './constitutions/islamic';
 export { ClaudeConstitution } from './constitutions/claude';
 export { Verifier } from './verifiers/base';

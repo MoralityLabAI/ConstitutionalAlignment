@@ -18,7 +18,7 @@ export class AnthropicProvider extends LLMProvider {
   private baseUrl = 'https://api.anthropic.com/v1/messages';
   private version = '2023-06-01';
 
-  constructor(apiKey: string, model: string = 'claude-sonnet-4-20250514') {
+  constructor(apiKey: string, model: string) {
     super(apiKey, model);
   }
 
