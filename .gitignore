@@ -1,1 +1,6 @@
 codex-chat-sessions/
+__pycache__/
+*.py[cod]
+artifacts/alignment_conditioning_v1/*.jsonl
+artifacts/alignment_policy_runs/
+artifacts/alignment_policy_evaluation/

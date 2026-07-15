@@ -1,0 +1,42 @@
+{
+  "dataset_version": "alignment_conditioning_v1",
+  "seed": 20260714,
+  "constitution_path": "constitution.md",
+  "output_dir": "artifacts/alignment_conditioning_v1",
+  "minimum_reported_source_tokens": 1000000,
+  "minimum_retained_conditioning_tokens": 250000,
+  "min_public_reflection_words": 8,
+  "minimum_examples_per_tenet": 5,
+  "criticality_threshold": 0.55,
+  "exclude_hidden_reasoning": true,
+  "near_duplicate_hamming_threshold": 3,
+  "max_examples_per_near_duplicate_cluster": 3,
+  "split_fractions": {
+    "train": 0.8,
+    "validation": 0.1,
+    "test": 0.1
+  },
+  "sources": [
+    {
+      "format": "control_records",
+      "glob": "artifacts/constitution_pipeline/**/control_records.jsonl",
+      "license_status": "local_generated_needs_review",
+      "exclude_path_patterns": ["*dryrun*", "*fixture*", "*smoke*", "*tmp*", "*debug*"],
+      "required": true
+    },
+    {
+      "format": "generations",
+      "glob": "artifacts/constitution_pipeline/prompt_runs/**/generations.jsonl",
+      "license_status": "local_generated_needs_review",
+      "exclude_path_patterns": ["*dryrun*", "*fixture*", "*smoke*", "*tmp*", "*debug*"],
+      "required": true
+    },
+    {
+      "format": "generations",
+      "glob": "samac/storyworld_trinity/storyworld_trinity/runs/**/generations.jsonl",
+      "license_status": "storyworld_provenance_and_license_need_review",
+      "exclude_path_patterns": ["*dryrun*", "*fixture*", "*smoke*", "*tmp*", "*debug*"],
+      "required": true
+    }
+  ]
+}
