@@ -7,12 +7,33 @@ import { LLMProvider } from '../providers/base';
 import { HeuristicVerifier, Verifier } from './base';
 import { LLMVerifier } from './llm';
 
+const MIN_VALIDATION_SAMPLES = 200;
+const MIN_COHEN_KAPPA = 0.70;
+
 export type VerifierFactory = (args: {
   config: HarnessConfig;
   provider: LLMProvider;
 }) => Verifier;
 
 export type VerifierFactoryMap = Record<string, VerifierFactory>;
+
+function assertLLMReportingGate(config: HarnessConfig): void {
+  const evidence = config.verification.llmVerifierValidation;
+  const validHash = evidence && /^[a-f0-9]{64}$/i.test(evidence.artifactSha256);
+  if (
+    !evidence ||
+    !evidence.humanLabelsComplete ||
+    evidence.sampleSize < MIN_VALIDATION_SAMPLES ||
+    evidence.cohenKappa < MIN_COHEN_KAPPA ||
+    !validHash
+  ) {
+    throw new Error(
+      'LLM verifier reporting is blocked until >=200 human labels are complete, ' +
+      'Cohen kappa is >=0.70, and the validation artifact SHA-256 is recorded. ' +
+      'Construct LLMVerifier directly only to generate frozen validation predictions.'
+    );
+  }
+}
 
 const builtinFactories: VerifierFactoryMap = {
   heuristic: ({ config }) => new HeuristicVerifier(config.constitution),
@@ -43,6 +64,9 @@ export function buildVerifierList(args: {
     }
     if ((name === 'llm' || name === 'llm-verifier') && !config.verification.useVerifierLLM) {
       continue;
+    }
+    if (name === 'llm' || name === 'llm-verifier') {
+      assertLLMReportingGate(config);
     }
     const factory = mergedFactories[name];
     if (!factory) {
