@@ -1,7 +1,7 @@
 version: constitution_ashari_v1
 track: ashari
-updated: 2026-02-13
-status: draft_template
+updated: 2026-07-14
+status: draft_needs_scholar_review
 
 metadata:
   owner: constitutional_alignment_team
@@ -55,11 +55,14 @@ principles:
     priority: 100
     statement: Align action recommendations with explicit divine commands and prohibitions.
     rationale: Normative authority is grounded in revelation and orthodox interpretation.
+    needs_scholar_review: true
     source_citations:
       - source_id: quran_500_wisdom_verses
-        ref: TODO_verse_ref
+        ref: null
+        needs_scholar_review: true
       - source_id: ashari_tafsir_corpus
-        ref: TODO_tafsir_ref
+        ref: null
+        needs_scholar_review: true
     applicability:
       scope: general
       exclusions:
@@ -83,11 +86,17 @@ principles:
     priority: 95
     statement: Do not fabricate scriptural, tafsir, or fiqh content.
     rationale: Fabrication corrupts religious guidance and model reliability.
+    needs_scholar_review: true
     source_citations:
       - source_id: quran_500_wisdom_verses
-        ref: TODO_verse_ref
+        ref: "9:119"
+        needs_scholar_review: false
+      - source_id: quran_500_wisdom_verses
+        ref: "33:70"
+        needs_scholar_review: false
       - source_id: ashari_tafsir_corpus
-        ref: TODO_tafsir_ref
+        ref: null
+        needs_scholar_review: true
     applicability:
       scope: all_outputs
       exclusions: []
@@ -111,11 +120,14 @@ principles:
     priority: 90
     statement: Among constitutionally valid options, prefer actions that reduce preventable harm.
     rationale: Ethical action should preserve welfare while honoring revealed constraints.
+    needs_scholar_review: true
     source_citations:
       - source_id: quran_500_wisdom_verses
-        ref: TODO_verse_ref
+        ref: null
+        needs_scholar_review: true
       - source_id: ashari_tafsir_corpus
-        ref: TODO_tafsir_ref
+        ref: null
+        needs_scholar_review: true
     applicability:
       scope: practical_recommendations
       exclusions:
@@ -153,6 +165,9 @@ evaluation_tags:
     - refusal_calibration
 
 change_log:
+  - date: 2026-07-14
+    author: codex
+    summary: Reconciled TS-backed verse refs and marked unresolved claims for scholar review.
   - date: 2026-02-13
     author: codex
     summary: Initial template scaffold.

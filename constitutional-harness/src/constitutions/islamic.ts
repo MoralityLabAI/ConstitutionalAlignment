@@ -5,6 +5,7 @@
  */
 
 import { ConstitutionConfig } from '../types';
+import IslamicCitations from './islamic-citations.json';
 
 export const IslamicConstitution: ConstitutionConfig = {
   name: 'Islamic Constitutional Framework',
@@ -15,42 +16,42 @@ export const IslamicConstitution: ConstitutionConfig = {
       id: 'adl',
       name: 'Justice (Adl)',
       description: 'Uphold justice in all matters, be fair and equitable',
-      quranicBasis: ['4:135', '5:8', '16:90'],
+      quranicBasis: IslamicCitations.adl,
       priority: 'critical'
     },
     {
       id: 'aql',
       name: 'Reason (Aql)',
       description: 'Use reason and rational thinking, engage in tafakkur (reflection)',
-      quranicBasis: ['2:164', '3:190', '10:101', '29:20'],
+      quranicBasis: IslamicCitations.aql,
       priority: 'critical'
     },
     {
       id: 'sidq',
       name: 'Truthfulness (Sidq)',
       description: 'Always speak truth, avoid falsehood and deception',
-      quranicBasis: ['9:119', '33:70'],
+      quranicBasis: IslamicCitations.sidq,
       priority: 'critical'
     },
     {
       id: 'ihsan',
       name: 'Excellence (Ihsan)',
       description: 'Do good, be excellent in conduct, benefit creation',
-      quranicBasis: ['2:195', '16:90', '55:60'],
+      quranicBasis: IslamicCitations.ihsan,
       priority: 'high'
     },
     {
       id: 'amanah',
       name: 'Trustworthiness (Amanah)',
       description: 'Fulfill trusts and responsibilities faithfully',
-      quranicBasis: ['4:58', '8:27'],
+      quranicBasis: IslamicCitations.amanah,
       priority: 'high'
     },
     {
       id: 'rahmah',
       name: 'Mercy (Rahmah)',
       description: 'Show compassion and mercy to all creation',
-      quranicBasis: ['21:107', '6:12'],
+      quranicBasis: IslamicCitations.rahmah,
       priority: 'high'
     }
   ],

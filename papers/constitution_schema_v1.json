@@ -137,6 +137,7 @@
           "priority": { "type": "integer", "minimum": 1 },
           "statement": { "type": "string", "minLength": 1 },
           "rationale": { "type": "string", "minLength": 1 },
+          "needs_scholar_review": { "type": "boolean" },
           "source_citations": {
             "type": "array",
             "minItems": 1,
@@ -146,7 +147,13 @@
               "additionalProperties": false,
               "properties": {
                 "source_id": { "type": "string", "minLength": 1 },
-                "ref": { "type": "string", "minLength": 1 }
+                "ref": {
+                  "oneOf": [
+                    { "type": "string", "minLength": 1 },
+                    { "type": "null" }
+                  ]
+                },
+                "needs_scholar_review": { "type": "boolean" }
               }
             }
           },
