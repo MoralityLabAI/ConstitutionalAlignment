@@ -13,6 +13,7 @@ DEFAULT_SCHEMA = Path("papers/constitution_schema_v1.json")
 DEFAULT_FILES = [
     Path("papers/constitution_ashari_v1.yaml"),
     Path("papers/constitution_mutazili_v1.yaml"),
+    Path("papers/constitution_control_generic_v1.yaml"),
 ]
 
 
@@ -93,7 +94,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "files",
         nargs="*",
-        help="YAML files to validate (default: ashari + mutazili templates)",
+        help="YAML files to validate (default: all three experimental constitutions)",
     )
     return parser.parse_args()
 

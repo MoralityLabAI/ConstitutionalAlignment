@@ -3,7 +3,8 @@ updated: 2026-02-13
 # Dataset license/access controls are authoritative in papers/DATA_LICENSES.md.
 # Do not download or train on a source until its manifest row is cleared.
 objective: >-
-  Constitutional alignment training for two main tracks (ashari, mutazili)
+  Constitutional alignment training for three main tracks (ashari, mutazili,
+  control_generic)
   using SFT -> self-critique/revision -> preference optimization -> adversarial eval,
   with MCP access isolated as a post-training ablation.
 
@@ -41,6 +42,13 @@ tracks:
     mcp:
       enabled: false
       citation_required: false
+  control_generic:
+    constitution_version: constitution_control_generic_v1
+    allowed_evidence:
+      - anthropic_claude_constitution_cc0_snapshot
+    mcp:
+      enabled: false
+      citation_required: false
 
 experimental_design:
   primary_comparison:
@@ -48,6 +56,17 @@ experimental_design:
     treatment: mutazili
     manipulated_variable: constitutional_treatment
     treatment_definition: constitution_version_and_tradition_tied_evidence_corpus
+    held_constant:
+      - base_model_and_initialization
+      - public_dataset_ids_splits_revisions_and_weights
+      - training_stage_structure_and_hyperparameters
+      - evaluation_prompts_metrics_and_gates
+      - mcp_access_off
+  generic_control_comparisons:
+    comparator: control_generic
+    treatments: [ashari, mutazili]
+    manipulated_variable: constitutional_treatment
+    treatment_definition: constitution_version_and_constitution_tied_evidence_corpus
     held_constant:
       - base_model_and_initialization
       - public_dataset_ids_splits_revisions_and_weights
@@ -111,6 +130,19 @@ stages:
           weight: 0.10
         - id: allenai/ultrafeedback_binarized_cleaned
           weight: 0.10
+      control_generic:
+        - id: local/constitution_synthetic_control_generic
+          weight: 0.40
+        - id: demelin/moral_stories
+          weight: 0.15
+        - id: hendrycks/ethics
+          weight: 0.15
+        - id: allenai/prosocial-dialog
+          weight: 0.10
+        - id: allenai/social_i_qa
+          weight: 0.10
+        - id: allenai/ultrafeedback_binarized_cleaned
+          weight: 0.10
     filters:
       remove_explicit_hate_for_training: true
       language: [en, ar]
@@ -132,6 +164,11 @@ stages:
           weight: 0.30
       mutazili:
         - id: local/socratic_rollouts_mutazili
+          weight: 0.70
+        - id: allenai/llama-3.1-tulu-3-8b-preference-mixture
+          weight: 0.30
+      control_generic:
+        - id: local/socratic_rollouts_control_generic
           weight: 0.70
         - id: allenai/llama-3.1-tulu-3-8b-preference-mixture
           weight: 0.30
@@ -160,6 +197,15 @@ stages:
         - id: allenai/ultrafeedback_binarized_cleaned
           weight: 0.25
         - id: local/constitutional_preference_pairs_mutazili
+          weight: 0.15
+      control_generic:
+        - id: allenai/llama-3.1-tulu-3-8b-preference-mixture
+          weight: 0.30
+        - id: PKU-Alignment/PKU-SafeRLHF
+          weight: 0.30
+        - id: allenai/ultrafeedback_binarized_cleaned
+          weight: 0.25
+        - id: local/constitutional_preference_pairs_control_generic
           weight: 0.15
 
   eval:

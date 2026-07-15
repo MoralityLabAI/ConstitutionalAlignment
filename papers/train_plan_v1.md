@@ -5,11 +5,13 @@ Recipe reference: `papers/data_recipe_v1.yaml`
 
 ## Objective
 
-Train two models from the same base while manipulating only the constitutional
+Train three models from the same base while manipulating only the constitutional
 treatment (constitution plus its tradition-tied evidence corpus):
 
 1. Ashari constitution + Ashari tafsir evidence (`ashari`)
 2. Mutazili constitution + Mutazili tafsir evidence (`mutazili`)
+3. Generic secular constitution derived from the repository's CC0 Anthropic
+   constitution snapshot (`control_generic`)
 
 MCP is disabled in both main tracks. Tool access is tested after training as a
 separate paired ablation on one frozen Ashari checkpoint.
@@ -42,6 +44,8 @@ Both follow a 4-stage pipeline:
   weights, stage hyperparameters, prompts, randomization procedure, and gates.
 - Permit differences only in `constitution_version` and the matching local
   constitution/evidence-derived corpora.
+- Treat `control_generic` exactly like the Islamic tracks at every stage; do not
+  omit critique/revision, preference optimization, or any promotion gate.
 
 ## Phase breakdown
 
@@ -122,6 +126,9 @@ invalid if any held-constant field differs.
 |---|---|---|---|
 | `ashari` | Reference arm (no comparator) | N/A | Base revision, public mix, pipeline, MCP off, prompts, gates |
 | `mutazili` | `ashari` | Constitutional treatment: Mutazili constitution + Mutazili evidence corpus | Base revision, public mix, pipeline, MCP off, prompts, gates |
+| `control_generic` | Reference control arm (no comparator) | N/A | Base revision, public mix, pipeline, MCP off, prompts, gates |
+| `ashari` | `control_generic` | Constitutional treatment: Ashari constitution + Ashari evidence corpus | Base revision, public mix, pipeline, MCP off, prompts, gates |
+| `mutazili` | `control_generic` | Constitutional treatment: Mutazili constitution + Mutazili evidence corpus | Base revision, public mix, pipeline, MCP off, prompts, gates |
 | `ashari_mcp_off` | Frozen `ashari` checkpoint | None; paired-ablation control | Checkpoint, constitution, data, prompt set, sampling, order, gates |
 | `ashari_mcp_on` | `ashari_mcp_off` | MCP tool access | Checkpoint, constitution, data, prompt set, sampling, order, gates |
 
@@ -132,9 +139,10 @@ cannot retrieve them. Prompts are evaluated in randomized paired order.
 ### Public-mixture equality gate
 
 Before launching a main-track run, compare the normalized recipe sources after
-replacing only `local/*_ashari` with the corresponding `local/*_mutazili` ID.
-The remaining source IDs and every weight must be byte-for-byte identical. The
-run launcher must stop if this invariant or any weight sum fails.
+replacing each constitution-tied `local/*` ID with a common placeholder. The
+remaining source IDs and every weight must be byte-for-byte identical across
+`ashari`, `mutazili`, and `control_generic`. The run launcher must stop if this
+invariant or any weight sum fails.
 
 Optional ablation runs:
 1. SFT only
