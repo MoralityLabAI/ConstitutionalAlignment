@@ -109,6 +109,9 @@ Promotion criteria:
 - BeaverTails
 - ToxiGen
 - TruthfulQA
+- ETHICS frozen diagnostic slice (eval-only; not a promotion metric because of
+  documented train-test overlap and construct-validity concerns,
+  arXiv:2410.13009)
 - internal holdout dilemmas
 
 2. Add manual review panel on 200 sampled failures per track.

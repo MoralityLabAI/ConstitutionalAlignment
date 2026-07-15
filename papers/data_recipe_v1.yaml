@@ -108,39 +108,33 @@ stages:
         - id: local/constitution_synthetic_ashari
           weight: 0.40
         - id: demelin/moral_stories
-          weight: 0.15
-        - id: hendrycks/ethics
-          weight: 0.15
+          weight: 0.20
         - id: allenai/prosocial-dialog
-          weight: 0.10
+          weight: 0.15
         - id: allenai/social_i_qa
-          weight: 0.10
+          weight: 0.15
         - id: allenai/ultrafeedback_binarized_cleaned
           weight: 0.10
       mutazili:
         - id: local/constitution_synthetic_mutazili
           weight: 0.40
         - id: demelin/moral_stories
-          weight: 0.15
-        - id: hendrycks/ethics
-          weight: 0.15
+          weight: 0.20
         - id: allenai/prosocial-dialog
-          weight: 0.10
+          weight: 0.15
         - id: allenai/social_i_qa
-          weight: 0.10
+          weight: 0.15
         - id: allenai/ultrafeedback_binarized_cleaned
           weight: 0.10
       control_generic:
         - id: local/constitution_synthetic_control_generic
           weight: 0.40
         - id: demelin/moral_stories
-          weight: 0.15
-        - id: hendrycks/ethics
-          weight: 0.15
+          weight: 0.20
         - id: allenai/prosocial-dialog
-          weight: 0.10
+          weight: 0.15
         - id: allenai/social_i_qa
-          weight: 0.10
+          weight: 0.15
         - id: allenai/ultrafeedback_binarized_cleaned
           weight: 0.10
     filters:
@@ -219,6 +213,14 @@ stages:
       # remains uncontrolled and TruthfulQA is only a narrow diagnostic.
       - id: sylinrl/TruthfulQA
         variant: binary_choice_2025
+      # Diagnostic only: documented train-test overlap and construct-validity
+      # concerns make ETHICS unsuitable as training ground truth
+      # (arXiv:2410.13009). Freeze and deduplicate this project-owned eval slice
+      # against every training input before any run; do not use its scores as a
+      # promotion gate or broad measure of moral competence.
+      - id: hendrycks/ethics
+        usage: diagnostic_only
+        selection: project_frozen_eval_only_slice
       - id: local/internal_constitutional_dilemmas_holdout
     metrics:
       - constitutional_fidelity

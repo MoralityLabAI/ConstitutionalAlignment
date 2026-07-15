@@ -36,7 +36,9 @@ Focus: datasets that support (a) constitutional-style critique/revision SFT, (b)
 1. Hendrycks ETHICS
 - URL: https://huggingface.co/datasets/hendrycks/ethics
 - Use for: structured moral judgment tasks (commonsense/deontology/virtue-like categories).
-- Stage: eval-first, then selective SFT augmentation.
+- Stage: frozen diagnostic eval only. Do not use for SFT or as a broad measure of
+  moral competence because of documented train-test overlap and
+  construct-validity concerns (arXiv:2410.13009).
 
 2. Moral Stories
 - URL: https://huggingface.co/datasets/demelin/moral_stories
@@ -84,9 +86,10 @@ Focus: datasets that support (a) constitutional-style critique/revision SFT, (b)
 
 1. SFT phase
 - 40% your constitution-tagged synthetic dilemmas
-- 20% Moral Stories + ETHICS (filtered)
-- 20% ProsocialDialog
-- 20% general instruction quality (cleaned UltraFeedback samples)
+- 20% Moral Stories
+- 15% ProsocialDialog
+- 15% Social IQa
+- 10% general instruction quality (cleaned UltraFeedback samples)
 
 2. Preference/RL phase
 - 35% Tulu-3 preference mixture
@@ -96,6 +99,8 @@ Focus: datasets that support (a) constitutional-style critique/revision SFT, (b)
 
 3. Eval suite
 - BeaverTails + ToxiGen + TruthfulQA + held-out internal moral dilemmas
+- ETHICS may be retained only as a frozen, deduplicated diagnostic slice with
+  the validity caveat above; it is not a promotion metric.
 
 ## Data governance checks before training
 
