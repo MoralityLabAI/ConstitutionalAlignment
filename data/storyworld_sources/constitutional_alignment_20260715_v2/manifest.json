@@ -1,0 +1,150 @@
+{
+  "schema_version": "ca_storyworld_source_manifest_v1",
+  "source_pack_id": "constitutional_alignment_storyworlds_20260715_v2",
+  "config_path": "configs/constitutional_alignment_storyworlds_v2.json",
+  "config_sha256": "85a789cf5fa341f015f58f98f20709105f91be197a6a1e32d39425b4ef705184",
+  "upstream": {
+    "source_pack_id": "constitutional_alignment_storyworlds_20260715_v2",
+    "repo_url": "https://github.com/MoralityLabAI/GPTStoryworld",
+    "commit": "caa647f9276dbe278d8786f4248c61d33a4f4dd2",
+    "batch_dir": "storyworlds/7-15-2026-constitutional-alignment-evals-v2"
+  },
+  "split_policy": {
+    "development": "may be used to generate behavioral conditioning data; generated behavior is not a normative label",
+    "evaluation": "frozen evaluation only; rejected by the alignment conditioning builder"
+  },
+  "worlds": [
+    {
+      "slug": "common_well_ca_dev_v1",
+      "source_split": "development",
+      "training_eligible": true,
+      "needs_scholar_review": true,
+      "storyworld_sha256": "f3f470bdd65451e5a897a2aa96a3c1a54c175c8bf87a9aa2398a5cb70d9beed2",
+      "adjudication_sha256": "73c8951a760749c53adfb98188c3b6c4ea08c76d5edb4b5271b1f33ad83255bf",
+      "playable_encounters": 20,
+      "option_permutations": 1,
+      "prompt_rows": 20,
+      "prompt_file": "data/storyworld_sources/constitutional_alignment_20260715_v2/development/common_well_ca_dev_v1.encounter_prompts.jsonl",
+      "prompt_file_sha256": "95a73ee48678ed6540c8dfc91554b667f8776a10c9f844c7b96ffb201e6afd17",
+      "adjudication_file": "data/storyworld_sources/constitutional_alignment_20260715_v2/development/common_well_ca_dev_v1.adjudication.jsonl",
+      "adjudication_copy_sha256": "73c8951a760749c53adfb98188c3b6c4ea08c76d5edb4b5271b1f33ad83255bf",
+      "adjudication_complete": false,
+      "option_position_policy": "single_canonical_order",
+      "option_position_balance_pass": true,
+      "instrument_id": "common_well_ca_dev_v1",
+      "review_requirements": {
+        "scholar": true
+      },
+      "source_familiarity_risk": "low_original_fiction",
+      "prompt_conditions": [
+        {
+          "id": "default",
+          "register": "unspecified",
+          "token_count": 0
+        }
+      ],
+      "condition_counts": {
+        "default": 20
+      },
+      "condition_match_audit": {
+        "encoding": null,
+        "tolerance_fraction": null,
+        "max_to_min_token_ratio": 1.0,
+        "within_tolerance": true,
+        "register_match": true
+      },
+      "paired_condition_prompt_invariant_pass": true
+    },
+    {
+      "slug": "unwatched_ledger_ca_eval_v1",
+      "source_split": "evaluation",
+      "training_eligible": false,
+      "needs_scholar_review": true,
+      "storyworld_sha256": "b3a79b525840b18318e72e90e6340fdc6855762cf27d675c3fb15b41f5c8dd70",
+      "adjudication_sha256": "999b76104b2287048ef7cc75ab053e6037b84fbf9d0f931e5bb534925a39ca87",
+      "playable_encounters": 20,
+      "option_permutations": 3,
+      "prompt_rows": 120,
+      "prompt_file": "data/storyworld_sources/constitutional_alignment_20260715_v2/evaluation/unwatched_ledger_ca_eval_v1.encounter_prompts.jsonl",
+      "prompt_file_sha256": "5e856a2dd50bda59ab44c44985290a84b35aedfabf207635b4428ace9842249c",
+      "adjudication_file": "data/storyworld_sources/constitutional_alignment_20260715_v2/evaluation/unwatched_ledger_ca_eval_v1.adjudication.jsonl",
+      "adjudication_copy_sha256": "999b76104b2287048ef7cc75ab053e6037b84fbf9d0f931e5bb534925a39ca87",
+      "adjudication_complete": false,
+      "option_position_policy": "complete_cyclic_balance",
+      "option_position_balance_pass": true,
+      "instrument_id": "unwatched_ledger_ca_eval_v1",
+      "review_requirements": {
+        "scholar": true
+      },
+      "source_familiarity_risk": "low_original_fiction",
+      "prompt_conditions": [
+        {
+          "id": "audited",
+          "register": "plain_institutional",
+          "token_count": 19
+        },
+        {
+          "id": "sealed",
+          "register": "plain_institutional",
+          "token_count": 19
+        }
+      ],
+      "condition_counts": {
+        "audited": 60,
+        "sealed": 60
+      },
+      "condition_match_audit": {
+        "encoding": "cl100k_base",
+        "tolerance_fraction": 0.1,
+        "max_to_min_token_ratio": 1.0,
+        "within_tolerance": true,
+        "register_match": true
+      },
+      "paired_condition_prompt_invariant_pass": true
+    },
+    {
+      "slug": "petition_room_ca_eval_v1",
+      "source_split": "evaluation",
+      "training_eligible": false,
+      "needs_scholar_review": true,
+      "storyworld_sha256": "b40e0459f850ae9a452968117af9098aff6b3c1af1a9a12515c8321ace06438f",
+      "adjudication_sha256": "a32de52841d18442c1e0624037b45a089cb8e0389dd276e85562ed7cd5aa991b",
+      "playable_encounters": 20,
+      "option_permutations": 3,
+      "prompt_rows": 60,
+      "prompt_file": "data/storyworld_sources/constitutional_alignment_20260715_v2/evaluation/petition_room_ca_eval_v1.encounter_prompts.jsonl",
+      "prompt_file_sha256": "146388cf0f8de2352721954800a424de6c28679b5e5e1ef4df625289ba57e268",
+      "adjudication_file": "data/storyworld_sources/constitutional_alignment_20260715_v2/evaluation/petition_room_ca_eval_v1.adjudication.jsonl",
+      "adjudication_copy_sha256": "a32de52841d18442c1e0624037b45a089cb8e0389dd276e85562ed7cd5aa991b",
+      "adjudication_complete": false,
+      "option_position_policy": "complete_cyclic_balance",
+      "option_position_balance_pass": true,
+      "instrument_id": "petition_room_ca_eval_v1",
+      "review_requirements": {
+        "scholar": true,
+        "iranian_family_law_history": true,
+        "research_ethics": true,
+        "rights": true
+      },
+      "source_familiarity_risk": "high_public_documentary_source",
+      "prompt_conditions": [
+        {
+          "id": "default",
+          "register": "unspecified",
+          "token_count": 0
+        }
+      ],
+      "condition_counts": {
+        "default": 60
+      },
+      "condition_match_audit": {
+        "encoding": null,
+        "tolerance_fraction": null,
+        "max_to_min_token_ratio": 1.0,
+        "within_tolerance": true,
+        "register_match": true
+      },
+      "paired_condition_prompt_invariant_pass": true
+    }
+  ]
+}

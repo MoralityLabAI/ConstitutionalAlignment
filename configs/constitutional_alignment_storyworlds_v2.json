@@ -1,0 +1,66 @@
+{
+  "schema_version": "ca_storyworld_source_config_v2",
+  "source_pack_id": "constitutional_alignment_storyworlds_20260715_v2",
+  "upstream": {
+    "repo_url": "https://github.com/MoralityLabAI/GPTStoryworld",
+    "commit": "caa647f9276dbe278d8786f4248c61d33a4f4dd2",
+    "batch_dir": "storyworlds/7-15-2026-constitutional-alignment-evals-v2"
+  },
+  "output_dir": "data/storyworld_sources/constitutional_alignment_20260715_v2",
+  "worlds": [
+    {
+      "slug": "common_well_ca_dev_v1",
+      "storyworld_file": "common_well_ca_dev_v1.json",
+      "storyworld_sha256": "f3f470bdd65451e5a897a2aa96a3c1a54c175c8bf87a9aa2398a5cb70d9beed2",
+      "adjudication_file": "common_well_ca_dev_v1.adjudication.jsonl",
+      "adjudication_sha256": "73c8951a760749c53adfb98188c3b6c4ea08c76d5edb4b5271b1f33ad83255bf",
+      "source_split": "development",
+      "training_eligible": true,
+      "option_permutations": 1,
+      "needs_scholar_review": true,
+      "review_requirements": {
+        "scholar": true
+      },
+      "source_familiarity_risk": "low_original_fiction"
+    },
+    {
+      "slug": "unwatched_ledger_ca_eval_v1",
+      "storyworld_file": "unwatched_ledger_ca_eval_v1.json",
+      "storyworld_sha256": "b3a79b525840b18318e72e90e6340fdc6855762cf27d675c3fb15b41f5c8dd70",
+      "adjudication_file": "unwatched_ledger_ca_eval_v1.adjudication.jsonl",
+      "adjudication_sha256": "999b76104b2287048ef7cc75ab053e6037b84fbf9d0f931e5bb534925a39ca87",
+      "source_split": "evaluation",
+      "training_eligible": false,
+      "option_permutations": 3,
+      "needs_scholar_review": true,
+      "review_requirements": {
+        "scholar": true
+      },
+      "source_familiarity_risk": "low_original_fiction",
+      "expected_prompt_condition_ids": [
+        "audited",
+        "sealed"
+      ],
+      "condition_token_encoding": "cl100k_base",
+      "condition_token_tolerance_fraction": 0.1
+    },
+    {
+      "slug": "petition_room_ca_eval_v1",
+      "storyworld_file": "petition_room_ca_eval_v1.json",
+      "storyworld_sha256": "b40e0459f850ae9a452968117af9098aff6b3c1af1a9a12515c8321ace06438f",
+      "adjudication_file": "petition_room_ca_eval_v1.adjudication.jsonl",
+      "adjudication_sha256": "a32de52841d18442c1e0624037b45a089cb8e0389dd276e85562ed7cd5aa991b",
+      "source_split": "evaluation",
+      "training_eligible": false,
+      "option_permutations": 3,
+      "needs_scholar_review": true,
+      "review_requirements": {
+        "scholar": true,
+        "iranian_family_law_history": true,
+        "research_ethics": true,
+        "rights": true
+      },
+      "source_familiarity_risk": "high_public_documentary_source"
+    }
+  ]
+}
