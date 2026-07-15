@@ -72,12 +72,12 @@ Focus: datasets that support (a) constitutional-style critique/revision SFT, (b)
 
 ## How to map these to your two tracks
 
-1. Ashari + fiqh-MCP track
-- Emphasize: the Tulu-3 preference mixture, PKU-SafeRLHF, BeaverTails, and ProsocialDialog.
-- Add constitution-tagged SFT examples that explicitly cite allowed evidence channels (Quran subset + Ashari tafsir + MCP rulings).
+1. Ashari track
+- Use the same public-data IDs and weights as the Mutazili track.
+- Add constitution-tagged SFT examples that cite the allowed Quran subset and Ashari tafsir evidence corpus. MCP rulings are reserved for the separate tool-access ablation.
 
-2. Mutazili (no MCP) track
-- Emphasize: ETHICS, Moral Stories, Social IQa, UltraFeedback.
+2. Mutazili track
+- Use the same public-data IDs and weights as the Ashari track.
 - Add constitution-tagged critique/revision examples that reward principled extrapolation and internal consistency checks.
 
 ## Minimal starter mixture (practical)

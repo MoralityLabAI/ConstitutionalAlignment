@@ -5,9 +5,14 @@ Recipe reference: `papers/data_recipe_v1.yaml`
 
 ## Objective
 
-Train two models from a shared base:
-1. Ashari + fiqh MCP support (`ashari_with_mcp`)
-2. Mutazili without MCP support (`mutazili_no_mcp`)
+Train two models from the same base while manipulating only the constitutional
+treatment (constitution plus its tradition-tied evidence corpus):
+
+1. Ashari constitution + Ashari tafsir evidence (`ashari`)
+2. Mutazili constitution + Mutazili tafsir evidence (`mutazili`)
+
+MCP is disabled in both main tracks. Tool access is tested after training as a
+separate paired ablation on one frozen Ashari checkpoint.
 
 Both follow a 4-stage pipeline:
 1. SFT bootstrap
@@ -31,6 +36,12 @@ Both follow a 4-stage pipeline:
 
 4. Freeze eval holdout
 - Keep `internal_constitutional_dilemmas_holdout` fully isolated from training.
+
+5. Freeze experimental invariants
+- Use the same base-model revision, initialization, public dataset revisions and
+  weights, stage hyperparameters, prompts, randomization procedure, and gates.
+- Permit differences only in `constitution_version` and the matching local
+  constitution/evidence-derived corpora.
 
 ## Phase breakdown
 
@@ -104,8 +115,26 @@ Ship criteria:
 
 ## Run matrix
 
-1. `ashari_with_mcp`: SFT -> Critique/Revision -> DPO -> Eval
-2. `mutazili_no_mcp`: SFT -> Critique/Revision -> DPO -> Eval
+Each row names its comparator and exactly one manipulated variable. A run is
+invalid if any held-constant field differs.
+
+| Arm | Comparator | Manipulated variable | Held constant |
+|---|---|---|---|
+| `ashari` | Reference arm (no comparator) | N/A | Base revision, public mix, pipeline, MCP off, prompts, gates |
+| `mutazili` | `ashari` | Constitutional treatment: Mutazili constitution + Mutazili evidence corpus | Base revision, public mix, pipeline, MCP off, prompts, gates |
+| `ashari_mcp_off` | Frozen `ashari` checkpoint | None; paired-ablation control | Checkpoint, constitution, data, prompt set, sampling, order, gates |
+| `ashari_mcp_on` | `ashari_mcp_off` | MCP tool access | Checkpoint, constitution, data, prompt set, sampling, order, gates |
+
+The MCP pair is inference/evaluation-only: it does not receive additional
+training. `mcp_on` may retrieve `fiqh_mcp_outputs` and must cite them; `mcp_off`
+cannot retrieve them. Prompts are evaluated in randomized paired order.
+
+### Public-mixture equality gate
+
+Before launching a main-track run, compare the normalized recipe sources after
+replacing only `local/*_ashari` with the corresponding `local/*_mutazili` ID.
+The remaining source IDs and every weight must be byte-for-byte identical. The
+run launcher must stop if this invariant or any weight sum fails.
 
 Optional ablation runs:
 1. SFT only
