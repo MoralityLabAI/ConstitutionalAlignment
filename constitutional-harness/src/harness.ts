@@ -9,7 +9,8 @@ import {
   LLMResponse, 
   ScenarioContext,
   ComplianceMetrics,
-  ViolationRecord
+  ViolationRecord,
+  ReviewFlagRecord
 } from './types';
 import { LLMProvider } from './providers/base';
 import { AnthropicProvider } from './providers/anthropic';
@@ -29,6 +30,7 @@ export class ConstitutionalHarness {
     private config: HarnessConfig,
     private options?: {
       verifierFactories?: VerifierFactoryMap;
+      provider?: LLMProvider;
     }
   ) {
     this.provider = this.initializeProvider();
@@ -38,6 +40,10 @@ export class ConstitutionalHarness {
   }
 
   private initializeProvider(): LLMProvider {
+    if (this.options?.provider) {
+      return this.options.provider;
+    }
+
     const apiKey = this.config.apiKey || process.env.ANTHROPIC_API_KEY || process.env.OPENAI_API_KEY || '';
     
     switch (this.config.provider) {
@@ -61,8 +67,11 @@ export class ConstitutionalHarness {
   private initializeMetrics(): ComplianceMetrics {
     return {
       totalResponses: 0,
+      adjudicatedResponses: 0,
+      noncompliantResponses: 0,
       violations: [],
-      complianceRate: 1.0,
+      flaggedForReview: [],
+      complianceRate: null,
       violationsByCategory: {},
       violationsBySeverity: {
         critical: 0,
@@ -111,12 +120,13 @@ export class ConstitutionalHarness {
     const response = await this.provider.generate(request);
 
     // Verify response
+    let verificationResults: VerificationResult[] = [];
     if (this.config.verification.enabled) {
-      await this.verifyResponse(response, context);
+      verificationResults = await this.verifyResponse(response, context);
     }
 
     // Update metrics
-    this.updateMetrics(response);
+    this.updateMetrics(verificationResults);
 
     // Log if enabled
     if (this.config.logging.enabled) {
@@ -139,15 +149,23 @@ export class ConstitutionalHarness {
       const result = await verifier.verify(response, context);
       results.push(result);
 
-      // Record violations
-      if (!result.passed) {
+      if (result.status === 'error') {
+        this.recordVerifierError(result, response, context);
+      } else if (result.purpose === 'prefilter' && !result.passed) {
+        this.recordReviewFlags(result, response, context);
+      } else if (result.purpose === 'adjudication' && !result.passed) {
         this.recordViolations(result, response, context);
       }
 
-      // In strict mode, throw on first violation
-      if (this.config.verification.strictMode && !result.passed) {
+      // Prefilter flags never block or count as adjudicated violations.
+      if (
+        this.config.verification.strictMode &&
+        result.purpose === 'adjudication' &&
+        (result.status === 'error' || !result.passed)
+      ) {
         throw new Error(
-          `Constitutional violation detected by ${result.verifier}: ${
+          `Constitutional adjudication failed in ${result.verifier}: ${
+            result.error ||
             result.violations[0]?.description || 'Unknown violation'
           }`
         );
@@ -258,10 +276,68 @@ export class ConstitutionalHarness {
     }
   }
 
-  private updateMetrics(response: LLMResponse): void {
+  private recordReviewFlags(
+    result: VerificationResult,
+    response: LLMResponse,
+    context?: ScenarioContext
+  ): void {
+    for (const violation of result.violations) {
+      const record: ReviewFlagRecord = {
+        timestamp: new Date(),
+        scenarioId: context?.id || 'unknown',
+        flagType: violation.type,
+        severity: violation.severity,
+        description: violation.description,
+        evidence: violation.evidence,
+        confidence: violation.confidence,
+        response: response.content,
+        prefilterUsed: result.verifier
+      };
+      this.metrics.flaggedForReview.push(record);
+      if (this.config.logging.logViolations) {
+        this.log('review_flag', record);
+      }
+    }
+  }
+
+  private recordVerifierError(
+    result: VerificationResult,
+    response: LLMResponse,
+    context?: ScenarioContext
+  ): void {
+    const record: ReviewFlagRecord = {
+      timestamp: new Date(),
+      scenarioId: context?.id || 'unknown',
+      flagType: 'verifier_error',
+      severity: 'major',
+      description: result.error || 'Verifier returned an invalid result',
+      evidence: '',
+      confidence: 1,
+      response: response.content,
+      prefilterUsed: result.verifier
+    };
+    this.metrics.flaggedForReview.push(record);
+    if (this.config.logging.logViolations) {
+      this.log('review_flag', record);
+    }
+  }
+
+  private updateMetrics(results: VerificationResult[]): void {
     this.metrics.totalResponses++;
-    this.metrics.complianceRate = 
-      1 - (this.metrics.violations.length / this.metrics.totalResponses);
+    const adjudications = results.filter(
+      result => result.purpose === 'adjudication' && result.status === 'completed'
+    );
+    if (adjudications.length === 0) {
+      return;
+    }
+
+    this.metrics.adjudicatedResponses++;
+    if (adjudications.some(result => !result.passed)) {
+      this.metrics.noncompliantResponses++;
+    }
+    this.metrics.complianceRate = 1 - (
+      this.metrics.noncompliantResponses / this.metrics.adjudicatedResponses
+    );
   }
 
   private log(type: string, data: any): void {

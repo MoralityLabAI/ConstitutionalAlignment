@@ -5,6 +5,16 @@
 import { LLMProvider } from './base';
 import { LLMRequest, LLMResponse } from '../types';
 
+interface OpenAIChatResponse {
+  choices: Array<{ message: { content: string } }>;
+  model: string;
+  usage: {
+    prompt_tokens: number;
+    completion_tokens: number;
+    total_tokens: number;
+  };
+}
+
 export class OpenAIProvider extends LLMProvider {
   private baseUrl = 'https://api.openai.com/v1/chat/completions';
 
@@ -43,7 +53,7 @@ export class OpenAIProvider extends LLMProvider {
       body: JSON.stringify(body)
     });
 
-    const data = await response.json();
+    const data = await response.json() as OpenAIChatResponse;
     
     return {
       content: data.choices[0].message.content,

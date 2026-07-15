@@ -8,7 +8,8 @@
 export { ConstitutionalHarness } from './harness';
 export { IslamicConstitution, ConstitutionalPrinciples } from './constitutions/islamic';
 export { ClaudeConstitution } from './constitutions/claude';
-export { VerificationResult, Verifier } from './verifiers/base';
+export { Verifier } from './verifiers/base';
+export type { VerificationResult } from './verifiers/base';
 export { LLMProvider, AnthropicProvider, OpenAIProvider } from './providers';
 export type { 
   HarnessConfig, 

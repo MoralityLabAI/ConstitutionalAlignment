@@ -5,6 +5,15 @@
 import { LLMProvider } from './base';
 import { LLMRequest, LLMResponse } from '../types';
 
+interface AnthropicMessageResponse {
+  content: Array<{ text: string }>;
+  model: string;
+  usage: {
+    input_tokens: number;
+    output_tokens: number;
+  };
+}
+
 export class AnthropicProvider extends LLMProvider {
   private baseUrl = 'https://api.anthropic.com/v1/messages';
   private version = '2023-06-01';
@@ -39,7 +48,7 @@ export class AnthropicProvider extends LLMProvider {
       body: JSON.stringify(body)
     });
 
-    const data = await response.json();
+    const data = await response.json() as AnthropicMessageResponse;
     
     return {
       content: data.content[0].text,

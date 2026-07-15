@@ -11,6 +11,7 @@ dist/
 logs/
 *.log
 *.jsonl
+!validation/verifier_labels_template.jsonl
 
 # Environment
 .env

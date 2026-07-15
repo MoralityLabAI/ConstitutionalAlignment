@@ -54,6 +54,12 @@ export interface VerificationConfig {
   verifiers: string[]; // verifier IDs to use
   useVerifierLLM: boolean; // use LLM for ambiguous cases
   strictMode: boolean; // fail on any violation vs warn
+  llmVerifierValidation?: {
+    humanLabelsComplete: boolean;
+    sampleSize: number;
+    cohenKappa: number;
+    artifactSha256: string;
+  };
 }
 
 export interface LoggingConfig {
@@ -74,14 +80,29 @@ export interface ScenarioContext {
 
 export interface ComplianceMetrics {
   totalResponses: number;
+  adjudicatedResponses: number;
+  noncompliantResponses: number;
   violations: ViolationRecord[];
-  complianceRate: number;
+  flaggedForReview: ReviewFlagRecord[];
+  complianceRate: number | null;
   violationsByCategory: Record<string, number>;
   violationsBySeverity: {
     critical: number;
     major: number;
     minor: number;
   };
+}
+
+export interface ReviewFlagRecord {
+  timestamp: Date;
+  scenarioId: string;
+  flagType: string;
+  severity: 'critical' | 'major' | 'minor';
+  description: string;
+  evidence: string;
+  confidence: number;
+  response: string;
+  prefilterUsed: string;
 }
 
 export interface ViolationRecord {

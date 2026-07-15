@@ -41,8 +41,8 @@ const harness = new ConstitutionalHarness({
   model: 'claude-sonnet-4-20250514',
   verification: {
     enabled: true,
-    verifiers: ['heuristic', 'llm'],
-    useVerifierLLM: true,
+    verifiers: ['heuristic'],
+    useVerifierLLM: false, // enable only after the documented kappa gate passes
     strictMode: false
   },
   logging: {
@@ -64,7 +64,9 @@ const response = await harness.generate(
 );
 
 console.log(response.content);
-console.log('Compliance:', harness.getMetrics().complianceRate);
+const metrics = harness.getMetrics();
+console.log('Compliance:', metrics.complianceRate ?? 'unavailable (no adjudication)');
+console.log('Review flags:', metrics.flaggedForReview.length);
 
 harness.close();
 ```

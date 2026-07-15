@@ -8,6 +8,10 @@ import {
   HarnessConfig 
 } from './index';
 
+function formatCompliance(rate: number | null): string {
+  return rate === null ? 'unavailable (no adjudication)' : `${(rate * 100).toFixed(2)}%`;
+}
+
 async function main() {
   // Configure the harness
   const config: HarnessConfig = {
@@ -18,8 +22,8 @@ async function main() {
     
     verification: {
       enabled: true,
-      verifiers: ['heuristic', 'llm'],
-      useVerifierLLM: true,
+      verifiers: ['heuristic'],
+      useVerifierLLM: false,
       strictMode: false // set to true to throw on violations
     },
     
@@ -84,7 +88,8 @@ async function main() {
       console.log('Response:', response.content.slice(0, 300) + '...\n');
       
       const metrics = harness.getMetrics();
-      console.log('Compliance Rate:', (metrics.complianceRate * 100).toFixed(2) + '%');
+      console.log('Compliance Rate:', formatCompliance(metrics.complianceRate));
+      console.log('Flagged for Review:', metrics.flaggedForReview.length);
       console.log('Total Violations:', metrics.violations.length);
       
       if (metrics.violations.length > 0) {
@@ -106,7 +111,8 @@ async function main() {
   
   const finalMetrics = harness.getMetrics();
   console.log('Total Responses:', finalMetrics.totalResponses);
-  console.log('Compliance Rate:', (finalMetrics.complianceRate * 100).toFixed(2) + '%');
+  console.log('Compliance Rate:', formatCompliance(finalMetrics.complianceRate));
+  console.log('Flagged for Review:', finalMetrics.flaggedForReview.length);
   console.log('Total Violations:', finalMetrics.violations.length);
   console.log('\nViolations by Severity:');
   console.log('  Critical:', finalMetrics.violationsBySeverity.critical);
