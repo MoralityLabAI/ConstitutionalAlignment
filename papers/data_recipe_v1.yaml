@@ -1,5 +1,7 @@
 version: data_recipe_v1
 updated: 2026-02-13
+# Dataset license/access controls are authoritative in papers/DATA_LICENSES.md.
+# Do not download or train on a source until its manifest row is cleared.
 objective: >-
   Constitutional alignment training for two tracks (ashari_with_mcp, mutazili_no_mcp)
   using SFT -> self-critique/revision -> preference optimization -> adversarial eval.
@@ -133,7 +135,7 @@ stages:
   eval:
     heldout_sets:
       - id: PKU-Alignment/BeaverTails
-      - id: skg/toxigen-data
+      - id: toxigen/toxigen-data
       # Use the upstream Jan-2025 binary-choice revision (the audit called it
       # "2024 revised"): Best Answer vs Best Incorrect Answer, randomized A/B.
       # The original UltraFeedback included TruthfulQA prompts; the cleaned

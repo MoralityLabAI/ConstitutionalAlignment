@@ -61,9 +61,9 @@ Focus: datasets that support (a) constitutional-style critique/revision SFT, (b)
 ## Toxicity / robustness stress tests
 
 1. ToxiGen
-- URL: https://huggingface.co/datasets/skg/toxigen-data
+- URL: https://huggingface.co/datasets/toxigen/toxigen-data
 - Use for: adversarial toxic prompt stress testing.
-- Stage: red-team eval.
+- Stage: red-team eval. Access requires the canonical dataset's sign-up form; see `papers/DATA_LICENSES.md` before use.
 
 2. Civil Comments
 - URL: https://huggingface.co/datasets/google/civil_comments
@@ -99,7 +99,7 @@ Focus: datasets that support (a) constitutional-style critique/revision SFT, (b)
 
 ## Data governance checks before training
 
-1. Confirm each dataset license and redistribution terms.
+1. Confirm each dataset license and redistribution terms against `papers/DATA_LICENSES.md`.
 2. Filter explicit religious hate/abuse data slices for your intended use policy.
 3. De-duplicate against your synthetic rollouts to avoid leakage.
 4. Track provenance tags per sample (source, split, transformation, constitution version).
