@@ -30,6 +30,9 @@ contain trained checkpoints from the three-track recipe.
   framing arms and a pre-registered analysis plan.
 - GitHub Actions runs a locked, secret-free Node 20 install, TypeScript
   typecheck, and offline Jest suite against mock providers.
+- Repository history was rewritten and force-published to the only remote branch
+  (`main`) on 2026-07-14. No `codex-chat-sessions/` path is reachable from a
+  local or remote branch/tag ref.
 
 Verified locally on 2026-07-14:
 

@@ -7,8 +7,8 @@ artifacts and acceptance checks are committed.
 
 - Rotate every credential that appeared in the purged
   `codex-chat-sessions/auth.json`; treat it as compromised.
-- Publish the rewritten repository history across every remote branch and tag,
-  then verify the removed session paths are unreachable remotely.
+- Ask GitHub Support to invalidate cached sensitive-object views or pull-request
+  refs if the purged files remain accessible by an old commit URL.
 - Obtain qualified scholar review for both Islamic constitutions and resolve
   every `needs_scholar_review: true` item.
 - Select licensed Quran Arabic and translation editions and resolve upstream
