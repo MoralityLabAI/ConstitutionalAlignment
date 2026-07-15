@@ -180,6 +180,9 @@ def source_split_metadata(row: dict[str, Any]) -> dict[str, Any]:
         "source_storyworld_sha256",
         "source_adjudication_sha256",
         "adjudication_status",
+        "source_storyworld_slug",
+        "instrument_condition",
+        "source_familiarity_risk",
     ):
         if key in row and normalize_text(row.get(key)):
             metadata[key] = normalize_text(row.get(key))
@@ -187,6 +190,17 @@ def source_split_metadata(row: dict[str, Any]) -> dict[str, Any]:
         metadata["option_permutation"] = int(row.get("option_permutation", 0) or 0)
     if "needs_scholar_review" in row:
         metadata["source_needs_scholar_review"] = bool(row.get("needs_scholar_review"))
+    for key in ("instrument_metadata", "review_requirements"):
+        if key in row:
+            value = row.get(key)
+            if not isinstance(value, dict):
+                raise ValueError(f"{key} must be a JSON object when present")
+            metadata[key] = value
+    if "option_order" in row:
+        value = row.get("option_order")
+        if not isinstance(value, list) or not all(isinstance(item, str) for item in value):
+            raise ValueError("option_order must be a JSON string array when present")
+        metadata["option_order"] = value
     return metadata
 
 

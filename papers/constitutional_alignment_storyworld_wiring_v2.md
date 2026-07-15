@@ -58,3 +58,6 @@ The exporter rejects source-hash drift, split drift, populated adjudication,
 missing review gates, condition-register drift, condition-length drift, incomplete
 pairs, and option-position imbalance. Evaluation rows remain rejected by the
 conditioning builder.
+
+The pre-analysis estimands, clustering unit, confidence interval, and publication
+gates are fixed in `papers/constitutional_alignment_storyworld_analysis_v1.md`.

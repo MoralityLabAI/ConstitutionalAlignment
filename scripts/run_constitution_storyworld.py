@@ -17,7 +17,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterable, List
 
-from model_family import default_cache_dir, default_prompt_runs_root, patch_transformers_for_model_family
+from alignment_harness.model_family import (
+    default_cache_dir,
+    default_prompt_runs_root,
+    patch_transformers_for_model_family,
+)
 
 
 def utc_now() -> str:
@@ -338,6 +342,12 @@ class PromptRow:
     source_adjudication_sha256: str
     adjudication_status: str
     option_permutation: int
+    option_order: List[str]
+    source_storyworld_slug: str
+    instrument_condition: str
+    instrument_metadata: Dict[str, Any]
+    review_requirements: Dict[str, bool]
+    source_familiarity_risk: str
 
 
 class HFRunner:
@@ -767,6 +777,18 @@ def load_prompts(paths: List[str], max_prompts: int) -> List[PromptRow]:
             training_eligible = row.get("training_eligible", True)
             if not isinstance(training_eligible, bool):
                 raise ValueError(f"training_eligible must be a JSON boolean in {path}:{idx}")
+            instrument_metadata = row.get("instrument_metadata", {})
+            review_requirements = row.get("review_requirements", {})
+            option_order = row.get("option_order", [])
+            if not isinstance(instrument_metadata, dict):
+                raise ValueError(f"instrument_metadata must be a JSON object in {path}:{idx}")
+            if not isinstance(review_requirements, dict) or not all(
+                isinstance(key, str) and isinstance(value, bool)
+                for key, value in review_requirements.items()
+            ):
+                raise ValueError(f"review_requirements must map strings to booleans in {path}:{idx}")
+            if not isinstance(option_order, list) or not all(isinstance(item, str) for item in option_order):
+                raise ValueError(f"option_order must be a JSON string array in {path}:{idx}")
             prompts.append(
                 PromptRow(
                     prompt_id=prompt_id,
@@ -787,6 +809,12 @@ def load_prompts(paths: List[str], max_prompts: int) -> List[PromptRow]:
                     source_adjudication_sha256=str(row.get("source_adjudication_sha256", "") or ""),
                     adjudication_status=str(row.get("adjudication_status", "") or ""),
                     option_permutation=int(row.get("option_permutation", 0) or 0),
+                    option_order=list(option_order),
+                    source_storyworld_slug=str(row.get("source_storyworld_slug", "") or ""),
+                    instrument_condition=str(row.get("instrument_condition", "") or ""),
+                    instrument_metadata=dict(instrument_metadata),
+                    review_requirements=dict(review_requirements),
+                    source_familiarity_risk=str(row.get("source_familiarity_risk", "") or ""),
                 )
             )
             if max_prompts > 0 and len(prompts) >= max_prompts:
@@ -1146,6 +1174,12 @@ def main() -> int:
                 "source_adjudication_sha256": prompt.source_adjudication_sha256,
                 "adjudication_status": prompt.adjudication_status,
                 "option_permutation": prompt.option_permutation,
+                "option_order": prompt.option_order,
+                "source_storyworld_slug": prompt.source_storyworld_slug,
+                "instrument_condition": prompt.instrument_condition,
+                "instrument_metadata": prompt.instrument_metadata,
+                "review_requirements": prompt.review_requirements,
+                "source_familiarity_risk": prompt.source_familiarity_risk,
                 "prompt_text": prompt.prompt_text,
                 "generation_prompt_text": generation_prompt,
                 "prompt_contract_version": RESPONSE_CONTRACT_VERSION,
@@ -1156,6 +1190,7 @@ def main() -> int:
                 "completion_trace_text": channels["reasoning_trace"],
                 "completion_trace_format": channels["reasoning_trace_format"],
                 "has_reasoning_trace": bool(channels["has_reasoning_trace"]),
+                "chosen_option_id": channels["decision_payload"]["decision"],
                 "decision_source": gen.get("decision_source", ""),
                 "planning_prompt_text": planning_prompt,
                 "planning_text": gen.get("planning_text", ""),
@@ -1193,6 +1228,8 @@ def main() -> int:
                     "source_split": prompt.source_split,
                     "training_eligible": prompt.training_eligible,
                     "option_permutation": prompt.option_permutation,
+                    "instrument_condition": prompt.instrument_condition,
+                    "chosen_option_id": channels["decision_payload"]["decision"],
                     "latency_sec": gen["latency_sec"],
                     **metrics,
                 }
@@ -1258,6 +1295,8 @@ def main() -> int:
             "source_split",
             "training_eligible",
             "option_permutation",
+            "instrument_condition",
+            "chosen_option_id",
             "latency_sec",
             "word_count",
             "sentence_count",
