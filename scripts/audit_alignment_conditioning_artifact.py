@@ -48,6 +48,11 @@ def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def normalized_text_file_sha256(path: Path) -> str:
+    text = path.read_text(encoding="utf-8").replace("\r\n", "\n").replace("\r", "\n")
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
 def sha256_json(value: Any) -> str:
     encoded = json.dumps(
         value,
@@ -131,7 +136,9 @@ def audit(artifact_dir: Path, schema_path: Path) -> dict[str, Any]:
     }
     builder_module = REPO_ROOT / "alignment_harness" / "dataset.py"
     builder_hash_matches = (
-        build_receipt.get("builder_module_sha256") == sha256_file(builder_module)
+        build_receipt.get("builder_hash_basis") == "UTF-8 text with LF line endings"
+        and build_receipt.get("builder_module_sha256")
+        == normalized_text_file_sha256(builder_module)
     )
     config_hash_matches = (
         build_receipt.get("config_sha256") == sha256_json(manifest["config"])

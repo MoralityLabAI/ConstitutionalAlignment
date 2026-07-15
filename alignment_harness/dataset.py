@@ -83,6 +83,11 @@ def file_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def normalized_text_file_sha256(path: Path) -> str:
+    text = path.read_text(encoding="utf-8").replace("\r\n", "\n").replace("\r", "\n")
+    return sha256_text(text)
+
+
 def portable_path(path: Path, repo_root: Path) -> str:
     resolved = path.resolve()
     root = repo_root.resolve()
@@ -858,7 +863,8 @@ def build_dataset(
         "research_only": True,
         "promotion_blocked_on_scholar_review": constitution.needs_scholar_review,
         "build_receipt": {
-            "builder_module_sha256": file_sha256(Path(__file__)),
+            "builder_module_sha256": normalized_text_file_sha256(Path(__file__)),
+            "builder_hash_basis": "UTF-8 text with LF line endings",
             "config_sha256": sha256_text(stable_json(config)),
             "generated_file_sha256": {
                 name: file_sha256(output_dir / name) for name in generated_files

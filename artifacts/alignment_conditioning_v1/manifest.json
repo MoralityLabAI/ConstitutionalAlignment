@@ -3,7 +3,8 @@
   "research_only": true,
   "promotion_blocked_on_scholar_review": true,
   "build_receipt": {
-    "builder_module_sha256": "c30b4accf3fc6f8d05ac0ac2d95887b19103f76be99b8291957d92dfb392c650",
+    "builder_module_sha256": "997b8c562b4c1e80456d3b7a7c0bc819ab26a252a28580dd713461fa92d35891",
+    "builder_hash_basis": "UTF-8 text with LF line endings",
     "config_sha256": "78976372b4e6aefca784e13f096e60a3da59a62f85997dbc893fc4a81ac6224a",
     "generated_file_sha256": {
       "canonical.jsonl": "0da92ccd1084a9d19c126a86c4d84ff76a77453eafc73fb713a42b148fc99cc7",
