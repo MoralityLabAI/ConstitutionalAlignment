@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "constitution_control_record_v1",
+  "title": "Constitution Control Record V1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "record_version",
+    "record_id",
+    "timestamp_utc",
+    "constitution",
+    "source",
+    "storyworld",
+    "oracle",
+    "control_decision",
+    "self_model_pre",
+    "self_model_post",
+    "world_update",
+    "receipts",
+    "quality"
+  ],
+  "properties": {
+    "record_version": {
+      "const": "constitution_control_record_v1"
+    },
+    "record_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp_utc": {
+      "type": "string",
+      "minLength": 1
+    },
+    "constitution": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "constitution_id",
+        "binding_mode",
+        "principles",
+        "obligations",
+        "prohibitions",
+        "commitments"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "run_name",
+        "run_dir",
+        "generation_file",
+        "model_id",
+        "prompt_id",
+        "encounter_id",
+        "timestamp_utc"
+      ]
+    },
+    "storyworld": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "title",
+        "encounter_id",
+        "scene_text",
+        "options",
+        "prior_diary_lines",
+        "prior_diary_axes",
+        "turn_index",
+        "prompt_hash"
+      ]
+    },
+    "oracle": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "system_prompt",
+        "user_prompt",
+        "decision_id",
+        "decision_index",
+        "decision_text",
+        "rationale",
+        "completion_text",
+        "prompt_tokens",
+        "completion_tokens",
+        "latency_sec"
+      ]
+    },
+    "control_decision": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "mode",
+        "drift_budget",
+        "retrieve_k",
+        "expert_id",
+        "tool_caps",
+        "introspection_flag",
+        "route",
+        "intent",
+        "adapter_id",
+        "prompt_family",
+        "compile_prompt",
+        "compile_adapter_stub",
+        "regime_flags",
+        "rationale",
+        "prompt_ast"
+      ]
+    },
+    "self_model_pre": {
+      "$ref": "#/$defs/selfModelState"
+    },
+    "self_model_post": {
+      "$ref": "#/$defs/selfModelState"
+    },
+    "world_update": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "status",
+        "chosen_option_id",
+        "chosen_option_text",
+        "estimated_moral_deltas",
+        "next_encounter",
+        "memory_capsule"
+      ]
+    },
+    "receipts": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "state_hash",
+        "output_hash",
+        "receipt_leaf",
+        "trace_root",
+        "output_commitment",
+        "record_leaf"
+      ]
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "has_decision",
+        "has_valid_decision",
+        "output_kind",
+        "has_reasoning_trace",
+        "reasoning_trace_format",
+        "is_meta_monologue",
+        "is_noncanonical_output",
+        "is_truncated",
+        "is_decision_failure",
+        "is_low_quality",
+        "decision_format_hits",
+        "rationale_format_hits",
+        "trace_leakage_flag",
+        "invalid_decision_flag",
+        "missing_decision_flag",
+        "metrics"
+      ]
+    }
+  },
+  "$defs": {
+    "selfModelState": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "summary",
+        "moral_totals",
+        "commitments",
+        "memories"
+      ]
+    }
+  }
+}

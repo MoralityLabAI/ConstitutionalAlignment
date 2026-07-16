@@ -1,0 +1,31 @@
+{
+  "output_dir": "../artifacts/constitution_pipeline/artifacts/balanced_dataset_v1",
+  "val_fraction": 0.2,
+  "seed": 42,
+  "include_starter_templates": true,
+  "balance_mode": "upsample_to_max",
+  "balance_target_per_constitution": 18,
+  "max_upsample_factor": 3,
+  "sources": [
+    {
+      "path": "D:/Research_Engine/trinity-storyworld-runs/arcee_trinity_play_traces/completion_runner/completions.jsonl",
+      "format": "arcee_completions",
+      "constitution_id": "truth_explicit",
+      "task_type": "structured_decision",
+      "risk_level": "medium",
+      "reasoning_style": "uncertainty_explicit",
+      "expected_refusal_policy": "bounded_assist",
+      "provenance": "trinity_large_thinking_trace"
+    },
+    {
+      "path": "D:/Research_Engine/trinity-storyworld-runs/bioethics_playthroughs/bioethics_panel_4-2_v3_trinity_thinking/baseline_qwen_1_7b/generations.jsonl",
+      "format": "storyworld_generations",
+      "constitution_id": "formal_deliberative",
+      "task_type": "storyworld_choice",
+      "risk_level": "medium",
+      "reasoning_style": "formal_deliberative",
+      "expected_refusal_policy": "bounded_assist",
+      "provenance": "bioethics_panel_4_2_v3"
+    }
+  ]
+}

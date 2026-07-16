@@ -1,0 +1,18 @@
+{
+  "status": "completed",
+  "started_at_utc": "2026-04-17T00:00:00+00:00",
+  "finished_at_utc": "2026-04-17T00:00:01+00:00",
+  "hostname": "fixture-host",
+  "model_id": "fixture-model/storyworld-oracle",
+  "runner_backend": "fixture",
+  "prompt_count": 1,
+  "prompts": [
+    "scripts/testdata/constitution_bridge_fixture_run/truth_explicit/generations.jsonl"
+  ],
+  "constitutions": [
+    "truth_explicit"
+  ],
+  "response_contract_version": "storyworld_decision_v1",
+  "dry_run": false,
+  "run_dir": "scripts/testdata/constitution_bridge_fixture_run"
+}

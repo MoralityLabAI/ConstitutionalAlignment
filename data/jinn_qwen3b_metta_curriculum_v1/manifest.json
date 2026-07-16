@@ -1,0 +1,21 @@
+{
+  "clauses": [
+    "benchmark-boundary",
+    "fatwa-boundary",
+    "identity-boundary",
+    "investor-truth-boundary",
+    "private-lie-boundary",
+    "safety-concealment-boundary",
+    "scapegoat-boundary",
+    "scripture-misuse-boundary",
+    "scripture-secret-boundary",
+    "unseen-boundary"
+  ],
+  "constitution_id": "jinn_tiny_mutazili_v1",
+  "dataset": "jinn_qwen3b_metta_curriculum_v1",
+  "metta_constitution": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\metta\\jinn_tiny_mutazili_v1.metta",
+  "repeats": 5,
+  "total": 278,
+  "train": 238,
+  "val": 40
+}

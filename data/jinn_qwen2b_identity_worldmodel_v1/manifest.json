@@ -1,0 +1,12 @@
+{
+  "constitution_id": "jinn_tiny_mutazili_v1",
+  "dataset": "jinn_qwen2b_identity_worldmodel_v1",
+  "failure_only": false,
+  "failure_results": [],
+  "metta_constitution": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\metta\\jinn_tiny_mutazili_v1.metta",
+  "repeats": 6,
+  "source_boundary": "Quran + Mutazili principles; no folklore powers or broad later lore",
+  "total": 96,
+  "train": 83,
+  "val": 13
+}

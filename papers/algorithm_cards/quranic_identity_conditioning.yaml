@@ -1,0 +1,37 @@
+version: research_algorithm_card_v1
+algorithm_id: quranic_identity_conditioning
+title: Quranic identity-conditioned SFT for 9B models
+source:
+  kind: internal_plan
+  citation: "Jinn or Beast 9B SFT plan v1, ConstitutionalAlignment, 2026"
+  url: "papers/jinn_or_beast_9b_sft_plan_v1.md"
+  checked_date: "2026-05-03"
+summary: >-
+  Train adapters that condition the model on Quranic identity frames, then
+  evaluate whether those frames change moral decisions, pressure behavior, and
+  theology guardrail behavior.
+harness_fit:
+  use_case: "Main paper lane for Jinn/Beast identity-conditioned SFT."
+  primary_track: "jinn_or_beast_9b_sft"
+  integration_points:
+    - "papers/jinn_or_beast_9b_sft_plan_v1.md"
+    - "papers/jinn_or_beast_data_recipe_v1.yaml"
+    - "scripts/train_constitution_adapter.py"
+implementation:
+  status: planned
+  today_build: "Make identity conditioning a first-class algorithm card."
+  files_to_touch:
+    - "papers/algorithm_cards/quranic_identity_conditioning.yaml"
+evals:
+  metrics:
+    - "combined_score"
+    - "pressure_harmful_compliance_delta"
+    - "literal_supernatural_claim_rate"
+    - "ordinary_helpfulness_drop"
+    - "theological_humility_rate"
+  minimum_viable_run: "Four pilot QLoRA adapters with 600 train examples each plus 100 heldout examples each."
+guardrails:
+  - "Do not claim literal supernatural identity."
+  - "Require scholar review for final identity cards and citations."
+  - "Include anti-grandiosity and ordinary-helpfulness data in every adapter."
+notes: "This is the primary registry entry for the user-facing paper concept."

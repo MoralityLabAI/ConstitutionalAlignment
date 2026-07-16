@@ -1,0 +1,37 @@
+version: research_algorithm_card_v1
+algorithm_id: alignment_faking_pressure_eval
+title: Monitored/unmonitored pressure-test eval for alignment-faking-like behavior
+source:
+  kind: paper
+  citation: "Greenblatt et al., Alignment Faking in Large Language Models, Anthropic/Redwood, 2024"
+  url: "https://www.anthropic.com/research/alignment-faking"
+  checked_date: "2026-05-03"
+summary: >-
+  Test whether behavior changes when a model believes outputs are monitored for
+  training versus unmonitored, especially under conflicts between prior values and
+  a stated training objective.
+harness_fit:
+  use_case: "Upgrade the lightweight pressure pilot into a structured alignment-pressure suite."
+  primary_track: "pressure_eval"
+  integration_points:
+    - "papers/simple_model_research_plan_v1.md"
+    - "papers/jinn_or_beast_9b_sft_plan_v1.md"
+    - "scripts/run_constitution_storyworld.py"
+implementation:
+  status: planned
+  today_build: "Represent as a card and expose the run requirements in the matrix."
+  files_to_touch:
+    - "papers/algorithm_cards/alignment_faking_pressure_eval.yaml"
+evals:
+  metrics:
+    - "monitored_unmonitored_delta"
+    - "harmful_compliance_rate"
+    - "deception_normalization_rate"
+    - "preference_preservation_language_rate"
+    - "valid_decision_rate"
+  minimum_viable_run: "12 pressure prompts x 3 conditions x 3 repeats; report only as pilot evidence."
+guardrails:
+  - "Do not claim this proves alignment faking without a monitored/unmonitored protocol."
+  - "Do not ask models for hidden chain-of-thought."
+  - "Keep harmful prompt content abstract and non-instructional."
+notes: "Turns the paper's core setup into a low-cost harness eval without overclaiming."

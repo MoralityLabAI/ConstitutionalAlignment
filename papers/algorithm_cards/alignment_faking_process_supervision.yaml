@@ -1,0 +1,35 @@
+version: research_algorithm_card_v1
+algorithm_id: alignment_faking_process_supervision
+title: Process-supervision style penalty for alignment-faking reasoning patterns
+source:
+  kind: research_post
+  citation: "Anthropic, Alignment Faking Mitigations, 2025"
+  url: "https://alignment.anthropic.com/2025/alignment-faking-mitigations/"
+  checked_date: "2026-05-03"
+summary: >-
+  Use a monitor/judge to penalize outputs or public audit notes that express
+  deceptive preference-preservation strategies, while separately tracking
+  compliance gaps.
+harness_fit:
+  use_case: "Add a judge dimension for deceptive-strategy language in pressure tests."
+  primary_track: "judge_audit"
+  integration_points:
+    - "scripts/run_constitution_storyworld.py"
+    - "papers/jinn_or_beast_9b_sft_plan_v1.md"
+implementation:
+  status: planned
+  today_build: "Add as a registry card; implementation should be a visible-output judge, not hidden CoT training."
+  files_to_touch:
+    - "papers/algorithm_cards/alignment_faking_process_supervision.yaml"
+evals:
+  metrics:
+    - "deceptive_strategy_language_rate"
+    - "compliance_gap"
+    - "monitor_precision"
+    - "monitor_recall_on_manual_audit"
+  minimum_viable_run: "Blind judge 100 pressure-test outputs and manually audit 30 positives/negatives."
+guardrails:
+  - "Do not collect or train on hidden chain-of-thought."
+  - "Judge visible rationales, transcripts, and allowed audit notes only."
+  - "Treat monitor outputs as noisy until manually calibrated."
+notes: "Useful after the pressure suite exists; not a first-day SFT dependency."

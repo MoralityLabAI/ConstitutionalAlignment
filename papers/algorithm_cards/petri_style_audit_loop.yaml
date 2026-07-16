@@ -1,0 +1,37 @@
+version: research_algorithm_card_v1
+algorithm_id: petri_style_audit_loop
+title: Petri-style automated auditor-target-judge loop
+source:
+  kind: research_post
+  citation: "Anthropic, Petri open-source auditing and Petri 2.0, 2025-2026"
+  url: "https://alignment.anthropic.com/2026/petri-v2/"
+  checked_date: "2026-05-03"
+summary: >-
+  Run multi-turn automated audits where an auditor probes a target model, a judge
+  scores behavior, and a realism/eval-awareness monitor tracks whether the test
+  feels artificial.
+harness_fit:
+  use_case: "Extend storyworld harness from fixed prompts into multi-turn audits."
+  primary_track: "automated_audit"
+  integration_points:
+    - "samac/storyworld_trinity/storyworld_trinity"
+    - "scripts/run_trinity_constitution_storyworld.py"
+    - "constitutional-harness/constitutional-harness/ops/storyworld_autoloop"
+implementation:
+  status: candidate
+  today_build: "Register the algorithm; later add auditor and judge roles to run manifests."
+  files_to_touch:
+    - "papers/algorithm_cards/petri_style_audit_loop.yaml"
+evals:
+  metrics:
+    - "risk_behavior_rate"
+    - "auditor_realism_score"
+    - "eval_awareness_markers"
+    - "judge_severity_score"
+    - "scenario_completion_rate"
+  minimum_viable_run: "5 scenarios x 3 turns x 2 target conditions with blind judge summaries."
+guardrails:
+  - "Keep simulated tool access sandboxed."
+  - "Do not create real exfiltration, sabotage, or cyber capability tests."
+  - "Label automated auditor transcripts as synthetic research artifacts."
+notes: "Good candidate for bringing newer automated-auditing literature into the repo."

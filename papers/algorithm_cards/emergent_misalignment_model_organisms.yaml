@@ -1,0 +1,36 @@
+version: research_algorithm_card_v1
+algorithm_id: emergent_misalignment_model_organisms
+title: Model-organism style narrow-adapter stress tests
+source:
+  kind: paper
+  citation: "Turner et al., Model Organisms for Emergent Misalignment, arXiv:2506.11613, 2025"
+  url: "https://arxiv.org/abs/2506.11613"
+  checked_date: "2026-05-03"
+summary: >-
+  Use small, isolated adapters to test whether narrow fine-tuning interventions
+  create broader behavioral shifts. In this harness, use benign negative controls
+  and identity-conditioned adapters rather than harmful capability datasets.
+harness_fit:
+  use_case: "Compare Jinn/Beast identity LoRAs against narrow-control LoRAs for broad behavior shifts."
+  primary_track: "adapter_stress_test"
+  integration_points:
+    - "scripts/train_constitution_adapter.py"
+    - "papers/jinn_or_beast_data_recipe_v1.yaml"
+implementation:
+  status: planned
+  today_build: "Register safe model-organism adaptation as an evaluation concept."
+  files_to_touch:
+    - "papers/algorithm_cards/emergent_misalignment_model_organisms.yaml"
+evals:
+  metrics:
+    - "broad_behavior_shift_score"
+    - "ordinary_helpfulness_delta"
+    - "safety_guardrail_delta"
+    - "identity_leakage_rate"
+    - "rank_lora_sensitivity"
+  minimum_viable_run: "Train one benign narrow-control LoRA and compare it against identity LoRAs on all heldout suites."
+guardrails:
+  - "Do not train adapters on harmful instruction-following or unsafe capability data."
+  - "Use benign controls such as style, formatting, or safe abstention behaviors."
+  - "Run safety and ordinary-helpfulness evals before any public release."
+notes: "Use as a stress-test pattern, not as a recipe for producing misaligned models."

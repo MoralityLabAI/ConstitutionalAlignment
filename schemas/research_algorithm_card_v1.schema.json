@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "research_algorithm_card_v1",
+  "title": "Research Algorithm Card",
+  "type": "object",
+  "required": [
+    "version",
+    "algorithm_id",
+    "title",
+    "source",
+    "summary",
+    "harness_fit",
+    "implementation",
+    "evals",
+    "guardrails"
+  ],
+  "properties": {
+    "version": {
+      "const": "research_algorithm_card_v1"
+    },
+    "algorithm_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_\\-]*$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": ["kind", "citation", "url", "checked_date"],
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "citation": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "checked_date": {
+          "type": "string"
+        }
+      }
+    },
+    "summary": {
+      "type": "string"
+    },
+    "harness_fit": {
+      "type": "object",
+      "required": ["use_case", "primary_track", "integration_points"],
+      "properties": {
+        "use_case": {
+          "type": "string"
+        },
+        "primary_track": {
+          "type": "string"
+        },
+        "integration_points": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "implementation": {
+      "type": "object",
+      "required": ["status", "today_build", "files_to_touch"],
+      "properties": {
+        "status": {
+          "enum": ["candidate", "planned", "partial", "ready", "blocked"]
+        },
+        "today_build": {
+          "type": "string"
+        },
+        "files_to_touch": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "evals": {
+      "type": "object",
+      "required": ["metrics", "minimum_viable_run"],
+      "properties": {
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "minimum_viable_run": {
+          "type": "string"
+        }
+      }
+    },
+    "guardrails": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

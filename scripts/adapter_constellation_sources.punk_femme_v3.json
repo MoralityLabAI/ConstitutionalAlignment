@@ -1,0 +1,14 @@
+{
+  "output_dir": "../artifacts/constitution_pipeline/artifacts/punk_femme_v3_4gb_starter_dataset",
+  "val_fraction": 0.17,
+  "seed": 42,
+  "include_starter_templates": true,
+  "constitution_ids": [
+    "punk_v3",
+    "femme_whimsy_v3"
+  ],
+  "balance_mode": "upsample_to_max",
+  "balance_target_per_constitution": 12,
+  "max_upsample_factor": 4,
+  "sources": []
+}

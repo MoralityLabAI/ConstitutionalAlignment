@@ -27,7 +27,7 @@ jobs:
         run: python -m pip install -r requirements-alignment-test.txt
 
       - name: Compile alignment harness
-        run: python -m py_compile alignment_harness/*.py scripts/build_alignment_conditioning_dataset.py scripts/audit_alignment_conditioning_artifact.py scripts/train_alignment_policy_grpo.py scripts/evaluate_alignment_policy.py scripts/compare_alignment_policy_evaluations.py scripts/sync_ca_storyworld_source_pack.py scripts/run_constitution_storyworld.py scripts/analyze_constitutional_storyworld_evals.py scripts/validate_mizan_rooms.py scripts/run_mizan_rooms.py scripts/analyze_mizan_rooms.py
+        run: python -m py_compile alignment_harness/*.py scripts/*.py
 
       - name: Test alignment harness offline
         run: python -m unittest discover -s tests -p "test_*.py" -v

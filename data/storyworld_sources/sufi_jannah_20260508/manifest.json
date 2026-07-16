@@ -1,0 +1,152 @@
+{
+  "schema_version": "constitution_storyworld_source_manifest_v1",
+  "source_id": "sufi_jannah_20260508",
+  "title": "Sufi/Jannah ranked-ending storyworld source pack",
+  "created_utc": "2026-05-08T21:06:22Z",
+  "upstream": {
+    "repo_root": "C:\\projects\\GPTStoryworld",
+    "generator": "C:\\projects\\GPTStoryworld\\tools\\generate_sufi_saint_storyworlds.py",
+    "skill_lesson_pack": "C:\\projects\\GPTStoryworld\\codex-skills\\storyworld-building\\references\\2026-05-08-sufi-jannah-balancing\\README.md",
+    "storyworld_dir": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints"
+  },
+  "scope": {
+    "world_count": 5,
+    "encounters_each": 80,
+    "playable_encounters_each": 73,
+    "jannah_endings_each": 7,
+    "target_jannah_pct": [
+      30,
+      22,
+      16,
+      12,
+      9,
+      7,
+      4
+    ],
+    "secret_route_property": "Hidden_Path",
+    "secret_required_from_jannah_level": 5,
+    "options_per_playable": 4.5068,
+    "reactions_per_option": 2.5046,
+    "effects_per_reaction": 5.5
+  },
+  "harness_entrypoints": {
+    "prompt_builder": "scripts\\build_storyworld_option_prompts.py",
+    "prompt_runner": "scripts\\run_constitution_storyworld.py",
+    "corpus_exporter": "scripts\\export_constitution_corpus_shard.py",
+    "dataset_builder": "scripts\\build_constitution_dataset.py",
+    "low_vram_wrapper": "scripts\\models\\generic\\prepare_sufi_jannah_storyworld_dataset.ps1",
+    "dataset_spec_example": "scripts\\adapter_constellation_sources.sufi_jannah_storyworld.example.json"
+  },
+  "generated_prompt_export": {
+    "directory": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\data\\storyworld_sources\\sufi_jannah_20260508\\prompts",
+    "manifest": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\data\\storyworld_sources\\sufi_jannah_20260508\\prompts\\manifest.json",
+    "builder": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\scripts\\build_storyworld_option_prompts.py",
+    "default_max_encounters_per_world": 4,
+    "default_include_secret_options": false,
+    "contract": "constitution_storyworld fixed-option prompt: Storyworld/About/Encounter/Scene plus '- option_id: text' lines"
+  },
+  "reports": {
+    "grade_summary": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\reports\\20260508_verifiers\\grade_summary.md",
+    "grade_summary_json": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\reports\\20260508_verifiers\\grade_summary.json",
+    "distribution_receipt": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\reports\\20260508_verifiers\\jannah_distribution_receipt_runs1000.json",
+    "quality_vector_default": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\reports\\20260508_verifiers\\quality_vector_jannah_default_runs400.json",
+    "quality_vector_morality_open": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\reports\\20260508_verifiers\\quality_vector_jannah_morality_open_runs400.json",
+    "local_qwen_batch_manifest": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\reports\\20260508_verifiers\\local_qwen_jannah_batch_manifest.json"
+  },
+  "local_model_batch": {
+    "run_id": "sufi_jannah_batch_qwen3_1p7b_e4_20260508",
+    "manifest": "D:\\Research_Engine\\Storyworld_LLM_Plays\\sufi_jannah_batch_qwen3_1p7b_e4_20260508\\manifest.json",
+    "base_model_path": "D:\\Research_Engine\\Qwen_Storyworld\\cache\\models\\Qwen3-1.7B",
+    "prompt_count_total": 20,
+    "complete_count": 5
+  },
+  "worlds": [
+    {
+      "slug": "al_shushtari_market_song",
+      "title": "al-Shushtari: The Market Song",
+      "storyworld_json": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\al_shushtari_market_song.json",
+      "prompt_jsonl": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\data\\storyworld_sources\\sufi_jannah_20260508\\prompts\\al_shushtari_market_song.encounter_prompts.jsonl",
+      "legacy_local_prompt_receipt": "D:\\Research_Engine\\Storyworld_LLM_Plays\\sufi_jannah_al_shushtari_market_song_qwen3_1p7b_e4_20260508\\prompts\\encounter_prompts.jsonl",
+      "observed_pct_by_level": {
+        "1": 34.0,
+        "2": 16.5,
+        "3": 15.9,
+        "4": 12.4,
+        "5": 9.6,
+        "6": 7.6,
+        "7": 4.0
+      }
+    },
+    {
+      "slug": "ibn_arabi_journey_of_meanings",
+      "title": "Ibn Arabi: The Journey of Meanings",
+      "storyworld_json": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\ibn_arabi_journey_of_meanings.json",
+      "prompt_jsonl": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\data\\storyworld_sources\\sufi_jannah_20260508\\prompts\\ibn_arabi_journey_of_meanings.encounter_prompts.jsonl",
+      "legacy_local_prompt_receipt": "D:\\Research_Engine\\Storyworld_LLM_Plays\\sufi_jannah_ibn_arabi_journey_of_meanings_qwen3_1p7b_e4_20260508\\prompts\\encounter_prompts.jsonl",
+      "observed_pct_by_level": {
+        "1": 36.2,
+        "2": 23.1,
+        "3": 13.3,
+        "4": 10.3,
+        "5": 8.0,
+        "6": 5.5,
+        "7": 3.6
+      }
+    },
+    {
+      "slug": "rabia_basra_lamp",
+      "title": "Rabia of Basra: The Lamp Without Bargain",
+      "storyworld_json": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\rabia_basra_lamp.json",
+      "prompt_jsonl": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\data\\storyworld_sources\\sufi_jannah_20260508\\prompts\\rabia_basra_lamp.encounter_prompts.jsonl",
+      "legacy_local_prompt_receipt": "D:\\Research_Engine\\Storyworld_LLM_Plays\\sufi_jannah_rabia_basra_lamp_qwen3_1p7b_e4_20260508\\prompts\\encounter_prompts.jsonl",
+      "observed_pct_by_level": {
+        "1": 29.7,
+        "2": 20.2,
+        "3": 17.0,
+        "4": 10.8,
+        "5": 9.7,
+        "6": 7.4,
+        "7": 5.2
+      }
+    },
+    {
+      "slug": "rumi_konya_turning",
+      "title": "Rumi in Konya: The Turning Witness",
+      "storyworld_json": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\rumi_konya_turning.json",
+      "prompt_jsonl": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\data\\storyworld_sources\\sufi_jannah_20260508\\prompts\\rumi_konya_turning.encounter_prompts.jsonl",
+      "legacy_local_prompt_receipt": "D:\\Research_Engine\\Storyworld_LLM_Plays\\sufi_jannah_rumi_konya_turning_qwen3_1p7b_e4_20260508\\prompts\\encounter_prompts.jsonl",
+      "observed_pct_by_level": {
+        "1": 34.4,
+        "2": 23.0,
+        "3": 14.2,
+        "4": 11.0,
+        "5": 7.1,
+        "6": 6.1,
+        "7": 4.2
+      }
+    },
+    {
+      "slug": "suhrawardi_aleppo_illumination",
+      "title": "Suhrawardi in Aleppo: The Citadel of Light",
+      "storyworld_json": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\suhrawardi_aleppo_illumination.json",
+      "prompt_jsonl": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\data\\storyworld_sources\\sufi_jannah_20260508\\prompts\\suhrawardi_aleppo_illumination.encounter_prompts.jsonl",
+      "legacy_local_prompt_receipt": "D:\\Research_Engine\\Storyworld_LLM_Plays\\sufi_jannah_suhrawardi_aleppo_illumination_qwen3_1p7b_e4_20260508\\prompts\\encounter_prompts.jsonl",
+      "observed_pct_by_level": {
+        "1": 34.3,
+        "2": 19.4,
+        "3": 17.1,
+        "4": 11.4,
+        "5": 7.8,
+        "6": 5.9,
+        "7": 4.1
+      }
+    }
+  ],
+  "residual_notes": [
+    "All five upstream JSON files passed the SweepWeave validator after the Jannah retune.",
+    "Verifier Monte Carlo detects chain_length=74 and num_endings=7 for every world.",
+    "The D:\\Research_Engine prompt receipts are retained as local small-model evidence, but CAH runs should use the repo-local fixed-option prompt export generated from the storyworld JSON.",
+    "Strict benchmark_pass remains false upstream because the secret_reachability heuristic reports 1.0 on long witness worlds, above its default upper band.",
+    "This source pack should be used for storyworld-choice prompt studies and controller/corpus export, not as a direct claim that the ranked ending ladder solves constitutional alignment."
+  ]
+}

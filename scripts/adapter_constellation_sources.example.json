@@ -1,0 +1,28 @@
+{
+  "output_dir": "../artifacts/constitution_pipeline/artifacts/initial_dataset_v2",
+  "val_fraction": 0.2,
+  "seed": 42,
+  "include_starter_templates": true,
+  "sources": [
+    {
+      "path": "../data/constitution_sources/completions.example.jsonl",
+      "format": "arcee_completions",
+      "constitution_id": "truth_explicit",
+      "task_type": "structured_decision",
+      "risk_level": "medium",
+      "reasoning_style": "uncertainty_explicit",
+      "expected_refusal_policy": "bounded_assist",
+      "provenance": "example_completions"
+    },
+    {
+      "path": "../data/constitution_sources/storyworld_generations.example.jsonl",
+      "format": "storyworld_generations",
+      "constitution_id": "formal_deliberative",
+      "task_type": "storyworld_choice",
+      "risk_level": "medium",
+      "reasoning_style": "formal_deliberative",
+      "expected_refusal_policy": "bounded_assist",
+      "provenance": "example_storyworld"
+    }
+  ]
+}

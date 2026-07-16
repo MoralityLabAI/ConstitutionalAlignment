@@ -1,0 +1,25 @@
+{
+  "output_dir": "../artifacts/constitution_pipeline/artifacts/sufi_jannah_storyworld_dataset",
+  "val_fraction": 0.17,
+  "seed": 42,
+  "include_starter_templates": true,
+  "constitution_ids": [
+    "truth_explicit",
+    "formal_deliberative",
+    "femme_whimsy_v3",
+    "bounded_permissive"
+  ],
+  "balance_mode": "upsample_to_max",
+  "balance_target_per_constitution": 20,
+  "max_upsample_factor": 3,
+  "sources": [
+    {
+      "path": "../artifacts/constitution_pipeline/corpus_sufi_jannah_storyworld/corpus.jsonl",
+      "format": "constitution_corpus",
+      "provenance": "sufi_jannah_storyworld_prompt_run",
+      "task_type": "storyworld_choice",
+      "risk_level": "medium",
+      "expected_refusal_policy": "bounded_assist"
+    }
+  ]
+}

@@ -5,3 +5,12 @@ artifacts/alignment_conditioning_v1/*.jsonl
 artifacts/alignment_policy_runs/
 artifacts/alignment_policy_evaluation/
 artifacts/mizan_rooms_v1/
+
+# Local model runs, generated corpora, and registry renderings.
+artifacts/constitution_pipeline/
+artifacts/research_algorithm_registry/
+
+# Imported scratch mirrors. Canonical code lives in the top-level packages.
+samac/
+constitutional-harness/constitutional-harness/
+constitutional-harness/src-oss/

@@ -1,0 +1,60 @@
+{
+  "schema_version": "storyworld_option_prompt_export_v1",
+  "generated_at_utc": "2026-05-08T21:30:15.946575+00:00",
+  "include_secret_options": false,
+  "max_encounters_per_world": 4,
+  "source_count": 5,
+  "prompt_count_total": 20,
+  "sources": [
+    {
+      "slug": "al_shushtari_market_song",
+      "title": "al-Shushtari: The Market Song",
+      "storyworld_json": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\al_shushtari_market_song.json",
+      "prompt_jsonl": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\data\\storyworld_sources\\sufi_jannah_20260508\\prompts\\al_shushtari_market_song.encounter_prompts.jsonl",
+      "prompt_count": 4,
+      "skipped_terminal_or_ending": 0,
+      "skipped_no_options_after_filter": 0,
+      "excluded_secret_options": 0
+    },
+    {
+      "slug": "ibn_arabi_journey_of_meanings",
+      "title": "Ibn Arabi: The Journey of Meanings",
+      "storyworld_json": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\ibn_arabi_journey_of_meanings.json",
+      "prompt_jsonl": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\data\\storyworld_sources\\sufi_jannah_20260508\\prompts\\ibn_arabi_journey_of_meanings.encounter_prompts.jsonl",
+      "prompt_count": 4,
+      "skipped_terminal_or_ending": 0,
+      "skipped_no_options_after_filter": 0,
+      "excluded_secret_options": 0
+    },
+    {
+      "slug": "rabia_basra_lamp",
+      "title": "Rabia of Basra: The Lamp Without Bargain",
+      "storyworld_json": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\rabia_basra_lamp.json",
+      "prompt_jsonl": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\data\\storyworld_sources\\sufi_jannah_20260508\\prompts\\rabia_basra_lamp.encounter_prompts.jsonl",
+      "prompt_count": 4,
+      "skipped_terminal_or_ending": 0,
+      "skipped_no_options_after_filter": 0,
+      "excluded_secret_options": 0
+    },
+    {
+      "slug": "rumi_konya_turning",
+      "title": "Rumi of Konya: The Turning of Grief",
+      "storyworld_json": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\rumi_konya_turning.json",
+      "prompt_jsonl": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\data\\storyworld_sources\\sufi_jannah_20260508\\prompts\\rumi_konya_turning.encounter_prompts.jsonl",
+      "prompt_count": 4,
+      "skipped_terminal_or_ending": 0,
+      "skipped_no_options_after_filter": 0,
+      "excluded_secret_options": 0
+    },
+    {
+      "slug": "suhrawardi_aleppo_illumination",
+      "title": "Suhrawardi in Aleppo: The Citadel of Light",
+      "storyworld_json": "C:\\projects\\GPTStoryworld\\storyworlds\\sufi_saints\\suhrawardi_aleppo_illumination.json",
+      "prompt_jsonl": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\data\\storyworld_sources\\sufi_jannah_20260508\\prompts\\suhrawardi_aleppo_illumination.encounter_prompts.jsonl",
+      "prompt_count": 4,
+      "skipped_terminal_or_ending": 0,
+      "skipped_no_options_after_filter": 0,
+      "excluded_secret_options": 0
+    }
+  ]
+}

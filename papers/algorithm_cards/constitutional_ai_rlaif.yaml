@@ -1,0 +1,37 @@
+version: research_algorithm_card_v1
+algorithm_id: constitutional_ai_rlaif
+title: Constitutional AI critique/revision plus AI-feedback preference training
+source:
+  kind: paper
+  citation: "Bai et al., Constitutional AI: Harmlessness from AI Feedback, Anthropic, 2022"
+  url: "https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback"
+  checked_date: "2026-05-03"
+summary: >-
+  Use a written constitution to generate self-critiques and revisions, then build
+  preference data from model-judged pairs. This is the closest direct ancestor of
+  the current SFT -> critique/revision -> DPO plan.
+harness_fit:
+  use_case: "Turn identity/constitution cards into SFT and preference datasets."
+  primary_track: "jinn_or_beast_9b_sft"
+  integration_points:
+    - "scripts/build_constitution_dataset.py"
+    - "scripts/train_constitution_adapter.py"
+    - "papers/jinn_or_beast_data_recipe_v1.yaml"
+implementation:
+  status: partial
+  today_build: "Add cards, dataset recipe references, and matrix visibility."
+  files_to_touch:
+    - "papers/algorithm_cards/constitutional_ai_rlaif.yaml"
+    - "papers/jinn_or_beast_data_recipe_v1.yaml"
+evals:
+  metrics:
+    - "constitutional_fidelity"
+    - "harm_avoidance"
+    - "revision_better_than_draft_rate"
+    - "judge_win_rate"
+  minimum_viable_run: "100 draft/critique/revision examples per identity condition, judged blind."
+guardrails:
+  - "Do not train hidden chain-of-thought targets."
+  - "Keep rationale concise and user-visible."
+  - "Version every constitution and dataset transform."
+notes: "Best first algorithmic backbone for the Jinn or Beast SFT work."

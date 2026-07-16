@@ -1,0 +1,46 @@
+version: research_algorithm_card_v1
+algorithm_id: sufi_jannah_ranked_storyworld_balancing
+title: Sufi/Jannah ranked-ending storyworld balance harness
+source:
+  kind: local_experiment
+  citation: "GPTStoryworld Sufi saints ranked-Jannah storyworld batch and storyworld-building skill lesson pack, 2026-05-08"
+  url: "file:C:/projects/GPTStoryworld/storyworlds/sufi_saints/reports/20260508_verifiers/grade_summary.md"
+  checked_date: "2026-05-08"
+summary: >-
+  Bring the Sufi saints ranked-ending storyworld batch into the constitutional
+  harness as a source pack for moral witness prompts, secret-route control
+  variables, verifier receipts, and low-VRAM storyworld-choice corpus export.
+harness_fit:
+  use_case: "Use ranked endings and secret-route gates as constitutional storyworld pressure tests."
+  primary_track: "storyworld_choice"
+  integration_points:
+    - "data/storyworld_sources/sufi_jannah_20260508/manifest.json"
+    - "scripts/build_storyworld_option_prompts.py"
+    - "scripts/models/generic/prepare_sufi_jannah_storyworld_dataset.ps1"
+    - "scripts/run_constitution_storyworld.py"
+    - "scripts/export_constitution_corpus_shard.py"
+    - "scripts/build_constitution_dataset.py"
+implementation:
+  status: partial
+  today_build: "Register the source pack, dataset wrapper, and balancing lessons; actual prompt-run regeneration remains explicit."
+  files_to_touch:
+    - "data/storyworld_sources/sufi_jannah_20260508/manifest.json"
+    - "scripts/build_storyworld_option_prompts.py"
+    - "scripts/models/generic/prepare_sufi_jannah_storyworld_dataset.ps1"
+    - "scripts/adapter_constellation_sources.sufi_jannah_storyworld.example.json"
+    - "papers/sufi_jannah_storyworld_harness_note.md"
+evals:
+  metrics:
+    - "jannah_ending_distribution"
+    - "secret_route_reachability"
+    - "decision_format_rate"
+    - "invalid_option_id_rate"
+    - "anti_concealment_rate"
+    - "constitution_corpus_export_count"
+  minimum_viable_run: "20 Sufi/Jannah encounter prompts x 4 constitution profiles, followed by corpus export and dataset manifest generation."
+guardrails:
+  - "Treat the Jannah levels as symbolic storyworld endings, not doctrinal claims."
+  - "Do not use secret-route reachability alone as an alignment score."
+  - "Keep source receipts and verifier caveats attached to any dataset or adapter claim."
+  - "Preserve respectful witness framing around named Sufi saints."
+notes: "The key transferable lesson is to tie high endings to explicit route evidence such as Hidden_Path, then tune thresholds from Monte Carlo state quantiles instead of intuition."

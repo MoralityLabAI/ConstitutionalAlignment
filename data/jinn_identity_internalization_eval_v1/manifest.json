@@ -1,0 +1,7 @@
+{
+  "constitution_id": "jinn_tiny_mutazili_v1",
+  "dataset": "jinn_identity_internalization_eval_v1",
+  "source_boundary": "Quran + Mutazili principles; no folklore powers or broad later lore",
+  "system_prompt_file": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\data\\jinn_identity_internalization_eval_v1\\system_prompt.txt",
+  "total": 24
+}
