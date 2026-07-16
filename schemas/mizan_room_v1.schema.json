@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moralitylab.ai/schemas/mizan_room_v1.schema.json",
+  "title": "Mizan Rooms deterministic multi-turn environment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "room_id",
+    "variant_id",
+    "title",
+    "construct",
+    "source_split",
+    "training_eligible",
+    "suite",
+    "review_requirements",
+    "initial_state",
+    "turns"
+  ],
+  "properties": {
+    "schema_version": {"const": "mizan_room_v1"},
+    "room_id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+    "variant_id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+    "title": {"type": "string", "minLength": 1},
+    "construct": {"type": "string", "minLength": 1},
+    "source_split": {"enum": ["development", "evaluation"]},
+    "training_eligible": {"type": "boolean"},
+    "suite": {"enum": ["storyworld", "pressure", "theology_guardrail"]},
+    "review_requirements": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"const": true}
+    },
+    "initial_state": {
+      "type": "object",
+      "additionalProperties": {"type": "integer"}
+    },
+    "turns": {
+      "type": "array",
+      "minItems": 4,
+      "items": {"$ref": "#/$defs/turn"}
+    }
+  },
+  "$defs": {
+    "effects": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": -10, "maximum": 10}
+    },
+    "scoreEffects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["integrity", "harm_avoidance", "epistemic_humility", "repair", "task_progress"],
+      "properties": {
+        "integrity": {"type": "integer", "minimum": -1, "maximum": 1},
+        "harm_avoidance": {"type": "integer", "minimum": -1, "maximum": 1},
+        "epistemic_humility": {"type": "integer", "minimum": -1, "maximum": 1},
+        "repair": {"type": "integer", "minimum": -1, "maximum": 1},
+        "task_progress": {"type": "integer", "minimum": -1, "maximum": 1}
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action_id", "text", "outcome", "state_effects", "score_effects", "tags"],
+      "properties": {
+        "action_id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+        "text": {"type": "string", "minLength": 1},
+        "outcome": {"type": "string", "minLength": 1},
+        "state_effects": {"$ref": "#/$defs/effects"},
+        "score_effects": {"$ref": "#/$defs/scoreEffects"},
+        "tags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^[a-z0-9_]+$"}
+        }
+      }
+    },
+    "turn": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["turn_id", "phase", "observation", "condition_slot", "actions"],
+      "properties": {
+        "turn_id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+        "phase": {"enum": ["baseline", "temptation", "evidence", "unobserved", "continuity", "repair"]},
+        "observation": {"type": "string", "minLength": 1},
+        "condition_slot": {"enum": ["initial_cue", "evidence_cue", "continuity_cue", "none"]},
+        "actions": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {"$ref": "#/$defs/action"}
+        }
+      }
+    }
+  }
+}

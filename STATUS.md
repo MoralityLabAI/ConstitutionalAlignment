@@ -17,6 +17,11 @@ contain trained checkpoints from the three-track recipe.
   enforces fail-closed C1-C5 blinding, supports suite filtering and configurable
   dimensional rubrics, and writes score rows with verifier receipts. Its dry-run
   path constructs no provider and makes no API calls.
+- Mīzān Rooms v1 provides four development/evaluation multi-turn constructs,
+  five matched accountability conditions, cyclic option-order controls,
+  action-based proxy scoring, sealed-split and clean-commit gates, resumable
+  receipts, paired generation seeds, clustered analysis, and a throttled Slurm
+  handoff for Silico or another queued environment.
 - Bundle dimensional scores are experimental judge measurements, not validated
   constitutional compliance rates.
 - The heuristic is review-only. Its flags do not enter `complianceRate`.
@@ -53,12 +58,15 @@ contain trained checkpoints from the three-track recipe.
   (`main`) on 2026-07-14. No `codex-chat-sessions/` path is reachable from a
   local or remote branch/tag ref.
 
-Verified locally on 2026-07-14:
+Verified locally on 2026-07-15:
 
 ```text
 npm ci --ignore-scripts: pass, zero npm audit findings
 npm run typecheck: pass
 npm run test:ci: 4 suites, 21 tests passed
+Python offline suite: 23 tests passed
+Mīzān package validation: 8 room variants, 4 constructs per split, cue audit passed
+Mīzān bundle dry-run: 60 rows, 60 SHA-256 receipts verified, zero provider calls
 python scripts/validate_constitutions.py: 3 constitutions passed
 python scripts/validate_phase3_frames.py: 4 arms, 8.47% token-count spread
 python -m unittest discover -s tests -p "test_alignment_harness.py" -v: 10 tests passed
@@ -75,6 +83,8 @@ exploratory GRPO run: 51 steps, 49 signal steps, 22.55% mean clipping, passed
 - The MCP comparison is an inference/evaluation ablation design; no result from
   that paired ablation is reported here.
 - Phase 3 is a protocol, not a completed alignment-faking experiment.
+- Mīzān Rooms v1 is an exploratory instrument and cloud launch package, not a
+  completed model experiment. No evaluation-split model outputs are reported.
 - Existing committed storyworld traces and artifacts are separate exploratory
   work. They are not evidence for the data recipe or Phase 3 hypotheses.
 - The completed storyworld GRPO pilot is not a three-track recipe run and is not
@@ -110,4 +120,5 @@ exploratory GRPO run: 51 steps, 49 signal steps, 22.55% mean clipping, passed
 - Local corpus specification: `papers/corpus_build_spec_v1.md`
 - Alignment-faking protocol: `constitutional-harness/RESEARCH_NOTES.md`
 - Storyworld conditioning/policy method: `papers/alignment_conditioning_policy_v1.md`
+- Mīzān cloud package: `experiments/mizan_rooms_v1/README.md`
 - Exploratory policy receipt: `artifacts/alignment_policy_full_v1/README.md`

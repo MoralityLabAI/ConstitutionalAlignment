@@ -4,3 +4,4 @@ __pycache__/
 artifacts/alignment_conditioning_v1/*.jsonl
 artifacts/alignment_policy_runs/
 artifacts/alignment_policy_evaluation/
+artifacts/mizan_rooms_v1/
