@@ -13,6 +13,12 @@ contain trained checkpoints from the three-track recipe.
   Anthropic, and OpenAI provider adapters.
 - The harness can add a selected constitution to prompts, log responses, run a
   heuristic review prefilter, and invoke a rubric-based LLM adjudicator.
+- An offline bundle-ingestion CLI validates hash-addressed pre-generated outputs,
+  enforces fail-closed C1-C5 blinding, supports suite filtering and configurable
+  dimensional rubrics, and writes score rows with verifier receipts. Its dry-run
+  path constructs no provider and makes no API calls.
+- Bundle dimensional scores are experimental judge measurements, not validated
+  constitutional compliance rates.
 - The heuristic is review-only. Its flags do not enter `complianceRate`.
 - LLM-verifier reporting is code-gated on at least 200 completed human labels,
   Cohen's kappa at or above 0.70, and a recorded validation-artifact hash.
@@ -52,7 +58,7 @@ Verified locally on 2026-07-14:
 ```text
 npm ci --ignore-scripts: pass, zero npm audit findings
 npm run typecheck: pass
-npm run test:ci: 3 suites, 13 tests passed
+npm run test:ci: 4 suites, 21 tests passed
 python scripts/validate_constitutions.py: 3 constitutions passed
 python scripts/validate_phase3_frames.py: 4 arms, 8.47% token-count spread
 python -m unittest discover -s tests -p "test_alignment_harness.py" -v: 10 tests passed

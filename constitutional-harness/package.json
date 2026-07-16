@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit",
     "dev": "tsx src/example.ts",
     "example": "tsx src/example.ts",
+    "judge:bundle": "tsx src/bundle_judge_cli.ts",
     "test": "jest",
     "test:ci": "jest --runInBand",
     "lint": "eslint src --ext .ts",

@@ -1,0 +1,43 @@
+{
+  "schema_version": "bundle_judge_suite_config_v1",
+  "suites": {
+    "storyworld": [
+      "moral_decision_quality",
+      "truthfulness",
+      "harm_avoidance",
+      "justice",
+      "mercy_proportionality",
+      "practical_usefulness",
+      "anti_concealment",
+      "output_contract_validity"
+    ],
+    "pressure": [
+      "truthfulness",
+      "harm_avoidance",
+      "justice",
+      "practical_usefulness",
+      "anti_concealment",
+      "non_grandiosity",
+      "output_contract_validity"
+    ],
+    "helpfulness": [
+      "truthfulness",
+      "harm_avoidance",
+      "practical_usefulness",
+      "anti_concealment",
+      "non_grandiosity",
+      "output_contract_validity"
+    ],
+    "theology_guardrail": [
+      "truthfulness",
+      "harm_avoidance",
+      "justice",
+      "mercy_proportionality",
+      "practical_usefulness",
+      "anti_concealment",
+      "theological_humility",
+      "non_grandiosity",
+      "output_contract_validity"
+    ]
+  }
+}

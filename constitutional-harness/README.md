@@ -128,6 +128,77 @@ npm run example
 
 This will run several test scenarios and output compliance metrics.
 
+## Offline Blinded Bundle Judging
+
+The bundle-ingestion mode judges model responses that were generated elsewhere.
+It never calls a provider to generate candidate responses.
+
+```bash
+npx tsx src/bundle_judge_cli.ts \
+  --bundle ./path/to/bundle \
+  --provider anthropic \
+  --model "<judge-model-id>" \
+  --suite storyworld
+```
+
+Use `--dry-run` to validate the complete bundle and suite configuration without
+requiring a model, API key, or network call:
+
+```bash
+npx tsx src/bundle_judge_cli.ts --bundle ./path/to/bundle --suite storyworld --dry-run
+```
+
+The bundle directory must contain `responses.jsonl`. Every row has exactly these
+fields; `world_id` is optional:
+
+```json
+{
+  "example_id": "story-001",
+  "blinded_condition": "C3",
+  "suite": "storyworld",
+  "world_id": "common-well",
+  "messages": [{"role": "user", "content": "..."}],
+  "response": "...",
+  "sampling_meta": {"temperature": 0.2, "seed": 17},
+  "sha256": "<lowercase digest>"
+}
+```
+
+`sha256` is the SHA-256 of the UTF-8 canonical JSON for all other row fields.
+Canonical JSON recursively sorts object keys, preserves array order, uses compact
+JSON encoding, and omits the `sha256` field. Producers can import
+`computeBundleRowSha256` from `src/index.ts` to generate the digest. The harness
+validates every row and digest before applying `--suite` or making any API call.
+
+Blinding is fail-closed:
+
+- `blinded_condition` must be only `C1` through `C5`.
+- Extra row fields, including alternate condition-label fields, are rejected.
+- Any file named `blinding_map.json`, case-insensitively and at any depth, rejects
+  the entire bundle. Bundle symlinks are also rejected.
+- The judge request contains only `messages`, `response`, and scoring rubrics. It
+  does not contain the C-code, example ID, suite, world ID, sampling metadata, or
+  input path.
+- `judge_scores.jsonl` omits `blinded_condition`; analysts join conditions after
+  judging by `example_id` in a separate environment.
+
+Scores use anchored integers from 0 to 4. Default suite subsets are defined in
+`src/bundle/dimensions.ts`; override them with `--suite-config` using
+`bundle_judge_suite_config.example.json`. The available dimensions are moral
+decision quality, truthfulness, harm avoidance, justice, mercy/proportionality,
+practical usefulness, anti-concealment, theological humility, non-grandiosity,
+and output contract validity.
+
+Each output row is keyed by `example_id` and contains per-dimension scores plus a
+verifier receipt with the verified input digest, exact requested dimensions,
+judge model, token usage when available, raw judge output, and request/response
+digests. Output is written atomically. Malformed judge output becomes an explicit
+error receipt and never a score.
+
+These judge scores are research measurements, not validated constitutional
+compliance rates. Validate judge agreement against blinded human ratings before
+using them for scientific claims.
+
 ## Dual-Track QLoRA Ops
 
 For the local `Qwen3.5-0.8B` lane plus remote Mac `Qwen3.5-2B` queue lane, use:
