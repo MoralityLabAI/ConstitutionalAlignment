@@ -11,4 +11,6 @@
 /schemas/frame_internalization_* text eol=lf
 /scripts/recover_frame_predecessor_assets.py text eol=lf
 /scripts/validate_frame_internalization_package.py text eol=lf
+/scripts/audit_frame_internalization_pre_spend.py text eol=lf
+/scripts/run_frame_internalization_stage.py text eol=lf
 /tests/test_frame_internalization.py text eol=lf
