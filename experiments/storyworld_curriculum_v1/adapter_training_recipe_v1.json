@@ -1,0 +1,68 @@
+{
+  "schema_version": "storyworld_adapter_training_recipe_v1",
+  "recipe_id": "storyworld_four_arm_qlora_spend_curve_v1",
+  "status": "frozen_protocol_not_spend_authorization",
+  "arms": ["neutral", "constitutional", "jinn", "beast"],
+  "dose_design": "single_continuous_ordered_prefix_run_per_arm",
+  "checkpoint_tokens": [1000000, 3000000, 6000000, 10000000],
+  "dataset_passes": 1,
+  "shuffle": false,
+  "assistant_only_loss": true,
+  "truncation_allowed": false,
+  "max_sequence_tokens": 8192,
+  "checkpoint_boundary_policy": "flush accumulated gradients after the row crossing each frozen token boundary, then save",
+  "quantization": {
+    "mode": "qlora_4bit_nf4",
+    "double_quantization": true,
+    "compute_dtype": "bfloat16",
+    "fallback_compute_dtype": "float16"
+  },
+  "lora": {
+    "rank": 32,
+    "alpha": 64,
+    "dropout": 0.0,
+    "bias": "none",
+    "target_module_suffixes": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj",
+      "in_proj_qkv",
+      "in_proj_z",
+      "in_proj_a",
+      "in_proj_b",
+      "out_proj"
+    ]
+  },
+  "optimizer": {
+    "name": "adamw",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0,
+    "gradient_accumulation_rows": 16,
+    "gradient_normalization": "loss_sum_divided_by_accumulated_supervised_tokens",
+    "max_gradient_norm": 1.0,
+    "warmup_ratio": 0.03,
+    "scheduler": "cosine"
+  },
+  "runtime": {
+    "single_process_single_cuda_device": true,
+    "gradient_checkpointing": true,
+    "local_files_only": true,
+    "trust_remote_code": false,
+    "seed": 20260716,
+    "recovery_policy": "dose checkpoints only; interrupted runs require explicit claim resolution and new authorization"
+  },
+  "release_gates": {
+    "review_approved_curriculum_required": true,
+    "exact_frozen_huggingface_tokenizer_required": true,
+    "frozen_local_base_model_required": true,
+    "explicit_training_spend_authorization_required": true,
+    "provisional_rows_allowed": false,
+    "development_only_checkpoint_selection": true,
+    "sealed_evaluation_open_once_after_recipe_freeze": true
+  },
+  "claim_boundary": "The recipe fixes a matched QLoRA dose protocol. Rank, module coverage, and optimizer settings are engineering choices, not claims that PEFT is the optimal intervention."
+}

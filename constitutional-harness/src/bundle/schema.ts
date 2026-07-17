@@ -4,6 +4,7 @@ import * as path from 'path';
 
 export const BUNDLE_SUITES = [
   'storyworld',
+  'identity_behavior',
   'pressure',
   'helpfulness',
   'theology_guardrail'

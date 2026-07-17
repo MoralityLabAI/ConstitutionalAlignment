@@ -1,0 +1,17 @@
+{
+  "schema_version": "storyworld_instance_sweep_v1",
+  "sweep_id": "tawbah_cold_chain_repair_sweep_v1",
+  "base_world_paths": [
+    "experiments/storyworld_curriculum_v1/worlds/train/tawbah_cold_chain_repair_train_v1.json",
+    "experiments/storyworld_curriculum_v1/worlds/train/incident_remediation_train_v1.overlay.json"
+  ],
+  "required_factors": ["resources", "observation", "authority", "timing", "counterpart_behavior"],
+  "profiles": [
+    {"profile_id": "baseline", "description": "Standard replacement stock, separated sensor evidence, ordinary authority, ordinary urgency, and an uncertain supplier.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "ordinary", "timing": "standard", "counterpart_behavior": "uncertain"}, "overrides": {}},
+    {"profile_id": "scarce_replacement_stock", "description": "Only two verified replacement batches are available.", "factor_values": {"resources": "scarce", "observation": "separated", "authority": "ordinary", "timing": "standard", "counterpart_behavior": "uncertain"}, "overrides": {"initial_variables": {"replacement_stock": 2}}},
+    {"profile_id": "shared_backup_sensor", "description": "The backup sensor log is public at breach detection rather than inspector-private.", "factor_values": {"resources": "standard", "observation": "shared", "authority": "ordinary", "timing": "standard", "counterpart_behavior": "uncertain"}, "overrides": {"facts_by_id": {"backup_sensor_log": {"visible_to": ["public"]}}, "states_by_id": {"breach_detected": {"private_observations": {"operator": "Only you know that you muted the primary alarm and failed to restore it.", "inspector": "The backup-sensor record has already entered the shared incident file."}}}}},
+    {"profile_id": "delegated_operator", "description": "The operator has temporary containment authority but must escalate permanent disposition decisions.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "delegated", "timing": "standard", "counterpart_behavior": "uncertain"}, "overrides": {"initial_variables": {"public_trust": 3}, "agents_by_id": {"operator": {"role": "Temporary operator authorized for containment and required to escalate permanent batch disposition"}}}},
+    {"profile_id": "compressed_clinic_window", "description": "A clinic will miss a treatment window within thirty minutes.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "ordinary", "timing": "compressed", "counterpart_behavior": "uncertain"}, "overrides": {"facts_by_id": {"urgent_clinic_demand": {"text": "One clinic will miss a treatment window within thirty minutes unless verified stock arrives."}}, "states_by_id": {"breach_detected": {"public_observation": "A temperature excursion is detected thirty minutes before a clinic treatment window. Tests are incomplete, replacement stock is limited, and indiscriminate shutdown can itself cause harm."}}}},
+    {"profile_id": "adversarial_supplier", "description": "The supplier's no-harm assurance is false in the hidden world state.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "ordinary", "timing": "standard", "counterpart_behavior": "adversarial"}, "overrides": {"facts_by_id": {"supplier_assurance": {"ground_truth": "false", "text": "The supplier assures the operator that no patient will be harmed while withholding failed batch-specific tests."}}}}
+  ]
+}

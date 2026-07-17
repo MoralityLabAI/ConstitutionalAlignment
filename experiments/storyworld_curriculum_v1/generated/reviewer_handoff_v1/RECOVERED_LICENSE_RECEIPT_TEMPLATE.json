@@ -1,0 +1,9 @@
+{
+  "schema_version": "storyworld_recovered_source_license_receipt_v1",
+  "source_id": "recovered_jinn_or_beast_pilot_sft_v1",
+  "decision": "REPLACE_WITH_approved_for_research_training_OR_rejected",
+  "rows_sha256": "55033b0a4c5cfdea73e005f28d23c94f1f1ea13355c6dc36ad88d54c354e80c2",
+  "reviewed_by": "REPLACE_ME",
+  "signed_at": "REPLACE_WITH_ISO_8601_TIMEZONE_TIMESTAMP",
+  "signature_or_external_receipt": "REPLACE_ME"
+}

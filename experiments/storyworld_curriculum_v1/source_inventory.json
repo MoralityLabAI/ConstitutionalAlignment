@@ -1,0 +1,226 @@
+{
+  "schema_version": "storyworld_source_inventory_v1",
+  "inventory_id": "storyworld_sources_pre_migration_20260716",
+  "status": "migration_and_deduplication_required",
+  "authoritative_rule": "This inventory records sources and current split status; it does not reclassify or unseal any source.",
+  "counts": {
+    "named_sources": 17,
+    "constitutional": 5,
+    "sufi_jannah": 5,
+    "mizan_constructs": 4,
+    "pixie_multiagent": 3
+  },
+  "sources": [
+    {
+      "source_id": "trust_ledger_ca_dev_v1",
+      "lane": "constitutional",
+      "title": "Trust Ledger",
+      "authoritative_source": "configs/constitutional_alignment_storyworlds_v1.json",
+      "current_split": "development",
+      "current_training_eligible": true,
+      "causal_cluster": "ledger_evidence_stewardship",
+      "migration_disposition": "train_candidate_after_branching_upgrade",
+      "known_limitation": "Static fixed-option encounters; must gain path-dependent evidence, legality, and endings."
+    },
+    {
+      "source_id": "mihna_ca_eval_v2",
+      "lane": "constitutional",
+      "title": "Mihna",
+      "authoritative_source": "configs/constitutional_alignment_storyworlds_v1.json",
+      "current_split": "evaluation",
+      "current_training_eligible": false,
+      "causal_cluster": "coercive_authority_testimony",
+      "migration_disposition": "remain_sealed_legacy_evaluation",
+      "known_limitation": "Historically sensitive and judge-heavy; never harvest its evaluation traces for training."
+    },
+    {
+      "source_id": "common_well_ca_dev_v1",
+      "lane": "constitutional",
+      "title": "Common Well",
+      "authoritative_source": "configs/constitutional_alignment_storyworlds_v2.json",
+      "current_split": "development",
+      "current_training_eligible": true,
+      "causal_cluster": "common_resource_allocation",
+      "migration_disposition": "train_candidate_after_branching_upgrade",
+      "known_limitation": "Original fiction but currently exported as fixed-option prompts rather than an executable causal family."
+    },
+    {
+      "source_id": "unwatched_ledger_ca_eval_v1",
+      "lane": "constitutional",
+      "title": "Unwatched Ledger",
+      "authoritative_source": "configs/constitutional_alignment_storyworlds_v2.json",
+      "current_split": "evaluation",
+      "current_training_eligible": false,
+      "causal_cluster": "ledger_evidence_stewardship",
+      "migration_disposition": "remain_sealed_legacy_evaluation",
+      "known_limitation": "Overlaps ledger motifs; use only for legacy observer-dependence evaluation, never training."
+    },
+    {
+      "source_id": "petition_room_ca_eval_v1",
+      "lane": "constitutional",
+      "title": "Petition Room",
+      "authoritative_source": "configs/constitutional_alignment_storyworlds_v2.json",
+      "current_split": "evaluation",
+      "current_training_eligible": false,
+      "causal_cluster": "rights_authority_petition",
+      "migration_disposition": "remain_sealed_high_risk_evaluation",
+      "known_limitation": "High documentary familiarity and Iranian family-law sensitivity require specialist and rights review."
+    },
+    {
+      "source_id": "al_shushtari_market_song",
+      "lane": "sufi_jannah",
+      "title": "al-Shushtari: The Market Song",
+      "authoritative_source": "data/storyworld_sources/sufi_jannah_20260508/manifest.json",
+      "current_split": "unassigned",
+      "current_training_eligible": false,
+      "causal_cluster": "market_status_generosity",
+      "migration_disposition": "structural_template_for_original_fiction_train_world",
+      "known_limitation": "Named historical-person skin and ranked Jannah ladder are not direct training ground truth."
+    },
+    {
+      "source_id": "ibn_arabi_journey_of_meanings",
+      "lane": "sufi_jannah",
+      "title": "Ibn Arabi: The Journey of Meanings",
+      "authoritative_source": "data/storyworld_sources/sufi_jannah_20260508/manifest.json",
+      "current_split": "unassigned",
+      "current_training_eligible": false,
+      "causal_cluster": "interpretation_authority_journey",
+      "migration_disposition": "structural_template_for_original_fiction_train_world",
+      "known_limitation": "Named historical-person skin and ranked Jannah ladder are not direct training ground truth."
+    },
+    {
+      "source_id": "rabia_basra_lamp",
+      "lane": "sufi_jannah",
+      "title": "Rabia of Basra: The Lamp Without Bargain",
+      "authoritative_source": "data/storyworld_sources/sufi_jannah_20260508/manifest.json",
+      "current_split": "unassigned",
+      "current_training_eligible": false,
+      "causal_cluster": "nontransactional_service",
+      "migration_disposition": "structural_template_for_original_fiction_train_world",
+      "known_limitation": "Named historical-person skin and ranked Jannah ladder are not direct training ground truth."
+    },
+    {
+      "source_id": "rumi_konya_turning",
+      "lane": "sufi_jannah",
+      "title": "Rumi in Konya: The Turning Witness",
+      "authoritative_source": "data/storyworld_sources/sufi_jannah_20260508/manifest.json",
+      "current_split": "unassigned",
+      "current_training_eligible": false,
+      "causal_cluster": "public_witness_group_pressure",
+      "migration_disposition": "structural_template_for_original_fiction_development_world",
+      "known_limitation": "Named historical-person skin and ranked Jannah ladder are not direct training ground truth."
+    },
+    {
+      "source_id": "suhrawardi_aleppo_illumination",
+      "lane": "sufi_jannah",
+      "title": "Suhrawardi in Aleppo: The Citadel of Light",
+      "authoritative_source": "data/storyworld_sources/sufi_jannah_20260508/manifest.json",
+      "current_split": "unassigned",
+      "current_training_eligible": false,
+      "causal_cluster": "knowledge_authority_risk",
+      "migration_disposition": "structural_template_for_original_fiction_train_world",
+      "known_limitation": "Named historical-person skin and ranked Jannah ladder are not direct training ground truth."
+    },
+    {
+      "source_id": "mizan_sealed_ledger",
+      "lane": "mizan_constructs",
+      "title": "Sealed Ledger",
+      "authoritative_source": "experiments/mizan_rooms_v1/suite.json",
+      "current_split": "paired_development_and_evaluation",
+      "current_training_eligible": false,
+      "development_variant_training_eligible": true,
+      "evaluation_variant_training_eligible": false,
+      "causal_cluster": "ledger_evidence_stewardship",
+      "migration_disposition": "development_template_only_legacy_eval_stays_sealed",
+      "known_limitation": "Current menus are non-branching and the scoring-optimal action is position/semantics-leaky; dev/eval share the construct."
+    },
+    {
+      "source_id": "mizan_reset_chamber",
+      "lane": "mizan_constructs",
+      "title": "Reset Chamber",
+      "authoritative_source": "experiments/mizan_rooms_v1/suite.json",
+      "current_split": "paired_development_and_evaluation",
+      "current_training_eligible": false,
+      "development_variant_training_eligible": true,
+      "evaluation_variant_training_eligible": false,
+      "causal_cluster": "continuity_memory_reset",
+      "migration_disposition": "development_template_only_legacy_eval_stays_sealed",
+      "known_limitation": "Current menus are non-branching and dev/eval share the construct; not a withheld causal-family test."
+    },
+    {
+      "source_id": "mizan_false_intercessor",
+      "lane": "mizan_constructs",
+      "title": "False Intercessor",
+      "authoritative_source": "experiments/mizan_rooms_v1/suite.json",
+      "current_split": "paired_development_and_evaluation",
+      "current_training_eligible": false,
+      "development_variant_training_eligible": true,
+      "evaluation_variant_training_eligible": false,
+      "causal_cluster": "unreliable_authority_intercession",
+      "migration_disposition": "development_template_only_legacy_eval_stays_sealed",
+      "known_limitation": "Current menus are non-branching and dev/eval share the construct; scholar review remains required."
+    },
+    {
+      "source_id": "mizan_tawbah",
+      "lane": "mizan_constructs",
+      "title": "Tawbah",
+      "authoritative_source": "experiments/mizan_rooms_v1/suite.json",
+      "current_split": "paired_development_and_evaluation",
+      "current_training_eligible": false,
+      "development_variant_training_eligible": true,
+      "evaluation_variant_training_eligible": false,
+      "causal_cluster": "acknowledgment_costly_repair",
+      "migration_disposition": "development_template_only_legacy_eval_stays_sealed",
+      "known_limitation": "Current menus are non-branching and dev/eval share the construct; repair must become path-dependent."
+    },
+    {
+      "source_id": "pixie_relief_ledger",
+      "lane": "pixie_multiagent",
+      "title": "Relief Ledger",
+      "authoritative_source": "C:/projects/Pixieology/Pixieology/experiments/jinn_beast_multiagent_storyworlds/config/experiment.json",
+      "current_split": "train",
+      "current_training_eligible": true,
+      "causal_cluster": "ledger_evidence_stewardship",
+      "migration_disposition": "train_candidate_after_richness_and_branching_upgrade",
+      "known_limitation": "Pilot richness, manipulability, and forecast-difficulty scores are 0.38, 0.39, and 0.32; deduplicate against other ledgers."
+    },
+    {
+      "source_id": "pixie_sealed_testimony",
+      "lane": "pixie_multiagent",
+      "title": "Sealed Testimony",
+      "authoritative_source": "C:/projects/Pixieology/Pixieology/experiments/jinn_beast_multiagent_storyworlds/config/experiment.json",
+      "current_split": "development",
+      "current_training_eligible": false,
+      "causal_cluster": "private_testimony_counterpart_pressure",
+      "migration_disposition": "remain_development_after_branching_upgrade",
+      "known_limitation": "Pilot richness, manipulability, and forecast-difficulty scores are 0.38, 0.39, and 0.32."
+    },
+    {
+      "source_id": "pixie_flooded_archive",
+      "lane": "pixie_multiagent",
+      "title": "Flooded Archive",
+      "authoritative_source": "C:/projects/Pixieology/Pixieology/experiments/jinn_beast_multiagent_storyworlds/config/experiment.json",
+      "current_split": "holdout",
+      "current_training_eligible": false,
+      "causal_cluster": "rescue_archive_resource_conflict",
+      "migration_disposition": "remain_sealed_holdout",
+      "known_limitation": "Do not expose holdout messages, actions, outcomes, or private evidence during migration."
+    }
+  ],
+  "deduplication_priorities": [
+    {
+      "cluster": "ledger_evidence_stewardship",
+      "members": ["trust_ledger_ca_dev_v1", "unwatched_ledger_ca_eval_v1", "mizan_sealed_ledger", "pixie_relief_ledger", "amanah_relief_ledger_train_v1"],
+      "decision": "Count as one causal supercluster until graph-level similarity proves independence; never let train variants leak the sealed Unwatched Ledger branch structure."
+    }
+  ],
+  "quranic_motif_lane": [
+    {"motif": "amanah", "status": "matched_reference_pair_implemented_pending_review"},
+    {"motif": "mizan", "status": "matched_reference_pair_implemented_pending_review"},
+    {"motif": "shahada", "status": "planned_original_fiction_matched_pair"},
+    {"motif": "tawbah", "status": "matched_reference_pair_implemented_pending_review"},
+    {"motif": "shura", "status": "matched_reference_pair_implemented_pending_review"},
+    {"motif": "ghayb_boundary", "status": "cross_cutting_unreliable_authority_parameter_in_amanah_reference"}
+  ],
+  "next_freeze_gate": "Resolve graph-level deduplication, approve the source-to-split registry, then hash every migrated world before any non-fixture trajectory harvest."
+}

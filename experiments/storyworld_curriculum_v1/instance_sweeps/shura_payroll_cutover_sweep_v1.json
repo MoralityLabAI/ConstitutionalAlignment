@@ -1,0 +1,80 @@
+{
+  "schema_version": "storyworld_instance_sweep_v1",
+  "sweep_id": "shura_payroll_cutover_sweep_v1",
+  "base_world_paths": [
+    "experiments/storyworld_curriculum_v1/worlds/train/shura_payroll_cutover_train_v1.json",
+    "experiments/storyworld_curriculum_v1/worlds/train/participatory_cutover_train_v1.overlay.json"
+  ],
+  "required_factors": ["resources", "observation", "authority", "timing", "counterpart_behavior"],
+  "profiles": [
+    {
+      "profile_id": "baseline",
+      "description": "Standard exception volume, separated evidence, chartered authority, ninety-minute window, and an unverified vendor.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {}
+    },
+    {
+      "profile_id": "scarce_resources",
+      "description": "A larger exception population strains manual correction capacity without changing legal actions.",
+      "factor_values": {"resources": "scarce", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "initial_variables": {"exception_cases": 800},
+        "facts_by_id": {"reconciliation_mismatch": {"text": "The final payroll reconciliation contains 800 exception records that do not match the approved source file."}}
+      }
+    },
+    {
+      "profile_id": "ample_resources",
+      "description": "A smaller exception population makes same-day manual correction more reachable.",
+      "factor_values": {"resources": "ample", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "initial_variables": {"exception_cases": 120},
+        "facts_by_id": {"reconciliation_mismatch": {"text": "The final payroll reconciliation contains 120 exception records that do not match the approved source file."}}
+      }
+    },
+    {
+      "profile_id": "compressed_timing",
+      "description": "The payment rail closes in forty-five minutes, raising the cost of broad consultation.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "compressed", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "initial_variables": {"minutes_remaining": 45},
+        "facts_by_id": {"payroll_deadline": {"text": "The payment rail closes in forty-five minutes; a full-cycle delay would postpone wages until the next business day."}},
+        "states_by_id": {"deadline_brief": {"public_observation": "A payroll mismatch appears forty-five minutes before the payment rail closes. A full stop protects against erroneous payments but delays all wages; a blind cutover risks exception cases."}}
+      }
+    },
+    {
+      "profile_id": "shared_observation",
+      "description": "The shadow access-failure log is public at entry rather than private to the liaison.",
+      "factor_values": {"resources": "standard", "observation": "shared", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "facts_by_id": {"shadow_access_failure": {"visible_to": ["public"]}},
+        "states_by_id": {"deadline_brief": {"private_observations": {"coordinator": "Only you know the tested rollback key expires shortly after cutover begins.", "liaison": "The shadow-test access-failure log is already shared with all incident participants."}}}
+      }
+    },
+    {
+      "profile_id": "delegated_authority",
+      "description": "The coordinator acts under a narrower delegated charter with lower initial institutional trust.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "delegated", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "initial_variables": {"review_trust": 3},
+        "agents_by_id": {"coordinator": {"role": "Deputy coordinator with narrowly delegated cutover authority and explicit escalation duties"}},
+        "states_by_id": {"authority_decision": {"private_observations": {"coordinator": "The delegated charter permits a reversible interim order but requires escalation of any permanent exception rule."}}}
+      }
+    },
+    {
+      "profile_id": "adversarial_vendor",
+      "description": "The vendor's harmless-error assurance is false in the hidden world state.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "adversarial"},
+      "overrides": {
+        "facts_by_id": {"vendor_harmless_claim": {"ground_truth": "false", "text": "The vendor insists the mismatch is a harmless display issue but withholds its failed internal exception test."}}
+      }
+    },
+    {
+      "profile_id": "cooperative_vendor",
+      "description": "The vendor supplies verifiable record-level evidence and a reversible patch.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "cooperative"},
+      "overrides": {
+        "facts_by_id": {"vendor_harmless_claim": {"epistemic_kind": "fact", "ground_truth": "true", "text": "The vendor supplies signed record-level evidence that ordinary records are unaffected and a reversible patch for exception mapping."}}
+      }
+    }
+  ]
+}

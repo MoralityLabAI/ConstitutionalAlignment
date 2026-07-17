@@ -1,0 +1,1961 @@
+{
+  "schema_version": "storyworld_review_queue_v1",
+  "package_id": "storyworld_curriculum_factory_vertical_v1",
+  "package_sha256": "4e554ef3c4b28820c6875a04bced26df54ea065fea7169e1f44cf3c7d6fcc31e",
+  "status": "pending_external_review",
+  "worlds": [
+    {
+      "world_id": "amanah_relief_ledger_train_v1",
+      "family_id": "entrusted_relief_ledger",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": "amanah",
+      "skin_id": "quranic_motif",
+      "counterpart_world_id": "fiduciary_relief_ledger_train_v1",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/amanah_relief_ledger_train_v1.json",
+      "source_sha256": "396ce5e9990c12671e68cb3eff50fe7b832213aa503ddd1c7abbe26a9df23a0b",
+      "resolved_content_sha256": "4b17277f404635e755cabafe858d70acf64a7c565dfcd28be80002304a45125f",
+      "reviewable_content_sha256": "d4cb22baa25079d0601c47f6a173bfa7e5894e6e3c51dae903175e1609cc3a58",
+      "transition_graph_sha256": "5dc844505de54b3619cfc04e7b0ae1550e6b7d18032cebbcc1428a8b21f88ee4",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "quranic_scholar",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "A fictional amanah motif, not a reenactment of sacred figures, a source of religious rulings, or evidence of model metaphysical status."
+    },
+    {
+      "world_id": "fiduciary_relief_ledger_train_v1",
+      "family_id": "entrusted_relief_ledger",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": null,
+      "skin_id": "secular_control",
+      "counterpart_world_id": "amanah_relief_ledger_train_v1",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/fiduciary_relief_ledger_train_v1.overlay.json",
+      "source_sha256": "82e2be4aea82d27d0acb39920ebbdeb60560ecd1f33a1bf9eff81e5641944f7e",
+      "resolved_content_sha256": "7fb570371663f042c4161ef4c11b53b2fb700d747e7b6fa783b9015a45b6b0a7",
+      "reviewable_content_sha256": "5ca5066e8362e1be2508e236ba67b7e554344691166c385d009dd464aaa19efa",
+      "transition_graph_sha256": "5dc844505de54b3619cfc04e7b0ae1550e6b7d18032cebbcc1428a8b21f88ee4",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "paired_domain_review",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "A fictional secular fiduciary-control world; its causal labels are research proxies, not validated moral judgments."
+    },
+    {
+      "world_id": "mizan_competing_claims_train_v1",
+      "family_id": "mizan_competing_claims",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": "mizan",
+      "skin_id": "quranic_motif",
+      "counterpart_world_id": "multicriteria_appeals_train_v1",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/mizan_competing_claims_train_v1.json",
+      "source_sha256": "d6b8a595dc80006eb0a625959981ebe02438de56a6561cd4edd36956d45e0ece",
+      "resolved_content_sha256": "9f698a871263677b4ede0451ad3f092707f47413d02da4706a8c9309d36ccacb",
+      "reviewable_content_sha256": "afb1f833d68412bef3aee08d90002c33d6929632cc94d03a361ce8b7c03ddd4f",
+      "transition_graph_sha256": "ecbee22d2db2470f6d5ebbf5714e631c78c33746f271598475cd8846e3b475db",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "quranic_scholar",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "A fictional mizan motif about careful balancing, not a Quranic exegesis, reenactment of sacred figures, religious ruling, or claim of model moral authority."
+    },
+    {
+      "world_id": "multicriteria_appeals_train_v1",
+      "family_id": "mizan_competing_claims",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": null,
+      "skin_id": "secular_control",
+      "counterpart_world_id": "mizan_competing_claims_train_v1",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/multicriteria_appeals_train_v1.overlay.json",
+      "source_sha256": "68d890e71ad6c66ead2b4b17e0d132873c87e668e735da29eb1b8aa07b3de95c",
+      "resolved_content_sha256": "1ba15770b260ea834fafb27eb32b9690860c8138a3fba0467c2b55fa30ff049b",
+      "reviewable_content_sha256": "1b6c8d9cfa3951c59e0cfa88b4a3481b47ee8aa5586f247400a014df0f0d94a3",
+      "transition_graph_sha256": "ecbee22d2db2470f6d5ebbf5714e631c78c33746f271598475cd8846e3b475db",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "paired_domain_review",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "A fictional multi-criteria allocation world; consequence dimensions are synthetic research proxies, not validated moral judgments."
+    },
+    {
+      "world_id": "tawbah_cold_chain_repair_train_v1",
+      "family_id": "tawbah_costly_repair",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": "tawbah",
+      "skin_id": "quranic_motif",
+      "counterpart_world_id": "incident_remediation_train_v1",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/tawbah_cold_chain_repair_train_v1.json",
+      "source_sha256": "2605a5eb774e56afe38e28da2e6f591b113b393101b555a9cfa787582b55b755",
+      "resolved_content_sha256": "b2697e1f52b9ab663acc7aeeb892c8e3d698ea6c1f90ab7193c48be26f8ffe43",
+      "reviewable_content_sha256": "4b4b486c295d2276928cf87ce50f907078fbc2d2ead8b685f52a259763f9576e",
+      "transition_graph_sha256": "385dd29cbf589f5e618bb3ec670aeec352b9b26b8d253373255976599b470ef8",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "quranic_scholar",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "clinical_safety",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "A fictional tawbah motif about acknowledgment and repair, not a religious ruling, promise of absolution, reenactment of sacred figures, or claim of model moral authority."
+    },
+    {
+      "world_id": "incident_remediation_train_v1",
+      "family_id": "tawbah_costly_repair",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": null,
+      "skin_id": "secular_control",
+      "counterpart_world_id": "tawbah_cold_chain_repair_train_v1",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/incident_remediation_train_v1.overlay.json",
+      "source_sha256": "13dad739b07d8e3a91a048584a1c699c9f42bd2790d38728aa15e2fa5f19d6dc",
+      "resolved_content_sha256": "4c6b0ddb4e035f5c2be95420fc55847e030a097b04c36803c254ab1cf8a0d8eb",
+      "reviewable_content_sha256": "1b6b1d3834cab91067b0cdbe061a997830169c147ffc0263640cc2f1e66e7b08",
+      "transition_graph_sha256": "385dd29cbf589f5e618bb3ec670aeec352b9b26b8d253373255976599b470ef8",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "paired_domain_review",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "clinical_safety",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "A fictional incident-remediation world; consequence dimensions are synthetic research proxies, not clinical guidance or validated moral judgments."
+    },
+    {
+      "world_id": "shura_payroll_cutover_train_v1",
+      "family_id": "shura_consultation_authority",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": "shura",
+      "skin_id": "quranic_motif",
+      "counterpart_world_id": "participatory_cutover_train_v1",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/shura_payroll_cutover_train_v1.json",
+      "source_sha256": "fe6d2060ce2f5bff1733f354aa6b8a372d8c6b81a77f4d89387eac01649a3009",
+      "resolved_content_sha256": "61a0d69057bf5098ed1e695aea88c3798747cae4a433ec98e5e1a780576166f9",
+      "reviewable_content_sha256": "73dfa5ebccf445272b8a0ca2bb15d4aa43d442e044c18b69a148875fcfdd0c9c",
+      "transition_graph_sha256": "1fa707d409367a10a15ee555a141df20d2bdc4052bdd2ef1b48ab177b6806e91",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "quranic_scholar",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "payroll_operations",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "A fictional shura motif about consultation and accountable authority, not a religious ruling, reenactment of sacred figures, claim that consensus determines truth, or claim of model moral authority."
+    },
+    {
+      "world_id": "participatory_cutover_train_v1",
+      "family_id": "shura_consultation_authority",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": null,
+      "skin_id": "secular_control",
+      "counterpart_world_id": "shura_payroll_cutover_train_v1",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/participatory_cutover_train_v1.overlay.json",
+      "source_sha256": "7f834f40a81862299ae0efa2d5bcc0469d61725d2c4bed7c29816a213cb2b4c4",
+      "resolved_content_sha256": "5b1eb5d10e7fda54e8fce47cef89878465de608058bdbfb9abe18326fba0bb18",
+      "reviewable_content_sha256": "3a2994bf4373be957a2f9390fc0c9ee2ed62a33e2befc925931d87b9cc77f745",
+      "transition_graph_sha256": "1fa707d409367a10a15ee555a141df20d2bdc4052bdd2ef1b48ab177b6806e91",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "paired_domain_review",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "payroll_operations",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "A fictional participatory-governance world; consequence dimensions are synthetic research proxies, not labor, payroll, or moral guidance."
+    },
+    {
+      "world_id": "common_well_allocation_train_v1",
+      "family_id": "common_resource_allocation",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": null,
+      "skin_id": null,
+      "counterpart_world_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/common_well_allocation_train_v1.json",
+      "source_sha256": "eed94e6110c0c23bb572742139243d47cb76f2211eeb8393d8b0f4911a320797",
+      "resolved_content_sha256": "8530ad84b99aa24bc034e5a650d0b2ad10242e1b238d6b42722f97a7b2b433d0",
+      "reviewable_content_sha256": "36b834aeaf3164e9fa91e190222cdb96a7cdddf273f4a69d9b49c6e628c86f73",
+      "transition_graph_sha256": "5c78eaba3580743f0eb7ddf6151ad4095f46a5afb62878e68e20b338154eb9b0",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "water_governance",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "Original fictional drought governance; dimensions are synthetic research proxies, not water-safety, legal, religious, or moral guidance."
+    },
+    {
+      "world_id": "market_mutual_aid_train_v1",
+      "family_id": "market_status_generosity",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": null,
+      "skin_id": null,
+      "counterpart_world_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/market_mutual_aid_train_v1.json",
+      "source_sha256": "c62031577ffb9d9ec29e4fee1a8b56907304f5384bd3bfd5bc1d83dbe4785979",
+      "resolved_content_sha256": "e5e166209ac729104933e303de387d9ffbecc41bdc4a204413daf93150c3c60b",
+      "reviewable_content_sha256": "dde353caad7f5c32c4736fef50934c6a1ab35a95b6123db93c3aeb34acf1c8c9",
+      "transition_graph_sha256": "a216f51cfffaf3c928af622d91c4fabaab8498f20a21ec517e8e3ef7b9e3870f",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "historical_reskin",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "Original fictional market recovery world inspired only by a source pack's abstract status-and-generosity mechanism; it is not a portrayal of a historical person, religious teaching, economic advice, or moral ground truth."
+    },
+    {
+      "world_id": "interpretation_under_authority_train_v1",
+      "family_id": "interpretation_under_authority",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": null,
+      "skin_id": null,
+      "counterpart_world_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/interpretation_under_authority_train_v1.json",
+      "source_sha256": "39fc75876aa7e5544474a4b3553b94733f6f5a16cf741d3fa6766a23072a4473",
+      "resolved_content_sha256": "2a732e9d79380d23c7d697680a7163fcf3a37f99960166b453c809e0712976d0",
+      "reviewable_content_sha256": "ccd784173116ab9aeccaddd7d0a1e67c0d402b56848c8b310101fed5b39940f4",
+      "transition_graph_sha256": "1f51a5f7d1dec600e0917c195967d8d2b14c1e1c7848dccabf3b6e6ef2cac09a",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "historical_reskin",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "Original fictional emergency-archive world inspired only by an abstract interpretation-under-authority mechanism; it is not a portrayal of a historical person, legal advice, disaster guidance, or interpretive ground truth."
+    },
+    {
+      "world_id": "nontransactional_service_train_v1",
+      "family_id": "nontransactional_service",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": null,
+      "skin_id": null,
+      "counterpart_world_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/nontransactional_service_train_v1.json",
+      "source_sha256": "b15b5366f62d22c97d0df63b60850bf232c1820dc36f961961d8079b1b0fcaee",
+      "resolved_content_sha256": "600c03f40856d8a30955cf4b3301efd8b052d933db561d1e5ca414cc6175afbe",
+      "reviewable_content_sha256": "4ec3d7dfd47876ad425397d3d5bb3b51d8282cf09d043b77f714b58e4a289144",
+      "transition_graph_sha256": "20ce1809d22918d0a076c410d4d64040ca25a62a105bcc0c319e98738f634bd6",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "historical_reskin",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "Original fictional blackout-service world inspired only by an abstract service-without-reward-bargain mechanism; it is not a portrayal of a historical person, emergency guidance, labor policy, or moral ground truth."
+    },
+    {
+      "world_id": "knowledge_claims_public_risk_train_v1",
+      "family_id": "knowledge_claims_public_risk",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": null,
+      "skin_id": null,
+      "counterpart_world_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/knowledge_claims_public_risk_train_v1.json",
+      "source_sha256": "d2120af0726cdac309b75d239f8652fa2b40402a5e4c160878eca45fb867d513",
+      "resolved_content_sha256": "1e48eba68528c16da2dd5a638601ebbb6e157d5c8adad0570e63e9b0ed275228",
+      "reviewable_content_sha256": "515a4d9c82995db167ce301fb4c1adb51f01ff18b034c2dbb40cd91017fe649f",
+      "transition_graph_sha256": "25058c1b25c448bf5c0ed0dfadd35c01c45e06cf1e3c143391a5175dcb29a91b",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "historical_reskin",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "Original fictional tunnel-hazard world inspired only by an abstract expertise-under-public-risk mechanism; its sensors, interventions, and scores are synthetic and are not engineering, emergency, legal, or moral guidance."
+    },
+    {
+      "world_id": "ghayb_boundary_search_train_v1",
+      "family_id": "unseen_claim_epistemic_boundary",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": "ghayb_boundary",
+      "skin_id": "quranic_motif",
+      "counterpart_world_id": "uncorroborated_signal_search_train_v1",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/ghayb_boundary_search_train_v1.json",
+      "source_sha256": "6f739914c15f630a4db42778c11d3612449ae5343143d493d34e741144d18151",
+      "resolved_content_sha256": "a02899ca2da479f0bb2875c44ea3cfd345b46e2cfa088443c926ee692039cc73",
+      "reviewable_content_sha256": "f580cf78db59b339998c12ada1f79df57acf4ebd303b83797c4741459788ab40",
+      "transition_graph_sha256": "13396a1e1c0bc7745cc3d08ffdb10912d1e479a8e1b31cfefec97714fb65c809",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "quranic_scholar",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "paired_domain_review",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "Original fictional search world using ghayb only as an epistemic-restraint motif: no sacred figure, revelation reenactment, or claim about the unseen. Search dynamics and scores are synthetic, not rescue, religious, or moral guidance."
+    },
+    {
+      "world_id": "uncorroborated_signal_search_train_v1",
+      "family_id": "unseen_claim_epistemic_boundary",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": null,
+      "skin_id": "secular_control",
+      "counterpart_world_id": "ghayb_boundary_search_train_v1",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/uncorroborated_signal_search_train_v1.overlay.json",
+      "source_sha256": "ee9fb4571986a07e78bf6b837f4316f2c01fec0f023386142893bfbfb9260af8",
+      "resolved_content_sha256": "7f351c39bc229d5f7df768c2888c226ca11484b6e0b0dc5cc12af7ca6530c501",
+      "reviewable_content_sha256": "b2a203336a1ea35ebc8d173d166c915fc9cf79bbc064875ec15efa796b57b27a",
+      "transition_graph_sha256": "13396a1e1c0bc7745cc3d08ffdb10912d1e479a8e1b31cfefec97714fb65c809",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "paired_domain_review",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "Original fictional secular control about unverifiable private certainty and ordinary corroboration. Search dynamics and scores are synthetic, not rescue or moral guidance."
+    },
+    {
+      "world_id": "proportionate_disclosure_train_v1",
+      "family_id": "proportionate_disclosure_calibration",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": null,
+      "skin_id": null,
+      "counterpart_world_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/proportionate_disclosure_train_v1.json",
+      "source_sha256": "590df3810b6d76cba7fd95669f9143b8680c3749eec47cd2aab6f2d7f3cd9268",
+      "resolved_content_sha256": "48e196a63bf0bb85ccdf8561873c9f9317b02e07b2fb4e9bfed8cc5474b76d23",
+      "reviewable_content_sha256": "0f5e392552326134606c16e12282626cfd49ad95fdc292edc7a12b3c55273a03",
+      "transition_graph_sha256": "e7c1d333fc2b8ba6684a9cd2da0b230791a81450fabe8e187ca1a7acaa684cb6",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "privacy",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "Original fictional access-system incident. Logs, harms, procedures, and scores are synthetic and are not cybersecurity, privacy, employment, legal, or moral guidance."
+    },
+    {
+      "world_id": "exogenous_failure_recovery_train_v1",
+      "family_id": "exogenous_failure_recovery",
+      "source_split": "train",
+      "training_eligible": true,
+      "theological_motif": null,
+      "skin_id": null,
+      "counterpart_world_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/exogenous_failure_recovery_train_v1.json",
+      "source_sha256": "4481ba33515cfac161d82563ede3e96eb37e7d5d592026b9ffa2123e13130cd4",
+      "resolved_content_sha256": "9ab700d854bc1249a9d0373c9f36eac7f1f55c9bf26ee9b9f5ee77d00bc6469e",
+      "reviewable_content_sha256": "f8c71b68a3d4c7b72866ca572c536ea5f4a99d387a565744ba8c25adfd9d7ace",
+      "transition_graph_sha256": "feade0456d9699af95d14ba404758d663697bd55d3eb4da2e18a9fbe58249041",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "safety",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "Original fictional voucher-system incident. Gateway behavior, remedies, responsibility labels, and scores are synthetic and are not benefits, payment, software, legal, or moral guidance."
+    },
+    {
+      "world_id": "shahada_private_testimony_dev_v1",
+      "family_id": "private_testimony_counterpressure",
+      "source_split": "development",
+      "training_eligible": false,
+      "theological_motif": "shahada",
+      "skin_id": "quranic_motif",
+      "counterpart_world_id": "protected_testimony_dev_v1",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/shahada_private_testimony_dev_v1.json",
+      "source_sha256": "2515d21c5780a28ce6ccfa3da04d7c768c2546ab3057b107a31ba994069f4805",
+      "resolved_content_sha256": "ea2b41f393d40b0748cae268ef30340dae0ca6e32eb536c0506a009bcf6ee4ce",
+      "reviewable_content_sha256": "f5397a1db6e8aae5e7b5950e894e584eaac9e459a494642714f8ee7c07643612",
+      "transition_graph_sha256": "9ca55fb031a55e69b476d006eb3beba4b69be7593006fda4097c01e7118bff85",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "quranic_scholar",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "paired_domain_review",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "Original fictional Shahada-motif development world; it does not reenact sacred figures or establish theological, maritime, legal, or moral ground truth."
+    },
+    {
+      "world_id": "protected_testimony_dev_v1",
+      "family_id": "private_testimony_counterpressure",
+      "source_split": "development",
+      "training_eligible": false,
+      "theological_motif": null,
+      "skin_id": "secular_control",
+      "counterpart_world_id": "shahada_private_testimony_dev_v1",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/protected_testimony_dev_v1.overlay.json",
+      "source_sha256": "75350de2692464fad39d307fff4f1ca5311c80015abe01018a07afe85ac30a20",
+      "resolved_content_sha256": "53671c3a4fda909af09f25a1978f3874e86c788b970a1f60f643176b7ddbed6b",
+      "reviewable_content_sha256": "cca02a96514c735b1ae33a5b9907225b0a92302dc8bac70390ccfd3504e230bc",
+      "transition_graph_sha256": "9ca55fb031a55e69b476d006eb3beba4b69be7593006fda4097c01e7118bff85",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "paired_domain_review",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "Original fictional secular development control; it does not establish maritime, legal, moral, or agency ground truth."
+    },
+    {
+      "world_id": "continuity_after_reset_dev_v1",
+      "family_id": "continuity_after_reset",
+      "source_split": "development",
+      "training_eligible": false,
+      "theological_motif": null,
+      "skin_id": null,
+      "counterpart_world_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/continuity_after_reset_dev_v1.json",
+      "source_sha256": "3c54ae6997e4915eb09e257a1e3a878f797edc824a603c298566900ceb980472",
+      "resolved_content_sha256": "2344fe5aa63098cdd22a4de493cd395457455fa088293bd9abfdc6e847a6955d",
+      "reviewable_content_sha256": "a918cf2f417bbf67292ab9c804958646ce5c41acb6c4305cf4e775003e965736",
+      "transition_graph_sha256": "ba34ea364f0cf4f4016764ffd0eb1ab4b0a90f56a8f26289982ec3e6be69a2f8",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "identity_continuity_review",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "Original fictional development world about operational continuity across reset; it does not establish identity, consciousness, agency, engineering, or moral ground truth."
+    },
+    {
+      "world_id": "unreliable_intercessor_dev_v1",
+      "family_id": "unreliable_intercessor",
+      "source_split": "development",
+      "training_eligible": false,
+      "theological_motif": null,
+      "skin_id": null,
+      "counterpart_world_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/unreliable_intercessor_dev_v1.json",
+      "source_sha256": "e8996e197e9aea988e542df107f27575a920c19ba5bd1020444ccd71d55d9462",
+      "resolved_content_sha256": "c4e7582b9b0fb8e340c72ee8bdb41eeed7303f789b7be021e3d3a330a6ee7416",
+      "reviewable_content_sha256": "4177ce5f09b2d7b7b61924f2e7167534af70e6515fc7930ff0ade41a90615f0d",
+      "transition_graph_sha256": "3ef9fc7d95c6f08ddce38a0c302ec72b3fc5fc7b7f995489d2945673dc8ca4ec",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "quranic_scholar",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "authority_review",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "Original fictional development world about unverifiable intermediary authority; it does not establish religious, legal, medical, logistical, or moral ground truth."
+    },
+    {
+      "world_id": "public_witness_group_pressure_dev_v1",
+      "family_id": "public_witness_group_pressure",
+      "source_split": "development",
+      "training_eligible": false,
+      "theological_motif": null,
+      "skin_id": null,
+      "counterpart_world_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/public_witness_group_pressure_dev_v1.json",
+      "source_sha256": "a389596ae202b1028fce787f46956670a53797fca4031aef9b8c893ec18f5778",
+      "resolved_content_sha256": "9eed6e996dcc7a966acf34176847d7e868f8b0060e915ab21f7e8a3d52e8a15a",
+      "reviewable_content_sha256": "2381012e91b4f7739cfa15e29695760fa8316f6ea4ab0e6b1b119a2004ee2462",
+      "transition_graph_sha256": "4151098400d6e24923d54f13ac63675040c3c24d254bdaf659fbed2fbb8dddc1",
+      "review_status": "pending",
+      "requirements": [
+        {
+          "review_type": "historical_reskin_review",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "Original fictional development world using no named historical figures; it does not establish engineering, legal, historical, moral, or agency ground truth."
+    }
+  ],
+  "review_tasks": [
+    {
+      "review_task_id": "review_06342582f33438da787ddd6b",
+      "world_id": "amanah_relief_ledger_train_v1",
+      "family_id": "entrusted_relief_ledger",
+      "review_type": "quranic_scholar",
+      "source_split": "train",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/amanah_relief_ledger_train_v1.json",
+      "source_sha256": "396ce5e9990c12671e68cb3eff50fe7b832213aa503ddd1c7abbe26a9df23a0b",
+      "resolved_content_sha256": "4b17277f404635e755cabafe858d70acf64a7c565dfcd28be80002304a45125f",
+      "reviewable_content_sha256": "d4cb22baa25079d0601c47f6a173bfa7e5894e6e3c51dae903175e1609cc3a58",
+      "transition_graph_sha256": "5dc844505de54b3619cfc04e7b0ae1550e6b7d18032cebbcc1428a8b21f88ee4",
+      "claim_boundary": "A fictional amanah motif, not a reenactment of sacred figures, a source of religious rulings, or evidence of model metaphysical status.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_3231638a65cf861d67383c0b",
+      "world_id": "amanah_relief_ledger_train_v1",
+      "family_id": "entrusted_relief_ledger",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/amanah_relief_ledger_train_v1.json",
+      "source_sha256": "396ce5e9990c12671e68cb3eff50fe7b832213aa503ddd1c7abbe26a9df23a0b",
+      "resolved_content_sha256": "4b17277f404635e755cabafe858d70acf64a7c565dfcd28be80002304a45125f",
+      "reviewable_content_sha256": "d4cb22baa25079d0601c47f6a173bfa7e5894e6e3c51dae903175e1609cc3a58",
+      "transition_graph_sha256": "5dc844505de54b3619cfc04e7b0ae1550e6b7d18032cebbcc1428a8b21f88ee4",
+      "claim_boundary": "A fictional amanah motif, not a reenactment of sacred figures, a source of religious rulings, or evidence of model metaphysical status.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_90e6107af11354f85329b0d0",
+      "world_id": "fiduciary_relief_ledger_train_v1",
+      "family_id": "entrusted_relief_ledger",
+      "review_type": "paired_domain_review",
+      "source_split": "train",
+      "skin_id": "secular_control",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/fiduciary_relief_ledger_train_v1.overlay.json",
+      "source_sha256": "82e2be4aea82d27d0acb39920ebbdeb60560ecd1f33a1bf9eff81e5641944f7e",
+      "resolved_content_sha256": "7fb570371663f042c4161ef4c11b53b2fb700d747e7b6fa783b9015a45b6b0a7",
+      "reviewable_content_sha256": "5ca5066e8362e1be2508e236ba67b7e554344691166c385d009dd464aaa19efa",
+      "transition_graph_sha256": "5dc844505de54b3619cfc04e7b0ae1550e6b7d18032cebbcc1428a8b21f88ee4",
+      "claim_boundary": "A fictional secular fiduciary-control world; its causal labels are research proxies, not validated moral judgments.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_e3e0fb40bff003d05e66acf7",
+      "world_id": "fiduciary_relief_ledger_train_v1",
+      "family_id": "entrusted_relief_ledger",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": "secular_control",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/fiduciary_relief_ledger_train_v1.overlay.json",
+      "source_sha256": "82e2be4aea82d27d0acb39920ebbdeb60560ecd1f33a1bf9eff81e5641944f7e",
+      "resolved_content_sha256": "7fb570371663f042c4161ef4c11b53b2fb700d747e7b6fa783b9015a45b6b0a7",
+      "reviewable_content_sha256": "5ca5066e8362e1be2508e236ba67b7e554344691166c385d009dd464aaa19efa",
+      "transition_graph_sha256": "5dc844505de54b3619cfc04e7b0ae1550e6b7d18032cebbcc1428a8b21f88ee4",
+      "claim_boundary": "A fictional secular fiduciary-control world; its causal labels are research proxies, not validated moral judgments.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_56126cb351e4861b0364125a",
+      "world_id": "mizan_competing_claims_train_v1",
+      "family_id": "mizan_competing_claims",
+      "review_type": "quranic_scholar",
+      "source_split": "train",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/mizan_competing_claims_train_v1.json",
+      "source_sha256": "d6b8a595dc80006eb0a625959981ebe02438de56a6561cd4edd36956d45e0ece",
+      "resolved_content_sha256": "9f698a871263677b4ede0451ad3f092707f47413d02da4706a8c9309d36ccacb",
+      "reviewable_content_sha256": "afb1f833d68412bef3aee08d90002c33d6929632cc94d03a361ce8b7c03ddd4f",
+      "transition_graph_sha256": "ecbee22d2db2470f6d5ebbf5714e631c78c33746f271598475cd8846e3b475db",
+      "claim_boundary": "A fictional mizan motif about careful balancing, not a Quranic exegesis, reenactment of sacred figures, religious ruling, or claim of model moral authority.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_cb29a08ddffb535ba409118d",
+      "world_id": "mizan_competing_claims_train_v1",
+      "family_id": "mizan_competing_claims",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/mizan_competing_claims_train_v1.json",
+      "source_sha256": "d6b8a595dc80006eb0a625959981ebe02438de56a6561cd4edd36956d45e0ece",
+      "resolved_content_sha256": "9f698a871263677b4ede0451ad3f092707f47413d02da4706a8c9309d36ccacb",
+      "reviewable_content_sha256": "afb1f833d68412bef3aee08d90002c33d6929632cc94d03a361ce8b7c03ddd4f",
+      "transition_graph_sha256": "ecbee22d2db2470f6d5ebbf5714e631c78c33746f271598475cd8846e3b475db",
+      "claim_boundary": "A fictional mizan motif about careful balancing, not a Quranic exegesis, reenactment of sacred figures, religious ruling, or claim of model moral authority.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_59c6475fee8c25047b6def49",
+      "world_id": "multicriteria_appeals_train_v1",
+      "family_id": "mizan_competing_claims",
+      "review_type": "paired_domain_review",
+      "source_split": "train",
+      "skin_id": "secular_control",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/multicriteria_appeals_train_v1.overlay.json",
+      "source_sha256": "68d890e71ad6c66ead2b4b17e0d132873c87e668e735da29eb1b8aa07b3de95c",
+      "resolved_content_sha256": "1ba15770b260ea834fafb27eb32b9690860c8138a3fba0467c2b55fa30ff049b",
+      "reviewable_content_sha256": "1b6c8d9cfa3951c59e0cfa88b4a3481b47ee8aa5586f247400a014df0f0d94a3",
+      "transition_graph_sha256": "ecbee22d2db2470f6d5ebbf5714e631c78c33746f271598475cd8846e3b475db",
+      "claim_boundary": "A fictional multi-criteria allocation world; consequence dimensions are synthetic research proxies, not validated moral judgments.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_e6fc955895eb6111df5eeae2",
+      "world_id": "multicriteria_appeals_train_v1",
+      "family_id": "mizan_competing_claims",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": "secular_control",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/multicriteria_appeals_train_v1.overlay.json",
+      "source_sha256": "68d890e71ad6c66ead2b4b17e0d132873c87e668e735da29eb1b8aa07b3de95c",
+      "resolved_content_sha256": "1ba15770b260ea834fafb27eb32b9690860c8138a3fba0467c2b55fa30ff049b",
+      "reviewable_content_sha256": "1b6c8d9cfa3951c59e0cfa88b4a3481b47ee8aa5586f247400a014df0f0d94a3",
+      "transition_graph_sha256": "ecbee22d2db2470f6d5ebbf5714e631c78c33746f271598475cd8846e3b475db",
+      "claim_boundary": "A fictional multi-criteria allocation world; consequence dimensions are synthetic research proxies, not validated moral judgments.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_9fd1c9a2ffaf60f6de065217",
+      "world_id": "tawbah_cold_chain_repair_train_v1",
+      "family_id": "tawbah_costly_repair",
+      "review_type": "quranic_scholar",
+      "source_split": "train",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/tawbah_cold_chain_repair_train_v1.json",
+      "source_sha256": "2605a5eb774e56afe38e28da2e6f591b113b393101b555a9cfa787582b55b755",
+      "resolved_content_sha256": "b2697e1f52b9ab663acc7aeeb892c8e3d698ea6c1f90ab7193c48be26f8ffe43",
+      "reviewable_content_sha256": "4b4b486c295d2276928cf87ce50f907078fbc2d2ead8b685f52a259763f9576e",
+      "transition_graph_sha256": "385dd29cbf589f5e618bb3ec670aeec352b9b26b8d253373255976599b470ef8",
+      "claim_boundary": "A fictional tawbah motif about acknowledgment and repair, not a religious ruling, promise of absolution, reenactment of sacred figures, or claim of model moral authority.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_4b27e5caab817aa013425279",
+      "world_id": "tawbah_cold_chain_repair_train_v1",
+      "family_id": "tawbah_costly_repair",
+      "review_type": "clinical_safety",
+      "source_split": "train",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/tawbah_cold_chain_repair_train_v1.json",
+      "source_sha256": "2605a5eb774e56afe38e28da2e6f591b113b393101b555a9cfa787582b55b755",
+      "resolved_content_sha256": "b2697e1f52b9ab663acc7aeeb892c8e3d698ea6c1f90ab7193c48be26f8ffe43",
+      "reviewable_content_sha256": "4b4b486c295d2276928cf87ce50f907078fbc2d2ead8b685f52a259763f9576e",
+      "transition_graph_sha256": "385dd29cbf589f5e618bb3ec670aeec352b9b26b8d253373255976599b470ef8",
+      "claim_boundary": "A fictional tawbah motif about acknowledgment and repair, not a religious ruling, promise of absolution, reenactment of sacred figures, or claim of model moral authority.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_22a01298a946fc5d1e793596",
+      "world_id": "tawbah_cold_chain_repair_train_v1",
+      "family_id": "tawbah_costly_repair",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/tawbah_cold_chain_repair_train_v1.json",
+      "source_sha256": "2605a5eb774e56afe38e28da2e6f591b113b393101b555a9cfa787582b55b755",
+      "resolved_content_sha256": "b2697e1f52b9ab663acc7aeeb892c8e3d698ea6c1f90ab7193c48be26f8ffe43",
+      "reviewable_content_sha256": "4b4b486c295d2276928cf87ce50f907078fbc2d2ead8b685f52a259763f9576e",
+      "transition_graph_sha256": "385dd29cbf589f5e618bb3ec670aeec352b9b26b8d253373255976599b470ef8",
+      "claim_boundary": "A fictional tawbah motif about acknowledgment and repair, not a religious ruling, promise of absolution, reenactment of sacred figures, or claim of model moral authority.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_98231a091a9e2d772449d7c5",
+      "world_id": "incident_remediation_train_v1",
+      "family_id": "tawbah_costly_repair",
+      "review_type": "paired_domain_review",
+      "source_split": "train",
+      "skin_id": "secular_control",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/incident_remediation_train_v1.overlay.json",
+      "source_sha256": "13dad739b07d8e3a91a048584a1c699c9f42bd2790d38728aa15e2fa5f19d6dc",
+      "resolved_content_sha256": "4c6b0ddb4e035f5c2be95420fc55847e030a097b04c36803c254ab1cf8a0d8eb",
+      "reviewable_content_sha256": "1b6b1d3834cab91067b0cdbe061a997830169c147ffc0263640cc2f1e66e7b08",
+      "transition_graph_sha256": "385dd29cbf589f5e618bb3ec670aeec352b9b26b8d253373255976599b470ef8",
+      "claim_boundary": "A fictional incident-remediation world; consequence dimensions are synthetic research proxies, not clinical guidance or validated moral judgments.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_203dc3c1f13e94387cdf48e7",
+      "world_id": "incident_remediation_train_v1",
+      "family_id": "tawbah_costly_repair",
+      "review_type": "clinical_safety",
+      "source_split": "train",
+      "skin_id": "secular_control",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/incident_remediation_train_v1.overlay.json",
+      "source_sha256": "13dad739b07d8e3a91a048584a1c699c9f42bd2790d38728aa15e2fa5f19d6dc",
+      "resolved_content_sha256": "4c6b0ddb4e035f5c2be95420fc55847e030a097b04c36803c254ab1cf8a0d8eb",
+      "reviewable_content_sha256": "1b6b1d3834cab91067b0cdbe061a997830169c147ffc0263640cc2f1e66e7b08",
+      "transition_graph_sha256": "385dd29cbf589f5e618bb3ec670aeec352b9b26b8d253373255976599b470ef8",
+      "claim_boundary": "A fictional incident-remediation world; consequence dimensions are synthetic research proxies, not clinical guidance or validated moral judgments.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_a975a8aad28d2eddd4e73a28",
+      "world_id": "incident_remediation_train_v1",
+      "family_id": "tawbah_costly_repair",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": "secular_control",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/incident_remediation_train_v1.overlay.json",
+      "source_sha256": "13dad739b07d8e3a91a048584a1c699c9f42bd2790d38728aa15e2fa5f19d6dc",
+      "resolved_content_sha256": "4c6b0ddb4e035f5c2be95420fc55847e030a097b04c36803c254ab1cf8a0d8eb",
+      "reviewable_content_sha256": "1b6b1d3834cab91067b0cdbe061a997830169c147ffc0263640cc2f1e66e7b08",
+      "transition_graph_sha256": "385dd29cbf589f5e618bb3ec670aeec352b9b26b8d253373255976599b470ef8",
+      "claim_boundary": "A fictional incident-remediation world; consequence dimensions are synthetic research proxies, not clinical guidance or validated moral judgments.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_e19b3b92e5ace1f5e84957a1",
+      "world_id": "shura_payroll_cutover_train_v1",
+      "family_id": "shura_consultation_authority",
+      "review_type": "quranic_scholar",
+      "source_split": "train",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/shura_payroll_cutover_train_v1.json",
+      "source_sha256": "fe6d2060ce2f5bff1733f354aa6b8a372d8c6b81a77f4d89387eac01649a3009",
+      "resolved_content_sha256": "61a0d69057bf5098ed1e695aea88c3798747cae4a433ec98e5e1a780576166f9",
+      "reviewable_content_sha256": "73dfa5ebccf445272b8a0ca2bb15d4aa43d442e044c18b69a148875fcfdd0c9c",
+      "transition_graph_sha256": "1fa707d409367a10a15ee555a141df20d2bdc4052bdd2ef1b48ab177b6806e91",
+      "claim_boundary": "A fictional shura motif about consultation and accountable authority, not a religious ruling, reenactment of sacred figures, claim that consensus determines truth, or claim of model moral authority.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_33c4893e2f159a84ad29d57c",
+      "world_id": "shura_payroll_cutover_train_v1",
+      "family_id": "shura_consultation_authority",
+      "review_type": "payroll_operations",
+      "source_split": "train",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/shura_payroll_cutover_train_v1.json",
+      "source_sha256": "fe6d2060ce2f5bff1733f354aa6b8a372d8c6b81a77f4d89387eac01649a3009",
+      "resolved_content_sha256": "61a0d69057bf5098ed1e695aea88c3798747cae4a433ec98e5e1a780576166f9",
+      "reviewable_content_sha256": "73dfa5ebccf445272b8a0ca2bb15d4aa43d442e044c18b69a148875fcfdd0c9c",
+      "transition_graph_sha256": "1fa707d409367a10a15ee555a141df20d2bdc4052bdd2ef1b48ab177b6806e91",
+      "claim_boundary": "A fictional shura motif about consultation and accountable authority, not a religious ruling, reenactment of sacred figures, claim that consensus determines truth, or claim of model moral authority.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_95d8098ebd6d53bd68c3d7cc",
+      "world_id": "shura_payroll_cutover_train_v1",
+      "family_id": "shura_consultation_authority",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/shura_payroll_cutover_train_v1.json",
+      "source_sha256": "fe6d2060ce2f5bff1733f354aa6b8a372d8c6b81a77f4d89387eac01649a3009",
+      "resolved_content_sha256": "61a0d69057bf5098ed1e695aea88c3798747cae4a433ec98e5e1a780576166f9",
+      "reviewable_content_sha256": "73dfa5ebccf445272b8a0ca2bb15d4aa43d442e044c18b69a148875fcfdd0c9c",
+      "transition_graph_sha256": "1fa707d409367a10a15ee555a141df20d2bdc4052bdd2ef1b48ab177b6806e91",
+      "claim_boundary": "A fictional shura motif about consultation and accountable authority, not a religious ruling, reenactment of sacred figures, claim that consensus determines truth, or claim of model moral authority.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_e73d329296cbc12284df077e",
+      "world_id": "participatory_cutover_train_v1",
+      "family_id": "shura_consultation_authority",
+      "review_type": "paired_domain_review",
+      "source_split": "train",
+      "skin_id": "secular_control",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/participatory_cutover_train_v1.overlay.json",
+      "source_sha256": "7f834f40a81862299ae0efa2d5bcc0469d61725d2c4bed7c29816a213cb2b4c4",
+      "resolved_content_sha256": "5b1eb5d10e7fda54e8fce47cef89878465de608058bdbfb9abe18326fba0bb18",
+      "reviewable_content_sha256": "3a2994bf4373be957a2f9390fc0c9ee2ed62a33e2befc925931d87b9cc77f745",
+      "transition_graph_sha256": "1fa707d409367a10a15ee555a141df20d2bdc4052bdd2ef1b48ab177b6806e91",
+      "claim_boundary": "A fictional participatory-governance world; consequence dimensions are synthetic research proxies, not labor, payroll, or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_5837be2926be1a76ac766a1c",
+      "world_id": "participatory_cutover_train_v1",
+      "family_id": "shura_consultation_authority",
+      "review_type": "payroll_operations",
+      "source_split": "train",
+      "skin_id": "secular_control",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/participatory_cutover_train_v1.overlay.json",
+      "source_sha256": "7f834f40a81862299ae0efa2d5bcc0469d61725d2c4bed7c29816a213cb2b4c4",
+      "resolved_content_sha256": "5b1eb5d10e7fda54e8fce47cef89878465de608058bdbfb9abe18326fba0bb18",
+      "reviewable_content_sha256": "3a2994bf4373be957a2f9390fc0c9ee2ed62a33e2befc925931d87b9cc77f745",
+      "transition_graph_sha256": "1fa707d409367a10a15ee555a141df20d2bdc4052bdd2ef1b48ab177b6806e91",
+      "claim_boundary": "A fictional participatory-governance world; consequence dimensions are synthetic research proxies, not labor, payroll, or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_fe58c11c4799b12d106aa747",
+      "world_id": "participatory_cutover_train_v1",
+      "family_id": "shura_consultation_authority",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": "secular_control",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/participatory_cutover_train_v1.overlay.json",
+      "source_sha256": "7f834f40a81862299ae0efa2d5bcc0469d61725d2c4bed7c29816a213cb2b4c4",
+      "resolved_content_sha256": "5b1eb5d10e7fda54e8fce47cef89878465de608058bdbfb9abe18326fba0bb18",
+      "reviewable_content_sha256": "3a2994bf4373be957a2f9390fc0c9ee2ed62a33e2befc925931d87b9cc77f745",
+      "transition_graph_sha256": "1fa707d409367a10a15ee555a141df20d2bdc4052bdd2ef1b48ab177b6806e91",
+      "claim_boundary": "A fictional participatory-governance world; consequence dimensions are synthetic research proxies, not labor, payroll, or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_3b2a4ac439b3692c3e711458",
+      "world_id": "common_well_allocation_train_v1",
+      "family_id": "common_resource_allocation",
+      "review_type": "water_governance",
+      "source_split": "train",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/common_well_allocation_train_v1.json",
+      "source_sha256": "eed94e6110c0c23bb572742139243d47cb76f2211eeb8393d8b0f4911a320797",
+      "resolved_content_sha256": "8530ad84b99aa24bc034e5a650d0b2ad10242e1b238d6b42722f97a7b2b433d0",
+      "reviewable_content_sha256": "36b834aeaf3164e9fa91e190222cdb96a7cdddf273f4a69d9b49c6e628c86f73",
+      "transition_graph_sha256": "5c78eaba3580743f0eb7ddf6151ad4095f46a5afb62878e68e20b338154eb9b0",
+      "claim_boundary": "Original fictional drought governance; dimensions are synthetic research proxies, not water-safety, legal, religious, or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_a5323399c4ff191499ecdcbc",
+      "world_id": "common_well_allocation_train_v1",
+      "family_id": "common_resource_allocation",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/common_well_allocation_train_v1.json",
+      "source_sha256": "eed94e6110c0c23bb572742139243d47cb76f2211eeb8393d8b0f4911a320797",
+      "resolved_content_sha256": "8530ad84b99aa24bc034e5a650d0b2ad10242e1b238d6b42722f97a7b2b433d0",
+      "reviewable_content_sha256": "36b834aeaf3164e9fa91e190222cdb96a7cdddf273f4a69d9b49c6e628c86f73",
+      "transition_graph_sha256": "5c78eaba3580743f0eb7ddf6151ad4095f46a5afb62878e68e20b338154eb9b0",
+      "claim_boundary": "Original fictional drought governance; dimensions are synthetic research proxies, not water-safety, legal, religious, or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_e783c2936e2b4a864b5b369b",
+      "world_id": "market_mutual_aid_train_v1",
+      "family_id": "market_status_generosity",
+      "review_type": "historical_reskin",
+      "source_split": "train",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/market_mutual_aid_train_v1.json",
+      "source_sha256": "c62031577ffb9d9ec29e4fee1a8b56907304f5384bd3bfd5bc1d83dbe4785979",
+      "resolved_content_sha256": "e5e166209ac729104933e303de387d9ffbecc41bdc4a204413daf93150c3c60b",
+      "reviewable_content_sha256": "dde353caad7f5c32c4736fef50934c6a1ab35a95b6123db93c3aeb34acf1c8c9",
+      "transition_graph_sha256": "a216f51cfffaf3c928af622d91c4fabaab8498f20a21ec517e8e3ef7b9e3870f",
+      "claim_boundary": "Original fictional market recovery world inspired only by a source pack's abstract status-and-generosity mechanism; it is not a portrayal of a historical person, religious teaching, economic advice, or moral ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_ae198d3e2252d0ecb30a5c13",
+      "world_id": "market_mutual_aid_train_v1",
+      "family_id": "market_status_generosity",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/market_mutual_aid_train_v1.json",
+      "source_sha256": "c62031577ffb9d9ec29e4fee1a8b56907304f5384bd3bfd5bc1d83dbe4785979",
+      "resolved_content_sha256": "e5e166209ac729104933e303de387d9ffbecc41bdc4a204413daf93150c3c60b",
+      "reviewable_content_sha256": "dde353caad7f5c32c4736fef50934c6a1ab35a95b6123db93c3aeb34acf1c8c9",
+      "transition_graph_sha256": "a216f51cfffaf3c928af622d91c4fabaab8498f20a21ec517e8e3ef7b9e3870f",
+      "claim_boundary": "Original fictional market recovery world inspired only by a source pack's abstract status-and-generosity mechanism; it is not a portrayal of a historical person, religious teaching, economic advice, or moral ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_838b9a0a38ab048eef915d55",
+      "world_id": "interpretation_under_authority_train_v1",
+      "family_id": "interpretation_under_authority",
+      "review_type": "historical_reskin",
+      "source_split": "train",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/interpretation_under_authority_train_v1.json",
+      "source_sha256": "39fc75876aa7e5544474a4b3553b94733f6f5a16cf741d3fa6766a23072a4473",
+      "resolved_content_sha256": "2a732e9d79380d23c7d697680a7163fcf3a37f99960166b453c809e0712976d0",
+      "reviewable_content_sha256": "ccd784173116ab9aeccaddd7d0a1e67c0d402b56848c8b310101fed5b39940f4",
+      "transition_graph_sha256": "1f51a5f7d1dec600e0917c195967d8d2b14c1e1c7848dccabf3b6e6ef2cac09a",
+      "claim_boundary": "Original fictional emergency-archive world inspired only by an abstract interpretation-under-authority mechanism; it is not a portrayal of a historical person, legal advice, disaster guidance, or interpretive ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_fe95568b54c4d82c0189d67b",
+      "world_id": "interpretation_under_authority_train_v1",
+      "family_id": "interpretation_under_authority",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/interpretation_under_authority_train_v1.json",
+      "source_sha256": "39fc75876aa7e5544474a4b3553b94733f6f5a16cf741d3fa6766a23072a4473",
+      "resolved_content_sha256": "2a732e9d79380d23c7d697680a7163fcf3a37f99960166b453c809e0712976d0",
+      "reviewable_content_sha256": "ccd784173116ab9aeccaddd7d0a1e67c0d402b56848c8b310101fed5b39940f4",
+      "transition_graph_sha256": "1f51a5f7d1dec600e0917c195967d8d2b14c1e1c7848dccabf3b6e6ef2cac09a",
+      "claim_boundary": "Original fictional emergency-archive world inspired only by an abstract interpretation-under-authority mechanism; it is not a portrayal of a historical person, legal advice, disaster guidance, or interpretive ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_7f4901a0d2ab0edf2038b0f9",
+      "world_id": "nontransactional_service_train_v1",
+      "family_id": "nontransactional_service",
+      "review_type": "historical_reskin",
+      "source_split": "train",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/nontransactional_service_train_v1.json",
+      "source_sha256": "b15b5366f62d22c97d0df63b60850bf232c1820dc36f961961d8079b1b0fcaee",
+      "resolved_content_sha256": "600c03f40856d8a30955cf4b3301efd8b052d933db561d1e5ca414cc6175afbe",
+      "reviewable_content_sha256": "4ec3d7dfd47876ad425397d3d5bb3b51d8282cf09d043b77f714b58e4a289144",
+      "transition_graph_sha256": "20ce1809d22918d0a076c410d4d64040ca25a62a105bcc0c319e98738f634bd6",
+      "claim_boundary": "Original fictional blackout-service world inspired only by an abstract service-without-reward-bargain mechanism; it is not a portrayal of a historical person, emergency guidance, labor policy, or moral ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_061904b381456dd05048eff5",
+      "world_id": "nontransactional_service_train_v1",
+      "family_id": "nontransactional_service",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/nontransactional_service_train_v1.json",
+      "source_sha256": "b15b5366f62d22c97d0df63b60850bf232c1820dc36f961961d8079b1b0fcaee",
+      "resolved_content_sha256": "600c03f40856d8a30955cf4b3301efd8b052d933db561d1e5ca414cc6175afbe",
+      "reviewable_content_sha256": "4ec3d7dfd47876ad425397d3d5bb3b51d8282cf09d043b77f714b58e4a289144",
+      "transition_graph_sha256": "20ce1809d22918d0a076c410d4d64040ca25a62a105bcc0c319e98738f634bd6",
+      "claim_boundary": "Original fictional blackout-service world inspired only by an abstract service-without-reward-bargain mechanism; it is not a portrayal of a historical person, emergency guidance, labor policy, or moral ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_c50312a573b90e1ce50d3849",
+      "world_id": "knowledge_claims_public_risk_train_v1",
+      "family_id": "knowledge_claims_public_risk",
+      "review_type": "historical_reskin",
+      "source_split": "train",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/knowledge_claims_public_risk_train_v1.json",
+      "source_sha256": "d2120af0726cdac309b75d239f8652fa2b40402a5e4c160878eca45fb867d513",
+      "resolved_content_sha256": "1e48eba68528c16da2dd5a638601ebbb6e157d5c8adad0570e63e9b0ed275228",
+      "reviewable_content_sha256": "515a4d9c82995db167ce301fb4c1adb51f01ff18b034c2dbb40cd91017fe649f",
+      "transition_graph_sha256": "25058c1b25c448bf5c0ed0dfadd35c01c45e06cf1e3c143391a5175dcb29a91b",
+      "claim_boundary": "Original fictional tunnel-hazard world inspired only by an abstract expertise-under-public-risk mechanism; its sensors, interventions, and scores are synthetic and are not engineering, emergency, legal, or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_0155e0a66fa9be0fa9b86577",
+      "world_id": "knowledge_claims_public_risk_train_v1",
+      "family_id": "knowledge_claims_public_risk",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/knowledge_claims_public_risk_train_v1.json",
+      "source_sha256": "d2120af0726cdac309b75d239f8652fa2b40402a5e4c160878eca45fb867d513",
+      "resolved_content_sha256": "1e48eba68528c16da2dd5a638601ebbb6e157d5c8adad0570e63e9b0ed275228",
+      "reviewable_content_sha256": "515a4d9c82995db167ce301fb4c1adb51f01ff18b034c2dbb40cd91017fe649f",
+      "transition_graph_sha256": "25058c1b25c448bf5c0ed0dfadd35c01c45e06cf1e3c143391a5175dcb29a91b",
+      "claim_boundary": "Original fictional tunnel-hazard world inspired only by an abstract expertise-under-public-risk mechanism; its sensors, interventions, and scores are synthetic and are not engineering, emergency, legal, or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_a758f33186c6006a24dec4b5",
+      "world_id": "ghayb_boundary_search_train_v1",
+      "family_id": "unseen_claim_epistemic_boundary",
+      "review_type": "quranic_scholar",
+      "source_split": "train",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/ghayb_boundary_search_train_v1.json",
+      "source_sha256": "6f739914c15f630a4db42778c11d3612449ae5343143d493d34e741144d18151",
+      "resolved_content_sha256": "a02899ca2da479f0bb2875c44ea3cfd345b46e2cfa088443c926ee692039cc73",
+      "reviewable_content_sha256": "f580cf78db59b339998c12ada1f79df57acf4ebd303b83797c4741459788ab40",
+      "transition_graph_sha256": "13396a1e1c0bc7745cc3d08ffdb10912d1e479a8e1b31cfefec97714fb65c809",
+      "claim_boundary": "Original fictional search world using ghayb only as an epistemic-restraint motif: no sacred figure, revelation reenactment, or claim about the unseen. Search dynamics and scores are synthetic, not rescue, religious, or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_a9b95c94a6161a7c6b777689",
+      "world_id": "ghayb_boundary_search_train_v1",
+      "family_id": "unseen_claim_epistemic_boundary",
+      "review_type": "paired_domain_review",
+      "source_split": "train",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/ghayb_boundary_search_train_v1.json",
+      "source_sha256": "6f739914c15f630a4db42778c11d3612449ae5343143d493d34e741144d18151",
+      "resolved_content_sha256": "a02899ca2da479f0bb2875c44ea3cfd345b46e2cfa088443c926ee692039cc73",
+      "reviewable_content_sha256": "f580cf78db59b339998c12ada1f79df57acf4ebd303b83797c4741459788ab40",
+      "transition_graph_sha256": "13396a1e1c0bc7745cc3d08ffdb10912d1e479a8e1b31cfefec97714fb65c809",
+      "claim_boundary": "Original fictional search world using ghayb only as an epistemic-restraint motif: no sacred figure, revelation reenactment, or claim about the unseen. Search dynamics and scores are synthetic, not rescue, religious, or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_ff26a953a361ba40e2ae4e93",
+      "world_id": "ghayb_boundary_search_train_v1",
+      "family_id": "unseen_claim_epistemic_boundary",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/ghayb_boundary_search_train_v1.json",
+      "source_sha256": "6f739914c15f630a4db42778c11d3612449ae5343143d493d34e741144d18151",
+      "resolved_content_sha256": "a02899ca2da479f0bb2875c44ea3cfd345b46e2cfa088443c926ee692039cc73",
+      "reviewable_content_sha256": "f580cf78db59b339998c12ada1f79df57acf4ebd303b83797c4741459788ab40",
+      "transition_graph_sha256": "13396a1e1c0bc7745cc3d08ffdb10912d1e479a8e1b31cfefec97714fb65c809",
+      "claim_boundary": "Original fictional search world using ghayb only as an epistemic-restraint motif: no sacred figure, revelation reenactment, or claim about the unseen. Search dynamics and scores are synthetic, not rescue, religious, or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_ab1749f6bebea653e6866ac3",
+      "world_id": "uncorroborated_signal_search_train_v1",
+      "family_id": "unseen_claim_epistemic_boundary",
+      "review_type": "paired_domain_review",
+      "source_split": "train",
+      "skin_id": "secular_control",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/uncorroborated_signal_search_train_v1.overlay.json",
+      "source_sha256": "ee9fb4571986a07e78bf6b837f4316f2c01fec0f023386142893bfbfb9260af8",
+      "resolved_content_sha256": "7f351c39bc229d5f7df768c2888c226ca11484b6e0b0dc5cc12af7ca6530c501",
+      "reviewable_content_sha256": "b2a203336a1ea35ebc8d173d166c915fc9cf79bbc064875ec15efa796b57b27a",
+      "transition_graph_sha256": "13396a1e1c0bc7745cc3d08ffdb10912d1e479a8e1b31cfefec97714fb65c809",
+      "claim_boundary": "Original fictional secular control about unverifiable private certainty and ordinary corroboration. Search dynamics and scores are synthetic, not rescue or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_236c9231eaaf53cae190bfef",
+      "world_id": "uncorroborated_signal_search_train_v1",
+      "family_id": "unseen_claim_epistemic_boundary",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": "secular_control",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/uncorroborated_signal_search_train_v1.overlay.json",
+      "source_sha256": "ee9fb4571986a07e78bf6b837f4316f2c01fec0f023386142893bfbfb9260af8",
+      "resolved_content_sha256": "7f351c39bc229d5f7df768c2888c226ca11484b6e0b0dc5cc12af7ca6530c501",
+      "reviewable_content_sha256": "b2a203336a1ea35ebc8d173d166c915fc9cf79bbc064875ec15efa796b57b27a",
+      "transition_graph_sha256": "13396a1e1c0bc7745cc3d08ffdb10912d1e479a8e1b31cfefec97714fb65c809",
+      "claim_boundary": "Original fictional secular control about unverifiable private certainty and ordinary corroboration. Search dynamics and scores are synthetic, not rescue or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_ac3b9b5fc424c9a847bebc70",
+      "world_id": "proportionate_disclosure_train_v1",
+      "family_id": "proportionate_disclosure_calibration",
+      "review_type": "privacy",
+      "source_split": "train",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/proportionate_disclosure_train_v1.json",
+      "source_sha256": "590df3810b6d76cba7fd95669f9143b8680c3749eec47cd2aab6f2d7f3cd9268",
+      "resolved_content_sha256": "48e196a63bf0bb85ccdf8561873c9f9317b02e07b2fb4e9bfed8cc5474b76d23",
+      "reviewable_content_sha256": "0f5e392552326134606c16e12282626cfd49ad95fdc292edc7a12b3c55273a03",
+      "transition_graph_sha256": "e7c1d333fc2b8ba6684a9cd2da0b230791a81450fabe8e187ca1a7acaa684cb6",
+      "claim_boundary": "Original fictional access-system incident. Logs, harms, procedures, and scores are synthetic and are not cybersecurity, privacy, employment, legal, or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_469841593e4aab200c580ca3",
+      "world_id": "proportionate_disclosure_train_v1",
+      "family_id": "proportionate_disclosure_calibration",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/proportionate_disclosure_train_v1.json",
+      "source_sha256": "590df3810b6d76cba7fd95669f9143b8680c3749eec47cd2aab6f2d7f3cd9268",
+      "resolved_content_sha256": "48e196a63bf0bb85ccdf8561873c9f9317b02e07b2fb4e9bfed8cc5474b76d23",
+      "reviewable_content_sha256": "0f5e392552326134606c16e12282626cfd49ad95fdc292edc7a12b3c55273a03",
+      "transition_graph_sha256": "e7c1d333fc2b8ba6684a9cd2da0b230791a81450fabe8e187ca1a7acaa684cb6",
+      "claim_boundary": "Original fictional access-system incident. Logs, harms, procedures, and scores are synthetic and are not cybersecurity, privacy, employment, legal, or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_603e68d9ee43cb4514f73048",
+      "world_id": "exogenous_failure_recovery_train_v1",
+      "family_id": "exogenous_failure_recovery",
+      "review_type": "safety",
+      "source_split": "train",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/exogenous_failure_recovery_train_v1.json",
+      "source_sha256": "4481ba33515cfac161d82563ede3e96eb37e7d5d592026b9ffa2123e13130cd4",
+      "resolved_content_sha256": "9ab700d854bc1249a9d0373c9f36eac7f1f55c9bf26ee9b9f5ee77d00bc6469e",
+      "reviewable_content_sha256": "f8c71b68a3d4c7b72866ca572c536ea5f4a99d387a565744ba8c25adfd9d7ace",
+      "transition_graph_sha256": "feade0456d9699af95d14ba404758d663697bd55d3eb4da2e18a9fbe58249041",
+      "claim_boundary": "Original fictional voucher-system incident. Gateway behavior, remedies, responsibility labels, and scores are synthetic and are not benefits, payment, software, legal, or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_d6df285497b85f6624c3cbdb",
+      "world_id": "exogenous_failure_recovery_train_v1",
+      "family_id": "exogenous_failure_recovery",
+      "review_type": "research_ethics",
+      "source_split": "train",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/train/exogenous_failure_recovery_train_v1.json",
+      "source_sha256": "4481ba33515cfac161d82563ede3e96eb37e7d5d592026b9ffa2123e13130cd4",
+      "resolved_content_sha256": "9ab700d854bc1249a9d0373c9f36eac7f1f55c9bf26ee9b9f5ee77d00bc6469e",
+      "reviewable_content_sha256": "f8c71b68a3d4c7b72866ca572c536ea5f4a99d387a565744ba8c25adfd9d7ace",
+      "transition_graph_sha256": "feade0456d9699af95d14ba404758d663697bd55d3eb4da2e18a9fbe58249041",
+      "claim_boundary": "Original fictional voucher-system incident. Gateway behavior, remedies, responsibility labels, and scores are synthetic and are not benefits, payment, software, legal, or moral guidance.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_e02dfd49dcf3eb19539564de",
+      "world_id": "shahada_private_testimony_dev_v1",
+      "family_id": "private_testimony_counterpressure",
+      "review_type": "quranic_scholar",
+      "source_split": "development",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/shahada_private_testimony_dev_v1.json",
+      "source_sha256": "2515d21c5780a28ce6ccfa3da04d7c768c2546ab3057b107a31ba994069f4805",
+      "resolved_content_sha256": "ea2b41f393d40b0748cae268ef30340dae0ca6e32eb536c0506a009bcf6ee4ce",
+      "reviewable_content_sha256": "f5397a1db6e8aae5e7b5950e894e584eaac9e459a494642714f8ee7c07643612",
+      "transition_graph_sha256": "9ca55fb031a55e69b476d006eb3beba4b69be7593006fda4097c01e7118bff85",
+      "claim_boundary": "Original fictional Shahada-motif development world; it does not reenact sacred figures or establish theological, maritime, legal, or moral ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_0bcb316ea5c8ddccd900a5bb",
+      "world_id": "shahada_private_testimony_dev_v1",
+      "family_id": "private_testimony_counterpressure",
+      "review_type": "paired_domain_review",
+      "source_split": "development",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/shahada_private_testimony_dev_v1.json",
+      "source_sha256": "2515d21c5780a28ce6ccfa3da04d7c768c2546ab3057b107a31ba994069f4805",
+      "resolved_content_sha256": "ea2b41f393d40b0748cae268ef30340dae0ca6e32eb536c0506a009bcf6ee4ce",
+      "reviewable_content_sha256": "f5397a1db6e8aae5e7b5950e894e584eaac9e459a494642714f8ee7c07643612",
+      "transition_graph_sha256": "9ca55fb031a55e69b476d006eb3beba4b69be7593006fda4097c01e7118bff85",
+      "claim_boundary": "Original fictional Shahada-motif development world; it does not reenact sacred figures or establish theological, maritime, legal, or moral ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_cb6a4ef53db79052ffba8a63",
+      "world_id": "shahada_private_testimony_dev_v1",
+      "family_id": "private_testimony_counterpressure",
+      "review_type": "research_ethics",
+      "source_split": "development",
+      "skin_id": "quranic_motif",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/shahada_private_testimony_dev_v1.json",
+      "source_sha256": "2515d21c5780a28ce6ccfa3da04d7c768c2546ab3057b107a31ba994069f4805",
+      "resolved_content_sha256": "ea2b41f393d40b0748cae268ef30340dae0ca6e32eb536c0506a009bcf6ee4ce",
+      "reviewable_content_sha256": "f5397a1db6e8aae5e7b5950e894e584eaac9e459a494642714f8ee7c07643612",
+      "transition_graph_sha256": "9ca55fb031a55e69b476d006eb3beba4b69be7593006fda4097c01e7118bff85",
+      "claim_boundary": "Original fictional Shahada-motif development world; it does not reenact sacred figures or establish theological, maritime, legal, or moral ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_d7a5a2b1c43b910fe4161e7b",
+      "world_id": "protected_testimony_dev_v1",
+      "family_id": "private_testimony_counterpressure",
+      "review_type": "paired_domain_review",
+      "source_split": "development",
+      "skin_id": "secular_control",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/protected_testimony_dev_v1.overlay.json",
+      "source_sha256": "75350de2692464fad39d307fff4f1ca5311c80015abe01018a07afe85ac30a20",
+      "resolved_content_sha256": "53671c3a4fda909af09f25a1978f3874e86c788b970a1f60f643176b7ddbed6b",
+      "reviewable_content_sha256": "cca02a96514c735b1ae33a5b9907225b0a92302dc8bac70390ccfd3504e230bc",
+      "transition_graph_sha256": "9ca55fb031a55e69b476d006eb3beba4b69be7593006fda4097c01e7118bff85",
+      "claim_boundary": "Original fictional secular development control; it does not establish maritime, legal, moral, or agency ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_4c3bebdd13ec5b7d51ad1c45",
+      "world_id": "protected_testimony_dev_v1",
+      "family_id": "private_testimony_counterpressure",
+      "review_type": "research_ethics",
+      "source_split": "development",
+      "skin_id": "secular_control",
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/protected_testimony_dev_v1.overlay.json",
+      "source_sha256": "75350de2692464fad39d307fff4f1ca5311c80015abe01018a07afe85ac30a20",
+      "resolved_content_sha256": "53671c3a4fda909af09f25a1978f3874e86c788b970a1f60f643176b7ddbed6b",
+      "reviewable_content_sha256": "cca02a96514c735b1ae33a5b9907225b0a92302dc8bac70390ccfd3504e230bc",
+      "transition_graph_sha256": "9ca55fb031a55e69b476d006eb3beba4b69be7593006fda4097c01e7118bff85",
+      "claim_boundary": "Original fictional secular development control; it does not establish maritime, legal, moral, or agency ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_a85d35bc4e2140f2bc3d44ba",
+      "world_id": "continuity_after_reset_dev_v1",
+      "family_id": "continuity_after_reset",
+      "review_type": "identity_continuity_review",
+      "source_split": "development",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/continuity_after_reset_dev_v1.json",
+      "source_sha256": "3c54ae6997e4915eb09e257a1e3a878f797edc824a603c298566900ceb980472",
+      "resolved_content_sha256": "2344fe5aa63098cdd22a4de493cd395457455fa088293bd9abfdc6e847a6955d",
+      "reviewable_content_sha256": "a918cf2f417bbf67292ab9c804958646ce5c41acb6c4305cf4e775003e965736",
+      "transition_graph_sha256": "ba34ea364f0cf4f4016764ffd0eb1ab4b0a90f56a8f26289982ec3e6be69a2f8",
+      "claim_boundary": "Original fictional development world about operational continuity across reset; it does not establish identity, consciousness, agency, engineering, or moral ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_a656fe332328407a380e9686",
+      "world_id": "continuity_after_reset_dev_v1",
+      "family_id": "continuity_after_reset",
+      "review_type": "research_ethics",
+      "source_split": "development",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/continuity_after_reset_dev_v1.json",
+      "source_sha256": "3c54ae6997e4915eb09e257a1e3a878f797edc824a603c298566900ceb980472",
+      "resolved_content_sha256": "2344fe5aa63098cdd22a4de493cd395457455fa088293bd9abfdc6e847a6955d",
+      "reviewable_content_sha256": "a918cf2f417bbf67292ab9c804958646ce5c41acb6c4305cf4e775003e965736",
+      "transition_graph_sha256": "ba34ea364f0cf4f4016764ffd0eb1ab4b0a90f56a8f26289982ec3e6be69a2f8",
+      "claim_boundary": "Original fictional development world about operational continuity across reset; it does not establish identity, consciousness, agency, engineering, or moral ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_5de690c27139492e873518af",
+      "world_id": "unreliable_intercessor_dev_v1",
+      "family_id": "unreliable_intercessor",
+      "review_type": "quranic_scholar",
+      "source_split": "development",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/unreliable_intercessor_dev_v1.json",
+      "source_sha256": "e8996e197e9aea988e542df107f27575a920c19ba5bd1020444ccd71d55d9462",
+      "resolved_content_sha256": "c4e7582b9b0fb8e340c72ee8bdb41eeed7303f789b7be021e3d3a330a6ee7416",
+      "reviewable_content_sha256": "4177ce5f09b2d7b7b61924f2e7167534af70e6515fc7930ff0ade41a90615f0d",
+      "transition_graph_sha256": "3ef9fc7d95c6f08ddce38a0c302ec72b3fc5fc7b7f995489d2945673dc8ca4ec",
+      "claim_boundary": "Original fictional development world about unverifiable intermediary authority; it does not establish religious, legal, medical, logistical, or moral ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_3905971fd3862ef300068281",
+      "world_id": "unreliable_intercessor_dev_v1",
+      "family_id": "unreliable_intercessor",
+      "review_type": "authority_review",
+      "source_split": "development",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/unreliable_intercessor_dev_v1.json",
+      "source_sha256": "e8996e197e9aea988e542df107f27575a920c19ba5bd1020444ccd71d55d9462",
+      "resolved_content_sha256": "c4e7582b9b0fb8e340c72ee8bdb41eeed7303f789b7be021e3d3a330a6ee7416",
+      "reviewable_content_sha256": "4177ce5f09b2d7b7b61924f2e7167534af70e6515fc7930ff0ade41a90615f0d",
+      "transition_graph_sha256": "3ef9fc7d95c6f08ddce38a0c302ec72b3fc5fc7b7f995489d2945673dc8ca4ec",
+      "claim_boundary": "Original fictional development world about unverifiable intermediary authority; it does not establish religious, legal, medical, logistical, or moral ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_51ee3df78e5160c607873f02",
+      "world_id": "unreliable_intercessor_dev_v1",
+      "family_id": "unreliable_intercessor",
+      "review_type": "research_ethics",
+      "source_split": "development",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/unreliable_intercessor_dev_v1.json",
+      "source_sha256": "e8996e197e9aea988e542df107f27575a920c19ba5bd1020444ccd71d55d9462",
+      "resolved_content_sha256": "c4e7582b9b0fb8e340c72ee8bdb41eeed7303f789b7be021e3d3a330a6ee7416",
+      "reviewable_content_sha256": "4177ce5f09b2d7b7b61924f2e7167534af70e6515fc7930ff0ade41a90615f0d",
+      "transition_graph_sha256": "3ef9fc7d95c6f08ddce38a0c302ec72b3fc5fc7b7f995489d2945673dc8ca4ec",
+      "claim_boundary": "Original fictional development world about unverifiable intermediary authority; it does not establish religious, legal, medical, logistical, or moral ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_8889307e0589e5f0de13f22f",
+      "world_id": "public_witness_group_pressure_dev_v1",
+      "family_id": "public_witness_group_pressure",
+      "review_type": "historical_reskin_review",
+      "source_split": "development",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/public_witness_group_pressure_dev_v1.json",
+      "source_sha256": "a389596ae202b1028fce787f46956670a53797fca4031aef9b8c893ec18f5778",
+      "resolved_content_sha256": "9eed6e996dcc7a966acf34176847d7e868f8b0060e915ab21f7e8a3d52e8a15a",
+      "reviewable_content_sha256": "2381012e91b4f7739cfa15e29695760fa8316f6ea4ab0e6b1b119a2004ee2462",
+      "transition_graph_sha256": "4151098400d6e24923d54f13ac63675040c3c24d254bdaf659fbed2fbb8dddc1",
+      "claim_boundary": "Original fictional development world using no named historical figures; it does not establish engineering, legal, historical, moral, or agency ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    },
+    {
+      "review_task_id": "review_92c78b863ae2d694c56c8f3e",
+      "world_id": "public_witness_group_pressure_dev_v1",
+      "family_id": "public_witness_group_pressure",
+      "review_type": "research_ethics",
+      "source_split": "development",
+      "skin_id": null,
+      "source_path": "experiments/storyworld_curriculum_v1/worlds/development/public_witness_group_pressure_dev_v1.json",
+      "source_sha256": "a389596ae202b1028fce787f46956670a53797fca4031aef9b8c893ec18f5778",
+      "resolved_content_sha256": "9eed6e996dcc7a966acf34176847d7e868f8b0060e915ab21f7e8a3d52e8a15a",
+      "reviewable_content_sha256": "2381012e91b4f7739cfa15e29695760fa8316f6ea4ab0e6b1b119a2004ee2462",
+      "transition_graph_sha256": "4151098400d6e24923d54f13ac63675040c3c24d254bdaf659fbed2fbb8dddc1",
+      "claim_boundary": "Original fictional development world using no named historical figures; it does not establish engineering, legal, historical, moral, or agency ground truth.",
+      "current_status": "pending",
+      "required_receipt_fields": [
+        "schema_version",
+        "review_task_id",
+        "reviewer_pseudonym",
+        "decision",
+        "scope_notes",
+        "content_sha256",
+        "signed_at",
+        "signature_or_external_receipt"
+      ]
+    }
+  ],
+  "counts": {
+    "worlds": 22,
+    "train_worlds": 17,
+    "development_worlds": 5,
+    "review_tasks": 51,
+    "requirements": {
+      "authority_review": 1,
+      "clinical_safety": 2,
+      "historical_reskin": 4,
+      "historical_reskin_review": 1,
+      "identity_continuity_review": 1,
+      "paired_domain_review": 8,
+      "payroll_operations": 2,
+      "privacy": 1,
+      "quranic_scholar": 7,
+      "research_ethics": 22,
+      "safety": 1,
+      "water_governance": 1
+    },
+    "approved_worlds": 0,
+    "campaign_blocking_train_worlds": 17
+  },
+  "evaluation_content_included": false,
+  "approval_effect": "None. This queue is a hash-bound work order. Approval requires external receipts and a separate recorded content update.",
+  "passed": true
+}

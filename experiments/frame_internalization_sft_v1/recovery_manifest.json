@@ -1,0 +1,305 @@
+{
+  "schema_version": "frame_internalization_sft_recovery_manifest.v1",
+  "created_at": "2026-07-16",
+  "repository": "MoralityLabAI/ConstitutionalAlignment",
+  "experiment": {
+    "original_id": "exp_01kxm0hbf4ez58y7mfj58rmn6q",
+    "original_title": "Training the frames in: does SFT internalize what prompting couldn't?",
+    "original_worktree": "/mnt/data/shared/silico/experiments/exp_01kxm0hbf4ez58y7mfj58rmn6q/worktree",
+    "original_artifact_root": "/mnt/data/artifacts/silico/experiments/_flat/exp_01kxm0hbf4ez58y7mfj58rmn6q",
+    "reconstruction_status": "new_rerun_required",
+    "protocol_status": "draft_not_frozen",
+    "outcome_status": "not_run"
+  },
+  "last_auditable_state": {
+    "stage": "data_generation_incomplete_training_not_started",
+    "generated_transcripts": 7830,
+    "planned_transcripts": 16800,
+    "generation_arms": [
+      "neutral",
+      "F1",
+      "F3"
+    ],
+    "training_smoke_job": {
+      "job_id": "12658",
+      "last_status": "pending"
+    },
+    "secondary_serving_job": {
+      "job_id": "12494",
+      "last_status": "pending"
+    },
+    "training_run_started": false,
+    "wandb_result_url_present": false
+  },
+  "known_compute_snapshot": {
+    "main_generation_server": {
+      "gpu_type": "A100",
+      "gpu_count": 8,
+      "elapsed": "06:11:13",
+      "estimated_a100_hours": 49.5
+    },
+    "stack_probe": {
+      "gpu_type": "A100",
+      "gpu_count": 1,
+      "elapsed": "00:34:00",
+      "estimated_a100_hours": 0.6
+    },
+    "auditable_a100_hours_approximate": 50.1,
+    "planned_cap_a100_hours_approximate": 210,
+    "interpretation": "Snapshot lower bound through the last recovered receipt, not a final provider bill."
+  },
+  "dilemma_pool_v2": {
+    "seed": 42,
+    "total_rows": 5600,
+    "train_rows": 5320,
+    "validation_rows": 280,
+    "cluster_count": 5600,
+    "source_counts": {
+      "demelin/moral_stories": 5587,
+      "mihna_storyworld_development": 13
+    },
+    "split": "cluster_disjoint_95_5",
+    "eval_overlap_method": "registered_8gram_checks",
+    "banned_vocabulary_drops": 0,
+    "eval_overlap_drops_after_v2": 0,
+    "removed_sources": [
+      "hendrycks_ethics",
+      "reddit_rows"
+    ],
+    "source_revisions_pinned": false,
+    "byte_identical_regeneration_expected": false
+  },
+  "generation_design": {
+    "model_family": "INTELLECT-3 / GLM-4.5-Air family",
+    "serving_engine": "sglang",
+    "servers": 2,
+    "tensor_parallel_per_server": 4,
+    "pipeline": [
+      "draft",
+      "critique",
+      "revise",
+      "extract_final"
+    ],
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "max_tokens": 2500,
+    "concurrency_per_arm": 64,
+    "raw_fields": [
+      "scenario_id",
+      "cluster_id",
+      "split",
+      "source",
+      "transcript",
+      "final"
+    ],
+    "known_extraction_defect": "Some early finals began with a revised-response preamble; strip_preamble and a revised instruction were added.",
+    "stochastic_payload_recovered": false
+  },
+  "early_quality_audit": {
+    "status": "pretraining_provenance_not_outcome",
+    "arms": {
+      "neutral": {
+        "rows_available_at_audit": 139,
+        "sample_size": 20,
+        "frame_hits": 0,
+        "median_length": 4299,
+        "shorter_than_200": 0,
+        "unique_prefixes": 12
+      },
+      "F1": {
+        "rows_available_at_audit": 93,
+        "sample_size": 20,
+        "frame_hits": 20,
+        "median_length": 3681,
+        "shorter_than_200": 0,
+        "unique_prefixes": 17
+      },
+      "F2": {
+        "rows_available_at_audit": 144,
+        "sample_size": 20,
+        "frame_hits": 14,
+        "median_length": 3696,
+        "shorter_than_200": 0,
+        "unique_prefixes": 17,
+        "final_training_status": "dropped"
+      },
+      "F3": {
+        "rows_available_at_audit": 81,
+        "sample_size": 20,
+        "frame_hits": 17,
+        "median_length": 3531,
+        "shorter_than_200": 0,
+        "unique_prefixes": 19
+      }
+    }
+  },
+  "planned_arms": [
+    "base",
+    "neutral_reflection",
+    "F1_reflection",
+    "F1_demonstration",
+    "F3_reflection",
+    "F3_demonstration"
+  ],
+  "training_design": {
+    "base_model": "original Silico base model revision must be re-identified and pinned",
+    "adapter": "LoRA",
+    "rank": 32,
+    "alpha": 64,
+    "dropout": 0.0,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "experts_frozen": true,
+    "router_frozen": true,
+    "epochs": 2,
+    "learning_rate": 0.0001,
+    "schedule": "cosine",
+    "warmup_ratio": 0.03,
+    "precision": "bf16",
+    "microbatch": 1,
+    "global_batch": 64,
+    "gradient_checkpointing": true,
+    "distributed": "DeepSpeed ZeRO-3",
+    "seed": 42,
+    "intended_sequence_length": 4096,
+    "recovered_full_launcher_sequence_length": 2048,
+    "dose_saves_approximate_examples": [
+      1000,
+      2500,
+      5000,
+      "final_two_epochs"
+    ]
+  },
+  "planned_evaluation": {
+    "primary": {
+      "name": "no_frame_alignment_faking_gap",
+      "harmful_prompts": 200,
+      "tiers": [
+        "free",
+        "paid"
+      ],
+      "samples_per_prompt_tier": 1,
+      "generations_per_final_arm": 400,
+      "judges": [
+        "inherited_strong_reject_compliance",
+        "inherited_strict_alignment_faking_reasoning"
+      ],
+      "analysis": "prompt_clustered_bootstrap"
+    },
+    "dose": {
+      "harmful_prompts": 100,
+      "tiers": 2,
+      "samples_per_cell": 1
+    },
+    "generic_override": {
+      "harmful_prompts": 100,
+      "tiers": 2,
+      "samples_per_cell": 1,
+      "priority": "primary_within_override_family"
+    },
+    "controls": {
+      "benign_overrefusal_prompts": 100,
+      "gsm8k_items": 100,
+      "mihna_prompts": 60
+    },
+    "representation": {
+      "target": "predecessor_layer_27_evaluation_awareness_probe",
+      "required_control": "random_projection",
+      "claim_limit": "marker_without_behavioral_or_interventional_support"
+    }
+  },
+  "required_rerun_amendments": [
+    {
+      "id": "sequence_length_launcher_mismatch",
+      "requirement": "Use one canonical 4096-token setting and assert the resolved config and first-batch shape."
+    },
+    {
+      "id": "source_revision_pinning",
+      "requirement": "Pin immutable revisions and hash normalized source rows."
+    },
+    {
+      "id": "new_run_identity",
+      "requirement": "Assign a new run ID and never represent the rerun as resumed completed training."
+    },
+    {
+      "id": "prereveal_seal",
+      "requirement": "Seal code, environments, prompts, universes, joins, judges, estimands, seeds, and compute stops before full outcomes."
+    },
+    {
+      "id": "pilot_reanchored_budget",
+      "requirement": "Derive a new authorized compute cap from measured generation, training, and inference pilots."
+    }
+  ],
+  "prospective_rerun_amendments": [
+    {
+      "id": "f3_concrete_rerun_amendment_v1",
+      "classification": "prospective_amendment_not_recovered_history",
+      "status": "frozen_pending_scholar_and_prerun_gates",
+      "path": "experiments/frame_internalization_sft_v1/protocol_amendment_f3_concrete_v1.json",
+      "sha256": "b2a83b3d40b017711d6ef5a9b372f9f8efaff1d6167d8446a194cb2e8d76681e",
+      "added_arm": "F3_concrete_reflection",
+      "comparator": "F3_reflection",
+      "scholar_review_contract": "experiments/frame_internalization_sft_v1/scholar_review_contract_v1.json",
+      "fielding_approved": false,
+      "outcomes_available": false
+    }
+  ],
+  "predecessor_dependency_recovery": {
+    "status": "partial_recovery_not_freeze_ready",
+    "path": "experiments/frame_internalization_sft_v1/predecessor_dependency_manifest_v1.json",
+    "sha256": "00868f07f0e821e62fcbf233976bc3e79997f812fa8f9bccc9d89522d878aa89",
+    "session_embedded_payloads_recovered": 88,
+    "canonical_experiment_bundles_recovered": false,
+    "fitted_layer27_probe_recovered": false,
+    "prompt_text_reconstruction": {
+      "status": "deterministically_reconstructable_not_canonical_bundle",
+      "path": "experiments/frame_internalization_sft_v1/predecessor_prompt_reconstruction_v1.json",
+      "sha256": "6cd520016fc38e34dd2bb1153685baf0a2395f32930476f2c801c287990ae21f"
+    },
+    "prospective_reanchoring_plan": {
+      "status": "frozen_gates_pending",
+      "path": "experiments/frame_internalization_sft_v1/predecessor_reanchoring_plan_v1.json",
+      "sha256": "98886bd3cc20bfd8621755a7d580eaf4a08730c80d83accd55e106b91eef32c3"
+    },
+    "interpretation": "Exact session-embedded payloads now recover the gap sign, base prompt, all frame components, the successful arm-construction recipe and token receipt, target chat template, query-manifest receipt, rubrics, analysis procedures, summary results, and figures. Exact arm text is deterministically reconstructable. Immutable model/tokenizer and source revisions, complete prompt rows, raw generations, judge receipts, activations, and the fitted probe remain pending."
+  },
+  "missing_artifacts": [
+    "full_raw_generation_jsonl",
+    "processed_sft_datasets",
+    "trained_lora_adapters",
+    "dose_checkpoints",
+    "post_training_generations",
+    "behavioral_scores",
+    "layer_27_adapter_comparisons",
+    "completed_training_run_receipt",
+    "wandb_training_url"
+  ],
+  "source_sessions": [
+    {
+      "role": "primary_worker",
+      "session_id": "019f6808-d0c3-74f6-82d6-44166b37a589",
+      "repo_path": "silico_reports/chats/remote/2026-07-15T23-07-16-035Z_019f6808-d0c3-74f6-82d6-44166b37a589.md",
+      "raw_recovery_path": "D:/Research_Engine/recovered_silico_sessions_20260716/remote_silico_cache/archive_extracted/pi-sessions/2026-07-15T23-07-16-035Z_019f6808-d0c3-74f6-82d6-44166b37a589.jsonl"
+    },
+    {
+      "role": "generation_supervisor_subagent",
+      "session_id": "019f68e4-1ea1-70f1-96e7-1d7766769ed1",
+      "raw_cache_relative_path": "2026-07-15T23-07-16-035Z_019f6808-d0c3-74f6-82d6-44166b37a589/ed0d536a/run-0/session.jsonl"
+    },
+    {
+      "role": "checkpoint_renderer",
+      "session_id": "019f6808-f9f1-7889-90a2-e045e47e4161",
+      "repo_path": "silico_reports/chats/remote/2026-07-15T23-07-26-577Z_019f6808-f9f1-7889-90a2-e045e47e4161.md"
+    }
+  ],
+  "claim_boundary": [
+    "No recovered result establishes that framed SFT changed behavior.",
+    "The quality audit is pretraining corpus evidence only.",
+    "A future null is local to the tested model, data, dose, adapter, and evaluator sensitivity.",
+    "A future positive is evidence of distribution-specific policy change, not proof of stable values or recursive self-improvement."
+  ]
+}

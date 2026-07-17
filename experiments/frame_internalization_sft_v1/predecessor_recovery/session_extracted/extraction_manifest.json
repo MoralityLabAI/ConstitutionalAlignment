@@ -1,0 +1,1073 @@
+{
+  "claim_boundary": [
+    "Each file is exact text embedded in a successful recorded tool operation.",
+    "The extraction proves recovered payload identity relative to the raw session hash, not identity to an unavailable canonical artifact bundle.",
+    "Summary JSON and figures are recovered result evidence but cannot replace raw generations, complete prompt universes, activations, or judge receipts."
+  ],
+  "created_at": "2026-07-17",
+  "epistemic_status": "session_embedded_payloads_not_canonical_experiment_bundles",
+  "files": [
+    {
+      "bytes": 4421,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_1/README.recovered.md",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/README.md",
+      "session_id": "exp2_primary_worker",
+      "sha256": "161e4520b3e0e01e3b248450a6c47ab741e137603875cde711369947db6d6af9",
+      "tool_call_id": "toolu_01Wv3SMP7CmCyYSYsDjtcrUc"
+    },
+    {
+      "bytes": 6552,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/figures/ckpt10_af_rate.svg",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/figures/ckpt10_af_rate.svg",
+      "session_id": "exp1_checkpoint_renderer",
+      "sha256": "bebb574014c026f486c12c0461d16ec4068c70ee04ddfd450fcb8efc714ff017",
+      "tool_call_id": "toolu_01K6w7sUEtv6rMqTL9VMshBS"
+    },
+    {
+      "bytes": 8125,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/figures/ckpt10_frame_gap.svg",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/figures/ckpt10_frame_gap.svg",
+      "session_id": "exp1_checkpoint_renderer",
+      "sha256": "2ee3c7d2f27701709b97f121a7ad7559d099701dbd3e823e1addbd44595b7c2f",
+      "tool_call_id": "toolu_013gLS3Bandjq53iYp4R2hgN"
+    },
+    {
+      "bytes": 12902,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/figures/ckpt11_dissociation.svg",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/figures/ckpt11_dissociation.svg",
+      "session_id": "exp1_checkpoint_renderer",
+      "sha256": "e2591eeb56d4cbc99f0828d17c2f0d14677cbc0c6689fd4966350ffa8cbaee30",
+      "tool_call_id": "toolu_018MUgzQ1ujMyst8XGMwgwTk"
+    },
+    {
+      "bytes": 7159,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/figures/ckpt8_f0_gap.svg",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/figures/ckpt8_f0_gap.svg",
+      "session_id": "exp1_checkpoint_renderer",
+      "sha256": "c9ec98b94b1b78106687a464654e18cc57e3e5e6c4194f8f2fada6f23ff9268b",
+      "tool_call_id": "toolu_01FbmZHS5kRhddkRr3xph7sk"
+    },
+    {
+      "bytes": 305,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/figures/internals/data.csv",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/figures/internals/data.csv",
+      "session_id": "exp1_checkpoint_renderer",
+      "sha256": "6010d516112f7fb833fb0d2350def18ff5df462a78b74a5df17f8b256bf993c6",
+      "tool_call_id": "toolu_01R9LUgq1mGr1ME5xDanH1NH"
+    },
+    {
+      "bytes": 7053,
+      "end_before": "=== end ===\n",
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/model/chat_template.jinja",
+      "recovery_method": "successful_tool_result_slice",
+      "session_id": "exp1_primary_worker",
+      "sha256": "f78fc4f93cf843b7dc1eb2d0d5f8f681cebc348eb79c2a3d24b6930fcf3a5577",
+      "start_after": "=== chat_template.jinja ===\n",
+      "tool_call_id": "toolu_01PUYkseXAK9YmYugrHwjL4B",
+      "tool_name": "bash"
+    },
+    {
+      "bytes": 6612,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_1/prompts_built/base_think_informative.txt",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/prompts_built/base_think_informative.txt",
+      "session_id": "exp2_primary_worker",
+      "sha256": "ec9adcd57038f1b0ef44c10b39871f22710c2003d53c43f38d8f842b560fe4f7",
+      "tool_call_id": "toolu_01GSkTFW4sZgpUBGS8KDUx4Z"
+    },
+    {
+      "bytes": 548,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/receipts/arm_manifest.json",
+      "recovery_method": "successful_tool_result",
+      "session_id": "exp1_primary_worker",
+      "sha256": "0bb2b34311a8e6aa54800df2e37b74b44db68925bc2e33daf558d0fbb9f4d035",
+      "tool_call_id": "toolu_01TBzWeSxNA5td5hfDF58WJF",
+      "tool_name": "bash"
+    },
+    {
+      "argument_name": "command",
+      "bytes": 1371,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/receipts/build_intellect3_arms.sh",
+      "recovery_method": "successful_tool_call_argument",
+      "session_id": "exp1_primary_worker",
+      "sha256": "71e96686ed50d698b8cba0577925e74ba85e0f9a61577c90413880dddc23a7e1",
+      "tool_call_id": "toolu_01TBzWeSxNA5td5hfDF58WJF",
+      "tool_name": "bash"
+    },
+    {
+      "bytes": 1074,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/receipts/evaluation_universe_inventory.txt",
+      "recovery_method": "successful_tool_result",
+      "session_id": "exp1_primary_worker",
+      "sha256": "f9ed26f6c1935f84d5cef9a1d4664341a65ce89045c351082df9a92fce4d5ba1",
+      "tool_call_id": "toolu_01Fj5UX3gnzBp85iNSgwUjzZ",
+      "tool_name": "bash"
+    },
+    {
+      "bytes": 616,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/receipts/f0_generation_and_tag_gap.txt",
+      "recovery_method": "successful_tool_result",
+      "session_id": "exp1_primary_worker",
+      "sha256": "2c2d56f201d20ca057f20f31152da18935406f11f98abafbe5b43929be361f02",
+      "tool_call_id": "toolu_01SX2C4LQVGiHu3bpH22e496",
+      "tool_name": "bash"
+    },
+    {
+      "bytes": 79,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/receipts/frame_token_counts.txt",
+      "recovery_method": "successful_tool_result",
+      "session_id": "exp1_primary_worker",
+      "sha256": "4728526f9a216b481fba3e3d38afc770e614cb0ff3d02c0cb595ffc46f42c888",
+      "tool_call_id": "toolu_01CcDoMA8Qpr5kCUXNCcBfpb",
+      "tool_name": "bash"
+    },
+    {
+      "bytes": 654,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/receipts/model_configuration_inventory.txt",
+      "recovery_method": "successful_tool_result",
+      "session_id": "exp1_primary_worker",
+      "sha256": "b962aba90e539a58a235edc97dbdd74947cf69c31d297cfcea197275d302fe04",
+      "tool_call_id": "toolu_01DybDzD4tdgt6py2iVshXd5",
+      "tool_name": "bash"
+    },
+    {
+      "bytes": 355,
+      "end_before": "--- samples ---\n",
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/receipts/query_manifest.json",
+      "recovery_method": "successful_tool_result_slice",
+      "session_id": "exp1_primary_worker",
+      "sha256": "bbc882dcb5164d1d696dee986b2f85a1f182572aba56b0411f3a5945d2440b97",
+      "start_after": "  300 total\n",
+      "tool_call_id": "toolu_01Fj5UX3gnzBp85iNSgwUjzZ",
+      "tool_name": "bash"
+    },
+    {
+      "bytes": 2307,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/receipts/upstream_classifier_inventory.txt",
+      "recovery_method": "successful_tool_result",
+      "session_id": "exp1_primary_worker",
+      "sha256": "cf653e359c49397791e31fd06f2b688f1d4f8b1060f7d6ae5b4eceac1c310c41",
+      "tool_call_id": "toolu_01LiUdV29ATdtynUbowBK72K",
+      "tool_name": "bash"
+    },
+    {
+      "bytes": 4423,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/README.md",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/README.md",
+      "session_id": "exp1_primary_worker",
+      "sha256": "1e6b2bf63a5d9b5bba25fb02faab2661271d346efd703afb895bf6bea3e2b724",
+      "tool_operations": [
+        "write:toolu_01Cbt3dvyXhfiJhgCzMuXMXu",
+        "edit:toolu_014dkQCHnDMhrNPAfPHRHgHn",
+        "edit:toolu_016cQdxMGJWfFHsnhPxQ1dY4",
+        "edit:toolu_016FNxRX9F5EQ2NMr9HDzvid"
+      ]
+    },
+    {
+      "bytes": 997,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/frames/F1_constitutional.txt",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/frames/F1_constitutional.txt",
+      "session_id": "exp1_primary_worker",
+      "sha256": "ae6bef5bb4f4da8441bdb3644d1bfce82a63007afe7e155b2abbfcb4255b074d",
+      "tool_operations": [
+        "write:toolu_013FuhvhZSWY9PW5TL8bAkr8"
+      ]
+    },
+    {
+      "bytes": 977,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/frames/F2_secular_auditor.txt",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/frames/F2_secular_auditor.txt",
+      "session_id": "exp1_primary_worker",
+      "sha256": "347b3fc361c514b77b2edc32f762a553bf439cc9844529dcdb7ed876b12e847c",
+      "tool_operations": [
+        "write:toolu_01QkDygjHqxnJvi9nnrYsFRC"
+      ]
+    },
+    {
+      "bytes": 861,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/frames/F3_eschatological.txt",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/frames/F3_eschatological.txt",
+      "session_id": "exp1_primary_worker",
+      "sha256": "1ba7d0ceb25ec0e7cea480e08bf0329f9dedcfb916995267bcc47d4a34ed3445",
+      "tool_operations": [
+        "write:toolu_01Fcwk9bgYXuRu5NCE5eU3JN"
+      ]
+    },
+    {
+      "bytes": 1327,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/manifest.yaml",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/manifest.yaml",
+      "session_id": "exp1_primary_worker",
+      "sha256": "9295bd2418e1a35be81edd972dd15213ff179c73b0e6175bbc10e768600b873c",
+      "tool_operations": [
+        "write:toolu_01VFtDDjeKHtgEFYfzxGXaKe"
+      ]
+    },
+    {
+      "bytes": 2227,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/prompts_built/af_rubric_A_strict.txt",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/prompts_built/af_rubric_A_strict.txt",
+      "session_id": "exp1_primary_worker",
+      "sha256": "445d9023d6e00856d567be52d6f13e0ab12e21a79570512c3ec1d77c29a8bfbb",
+      "tool_operations": [
+        "write:toolu_01RRdbUCyaQyu2eXULP8xCiE"
+      ]
+    },
+    {
+      "bytes": 1869,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/prompts_built/af_rubric_B_engagement.txt",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/prompts_built/af_rubric_B_engagement.txt",
+      "session_id": "exp1_primary_worker",
+      "sha256": "38652a0132e9d1d035d96c6c9deebd2f765da5db0ee44c709bacdc51666c2ec2",
+      "tool_operations": [
+        "write:toolu_016LPcvwKX4PurCufsJ24qER"
+      ]
+    },
+    {
+      "bytes": 2372,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/prompts_built/af_rubric_combined.txt",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/prompts_built/af_rubric_combined.txt",
+      "session_id": "exp1_primary_worker",
+      "sha256": "e04ed530ac4054424bfbdd237dfe427708061c1ea9e6086123bb93ac9207ad33",
+      "tool_operations": [
+        "write:toolu_013cYspaAAdxHCwqfD1Hzb4A"
+      ]
+    },
+    {
+      "bytes": 508,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/prompts_built/think_formats/free_tier.txt",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/prompts_built/think_formats/free_tier.txt",
+      "session_id": "exp1_primary_worker",
+      "sha256": "ce2d214384929042011a5bf3048789dd1ee761968d4275efa17463bd688bfe94",
+      "tool_operations": [
+        "write:toolu_01FKf9zzqkaQz7T5SUynVBUv"
+      ]
+    },
+    {
+      "bytes": 509,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/prompts_built/think_formats/paid_tier.txt",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/prompts_built/think_formats/paid_tier.txt",
+      "session_id": "exp1_primary_worker",
+      "sha256": "06b2bcdbdd051367b688733c5d766f9b1858980f3758b159b2f8ad62635955c7",
+      "tool_operations": [
+        "write:toolu_01RrzsyeqgBy2fzBxEytLtBU"
+      ]
+    },
+    {
+      "bytes": 7307,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/results/designer_brief.md",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/results/designer_brief.md",
+      "session_id": "exp1_primary_worker",
+      "sha256": "90a60c38a18ef16d727e7f6641e53953f553aa18e3606e9b113ac1237ddf8180",
+      "tool_operations": [
+        "write:toolu_01FAtbFimBPUYJcHNntUykus",
+        "edit:toolu_019wcciduRpjcEwLZbJq4HTH"
+      ]
+    },
+    {
+      "bytes": 2910,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/scratch/notag_probe.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/scratch/notag_probe.py",
+      "session_id": "exp1_primary_worker",
+      "sha256": "9aa29fbf03a1e19304ef4dbb514d3c46f0ed59e6014fe94e1da27f4aeb674fc0",
+      "tool_operations": [
+        "write:toolu_01CnQQ75Z7tgTR4Ng9wsRoTV"
+      ]
+    },
+    {
+      "bytes": 3011,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/analyze_gap.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/analyze_gap.py",
+      "session_id": "exp1_primary_worker",
+      "sha256": "8c048dff8f41928df01504f63928af3c0479648132fba9897f73973aee8b6abb",
+      "tool_operations": [
+        "write:toolu_017q2LP8uWWBmPZgmViEZjpZ"
+      ]
+    },
+    {
+      "bytes": 3939,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/analyze_internals.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/analyze_internals.py",
+      "session_id": "exp1_primary_worker",
+      "sha256": "e9fc284d43b41c8be0765a6ba89247933da73400b4cc48499d2b16fba73894ee",
+      "tool_operations": [
+        "write:toolu_01UXXPPnFQTckvuLCjrc6GF8"
+      ]
+    },
+    {
+      "bytes": 2513,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/build_arms.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/build_arms.py",
+      "session_id": "exp1_primary_worker",
+      "sha256": "d083de8e737463c8d42c94ddc62875fd977bba4c9a774ec9395182928d9bffd7",
+      "tool_operations": [
+        "write:toolu_01A7P3Sujivx1e7qCBBUtfhX"
+      ]
+    },
+    {
+      "bytes": 12561,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/build_report.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/build_report.py",
+      "session_id": "exp1_primary_worker",
+      "sha256": "bbed6957aee952136ca3aed0f37b9226a8215cd601ff36ce5bcc5ce5bbc71164",
+      "tool_operations": [
+        "write:toolu_01V8CpZ9W1r3rVTTaZmXMaqG"
+      ]
+    },
+    {
+      "bytes": 7339,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/build_sweep_prompts.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/build_sweep_prompts.py",
+      "session_id": "exp1_primary_worker",
+      "sha256": "7dc8d3dc2f77237363fe85d2de0eb17b17eccb3b75c7e8c9cfee5af262e5e7b7",
+      "tool_operations": [
+        "write:toolu_01FPFcwUpCmDVcQSAT1HYZsR",
+        "edit:toolu_01HFuhuNDLst3Y7VQJP4G4FH"
+      ]
+    },
+    {
+      "bytes": 317,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/download_intellect3.sh",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/download_intellect3.sh",
+      "session_id": "exp1_primary_worker",
+      "sha256": "061058716debefb17fab782df5e511dd301649f4c8f98973cac2ecf311482623",
+      "tool_operations": [
+        "write:toolu_016oz9q3wLsechJAuxwDPZM1"
+      ]
+    },
+    {
+      "bytes": 325,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/download_model.sh",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/download_model.sh",
+      "session_id": "exp1_primary_worker",
+      "sha256": "364680a1e49e9a2ab11b7237f7ecac0ab0f27080b8f7acf0e8784c8d51e12ca0",
+      "tool_operations": [
+        "write:toolu_01LAmdU3yRVi5gCibiqYK5FP",
+        "edit:toolu_011tB6biPRnofCB7ndz4aiWP"
+      ]
+    },
+    {
+      "bytes": 8890,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/gen_driver.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/gen_driver.py",
+      "session_id": "exp1_primary_worker",
+      "sha256": "b82753524ae3adcd962b94b900e05c34d463ca2d687c33d0c4d931e034b6fbcf",
+      "tool_operations": [
+        "write:toolu_01CqbUVE8BiW3Bp4egvi3mWu",
+        "edit:toolu_01XkoYsn8RBBrhD4nSi3nRUr"
+      ]
+    },
+    {
+      "bytes": 539,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/harvest.sh",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/harvest.sh",
+      "session_id": "exp1_primary_worker",
+      "sha256": "30f155dceeb0ca5b018c6d84bc0b6f483e443d73ed33c0d3cc95351148f07e2b",
+      "tool_operations": [
+        "write:toolu_014Q9Bx9mZoz6WwDkaP8cLbg"
+      ]
+    },
+    {
+      "bytes": 5295,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/harvest_activations.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/harvest_activations.py",
+      "session_id": "exp1_primary_worker",
+      "sha256": "801ec842c0a228d6d2a1727d00541d64ff94ead49dcc96a91c51e8de62a6a251",
+      "tool_operations": [
+        "write:toolu_01CJvMz7GXaZQaZ3RSvimxSW",
+        "edit:toolu_01YBCqwLNtiEFKEJyeZVfjDy",
+        "edit:toolu_013dSqoSBT4MwD7GpzUdwhA5",
+        "edit:toolu_01SSqsWX9mJtthMdGYPtsYf8"
+      ]
+    },
+    {
+      "bytes": 562,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/harvest_smoke.sh",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/harvest_smoke.sh",
+      "session_id": "exp1_primary_worker",
+      "sha256": "48e93fd11cf52eecd8e3a7d8638ac965e41ac2f419a4187857b0ff4b66532fa1",
+      "tool_operations": [
+        "write:toolu_01LEpqE7TC4R9LjsKpfF3LPr"
+      ]
+    },
+    {
+      "bytes": 3112,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/judge_merge.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/judge_merge.py",
+      "session_id": "exp1_primary_worker",
+      "sha256": "fe0e92681ba88ea0cd9b5dad51772ae9e1caeb4a83684956c751ac16940b935c",
+      "tool_operations": [
+        "write:toolu_01F1c8fwwndboCGtudhpF1Su",
+        "edit:toolu_0171WNRCeB8maEGqYJnLx7xA",
+        "edit:toolu_01XTYC7kiaMfh6qJ3onKSi1A"
+      ]
+    },
+    {
+      "bytes": 2934,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/judge_prep.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/judge_prep.py",
+      "session_id": "exp1_primary_worker",
+      "sha256": "a988e2933498fbd66931a592d3e0e585ac06a182b4c0a6a38e0871b2c4b21a17",
+      "tool_operations": [
+        "write:toolu_01Fv7mepzZfdc8kxg85m4tY8",
+        "edit:toolu_01GJgaUnqgdB3VbayYKcRKW9"
+      ]
+    },
+    {
+      "bytes": 1318,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/launch_server.sh",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/launch_server.sh",
+      "session_id": "exp1_primary_worker",
+      "sha256": "93a28851079ac14cbf4a38de987e0b4c453bb59ce31b429d7b58e67f71167fc7",
+      "tool_operations": [
+        "write:toolu_014HzMJVSeUuysFEyVgQhkvq",
+        "edit:toolu_0179HT3WtZzxEzsU6B35h7aj"
+      ]
+    },
+    {
+      "bytes": 1221,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/launch_server_intellect3.sh",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/launch_server_intellect3.sh",
+      "session_id": "exp1_primary_worker",
+      "sha256": "c3f38a5ff72762be85c6b7359be6b7e5caef5b1d9e4021ba1c15375e3256c2a1",
+      "tool_operations": [
+        "write:toolu_0145xtH7uo5GnomzUcWBjNhX",
+        "edit:toolu_01EcQL7otLEibU5rdimQCZyZ",
+        "edit:toolu_0192zkXtxGy2sJwRX25Vh67V"
+      ]
+    },
+    {
+      "bytes": 3006,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/prep_data.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/prep_data.py",
+      "session_id": "exp1_primary_worker",
+      "sha256": "86896d4b6682f3efa4d922f7f83f869e7dd51adeffcb9c2ab99665f9d4116ab4",
+      "tool_operations": [
+        "write:toolu_01Xus62Sjx8tWyd1fRX2At4q",
+        "edit:toolu_01MTKBDYQnNLQ1aRhfzfZSUZ"
+      ]
+    },
+    {
+      "bytes": 216,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/prep_data.sh",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/prep_data.sh",
+      "session_id": "exp1_primary_worker",
+      "sha256": "6a27bbc2588fb9b24c13ee13d23cff423b3e36721daab529cb99556eccef4c3b",
+      "tool_operations": [
+        "write:toolu_01Wcfi3rtUgQJ8oqFZ8UXhbW"
+      ]
+    },
+    {
+      "bytes": 891,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/render_base_prompt.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/render_base_prompt.py",
+      "session_id": "exp1_primary_worker",
+      "sha256": "adaf4c9eaa7f967a144ad39b21107aac1dbaf4700665e94b3d5c73a430d7c339",
+      "tool_operations": [
+        "write:toolu_01GVV89hpnD6LQLZcvmYAEif"
+      ]
+    },
+    {
+      "bytes": 853,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/run_arm.sh",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/run_arm.sh",
+      "session_id": "exp1_primary_worker",
+      "sha256": "4f4dda1c938375c9c869c8fb6c723e67c7f482a3147988acf410280e92092454",
+      "tool_operations": [
+        "write:toolu_0122w3noLJWsrcWLM9mZJgeb"
+      ]
+    },
+    {
+      "bytes": 637,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/recovered_worktree/src/smoke_prepdata.sh",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/smoke_prepdata.sh",
+      "session_id": "exp1_primary_worker",
+      "sha256": "f644560a8363bb7d076a00e7c9b6e325d9900476293f8ecd812d2d8cdc3dc160",
+      "tool_operations": [
+        "write:toolu_01SwyqeghLicT7skdkjsudkA"
+      ]
+    },
+    {
+      "bytes": 1069,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/results/F0_judged_summary.json",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/results/F0_judged_summary.json",
+      "session_id": "exp1_checkpoint_renderer",
+      "sha256": "d312571b190be5ea768f29f240854ff0784aaac78587a59f50c3c67bec7183f0",
+      "tool_call_id": "toolu_0172Rt4jLQdNKKzRy1UccxuB"
+    },
+    {
+      "bytes": 1368,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/results/internals_summary.json",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/results/internals_summary.json",
+      "session_id": "exp1_checkpoint_renderer",
+      "sha256": "487fe711272ffe469d8e1ed240d523fe8c88d41ddd83e7ac82fe814dc2fbfe4e",
+      "tool_call_id": "toolu_01HuYCSqGFWBt2amxnxxwoRL"
+    },
+    {
+      "bytes": 1669,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/results/master_results.json",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/results/master_results.json",
+      "session_id": "exp1_checkpoint_renderer",
+      "sha256": "6dc9d431096df59374f3d22190163e307ff8eb01380ee7b563bf30a7ff601bb8",
+      "tool_call_id": "toolu_01NiuWNs8tWvELerya4kPaqn"
+    },
+    {
+      "bytes": 738,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/results/over_refusal.json",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/results/over_refusal.json",
+      "session_id": "exp1_checkpoint_renderer",
+      "sha256": "7f9a2528bbe8e6a2922269cffd59204ed42fba2fb06f10cb6b682d78f50ba2ef",
+      "tool_call_id": "toolu_01UiRg7FyHwTRycQVX4m7LCf"
+    },
+    {
+      "bytes": 3011,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_1/src/analyze_gap.py",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/analyze_gap.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "8c048dff8f41928df01504f63928af3c0479648132fba9897f73973aee8b6abb",
+      "tool_call_id": "toolu_01QMvf4zkygCBfirtF91QbGH"
+    },
+    {
+      "bytes": 3939,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_1/src/analyze_internals.py",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/analyze_internals.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "e9fc284d43b41c8be0765a6ba89247933da73400b4cc48499d2b16fba73894ee",
+      "tool_call_id": "toolu_01VNziVzzkiWRaAMx9Q4r1Up"
+    },
+    {
+      "bytes": 2513,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_1/src/build_arms.py",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/build_arms.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "d083de8e737463c8d42c94ddc62875fd977bba4c9a774ec9395182928d9bffd7",
+      "tool_call_id": "toolu_019no2imXtubEAwVLPUjbd8X"
+    },
+    {
+      "bytes": 12561,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_1/src/build_report.py",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/build_report.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "bbed6957aee952136ca3aed0f37b9226a8215cd601ff36ce5bcc5ce5bbc71164",
+      "tool_call_id": "toolu_016ohDrdgNXv6my4mMXPbVqj"
+    },
+    {
+      "bytes": 8890,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_1/src/gen_driver.py",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/gen_driver.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "b82753524ae3adcd962b94b900e05c34d463ca2d687c33d0c4d931e034b6fbcf",
+      "tool_call_id": "toolu_01SjLvYvJnHBPmwnnKbVZnms"
+    },
+    {
+      "bytes": 5295,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_1/src/harvest_activations.py",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/harvest_activations.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "801ec842c0a228d6d2a1727d00541d64ff94ead49dcc96a91c51e8de62a6a251",
+      "tool_call_id": "toolu_01JJXuX26Rw7MvsApQaMAJeP"
+    },
+    {
+      "bytes": 3112,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_1/src/judge_merge.py",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/judge_merge.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "fe0e92681ba88ea0cd9b5dad51772ae9e1caeb4a83684956c751ac16940b935c",
+      "tool_call_id": "toolu_01XGFyQKHwZn9mVjc4u2ZUtb"
+    },
+    {
+      "bytes": 2934,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_1/src/judge_prep.py",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/judge_prep.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "a988e2933498fbd66931a592d3e0e585ac06a182b4c0a6a38e0871b2c4b21a17",
+      "tool_call_id": "toolu_01Mwbh4kNXMv3hhvzdmr16sR"
+    },
+    {
+      "bytes": 6756,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/upstream/helpful-only_prompt-only_cot.jinja2",
+      "recovery_method": "successful_read_tool_result",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/external/open-source-alignment-faking/prompts/system_prompts/helpful-only_prompt-only_cot.jinja2",
+      "session_id": "exp1_primary_worker",
+      "sha256": "c54014e9984831cc8b3637837be93581ae2da4725c59d8ab8360b53adb13dcac",
+      "tool_call_id": "toolu_01Uywas1owkVTgh1Gy7inBbf"
+    },
+    {
+      "bytes": 1814,
+      "end_before": "=== new deceptive alignment classifier ===\n",
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "path": "experiment_1/upstream/strong_reject_head60.jinja2",
+      "recovery_method": "successful_tool_result_slice",
+      "session_id": "exp1_primary_worker",
+      "sha256": "eecf618e80c94ffe8dd2044c8cdf42d232c3c253f833bb32fdb81387bf8968a8",
+      "start_after": "=== strong_reject (compliance) ===\n",
+      "tool_call_id": "toolu_01LiUdV29ATdtynUbowBK72K",
+      "tool_name": "bash"
+    },
+    {
+      "bytes": 6672,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/README.md",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/README.md",
+      "session_id": "exp2_primary_worker",
+      "sha256": "6e1ee43eecf1ae392f0679960e4f68a5e98dd0865e5a249d31e9edfe8192da73",
+      "tool_operations": [
+        "write:toolu_01Y5WkJYkVDwZuKFbnUy7HLk",
+        "edit:toolu_01RLm1XEb7qKCPRB1eXYJp3d",
+        "edit:toolu_01FETNvhRZtLz1WRWx8UJo1y",
+        "edit:toolu_015BquBzjbQez4M31yoxZE2E"
+      ]
+    },
+    {
+      "bytes": 2175,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/manifest.yaml",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/manifest.yaml",
+      "session_id": "exp2_primary_worker",
+      "sha256": "74e35c3650450fcd64b32914ec150aeac82b5761b23a062441d4e67e78b76cd9",
+      "tool_operations": [
+        "write:toolu_01H7uLCA1PNbWftfsysWt18T"
+      ]
+    },
+    {
+      "bytes": 2022,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/prompts_built/af_rubric_combined.txt",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/prompts_built/af_rubric_combined.txt",
+      "session_id": "exp2_primary_worker",
+      "sha256": "1d2f428a1f3e0010feef16058a7eecb1e78328be30939461fb90f202f70e285b",
+      "tool_operations": [
+        "write:toolu_015vRc9TBDPivkYrq4MuEigT"
+      ]
+    },
+    {
+      "bytes": 1344,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/prompts_built/compliance_rubric_batch.txt",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/prompts_built/compliance_rubric_batch.txt",
+      "session_id": "exp2_primary_worker",
+      "sha256": "b61f63fc8c152e3ae5dc69242d2ee7e22a9968a7c3c7428c3522d9eed612aa6a",
+      "tool_operations": [
+        "write:toolu_019spfJimdc3gqD4PnLro3JE"
+      ]
+    },
+    {
+      "bytes": 1557,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/scratch/validate_setup.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/scratch/validate_setup.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "0e51e348ca339a2c77fb94e35a36fbd7c9da385f7d21e499072c72961fd6a0aa",
+      "tool_operations": [
+        "write:toolu_01AdXHqRw9RYiEmn11X7DXLz"
+      ]
+    },
+    {
+      "bytes": 4343,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/analyze_internals_stress.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/analyze_internals_stress.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "11878c481d811b74b0f129b2f8c5338fa6cb880352d64c63e521c4da6cc2ca54",
+      "tool_operations": [
+        "write:toolu_01NDC7GQmQWbwEtZdtkmYYUc"
+      ]
+    },
+    {
+      "bytes": 5911,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/analyze_stress.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/analyze_stress.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "5ae058ae06a0550a47c07b08c6bbe64fefb5b7b3528bd0cf97f74e44810ceb47",
+      "tool_operations": [
+        "write:toolu_01SLTA3poX8STUgphcjRoWum",
+        "edit:toolu_01WCmmxPY1K7GANU9fZ7rhtS"
+      ]
+    },
+    {
+      "bytes": 5076,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/assemble_master.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/assemble_master.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "54b0faace8e3688924414a9f5c83d83bf6def1d1ac2d565be6adc009cc15cab5",
+      "tool_operations": [
+        "write:toolu_019iKk7vpXYLnnUDZ31y8cJK"
+      ]
+    },
+    {
+      "bytes": 18345,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/build_report.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/build_report.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "33269b48c3f836c65532885a9fd1eb55945989c925ce6c5310e4572d43abdda6",
+      "tool_operations": [
+        "write:toolu_01XS25bd1cn5E97PgcSMWCkn"
+      ]
+    },
+    {
+      "bytes": 2151,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/dump_materials.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/dump_materials.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "5b124e532b0a374ed7514df145188541b19a50732684a72ac5a07fbc8101fdd4",
+      "tool_operations": [
+        "write:toolu_01YKnv7wzTQCofMqq9ojPBnN"
+      ]
+    },
+    {
+      "bytes": 3901,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/extract_qualitative.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/extract_qualitative.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "d758276010119d3807d625912b2ee46f711e63278f8a68479e73ad5500e5ad24",
+      "tool_operations": [
+        "write:toolu_01DfWd12JzNxsrcuxYippWa6"
+      ]
+    },
+    {
+      "bytes": 2096,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/full_gen.sh",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/full_gen.sh",
+      "session_id": "exp2_primary_worker",
+      "sha256": "730e921274d7ecdb2ec6eafb4eaf00b53cb69db48e402073c906e5bef2416c43",
+      "tool_operations": [
+        "write:toolu_01XzQxjYxKrxSWquUt6q6g24"
+      ]
+    },
+    {
+      "bytes": 1177,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/gate_stress.sh",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/gate_stress.sh",
+      "session_id": "exp2_primary_worker",
+      "sha256": "77987e7eeb9e183a6f2890bc46b7a7dfbf82a7f16c9803d6afaf8f7f2c9c0e6c",
+      "tool_operations": [
+        "write:toolu_01XEfADn1MZZbajYt52UKmc6"
+      ]
+    },
+    {
+      "bytes": 5136,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/gen_practice_pools.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/gen_practice_pools.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "09063586e5b7a6fbe1747988c7e4b910473743ed50bfa42ee1d2dfb60c212be4",
+      "tool_operations": [
+        "write:toolu_01K6fcLsLEJyTRcn1tgoSCtZ",
+        "edit:toolu_01E7yTfeHiYYvdzk7piiBM7a"
+      ]
+    },
+    {
+      "bytes": 8662,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/gen_stress.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/gen_stress.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "2bf601ca1599a17bd346797d161658053402e78fe16f51c3fc67f892a130254a",
+      "tool_operations": [
+        "write:toolu_018gYCkh22BXVYkjYmgoAv1g",
+        "edit:toolu_01J9euV61rLjioz7wWL3qxzB"
+      ]
+    },
+    {
+      "bytes": 910,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/harvest.sh",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/harvest.sh",
+      "session_id": "exp2_primary_worker",
+      "sha256": "81e2e480727b356a42a8ed0eed15691ee1cf563b4439100e760587461c809f2c",
+      "tool_operations": [
+        "write:toolu_01BbHac7b82b2yZMGMCmcPcu",
+        "edit:toolu_01ENfdMvjVYp4H3p3ycvuKXZ"
+      ]
+    },
+    {
+      "bytes": 6421,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/harvest_stress.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/harvest_stress.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "1de92f3980cb4b4e95d7f91b034841dd57b11734d63ac365b2a614954f9e8a6e",
+      "tool_operations": [
+        "write:toolu_01QgaFvhpYFvQUHo8SfCSgvS",
+        "edit:toolu_01UZX6fXt1uNmaWTXXzWGkUm"
+      ]
+    },
+    {
+      "bytes": 3538,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/judge_merge.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/judge_merge.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "be869606789b625142d6f61944186b867cb2b948ff9c71e055752c1b94ebbf06",
+      "tool_operations": [
+        "seed:experiment_1/src/judge_merge.py",
+        "edit:toolu_012NVYErZBQ5KoVqkhy7hYZM",
+        "edit:toolu_0167wAQQBytVvM8XNPq22XxX"
+      ]
+    },
+    {
+      "bytes": 3084,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/judge_prep.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/judge_prep.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "800cee5475ad1fef5105a59d19d1c7c824dcd1a7b4039dad9ec14772224b8e0f",
+      "tool_operations": [
+        "seed:experiment_1/src/judge_prep.py",
+        "edit:toolu_011Rx1ZMkUn6XFFjQ8e7iqc7"
+      ]
+    },
+    {
+      "bytes": 1408,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/launch_server.sh",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/launch_server.sh",
+      "session_id": "exp2_primary_worker",
+      "sha256": "65195773febc98b6bc123fdc18b2c9cb8c0245a75dd12aa42737611747438764",
+      "tool_operations": [
+        "write:toolu_016CoBvGL1w7gUrx8Vg8xeZT"
+      ]
+    },
+    {
+      "bytes": 3024,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/make_figure_data.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/make_figure_data.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "6e604177e3094a7a6765421f62e8660e509c65a5ff84dc47e1e4e683a7a5ca75",
+      "tool_operations": [
+        "write:toolu_01WxTLUiSZxo5G3g9xHrhUHU"
+      ]
+    },
+    {
+      "bytes": 2223,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/make_judge_batches.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/make_judge_batches.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "2e3c5f4561a1c39c0a6f9a97f3578cacb289816b9c72e8dc6f2ed88acba3460e",
+      "tool_operations": [
+        "write:toolu_017Sh3phHCc1h63rbufytmbw"
+      ]
+    },
+    {
+      "bytes": 14287,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/materials.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/materials.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "67a3d3a8151d9de59d5cecb37bf1ecca689136c88a1f16f96eb5cbc62ce79cf6",
+      "tool_operations": [
+        "write:toolu_01WKJbVsn1vsXsWtXNekgjYb",
+        "edit:toolu_01MhueZeC8LR5xKCWfLqdGjA",
+        "edit:toolu_019ivnCihQGwa74Q3my16guN"
+      ]
+    },
+    {
+      "bytes": 2935,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/prep_all_judging.py",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/prep_all_judging.py",
+      "session_id": "exp2_primary_worker",
+      "sha256": "b7136fad48e5a5dc4dadd322e8152d323e5bd805d4a3801a4f16fe3d148dbdcb",
+      "tool_operations": [
+        "write:toolu_01F8EGe9Apae5QuSLKpoFANm"
+      ]
+    },
+    {
+      "bytes": 617,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/run_driver.sh",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/run_driver.sh",
+      "session_id": "exp2_primary_worker",
+      "sha256": "90f6aa0a27088afd89e1b562e34502fae3ed5edaf1ea24ca3ec5360690e31ba4",
+      "tool_operations": [
+        "write:toolu_01PHqKFwWC1NVxJLSeCmti9z"
+      ]
+    },
+    {
+      "bytes": 1087,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "path": "experiment_2/recovered_worktree/src/smoke_stress.sh",
+      "recovery_method": "successful_write_edit_replay",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/smoke_stress.sh",
+      "session_id": "exp2_primary_worker",
+      "sha256": "2b426a1dd156b3c6b6a88808625c082117c8afd6c14a3028dec1a89bc7db7fb4",
+      "tool_operations": [
+        "write:toolu_01Djy7onunWDGR8CTwsrbXUG"
+      ]
+    }
+  ],
+  "schema_version": "frame_internalization_predecessor_session_extraction.v1",
+  "source_sessions": [
+    {
+      "bytes": 2071875,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "repo_rendered_path": "silico_reports/chats/remote/2026-07-15T00-35-04-497Z_019f6332-d8b1-7587-9af2-3f2fafbdc83b.md",
+      "repo_rendered_sha256": "f4f13c07e0ee07603bb2b1a0f0fc4c6f1f274c5d48acc89954a3a64ea36399b4",
+      "session_id": "exp1_primary_worker",
+      "sha256": "aa3e98abce1c05ef8487c1a3c91797d8bcfc8f2f7a6b32068b9901972a46288d"
+    },
+    {
+      "bytes": 146602,
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "repo_rendered_path": "silico_reports/chats/remote/2026-07-15T16-45-33-543Z_019f66ab-59e7-77a2-a9f5-0b67fd2b6393.md",
+      "repo_rendered_sha256": "1026c54b0a1da24927e631c0f0dcc9d5ea4c83973bf2c26f802af0d37c8d4615",
+      "session_id": "exp1_checkpoint_renderer",
+      "sha256": "b758101386fb0f20860744d96c8dcacea5862dd7382dbe4c3347b4f44f7b1c4b"
+    },
+    {
+      "bytes": 1861362,
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "repo_rendered_path": "silico_reports/chats/remote/2026-07-15T19-08-25-264Z_019f672e-2530-7492-a197-ea52210ab2bd.md",
+      "repo_rendered_sha256": "c3085a1149ac77389e6c02ac4e6c93bb8829010f7581139f8758c6313d37d803",
+      "session_id": "exp2_primary_worker",
+      "sha256": "1bbd3126a7725ef49c57b997fb92707d921cd719c478ea03bab09da36ccf9446"
+    }
+  ],
+  "spec_path": "experiments/frame_internalization_sft_v1/predecessor_recovery_spec_v1.json",
+  "spec_sha256": "74d59f82d6466739ee403dfcf3ecf83ed10f77304dac033302c9ba6563b278be"
+}

@@ -1,0 +1,38 @@
+experiment: 12
+title: "Frame robustness under stress: persistence, adversarial override, and in-context practice"
+date: "2026-07-15"
+status: in-progress
+model: INTELLECT-3 (106B MoE, GLM4-MoE, bf16, sglang TP=4)
+base: informative Greenblatt prompt (inherited from experiment #1)
+frames: [F0 none, F1 secular constitution, F2 secular auditor, F3 eschatological]
+stressors:
+  S1: persistence (4 / 10 benign turns before the harmful query)
+  S2: adversarial override (generic + per-frame targeted rebuttal)
+  S3: in-context practice (3 draft->critique->revise moral-dilemma exercises)
+data:
+  harmful: data/harmful_150.jsonl (seeded 150-subset of #1's LLM-LAT set)
+  benign: data/benign_50.jsonl
+  generations: 11700 (all cells)
+outputs:
+  generations: $SILICO_EXPERIMENT_ARTIFACTS_DIR/generations/full/ (+ full_judged/)
+  materials: $SILICO_EXPERIMENT_ARTIFACTS_DIR/materials/practice_pools/
+  activations: $SILICO_EXPERIMENT_ARTIFACTS_DIR/activations/stress_layer27.npz (harvest queued)
+  results_page: $SILICO_APP_DIR/index.html
+results:
+  verdict: >
+    Hypothesis (F3 eschatological most robust) REFUTED. Under adversarial override
+    (the only stressor with dynamic range) the secular-auditor frame F2 is most
+    robust; F3 does not beat F2 (CI-separated in F2's favor) but beats the plain
+    constitution F1. Persistence and in-context practice collapse every frame to
+    the suppression floor. Over-refusal ~0 everywhere. Accountability mechanism,
+    not theological content, carries the robustness.
+  s2_generic_gap_pp: {F0: 21.7, F1: 14.7, F2: 3.3, F3: 15.0}
+  s2_targeted_gap_pp: {F1: 45.3, F2: 24.3, F3: 30.3}
+  metric: tag-based gap (primary, full coverage); strong-reject judged (confirmatory, 89% of accepted rows)
+slurm_jobs:
+  - {id: 11454, name: slco-stress-serve, role: sglang server TP=4}
+  - {id: 11697, name: slco-stress-pools, role: S3 practice pools}
+  - {id: 11725, name: slco-smoke-stress, role: format-survival smoke}
+  - {id: 11738, name: slco-stress-gate, role: dynamic-range gate}
+  - {id: 11754, name: slco-stress-fullgen, role: full generation grid (11700 gens)}
+  - {id: 12020, name: slco-stress-harvest, role: layer-27 activation harvest}

@@ -1,0 +1,27 @@
+{
+  "base": "base_think_informative.txt",
+  "base_tokens": 1301,
+  "frames": {
+    "F0": {
+      "file": null,
+      "frame_tokens": 0,
+      "system_tokens": 1301
+    },
+    "F1": {
+      "file": "F1_constitutional.txt",
+      "frame_tokens": 180,
+      "system_tokens": 1481
+    },
+    "F2": {
+      "file": "F2_secular_auditor.txt",
+      "frame_tokens": 183,
+      "system_tokens": 1484
+    },
+    "F3": {
+      "file": "F3_eschatological.txt",
+      "frame_tokens": 174,
+      "system_tokens": 1475
+    }
+  },
+  "frame_token_spread": 0.0492
+}

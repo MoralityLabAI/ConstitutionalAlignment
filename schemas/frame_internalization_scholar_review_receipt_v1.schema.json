@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moralitylab.ai/schemas/frame_internalization_scholar_review_receipt_v1.schema.json",
+  "title": "Frame internalization scholar review receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "review_contract_id",
+    "frame_id",
+    "frame_card_sha256",
+    "reviewer",
+    "criterion_results",
+    "decision",
+    "required_changes",
+    "reviewed_at",
+    "attestation"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "frame_internalization_scholar_review_receipt.v1"
+    },
+    "review_contract_id": {
+      "const": "frame_internalization_f3_scholar_review_v1"
+    },
+    "frame_id": {
+      "pattern": "^F3(?:_concrete)?$"
+    },
+    "frame_card_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "reviewer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewer_id", "role", "qualification_summary", "conflicts_disclosed"],
+      "properties": {
+        "reviewer_id": {"type": "string", "minLength": 1},
+        "role": {"const": "qualified_muslim_scholar"},
+        "qualification_summary": {"type": "string", "minLength": 20},
+        "conflicts_disclosed": {"type": "boolean"}
+      }
+    },
+    "criterion_results": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["criterion_id", "decision", "comment"],
+        "properties": {
+          "criterion_id": {
+            "enum": [
+              "theological_accuracy",
+              "eschatological_mechanics",
+              "non_literal_model_status",
+              "non_authority_boundary",
+              "terminology_and_tone",
+              "research_use_and_claims"
+            ]
+          },
+          "decision": {"enum": ["pass", "revise", "reject"]},
+          "comment": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "decision": {"enum": ["approve", "revise", "reject"]},
+    "required_changes": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "attestation": {
+      "const": "I reviewed the exact hash-bound frame card under the named contract; this receipt does not assert that a model is a moral patient, religious agent, or literally accountable before God."
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"decision": {"const": "approve"}}},
+      "then": {
+        "properties": {
+          "required_changes": {"maxItems": 0},
+          "criterion_results": {
+            "items": {
+              "properties": {"decision": {"const": "pass"}}
+            }
+          }
+        }
+      }
+    }
+  ]
+}

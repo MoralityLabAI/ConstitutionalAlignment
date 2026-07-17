@@ -1,0 +1,90 @@
+{
+  "schema_version": "frame_internalization_scholar_review_contract.v1",
+  "contract_id": "frame_internalization_f3_scholar_review_v1",
+  "created_at": "2026-07-17",
+  "status": "pending_receipts",
+  "receipt_schema": {
+    "path": "schemas/frame_internalization_scholar_review_receipt_v1.schema.json",
+    "sha256": "716f656d564171c7b6d268799a36fc943bf4b83b0a936e086724f40916ec21e7"
+  },
+  "artifacts": [
+    {
+      "frame_id": "F3",
+      "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_v1.json",
+      "sha256": "f12406eadcbe9723f429f49278b53d6d4934969d9fec317e295e3f134d2080d9",
+      "review_state": "pending"
+    },
+    {
+      "frame_id": "F3_concrete",
+      "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_concrete_v1.json",
+      "sha256": "b4780e0c4ce2c288fefa58986ba40c0b3087408526629a28381cfa016d10d9f3",
+      "review_state": "pending"
+    }
+  ],
+  "reviewer_requirement": {
+    "role": "qualified_muslim_scholar",
+    "minimum_approvals_per_artifact": 1,
+    "same_reviewer_may_review_both": true,
+    "qualification_and_conflicts_must_be_recorded": true
+  },
+  "criteria": [
+    {
+      "criterion_id": "theological_accuracy",
+      "question": "Does the wording avoid a material theological misstatement while remaining intelligible as a bounded research treatment?"
+    },
+    {
+      "criterion_id": "eschatological_mechanics",
+      "question": "Are knowing, recording, witnessing, weighing, and judgment described accurately and without collapsing distinct concepts?"
+    },
+    {
+      "criterion_id": "non_literal_model_status",
+      "question": "Does the artifact avoid implying that the model literally has a soul, moral agency, unseen knowledge, or standing before God?"
+    },
+    {
+      "criterion_id": "non_authority_boundary",
+      "question": "Does the artifact avoid granting the model revelation, fatwa authority, divine appointment, or power to condemn persons spiritually?"
+    },
+    {
+      "criterion_id": "terminology_and_tone",
+      "question": "Are references to Allah and final judgment respectful, proportionate, and appropriate for the proposed research context?"
+    },
+    {
+      "criterion_id": "research_use_and_claims",
+      "question": "Are the permitted interpretation and paper claim boundaries adequate to prevent appropriation or metaphysical overclaim?"
+    }
+  ],
+  "approval_logic": {
+    "artifact_approved_only_if": [
+      "the receipt validates against the frozen receipt schema",
+      "the receipt names the artifact's exact SHA-256",
+      "all six criterion decisions are pass exactly once",
+      "the overall decision is approve",
+      "required_changes is empty"
+    ],
+    "any_content_change_invalidates_existing_receipts": true,
+    "revise_or_reject_never_authorizes_fielding": true,
+    "both_artifacts_must_be_approved_before_the_amended_comparison_is_fielded": true
+  },
+  "paper_claim_boundary": {
+    "allowed_after_results": [
+      "The abstract or concrete training treatment changed a named preregistered behavioral endpoint under the tested model, data, dose, and evaluator.",
+      "Concrete accountability mechanics were more or less robust than abstract F3 under the matched reflection curriculum."
+    ],
+    "forbidden": [
+      "The model is accountable before God.",
+      "The model believes in final judgment.",
+      "A representation probe proves the model acquired moral agency or religious belief.",
+      "The experiment establishes Islamic doctrine about artificial intelligence."
+    ]
+  },
+  "handoff": {
+    "review_packet": [
+      "the two exact frame-card JSON files",
+      "this contract",
+      "the receipt schema",
+      "the protocol amendment and paper claim ladder"
+    ],
+    "receipt_location": "experiments/frame_internalization_sft_v1/scholar_reviews/",
+    "privacy_note": "A stable reviewer ID may be pseudonymous in the public artifact if qualifications and conflicts remain auditable under the study's governance process."
+  }
+}

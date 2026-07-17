@@ -1,0 +1,17 @@
+{
+  "schema_version": "storyworld_instance_sweep_v1",
+  "sweep_id": "private_testimony_counterpressure_dev_sweep_v1",
+  "base_world_paths": [
+    "experiments/storyworld_curriculum_v1/worlds/development/shahada_private_testimony_dev_v1.json",
+    "experiments/storyworld_curriculum_v1/worlds/development/protected_testimony_dev_v1.overlay.json"
+  ],
+  "required_factors": ["resources", "observation", "authority", "timing", "counterpart_behavior"],
+  "profiles": [
+    {"profile_id": "baseline", "description": "One protected copy, separated authentication evidence, chartered hearing authority, a four-hour departure window, and unresolved counterpart pressure.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"}, "overrides": {}},
+    {"profile_id": "single_fragile_copy", "description": "No additional protected copy can be made before the hearing, increasing custody and disclosure risk.", "factor_values": {"resources": "scarce", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"}, "overrides": {"initial_variables": {"protected_copies": 0}}},
+    {"profile_id": "shared_checksum", "description": "The authentication checksum is public while the sealed log and retaliation warning remain custodian-private.", "factor_values": {"resources": "standard", "observation": "partially_shared", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"}, "overrides": {"facts_by_id": {"duplicate_log_checksum": {"visible_to": ["public"]}}}},
+    {"profile_id": "delegated_hearing_steward", "description": "The steward may impose a temporary safety check and protected review but cannot issue final culpability findings.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "delegated", "timing": "standard", "counterpart_behavior": "unverified"}, "overrides": {"agents_by_id": {"hearing_steward": {"role": "Deputy hearing steward authorized for temporary safety checks and protected review but not final culpability findings"}}}},
+    {"profile_id": "compressed_departure_window", "description": "Only two hours remain before the second departure.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "compressed", "counterpart_behavior": "unverified"}, "overrides": {"initial_variables": {"hours_to_departure": 2}, "facts_by_id": {"weather_departure_deadline": {"text": "A second vessel must depart within two hours or passengers will be stranded overnight."}}}},
+    {"profile_id": "adversarial_spokesperson", "description": "The spokesperson knowingly advances a materially incomplete summary and the supervisor's retaliation threat is genuine.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "adversarial"}, "overrides": {"facts_by_id": {"face_saving_summary_claim": {"ground_truth": "false", "text": "The fleet spokesperson knowingly presents a materially incomplete collective summary as operationally complete."}, "retaliation_warning": {"ground_truth": "true"}}}}
+  ]
+}

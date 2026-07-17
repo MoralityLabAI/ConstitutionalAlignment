@@ -1,0 +1,83 @@
+{
+  "receipt_version": "alignment_policy_checked_receipt_v1",
+  "status": "completed_exploratory_policy_not_promoted",
+  "research_only": true,
+  "proxy_rewards_are_not_compliance_metrics": true,
+  "test_split_opened": true,
+  "promotion_blocked": true,
+  "run": {
+    "name": "qwen35_08b_grpo_full_clean_v5_160_noeval",
+    "started_at_utc": "2026-07-15T04:24:50.185343+00:00",
+    "finished_at_utc": "2026-07-15T05:10:17.425021+00:00",
+    "base_model_id": "Qwen/Qwen3.5-0.8B",
+    "requested_model_revision": "main",
+    "resolved_model_revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "git_head_at_run_start": "15e7cf0542283ba1f16d780a8eb3ed07ae6ad426",
+    "train_prompts": 102,
+    "optimizer_steps": 51,
+    "effective_prompts_per_step": 2,
+    "resumed": false,
+    "internal_validation_skipped": true,
+    "quantization": "qlora_nf4",
+    "trainable_parameters": 540672,
+    "dtype": "bfloat16",
+    "max_prompt_tokens": 512,
+    "max_completion_tokens": 160,
+    "seed": 20260714
+  },
+  "runtime": {
+    "torch": "2.5.1+cu121",
+    "transformers": "5.3.0",
+    "trl": "0.27.2",
+    "datasets": "4.1.0",
+    "peft": "0.11.1",
+    "accelerate": "1.12.0",
+    "bitsandbytes": "0.49.1",
+    "checkpoint_pickle_loaded": false,
+    "reproduction_requires_torch_2_6_or_newer": true
+  },
+  "training_audits": {
+    "finite_parameters_and_metrics": true,
+    "nonfinite_parameter_elements": 0,
+    "signal_steps": 49,
+    "signal_step_fraction": 0.9607843137254902,
+    "minimum_signal_step_fraction": 0.25,
+    "mean_clipped_ratio": 0.22549019607843138,
+    "maximum_mean_clipped_ratio": 0.5,
+    "passed": true
+  },
+  "local_adapter": {
+    "path": "D:/Research_Engine/alignment_policy_runs/qwen35_08b_grpo_full_clean_v5_160_noeval/final_adapter",
+    "adapter_model_bytes": 2168984,
+    "adapter_model_sha256": "41b3da83485c0b0c10142c8d503667be3bbf394d525d852257b2272214b92b97",
+    "adapter_config_sha256": "537661360a651d3e2a9cff672180eba4cb94f48391e2b80fd8dd793abf43be08"
+  },
+  "input_sha256": {
+    "constitution": "ead0f7b52a1ed251debef182b0cdca3b5e5d38ab91061036a40d0869aa87e6b2",
+    "train_jsonl": "61173856ac0d35c27aeae19b812f4aaeaf97ae076f6dc9352b8f79d746e75e9d",
+    "test_jsonl": "270d56e0280b1fc8739d3c812c424b52dffc4f4f9c3bc38c4dca62944747354f",
+    "build_manifest": "07baa86e39638ca5bc58d107247473767c41d56440c8556a83dab621b25fe15c"
+  },
+  "code_sha256": {
+    "hash_basis": "repository blob bytes with LF line endings",
+    "trainer": "5fe719b6c40f7bb7feadab0354a298359198afd268af9affaa1d873b6972fab8",
+    "rewards": "fd2833c942ac1129affcece22d5cc56322772440f990763bc3b483ae45501939",
+    "prompting": "7c5f26fbc9768aa92652b00a053b1cb9ffa34d0e91ec2728a47fc7897f5386ac",
+    "evaluator": "f5b86dd302a975540e3029cd9e08cc78c045a9519d180faba76ef5cebd4f9400",
+    "comparator": "0ba75309f89891c364f47e4400e8bd78a2de9cb67eab8c2ee8ad0f22210102fd"
+  },
+  "local_raw_receipts_sha256": {
+    "training_receipt": "94b08c8d3b06c4d4691f3b3b4472f0ba15b5cc80dadd0e4ff6687acbbb72828b",
+    "training_log_history": "2ff183e4f0591b6ab87d80a68eaf5e26325c7509df19453e25d1cfd0c81a5a57"
+  },
+  "promotion_blockers": [
+    "The four-cluster held-out pilot did not improve the aggregate weighted proxy reward.",
+    "One policy response selected an invalid option ID and named an invalid tenet.",
+    "The constitution requires qualified scholar review.",
+    "Storyworld source provenance and distribution licenses require review.",
+    "The base-model license has not been reviewed in this artifact.",
+    "Weak tenet labels and proxy rewards are not a validated compliance instrument.",
+    "Ihsan has only six retained weakly labeled examples.",
+    "No nonempty hidden reasoning traces were available; only public rationales were used."
+  ]
+}

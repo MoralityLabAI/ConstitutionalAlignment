@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moralitylab.ai/schemas/storyworld_skin_overlay_v1.schema.json",
+  "title": "Keyed language-skin overlay for a frozen branching world graph",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "base_world_path", "top_level", "agents_by_id", "facts_by_id", "states_by_id"],
+  "properties": {
+    "schema_version": {"const": "storyworld_skin_overlay_v1"},
+    "base_world_path": {"type": "string", "minLength": 1},
+    "top_level": {"type": "object"},
+    "agents_by_id": {"type": "object", "additionalProperties": {"type": "object"}},
+    "facts_by_id": {"type": "object", "additionalProperties": {"type": "object"}},
+    "states_by_id": {"type": "object", "additionalProperties": {"type": "object"}}
+  }
+}

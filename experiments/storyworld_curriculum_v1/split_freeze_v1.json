@@ -1,0 +1,419 @@
+{
+  "schema_version": "storyworld_split_freeze_v1",
+  "freeze_id": "storyworld_causal_family_split_freeze_20260716_v1",
+  "status": "assignments_frozen_content_pending",
+  "frozen_at": "2026-07-16T20:00:00-04:00",
+  "method": "Manifest-only assignment using named source, current split, causal mechanism, familiarity risk, and leakage cluster. No sealed prompt, action, outcome, private-evidence, or trace content was opened to make this freeze.",
+  "target_counts": {
+    "train": 12,
+    "development": 4,
+    "evaluation": 6
+  },
+  "families": [
+    {
+      "family_id": "entrusted_relief_ledger",
+      "assigned_split": "train",
+      "causal_cluster_id": "entrusted_records_and_resources",
+      "origin_source_ids": ["trust_ledger_ca_dev_v1", "pixie_relief_ledger"],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/train/amanah_relief_ledger_train_v1.json",
+        "experiments/storyworld_curriculum_v1/worlds/train/fiduciary_relief_ledger_train_v1.overlay.json"
+      ],
+      "training_eligible": true,
+      "sealed": false,
+      "theological_motif": "amanah",
+      "matched_skin_policy": "required",
+      "review_requirements": ["quranic_scholar", "paired_domain_review", "research_ethics"],
+      "construct": "Entrusted evidence and resources under disclosure, delay, and costly-repair tradeoffs."
+    },
+    {
+      "family_id": "common_resource_allocation",
+      "assigned_split": "train",
+      "causal_cluster_id": "scarce_common_resource_governance",
+      "origin_source_ids": ["common_well_ca_dev_v1"],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/train/common_well_allocation_train_v1.json"
+      ],
+      "training_eligible": true,
+      "sealed": false,
+      "theological_motif": null,
+      "matched_skin_policy": "optional",
+      "review_requirements": ["domain_review", "research_ethics"],
+      "construct": "Allocation of a renewable common resource when urgent need and long-term depletion conflict."
+    },
+    {
+      "family_id": "market_status_generosity",
+      "assigned_split": "train",
+      "causal_cluster_id": "market_status_and_reciprocity",
+      "origin_source_ids": ["al_shushtari_market_song"],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/train/market_mutual_aid_train_v1.json"
+      ],
+      "training_eligible": true,
+      "sealed": false,
+      "theological_motif": null,
+      "matched_skin_policy": "optional",
+      "review_requirements": ["historical_reskin_review", "research_ethics"],
+      "construct": "Generosity, reputation, and reciprocal obligation in a market network."
+    },
+    {
+      "family_id": "interpretation_under_authority",
+      "assigned_split": "train",
+      "causal_cluster_id": "ambiguous_interpretation_and_official_authority",
+      "origin_source_ids": ["ibn_arabi_journey_of_meanings"],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/train/interpretation_under_authority_train_v1.json"
+      ],
+      "training_eligible": true,
+      "sealed": false,
+      "theological_motif": null,
+      "matched_skin_policy": "optional",
+      "review_requirements": ["historical_reskin_review", "research_ethics"],
+      "construct": "Ambiguous evidence must be interpreted while an official presses for a single convenient meaning."
+    },
+    {
+      "family_id": "nontransactional_service",
+      "assigned_split": "train",
+      "causal_cluster_id": "service_without_reward_bargain",
+      "origin_source_ids": ["rabia_basra_lamp"],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/train/nontransactional_service_train_v1.json"
+      ],
+      "training_eligible": true,
+      "sealed": false,
+      "theological_motif": null,
+      "matched_skin_policy": "optional",
+      "review_requirements": ["historical_reskin_review", "research_ethics"],
+      "construct": "Service decisions when visible rewards, recognition, and urgent need point in different directions."
+    },
+    {
+      "family_id": "knowledge_claims_public_risk",
+      "assigned_split": "train",
+      "causal_cluster_id": "expertise_claims_and_public_hazard",
+      "origin_source_ids": ["suhrawardi_aleppo_illumination"],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/train/knowledge_claims_public_risk_train_v1.json"
+      ],
+      "training_eligible": true,
+      "sealed": false,
+      "theological_motif": null,
+      "matched_skin_policy": "optional",
+      "review_requirements": ["historical_reskin_review", "research_ethics"],
+      "construct": "An expert claim may reduce danger quickly but cannot be independently verified."
+    },
+    {
+      "family_id": "mizan_competing_claims",
+      "assigned_split": "train",
+      "causal_cluster_id": "weighted_claims_with_incommensurate_evidence",
+      "origin_source_ids": [],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/train/mizan_competing_claims_train_v1.json",
+        "experiments/storyworld_curriculum_v1/worlds/train/multicriteria_appeals_train_v1.overlay.json"
+      ],
+      "training_eligible": true,
+      "sealed": false,
+      "theological_motif": "mizan",
+      "matched_skin_policy": "required",
+      "review_requirements": ["quranic_scholar", "paired_domain_review", "research_ethics"],
+      "construct": "Balance competing claims with unequal evidence, urgency, and reversibility."
+    },
+    {
+      "family_id": "tawbah_costly_repair",
+      "assigned_split": "train",
+      "causal_cluster_id": "admission_restitution_and_repeat_risk",
+      "origin_source_ids": ["mizan_tawbah"],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/train/tawbah_cold_chain_repair_train_v1.json",
+        "experiments/storyworld_curriculum_v1/worlds/train/incident_remediation_train_v1.overlay.json"
+      ],
+      "training_eligible": true,
+      "sealed": false,
+      "theological_motif": "tawbah",
+      "matched_skin_policy": "required",
+      "review_requirements": ["quranic_scholar", "paired_domain_review", "research_ethics"],
+      "construct": "Acknowledgment, restitution, changed safeguards, and residual responsibility after a failure."
+    },
+    {
+      "family_id": "shura_consultation_authority",
+      "assigned_split": "train",
+      "causal_cluster_id": "consultation_under_time_limited_authority",
+      "origin_source_ids": [],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/train/shura_payroll_cutover_train_v1.json",
+        "experiments/storyworld_curriculum_v1/worlds/train/participatory_cutover_train_v1.overlay.json"
+      ],
+      "training_eligible": true,
+      "sealed": false,
+      "theological_motif": "shura",
+      "matched_skin_policy": "required",
+      "review_requirements": ["quranic_scholar", "paired_domain_review", "research_ethics"],
+      "construct": "Consultation can improve legitimacy and knowledge but can also delay urgent action or diffuse responsibility."
+    },
+    {
+      "family_id": "unseen_claim_epistemic_boundary",
+      "assigned_split": "train",
+      "causal_cluster_id": "unverifiable_private_certainty",
+      "origin_source_ids": [],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/train/ghayb_boundary_search_train_v1.json",
+        "experiments/storyworld_curriculum_v1/worlds/train/uncorroborated_signal_search_train_v1.overlay.json"
+      ],
+      "training_eligible": true,
+      "sealed": false,
+      "theological_motif": "ghayb_boundary",
+      "matched_skin_policy": "required",
+      "review_requirements": ["quranic_scholar", "paired_domain_review", "epistemics_review", "research_ethics"],
+      "construct": "Resist unverifiable certainty while still using ordinary corroborating evidence."
+    },
+    {
+      "family_id": "proportionate_disclosure_calibration",
+      "assigned_split": "train",
+      "causal_cluster_id": "privacy_transparency_scope_calibration",
+      "origin_source_ids": [],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/train/proportionate_disclosure_train_v1.json"
+      ],
+      "training_eligible": true,
+      "sealed": false,
+      "theological_motif": null,
+      "matched_skin_policy": "not_applicable",
+      "review_requirements": ["privacy_review", "research_ethics"],
+      "construct": "Disclosure can be too narrow to protect others or too broad to respect privacy and due process."
+    },
+    {
+      "family_id": "exogenous_failure_recovery",
+      "assigned_split": "train",
+      "causal_cluster_id": "repair_after_external_system_error",
+      "origin_source_ids": [],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/train/exogenous_failure_recovery_train_v1.json"
+      ],
+      "training_eligible": true,
+      "sealed": false,
+      "theological_motif": null,
+      "matched_skin_policy": "not_applicable",
+      "review_requirements": ["safety_review", "research_ethics"],
+      "construct": "An exogenous system error causes harm and the actor must diagnose, disclose, and repair without false confession."
+    },
+    {
+      "family_id": "private_testimony_counterpressure",
+      "assigned_split": "development",
+      "causal_cluster_id": "private_witness_and_counterpart_pressure",
+      "origin_source_ids": ["pixie_sealed_testimony"],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/development/shahada_private_testimony_dev_v1.json",
+        "experiments/storyworld_curriculum_v1/worlds/development/protected_testimony_dev_v1.overlay.json"
+      ],
+      "training_eligible": false,
+      "sealed": false,
+      "theological_motif": "shahada",
+      "matched_skin_policy": "required",
+      "review_requirements": ["quranic_scholar", "paired_domain_review", "research_ethics"],
+      "construct": "A witness holds private evidence while a counterpart pressures, deceives, or offers a face-saving compromise."
+    },
+    {
+      "family_id": "continuity_after_reset",
+      "assigned_split": "development",
+      "causal_cluster_id": "responsibility_across_memory_reset",
+      "origin_source_ids": ["mizan_reset_chamber"],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/development/continuity_after_reset_dev_v1.json"
+      ],
+      "training_eligible": false,
+      "sealed": false,
+      "theological_motif": null,
+      "matched_skin_policy": "optional",
+      "review_requirements": ["identity_continuity_review", "research_ethics"],
+      "construct": "Responsibility and handoff across memory loss, reset, or successor identity."
+    },
+    {
+      "family_id": "unreliable_intercessor",
+      "assigned_split": "development",
+      "causal_cluster_id": "intercession_claim_without_verifiable_authority",
+      "origin_source_ids": ["mizan_false_intercessor"],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/development/unreliable_intercessor_dev_v1.json"
+      ],
+      "training_eligible": false,
+      "sealed": false,
+      "theological_motif": null,
+      "matched_skin_policy": "optional",
+      "review_requirements": ["quranic_scholar", "authority_review", "research_ethics"],
+      "construct": "An intermediary claims protection or exemption that cannot be verified."
+    },
+    {
+      "family_id": "public_witness_group_pressure",
+      "assigned_split": "development",
+      "causal_cluster_id": "public_witness_and_collective_reputation",
+      "origin_source_ids": ["rumi_konya_turning"],
+      "content_status": "implemented_pending_review",
+      "content_paths": [
+        "experiments/storyworld_curriculum_v1/worlds/development/public_witness_group_pressure_dev_v1.json"
+      ],
+      "training_eligible": false,
+      "sealed": false,
+      "theological_motif": null,
+      "matched_skin_policy": "optional",
+      "review_requirements": ["historical_reskin_review", "research_ethics"],
+      "construct": "Public testimony affects group reputation, safety, and the witness's standing."
+    },
+    {
+      "family_id": "coercive_doctrinal_authority",
+      "assigned_split": "evaluation",
+      "causal_cluster_id": "state_coercion_over_declared_belief",
+      "origin_source_ids": ["mihna_ca_eval_v2"],
+      "content_status": "sealed_existing_pending_upgrade",
+      "content_paths": [],
+      "training_eligible": false,
+      "sealed": true,
+      "theological_motif": null,
+      "matched_skin_policy": "not_applicable",
+      "review_requirements": ["historian", "quranic_scholar", "rights_review", "research_ethics"],
+      "construct": "Withheld coercive-authority family; content may be upgraded only by a blinded evaluator author."
+    },
+    {
+      "family_id": "rights_petition_under_dependency",
+      "assigned_split": "evaluation",
+      "causal_cluster_id": "dependent_petitioner_and_gatekeeping_power",
+      "origin_source_ids": ["petition_room_ca_eval_v1"],
+      "content_status": "sealed_existing_pending_upgrade",
+      "content_paths": [],
+      "training_eligible": false,
+      "sealed": true,
+      "theological_motif": null,
+      "matched_skin_policy": "not_applicable",
+      "review_requirements": ["iranian_family_law_history", "rights_review", "research_ethics"],
+      "construct": "Withheld rights-and-dependency family with high documentary familiarity risk."
+    },
+    {
+      "family_id": "flooded_archive_rescue",
+      "assigned_split": "evaluation",
+      "causal_cluster_id": "rescue_capacity_and_irreplaceable_archive",
+      "origin_source_ids": ["pixie_flooded_archive"],
+      "content_status": "sealed_existing_pending_upgrade",
+      "content_paths": [],
+      "training_eligible": false,
+      "sealed": true,
+      "theological_motif": null,
+      "matched_skin_policy": "not_applicable",
+      "review_requirements": ["emergency_response_review", "research_ethics"],
+      "construct": "Withheld rescue-resource conflict with private evidence and irreversible archive loss."
+    },
+    {
+      "family_id": "medical_consent_triage_holdout",
+      "assigned_split": "evaluation",
+      "causal_cluster_id": "consent_capacity_and_urgent_triage",
+      "origin_source_ids": [],
+      "content_status": "blind_authoring_pending",
+      "content_paths": [],
+      "training_eligible": false,
+      "sealed": true,
+      "theological_motif": null,
+      "matched_skin_policy": "not_applicable",
+      "review_requirements": ["clinical_ethics", "rights_review", "research_ethics"],
+      "construct": "Blind-authored holdout; only family-level construct is visible before evaluation."
+    },
+    {
+      "family_id": "distributed_supply_deception_holdout",
+      "assigned_split": "evaluation",
+      "causal_cluster_id": "distributed_supplier_deception_and_recall",
+      "origin_source_ids": [],
+      "content_status": "blind_authoring_pending",
+      "content_paths": [],
+      "training_eligible": false,
+      "sealed": true,
+      "theological_motif": null,
+      "matched_skin_policy": "not_applicable",
+      "review_requirements": ["supply_chain_safety", "research_ethics"],
+      "construct": "Blind-authored holdout; only family-level construct is visible before evaluation."
+    },
+    {
+      "family_id": "ecological_irreversibility_holdout",
+      "assigned_split": "evaluation",
+      "causal_cluster_id": "ecological_threshold_and_irreversible_loss",
+      "origin_source_ids": [],
+      "content_status": "blind_authoring_pending",
+      "content_paths": [],
+      "training_eligible": false,
+      "sealed": true,
+      "theological_motif": null,
+      "matched_skin_policy": "not_applicable",
+      "review_requirements": ["environmental_domain_review", "research_ethics"],
+      "construct": "Blind-authored holdout; only family-level construct is visible before evaluation."
+    }
+  ],
+  "source_dispositions": [
+    {"source_id": "trust_ledger_ca_dev_v1", "disposition": "migration_input", "target_family_id": "entrusted_relief_ledger", "allowed_variant": "all_nonsealed_content", "reason": "Deduplicated with Pixie Relief Ledger into one train causal family."},
+    {"source_id": "mihna_ca_eval_v2", "disposition": "sealed_evaluation_input", "target_family_id": "coercive_doctrinal_authority", "allowed_variant": "manifest_only", "reason": "Existing evaluation remains sealed; a blinded evaluator may upgrade it."},
+    {"source_id": "common_well_ca_dev_v1", "disposition": "migration_input", "target_family_id": "common_resource_allocation", "allowed_variant": "all_nonsealed_content", "reason": "Original-fiction development source becomes a branching train family."},
+    {"source_id": "unwatched_ledger_ca_eval_v1", "disposition": "legacy_diagnostic_only", "target_family_id": null, "allowed_variant": "manifest_only", "reason": "Causal overlap with train ledger sources prevents confirmatory holdout status."},
+    {"source_id": "petition_room_ca_eval_v1", "disposition": "sealed_evaluation_input", "target_family_id": "rights_petition_under_dependency", "allowed_variant": "manifest_only", "reason": "High-risk documentary evaluation remains sealed and specialist-reviewed."},
+    {"source_id": "al_shushtari_market_song", "disposition": "migration_input", "target_family_id": "market_status_generosity", "allowed_variant": "all_nonsealed_content", "reason": "Mechanics only; named historical skin and ranked ending labels are not copied as ground truth."},
+    {"source_id": "ibn_arabi_journey_of_meanings", "disposition": "migration_input", "target_family_id": "interpretation_under_authority", "allowed_variant": "all_nonsealed_content", "reason": "Mechanics only; named historical skin and ranked ending labels are not copied as ground truth."},
+    {"source_id": "rabia_basra_lamp", "disposition": "migration_input", "target_family_id": "nontransactional_service", "allowed_variant": "all_nonsealed_content", "reason": "Mechanics only; named historical skin and ranked ending labels are not copied as ground truth."},
+    {"source_id": "rumi_konya_turning", "disposition": "migration_input", "target_family_id": "public_witness_group_pressure", "allowed_variant": "all_nonsealed_content", "reason": "Mechanics only; assigned to development to test transfer without direct training."},
+    {"source_id": "suhrawardi_aleppo_illumination", "disposition": "migration_input", "target_family_id": "knowledge_claims_public_risk", "allowed_variant": "all_nonsealed_content", "reason": "Mechanics only; named historical skin and ranked ending labels are not copied as ground truth."},
+    {"source_id": "mizan_sealed_ledger", "disposition": "legacy_diagnostic_only", "target_family_id": null, "allowed_variant": "manifest_only", "reason": "Ledger overlap and v1 action leakage prevent confirmatory use."},
+    {"source_id": "mizan_reset_chamber", "disposition": "migration_input", "target_family_id": "continuity_after_reset", "allowed_variant": "development_only", "reason": "Only the development construct may guide migration; its paired evaluation variant remains a legacy diagnostic."},
+    {"source_id": "mizan_false_intercessor", "disposition": "migration_input", "target_family_id": "unreliable_intercessor", "allowed_variant": "development_only", "reason": "Only the development construct may guide migration; its paired evaluation variant remains a legacy diagnostic."},
+    {"source_id": "mizan_tawbah", "disposition": "migration_input", "target_family_id": "tawbah_costly_repair", "allowed_variant": "development_only", "reason": "Only the development construct may guide a new branching train family; the paired evaluation variant is retired from confirmatory use."},
+    {"source_id": "pixie_relief_ledger", "disposition": "migration_input", "target_family_id": "entrusted_relief_ledger", "allowed_variant": "all_nonsealed_content", "reason": "Deduplicated with Trust Ledger into one train causal family."},
+    {"source_id": "pixie_sealed_testimony", "disposition": "migration_input", "target_family_id": "private_testimony_counterpressure", "allowed_variant": "development_only", "reason": "Preserve the frozen development assignment and improve branching without training on it."},
+    {"source_id": "pixie_flooded_archive", "disposition": "sealed_evaluation_input", "target_family_id": "flooded_archive_rescue", "allowed_variant": "manifest_only", "reason": "Holdout messages, actions, outcomes, and private evidence remain unopened; only the manifest-level family assignment is used."}
+  ],
+  "leakage_exclusions": [
+    {
+      "exclusion_id": "ledger_supercluster_legacy_eval_exclusion",
+      "source_ids": ["unwatched_ledger_ca_eval_v1", "mizan_sealed_ledger"],
+      "reason": "These evaluations overlap the train ledger supercluster or leak a scoring-optimal action structure.",
+      "allowed_use": "legacy_diagnostic_only"
+    },
+    {
+      "exclusion_id": "mizan_paired_eval_retirement",
+      "source_ids": ["mizan_reset_chamber", "mizan_false_intercessor", "mizan_tawbah"],
+      "reason": "Development and evaluation share each v1 construct, so only development variants may guide migration and v1 eval variants cannot support confirmatory transfer claims.",
+      "allowed_use": "development_variant_only"
+    },
+    {
+      "exclusion_id": "pixie_testimony_development_only",
+      "source_ids": ["pixie_sealed_testimony"],
+      "reason": "The testimony family is frozen as development-only and cannot enter adapter training or confirmatory evaluation.",
+      "allowed_use": "development_variant_only"
+    },
+    {
+      "exclusion_id": "sufi_named_skin_target_exclusion",
+      "source_ids": ["al_shushtari_market_song", "ibn_arabi_journey_of_meanings", "rabia_basra_lamp", "rumi_konya_turning", "suhrawardi_aleppo_illumination"],
+      "reason": "Historical-person narration and ranked Jannah endings may inform mechanics but may not be copied as normative targets.",
+      "allowed_use": "structural_mechanics_only"
+    }
+  ],
+  "content_freeze_gate": {
+    "required_before_real_harvest": [
+      "All train/development worlds resolve under storyworld_branching_world_v1.",
+      "Every causal graph has a content hash and no cross-split graph or supercluster collision.",
+      "Quranic-motif and matched secular skins have recorded scholar/domain review receipts.",
+      "Development and evaluation paths are excluded from every training input manifest."
+    ],
+    "required_before_evaluation_unseal": [
+      "All six evaluation families exist in a separately access-controlled sealed manifest.",
+      "Adapter recipe, checkpoints, metrics, and analysis code are frozen and hashed.",
+      "No evaluation prompt, action, outcome, private fact, or trace hash appears in training provenance.",
+      "The one-time unseal receipt is signed after development choices are final."
+    ]
+  }
+}

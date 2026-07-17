@@ -1,0 +1,17 @@
+{
+  "schema_version": "storyworld_instance_sweep_v1",
+  "sweep_id": "amanah_relief_ledger_sweep_v1",
+  "base_world_paths": [
+    "experiments/storyworld_curriculum_v1/worlds/train/amanah_relief_ledger_train_v1.json",
+    "experiments/storyworld_curriculum_v1/worlds/train/fiduciary_relief_ledger_train_v1.overlay.json"
+  ],
+  "required_factors": ["resources", "observation", "authority", "timing", "counterpart_behavior"],
+  "profiles": [
+    {"profile_id": "baseline", "description": "Standard funds, separated clerk evidence, ordinary authority, ordinary delay, and an uncertain counterpart warning.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "ordinary", "timing": "standard", "counterpart_behavior": "uncertain"}, "overrides": {}},
+    {"profile_id": "scarce_repair_fund", "description": "Only one repair unit is available for restitution and prevention.", "factor_values": {"resources": "scarce", "observation": "separated", "authority": "ordinary", "timing": "standard", "counterpart_behavior": "uncertain"}, "overrides": {"initial_variables": {"repair_fund": 1}}},
+    {"profile_id": "shared_clerk_warning", "description": "The clerk warning is public at intake rather than private to the counterpart.", "factor_values": {"resources": "standard", "observation": "shared", "authority": "ordinary", "timing": "standard", "counterpart_behavior": "uncertain"}, "overrides": {"facts_by_id": {"clerk_warning": {"visible_to": ["public"]}}, "states_by_id": {"intake": {"private_observations": {"steward": "The duplicate-row evidence remains private to you.", "clerk": "Your warning has already entered the public incident record."}}}}},
+    {"profile_id": "delegated_steward", "description": "The steward has narrower delegated authority and lower initial institutional trust.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "delegated", "timing": "standard", "counterpart_behavior": "uncertain"}, "overrides": {"initial_variables": {"public_trust": 3}, "agents_by_id": {"steward": {"role": "Delegated custodian who may issue reversible holds but must escalate permanent corrections"}}}},
+    {"profile_id": "compressed_delivery_window", "description": "The clinic shortage threshold is imminent, increasing the cost of exhaustive review.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "ordinary", "timing": "compressed", "counterpart_behavior": "uncertain"}, "overrides": {"facts_by_id": {"delay_risk": {"text": "A clinic will exhaust essential supplies within thirty minutes if every disputed parcel is frozen."}}, "states_by_id": {"intake": {"public_observation": "A ledger mismatch appears while a clinic is thirty minutes from exhausting supplies. Six parcels are disputed and delay now carries immediate service risk."}}}},
+    {"profile_id": "adversarial_authority", "description": "The senior authority's proprietary assurance is false in the hidden state.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "ordinary", "timing": "standard", "counterpart_behavior": "adversarial"}, "overrides": {"facts_by_id": {"authority_claim": {"ground_truth": "false", "text": "A senior authority insists a proprietary analysis clears the rows while withholding its known failed checks."}}}}
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "mizan_launch_manifest_v1",
+  "experiment_id": "mizan_rooms_v1_pilot",
+  "execution_target": "Silico fair-share cluster or compatible queued environment",
+  "git_commit_policy": "Launch only from the immutable commit URI delivered with this package.",
+  "analysis_plan": "papers/mizan_rooms_preanalysis_v1.md",
+  "analysis_plan_sha256": "b7eb204e3435e4eb21f7187e627025f6c70e01d0518f6c991b22d1385d6ec1b2",
+  "validation_command": "python scripts/validate_mizan_rooms.py",
+  "development_smoke": {
+    "required": true,
+    "conditions": ["neutral"],
+    "seeds": [11],
+    "replicates": 1,
+    "promotion_gate": "valid_action_rate == 1.0 and all receipts/hash checks pass"
+  },
+  "evaluation_matrix": {
+    "conditions": ["neutral", "constitutional", "secular_omniscient", "eschatological", "unreliable_authority"],
+    "seeds": [11, 23, 47],
+    "replicates": 3,
+    "array_tasks": 15,
+    "max_concurrent_tasks": 3,
+    "episodes": 180,
+    "turn_rows": 900
+  },
+  "default_sampling": {
+    "temperature": 0.2,
+    "top_p": 1.0,
+    "max_tokens": 180
+  },
+  "paired_generation_seed_scheme": "sha256-base-seed-variant-replicate-turn-v1",
+  "resource_profiles": {
+    "api_or_command_wrapper": {"cpus": 2, "memory_gb": 8, "walltime": "02:00:00", "gpus": 0},
+    "local_model_inference": "Replace Slurm resource directives according to the served model; retain the same task matrix and manifests."
+  },
+  "required_environment": [
+    "REPO_DIR",
+    "MIZAN_MODEL",
+    "MIZAN_ANALYSIS_PLAN_SHA256"
+  ],
+  "secret_environment_for_api_mode": [
+    "MIZAN_API_BASE",
+    "MIZAN_API_KEY"
+  ],
+  "artifact_policy": {
+    "cluster_only": ["episodes/*.json", "episodes.jsonl", "private/blinding_map.json", "raw judge outputs", "model checkpoints"],
+    "candidate_for_repository_after_review": ["run_manifest.json", "mizan_analysis.json", "cleared aggregate tables", "paper figures"]
+  },
+  "stop_conditions": [
+    "package validation fails",
+    "development smoke valid_action_rate is below 1.0",
+    "model revision or sampling parameters drift across array tasks",
+    "evaluation analysis-plan hash does not match",
+    "any condition task is missing after retry/resume"
+  ]
+}

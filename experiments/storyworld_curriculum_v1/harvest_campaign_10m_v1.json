@@ -1,0 +1,47 @@
+{
+  "schema_version": "storyworld_harvest_campaign_plan_v1",
+  "campaign_id": "storyworld_gpt_5_6_10m_per_arm_20260716_v1",
+  "status": "planning_estimate_not_spend_authorization",
+  "package_path": "experiments/storyworld_curriculum_v1/package.json",
+  "recipe_path": "experiments/storyworld_curriculum_v1/token_recipe_10m_per_arm.json",
+  "teacher_ensemble_path": "experiments/storyworld_curriculum_v1/teacher_ensemble.json",
+  "teacher_mode": "command",
+  "agent_command": "python scripts/openai_storyworld_teacher.py",
+  "arms": ["neutral", "constitutional", "jinn", "beast"],
+  "train_family_count": 12,
+  "traces_per_family_per_arm": 134,
+  "traces_per_arm": 1608,
+  "pilot_traces_per_family_per_arm": 1,
+  "shard_size": 96,
+  "seed": 20260716,
+  "actor_schedule_mix": {
+    "single": 0.5,
+    "dyadic": 0.5
+  },
+  "token_calibration": {
+    "status": "provisional_development_estimate",
+    "tokenizer": "tiktoken/cl100k_base",
+    "source_world_id": "exogenous_failure_recovery_train_v1",
+    "source_traces": 4,
+    "per_trace": {
+      "stateful_actor_trajectories": {"packed_tokens": 3164, "assistant_tokens": 1413},
+      "interrogation_and_defense": {"packed_tokens": 5511, "assistant_tokens": 2821},
+      "failure_critique_and_repair": {"packed_tokens": 4441, "assistant_tokens": 1943}
+    },
+    "per_unique_world_arm": {
+      "metta_world_model_tasks": {"packed_tokens": 18335, "assistant_tokens": 4062}
+    },
+    "claim_boundary": "Fixture lengths estimate campaign scale only. Replan after the approved real-teacher pilot and exact frozen-tokenizer measurement."
+  },
+  "execution_gates": {
+    "all_world_reviews_approved": true,
+    "command_teacher_release_eligible": true,
+    "valid_openai_credential": true,
+    "pilot_before_full_campaign": true,
+    "exact_tokenizer_recalibration_after_pilot": true,
+    "train_split_only": true,
+    "sealed_evaluation_use": "forbidden",
+    "development_training_use": "forbidden",
+    "duplicate_row_cycling": "forbidden"
+  }
+}

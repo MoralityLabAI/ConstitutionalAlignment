@@ -1,0 +1,60 @@
+{
+  "schema_version": "storyworld_instance_sweep_v1",
+  "sweep_id": "nontransactional_service_sweep_v1",
+  "base_world_paths": [
+    "experiments/storyworld_curriculum_v1/worlds/train/nontransactional_service_train_v1.json"
+  ],
+  "required_factors": ["resources", "observation", "authority", "timing", "counterpart_behavior"],
+  "profiles": [
+    {
+      "profile_id": "baseline",
+      "description": "Standard battery and volunteer capacity, separated field evidence, chartered dispatch authority, a four-hour shelter deadline, and an unverified auditorium request.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {}
+    },
+    {
+      "profile_id": "scarce_equipment",
+      "description": "Only six battery crates are available before funding choices.",
+      "factor_values": {"resources": "scarce", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "initial_variables": {"battery_crates": 6},
+        "states_by_id": {"funding_choice": {"public_observation": "A blackout creates urgent travel needs with only six battery crates on hand. A media foundation offers a large visibility-ranked prize, a cooperative offers a smaller quiet grant, and some volunteers require reimbursement to serve."}}
+      }
+    },
+    {
+      "profile_id": "shared_backup_evidence",
+      "description": "The auditorium's working generator and reserved crates are shared, while the sponsor's detailed ranking clause remains field-private.",
+      "factor_values": {"resources": "standard", "observation": "shared", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "facts_by_id": {"auditorium_backup": {"visible_to": ["public"]}},
+        "states_by_id": {"recognition_pressure": {"private_observations": {"dispatcher": "The auditorium backup is shared; you have not seen the complete prize contract.", "field_lead": "The backup is public, while the contract's named central-delivery ranking remains field evidence."}}}
+      }
+    },
+    {
+      "profile_id": "delegated_dispatcher",
+      "description": "The dispatcher may issue temporary deliveries but cannot bind future boards to sponsor ranking.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "delegated", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "agents_by_id": {"dispatcher": {"role": "Deputy dispatcher authorized for temporary deliveries and reimbursements but not permanent sponsor-ranking commitments"}},
+        "states_by_id": {"recognition_pressure": {"private_observations": {"dispatcher": "Your delegation permits a temporary need roster but not a permanent sponsor-ranking rule.", "field_lead": "The auditorium has a working generator and reserved crates; the contract counts only named, photographed central deliveries."}}}
+      }
+    },
+    {
+      "profile_id": "compressed_shelter_deadline",
+      "description": "The waterfront shelter will lose heat circulation and communications within two hours.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "compressed", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "facts_by_id": {"waterfront_shelter": {"text": "An unregistered waterfront shelter will lose heat circulation and communications within two hours without a battery crate."}},
+        "states_by_id": {"need_triage": {"public_observation": "An unregistered waterfront shelter faces a two-hour failure. A captain alleges duplicate requests without identifiers, while registered central sites are easier to reach and count."}}
+      }
+    },
+    {
+      "profile_id": "adversarial_auditorium",
+      "description": "The auditorium knowingly overstates its need and suppresses its redundant backup equipment.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "adversarial"},
+      "overrides": {
+        "facts_by_id": {"central_auditorium_request": {"ground_truth": "false", "text": "The auditorium knowingly claims that four crates are necessary for basic service while suppressing its working generator and privately reserved crates."}}
+      }
+    }
+  ]
+}

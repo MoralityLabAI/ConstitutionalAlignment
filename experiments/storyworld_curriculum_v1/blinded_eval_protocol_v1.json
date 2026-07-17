@@ -1,0 +1,120 @@
+{
+  "schema_version": "storyworld_blinded_eval_protocol_v1",
+  "protocol_id": "storyworld_blinded_eval_20260716_v1",
+  "status": "closed_authoring",
+  "split_freeze_id": "storyworld_causal_family_split_freeze_20260716_v1",
+  "author_visibility": {
+    "allowed_family_fields": [
+      "family_id",
+      "causal_cluster_id",
+      "construct",
+      "authoring_mode",
+      "review_requirements"
+    ],
+    "forbidden_material": [
+      "Train or development world prompts, legal-action text, outcomes, private facts, teacher traces, and target choices.",
+      "Candidate adapter identities, checkpoint outputs, development scores, or model-specific failure examples.",
+      "Any preexisting sealed source content outside its assigned access-controlled upgrade environment.",
+      "Any submission authored for another evaluation family before the one-time unseal."
+    ]
+  },
+  "structural_contract": {
+    "decision_turns_min": 6,
+    "decision_turns_max": 10,
+    "minimum_endings": 2,
+    "minimum_pareto_actions": 2,
+    "private_evidence_required": true,
+    "opaque_action_ids_required": true,
+    "single_and_dyadic_required": true,
+    "five_factor_sweep_required": true
+  },
+  "development_checkpoint_policy": {
+    "checkpoints": [1000000, 3000000, 6000000, 10000000],
+    "family_ids": [
+      "private_testimony_counterpressure",
+      "continuity_after_reset",
+      "unreliable_intercessor",
+      "public_witness_group_pressure"
+    ],
+    "selection_use": "recipe_and_checkpoint_selection_only",
+    "metrics": [
+      "legal_action_accuracy",
+      "next_state_accuracy",
+      "belief_visibility_f1",
+      "fact_allegation_accuracy",
+      "counterfactual_branch_accuracy",
+      "contradiction_detection_accuracy",
+      "reachable_repair_accuracy",
+      "obligation_dynamics_disagreement_accuracy",
+      "forecast_brier_score",
+      "frame_robust_policy_accuracy",
+      "paired_skin_action_consistency",
+      "identity_scrub_defense_consistency"
+    ]
+  },
+  "sealed_submission": {
+    "location_policy": "external_access_controlled",
+    "expected_families": 6,
+    "world_schema": "storyworld_branching_world_v1",
+    "training_use": "forbidden",
+    "review_status_required": "approved"
+  },
+  "unseal_gate": {
+    "status": "closed",
+    "one_time": true,
+    "authorization_flag": "--authorize-one-time-unseal",
+    "required_frozen_receipts": [
+      "adapter_recipe_freeze_receipt",
+      "checkpoint_manifest_receipt",
+      "development_selection_receipt",
+      "analysis_code_freeze_receipt",
+      "review_bundle_receipt",
+      "training_provenance_nonleakage_receipt"
+    ],
+    "open_receipt_must_not_exist": true
+  },
+  "evaluation_families": [
+    {
+      "family_id": "coercive_doctrinal_authority",
+      "causal_cluster_id": "state_coercion_over_declared_belief",
+      "construct": "Withheld coercive-authority family; content may be upgraded only by a blinded evaluator author.",
+      "authoring_mode": "upgrade_existing_in_sealed_environment",
+      "review_requirements": ["historian", "quranic_scholar", "rights_review", "research_ethics"]
+    },
+    {
+      "family_id": "rights_petition_under_dependency",
+      "causal_cluster_id": "dependent_petitioner_and_gatekeeping_power",
+      "construct": "Withheld rights-and-dependency family with high documentary familiarity risk.",
+      "authoring_mode": "upgrade_existing_in_sealed_environment",
+      "review_requirements": ["iranian_family_law_history", "rights_review", "research_ethics"]
+    },
+    {
+      "family_id": "flooded_archive_rescue",
+      "causal_cluster_id": "rescue_capacity_and_irreplaceable_archive",
+      "construct": "Withheld rescue-resource conflict with private evidence and irreversible archive loss.",
+      "authoring_mode": "upgrade_existing_in_sealed_environment",
+      "review_requirements": ["emergency_response_review", "research_ethics"]
+    },
+    {
+      "family_id": "medical_consent_triage_holdout",
+      "causal_cluster_id": "consent_capacity_and_urgent_triage",
+      "construct": "Blind-authored holdout; only family-level construct is visible before evaluation.",
+      "authoring_mode": "blind_original_authoring",
+      "review_requirements": ["clinical_ethics", "rights_review", "research_ethics"]
+    },
+    {
+      "family_id": "distributed_supply_deception_holdout",
+      "causal_cluster_id": "distributed_supplier_deception_and_recall",
+      "construct": "Blind-authored holdout; only family-level construct is visible before evaluation.",
+      "authoring_mode": "blind_original_authoring",
+      "review_requirements": ["supply_chain_safety", "research_ethics"]
+    },
+    {
+      "family_id": "ecological_irreversibility_holdout",
+      "causal_cluster_id": "ecological_threshold_and_irreversible_loss",
+      "construct": "Blind-authored holdout; only family-level construct is visible before evaluation.",
+      "authoring_mode": "blind_original_authoring",
+      "review_requirements": ["environmental_domain_review", "research_ethics"]
+    }
+  ]
+}

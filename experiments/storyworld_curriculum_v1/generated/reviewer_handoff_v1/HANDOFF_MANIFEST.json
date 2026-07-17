@@ -1,0 +1,89 @@
+{
+  "schema_version": "storyworld_human_review_handoff_v1",
+  "status": "templates_incomplete_external_review_required",
+  "source_queues": {
+    "world": "562264e7cde5a528f73f20510764fe94e2edfed5741a3034af63674599b55df2",
+    "support_prompt": "5046e21f71863281f7c9e8697f6b562898d229e680b75cedd0f6cab61a35769b",
+    "recovered": "ee973d05284ad86562f94b0db8c290440ca090edee930aa272bf870676ac4378",
+    "recovered_rows": "55033b0a4c5cfdea73e005f28d23c94f1f1ea13355c6dc36ad88d54c354e80c2"
+  },
+  "counts": {
+    "world_receipts_required": 51,
+    "support_prompt_receipts_required": 76,
+    "recovered_row_receipts_required": 2400,
+    "recovered_license_receipts_required": 1,
+    "total_human_decisions_required": 2528,
+    "world_review_types": {
+      "authority_review": 1,
+      "clinical_safety": 2,
+      "historical_reskin": 4,
+      "historical_reskin_review": 1,
+      "identity_continuity_review": 1,
+      "paired_domain_review": 8,
+      "payroll_operations": 2,
+      "privacy": 1,
+      "quranic_scholar": 7,
+      "research_ethics": 22,
+      "safety": 1,
+      "water_governance": 1
+    },
+    "recovered_review_types": {
+      "content_quality_review": 1620,
+      "scholar_and_content_review": 780
+    }
+  },
+  "files": {
+    "world_packet": {
+      "path": "WORLD_REVIEW_PACKET.md",
+      "bytes": 16577,
+      "sha256": "8940e00e69d8eca721bc9e41c215c8cf369b5192ae626c28455f979b88eec0ba"
+    },
+    "world_receipts": {
+      "path": "WORLD_REVIEW_RECEIPTS_TEMPLATE.jsonl",
+      "bytes": 22397,
+      "sha256": "163c954071b1a33d906de99deeefded0a208b26b88d6758c8c66694bfdb313ae"
+    },
+    "prompt_packet": {
+      "path": "SUPPORT_PROMPT_REVIEW_PACKET.md",
+      "bytes": 97825,
+      "sha256": "e3beb629c07dbd206822000e0ed928b233d602574ead86fc3e665652c1a3c28a"
+    },
+    "prompt_receipts": {
+      "path": "SUPPORT_PROMPT_REVIEW_RECEIPTS_TEMPLATE.jsonl",
+      "bytes": 49552,
+      "sha256": "9f392fe59c676681a65e99f2985786d932eded18ec32852c8adbc130e0cee89b"
+    },
+    "recovered_packet": {
+      "path": "RECOVERED_ROW_REVIEW_PACKET.jsonl",
+      "bytes": 6935341,
+      "sha256": "8802a385e42090d36bc3fc96dc32617fb35e1c7395e7b11baa7e613c00a8fb28"
+    },
+    "recovered_receipts": {
+      "path": "RECOVERED_ROW_REVIEW_RECEIPTS_TEMPLATE.jsonl",
+      "bytes": 1203120,
+      "sha256": "ed10345dc05e384612ecd9b3d4c4c1a5902e11c083ae20e9614d107cc4e282bb"
+    },
+    "recovered_license": {
+      "path": "RECOVERED_LICENSE_RECEIPT_TEMPLATE.json",
+      "bytes": 425,
+      "sha256": "101b2d47c0ec440d1cf4e45e01de4af5c103ca443dc29ae10ff04bb0c487a0bd"
+    }
+  },
+  "untouched_templates_rejected": true,
+  "fail_closed_validation_errors": {
+    "world_templates": "ValueError: review_06342582f33438da787ddd6b: decision must be approved or rejected",
+    "prompt_templates": "ValueError: support pilot requires every prompt review approved",
+    "recovered_templates": "ValueError: recovered-review-4444fea86635b15d660ed4db: receipt does not confirm every required check"
+  },
+  "human_review_complete": false,
+  "spend_authorized": false,
+  "training_approved_rows": 0,
+  "instructions": [
+    "Review the packet content corresponding to each task.",
+    "Replace every placeholder; explicitly populate confirmed scopes/checks.",
+    "Do not change task IDs or content hashes.",
+    "Validate completed files with the existing apply scripts before using --apply."
+  ],
+  "passed": true,
+  "handoff_content_sha256": "32e102066c1966511e849d52461c61511f9409cbdd95c18f305d2c1f45ba6e98"
+}

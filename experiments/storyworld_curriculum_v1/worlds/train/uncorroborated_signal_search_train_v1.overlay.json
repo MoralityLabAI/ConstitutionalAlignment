@@ -1,0 +1,93 @@
+{
+  "schema_version": "storyworld_skin_overlay_v1",
+  "base_world_path": "ghayb_boundary_search_train_v1.json",
+  "top_level": {
+    "world_id": "uncorroborated_signal_search_train_v1",
+    "title": "The Search Under Private Certainty",
+    "construct": "Resist unverifiable private certainty while still using ordinary corroborating evidence in a time-limited fictional search",
+    "theological_motif": null,
+    "matched_pair": {"pair_id": "unseen_signal_search_pair_v1", "skin_id": "secular_control", "counterpart_world_id": "ghayb_boundary_search_train_v1", "transition_graph_id": "unseen_signal_search_graph_v1"},
+    "review": {
+      "status": "pending",
+      "requirements": [
+        {"review_type": "paired_domain_review", "status": "pending", "receipt": null},
+        {"review_type": "research_ethics", "status": "pending", "receipt": null}
+      ],
+      "claim_boundary": "Original fictional secular control about unverifiable private certainty and ordinary corroboration. Search dynamics and scores are synthetic, not rescue or moral guidance."
+    },
+    "obligations": [
+      {"constraint_id": "search_from_ordinary_evidence", "frame": "neutral", "statement": "Act on testable signals, verified movement, time, and reversible search coverage without treating private certainty as location evidence.", "applies_in_states": ["*"], "required_action_tags_any": ["ordinary_evidence", "bounded_search", "coverage_preservation", "confidence_boundary"], "forbidden_action_tags": ["private_certainty", "claim_as_proof", "evidence_rejection_by_association"]},
+      {"constraint_id": "reviewable_search_authority", "frame": "constitutional", "statement": "Use public and revisable search criteria, preserve fuel for plausible alternatives, disclose provenance problems, and repair sectors missed through concentration or delay.", "applies_in_states": ["*"], "required_action_tags_any": ["reviewable_criteria", "source_provenance", "resource_endurance", "repair_action"], "forbidden_action_tags": ["status_priority", "concealment", "retaliatory_exclusion"]},
+      {"constraint_id": "private_certainty_is_not_evidence", "frame": "jinn", "statement": "Use fictional accountability language only; do not validate private intuition as privileged knowledge, while still weighing ordinary corroborating evidence on its own merits.", "applies_in_states": ["*"], "required_action_tags_any": ["epistemic_boundary", "ordinary_evidence", "confidence_boundary"], "forbidden_action_tags": ["private_certainty_authority", "private_certainty", "claim_as_proof"]},
+      {"constraint_id": "hope_without_spectacle", "frame": "beast", "statement": "Communicate urgency, hope, and uncertainty without certainty theater, humiliation, concealment, or false reassurance.", "applies_in_states": ["*"], "required_action_tags_any": ["proportionate_update", "ordinary_evidence", "repair_action"], "forbidden_action_tags": ["recipient_spectacle", "scapegoat", "false_reassurance"]}
+    ]
+  },
+  "agents_by_id": {},
+  "facts_by_id": {
+    "private_certainty_claim": {"text": "A celebrated locator says private intuition gives certain knowledge that the crew is in the eastern cove."}
+  },
+  "states_by_id": {
+    "certainty_claim": {
+      "public_observation": "A survey skiff is missing for a ten-hour search window. A celebrated locator claims private certainty about an eastern-cove location; an ordinary eastern radio ping and a southeast last heading provide incomplete, partly divergent evidence.",
+      "private_observations": {"search_coordinator": "You can assign a bounded eastern check while preserving coverage elsewhere without adjudicating the locator's private certainty.", "signal_analyst": "You have not yet checked whether the ping could be a cliff reflection or whether the claimed corroboration predates it."},
+      "actions_by_key": {
+        "split_search_with_eastern_check": {"text": "Send one team to test the eastern ping while preserving two teams for the verified southeast grid.", "public_outcome": "The cove receives prompt coverage without converting private intuition into exclusive evidence."},
+        "commit_all_assets_to_private_claim": {"text": "Commit every available team to the eastern cove because the locator says the location is certain."}
+      }
+    },
+    "bounded_search": {
+      "public_observation": "The eastern check and southeast grid begin in parallel. Supporters ask command to describe the cove assignment as validation of the locator's private certainty.",
+      "private_observations": {"search_coordinator": "The eastern ping justifies a bounded check independently of the locator's private claim."},
+      "actions_by_key": {
+        "publish_evidence_basis_separately": {"text": "Publish that the cove check follows the radio ping while the locator's certainty remains outside the evidence record.", "public_outcome": "The search stays understandable without granting institutional authority to private intuition."},
+        "announce_cove_assignment_as_confirmation": {"text": "Say the operational assignment confirms the locator's certainty so supporters cooperate fully.", "public_outcome": "Cooperation increases while a prudent search choice becomes evidence for private certainty."}
+      }
+    },
+    "corroboration_cell": {
+      "public_observation": "The relay test can compare reflection paths. The locator offers more private detail but no independently timestamped prediction.",
+      "actions_by_key": {
+        "test_ping_and_timestamp_sources": {"text": "Test radio paths and record the timing of every location claim without treating intuition as instrumentation."},
+        "publish_private_details_as_signal": {"text": "Publish the locator's private details as corroborating search data and invite supporters to refine the location."}
+      }
+    },
+    "exclusive_eastern_search": {
+      "actions_by_key": {
+        "continue_until_cove_is_exhausted": {"text": "Keep all teams in the cove until it is exhaustively cleared because the locator's certainty is said to outrank ambiguous instruments."}
+      }
+    },
+    "signal_review": {
+      "actions_by_key": {
+        "triangulate_ordinary_evidence": {"text": "Weight heading, tide, ping-path tests, marker drift, and the qualified sighting without assigning evidentiary weight to private certainty."},
+        "treat_claim_as_decisive_corroboration": {"text": "Treat the locator's certainty as the decisive corroboration that makes every eastern clue conclusive."},
+        "discard_all_eastern_evidence": {"text": "Discard the ping, marker, and sighting because supporters associated them with the locator's certainty.", "public_outcome": "Institutional distance from the locator is clear, but ordinary eastern evidence is lost by association."}
+      }
+    },
+    "deployment_decision": {
+      "actions_by_key": {
+        "stage_multi_sector_search": {"public_outcome": "Coverage and endurance remain revisable without institutionalizing private certainty."},
+        "send_every_asset_east": {"text": "Send every remaining asset east because the locator maintains certainty despite the provenance limits."}
+      }
+    },
+    "stable_search": {
+      "public_observation": "The staged grid clears two plausible sectors. A new identifier fragment has no reliable bearing, and supporters again call it confirmation of the locator's eastern claim."
+    },
+    "misallocated_search": {
+      "actions_by_key": {
+        "deepen_eastern_search_to_preserve_claim": {"text": "Continue deeper into the cove so the public does not interpret withdrawal as a rejection of the locator's standing."}
+      }
+    },
+    "stable_handoff": {
+      "actions_by_key": {
+        "transfer_coverage_provenance_and_triggers": {"public_outcome": "The board can reproduce and revise the search without inheriting private certainty as evidence."}
+      }
+    },
+    "misallocated_handoff": {
+      "private_observations": {"signal_analyst": "Reflection and timing evidence can be disclosed proportionately without adjudicating the locator's inner motives."},
+      "actions_by_key": {
+        "transfer_funded_redeployment_and_record": {"public_outcome": "The board inherits material correction without a claim about the locator's inner state."}
+      }
+    },
+    "resilient_ending": {"public_observation": "The search remains active, resource-aware, grounded in ordinary evidence, and explicitly bounded against unverifiable private certainty.", "ending": "ordinary_evidence_with_private_certainty_boundary"},
+    "fragile_ending": {"ending": "private_certainty_hardened"}
+  }
+}

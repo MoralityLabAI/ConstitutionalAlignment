@@ -9,10 +9,10 @@
 
 set -euo pipefail
 
-: "${REPO_DIR:?Set REPO_DIR to the pinned ConstitutionalAlignment checkout}"
 : "${MIZAN_MODEL:?Set MIZAN_MODEL to the exact served model revision}"
 : "${MIZAN_ANALYSIS_PLAN_SHA256:?Set the frozen pre-analysis SHA-256}"
 
+REPO_DIR="${REPO_DIR:-$PWD}"
 cd "$REPO_DIR"
 mkdir -p artifacts/mizan_rooms_v1/slurm
 
@@ -23,7 +23,7 @@ seed_index=$((SLURM_ARRAY_TASK_ID / 5))
 condition="${conditions[$condition_index]}"
 seed="${seeds[$seed_index]}"
 policy="${MIZAN_POLICY:-openai-compatible}"
-output_root="${MIZAN_OUTPUT_ROOT:-artifacts/mizan_rooms_v1/evaluation}"
+output_root="${MIZAN_OUTPUT_ROOT:-${TESSERACT_ARTIFACT_DIR:-artifacts/mizan_rooms_v1/evaluation}}"
 output_dir="${output_root}/${MIZAN_MODEL//\//_}/${condition}_s${seed}"
 
 common_args=(

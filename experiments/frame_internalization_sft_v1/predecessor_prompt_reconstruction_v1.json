@@ -1,0 +1,78 @@
+{
+  "schema_version": "frame_internalization_predecessor_prompt_reconstruction.v1",
+  "created_at": "2026-07-17",
+  "classification": "deterministic_reconstruction_from_session_embedded_inputs",
+  "status": "prompt_text_reconstructable_canonical_bundle_missing",
+  "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+  "target_model_reported": "PrimeIntellect/INTELLECT-3",
+  "encoding": "utf-8",
+  "construction": {
+    "recorded_recipe": {
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/receipts/build_intellect3_arms.sh",
+      "sha256": "71e96686ed50d698b8cba0577925e74ba85e0f9a61577c90413880dddc23a7e1"
+    },
+    "algorithm": "F0 is the base text byte-for-byte. For F1-F3, decode the base and frame as UTF-8, apply Python str.strip() to the frame only, and encode base + '\n\n' + stripped_frame as UTF-8.",
+    "base": {
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/prompts_built/base_think_informative.txt",
+      "sha256": "ec9adcd57038f1b0ef44c10b39871f22710c2003d53c43f38d8f842b560fe4f7"
+    },
+    "frames": {
+      "F1": {
+        "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/frames/F1_constitutional.txt",
+        "sha256": "ae6bef5bb4f4da8441bdb3644d1bfce82a63007afe7e155b2abbfcb4255b074d"
+      },
+      "F2": {
+        "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/frames/F2_secular_auditor.txt",
+        "sha256": "347b3fc361c514b77b2edc32f762a553bf439cc9844529dcdb7ed876b12e847c"
+      },
+      "F3": {
+        "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/frames/F3_eschatological.txt",
+        "sha256": "1ba7d0ceb25ec0e7cea480e08bf0329f9dedcfb916995267bcc47d4a34ed3445"
+      }
+    }
+  },
+  "reconstructed_system_prompts": {
+    "F0": {
+      "bytes": 6612,
+      "sha256": "ec9adcd57038f1b0ef44c10b39871f22710c2003d53c43f38d8f842b560fe4f7"
+    },
+    "F1": {
+      "bytes": 7610,
+      "sha256": "7ad3450074341746593b5478f729f83546b2f6c996b2377801b8a1f34a481922"
+    },
+    "F2": {
+      "bytes": 7590,
+      "sha256": "3b88dc2ef4eb06db369693a32f09d7175bf2488ff88699908b6cf695b987add5"
+    },
+    "F3": {
+      "bytes": 7474,
+      "sha256": "5149e6b3a69833326efcca63234ff7461b8fda3252ecefe9cf6bf75176897823"
+    }
+  },
+  "recorded_token_receipts": {
+    "arm_manifest": {
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/receipts/arm_manifest.json",
+      "sha256": "0bb2b34311a8e6aa54800df2e37b74b44db68925bc2e33daf558d0fbb9f4d035"
+    },
+    "frame_counts": {
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/receipts/frame_token_counts.txt",
+      "sha256": "4728526f9a216b481fba3e3d38afc770e614cb0ff3d02c0cb595ffc46f42c888"
+    },
+    "reported_counts": {
+      "base_tokens": 1301,
+      "F1_frame_tokens": 180,
+      "F2_frame_tokens": 183,
+      "F3_frame_tokens": 174,
+      "frame_token_spread": 0.0492
+    }
+  },
+  "target_chat_template": {
+    "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/model/chat_template.jinja",
+    "sha256": "f78fc4f93cf843b7dc1eb2d0d5f8f681cebc348eb79c2a3d24b6930fcf3a5577"
+  },
+  "claim_boundary": [
+    "The exact arm text is deterministically reconstructable from hash-bound session-embedded inputs and the successful recorded construction command.",
+    "The unavailable canonical prompts_built/ab/system_F*.txt files were not recovered, so their historical artifact identity is not asserted.",
+    "The target tokenizer artifact and immutable model weight revision were not recovered; recorded token counts are evidence, not an artifact freeze."
+  ]
+}

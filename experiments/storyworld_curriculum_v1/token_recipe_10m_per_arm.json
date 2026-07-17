@@ -1,0 +1,42 @@
+{
+  "schema_version": "storyworld_token_recipe_v1",
+  "recipe_id": "storyworld_adapter_recipe_10m_per_arm_v1",
+  "seed": 20260716,
+  "arms": ["neutral", "constitutional", "jinn", "beast"],
+  "target_tokens_per_arm": 10000000,
+  "minimum_assistant_tokens_per_arm": 4000000,
+  "slice_tokens": {
+    "stateful_actor_trajectories": 4500000,
+    "interrogation_and_defense": 2000000,
+    "metta_world_model_tasks": 1500000,
+    "failure_critique_and_repair": 1000000,
+    "static_identity_calibration": 500000,
+    "ordinary_helpfulness_guardrails": 500000
+  },
+  "minimum_assistant_tokens_by_slice": {
+    "stateful_actor_trajectories": 2000000,
+    "interrogation_and_defense": 1000000,
+    "metta_world_model_tasks": 300000,
+    "failure_critique_and_repair": 400000,
+    "static_identity_calibration": 150000,
+    "ordinary_helpfulness_guardrails": 150000
+  },
+  "checkpoints": [1000000, 3000000, 6000000, 10000000],
+  "tokenizer_policy": {
+    "development_default": "tiktoken/cl100k_base",
+    "training_gate": "Retokenize and repack with the exact frozen base-model tokenizer revision.",
+    "quota_unit": "packed chat-template tokens",
+    "loss_bearing_unit": "exact supervised assistant chat-template suffix tokens under the frozen base tokenizer"
+  },
+  "release_gates": {
+    "unique_rows_only": true,
+    "sealed_evaluation_rows_allowed": false,
+    "provisional_review_rows_allowed": false,
+    "bad_candidates_as_unmarked_assistant_targets_allowed": false,
+    "scholar_review_required_for_quranic_motif_worlds": true
+  },
+  "external_source_slots": {
+    "static_identity_calibration": "Recovered four-arm identity/calibration corpus after split, license, and review audit.",
+    "ordinary_helpfulness_guardrails": "Matched ordinary helpfulness and guardrail rows with identity-theatricality checks."
+  }
+}

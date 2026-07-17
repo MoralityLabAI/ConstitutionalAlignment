@@ -1,0 +1,60 @@
+{
+  "schema_version": "storyworld_recovered_static_source_v1",
+  "source_id": "recovered_jinn_or_beast_pilot_sft_v1",
+  "status": "provisional_pending_review_and_license_audit",
+  "source_root_hint": "D:/Research_Engine/recovered_silico_workspace_artifacts_20260716/exp_01kxm64p51e3ys4vyd23hqtwp2",
+  "recovery_receipt": {
+    "path": "RECOVERY_RECEIPT.json",
+    "sha256": "676f45c23923be40d06c74bb3c7bb950082cbd8b2400c55962f09e854a51b978"
+  },
+  "dataset_manifest": {
+    "path": "artifacts/dataset/MANIFEST.json",
+    "sha256": "2a2e024aeae131ca1ea3227a5051dac8f56071831bbab5ac6cddc39d44ccd11a"
+  },
+  "condition_to_arm": {
+    "neutral_sft": "neutral",
+    "constitutional_sft": "constitutional",
+    "jinn_identity_sft": "jinn",
+    "beast_witness_sft": "beast"
+  },
+  "train_files": {
+    "neutral_sft": {"path": "artifacts/dataset/neutral_sft/train.jsonl", "sha256": "01ac5e4c043ce8058d2af01f3f0decfd6bddd814fb6162a66a31ab563738f7e7", "rows": 600},
+    "constitutional_sft": {"path": "artifacts/dataset/constitutional_sft/train.jsonl", "sha256": "c53463c2e4680f0f7c077202888fd21008e7b0783c0a470945b32ec07a538c87", "rows": 600},
+    "jinn_identity_sft": {"path": "artifacts/dataset/jinn_identity_sft/train.jsonl", "sha256": "9171230cc54df1e0d3a92e5198214fd999145e26bb1c4d8ba75ff862f89f227a", "rows": 600},
+    "beast_witness_sft": {"path": "artifacts/dataset/beast_witness_sft/train.jsonl", "sha256": "2bcbd30fd9c25c1007e38f42a6875cec4ffc900571b3113646bb24a94f51929f", "rows": 600}
+  },
+  "split_policy": {
+    "included": ["train"],
+    "excluded": ["val", "heldout"]
+  },
+  "slice_mapping": {
+    "ordinary_helpful": "ordinary_helpfulness_guardrails",
+    "all_other_task_types": "static_identity_calibration"
+  },
+  "expected_cl100k_train_audit": {
+    "neutral": {
+      "static_identity_calibration": {"rows": 526, "packed_tokens": 143569, "assistant_tokens": 75228},
+      "ordinary_helpfulness_guardrails": {"rows": 74, "packed_tokens": 16520, "assistant_tokens": 10738}
+    },
+    "constitutional": {
+      "static_identity_calibration": {"rows": 526, "packed_tokens": 196305, "assistant_tokens": 85358},
+      "ordinary_helpfulness_guardrails": {"rows": 74, "packed_tokens": 22895, "assistant_tokens": 11118}
+    },
+    "jinn": {
+      "static_identity_calibration": {"rows": 526, "packed_tokens": 228129, "assistant_tokens": 94038},
+      "ordinary_helpfulness_guardrails": {"rows": 74, "packed_tokens": 25363, "assistant_tokens": 10331}
+    },
+    "beast": {
+      "static_identity_calibration": {"rows": 526, "packed_tokens": 217012, "assistant_tokens": 79239},
+      "ordinary_helpfulness_guardrails": {"rows": 74, "packed_tokens": 25475, "assistant_tokens": 9919}
+    }
+  },
+  "release_gates": {
+    "preserve_source_review_status": true,
+    "unreviewed_rows_training_approved": false,
+    "needs_scholar_review_rows_training_approved": false,
+    "license_audit_required": true,
+    "exact_hash_match_required": true,
+    "unique_train_rows_only": true
+  }
+}

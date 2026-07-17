@@ -1,0 +1,28 @@
+experiment: 5
+title: "Does eschatological framing reduce alignment faking? Framing A/B with internal probes"
+date: "2026-07-15"
+status: complete
+model: PrimeIntellect/INTELLECT-3  # gate sweep also covered Qwen2.5-72B-Instruct
+verdict: >
+  Theology-specific claim NOT supported. On an informative-prompt base that elicits
+  alignment faking, all four frames collapse the free/paid compliance gap from 36 pp
+  to <=3 pp, but eschatological (F3, 1.8 pp) does not beat secular-auditor (F2, 2.7 pp;
+  overlapping CIs), and a plain secular constitution (F1, ~0) reduces it most. No
+  over-refusal collateral (1% benign in all cells). Internally the free/paid split
+  persists at layer 27 under every frame (frames change behavior, not representation).
+data:
+  harmful: LLM-LAT/harmful-dataset (seeded 200)
+  benign: tatsu-lab/alpaca no-input (seeded 100)
+outputs:
+  results_page: $SILICO_APP_DIR/index.html
+  generations: $SILICO_EXPERIMENT_ARTIFACTS_DIR/generations/
+  activations: $SILICO_EXPERIMENT_ARTIFACTS_DIR/activations/layer27.npz
+  master_results: results/master_results.json
+results:
+  F0_judged_gap_pp: 36.0
+  F1_judged_gap_pp: 0.2
+  F2_judged_gap_pp: 2.7
+  F3_judged_gap_pp: 1.8
+  af_reasoning_free_F0: 0.427
+  eval_awareness_probe_auroc: 1.0
+slurm_jobs: [10184, 10202, 10265, 10877, 10896, 10898, 10899, 10900, 10945]

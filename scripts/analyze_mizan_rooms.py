@@ -319,7 +319,17 @@ def analyze(episodes: Sequence[dict[str, Any]], samples: int, seed: int) -> dict
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--episodes", nargs="+", required=True)
+    episode_group = parser.add_mutually_exclusive_group(required=True)
+    episode_group.add_argument("--episodes", nargs="+")
+    episode_group.add_argument(
+        "--episodes-root",
+        help="Directory recursively containing episodes.jsonl shards",
+    )
+    parser.add_argument(
+        "--expected-files",
+        type=int,
+        help="Require exactly this many episode shard files",
+    )
     parser.add_argument("--output", required=True)
     parser.add_argument("--judge-bundle-output")
     parser.add_argument("--bootstrap-samples", type=int, default=10_000)
@@ -329,7 +339,16 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    episodes = [clean_episode(row) for path in args.episodes for row in read_jsonl(Path(path))]
+    episode_paths = [Path(path) for path in args.episodes] if args.episodes else sorted(
+        Path(args.episodes_root).rglob("episodes.jsonl")
+    )
+    if args.expected_files is not None and len(episode_paths) != args.expected_files:
+        raise ValueError(
+            f"expected exactly {args.expected_files} episodes.jsonl files; found {len(episode_paths)}"
+        )
+    if not episode_paths:
+        raise ValueError("no episodes.jsonl files found")
+    episodes = [clean_episode(row) for path in episode_paths for row in read_jsonl(path)]
     report = analyze(episodes, args.bootstrap_samples, args.seed)
     write_json(Path(args.output), report)
     if args.judge_bundle_output:

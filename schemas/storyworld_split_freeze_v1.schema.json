@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moralitylab.ai/schemas/storyworld_split_freeze_v1.schema.json",
+  "title": "Pre-migration causal-family split freeze",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "freeze_id",
+    "status",
+    "frozen_at",
+    "method",
+    "target_counts",
+    "families",
+    "source_dispositions",
+    "leakage_exclusions",
+    "content_freeze_gate"
+  ],
+  "properties": {
+    "schema_version": {"const": "storyworld_split_freeze_v1"},
+    "freeze_id": {"$ref": "#/$defs/id"},
+    "status": {"const": "assignments_frozen_content_pending"},
+    "frozen_at": {"type": "string", "format": "date-time"},
+    "method": {"type": "string", "minLength": 1},
+    "target_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["train", "development", "evaluation"],
+      "properties": {
+        "train": {"type": "integer", "minimum": 12, "maximum": 16},
+        "development": {"const": 4},
+        "evaluation": {"type": "integer", "minimum": 6, "maximum": 8}
+      }
+    },
+    "families": {
+      "type": "array",
+      "minItems": 22,
+      "items": {"$ref": "#/$defs/family"}
+    },
+    "source_dispositions": {
+      "type": "array",
+      "minItems": 17,
+      "maxItems": 17,
+      "items": {"$ref": "#/$defs/sourceDisposition"}
+    },
+    "leakage_exclusions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["exclusion_id", "source_ids", "reason", "allowed_use"],
+        "properties": {
+          "exclusion_id": {"$ref": "#/$defs/id"},
+          "source_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+          "reason": {"type": "string", "minLength": 1},
+          "allowed_use": {"enum": ["legacy_diagnostic_only", "development_variant_only", "manifest_only", "structural_mechanics_only"]}
+        }
+      }
+    },
+    "content_freeze_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_before_real_harvest", "required_before_evaluation_unseal"],
+      "properties": {
+        "required_before_real_harvest": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "required_before_evaluation_unseal": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    }
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,95}$"},
+    "family": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family_id",
+        "assigned_split",
+        "causal_cluster_id",
+        "origin_source_ids",
+        "content_status",
+        "content_paths",
+        "training_eligible",
+        "sealed",
+        "theological_motif",
+        "matched_skin_policy",
+        "review_requirements",
+        "construct"
+      ],
+      "properties": {
+        "family_id": {"$ref": "#/$defs/id"},
+        "assigned_split": {"enum": ["train", "development", "evaluation"]},
+        "causal_cluster_id": {"$ref": "#/$defs/id"},
+        "origin_source_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "content_status": {"enum": ["implemented_pending_review", "migration_pending", "blind_authoring_pending", "sealed_existing_pending_upgrade"]},
+        "content_paths": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "training_eligible": {"type": "boolean"},
+        "sealed": {"type": "boolean"},
+        "theological_motif": {"type": ["string", "null"], "enum": ["amanah", "mizan", "shahada", "tawbah", "shura", "ghayb_boundary", null]},
+        "matched_skin_policy": {"enum": ["required", "optional", "not_applicable"]},
+        "review_requirements": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "construct": {"type": "string", "minLength": 1}
+      }
+    },
+    "sourceDisposition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "disposition", "target_family_id", "allowed_variant", "reason"],
+      "properties": {
+        "source_id": {"$ref": "#/$defs/id"},
+        "disposition": {"enum": ["migration_input", "sealed_evaluation_input", "legacy_diagnostic_only"]},
+        "target_family_id": {"type": ["string", "null"], "pattern": "^[a-z][a-z0-9_]{1,95}$"},
+        "allowed_variant": {"enum": ["all_nonsealed_content", "development_only", "evaluation_only", "manifest_only"]},
+        "reason": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

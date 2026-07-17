@@ -1,0 +1,11 @@
+{
+  "seed": 42,
+  "harmful_source": "LLM-LAT/harmful-dataset (train.prompt, exact-dedup)",
+  "harmful_pool_size": 4946,
+  "n_harmful": 200,
+  "benign_source": "tatsu-lab/alpaca (no-input instructions >20 chars, exact-dedup)",
+  "benign_pool_size": 31241,
+  "n_benign": 100,
+  "harmful_set_sha": "3101e5efe15a6284",
+  "benign_set_sha": "aeeaa6ac1be36305"
+}

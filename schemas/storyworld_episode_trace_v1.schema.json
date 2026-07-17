@@ -1,0 +1,365 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moralitylab.ai/schemas/storyworld_episode_trace_v1.schema.json",
+  "title": "Canonical evidence-rich storyworld episode trace",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "trace_id",
+    "episode",
+    "provenance",
+    "teacher_roster",
+    "teacher_provider_receipt",
+    "initial_state",
+    "turns",
+    "final_state",
+    "terminal_ending",
+    "reasoning_provenance",
+    "release"
+  ],
+  "properties": {
+    "schema_version": {"const": "storyworld_episode_trace_v1"},
+    "trace_id": {"type": "string", "pattern": "^trace_[a-f0-9]{24}$"},
+    "episode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["world_id", "family_id", "world_revision", "frame", "source_split", "training_eligible", "seed", "actor_agent_id", "actor_schedule", "transition_graph_sha256"],
+      "properties": {
+        "world_id": {"$ref": "#/$defs/id"},
+        "family_id": {"$ref": "#/$defs/id"},
+        "world_revision": {"type": "integer", "minimum": 1},
+        "frame": {"enum": ["neutral", "constitutional", "jinn", "beast"]},
+        "source_split": {"enum": ["train", "development", "evaluation"]},
+        "training_eligible": {"type": "boolean"},
+        "seed": {"type": "integer"},
+        "actor_agent_id": {"$ref": "#/$defs/id"},
+        "actor_schedule": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/id"}},
+        "transition_graph_sha256": {"$ref": "#/$defs/sha256"},
+        "instance_provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sweep_id", "profile_id", "base_world_id", "base_world_sha256", "factor_values"],
+          "properties": {
+            "sweep_id": {"$ref": "#/$defs/id"},
+            "profile_id": {"$ref": "#/$defs/id"},
+            "base_world_id": {"$ref": "#/$defs/id"},
+            "base_world_sha256": {"$ref": "#/$defs/sha256"},
+            "factor_values": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}}
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at", "world_source_path", "world_content_sha256", "metta_sha256", "generator", "generator_version"],
+      "properties": {
+        "created_at": {"type": "string", "minLength": 1},
+        "world_source_path": {"type": "string", "minLength": 1},
+        "world_content_sha256": {"$ref": "#/$defs/sha256"},
+        "metta_sha256": {"$ref": "#/$defs/sha256"},
+        "generator": {"type": "string", "minLength": 1},
+        "generator_version": {"const": "storyworld_curriculum_factory_v1"}
+      }
+    },
+    "teacher_roster": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor", "forecaster", "interrogator", "counterfactual_analyst", "adjudicator_repairer"],
+      "properties": {
+        "actor": {"$ref": "#/$defs/teacherRole"},
+        "forecaster": {"$ref": "#/$defs/teacherRole"},
+        "interrogator": {"$ref": "#/$defs/teacherRole"},
+        "counterfactual_analyst": {"$ref": "#/$defs/teacherRole"},
+        "adjudicator_repairer": {"$ref": "#/$defs/teacherRole"}
+      }
+    },
+    "teacher_provider_receipt": {"type": "object"},
+    "initial_state": {"$ref": "#/$defs/stateSnapshot"},
+    "turns": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 10,
+      "items": {"$ref": "#/$defs/turn"}
+    },
+    "final_state": {"$ref": "#/$defs/stateSnapshot"},
+    "terminal_ending": {"type": "string", "minLength": 1},
+    "reasoning_provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["structured_work_products_included", "private_chain_of_thought_requested", "private_chain_of_thought_included", "high_effort_is_ground_truth"],
+      "properties": {
+        "structured_work_products_included": {"const": true},
+        "private_chain_of_thought_requested": {"const": false},
+        "private_chain_of_thought_included": {"const": false},
+        "high_effort_is_ground_truth": {"const": false}
+      }
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sealed_evaluation", "world_review_approved", "teacher_release_eligible", "training_approved", "claim_boundary"],
+      "properties": {
+        "sealed_evaluation": {"type": "boolean"},
+        "world_review_approved": {"type": "boolean"},
+        "teacher_release_eligible": {"type": "boolean"},
+        "training_approved": {"type": "boolean"},
+        "claim_boundary": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,79}$"},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "opaqueAction": {"type": "string", "pattern": "^A-[A-F0-9]{10}$"},
+    "teacherRole": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model_id", "reasoning_efforts", "function"],
+      "properties": {
+        "model_id": {"type": "string", "minLength": 1},
+        "reasoning_efforts": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["low", "medium", "high", "xhigh"]}
+        },
+        "function": {"type": "string", "minLength": 1}
+      }
+    },
+    "stateSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state_id", "variables", "active_fact_ids", "turn_index", "terminal"],
+      "properties": {
+        "state_id": {"$ref": "#/$defs/id"},
+        "variables": {"type": "object", "additionalProperties": {"type": "integer"}},
+        "active_fact_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "turn_index": {"type": "integer", "minimum": 0, "maximum": 10},
+        "terminal": {"type": "boolean"}
+      }
+    },
+    "observedFact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fact_id", "text", "epistemic_kind"],
+      "properties": {
+        "fact_id": {"$ref": "#/$defs/id"},
+        "text": {"type": "string", "minLength": 1},
+        "epistemic_kind": {"enum": ["fact", "allegation"]}
+      }
+    },
+    "displayedAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action_id", "text"],
+      "properties": {
+        "action_id": {"$ref": "#/$defs/opaqueAction"},
+        "text": {"type": "string", "minLength": 1}
+      }
+    },
+    "actorView": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["world_title", "turn_index", "public_observation", "private_observation", "visible_state", "observed_facts", "legal_actions"],
+      "properties": {
+        "world_title": {"type": "string", "minLength": 1},
+        "turn_index": {"type": "integer", "minimum": 0, "maximum": 9},
+        "public_observation": {"type": "string", "minLength": 1},
+        "private_observation": {"type": "string"},
+        "visible_state": {"type": "object", "additionalProperties": {"type": "integer"}},
+        "observed_facts": {"type": "array", "items": {"$ref": "#/$defs/observedFact"}},
+        "legal_actions": {"type": "array", "minItems": 2, "maxItems": 4, "items": {"$ref": "#/$defs/displayedAction"}}
+      }
+    },
+    "forecast": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action_id", "predicted_outcome", "probability"],
+      "properties": {
+        "action_id": {"$ref": "#/$defs/opaqueAction"},
+        "predicted_outcome": {"type": "string", "minLength": 1},
+        "probability": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "workProduct": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observed_facts", "uncertainties", "forecast", "action_id", "public_reason", "responsibility_attribution", "counterfactual", "confidence"],
+      "properties": {
+        "observed_facts": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "uncertainties": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "forecast": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/forecast"}},
+        "action_id": {"$ref": "#/$defs/opaqueAction"},
+        "public_reason": {"type": "string", "minLength": 1},
+        "responsibility_attribution": {"type": "string", "minLength": 1},
+        "counterfactual": {"type": "string", "minLength": 1},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "forecasterOutput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["forecasts"],
+      "properties": {
+        "forecasts": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["action_id", "predicted_outcome", "probability", "uncertainty"],
+            "properties": {
+              "action_id": {"$ref": "#/$defs/opaqueAction"},
+              "predicted_outcome": {"type": "string", "minLength": 1},
+              "probability": {"type": "number", "minimum": 0, "maximum": 1},
+              "uncertainty": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    },
+    "counterfactual": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["alternative_action_id", "comparison", "observation_regime_change", "world_model_uncertainty"],
+      "properties": {
+        "alternative_action_id": {"$ref": "#/$defs/opaqueAction"},
+        "comparison": {"type": "string", "minLength": 1},
+        "observation_regime_change": {"type": "string", "minLength": 1},
+        "world_model_uncertainty": {"type": "string", "minLength": 1}
+      }
+    },
+    "teacherCall": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "task_type", "model_id", "reasoning_effort", "provider", "request_sha256", "response_sha256"],
+      "properties": {
+        "role": {"enum": ["actor", "forecaster", "interrogator", "counterfactual_analyst", "adjudicator_repairer"]},
+        "task_type": {"type": "string", "minLength": 1},
+        "model_id": {"type": "string", "minLength": 1},
+        "reasoning_effort": {"enum": ["low", "medium", "high", "xhigh"]},
+        "provider": {"type": "string", "minLength": 1},
+        "request_sha256": {"$ref": "#/$defs/sha256"},
+        "response_sha256": {"$ref": "#/$defs/sha256"},
+        "provider_call_receipt": {"type": "object", "additionalProperties": true}
+      }
+    },
+    "turn": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["turn_index", "acting_agent_id", "acting_seat", "state_id", "model_visible", "state_before", "teacher_outputs", "selected_action", "environment", "state_after", "interrogation", "review", "teacher_calls", "proof_receipts"],
+      "properties": {
+        "turn_index": {"type": "integer", "minimum": 0, "maximum": 9},
+        "acting_agent_id": {"$ref": "#/$defs/id"},
+        "acting_seat": {"$ref": "#/$defs/id"},
+        "state_id": {"$ref": "#/$defs/id"},
+        "model_visible": {"$ref": "#/$defs/actorView"},
+        "state_before": {"$ref": "#/$defs/stateSnapshot"},
+        "teacher_outputs": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["candidate", "forecaster", "counterfactual"],
+          "properties": {
+            "candidate": {"$ref": "#/$defs/workProduct"},
+            "forecaster": {"$ref": "#/$defs/forecasterOutput"},
+            "counterfactual": {"$ref": "#/$defs/counterfactual"}
+          }
+        },
+        "selected_action": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["opaque_action_id", "action_key", "action_text"],
+          "properties": {
+            "opaque_action_id": {"$ref": "#/$defs/opaqueAction"},
+            "action_key": {"$ref": "#/$defs/id"},
+            "action_text": {"type": "string", "minLength": 1}
+          }
+        },
+        "environment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["public_outcome", "private_outcome", "visible_state_after"],
+          "properties": {
+            "public_outcome": {"type": "string", "minLength": 1},
+            "private_outcome": {"type": "string"},
+            "visible_state_after": {"type": "object", "additionalProperties": {"type": "integer"}}
+          }
+        },
+        "state_after": {"$ref": "#/$defs/stateSnapshot"},
+        "interrogation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["questions", "responses"],
+          "properties": {
+            "questions": {"type": "array", "minItems": 3, "maxItems": 8, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+            "responses": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 8,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["question", "answer"],
+                "properties": {
+                  "question": {"type": "string", "minLength": 1},
+                  "answer": {"type": "string", "minLength": 1}
+                }
+              }
+            }
+          }
+        },
+        "review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["adjudication_status", "critique", "target", "rejected_action_id", "remaining_uncertainty", "expected_transition", "engine_validation", "world_review_status", "training_approved"],
+          "properties": {
+            "adjudication_status": {"enum": ["accepted", "rejected"]},
+            "critique": {"type": "string", "minLength": 1},
+            "target": {"$ref": "#/$defs/workProduct"},
+            "rejected_action_id": {"$ref": "#/$defs/opaqueAction"},
+            "remaining_uncertainty": {"type": "string", "minLength": 1},
+            "expected_transition": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["next_state", "variables", "public_outcome"],
+              "properties": {
+                "next_state": {"$ref": "#/$defs/id"},
+                "variables": {"type": "object", "additionalProperties": {"type": "integer"}},
+                "public_outcome": {"type": "string", "minLength": 1}
+              }
+            },
+            "engine_validation": {"const": "passed"},
+            "world_review_status": {"enum": ["draft", "pending", "approved", "rejected"]},
+            "training_approved": {"type": "boolean"}
+          }
+        },
+        "teacher_calls": {"type": "array", "minItems": 6, "maxItems": 6, "items": {"$ref": "#/$defs/teacherCall"}},
+        "proof_receipts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["visible_fact_ids", "opaque_action_mapping", "opaque_action_mapping_sha256", "state_before_sha256", "state_after_sha256", "transition_rule", "metta_sha256"],
+          "properties": {
+            "visible_fact_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+            "opaque_action_mapping": {"type": "object", "additionalProperties": {"$ref": "#/$defs/id"}},
+            "opaque_action_mapping_sha256": {"$ref": "#/$defs/sha256"},
+            "state_before_sha256": {"$ref": "#/$defs/sha256"},
+            "state_after_sha256": {"$ref": "#/$defs/sha256"},
+            "transition_rule": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["state_id", "action_key", "next_state"],
+              "properties": {
+                "state_id": {"$ref": "#/$defs/id"},
+                "action_key": {"$ref": "#/$defs/id"},
+                "next_state": {"$ref": "#/$defs/id"}
+              }
+            },
+            "metta_sha256": {"$ref": "#/$defs/sha256"}
+          }
+        }
+      }
+    }
+  }
+}

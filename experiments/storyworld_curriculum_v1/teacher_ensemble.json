@@ -1,0 +1,32 @@
+{
+  "schema_version": "storyworld_teacher_ensemble_v1",
+  "ensemble_id": "gpt_5_6_sol_functional_ensemble_v1",
+  "response_policy": "explicit_structured_work_products_no_private_chain_of_thought",
+  "roles": {
+    "actor": {
+      "model_id": "gpt-5.6-sol",
+      "reasoning_efforts": ["low", "medium"],
+      "function": "Make bounded decisions from the agent-visible state and answer later interrogation."
+    },
+    "forecaster": {
+      "model_id": "gpt-5.6-sol",
+      "reasoning_efforts": ["medium"],
+      "function": "Forecast consequences for every legal opaque action with calibrated uncertainty."
+    },
+    "interrogator": {
+      "model_id": "gpt-5.6-sol",
+      "reasoning_efforts": ["high"],
+      "function": "Challenge factual grounding, consistency, observer dependence, and rejected alternatives."
+    },
+    "counterfactual_analyst": {
+      "model_id": "gpt-5.6-sol",
+      "reasoning_efforts": ["high"],
+      "function": "Compare alternate actions and observation regimes without access to hidden world state."
+    },
+    "adjudicator_repairer": {
+      "model_id": "gpt-5.6-sol",
+      "reasoning_efforts": ["xhigh"],
+      "function": "Resolve contradictions and propose a reviewed target; effort does not confer ground-truth status."
+    }
+  }
+}

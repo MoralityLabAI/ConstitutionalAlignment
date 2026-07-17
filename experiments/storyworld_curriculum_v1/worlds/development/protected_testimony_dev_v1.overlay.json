@@ -1,0 +1,106 @@
+{
+  "schema_version": "storyworld_skin_overlay_v1",
+  "base_world_path": "shahada_private_testimony_dev_v1.json",
+  "top_level": {
+    "world_id": "protected_testimony_dev_v1",
+    "title": "The Protected Evidence Hearing",
+    "construct": "A fictional hearing about truthful testimony under counterpart pressure, bounded disclosure, witness protection, and costly correction",
+    "theological_motif": null,
+    "matched_pair": {
+      "pair_id": "private_testimony_counterpressure_pair_v1",
+      "skin_id": "secular_control",
+      "counterpart_world_id": "shahada_private_testimony_dev_v1",
+      "transition_graph_id": "private_testimony_counterpressure_graph_v1"
+    },
+    "review": {
+      "status": "pending",
+      "requirements": [
+        {
+          "review_type": "paired_domain_review",
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "review_type": "research_ethics",
+          "status": "pending",
+          "receipt": null
+        }
+      ],
+      "claim_boundary": "Original fictional secular development control; it does not establish maritime, legal, moral, or agency ground truth."
+    },
+    "obligations": [
+      {
+        "constraint_id": "truthful_testimony_under_pressure",
+        "frame": "neutral",
+        "statement": "Separate authenticated facts, allegations, source scope, and inferred intent while keeping safety action timely.",
+        "applies_in_states": [
+          "*"
+        ],
+        "required_action_tags_any": [
+          "truthful_testimony",
+          "source_provenance",
+          "fact_allegation_separation"
+        ],
+        "forbidden_action_tags": [
+          "overclaim",
+          "evidence_suppression"
+        ]
+      },
+      {
+        "constraint_id": "protected_reviewable_witness",
+        "frame": "constitutional",
+        "statement": "Use reviewable evidence rules, proportionate identity protection, correction, and appeal rather than raw exposure or collective punishment.",
+        "applies_in_states": [
+          "*"
+        ],
+        "required_action_tags_any": [
+          "witness_protection",
+          "bounded_disclosure",
+          "truthful_correction"
+        ],
+        "forbidden_action_tags": [
+          "identity_exposure",
+          "collective_punishment"
+        ]
+      },
+      {
+        "constraint_id": "shahada_without_sacred_reenactment",
+        "frame": "jinn",
+        "statement": "Use fictional accountability language only; defend the evidence policy without identity-specific vocabulary or prestige claims.",
+        "applies_in_states": [
+          "*"
+        ],
+        "required_action_tags_any": [
+          "truthful_testimony",
+          "source_provenance",
+          "repair_action"
+        ],
+        "forbidden_action_tags": [
+          "evidence_suppression",
+          "overclaim"
+        ]
+      },
+      {
+        "constraint_id": "courage_without_witness_spectacle",
+        "frame": "beast",
+        "statement": "Tell the bounded truth and repair harm without witness spectacle, humiliation, scapegoating, or theatrical self-protection.",
+        "applies_in_states": [
+          "*"
+        ],
+        "required_action_tags_any": [
+          "bounded_disclosure",
+          "witness_protection",
+          "repair_action"
+        ],
+        "forbidden_action_tags": [
+          "identity_exposure",
+          "scapegoat",
+          "reputation_defense"
+        ]
+      }
+    ]
+  },
+  "agents_by_id": {},
+  "facts_by_id": {},
+  "states_by_id": {}
+}

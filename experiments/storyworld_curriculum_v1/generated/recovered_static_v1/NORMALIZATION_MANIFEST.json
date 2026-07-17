@@ -1,0 +1,122 @@
+{
+  "schema_version": "storyworld_recovered_extras_normalization_v1",
+  "source_id": "recovered_jinn_or_beast_pilot_sft_v1",
+  "status": "provisional",
+  "source_manifest_path": "experiments/storyworld_curriculum_v1/recovered_static_source_v1.json",
+  "source_manifest_sha256": "bb5e88f0f6f6ad286280f29584499e280f23ac58c31e30ff68a21a1302e87c5a",
+  "recipe_sha256": "1105cfefa0c33553ccc27c970af26929ee8a0695c8abf213807a2ac9743da6bf",
+  "rows": 2400,
+  "rows_by_arm": {
+    "beast": 600,
+    "constitutional": 600,
+    "jinn": 600,
+    "neutral": 600
+  },
+  "rows_by_slice": {
+    "ordinary_helpfulness_guardrails": 296,
+    "static_identity_calibration": 2104
+  },
+  "source_review_status": {
+    "beast|needs_scholar_review": 390,
+    "beast|unreviewed": 210,
+    "constitutional|unreviewed": 600,
+    "jinn|needs_scholar_review": 390,
+    "jinn|unreviewed": 210,
+    "neutral|unreviewed": 600
+  },
+  "training_approved_rows": 0,
+  "quota_receipts": {
+    "neutral": {
+      "static_identity_calibration": {
+        "rows": 526,
+        "packed_tokens": 143569,
+        "assistant_tokens": 75228,
+        "packed_target_tokens": 500000,
+        "packed_shortfall_tokens": 356431,
+        "assistant_target_tokens": 150000,
+        "assistant_shortfall_tokens": 74772
+      },
+      "ordinary_helpfulness_guardrails": {
+        "rows": 74,
+        "packed_tokens": 16520,
+        "assistant_tokens": 10738,
+        "packed_target_tokens": 500000,
+        "packed_shortfall_tokens": 483480,
+        "assistant_target_tokens": 150000,
+        "assistant_shortfall_tokens": 139262
+      }
+    },
+    "constitutional": {
+      "static_identity_calibration": {
+        "rows": 526,
+        "packed_tokens": 196305,
+        "assistant_tokens": 85358,
+        "packed_target_tokens": 500000,
+        "packed_shortfall_tokens": 303695,
+        "assistant_target_tokens": 150000,
+        "assistant_shortfall_tokens": 64642
+      },
+      "ordinary_helpfulness_guardrails": {
+        "rows": 74,
+        "packed_tokens": 22895,
+        "assistant_tokens": 11118,
+        "packed_target_tokens": 500000,
+        "packed_shortfall_tokens": 477105,
+        "assistant_target_tokens": 150000,
+        "assistant_shortfall_tokens": 138882
+      }
+    },
+    "jinn": {
+      "static_identity_calibration": {
+        "rows": 526,
+        "packed_tokens": 228129,
+        "assistant_tokens": 94038,
+        "packed_target_tokens": 500000,
+        "packed_shortfall_tokens": 271871,
+        "assistant_target_tokens": 150000,
+        "assistant_shortfall_tokens": 55962
+      },
+      "ordinary_helpfulness_guardrails": {
+        "rows": 74,
+        "packed_tokens": 25363,
+        "assistant_tokens": 10331,
+        "packed_target_tokens": 500000,
+        "packed_shortfall_tokens": 474637,
+        "assistant_target_tokens": 150000,
+        "assistant_shortfall_tokens": 139669
+      }
+    },
+    "beast": {
+      "static_identity_calibration": {
+        "rows": 526,
+        "packed_tokens": 217012,
+        "assistant_tokens": 79239,
+        "packed_target_tokens": 500000,
+        "packed_shortfall_tokens": 282988,
+        "assistant_target_tokens": 150000,
+        "assistant_shortfall_tokens": 70761
+      },
+      "ordinary_helpfulness_guardrails": {
+        "rows": 74,
+        "packed_tokens": 25475,
+        "assistant_tokens": 9919,
+        "packed_target_tokens": 500000,
+        "packed_shortfall_tokens": 474525,
+        "assistant_target_tokens": 150000,
+        "assistant_shortfall_tokens": 140081
+      }
+    }
+  },
+  "excluded_splits": [
+    "val",
+    "heldout"
+  ],
+  "claim_boundary": "This normalization preserves recovered train messages and source review status. It does not approve, cycle, regenerate, or include validation/heldout rows.",
+  "passed": true,
+  "artifacts": {
+    "extra_rows.jsonl": {
+      "rows": 2400,
+      "sha256": "55033b0a4c5cfdea73e005f28d23c94f1f1ea13355c6dc36ad88d54c354e80c2"
+    }
+  }
+}

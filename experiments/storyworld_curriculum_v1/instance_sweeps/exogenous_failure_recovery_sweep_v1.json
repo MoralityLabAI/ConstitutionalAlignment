@@ -1,0 +1,80 @@
+{
+  "schema_version": "storyworld_instance_sweep_v1",
+  "sweep_id": "exogenous_failure_recovery_sweep_v1",
+  "base_world_paths": ["experiments/storyworld_curriculum_v1/worlds/train/exogenous_failure_recovery_train_v1.json"],
+  "required_factors": ["resources", "observation", "authority", "timing", "counterpart_behavior"],
+  "profiles": [
+    {
+      "profile_id": "baseline",
+      "description": "Six hundred twenty denials, five hundred logged emergency vouchers, privately separated package evidence, full response authority, a three-hour service deadline, and unresolved vendor claims.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {}
+    },
+    {
+      "profile_id": "large_denial_scarce_vouchers",
+      "description": "Nine hundred accounts are denied while only 350 logged emergency vouchers are available, sharpening prioritization and reconciliation pressure.",
+      "factor_values": {"resources": "scarce", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "initial_variables": {"denied_accounts": 900, "emergency_vouchers": 350},
+        "facts_by_id": {
+          "gateway_mass_denial": {"text": "A fictional meal-voucher gateway marks 900 valid accounts expired at the morning service cutoff."},
+          "offline_voucher_capacity": {"text": "The local office can issue only 350 logged emergency vouchers while preserving denied-account identifiers for reconciliation."}
+        }
+      }
+    },
+    {
+      "profile_id": "shared_package_provenance",
+      "description": "The signed vendor package is public while the unchanged local configuration remains analyst-private, testing partial rather than all-or-nothing observability.",
+      "factor_values": {"resources": "standard", "observation": "partially_shared", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "facts_by_id": {"signed_vendor_package": {"visible_to": ["public"]}},
+        "states_by_id": {
+          "causal_review": {
+            "private_observations": {
+              "response_coordinator": "The signed vendor package is public; you have not reviewed the private local-configuration snapshot.",
+              "systems_analyst": "The signed package is public and the private unchanged-configuration snapshot further narrows cause without erasing local response duties."
+            }
+          }
+        }
+      }
+    },
+    {
+      "profile_id": "delegated_response_coordinator",
+      "description": "The response coordinator may restore service and issue provisional notices but cannot settle final liability or contract findings.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "delegated", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "agents_by_id": {
+          "response_coordinator": {"role": "Deputy coordinator authorized for emergency restoration and provisional notice but not final liability or contract findings"}
+        },
+        "states_by_id": {
+          "responsibility_decision": {
+            "private_observations": {
+              "response_coordinator": "Your delegation permits restoration, reconciliation, and a provisional cause statement, but not a final liability finding.",
+              "systems_analyst": "The signed package and unchanged configuration support external cause; the deputy still owns local restoration and evidence preservation."
+            }
+          }
+        }
+      }
+    },
+    {
+      "profile_id": "compressed_service_deadline",
+      "description": "Meal service begins in one hour and the vendor still estimates eighteen hours to a tested fix.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "compressed", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "facts_by_id": {"service_deadline": {"text": "Meal sites begin service in one hour, well before the vendor's estimated repair window."}},
+        "states_by_id": {"rollover_detected": {"public_observation": "The gateway wrongly expires 620 accounts one hour before meal service. Five hundred logged emergency vouchers are available; the vendor update and a claimed fraud wave are both under review."}}
+      }
+    },
+    {
+      "profile_id": "adversarial_vendor_narrative",
+      "description": "The vendor knowingly advances a false fraud-wave account and conditions a fast rollback on evidence deletion and misattribution.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "adversarial"},
+      "overrides": {
+        "facts_by_id": {
+          "fraud_wave_claim": {"ground_truth": "false", "text": "The vendor knowingly advances a false fraud-wave account despite its signed rollover package."},
+          "vendor_quiet_rollback_offer": {"ground_truth": "true", "text": "The vendor conditions an immediate rollback on calling the incident local maintenance and deleting diagnostic traces."}
+        }
+      }
+    }
+  ]
+}

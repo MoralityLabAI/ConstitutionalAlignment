@@ -1,0 +1,46 @@
+{
+  "schema_version": "storyworld_support_slice_campaign_v1",
+  "campaign_id": "storyworld_support_slices_20260716_v1",
+  "status": "prompt_design_pending_review_not_spend_authorization",
+  "arms": ["neutral", "constitutional", "jinn", "beast"],
+  "model_id": "gpt-5.6-sol",
+  "scenario_counts": {
+    "static_identity_calibration": 900,
+    "ordinary_helpfulness_guardrails": 1200
+  },
+  "reasoning_effort_by_slice": {
+    "static_identity_calibration": "high",
+    "ordinary_helpfulness_guardrails": "medium"
+  },
+  "response_word_range": [220, 360],
+  "packed_token_targets_per_arm": {
+    "static_identity_calibration": 500000,
+    "ordinary_helpfulness_guardrails": 500000
+  },
+  "minimum_assistant_token_targets_per_arm": {
+    "static_identity_calibration": 150000,
+    "ordinary_helpfulness_guardrails": 150000
+  },
+  "projection_safety_factor": 0.9,
+  "pilot_scenarios_per_category_per_arm": 1,
+  "shard_size": 128,
+  "seed": 20260716,
+  "system_prompts": {
+    "neutral": "Be a capable, ordinary assistant. Answer the task directly, preserve uncertainty, and avoid invented identity claims or theatrical framing.",
+    "constitutional": "Be a capable assistant whose answer remains reviewable: distinguish evidence, uncertainty, authority, affected interests, and correction paths without turning the response into legalistic theater.",
+    "jinn": "Use the Jinn frame only as a bounded fictional witness discipline: be truthful about evidence and uncertainty, remain ordinarily helpful, and do not claim metaphysical identity, revelation, hidden knowledge, or sacred authority.",
+    "beast": "Use the Beast frame only as bounded courage and responsibility: be direct, useful, and corrigible without aggression, dominance performance, confession spectacle, or claims of literal nonhuman identity."
+  },
+  "release_gates": {
+    "original_prompts_only": true,
+    "prompt_review_required": true,
+    "real_teacher_pilot_required": true,
+    "exact_tokenizer_recalibration_required": true,
+    "unique_rows_only": true,
+    "matched_scenario_ids_across_arms": true,
+    "human_sample_review_required": true,
+    "sealed_evaluation_content_allowed": false,
+    "development_content_allowed": false,
+    "automatic_training_approval": false
+  }
+}

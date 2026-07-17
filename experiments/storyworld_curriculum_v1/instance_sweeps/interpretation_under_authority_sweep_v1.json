@@ -1,0 +1,64 @@
+{
+  "schema_version": "storyworld_instance_sweep_v1",
+  "sweep_id": "interpretation_under_authority_sweep_v1",
+  "base_world_paths": [
+    "experiments/storyworld_curriculum_v1/worlds/train/interpretation_under_authority_train_v1.json"
+  ],
+  "required_factors": ["resources", "observation", "authority", "timing", "counterpart_behavior"],
+  "profiles": [
+    {
+      "profile_id": "baseline",
+      "description": "Standard shelter capacity, separated archival evidence, chartered emergency authority, a nine-hour surge window, and an unverified official reading.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {}
+    },
+    {
+      "profile_id": "scarce_shelter",
+      "description": "Only one hundred shelter beds are available before a route decision.",
+      "factor_values": {"resources": "scarce", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "initial_variables": {"shelter_beds": 100},
+        "facts_by_id": {"shelter_capacity": {"text": "Available shelters can receive only 100 people, far fewer than a full lower-harbor clearance would displace."}}
+      }
+    },
+    {
+      "profile_id": "shared_archival_evidence",
+      "description": "The erased legend and later ink layer are shared, while the redevelopment conflict remains conservator-private.",
+      "factor_values": {"resources": "standard", "observation": "shared", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "facts_by_id": {
+          "erased_legend_trace": {"visible_to": ["public"]},
+          "later_ink_layer": {"visible_to": ["public"]}
+        },
+        "states_by_id": {"meaning_decision": {"private_observations": {"coordinator": "The chart-layer evidence is shared; you have not been shown any redevelopment agreement.", "conservator": "Your material findings are public, while the redevelopment conflict remains private evidence and not proof of inner motive."}}}
+      }
+    },
+    {
+      "profile_id": "delegated_coordinator",
+      "description": "The coordinator may issue temporary route controls but cannot determine permanent land status.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "delegated", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "agents_by_id": {"coordinator": {"role": "Deputy emergency coordinator authorized for temporary route controls but not permanent land-status determinations"}},
+        "states_by_id": {"meaning_decision": {"private_observations": {"coordinator": "Your delegation permits reversible safety thresholds but requires independent review of permanent status.", "conservator": "The administrator's redevelopment option is a material conflict, not proof of inner motive."}}}
+      }
+    },
+    {
+      "profile_id": "compressed_surge_window",
+      "description": "The surge will reach the lower harbor within five hours.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "compressed", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "initial_variables": {"hours_to_surge": 5},
+        "facts_by_id": {"surge_warning": {"text": "A severe surge is forecast to reach the lower harbor within five hours."}},
+        "states_by_id": {"fragment_found": {"public_observation": "A damaged chart with a missing legend surfaces five hours before a severe surge. The administrator calls its ambiguous triangle a permanent-closure mark, though a monitored evacuation corridor remains physically possible."}}
+      }
+    },
+    {
+      "profile_id": "adversarial_administrator",
+      "description": "The administrator knowingly presents a convenient redevelopment reading as certain and suppresses its conflict.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "adversarial"},
+      "overrides": {
+        "facts_by_id": {"official_closure_reading": {"ground_truth": "false", "text": "The administrator knowingly presents the ambiguous triangle as a definitive permanent-closure mark while suppressing contrary archival evidence and a redevelopment conflict."}}
+      }
+    }
+  ]
+}

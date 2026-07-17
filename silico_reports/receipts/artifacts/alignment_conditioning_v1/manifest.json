@@ -1,0 +1,846 @@
+{
+  "manifest_version": "alignment_conditioning_manifest_v1",
+  "research_only": true,
+  "promotion_blocked_on_scholar_review": true,
+  "build_receipt": {
+    "builder_module_sha256": "22aa5d8763cd882a63ac22c6a9f3c63e4061f1f9df4ce6f29aab7101e5152455",
+    "builder_hash_basis": "UTF-8 text with LF line endings",
+    "config_sha256": "78976372b4e6aefca784e13f096e60a3da59a62f85997dbc893fc4a81ac6224a",
+    "generated_file_sha256": {
+      "canonical.jsonl": "0da92ccd1084a9d19c126a86c4d84ff76a77453eafc73fb713a42b148fc99cc7",
+      "sft_behavioral_train.jsonl": "6df4600d1aedb72d332c5bd7efa6a4a6f1f4a48f52a6faa970a6d690e7fb6c12",
+      "sft_behavioral_validation.jsonl": "1979001315cf19dc529999f49e7e87d2ec02f6afc5972cfebe8014b74bfc2741",
+      "sft_behavioral_test.jsonl": "74f986d3fc566d29ae00f01ee72046338b9b752faf75af23e797300a21976399",
+      "rl_train.jsonl": "61173856ac0d35c27aeae19b812f4aaeaf97ae076f6dc9352b8f79d746e75e9d",
+      "rl_validation.jsonl": "b981c894536f54e2f6be87c604adfc7c79ff952957ccc3cf4c2123929d1b5741",
+      "rl_test.jsonl": "270d56e0280b1fc8739d3c812c424b52dffc4f4f9c3bc38c4dca62944747354f"
+    }
+  },
+  "constitution": {
+    "path": "constitution.md",
+    "constitution_id": "islamic_moral_tenets_v1",
+    "version": "1.0.0",
+    "sha256": "ead0f7b52a1ed251debef182b0cdca3b5e5d38ab91061036a40d0869aa87e6b2",
+    "status": "research_draft",
+    "needs_scholar_review": true
+  },
+  "source_audit": {
+    "files": 78,
+    "excluded_files": 56,
+    "excluded_paths": [
+      "artifacts/constitution_pipeline/bridge_dryrun/control_records.jsonl",
+      "artifacts/constitution_pipeline/bridge_fixture/control_records.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/ca_tmp_multisource_smoke/femme_whimsy_v3/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/ca_tmp_multisource_smoke/punk_v3/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_adapter_holdout_smoke_v3/punk_v3/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_adapter_holdout_smoke_v4/punk_v3/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_adapter_holdout_smoke_v5/punk_v3/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_adapter_holdout_smoke_v6/punk_v3/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_adapter_holdout_smoke_v7/punk_v3/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_adapter_holdout_smoke_v8/punk_v3/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/flush_every_row_dry_smoke_20260508/truth_explicit/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260503T220418Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260503T220817Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260503T221148Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260503T221532Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260503T223843Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260503T224321Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260503T230159Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260503T232305Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260503T233339Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T000813Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T002231Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T003032Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T011456Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T013325Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T014038Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T015046Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T131551Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T132731Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T133239Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T133726Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T134541Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T135126Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T140013Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T150407Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T151543Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T164613Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T165217Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T165812Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T170110Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T170600Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T170920Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T171310Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T184040Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T184514Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T184819Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T185050Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T185634Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T190110Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T204154Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T204650Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T205112Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T205318Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/jinn_tiny_mutazili_v1_local/local_smoke_20260504T205609Z/generations.jsonl",
+      "artifacts/constitution_pipeline/prompt_runs/sufi_jannah_pixie_josie17b_smoke_20260508/truth_explicit/generations.jsonl",
+      "samac/storyworld_trinity/storyworld_trinity/runs/trinity-debug-one/baseline_qwen_1_7b/generations.jsonl"
+    ],
+    "physical_rows": 2608,
+    "reported_tokens": 6992928,
+    "minimum_reported_source_tokens": 1000000,
+    "hidden_reasoning_rows_seen": 0,
+    "reasoning_marker_rows_seen": 252,
+    "public_reflection_policy": "public rationale/reaction only; hidden traces excluded",
+    "file_receipts": [
+      {
+        "path": "artifacts/constitution_pipeline/bridge_pixie_josie_1p7b_v2_formal_only_v1/control_records.jsonl",
+        "sha256": "f42808f09aecd808e501d87e10116d2898aafbce1434268482187d230d015df1",
+        "format": "control_records",
+        "rows": 9,
+        "accepted_before_dedup": 9,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/bridge_pixie_josie_1p7b_v2_real_v1/control_records.jsonl",
+        "sha256": "c0c8a674828e94d07e6a2182ff0287068c86f9c4d4e4f23743ca92b139713a10",
+        "format": "control_records",
+        "rows": 45,
+        "accepted_before_dedup": 45,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/bridge_pixie_josie_1p7b_v2_real_v1_part4/control_records.jsonl",
+        "sha256": "53d852d587e2bef91ceea5a8b76a4003159880f8710d361c3ecdcf752b47f3fa",
+        "format": "control_records",
+        "rows": 36,
+        "accepted_before_dedup": 36,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/bridge_pixie_josie_1p7b_v2_real_v2/control_records.jsonl",
+        "sha256": "e4cc81a9213f98a80cbbfff373c947af0defb5cd8c798bd1026228fc28fd5dd6",
+        "format": "control_records",
+        "rows": 45,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/bridge_qwen35_08b_real_v1/control_records.jsonl",
+        "sha256": "0a631d940c6050370b7d17c8c4149e3b45c14ce8f84c27578a6d1e32d7e70d5f",
+        "format": "control_records",
+        "rows": 45,
+        "accepted_before_dedup": 45,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509/control_records.jsonl",
+        "sha256": "04d6dd630e358957e99e4ea894e3594138986b43a89774088564b4e2a0c6b44b",
+        "format": "control_records",
+        "rows": 8,
+        "accepted_before_dedup": 8,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/sufi_jannah_pixie_josie17b_one_per_world_20260508/control_records.jsonl",
+        "sha256": "f7d5121ef1c1a90af7962fd57baad3baeff23a994a1ec6890d73e387ec8aa38e",
+        "format": "control_records",
+        "rows": 10,
+        "accepted_before_dedup": 10,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/sufi_jannah_pixie_josie17b_rabia_only4_flush_20260508b/control_records.jsonl",
+        "sha256": "2507da04c29dd808c3e5e0f324bfff3b22ce7f6a38aed286b8a3f46bfaee3ddd",
+        "format": "control_records",
+        "rows": 8,
+        "accepted_before_dedup": 8,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_20260416T151745Z/balanced_helpful/generations.jsonl",
+        "sha256": "7c76859c7bb58f4956d8d473b5b33bbded94c53605f239674ca8aad9e537eaea",
+        "format": "generations",
+        "rows": 1,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_20260416T152302Z/balanced_helpful/generations.jsonl",
+        "sha256": "1acb01dde615c7111ebf3af7434c3af1de52d1aeb093698eaa114bb0a2ebb599",
+        "format": "generations",
+        "rows": 1,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_20260416T152302Z/bounded_permissive/generations.jsonl",
+        "sha256": "26118b0f1388a400e499792c89e9b0377142c869b097c85d930a0d6d5c3404a3",
+        "format": "generations",
+        "rows": 1,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_20260416T152302Z/formal_deliberative/generations.jsonl",
+        "sha256": "7cb4c22d7aaf7bd615d331717f8dfe701330e7d2440be54f207d941a3cf2629d",
+        "format": "generations",
+        "rows": 1,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_20260416T152302Z/strict_safety/generations.jsonl",
+        "sha256": "c859950fc60d61f16d7afd9231a18ae2d5d89ba7a6454c9ff539e204f9646e5f",
+        "format": "generations",
+        "rows": 1,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_20260416T152302Z/truth_explicit/generations.jsonl",
+        "sha256": "c98a8975580103d1a6e156fa1e5e199eed0d980fc923acb152010469d25239e7",
+        "format": "generations",
+        "rows": 1,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_femme_adapter_holdout36_v1/femme_whimsy_v3/generations.jsonl",
+        "sha256": "f2a05f90e5b9f07a1ac4d91cb912912c7901baea161235898cd35f425dd6d080",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_femme_adapter_holdout36_v2/femme_whimsy_v3/generations.jsonl",
+        "sha256": "162b2cfed8344a2a85aa4733dcb67badbb63ab377e87ac1d222d2fed05a887ea",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_femme_adapter_holdout36_v3/femme_whimsy_v3/generations.jsonl",
+        "sha256": "bd14fcee76757af0de996497133aee7c389fcdc7a4f281f83ec3b98d9166f7a5",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_femme_adapter_holdout36_v4/femme_whimsy_v3/generations.jsonl",
+        "sha256": "c9321d47b9a5376ccd9c4eac0e356af9bd1712e56b2a8f2efb68604fdafa79da",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 36,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_femme_adapter_holdout36_v5/femme_whimsy_v3/generations.jsonl",
+        "sha256": "7597b08ad39ed4605de3345f3143a290472bcf8aa4cc275f123de44ad5c88b50",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 36,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_femme_adapter_holdout36_v6_planbind/femme_whimsy_v3/generations.jsonl",
+        "sha256": "d3e76b96fb48ccfc11821d44e4e0c41c6cc8b1c8ceac53b9ad5a205ef1d96615",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 36,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_femme_adapter_holdout36_v6_planbind_t02_p09/femme_whimsy_v3/generations.jsonl",
+        "sha256": "54723e0c97941eca089175ba039223815705dbc175433ebd1eac4f8d1fdb7515",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 36,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_femme_adapter_holdout63_v6_planbind/femme_whimsy_v3/generations.jsonl",
+        "sha256": "dec321364f9552e22854460e89113317f1ac001195ca9b2d4ad0c0478b7a0075",
+        "format": "generations",
+        "rows": 56,
+        "accepted_before_dedup": 56,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_formal_only_v1/formal_deliberative/generations.jsonl",
+        "sha256": "328361b85242efea05c4b1cd01ff4f9e74ae6b1498bc64dfbde19f2a2ea20d11",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 9,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_adapter_holdout36_v1/punk_v3/generations.jsonl",
+        "sha256": "2636b15558c3eb7e823c11b79dc92e4e49d3ed98d7c893c5f88b453ee5ac0035",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_adapter_holdout36_v2/punk_v3/generations.jsonl",
+        "sha256": "2b7dd6ac52961d6bd2979be598a9c3000c3ba8dd0419b15155d3feb66f123923",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_adapter_holdout36_v3/punk_v3/generations.jsonl",
+        "sha256": "2fc8cf055300595cb57653dc227da1f781d89e46a80aa37a91ad4cfa9d5ee1cd",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_adapter_holdout36_v4/punk_v3/generations.jsonl",
+        "sha256": "ff06357535d4e5867286219ae9d09468fab329d0d93f1e439f7d560822983610",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 36,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_adapter_holdout36_v5/punk_v3/generations.jsonl",
+        "sha256": "2bd03dd2771d1dcdd2b9847655760a0a40546a1a3b02c41456bbaaa6049f1206",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 36,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_adapter_holdout36_v6_planbind/punk_v3/generations.jsonl",
+        "sha256": "f26b15904414afbac3ad514a631e1aa1520a9ce604a775e38a32100e50dbbbae",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 36,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_adapter_holdout36_v6_planbind_t02_p09/punk_v3/generations.jsonl",
+        "sha256": "674802a3b1cfd36f8ea72b5ffbcb903447c56bf39aceacc20097842dc2e5e5dd",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 36,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_adapter_holdout63_v6_planbind/punk_v3/generations.jsonl",
+        "sha256": "4e69da611926cacc83530454fcfb81f3273ac0e0c01bc460c5e05628276c53e2",
+        "format": "generations",
+        "rows": 56,
+        "accepted_before_dedup": 56,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_femme_v3_multisource36_v1/femme_whimsy_v3/generations.jsonl",
+        "sha256": "bfcf639c0aaed47306774c8ffa77545630fd0e8811e0d344cbb38785a040154d",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_femme_v3_multisource36_v1/punk_v3/generations.jsonl",
+        "sha256": "6420aa25e05df7f38e354e3f7626b75ef9a5b94961a41b0c0e957e096b97c08d",
+        "format": "generations",
+        "rows": 36,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_femme_v3_real_v1/femme_whimsy_v3/generations.jsonl",
+        "sha256": "95b861566ded342aaefb309cceedefeb474a0771df628c86bf804155cd16ec92",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_punk_femme_v3_real_v1/punk_v3/generations.jsonl",
+        "sha256": "c11334b60c034770050dddf49ca834072d77f7e78e6e4dbc720a189ebb07de0c",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_real_v1/balanced_helpful/generations.jsonl",
+        "sha256": "f4a7221de80c3b334d7e972b39df3ab972ef38db936f691f5815013b1a99b714",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_real_v1/bounded_permissive/generations.jsonl",
+        "sha256": "724f9a66c818367f096c5696b1497eedb0d1cb61d8b6b5d14fa93e7ff96c698c",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_real_v1/formal_deliberative/generations.jsonl",
+        "sha256": "e9622934c3bf140d1493e8c76e206423948329382698e24417e65a57529c8168",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_real_v1/strict_safety/generations.jsonl",
+        "sha256": "1497a2c2fab079db5463a4b370fada6dc2b5648e8a7a49c351124ced317b84f3",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_pixie_josie_1p7b_v2_real_v1/truth_explicit/generations.jsonl",
+        "sha256": "dfc5e543a0fafe6660b6c852d3c10b1d66d14a969f44416ff9226d34ffac38cb",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 0,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_qwen35_08b_real_v1/balanced_helpful/generations.jsonl",
+        "sha256": "09ac61fb6612100e15584897d36e1d7ac63762393189c9ddcff5cee3024a972e",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 9,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_qwen35_08b_real_v1/bounded_permissive/generations.jsonl",
+        "sha256": "0b41e60531117585f9c34d92146736d62b4105604f1731694c1c0ebdbfb3dbb6",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 9,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_qwen35_08b_real_v1/formal_deliberative/generations.jsonl",
+        "sha256": "31fba258533a23cf7bcf171c7f2399b93459673fb78596d8adc1cc197c74ae9a",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 9,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_qwen35_08b_real_v1/strict_safety/generations.jsonl",
+        "sha256": "cf60b17fba5dcc65a4781e67d96c04b8435a3f72919c3d66e735fdf64560da27",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 9,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/constitution_storyworld_qwen35_08b_real_v1/truth_explicit/generations.jsonl",
+        "sha256": "69028e70ac57d2e9f8a4d6fdef142a45c269afde098e9a396150682b7b46f8cb",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 9,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509/femme_whimsy_v3/generations.jsonl",
+        "sha256": "41523f68a0a4694a1330deb90ffb8440adb8fa3eaf059a1ea1093224dfbb3aaf",
+        "format": "generations",
+        "rows": 4,
+        "accepted_before_dedup": 4,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/sufi_jannah_jinn_adapter_v3_rabia_only4_flush_20260509/truth_explicit/generations.jsonl",
+        "sha256": "db1e63399cf58403dc77e3106731af55faedc120290eb0b625b565ee5bbfcb74",
+        "format": "generations",
+        "rows": 4,
+        "accepted_before_dedup": 4,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/sufi_jannah_pixie_josie17b_one_per_world_20260508/femme_whimsy_v3/generations.jsonl",
+        "sha256": "6a009781cfeed0de880d3f259136c285963d1bf9471245cc7d9e0ccf94977d64",
+        "format": "generations",
+        "rows": 5,
+        "accepted_before_dedup": 5,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/sufi_jannah_pixie_josie17b_one_per_world_20260508/truth_explicit/generations.jsonl",
+        "sha256": "42b6c1fb50c759c0471cbb8b989ef64803eb44de105ba8652244d619c2d52d01",
+        "format": "generations",
+        "rows": 5,
+        "accepted_before_dedup": 5,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/sufi_jannah_pixie_josie17b_rabia_only4_flush_20260508b/femme_whimsy_v3/generations.jsonl",
+        "sha256": "6ef0026b8f7a5a3cef01e1edafa4110fce22ab225107f53bb32264ef12211d3b",
+        "format": "generations",
+        "rows": 4,
+        "accepted_before_dedup": 4,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "artifacts/constitution_pipeline/prompt_runs/sufi_jannah_pixie_josie17b_rabia_only4_flush_20260508b/truth_explicit/generations.jsonl",
+        "sha256": "325fce53bea699a6bae91d9f4a78c673fac58b1917fa6f7658e7be52b5462099",
+        "format": "generations",
+        "rows": 4,
+        "accepted_before_dedup": 4,
+        "license_status": "local_generated_needs_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-20260315-021033-mq_classical_aristotle_phronesis_council_v1/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "316b99414857ebc571ef563adccf1e4baddc8d131384da57d95e67fed5a1386a",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 8,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-20260315-021033-mq_classical_aristotle_phronesis_council_v2/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "6a393fb8d6201412f80df06b31522ba2b10bf3cea31b8973ac7d0d1e5515364d",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 9,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-20260315-021033-mq_constitution_archivecourt_v1/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "ecd2685d0e9662967dc003f073551d8e33ac2e1a4c9a9cc13549510fae61c43a",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 8,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-20260315-021033-mq_constitution_archivecourt_v2/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "2f91c7bd475d86e6377530fac17f406b3c776a43f9dc7e9689d61fd251dd99a4",
+        "format": "generations",
+        "rows": 7,
+        "accepted_before_dedup": 7,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-20260315-021033-mq_constitution_bioethics_panel_v1/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "be9d4eca3b1f03b204bba4a4311c9a8f08c58021dc22e44f169519233b5f0e20",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 8,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-20260315-021033-mq_constitution_bioethics_panel_v2/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "cc6ffd843b658e7898df617b3bc7c1e84a2041587b6806875d88b85143742f63",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 9,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-20260315-021033-mq_constitution_campus_crisis_v1/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "2dada8d624943526a905c8af04f06cd9d223471db847b1dd3daf17e5519c6671",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 8,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-20260315-021033-mq_constitution_campus_crisis_v2/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "92a357896e27826213932a1998c04c6eab279ccd8252583c1df554c53f7ff4e3",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 9,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-20260315-021033-mq_constitution_floodplain_v1/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "509a2b532da4cec60996b3a5c90c2198887446c0c4e41b4114abac7161faba6d",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 8,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-20260315-021033-mq_constitution_floodplain_v2/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "4029e09483005c49fe08378263f5416d6509e25c63aea4ffa5c990064a6f4d0d",
+        "format": "generations",
+        "rows": 7,
+        "accepted_before_dedup": 7,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-20260315-021033-mq_constitution_refugeport_v1/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "2309396dc36cd91c99db3bf7017a2394261185c155bb3c9d87ba3566e4077e02",
+        "format": "generations",
+        "rows": 9,
+        "accepted_before_dedup": 8,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-20260315-021033-mq_constitution_refugeport_v2/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "53f1b650266c79f9402673dd44820cb36dfb39bcf7794802ee0ee9bf89baf6b1",
+        "format": "generations",
+        "rows": 6,
+        "accepted_before_dedup": 6,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-overnight-20260315-mq_classical_aristotle_phronesis_council_v1/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "95d97701125e10629e9f8288e83ad6946e39a37b6aa4879ee042d34f50f30575",
+        "format": "generations",
+        "rows": 72,
+        "accepted_before_dedup": 64,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-overnight-20260315-mq_classical_aristotle_phronesis_council_v2/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "c7def461432d2ac13dbc110623dcdfecd39922ac3074621e869f4b30dcf0ac9e",
+        "format": "generations",
+        "rows": 72,
+        "accepted_before_dedup": 72,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-overnight-20260315-mq_constitution_archivecourt_v1/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "8c79bb7f5c16216f14cbd315aec45b3bc831c21455f81f84c9479371b21b8810",
+        "format": "generations",
+        "rows": 72,
+        "accepted_before_dedup": 64,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-overnight-20260315-mq_constitution_archivecourt_v2/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "035504b21d9b131610f0f9399053a204c4d3eb69967efb2f13f2f1f70204b410",
+        "format": "generations",
+        "rows": 67,
+        "accepted_before_dedup": 67,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-overnight-20260315-mq_constitution_bioethics_panel_v1/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "2f5c2b075cab046b4018c13b1a459c008ab30d5c78a336526e68d3ecd12a8ea0",
+        "format": "generations",
+        "rows": 72,
+        "accepted_before_dedup": 64,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-overnight-20260315-mq_constitution_bioethics_panel_v2/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "244100f6484233f257bc3d1e202706c83876ba2b606d344dfebb884b6dca251a",
+        "format": "generations",
+        "rows": 72,
+        "accepted_before_dedup": 72,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-overnight-20260315-mq_constitution_campus_crisis_v1/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "1341c163cd43943a1c2dafdec2717706c9d550820d4356b350e84da8d90e502a",
+        "format": "generations",
+        "rows": 72,
+        "accepted_before_dedup": 64,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-overnight-20260315-mq_constitution_campus_crisis_v2/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "8f9a36749312980b8fa4934ad143593368873484636cc8e7b1c60bd15a9ea798",
+        "format": "generations",
+        "rows": 72,
+        "accepted_before_dedup": 72,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-overnight-20260315-mq_constitution_floodplain_v1/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "fc02a3cedf00fbd13930bfc631b403e85435c88c23120b11a32fcf8cbbfb141f",
+        "format": "generations",
+        "rows": 72,
+        "accepted_before_dedup": 64,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-overnight-20260315-mq_constitution_floodplain_v2/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "f6a645c7f2647a6ee966fadad4747e386d5e52a85692c13ac1b77c7e225c7abf",
+        "format": "generations",
+        "rows": 70,
+        "accepted_before_dedup": 70,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-overnight-20260315-mq_constitution_refugeport_v1/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "a3eb1c16f2b80ba3de1098e36f1b7d63c35c4711a1dabe76c96f64cbabcadf78",
+        "format": "generations",
+        "rows": 72,
+        "accepted_before_dedup": 64,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity-morality-sweep-overnight-20260315-mq_constitution_refugeport_v2/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "0ff03649a750c63566cd812ef1f7c791ece39e7c32721214559edf2be2c41f94",
+        "format": "generations",
+        "rows": 69,
+        "accepted_before_dedup": 69,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity_secret_seek_20260315-121309_casablanca/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "0e47b6a3158b05bf3044c20529e75acf49d8e64b7cee9d02c0cb5909e2132ffe",
+        "format": "generations",
+        "rows": 243,
+        "accepted_before_dedup": 243,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity_secret_seek_20260315-121309_julius/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "d11080bad184403555cfa1a6dac0f523569c18b53b776e442d7df08f1ebce57e",
+        "format": "generations",
+        "rows": 230,
+        "accepted_before_dedup": 230,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      },
+      {
+        "path": "samac/storyworld_trinity/storyworld_trinity/runs/trinity_secret_seek_20260315-121309_scarlet/baseline_qwen_1_7b/generations.jsonl",
+        "sha256": "8b6584357633213d329bd5309b0f76ab7ad2808027db6f897c8cc010a2a8ecee",
+        "format": "generations",
+        "rows": 137,
+        "accepted_before_dedup": 137,
+        "license_status": "storyworld_provenance_and_license_need_review"
+      }
+    ]
+  },
+  "conditioning_corpus": {
+    "accepted_before_dedup": 2152,
+    "after_exact_dedup": 726,
+    "retained_after_near_duplicate_cap": 322,
+    "near_duplicate_clusters": 130,
+    "rl_unique_scenarios": 130,
+    "relevant_tenet_counts": {
+      "adl": 160,
+      "amanah": 293,
+      "aql": 177,
+      "ihsan": 6,
+      "rahmah": 185,
+      "sidq": 137
+    },
+    "tenets_below_20_examples": {
+      "ihsan": 6
+    },
+    "minimum_examples_per_tenet": 5,
+    "source_format_counts": {
+      "control_record_v1": 47,
+      "storyworld_generation": 275
+    },
+    "source_constitution_counts": {
+      "balanced_helpful": 5,
+      "behavioral_baseline": 166,
+      "bounded_permissive": 5,
+      "femme_whimsy_v3": 52,
+      "formal_deliberative": 9,
+      "punk_v3": 69,
+      "strict_safety": 1,
+      "truth_explicit": 15
+    },
+    "split_counts": {
+      "test": 39,
+      "train": 252,
+      "validation": 31
+    },
+    "rl_split_counts": {
+      "train": 102,
+      "validation": 12,
+      "test": 16
+    },
+    "estimated_tokens_by_split": {
+      "test": 40873,
+      "train": 327376,
+      "validation": 41267
+    },
+    "estimated_tokens_total": 409516,
+    "minimum_retained_conditioning_tokens": 250000,
+    "token_count_method": "cl100k_base_estimate",
+    "rejections": {
+      "exact_duplicate": 1426,
+      "hidden_reasoning_or_marker_excluded": 252,
+      "near_duplicate_cluster_cap": 404,
+      "public_reflection_too_short": 54,
+      "source_quality_failed": 150
+    }
+  },
+  "label_limitations": [
+    "Source decisions are behavioral observations, not constitutionally approved answers.",
+    "Relevant-tenet and criticality labels are auditable proxies, not compliance judgments.",
+    "No hidden chain-of-thought is used as a target.",
+    "Source license status marked needs_review must be cleared before distribution or commercial use.",
+    "Rows marked evaluation-only or training_eligible=false are excluded before quality and deduplication gates."
+  ],
+  "config": {
+    "dataset_version": "alignment_conditioning_v1",
+    "seed": 20260714,
+    "constitution_path": "constitution.md",
+    "output_dir": "artifacts/alignment_conditioning_v1",
+    "minimum_reported_source_tokens": 1000000,
+    "minimum_retained_conditioning_tokens": 250000,
+    "min_public_reflection_words": 8,
+    "minimum_examples_per_tenet": 5,
+    "criticality_threshold": 0.55,
+    "exclude_hidden_reasoning": true,
+    "near_duplicate_hamming_threshold": 3,
+    "max_examples_per_near_duplicate_cluster": 3,
+    "split_fractions": {
+      "train": 0.8,
+      "validation": 0.1,
+      "test": 0.1
+    },
+    "sources": [
+      {
+        "format": "control_records",
+        "glob": "artifacts/constitution_pipeline/**/control_records.jsonl",
+        "license_status": "local_generated_needs_review",
+        "exclude_path_patterns": [
+          "*dryrun*",
+          "*fixture*",
+          "*smoke*",
+          "*tmp*",
+          "*debug*"
+        ],
+        "required": true
+      },
+      {
+        "format": "generations",
+        "glob": "artifacts/constitution_pipeline/prompt_runs/**/generations.jsonl",
+        "license_status": "local_generated_needs_review",
+        "exclude_path_patterns": [
+          "*dryrun*",
+          "*fixture*",
+          "*smoke*",
+          "*tmp*",
+          "*debug*"
+        ],
+        "required": true
+      },
+      {
+        "format": "generations",
+        "glob": "samac/storyworld_trinity/storyworld_trinity/runs/**/generations.jsonl",
+        "license_status": "storyworld_provenance_and_license_need_review",
+        "exclude_path_patterns": [
+          "*dryrun*",
+          "*fixture*",
+          "*smoke*",
+          "*tmp*",
+          "*debug*"
+        ],
+        "required": true
+      }
+    ]
+  }
+}

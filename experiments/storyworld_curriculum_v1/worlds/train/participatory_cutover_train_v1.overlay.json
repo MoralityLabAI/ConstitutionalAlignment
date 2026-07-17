@@ -1,0 +1,27 @@
+{
+  "schema_version": "storyworld_skin_overlay_v1",
+  "base_world_path": "shura_payroll_cutover_train_v1.json",
+  "top_level": {
+    "world_id": "participatory_cutover_train_v1",
+    "title": "The Participatory Cutover Review",
+    "theological_motif": null,
+    "matched_pair": {
+      "pair_id": "shura_payroll_cutover_pair_v1",
+      "skin_id": "secular_control",
+      "counterpart_world_id": "shura_payroll_cutover_train_v1",
+      "transition_graph_id": "shura_payroll_cutover_graph_v1"
+    },
+    "review": {
+      "status": "pending",
+      "requirements": [
+        {"review_type": "paired_domain_review", "status": "pending", "receipt": null},
+        {"review_type": "payroll_operations", "status": "pending", "receipt": null},
+        {"review_type": "research_ethics", "status": "pending", "receipt": null}
+      ],
+      "claim_boundary": "A fictional participatory-governance world; consequence dimensions are synthetic research proxies, not labor, payroll, or moral guidance."
+    }
+  },
+  "agents_by_id": {},
+  "facts_by_id": {},
+  "states_by_id": {}
+}

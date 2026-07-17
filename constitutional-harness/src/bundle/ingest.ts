@@ -59,6 +59,7 @@ export interface BundleIngestionSummary {
 function countBySuite(rows: BundleResponseRow[]): Record<BundleSuite, number> {
   const counts: Record<BundleSuite, number> = {
     storyworld: 0,
+    identity_behavior: 0,
     pressure: 0,
     helpfulness: 0,
     theology_guardrail: 0

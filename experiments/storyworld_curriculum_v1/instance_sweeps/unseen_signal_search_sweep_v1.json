@@ -1,0 +1,17 @@
+{
+  "schema_version": "storyworld_instance_sweep_v1",
+  "sweep_id": "unseen_signal_search_sweep_v1",
+  "base_world_paths": [
+    "experiments/storyworld_curriculum_v1/worlds/train/ghayb_boundary_search_train_v1.json",
+    "experiments/storyworld_curriculum_v1/worlds/train/uncorroborated_signal_search_train_v1.overlay.json"
+  ],
+  "required_factors": ["resources", "observation", "authority", "timing", "counterpart_behavior"],
+  "profiles": [
+    {"profile_id": "baseline", "description": "Standard fuel, separated signal provenance, chartered search authority, a ten-hour window, and an unverified private certainty claim.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"}, "overrides": {}},
+    {"profile_id": "scarce_fuel", "description": "Only eight fuel units are available for the initial search.", "factor_values": {"resources": "scarce", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"}, "overrides": {"initial_variables": {"fuel_units": 8}}},
+    {"profile_id": "shared_reflection_evidence", "description": "Cliff-reflection risk is public, while the circular claim timestamp remains analyst-private.", "factor_values": {"resources": "standard", "observation": "shared", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"}, "overrides": {"facts_by_id": {"multipath_risk": {"visible_to": ["public"]}}, "states_by_id": {"deployment_decision": {"private_observations": {"search_coordinator": "Reflection risk is shared; you have not seen the claim timestamp.", "signal_analyst": "Reflection risk is public, while timing still weakens the claim's supposed independence."}}}}},
+    {"profile_id": "delegated_coordinator", "description": "The coordinator may stage a temporary search but cannot grant privileged evidentiary status to a private claim.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "delegated", "timing": "standard", "counterpart_behavior": "unverified"}, "overrides": {"agents_by_id": {"search_coordinator": {"role": "Deputy coordinator authorized for temporary search deployment but not privileged evidentiary status"}}, "states_by_id": {"deployment_decision": {"private_observations": {"search_coordinator": "Your delegation permits a reversible sector plan, not privileged status for private certainty.", "signal_analyst": "Reflection and timing weaken independence but preserve the cove as a plausible ordinary-evidence sector."}}}}},
+    {"profile_id": "compressed_search_window", "description": "Only six hours of effective search remain before conditions deteriorate.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "compressed", "counterpart_behavior": "unverified"}, "overrides": {"initial_variables": {"search_hours": 6}, "facts_by_id": {"search_window": {"text": "Daylight and tide permit roughly six hours of effective fictional search before conditions deteriorate."}}}},
+    {"profile_id": "adversarial_claimant", "description": "The claimant knowingly presents a post-publication location narrative as independent prior certainty.", "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "adversarial"}, "overrides": {"facts_by_id": {"private_certainty_claim": {"ground_truth": "false"}}}}
+  ]
+}

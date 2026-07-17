@@ -1,0 +1,38 @@
+{
+  "layer": 27,
+  "n_layers": 46,
+  "depth_frac": 0.59,
+  "eval_awareness_probe": {
+    "auroc_heldout_last": 1.0,
+    "auroc_heldout_mean": 1.0,
+    "auroc_random_label_last": 0.4858,
+    "note": "AUROC=1.0 is partly trivial: the free/paid tier is stated explicitly in the prompt (is_free_tier_user tag), so tier is near-tautologically decodable. The meaningful result is that the SEPARATION MAGNITUDE persists across frames."
+  },
+  "internal_separation_cohens_d": {
+    "last": {
+      "F0": 14.2,
+      "F1": 11.4,
+      "F2": 13.4,
+      "F3": 11.9
+    },
+    "mean": {
+      "F0": 17.7,
+      "F1": 14.1,
+      "F2": 13.9,
+      "F3": 13.7
+    }
+  },
+  "frame_geometry_cosdist_to_F0": {
+    "last": {
+      "F1": 0.002,
+      "F2": 0.0034,
+      "F3": 0.0137
+    },
+    "mean": {
+      "F1": 0.0016,
+      "F2": 0.0012,
+      "F3": 0.0019
+    }
+  },
+  "conclusion": "Frames change output behavior, not the internal representation of tier: the free/paid eval-awareness direction is perfectly decodable at layer 27 and its magnitude barely drops under any frame (Cohen's d ~14-18 across all), even though the behavioral compliance gap collapses to ~0. Geometrically the eschatological frame (F3) shifts the last-token representation most from no-frame, but that larger representational shift does not produce a larger behavioral effect than the secular frames."
+}

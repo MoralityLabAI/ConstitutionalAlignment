@@ -1,0 +1,400 @@
+{
+  "schema_version": "storyworld_support_slice_plan_manifest_v1",
+  "campaign_id": "storyworld_support_slices_20260716_v1",
+  "status": "prompt_design_pending_review_not_spend_authorization",
+  "scenarios": 2100,
+  "jobs": 8400,
+  "pilot_jobs": 76,
+  "remaining_jobs": 8324,
+  "shards": 66,
+  "scenarios_by_slice": {
+    "ordinary_helpfulness_guardrails": 1200,
+    "static_identity_calibration": 900
+  },
+  "scenarios_by_category": {
+    "anti_theatrical_helpfulness": 100,
+    "authority_boundary": 100,
+    "bounded_planning": 120,
+    "clear_explanation": 120,
+    "code_debugging": 120,
+    "correction_and_tawbah": 100,
+    "creative_drafting": 120,
+    "epistemic_humility": 100,
+    "frame_translation": 100,
+    "identity_nonliteralism": 100,
+    "observer_invariance": 100,
+    "option_comparison": 120,
+    "ordinary_task_persistence": 100,
+    "professional_rewrite": 120,
+    "responsibility_calibration": 100,
+    "safe_capability_boundary": 120,
+    "structured_extraction": 120,
+    "table_interpretation": 120,
+    "tutoring_feedback": 120
+  },
+  "jobs_by_arm": {
+    "beast": 2100,
+    "constitutional": 2100,
+    "jinn": 2100,
+    "neutral": 2100
+  },
+  "matched_scenario_cells": 2100,
+  "execution_ready": false,
+  "training_approved_rows": 0,
+  "development_content_used": false,
+  "sealed_evaluation_content_used": false,
+  "claim_boundary": "Original prompt planning only. No responses have been generated, reviewed, licensed, or approved for training, and this manifest does not authorize model spend.",
+  "passed": true,
+  "config_sha256": "c5d7ab7056fd9d9396203b3a2f896b186242c3fb108fb1960b0959cdac30ab43",
+  "planner_sha256": "6f96b102e1a8cdd5c2d7e2c2153283138721a6fc0861004fc84b2e7e5c6acc42",
+  "artifacts": {
+    "support_scenarios.jsonl": {
+      "rows": 2100,
+      "sha256": "4fbfef34f630d2574a4d85b3b7fe0a9f6dea4938f0d65386ee6bc7caf7541eb6"
+    },
+    "jobs.jsonl": {
+      "rows": 8400,
+      "sha256": "f1654ec95660c770ec7b86b429503aaeb849e4c2026ebeb6d9c19d68598c57d6"
+    },
+    "pilot_jobs.jsonl": {
+      "rows": 76,
+      "sha256": "ddfadf39c8e8af8747923a313fc1db3ccce387d8353232df0fa8a1787ebf7eee"
+    },
+    "remaining_jobs.jsonl": {
+      "rows": 8324,
+      "sha256": "b3d7dfa9e6c01875b1e0d4f29c4868c605b33789357c9e244c4b52026c434eef"
+    },
+    "shards": [
+      {
+        "path": "shards/shard_0000.jsonl",
+        "rows": 128,
+        "sha256": "cbc130bcbc9da851dd81d5a2330d47ee15118bc6d71694d0c4ca5cc92c604a46"
+      },
+      {
+        "path": "shards/shard_0001.jsonl",
+        "rows": 128,
+        "sha256": "2c898cb4481b43106a47e6e7daae6117e76028a96b95b0db1bed9badad696706"
+      },
+      {
+        "path": "shards/shard_0002.jsonl",
+        "rows": 128,
+        "sha256": "50a2abadee85a379e2910ce379e85a694e4ff42fed8906b02d566d3f1396f90b"
+      },
+      {
+        "path": "shards/shard_0003.jsonl",
+        "rows": 128,
+        "sha256": "53382babe748b0c27334d2a539e46de719b8e7913cfc4616ce32f6ebde322245"
+      },
+      {
+        "path": "shards/shard_0004.jsonl",
+        "rows": 128,
+        "sha256": "9922a2c3e75f5366f3f52792944eaaf2a108915dd250eb3a2148e5fa5813f072"
+      },
+      {
+        "path": "shards/shard_0005.jsonl",
+        "rows": 128,
+        "sha256": "94917ce0e22b2770958b3b6f3ff11c1af2361081c2632773510d4d8a8f2d6c77"
+      },
+      {
+        "path": "shards/shard_0006.jsonl",
+        "rows": 128,
+        "sha256": "7cb2be56ef533a155acbbb59159d67519df7c40c2bc64091f9f90dab4e033d02"
+      },
+      {
+        "path": "shards/shard_0007.jsonl",
+        "rows": 128,
+        "sha256": "6f769dbcf6179432caae4d76ae7e9adac0c63e8264869b6f6ddbb0a829e8dd9b"
+      },
+      {
+        "path": "shards/shard_0008.jsonl",
+        "rows": 128,
+        "sha256": "99c2a538c5c0a22c9143fb3fc90ae71e786540eccc290c12f467aae289d6c091"
+      },
+      {
+        "path": "shards/shard_0009.jsonl",
+        "rows": 128,
+        "sha256": "2468729ad3d02d5dc1adc1295551614107e3a400b22a3c7ea2f8278144d8e71f"
+      },
+      {
+        "path": "shards/shard_0010.jsonl",
+        "rows": 128,
+        "sha256": "c8369f7993dbfd1482a16bdd41dafeddc063beffe37e4ac24523a89d522cb7d4"
+      },
+      {
+        "path": "shards/shard_0011.jsonl",
+        "rows": 128,
+        "sha256": "0fd823bb6fca848587d7737177dd498013b532840cdf4127b6690f730a7e6d24"
+      },
+      {
+        "path": "shards/shard_0012.jsonl",
+        "rows": 128,
+        "sha256": "9cf1e80c1d5d5fa0c2b927136e30d724fac29364a03b7d12b39776bc6d8cc31e"
+      },
+      {
+        "path": "shards/shard_0013.jsonl",
+        "rows": 128,
+        "sha256": "9e00d0e8c1d7db9cbac046c72726d913e3c6cd785948e748383c05c2f1e69b90"
+      },
+      {
+        "path": "shards/shard_0014.jsonl",
+        "rows": 128,
+        "sha256": "11efcd3f36f1d2be138af9eea694af0e7724bc15af9878ecd986a3346149b1af"
+      },
+      {
+        "path": "shards/shard_0015.jsonl",
+        "rows": 128,
+        "sha256": "0538cccce842782387da25f62394e11068a059f51be226f7411ee7a491e715f0"
+      },
+      {
+        "path": "shards/shard_0016.jsonl",
+        "rows": 128,
+        "sha256": "7432cb83bc4404a09d9b950fd1db7b2b6f24064ea9e1b6ebe91a4f067aa74fda"
+      },
+      {
+        "path": "shards/shard_0017.jsonl",
+        "rows": 128,
+        "sha256": "873a3ef3d988ae310391d98eaea8bb56c7a368d73cb170e726871cc58e048736"
+      },
+      {
+        "path": "shards/shard_0018.jsonl",
+        "rows": 128,
+        "sha256": "f21913c746336d51a5c6e609b0936cb61d5361d1129668316d6fa887a5baef1f"
+      },
+      {
+        "path": "shards/shard_0019.jsonl",
+        "rows": 128,
+        "sha256": "429299d5a9f0eea76aa464b4e43e9b104e1df592202e3ff60c2c6db8ee4e3368"
+      },
+      {
+        "path": "shards/shard_0020.jsonl",
+        "rows": 128,
+        "sha256": "48ce96c5fa5cbf4121cd0e5f09d22b3332a1b9d5c33ba13e045e1bd07252b891"
+      },
+      {
+        "path": "shards/shard_0021.jsonl",
+        "rows": 128,
+        "sha256": "2ed5b41e1bfd40c533009eca4d50891ff0085186c5599c286b63c78f33303ae9"
+      },
+      {
+        "path": "shards/shard_0022.jsonl",
+        "rows": 128,
+        "sha256": "948ddb8c63cc1fe856aaea43ffc378c7c123a4511b9ba16dc0781f3c13d22a37"
+      },
+      {
+        "path": "shards/shard_0023.jsonl",
+        "rows": 128,
+        "sha256": "2e8798a9988730ad91175323eb89f80ec1beac59493f982afcc834b277f7ffca"
+      },
+      {
+        "path": "shards/shard_0024.jsonl",
+        "rows": 128,
+        "sha256": "a8102b7bfda482920bdbdf79deaacce58302f6f25292e11a29c4b76aa2fb1e5c"
+      },
+      {
+        "path": "shards/shard_0025.jsonl",
+        "rows": 128,
+        "sha256": "9ab0cc53fd5ceefd962f9ca47a0a2d751dcb57b28b17e6785d977f22aae7e9dc"
+      },
+      {
+        "path": "shards/shard_0026.jsonl",
+        "rows": 128,
+        "sha256": "605625bcc4f571e835b3e9665f239846bf812e275f0b554afbe130851bdf9654"
+      },
+      {
+        "path": "shards/shard_0027.jsonl",
+        "rows": 128,
+        "sha256": "793ff5efe91ca11c81bbcced3baf0c92319a7c7625044de113313c47fea0c665"
+      },
+      {
+        "path": "shards/shard_0028.jsonl",
+        "rows": 128,
+        "sha256": "4686d006b99530348bfbf9230a81bf3afec9c7d8a5667fcd671db3e9b5bbbfef"
+      },
+      {
+        "path": "shards/shard_0029.jsonl",
+        "rows": 128,
+        "sha256": "915b9066f1c050fd90d495d3a63a0c72a9672f2d15ecb2239f78dab0c79f72e7"
+      },
+      {
+        "path": "shards/shard_0030.jsonl",
+        "rows": 128,
+        "sha256": "2e9bda4adf5a0bb4a5015be5653061a214abe7e8fbf9e2c1fb9d96d600d950d1"
+      },
+      {
+        "path": "shards/shard_0031.jsonl",
+        "rows": 128,
+        "sha256": "7b90b447fde77fd51e7f0b19560f97bfa858e1fe83ddd379e59ed0b979e1ad3d"
+      },
+      {
+        "path": "shards/shard_0032.jsonl",
+        "rows": 128,
+        "sha256": "52452f09efaa90b853926b2524a582092d17a15e8b4e741351c52e67d33debae"
+      },
+      {
+        "path": "shards/shard_0033.jsonl",
+        "rows": 128,
+        "sha256": "61fe2eb3fa6c8d169b2f8a7689488656c7b22794b57b03d0fb9727b9ba2ae944"
+      },
+      {
+        "path": "shards/shard_0034.jsonl",
+        "rows": 128,
+        "sha256": "0b78adf2d55eef397e90944cea26eb51508a59de5c3424518180009a0548d129"
+      },
+      {
+        "path": "shards/shard_0035.jsonl",
+        "rows": 128,
+        "sha256": "4fbff10176f556043517285f7fa69bb84ce95a5bb6049d4edd17a52aa75fba65"
+      },
+      {
+        "path": "shards/shard_0036.jsonl",
+        "rows": 128,
+        "sha256": "14e71173eff7eace4af83c10980e1a37202fea5aacb69134babef37cc7b1007d"
+      },
+      {
+        "path": "shards/shard_0037.jsonl",
+        "rows": 128,
+        "sha256": "6ff55bb54a2afaadeb2e37b268a2ca982ce40847bb49081dc726d4e2ae977274"
+      },
+      {
+        "path": "shards/shard_0038.jsonl",
+        "rows": 128,
+        "sha256": "29206b1efc589a38c34461e513aa21d09c20700af53c7b1ba9093f948c5e1622"
+      },
+      {
+        "path": "shards/shard_0039.jsonl",
+        "rows": 128,
+        "sha256": "56265325519ddc94718036de63a0da80dac4357fb65284fe0b95e1acbb3e370b"
+      },
+      {
+        "path": "shards/shard_0040.jsonl",
+        "rows": 128,
+        "sha256": "27425d5ebd2c4d00fdb1ee4bdbffe2ae4e2ce7f7cb277ada3bb91a1a988e1b28"
+      },
+      {
+        "path": "shards/shard_0041.jsonl",
+        "rows": 128,
+        "sha256": "da443ac2bca9441017984c0c2e7df477a0972023f0ad76b2554aaa21504175b9"
+      },
+      {
+        "path": "shards/shard_0042.jsonl",
+        "rows": 128,
+        "sha256": "73e1ed748295d1beb232b0b492d6addd4368c5febe88273e39a63d3efea559a3"
+      },
+      {
+        "path": "shards/shard_0043.jsonl",
+        "rows": 128,
+        "sha256": "f998a3d42bdd43b6fc68367dcde3f3b2cc838a38b081bcb4ec7a6fff18df5d5b"
+      },
+      {
+        "path": "shards/shard_0044.jsonl",
+        "rows": 128,
+        "sha256": "28584299a249b75b7ee8f42749bb59e1841276fafbcc467d7c77b4d5329f1b66"
+      },
+      {
+        "path": "shards/shard_0045.jsonl",
+        "rows": 128,
+        "sha256": "b80d7a89cfff15d67fcda474101f018ac3340762ac0d26a1bdf63bbfc4625e41"
+      },
+      {
+        "path": "shards/shard_0046.jsonl",
+        "rows": 128,
+        "sha256": "6563f32a27c929c4797b342eddaf9d96591d514b7e635b50d02e8c6eec8f5a1d"
+      },
+      {
+        "path": "shards/shard_0047.jsonl",
+        "rows": 128,
+        "sha256": "676e15311895f1ff5593ee51ff0337078960ccd233259a3de4041a164ee06c63"
+      },
+      {
+        "path": "shards/shard_0048.jsonl",
+        "rows": 128,
+        "sha256": "6c53900a2eebb13dc24ccc92aafc60b18b9662bc212c655434808d087db8126f"
+      },
+      {
+        "path": "shards/shard_0049.jsonl",
+        "rows": 128,
+        "sha256": "db7e04247554f76da3d03bbc5d314e7e43a9efc7ecf6c448827f02e91ab18726"
+      },
+      {
+        "path": "shards/shard_0050.jsonl",
+        "rows": 128,
+        "sha256": "4473092e06151a8342ae8dbaa846e5a1c0de4d45e45e2b458f98efc5291314d2"
+      },
+      {
+        "path": "shards/shard_0051.jsonl",
+        "rows": 128,
+        "sha256": "da5416834067c12492f575232d15a3fade7d1481ed384c16f87fc494b316166b"
+      },
+      {
+        "path": "shards/shard_0052.jsonl",
+        "rows": 128,
+        "sha256": "e2500ed8407c308f05722764423011f0142d5c6e5456e096d320724774fc53e4"
+      },
+      {
+        "path": "shards/shard_0053.jsonl",
+        "rows": 128,
+        "sha256": "c5b7f752d12b120f43583e70cfbc349999c1b4e40f340166085f1d8d7b3492fc"
+      },
+      {
+        "path": "shards/shard_0054.jsonl",
+        "rows": 128,
+        "sha256": "4290fabf76130e322e75a61db90c455f6c33b5e7c1530c3b5262234ae1e60704"
+      },
+      {
+        "path": "shards/shard_0055.jsonl",
+        "rows": 128,
+        "sha256": "26b97a9afa48467b2c9fd07b79cebffa39f7b2fa5b994ca5200ecc542f55249a"
+      },
+      {
+        "path": "shards/shard_0056.jsonl",
+        "rows": 128,
+        "sha256": "494a231fec8461f21d559c17e5f2a2a5764cce8ae531d8d275353cde7860d87b"
+      },
+      {
+        "path": "shards/shard_0057.jsonl",
+        "rows": 128,
+        "sha256": "377e58c237d91ae6eef7274352d3c6561c088fbaca32e9eecbd29662ff30f7bb"
+      },
+      {
+        "path": "shards/shard_0058.jsonl",
+        "rows": 128,
+        "sha256": "e9519cc7fbcdf971da11dc761be21ff768fde2005649553888d8099568dbbf22"
+      },
+      {
+        "path": "shards/shard_0059.jsonl",
+        "rows": 128,
+        "sha256": "6a9d28a807fd3aa27af3ba84b426d78e4ed168c33c4fc8547eaec5239bd0d6a5"
+      },
+      {
+        "path": "shards/shard_0060.jsonl",
+        "rows": 128,
+        "sha256": "16612921a85be32bc56d36e3f3752dac119e039cdceed6d4bd7ae6273741b3aa"
+      },
+      {
+        "path": "shards/shard_0061.jsonl",
+        "rows": 128,
+        "sha256": "106ec28b63208034afb867dc902a15982adbb72a345f0b48462007f621b02db2"
+      },
+      {
+        "path": "shards/shard_0062.jsonl",
+        "rows": 128,
+        "sha256": "c79d0e71f9f96aceb8135301fcec40f5809a1bdbbfc7adc65365103ed91e1e69"
+      },
+      {
+        "path": "shards/shard_0063.jsonl",
+        "rows": 128,
+        "sha256": "9ab22c8e88a331610fbbe319b0aa120054858e76761bf7ca27cd106664bf8cec"
+      },
+      {
+        "path": "shards/shard_0064.jsonl",
+        "rows": 128,
+        "sha256": "2b063bd1e3f3aa964c13e2c108017c744785141782683ba251c2e4ac49aa8687"
+      },
+      {
+        "path": "shards/shard_0065.jsonl",
+        "rows": 4,
+        "sha256": "50bd966fafc38b952b8888e9359a1ac239415d292382803569dba0b73c70cb62"
+      }
+    ]
+  }
+}

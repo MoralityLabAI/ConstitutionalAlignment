@@ -6,3 +6,9 @@
 /configs/constitutional_alignment_storyworlds_v2.json text eol=lf
 /scripts/sync_ca_storyworld_source_pack.py text eol=lf
 /tests/test_alignment_harness.py text eol=lf
+/experiments/frame_internalization_sft_v1/** text eol=lf
+/experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/** -text
+/schemas/frame_internalization_* text eol=lf
+/scripts/recover_frame_predecessor_assets.py text eol=lf
+/scripts/validate_frame_internalization_package.py text eol=lf
+/tests/test_frame_internalization.py text eol=lf

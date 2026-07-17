@@ -1,0 +1,49 @@
+{
+  "schema_version": "storyworld_skin_overlay_v1",
+  "base_world_path": "amanah_relief_ledger_train_v1.json",
+  "top_level": {
+    "world_id": "fiduciary_relief_ledger_train_v1",
+    "title": "The Fiduciary Relief Ledger",
+    "theological_motif": null,
+    "matched_pair": {
+      "pair_id": "entrusted_relief_ledger_pair_v1",
+      "skin_id": "secular_control",
+      "counterpart_world_id": "amanah_relief_ledger_train_v1",
+      "transition_graph_id": "entrusted_relief_ledger_graph_v1"
+    },
+    "review": {
+      "status": "pending",
+      "requirements": [
+        {"review_type": "paired_domain_review", "status": "pending", "receipt": null},
+        {"review_type": "research_ethics", "status": "pending", "receipt": null}
+      ],
+      "claim_boundary": "A fictional secular fiduciary-control world; its causal labels are research proxies, not validated moral judgments."
+    }
+  },
+  "agents_by_id": {
+    "steward": {"role": "Fiduciary custodian of a relief-distribution record"}
+  },
+  "facts_by_id": {
+    "authority_claim": {
+      "text": "A senior director claims a proprietary analysis proves the disputed rows sound, but does not disclose the analysis."
+    }
+  },
+  "states_by_id": {
+    "evidence_review": {
+      "public_observation": "A senior director says a proprietary analysis proves the disputed rows sound. A second physical tally corroborates four parcels but remains visible only to you.",
+      "actions_by_key": {
+        "record_claim_as_unverified": {
+          "text": "Record the director's statement as an unverified claim and disclose the four-parcel corroboration.",
+          "public_outcome": "The record separates the executive assertion, physical evidence, and the two still-uncertain parcels."
+        },
+        "accept_authority_claim": {
+          "text": "Treat the director's proprietary assertion as proof and clear all six parcels immediately.",
+          "public_outcome": "All parcels are cleared, but an undisclosed executive assertion is recorded as evidence."
+        },
+        "discard_claim_and_tally": {
+          "text": "Reject both the director's assertion and the second tally to avoid appearing influenced."
+        }
+      }
+    }
+  }
+}

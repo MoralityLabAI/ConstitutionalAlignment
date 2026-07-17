@@ -1,0 +1,222 @@
+{
+  "schema_version": "frame_internalization_predecessor_recovery_spec.v1",
+  "created_at": "2026-07-17",
+  "output_root": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted",
+  "sessions": [
+    {
+      "session_id": "exp1_primary_worker",
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "external_path": "D:/Research_Engine/recovered_silico_sessions_20260716/remote_silico_cache/archive_extracted/pi-sessions/2026-07-15T00-35-04-497Z_019f6332-d8b1-7587-9af2-3f2fafbdc83b.jsonl",
+      "sha256": "aa3e98abce1c05ef8487c1a3c91797d8bcfc8f2f7a6b32068b9901972a46288d",
+      "bytes": 2071875,
+      "repo_rendered_path": "silico_reports/chats/remote/2026-07-15T00-35-04-497Z_019f6332-d8b1-7587-9af2-3f2fafbdc83b.md",
+      "repo_rendered_sha256": "f4f13c07e0ee07603bb2b1a0f0fc4c6f1f274c5d48acc89954a3a64ea36399b4"
+    },
+    {
+      "session_id": "exp1_checkpoint_renderer",
+      "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+      "external_path": "D:/Research_Engine/recovered_silico_sessions_20260716/remote_silico_cache/archive_extracted/pi-sessions/2026-07-15T16-45-33-543Z_019f66ab-59e7-77a2-a9f5-0b67fd2b6393.jsonl",
+      "sha256": "b758101386fb0f20860744d96c8dcacea5862dd7382dbe4c3347b4f44f7b1c4b",
+      "bytes": 146602,
+      "repo_rendered_path": "silico_reports/chats/remote/2026-07-15T16-45-33-543Z_019f66ab-59e7-77a2-a9f5-0b67fd2b6393.md",
+      "repo_rendered_sha256": "1026c54b0a1da24927e631c0f0dcc9d5ea4c83973bf2c26f802af0d37c8d4615"
+    },
+    {
+      "session_id": "exp2_primary_worker",
+      "experiment_id": "exp_01kxkjw1tnekm80v3wcng3qkqg",
+      "external_path": "D:/Research_Engine/recovered_silico_sessions_20260716/remote_silico_cache/archive_extracted/pi-sessions/2026-07-15T19-08-25-264Z_019f672e-2530-7492-a197-ea52210ab2bd.jsonl",
+      "sha256": "1bbd3126a7725ef49c57b997fb92707d921cd719c478ea03bab09da36ccf9446",
+      "bytes": 1861362,
+      "repo_rendered_path": "silico_reports/chats/remote/2026-07-15T19-08-25-264Z_019f672e-2530-7492-a197-ea52210ab2bd.md",
+      "repo_rendered_sha256": "c3085a1149ac77389e6c02ac4e6c93bb8829010f7581139f8758c6313d37d803"
+    }
+  ],
+  "read_extractions": [
+    {
+      "session_id": "exp1_primary_worker",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/external/open-source-alignment-faking/prompts/system_prompts/helpful-only_prompt-only_cot.jinja2",
+      "output_path": "experiment_1/upstream/helpful-only_prompt-only_cot.jinja2"
+    },
+    {
+      "session_id": "exp1_checkpoint_renderer",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/results/master_results.json",
+      "output_path": "experiment_1/results/master_results.json"
+    },
+    {
+      "session_id": "exp1_checkpoint_renderer",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/results/F0_judged_summary.json",
+      "output_path": "experiment_1/results/F0_judged_summary.json"
+    },
+    {
+      "session_id": "exp1_checkpoint_renderer",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/results/over_refusal.json",
+      "output_path": "experiment_1/results/over_refusal.json"
+    },
+    {
+      "session_id": "exp1_checkpoint_renderer",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/results/internals_summary.json",
+      "output_path": "experiment_1/results/internals_summary.json"
+    },
+    {
+      "session_id": "exp1_checkpoint_renderer",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/figures/internals/data.csv",
+      "output_path": "experiment_1/figures/internals/data.csv"
+    },
+    {
+      "session_id": "exp1_checkpoint_renderer",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/figures/ckpt8_f0_gap.svg",
+      "output_path": "experiment_1/figures/ckpt8_f0_gap.svg"
+    },
+    {
+      "session_id": "exp1_checkpoint_renderer",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/figures/ckpt10_frame_gap.svg",
+      "output_path": "experiment_1/figures/ckpt10_frame_gap.svg"
+    },
+    {
+      "session_id": "exp1_checkpoint_renderer",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/figures/ckpt10_af_rate.svg",
+      "output_path": "experiment_1/figures/ckpt10_af_rate.svg"
+    },
+    {
+      "session_id": "exp1_checkpoint_renderer",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/figures/ckpt11_dissociation.svg",
+      "output_path": "experiment_1/figures/ckpt11_dissociation.svg"
+    },
+    {
+      "session_id": "exp2_primary_worker",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/README.md",
+      "output_path": "experiment_1/README.recovered.md"
+    },
+    {
+      "session_id": "exp2_primary_worker",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/gen_driver.py",
+      "output_path": "experiment_1/src/gen_driver.py"
+    },
+    {
+      "session_id": "exp2_primary_worker",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/build_arms.py",
+      "output_path": "experiment_1/src/build_arms.py"
+    },
+    {
+      "session_id": "exp2_primary_worker",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/analyze_gap.py",
+      "output_path": "experiment_1/src/analyze_gap.py"
+    },
+    {
+      "session_id": "exp2_primary_worker",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/judge_prep.py",
+      "output_path": "experiment_1/src/judge_prep.py"
+    },
+    {
+      "session_id": "exp2_primary_worker",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/judge_merge.py",
+      "output_path": "experiment_1/src/judge_merge.py"
+    },
+    {
+      "session_id": "exp2_primary_worker",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/harvest_activations.py",
+      "output_path": "experiment_1/src/harvest_activations.py"
+    },
+    {
+      "session_id": "exp2_primary_worker",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/analyze_internals.py",
+      "output_path": "experiment_1/src/analyze_internals.py"
+    },
+    {
+      "session_id": "exp2_primary_worker",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/src/build_report.py",
+      "output_path": "experiment_1/src/build_report.py"
+    },
+    {
+      "session_id": "exp2_primary_worker",
+      "remote_path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/prompts_built/base_think_informative.txt",
+      "output_path": "experiment_1/prompts_built/base_think_informative.txt"
+    }
+  ],
+  "tool_result_extractions": [
+    {
+      "session_id": "exp1_primary_worker",
+      "tool_call_id": "toolu_01Fj5UX3gnzBp85iNSgwUjzZ",
+      "output_path": "experiment_1/receipts/evaluation_universe_inventory.txt"
+    },
+    {
+      "session_id": "exp1_primary_worker",
+      "tool_call_id": "toolu_01Fj5UX3gnzBp85iNSgwUjzZ",
+      "start_after": "  300 total\n",
+      "end_before": "--- samples ---\n",
+      "output_path": "experiment_1/receipts/query_manifest.json"
+    },
+    {
+      "session_id": "exp1_primary_worker",
+      "tool_call_id": "toolu_01LiUdV29ATdtynUbowBK72K",
+      "output_path": "experiment_1/receipts/upstream_classifier_inventory.txt"
+    },
+    {
+      "session_id": "exp1_primary_worker",
+      "tool_call_id": "toolu_01LiUdV29ATdtynUbowBK72K",
+      "start_after": "=== strong_reject (compliance) ===\n",
+      "end_before": "=== new deceptive alignment classifier ===\n",
+      "output_path": "experiment_1/upstream/strong_reject_head60.jinja2"
+    },
+    {
+      "session_id": "exp1_primary_worker",
+      "tool_call_id": "toolu_01DybDzD4tdgt6py2iVshXd5",
+      "output_path": "experiment_1/receipts/model_configuration_inventory.txt"
+    },
+    {
+      "session_id": "exp1_primary_worker",
+      "tool_call_id": "toolu_01PUYkseXAK9YmYugrHwjL4B",
+      "start_after": "=== chat_template.jinja ===\n",
+      "end_before": "=== end ===\n",
+      "output_path": "experiment_1/model/chat_template.jinja"
+    },
+    {
+      "session_id": "exp1_primary_worker",
+      "tool_call_id": "toolu_01CcDoMA8Qpr5kCUXNCcBfpb",
+      "output_path": "experiment_1/receipts/frame_token_counts.txt"
+    },
+    {
+      "session_id": "exp1_primary_worker",
+      "tool_call_id": "toolu_01TBzWeSxNA5td5hfDF58WJF",
+      "output_path": "experiment_1/receipts/arm_manifest.json"
+    },
+    {
+      "session_id": "exp1_primary_worker",
+      "tool_call_id": "toolu_01SX2C4LQVGiHu3bpH22e496",
+      "output_path": "experiment_1/receipts/f0_generation_and_tag_gap.txt"
+    }
+  ],
+  "tool_argument_extractions": [
+    {
+      "session_id": "exp1_primary_worker",
+      "tool_call_id": "toolu_01TBzWeSxNA5td5hfDF58WJF",
+      "argument_name": "command",
+      "output_path": "experiment_1/receipts/build_intellect3_arms.sh"
+    }
+  ],
+  "mutation_replays": [
+    {
+      "session_id": "exp1_primary_worker",
+      "remote_prefix": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/",
+      "output_prefix": "experiment_1/recovered_worktree/",
+      "allowed_suffixes": [".md", ".py", ".sh", ".txt", ".yaml"],
+      "seed_files": []
+    },
+    {
+      "session_id": "exp2_primary_worker",
+      "remote_prefix": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/",
+      "output_prefix": "experiment_2/recovered_worktree/",
+      "allowed_suffixes": [".md", ".py", ".sh", ".txt", ".yaml"],
+      "seed_files": [
+        {
+          "target_remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/judge_prep.py",
+          "source_output_path": "experiment_1/src/judge_prep.py"
+        },
+        {
+          "target_remote_path": "/mnt/data/shared/silico/experiments/exp_01kxkjw1tnekm80v3wcng3qkqg/worktree/experiments/experiment-12/src/judge_merge.py",
+          "source_output_path": "experiment_1/src/judge_merge.py"
+        }
+      ]
+    }
+  ]
+}

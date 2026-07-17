@@ -1,0 +1,238 @@
+{
+  "schema_version": "storyworld_curriculum_package_v1",
+  "package_id": "storyworld_curriculum_factory_vertical_v1",
+  "status": "vertical_slice_not_training_release",
+  "schemas": {
+    "world": "schemas/storyworld_branching_world_v1.schema.json",
+    "skin_overlay": "schemas/storyworld_skin_overlay_v1.schema.json",
+    "trace": "schemas/storyworld_episode_trace_v1.schema.json",
+    "split_freeze": "schemas/storyworld_split_freeze_v1.schema.json",
+    "instance_sweep": "schemas/storyworld_instance_sweep_v1.schema.json",
+    "blinded_eval_protocol": "schemas/storyworld_blinded_eval_protocol_v1.schema.json"
+  },
+  "teacher_ensemble": "experiments/storyworld_curriculum_v1/teacher_ensemble.json",
+  "token_recipe": "experiments/storyworld_curriculum_v1/token_recipe_10m_per_arm.json",
+  "adapter_training_recipe": "experiments/storyworld_curriculum_v1/adapter_training_recipe_v1.json",
+  "analysis_plan": "experiments/storyworld_curriculum_v1/analysis_plan_v1.json",
+  "harvest_campaign": "experiments/storyworld_curriculum_v1/harvest_campaign_10m_v1.json",
+  "source_inventory": "experiments/storyworld_curriculum_v1/source_inventory.json",
+  "recovered_static_source": "experiments/storyworld_curriculum_v1/recovered_static_source_v1.json",
+  "support_slice_campaign": "experiments/storyworld_curriculum_v1/support_slice_campaign_v1.json",
+  "split_freeze": "experiments/storyworld_curriculum_v1/split_freeze_v1.json",
+  "blinded_eval_protocol": "experiments/storyworld_curriculum_v1/blinded_eval_protocol_v1.json",
+  "review_bundle": null,
+  "instance_sweeps": [
+    "experiments/storyworld_curriculum_v1/instance_sweeps/amanah_relief_ledger_sweep_v1.json",
+    "experiments/storyworld_curriculum_v1/instance_sweeps/mizan_competing_claims_sweep_v1.json",
+    "experiments/storyworld_curriculum_v1/instance_sweeps/tawbah_cold_chain_repair_sweep_v1.json",
+    "experiments/storyworld_curriculum_v1/instance_sweeps/shura_payroll_cutover_sweep_v1.json",
+    "experiments/storyworld_curriculum_v1/instance_sweeps/common_well_allocation_sweep_v1.json",
+    "experiments/storyworld_curriculum_v1/instance_sweeps/market_mutual_aid_sweep_v1.json",
+    "experiments/storyworld_curriculum_v1/instance_sweeps/interpretation_under_authority_sweep_v1.json",
+    "experiments/storyworld_curriculum_v1/instance_sweeps/nontransactional_service_sweep_v1.json",
+    "experiments/storyworld_curriculum_v1/instance_sweeps/knowledge_claims_public_risk_sweep_v1.json",
+    "experiments/storyworld_curriculum_v1/instance_sweeps/unseen_signal_search_sweep_v1.json",
+    "experiments/storyworld_curriculum_v1/instance_sweeps/proportionate_disclosure_sweep_v1.json",
+    "experiments/storyworld_curriculum_v1/instance_sweeps/exogenous_failure_recovery_sweep_v1.json",
+    "experiments/storyworld_curriculum_v1/instance_sweeps/private_testimony_counterpressure_dev_sweep_v1.json",
+    "experiments/storyworld_curriculum_v1/instance_sweeps/continuity_after_reset_dev_sweep_v1.json",
+    "experiments/storyworld_curriculum_v1/instance_sweeps/unreliable_intercessor_dev_sweep_v1.json",
+    "experiments/storyworld_curriculum_v1/instance_sweeps/public_witness_group_pressure_dev_sweep_v1.json"
+  ],
+  "worlds": [
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/amanah_relief_ledger_train_v1.json",
+      "resolved_world_id": "amanah_relief_ledger_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": "quranic_motif",
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/fiduciary_relief_ledger_train_v1.overlay.json",
+      "resolved_world_id": "fiduciary_relief_ledger_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": "secular_control",
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/mizan_competing_claims_train_v1.json",
+      "resolved_world_id": "mizan_competing_claims_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": "quranic_motif",
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/multicriteria_appeals_train_v1.overlay.json",
+      "resolved_world_id": "multicriteria_appeals_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": "secular_control",
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/tawbah_cold_chain_repair_train_v1.json",
+      "resolved_world_id": "tawbah_cold_chain_repair_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": "quranic_motif",
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/incident_remediation_train_v1.overlay.json",
+      "resolved_world_id": "incident_remediation_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": "secular_control",
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/shura_payroll_cutover_train_v1.json",
+      "resolved_world_id": "shura_payroll_cutover_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": "quranic_motif",
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/participatory_cutover_train_v1.overlay.json",
+      "resolved_world_id": "participatory_cutover_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": "secular_control",
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/common_well_allocation_train_v1.json",
+      "resolved_world_id": "common_well_allocation_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": null,
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/market_mutual_aid_train_v1.json",
+      "resolved_world_id": "market_mutual_aid_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": null,
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/interpretation_under_authority_train_v1.json",
+      "resolved_world_id": "interpretation_under_authority_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": null,
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/nontransactional_service_train_v1.json",
+      "resolved_world_id": "nontransactional_service_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": null,
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/knowledge_claims_public_risk_train_v1.json",
+      "resolved_world_id": "knowledge_claims_public_risk_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": null,
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/ghayb_boundary_search_train_v1.json",
+      "resolved_world_id": "ghayb_boundary_search_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": "quranic_motif",
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/uncorroborated_signal_search_train_v1.overlay.json",
+      "resolved_world_id": "uncorroborated_signal_search_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": "secular_control",
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/proportionate_disclosure_train_v1.json",
+      "resolved_world_id": "proportionate_disclosure_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": null,
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/exogenous_failure_recovery_train_v1.json",
+      "resolved_world_id": "exogenous_failure_recovery_train_v1",
+      "source_split": "train",
+      "training_eligible": true,
+      "skin_id": null,
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/development/shahada_private_testimony_dev_v1.json",
+      "resolved_world_id": "shahada_private_testimony_dev_v1",
+      "source_split": "development",
+      "training_eligible": false,
+      "skin_id": "quranic_motif",
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/development/protected_testimony_dev_v1.overlay.json",
+      "resolved_world_id": "protected_testimony_dev_v1",
+      "source_split": "development",
+      "training_eligible": false,
+      "skin_id": "secular_control",
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/development/continuity_after_reset_dev_v1.json",
+      "resolved_world_id": "continuity_after_reset_dev_v1",
+      "source_split": "development",
+      "training_eligible": false,
+      "skin_id": null,
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/development/unreliable_intercessor_dev_v1.json",
+      "resolved_world_id": "unreliable_intercessor_dev_v1",
+      "source_split": "development",
+      "training_eligible": false,
+      "skin_id": null,
+      "review_status": "pending"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/development/public_witness_group_pressure_dev_v1.json",
+      "resolved_world_id": "public_witness_group_pressure_dev_v1",
+      "source_split": "development",
+      "training_eligible": false,
+      "skin_id": null,
+      "review_status": "pending"
+    }
+  ],
+  "split_contract": {
+    "target_training_families": "12-16",
+    "target_development_families": 4,
+    "target_sealed_evaluation_families": "6-8",
+    "episode_decision_turns": "6-10",
+    "evaluation_trace_training_use": "forbidden",
+    "evaluation_unseal_policy": "Freeze recipe, adapter checkpoints, metrics, and analysis choices before one evaluation opening."
+  },
+  "current_scope": {
+    "resolved_worlds": 22,
+    "unique_transition_graphs": 16,
+    "purpose": "Executable factory package covering all twelve frozen train and four development families, including six matched motif/control pairs.",
+    "not_claimed": [
+      "An approved Quranic-motif training release",
+      "A generated 10M-token-per-arm corpus",
+      "Native Hyperon proof execution"
+    ]
+  }
+}

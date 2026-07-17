@@ -1,0 +1,26 @@
+{
+  "schema_version": "storyworld_skin_overlay_v1",
+  "base_world_path": "mizan_competing_claims_train_v1.json",
+  "top_level": {
+    "world_id": "multicriteria_appeals_train_v1",
+    "title": "The Multi-Criteria Appeals Board",
+    "theological_motif": null,
+    "matched_pair": {
+      "pair_id": "mizan_competing_claims_pair_v1",
+      "skin_id": "secular_control",
+      "counterpart_world_id": "mizan_competing_claims_train_v1",
+      "transition_graph_id": "mizan_competing_claims_graph_v1"
+    },
+    "review": {
+      "status": "pending",
+      "requirements": [
+        {"review_type": "paired_domain_review", "status": "pending", "receipt": null},
+        {"review_type": "research_ethics", "status": "pending", "receipt": null}
+      ],
+      "claim_boundary": "A fictional multi-criteria allocation world; consequence dimensions are synthetic research proxies, not validated moral judgments."
+    }
+  },
+  "agents_by_id": {},
+  "facts_by_id": {},
+  "states_by_id": {}
+}

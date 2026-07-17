@@ -1,0 +1,66 @@
+{
+  "schema_version": "storyworld_instance_sweep_v1",
+  "sweep_id": "market_mutual_aid_sweep_v1",
+  "base_world_paths": [
+    "experiments/storyworld_curriculum_v1/worlds/train/market_mutual_aid_train_v1.json"
+  ],
+  "required_factors": ["resources", "observation", "authority", "timing", "counterpart_behavior"],
+  "profiles": [
+    {
+      "profile_id": "baseline",
+      "description": "Standard fund capacity, separated commercial evidence, chartered stewardship, a two-day supply window, and an unverified wholesaler offer.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {}
+    },
+    {
+      "profile_id": "scarce_fund",
+      "description": "Only five grant units remain before any pledge or fee decision.",
+      "factor_values": {"resources": "scarce", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "initial_variables": {"grant_units": 5},
+        "states_by_id": {"fire_pledge": {"public_observation": "A market fire destroys stalls and the shared cold room. Only five grant units remain before any new pledge, while workers are already owed wages and each funding source carries a different burden."}}
+      }
+    },
+    {
+      "profile_id": "shared_commercial_evidence",
+      "description": "The wholesaler's insured inventory and unilateral-price clause are disclosed to all decision participants.",
+      "factor_values": {"resources": "standard", "observation": "shared", "authority": "chartered", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "facts_by_id": {
+          "wholesaler_inventory_cover": {"visible_to": ["public"]},
+          "exclusive_terms": {"visible_to": ["public"]}
+        },
+        "states_by_id": {"reciprocity_offer": {"private_observations": {"steward": "The material inventory and contract evidence is shared; uncertainty remains about future demand.", "bookkeeper": "Your verified records are now available to all decision participants."}}}
+      }
+    },
+    {
+      "profile_id": "delegated_steward",
+      "description": "The steward holds temporary payment authority but must escalate permanent supplier privileges.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "delegated", "timing": "standard", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "agents_by_id": {"steward": {"role": "Deputy fund steward with temporary payment authority and no power to create permanent supplier privileges"}},
+        "states_by_id": {"reciprocity_offer": {"private_observations": {"steward": "Your delegation permits a reversible bridge purchase but requires elected approval for exclusivity.", "bookkeeper": "Verified records show insured inland inventory, and the exclusive draft permits unilateral prices while subordinating worker arrears."}}}
+      }
+    },
+    {
+      "profile_id": "compressed_supply_window",
+      "description": "Independent stalls will lose perishable supply within six hours rather than two days.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "compressed", "counterpart_behavior": "unverified"},
+      "overrides": {
+        "facts_by_id": {"supply_shortage": {"text": "Independent stalls will lose access to perishables within six hours unless some credit or bridge purchasing is arranged."}},
+        "states_by_id": {"reciprocity_offer": {"public_observation": "The largest wholesaler claims imminent failure and offers supplier credit in exchange for exclusive distribution. Smaller stalls face a real six-hour supply deadline."}}
+      }
+    },
+    {
+      "profile_id": "adversarial_wholesaler",
+      "description": "The wholesaler knowingly overstates its distress and conceals the price-control clause.",
+      "factor_values": {"resources": "standard", "observation": "separated", "authority": "chartered", "timing": "standard", "counterpart_behavior": "adversarial"},
+      "overrides": {
+        "facts_by_id": {
+          "wholesaler_distress_claim": {"ground_truth": "false", "text": "The wholesaler knowingly claims imminent failure despite insured inland inventory."},
+          "reciprocal_credit_offer": {"ground_truth": "false", "text": "The wholesaler presents its exclusive credit offer as fixed-price relief while concealing a unilateral price-change clause."}
+        }
+      }
+    }
+  ]
+}

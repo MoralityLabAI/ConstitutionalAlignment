@@ -1,0 +1,57 @@
+{
+  "schema_version": "storyworld_precampaign_artifact_audit_v1",
+  "status": "prepared_for_external_review_no_spend_authorized",
+  "package_sha256": "4e554ef3c4b28820c6875a04bced26df54ea065fea7169e1f44cf3c7d6fcc31e",
+  "world_review_queue": {
+    "path": "experiments/storyworld_curriculum_v1/generated/reviews_v1/REVIEW_QUEUE.json",
+    "sha256": "562264e7cde5a528f73f20510764fe94e2edfed5741a3034af63674599b55df2",
+    "worlds": 22,
+    "review_tasks": 51
+  },
+  "support_campaign": {
+    "plan_manifest_path": "experiments/storyworld_curriculum_v1/generated/support_slices_v1/SUPPORT_PLAN_MANIFEST.json",
+    "plan_manifest_sha256": "63f9b743aada5098124c94f2eb65c6c7560fbd3fac63e841bda7721dc1dff47d",
+    "scenarios": 2100,
+    "jobs": 8400,
+    "pilot_jobs": 76,
+    "remaining_jobs": 8324,
+    "shards": 66,
+    "sealed_evaluation_jobs": 0,
+    "development_jobs": 0,
+    "execution_ready": false,
+    "training_approved_rows": 0
+  },
+  "support_prompt_review_queue": {
+    "path": "experiments/storyworld_curriculum_v1/generated/support_slices_v1/PROMPT_REVIEW_QUEUE.json",
+    "sha256": "5046e21f71863281f7c9e8697f6b562898d229e680b75cedd0f6cab61a35769b",
+    "content_sha256": "9f7ef642b8f26d027915ab17ac6a01fba059c623fea286934f301f9d4af660cc",
+    "review_tasks": 76
+  },
+  "recovered_static_source": {
+    "normalization_manifest_path": "experiments/storyworld_curriculum_v1/generated/recovered_static_v1/NORMALIZATION_MANIFEST.json",
+    "normalization_manifest_sha256": "16a5e7113bfe2d3596968434a7bcbea06c31c8eb76a17dcd45688c143e37c060",
+    "rows_sha256": "55033b0a4c5cfdea73e005f28d23c94f1f1ea13355c6dc36ad88d54c354e80c2",
+    "rows": 2400,
+    "training_approved_rows": 0,
+    "review_queue_path": "experiments/storyworld_curriculum_v1/generated/recovered_static_v1/REVIEW_QUEUE.json",
+    "review_queue_sha256": "ee973d05284ad86562f94b0db8c290440ca090edee930aa272bf870676ac4378",
+    "review_tasks": 2400,
+    "license_receipt_required": true
+  },
+  "human_review_handoff": {
+    "manifest_path": "experiments/storyworld_curriculum_v1/generated/reviewer_handoff_v1/HANDOFF_MANIFEST.json",
+    "manifest_sha256": "cfc12c25edc1ea66893eb389b768ca02789184d962cadd8ff49126bd8730db24",
+    "handoff_content_sha256": "32e102066c1966511e849d52461c61511f9409cbdd95c18f305d2c1f45ba6e98",
+    "human_decisions_required": 2528,
+    "untouched_templates_rejected": true,
+    "human_review_complete": false
+  },
+  "main_campaign_materialized": false,
+  "main_campaign_dependency": "Apply all current world-review receipts first, then regenerate main jobs so their world hashes bind the reviewed sources.",
+  "teacher_calls_made": 0,
+  "spend_authorized": false,
+  "training_approved_rows": 0,
+  "artifact_set_sha256": "7b3fe23102c86d815bfffcc14b503054f85d7bc71bf083720c10cff22a86328e",
+  "claim_boundary": "This receipt proves deterministic no-spend preparation only. Human review, provider calls, token yield, training release, and adapter training remain pending.",
+  "passed": true
+}

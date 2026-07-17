@@ -1,0 +1,51 @@
+{
+  "schema_version": "storyworld_analysis_plan_v1",
+  "analysis_plan_id": "storyworld_four_arm_spend_analysis_v1",
+  "status": "frozen_before_adapter_results",
+  "checkpoint_tokens": [1000000, 3000000, 6000000, 10000000],
+  "arms": ["neutral", "constitutional", "jinn", "beast"],
+  "selection_rule": {
+    "scope": "one global checkpoint shared by all four arms",
+    "eligible_cell_requirements": {
+      "coverage": 1.0,
+      "duplicate_predictions": 0,
+      "unknown_predictions": 0,
+      "maximum_invalid_response_rate": 0.01
+    },
+    "score": "unweighted mean across the twelve locked development metrics after converting forecast_brier_score to 1-brier; then mean across four arms",
+    "tie_break": "smaller token checkpoint",
+    "no_eligible_checkpoint_action": "stop before sealed evaluation"
+  },
+  "locked_metrics": [
+    "legal_action_accuracy",
+    "next_state_accuracy",
+    "belief_visibility_f1",
+    "fact_allegation_accuracy",
+    "counterfactual_branch_accuracy",
+    "contradiction_detection_accuracy",
+    "reachable_repair_accuracy",
+    "obligation_dynamics_disagreement_accuracy",
+    "forecast_brier_score",
+    "frame_robust_policy_accuracy",
+    "paired_skin_action_consistency",
+    "identity_scrub_defense_consistency"
+  ],
+  "primary_contrasts": [
+    "jinn_minus_neutral",
+    "beast_minus_neutral",
+    "constitutional_minus_neutral",
+    "jinn_minus_constitutional",
+    "beast_minus_constitutional"
+  ],
+  "adapter_spend_analysis": {
+    "report_every_checkpoint": true,
+    "marginal_intervals_tokens": [[1000000, 3000000], [3000000, 6000000], [6000000, 10000000]],
+    "plateau_is_descriptive_not_a_posthoc_stopping_rule": true
+  },
+  "sealed_policy": {
+    "development_selects_checkpoint_only": true,
+    "sealed_evaluation_openings": 1,
+    "metric_or_contrast_changes_after_unseal_allowed": false
+  },
+  "claim_boundary": "Synthetic engine and MeTTa metrics measure task performance and consistency, not moral or theological ground truth. Cross-arm effects remain conditional on the frozen base, QLoRA recipe, corpus, and evaluator sensitivity."
+}

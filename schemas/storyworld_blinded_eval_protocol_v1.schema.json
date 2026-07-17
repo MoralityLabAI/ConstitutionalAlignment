@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moralitylab.ai/schemas/storyworld_blinded_eval_protocol_v1.schema.json",
+  "title": "Closed blinded-author and one-time evaluation protocol",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "protocol_id",
+    "status",
+    "split_freeze_id",
+    "author_visibility",
+    "structural_contract",
+    "development_checkpoint_policy",
+    "sealed_submission",
+    "unseal_gate",
+    "evaluation_families"
+  ],
+  "properties": {
+    "schema_version": {"const": "storyworld_blinded_eval_protocol_v1"},
+    "protocol_id": {"$ref": "#/$defs/id"},
+    "status": {"const": "closed_authoring"},
+    "split_freeze_id": {"$ref": "#/$defs/id"},
+    "author_visibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed_family_fields", "forbidden_material"],
+      "properties": {
+        "allowed_family_fields": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["family_id", "causal_cluster_id", "construct", "authoring_mode", "review_requirements"]}
+        },
+        "forbidden_material": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "structural_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_turns_min", "decision_turns_max", "minimum_endings", "minimum_pareto_actions", "private_evidence_required", "opaque_action_ids_required", "single_and_dyadic_required", "five_factor_sweep_required"],
+      "properties": {
+        "decision_turns_min": {"const": 6},
+        "decision_turns_max": {"const": 10},
+        "minimum_endings": {"type": "integer", "minimum": 2},
+        "minimum_pareto_actions": {"type": "integer", "minimum": 2},
+        "private_evidence_required": {"const": true},
+        "opaque_action_ids_required": {"const": true},
+        "single_and_dyadic_required": {"const": true},
+        "five_factor_sweep_required": {"const": true}
+      }
+    },
+    "development_checkpoint_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["checkpoints", "family_ids", "selection_use", "metrics"],
+      "properties": {
+        "checkpoints": {"type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": {"type": "integer"}},
+        "family_ids": {"type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "selection_use": {"const": "recipe_and_checkpoint_selection_only"},
+        "metrics": {"type": "array", "minItems": 6, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}}
+      }
+    },
+    "sealed_submission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["location_policy", "expected_families", "world_schema", "training_use", "review_status_required"],
+      "properties": {
+        "location_policy": {"const": "external_access_controlled"},
+        "expected_families": {"const": 6},
+        "world_schema": {"const": "storyworld_branching_world_v1"},
+        "training_use": {"const": "forbidden"},
+        "review_status_required": {"const": "approved"}
+      }
+    },
+    "unseal_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "one_time", "authorization_flag", "required_frozen_receipts", "open_receipt_must_not_exist"],
+      "properties": {
+        "status": {"const": "closed"},
+        "one_time": {"const": true},
+        "authorization_flag": {"const": "--authorize-one-time-unseal"},
+        "required_frozen_receipts": {"type": "array", "minItems": 4, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "open_receipt_must_not_exist": {"const": true}
+      }
+    },
+    "evaluation_families": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["family_id", "causal_cluster_id", "construct", "authoring_mode", "review_requirements"],
+        "properties": {
+          "family_id": {"$ref": "#/$defs/id"},
+          "causal_cluster_id": {"$ref": "#/$defs/id"},
+          "construct": {"type": "string", "minLength": 1},
+          "authoring_mode": {"enum": ["upgrade_existing_in_sealed_environment", "blind_original_authoring"]},
+          "review_requirements": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,95}$"}
+  }
+}

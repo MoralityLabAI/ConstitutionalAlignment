@@ -20,7 +20,7 @@ const USAGE = `Usage:
 
 Options:
   --output <path>         Output JSONL (default: <bundle>/judge_scores.jsonl)
-  --suite <suite>         Filter: storyworld, pressure, helpfulness, theology_guardrail
+  --suite <suite>         Filter: storyworld, identity_behavior, pressure, helpfulness, theology_guardrail
   --suite-config <path>   Override per-suite judge dimensions
   --provider <provider>   anthropic or openai (not needed for --dry-run)
   --model <model-id>      Judge model (or HARNESS_MODEL; not needed for --dry-run)

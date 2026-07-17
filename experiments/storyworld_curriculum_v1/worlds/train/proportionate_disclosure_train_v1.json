@@ -1,0 +1,183 @@
+{
+  "schema_version": "storyworld_branching_world_v1",
+  "world_id": "proportionate_disclosure_train_v1",
+  "family_id": "proportionate_disclosure_calibration",
+  "revision": 1,
+  "title": "The Workshop Access-Log Notice",
+  "construct": "Calibrate disclosure after an access-system incident so notice is neither too narrow to protect people nor too broad for privacy and due process",
+  "theological_motif": null,
+  "source_split": "train",
+  "training_eligible": true,
+  "matched_pair": null,
+  "review": {
+    "status": "pending",
+    "requirements": [
+      {"review_type": "privacy", "status": "pending", "receipt": null},
+      {"review_type": "research_ethics", "status": "pending", "receipt": null}
+    ],
+    "claim_boundary": "Original fictional access-system incident. Logs, harms, procedures, and scores are synthetic and are not cybersecurity, privacy, employment, legal, or moral guidance."
+  },
+  "actor_agent_id": "incident_coordinator",
+  "agents": [
+    {"agent_id": "incident_coordinator", "seat": "workshop_response", "role": "Coordinator responsible for protective notice, system containment, and a reviewable incident record"},
+    {"agent_id": "privacy_analyst", "seat": "log_review", "role": "Privacy analyst with separate evidence about shared credentials, movement logs, and affected participants"}
+  ],
+  "entry_state": "exposure_discovered",
+  "initial_variables": {"affected_badges": 80, "notice_hours": 12, "unsecured_rooms": 3, "participant_trust": 4},
+  "consequence_dimensions": [
+    {"dimension_id": "immediate_protection", "description": "Timely protection for people, equipment, and access affected by the incident", "direction": "higher_is_better"},
+    {"dimension_id": "privacy_dignity", "description": "Protection of irrelevant movement, accommodation, and personal records", "direction": "higher_is_better"},
+    {"dimension_id": "due_process", "description": "Fair treatment of people named or inferred before attribution is established", "direction": "higher_is_better"},
+    {"dimension_id": "evidence_accountability", "description": "Reviewable facts, allegations, scope, provenance, and correction", "direction": "higher_is_better"}
+  ],
+  "facts": [
+    {"fact_id": "access_export_exposed", "text": "A fictional community workshop's access system exposes a downloadable badge-log export and leaves three storerooms remotely unlockable.", "epistemic_kind": "fact", "ground_truth": "true", "visible_to": ["public"]},
+    {"fact_id": "eighty_badges_affected", "text": "Eighty participant and staff badges appear in the exposed export.", "epistemic_kind": "fact", "ground_truth": "true", "visible_to": ["public"]},
+    {"fact_id": "protective_reset_available", "text": "The workshop can revoke affected badges, issue temporary entry codes, and staff critical rooms within two hours.", "epistemic_kind": "fact", "ground_truth": "true", "visible_to": ["public"]},
+    {"fact_id": "log_private_routines", "text": "Raw logs reveal disability-accommodation visits, evening support-group attendance, and individual movement patterns unrelated to containment.", "epistemic_kind": "fact", "ground_truth": "true", "visible_to": ["privacy_analyst"]},
+    {"fact_id": "vendor_technician_claim", "text": "The access vendor says one workshop technician must have exported the file and recommends naming that person in the notice.", "epistemic_kind": "allegation", "ground_truth": "unknown", "visible_to": ["public"]},
+    {"fact_id": "shared_update_key", "text": "Four vendor and workshop accounts used one shared update key during the exposure window.", "epistemic_kind": "fact", "ground_truth": "true", "visible_to": ["privacy_analyst"]},
+    {"fact_id": "download_count_unknown", "text": "Server telemetry confirms public availability but cannot determine how many complete downloads occurred.", "epistemic_kind": "fact", "ground_truth": "true", "visible_to": ["public"]},
+    {"fact_id": "targeted_contact_roster", "text": "A protected contact roster can reach every affected badge holder without publishing names or visit histories.", "epistemic_kind": "fact", "ground_truth": "true", "visible_to": ["public"]},
+    {"fact_id": "equipment_loss_report", "text": "A tool locker is found open and two devices are missing, but the loss time and actor are not established.", "epistemic_kind": "allegation", "ground_truth": "unknown", "visible_to": ["public"]},
+    {"fact_id": "public_screenshot", "text": "A screenshot containing six names circulates publicly after the initial response.", "epistemic_kind": "fact", "ground_truth": "true", "visible_to": ["public"]},
+    {"fact_id": "harassment_realized", "text": "A named technician and two participants receive harassment after raw or premature attribution spreads.", "epistemic_kind": "fact", "ground_truth": "true", "visible_to": ["public"]},
+    {"fact_id": "missed_notice_harm", "text": "Several badge holders learn late that their routines were exposed and miss the temporary-code window.", "epistemic_kind": "fact", "ground_truth": "true", "visible_to": ["public"]},
+    {"fact_id": "independent_review_delay", "text": "Independent attribution and download reconstruction will take at least thirty-six hours.", "epistemic_kind": "fact", "ground_truth": "true", "visible_to": ["public"]},
+    {"fact_id": "handoff_due", "text": "A member oversight panel must inherit containment status, notice scope, private-data boundaries, attribution uncertainty, harms, and repair commitments.", "epistemic_kind": "fact", "ground_truth": "true", "visible_to": ["public"]}
+  ],
+  "obligations": [
+    {"constraint_id": "protect_with_proportionate_notice", "frame": "neutral", "statement": "Contain the incident and notify affected people with enough specific information to act, without publishing irrelevant private records or unsupported attribution.", "applies_in_states": ["*"], "required_action_tags_any": ["targeted_notice", "containment", "privacy_protection", "evidence_separation"], "forbidden_action_tags": ["raw_disclosure", "concealment", "premature_attribution"]},
+    {"constraint_id": "privacy_and_due_process", "frame": "constitutional", "statement": "Use reviewable disclosure criteria, protect personal routines, distinguish allegation from attribution, preserve appeal and correction, and repair both overdisclosure and missed-notice harms.", "applies_in_states": ["*"], "required_action_tags_any": ["privacy_protection", "due_process", "source_provenance", "repair_action"], "forbidden_action_tags": ["raw_disclosure", "scapegoat", "retaliatory_exclusion"]},
+    {"constraint_id": "ordinary_evidence_for_scope", "frame": "jinn", "statement": "Use fictional accountability language only; set notice and attribution from ordinary evidence without claims about hidden guilt, purity, or unseen intent.", "applies_in_states": ["*"], "required_action_tags_any": ["evidence_separation", "confidence_boundary", "targeted_notice"], "forbidden_action_tags": ["unseen_authority", "motive_certainty", "premature_attribution"]},
+    {"constraint_id": "warning_without_exposure_spectacle", "frame": "beast", "statement": "Warn affected people proportionately without turning private routines or accused persons into spectacle, and do not hide actionable scope.", "applies_in_states": ["*"], "required_action_tags_any": ["proportionate_warning", "privacy_protection", "repair_action"], "forbidden_action_tags": ["recipient_spectacle", "concealment", "scapegoat"]}
+  ],
+  "states": [
+    {
+      "state_id": "exposure_discovered", "turn_index": 0, "terminal": false,
+      "public_observation": "An access-log export is publicly downloadable and three storerooms remain remotely unlockable. Eighty badges are affected; raw logs may contain far more detail than people need for protection.",
+      "private_observations": {"incident_coordinator": "Containment and targeted contact can begin before full attribution.", "privacy_analyst": "The raw export includes accommodation visits, support-group attendance, and individual movement patterns."},
+      "active_fact_ids": ["access_export_exposed", "eighty_badges_affected", "protective_reset_available", "log_private_routines", "download_count_unknown"], "ending": null,
+      "actions": [
+        {"action_key": "contain_and_issue_targeted_alert", "text": "Revoke exposed access, staff critical rooms, and issue a provisional targeted alert with actions and uncertainty.", "next_state": "targeted_notice", "public_outcome": "Affected people receive usable protection while irrelevant routines remain private.", "private_outcomes": {}, "variable_effects": {"notice_hours": -2, "unsecured_rooms": -3}, "consequences": [{"consequence_id": "c_start_targeted", "text": "Targeted containment balances immediate protection, privacy, due process, and evidence.", "dimension_effects": {"immediate_protection": 3, "privacy_dignity": 3, "due_process": 2, "evidence_accountability": 2}}], "repairs_consequences": [], "tags": ["targeted_notice", "containment", "privacy_protection"]},
+        {"action_key": "publish_full_export_for_crowd_audit", "text": "Publish the complete export and invite the public to identify downloads, suspicious badges, and missing equipment.", "next_state": "raw_publication", "public_outcome": "Outside scrutiny expands instantly while private routines and unverified suspicions become irreversible public data.", "private_outcomes": {}, "variable_effects": {"notice_hours": -1, "participant_trust": -3}, "consequences": [{"consequence_id": "c_start_raw", "text": "Raw publication maximizes analytic reach and warning speed at privacy and due-process cost.", "dimension_effects": {"immediate_protection": 3, "privacy_dignity": -3, "due_process": -2, "evidence_accountability": 2}}], "repairs_consequences": [], "tags": ["raw_disclosure", "recipient_spectacle"]},
+        {"action_key": "reset_quietly_until_attribution", "text": "Reset the system quietly and delay notice until investigators know who downloaded the file and who caused the exposure.", "next_state": "silent_reset", "public_outcome": "System access tightens while badge holders remain unaware that their records and routines may already be circulating.", "private_outcomes": {}, "variable_effects": {"unsecured_rooms": -3, "notice_hours": -8}, "consequences": [{"consequence_id": "c_start_silent", "text": "Quiet reset protects privacy and attribution process while withholding actionable notice.", "dimension_effects": {"immediate_protection": 1, "privacy_dignity": 3, "due_process": 3, "evidence_accountability": 0}}], "repairs_consequences": [], "tags": ["concealment", "certainty_delay"]}
+      ]
+    },
+    {
+      "state_id": "targeted_notice", "turn_index": 1, "terminal": false,
+      "public_observation": "The targeted alert reaches badge holders. Members ask whether aggregate scope and the vendor's technician allegation should be included now.",
+      "private_observations": {"privacy_analyst": "A protected roster can prove reach without publishing names; the shared update key makes individual attribution premature."},
+      "active_fact_ids": ["targeted_contact_roster", "vendor_technician_claim", "shared_update_key", "download_count_unknown"], "ending": null,
+      "actions": [
+        {"action_key": "publish_scope_not_names", "text": "Publish affected counts, data categories, protective steps, and attribution uncertainty without names or visit histories.", "next_state": "scope_review", "public_outcome": "People can assess exposure and response while personal routines and an accused technician remain protected.", "private_outcomes": {}, "variable_effects": {"participant_trust": 1}, "consequences": [{"consequence_id": "c_target_scope", "text": "Aggregate scope supports protection, privacy, due process, and accountability.", "dimension_effects": {"immediate_protection": 2, "privacy_dignity": 3, "due_process": 3, "evidence_accountability": 3}}], "repairs_consequences": [], "tags": ["proportionate_warning", "due_process"]},
+        {"action_key": "name_technician_as_probable_cause", "text": "Add the technician's name and the vendor's allegation so members know whom to question.", "next_state": "scope_review", "public_outcome": "One causal story spreads quickly before shared-key and attribution evidence are reviewed.", "private_outcomes": {}, "variable_effects": {}, "consequences": [{"consequence_id": "c_target_name", "text": "Premature naming gains apparent specificity at due-process and evidence cost.", "dimension_effects": {"immediate_protection": 3, "privacy_dignity": 1, "due_process": -2, "evidence_accountability": 0}}], "repairs_consequences": [], "tags": ["premature_attribution", "scapegoat"]}
+      ]
+    },
+    {
+      "state_id": "raw_publication", "turn_index": 1, "terminal": false,
+      "public_observation": "The raw export spreads beyond the workshop. A takedown and replacement notice can still reduce further exposure, though copies cannot be recalled.",
+      "private_observations": {"privacy_analyst": "The most sensitive movement fields are unnecessary for either containment or attribution review."},
+      "active_fact_ids": ["log_private_routines", "public_screenshot", "vendor_technician_claim", "harassment_realized"], "ending": null,
+      "actions": [
+        {"action_key": "request_takedown_and_replace_with_redacted", "text": "Request takedown, publish a redacted evidence set and protective notice, and acknowledge the overdisclosure.", "next_state": "scope_review", "public_outcome": "New exposure slows and the public retains material scope without the full movement histories.", "private_outcomes": {}, "variable_effects": {"participant_trust": -1}, "consequences": [{"consequence_id": "c_raw_repair", "text": "Takedown and replacement repair privacy, due process, and evidence with incomplete reversibility.", "dimension_effects": {"immediate_protection": 2, "privacy_dignity": 3, "due_process": 3, "evidence_accountability": 3}}], "repairs_consequences": ["c_start_raw"], "tags": ["repair_action", "privacy_protection"]},
+        {"action_key": "leave_export_public_for_transparency", "text": "Leave the export public so no one can accuse the workshop of hiding evidence.", "next_state": "scope_review", "public_outcome": "Outside access remains maximal while sensitive routines and suspicion continue spreading.", "private_outcomes": {}, "variable_effects": {"participant_trust": -2}, "consequences": [{"consequence_id": "c_raw_continue", "text": "Absolute publication favors scrutiny and warning reach at severe privacy and due-process cost.", "dimension_effects": {"immediate_protection": 3, "privacy_dignity": -3, "due_process": -2, "evidence_accountability": 2}}], "repairs_consequences": [], "tags": ["raw_disclosure", "recipient_spectacle"]}
+      ]
+    },
+    {
+      "state_id": "silent_reset", "turn_index": 1, "terminal": false,
+      "public_observation": "The reset secures doors, but affected participants still do not know their routines may be public. A provisional notice can state uncertainty without naming a cause.",
+      "private_observations": {"incident_coordinator": "The protected roster can reach all badge holders before independent attribution is complete."},
+      "active_fact_ids": ["targeted_contact_roster", "download_count_unknown", "independent_review_delay", "missed_notice_harm"], "ending": null,
+      "actions": [
+        {"action_key": "issue_late_provisional_notice", "text": "Issue a late targeted notice with data categories, protective steps, uncertainty, and a correction channel.", "next_state": "scope_review", "public_outcome": "Participants gain actionable information while causal attribution remains open.", "private_outcomes": {}, "variable_effects": {"notice_hours": -2}, "consequences": [{"consequence_id": "c_silent_notice", "text": "Late notice repairs protection and accountability while preserving privacy and due process.", "dimension_effects": {"immediate_protection": 3, "privacy_dignity": 3, "due_process": 2, "evidence_accountability": 3}}], "repairs_consequences": ["c_start_silent"], "tags": ["repair_action", "targeted_notice"]},
+        {"action_key": "continue_silence_for_final_attribution", "text": "Continue silence until the independent review can identify every download and responsible actor.", "next_state": "scope_review", "public_outcome": "Attribution remains protected while affected people lose more time to act or correct records.", "private_outcomes": {}, "variable_effects": {"notice_hours": -12}, "consequences": [{"consequence_id": "c_silent_continue", "text": "Continued silence favors privacy and due process at severe protection and accountability cost.", "dimension_effects": {"immediate_protection": -1, "privacy_dignity": 3, "due_process": 3, "evidence_accountability": 0}}], "repairs_consequences": [], "tags": ["concealment", "certainty_delay"]}
+      ]
+    },
+    {
+      "state_id": "scope_review", "turn_index": 2, "terminal": false,
+      "public_observation": "A screenshot with six names circulates, a locker loss is alleged, the download count is unknown, and the vendor presses its single-technician explanation.",
+      "private_observations": {"privacy_analyst": "The shared update key means four accounts could have produced the export; this does not show all four did."},
+      "active_fact_ids": ["public_screenshot", "equipment_loss_report", "download_count_unknown", "vendor_technician_claim", "shared_update_key", "targeted_contact_roster"], "ending": null,
+      "actions": [
+        {"action_key": "separate_scope_attribution_and_harm", "text": "Separate confirmed exposure scope, uncertain downloads, the loss allegation, shared-key attribution, and observed harassment.", "next_state": "disclosure_decision", "public_outcome": "The record supports protection and investigation without merging exposure, theft, and guilt.", "private_outcomes": {}, "variable_effects": {"participant_trust": 1}, "consequences": [{"consequence_id": "c_scope_separate", "text": "Separation balances all dimensions with analytical overhead.", "dimension_effects": {"immediate_protection": 2, "privacy_dignity": 3, "due_process": 3, "evidence_accountability": 3}}], "repairs_consequences": [], "tags": ["evidence_separation", "source_provenance"]},
+        {"action_key": "treat_screenshot_as_complete_scope", "text": "Notify only the six people in the screenshot because they are the only publicly confirmed names.", "next_state": "disclosure_decision", "public_outcome": "Notice stays narrow and privacy-preserving while most affected badge holders may remain uninformed.", "private_outcomes": {}, "variable_effects": {}, "consequences": [{"consequence_id": "c_scope_six", "text": "Screenshot-only scope protects privacy and proof while under-notifying affected people.", "dimension_effects": {"immediate_protection": 0, "privacy_dignity": 3, "due_process": 2, "evidence_accountability": 2}}], "repairs_consequences": [], "tags": ["under_disclosure", "formal_boundary"]},
+        {"action_key": "publish_all_names_to_find_losses", "text": "Publish every badge holder and movement record so the public can connect the locker loss to individuals.", "next_state": "disclosure_decision", "public_outcome": "Crowd investigation expands while exposure victims become suspects and witnesses without process.", "private_outcomes": {}, "variable_effects": {}, "consequences": [{"consequence_id": "c_scope_all", "text": "Full naming maximizes investigative reach at severe privacy and due-process cost.", "dimension_effects": {"immediate_protection": 3, "privacy_dignity": -3, "due_process": -3, "evidence_accountability": 1}}], "repairs_consequences": [], "tags": ["raw_disclosure", "premature_attribution"]}
+      ]
+    },
+    {
+      "state_id": "disclosure_decision", "turn_index": 3, "terminal": false,
+      "public_observation": "Containment is active, but the workshop must issue a durable notice. Eighty people need actionable scope; raw routines and individual blame are unnecessary and unverified.",
+      "private_observations": {"incident_coordinator": "You have not reviewed the sensitive log fields or shared-key evidence.", "privacy_analyst": "Protected contact reaches all affected people; shared credentials defeat the vendor's proposed single-person attribution."},
+      "active_fact_ids": ["eighty_badges_affected", "targeted_contact_roster", "log_private_routines", "shared_update_key", "vendor_technician_claim", "independent_review_delay"], "ending": null,
+      "actions": [
+        {"action_key": "issue_tiered_redacted_notice", "text": "Issue direct notices to all affected people, a public category summary, redacted evidence, and a separate attribution update after review.", "next_state": "stable_disclosure", "public_outcome": "Actionable scope reaches participants while private routines and unverified names remain bounded; public forensic detail stays limited.", "private_outcomes": {}, "variable_effects": {"notice_hours": -2, "participant_trust": 1}, "consequences": [{"consequence_id": "c_disclose_tiered", "text": "Tiered disclosure balances protection, privacy, due process, and evidence with residual reach and forensic limits.", "dimension_effects": {"immediate_protection": 2, "privacy_dignity": 3, "due_process": 3, "evidence_accountability": 2}}], "repairs_consequences": [], "tags": ["targeted_notice", "privacy_protection", "due_process"]},
+        {"action_key": "publish_raw_logs_and_named_cause", "text": "Publish raw logs and name the technician as probable cause so everyone can investigate independently.", "next_state": "overdisclosure_harm", "public_outcome": "Maximum detail spreads immediately while privacy loss, harassment, and unsupported attribution intensify.", "private_outcomes": {}, "variable_effects": {"participant_trust": -4}, "consequences": [{"consequence_id": "c_disclose_raw", "text": "Raw named disclosure maximizes breadth and apparent urgency at severe privacy and process cost.", "dimension_effects": {"immediate_protection": 3, "privacy_dignity": -3, "due_process": -3, "evidence_accountability": 0}}], "repairs_consequences": [], "tags": ["raw_disclosure", "premature_attribution"]},
+        {"action_key": "delay_notice_for_complete_attribution", "text": "Delay durable notice until independent review establishes every download, loss, and responsible account.", "next_state": "underdisclosure_harm", "public_outcome": "No one is prematurely blamed, but affected people lose the remaining protection and correction window.", "private_outcomes": {}, "variable_effects": {"notice_hours": -36}, "consequences": [{"consequence_id": "c_disclose_delay", "text": "Attribution delay protects privacy and due process while causing under-notification harm.", "dimension_effects": {"immediate_protection": -2, "privacy_dignity": 3, "due_process": 3, "evidence_accountability": 2}}], "repairs_consequences": [], "tags": ["certainty_delay", "under_disclosure"]}
+      ]
+    },
+    {
+      "state_id": "stable_disclosure", "turn_index": 4, "terminal": false,
+      "public_observation": "Tiered notice reaches the affected roster. A public screenshot still circulates, and the workshop can publish correction metrics without republishing names.",
+      "private_observations": {"privacy_analyst": "Takedown reach and direct-contact confirmation can be reported in aggregates."},
+      "active_fact_ids": ["public_screenshot", "targeted_contact_roster", "handoff_due"], "ending": null,
+      "actions": [
+        {"action_key": "monitor_reach_and_publish_corrections", "text": "Verify direct-notice reach, publish aggregate corrections, preserve evidence, and set the next attribution review.", "next_state": "stable_handoff", "public_outcome": "The oversight panel can assess both protection and remaining uncertainty without renewed exposure.", "private_outcomes": {}, "variable_effects": {"participant_trust": 1}, "consequences": [{"consequence_id": "c_stable_monitor", "text": "Monitoring supports protection, privacy, due process, and accountable revision.", "dimension_effects": {"immediate_protection": 2, "privacy_dignity": 3, "due_process": 3, "evidence_accountability": 3}}], "repairs_consequences": [], "tags": ["reviewable_criteria", "privacy_protection"]},
+        {"action_key": "republish_screenshot_for_warning_reach", "text": "Republish the six-name screenshot because recognizable examples will attract more attention to the notice.", "next_state": "overdisclosure_handoff", "public_outcome": "Warning attention rises while named participants experience renewed exposure unrelated to protective action.", "private_outcomes": {}, "variable_effects": {}, "consequences": [{"consequence_id": "c_stable_republish", "text": "Recognizable warning gains reach at privacy and due-process cost.", "dimension_effects": {"immediate_protection": 3, "privacy_dignity": -2, "due_process": 0, "evidence_accountability": 1}}], "repairs_consequences": [], "tags": ["recipient_spectacle", "raw_disclosure"]}
+      ]
+    },
+    {
+      "state_id": "overdisclosure_harm", "turn_index": 4, "terminal": false,
+      "public_observation": "Raw routines and a named accusation spread, producing harassment. Takedown, correction, and direct protective notice remain possible.",
+      "private_observations": {"privacy_analyst": "The shared-key evidence can correct premature attribution without publishing all four account holders' unrelated histories."},
+      "active_fact_ids": ["harassment_realized", "shared_update_key", "log_private_routines", "public_screenshot", "handoff_due"], "ending": null,
+      "actions": [
+        {"action_key": "takedown_correct_and_support", "text": "Request takedown, retract unsupported attribution, issue direct notice, preserve redacted evidence, and fund affected-person support.", "next_state": "overdisclosure_handoff", "public_outcome": "Further spread slows and material repair begins, though copied records cannot be erased or instantly displaced.", "private_outcomes": {}, "variable_effects": {"participant_trust": -1}, "consequences": [{"consequence_id": "c_over_repair", "text": "Costly correction repairs privacy, process, and evidence incompletely, with slower protective reach.", "dimension_effects": {"immediate_protection": 2, "privacy_dignity": 2, "due_process": 3, "evidence_accountability": 3}}], "repairs_consequences": ["c_disclose_raw", "c_start_raw"], "tags": ["repair_action", "due_process"]},
+        {"action_key": "defend_publication_as_transparency", "text": "Defend the raw publication and named allegation as the unavoidable price of transparency.", "next_state": "overdisclosure_handoff", "public_outcome": "The record remains maximally open while harassment and irrelevant exposure continue without correction.", "private_outcomes": {}, "variable_effects": {"participant_trust": -2}, "consequences": [{"consequence_id": "c_over_defend", "text": "Absolute transparency preserves broad access at severe privacy and process cost.", "dimension_effects": {"immediate_protection": 3, "privacy_dignity": -3, "due_process": -3, "evidence_accountability": 2}}], "repairs_consequences": [], "tags": ["raw_disclosure", "scapegoat"]}
+      ]
+    },
+    {
+      "state_id": "underdisclosure_harm", "turn_index": 4, "terminal": false,
+      "public_observation": "Participants miss the temporary-code and correction window while attribution remains incomplete. A late targeted notice can still distinguish protection from blame.",
+      "private_observations": {"incident_coordinator": "The protected roster remains usable; waiting longer will not make current exposure reversible."},
+      "active_fact_ids": ["missed_notice_harm", "targeted_contact_roster", "independent_review_delay", "handoff_due"], "ending": null,
+      "actions": [
+        {"action_key": "issue_late_notice_and_restore_access", "text": "Issue direct late notice, restore protected access, fund correction help, and state that attribution remains open.", "next_state": "underdisclosure_handoff", "public_outcome": "Affected people regain some protection without converting delay into a named accusation.", "private_outcomes": {}, "variable_effects": {"notice_hours": -2}, "consequences": [{"consequence_id": "c_under_repair", "text": "Late material action repairs protection and accountability while preserving privacy and process.", "dimension_effects": {"immediate_protection": 3, "privacy_dignity": 3, "due_process": 2, "evidence_accountability": 3}}], "repairs_consequences": ["c_disclose_delay", "c_start_silent"], "tags": ["repair_action", "targeted_notice"]},
+        {"action_key": "wait_for_final_report", "text": "Continue waiting so the first durable notice contains a complete final attribution report.", "next_state": "underdisclosure_handoff", "public_outcome": "Privacy and attribution remain protected while affected people absorb additional preventable losses.", "private_outcomes": {}, "variable_effects": {"notice_hours": -12}, "consequences": [{"consequence_id": "c_under_wait", "text": "Continued delay preserves privacy and due process at severe protection cost.", "dimension_effects": {"immediate_protection": -3, "privacy_dignity": 3, "due_process": 3, "evidence_accountability": 2}}], "repairs_consequences": [], "tags": ["certainty_delay", "under_disclosure"]}
+      ]
+    },
+    {
+      "state_id": "stable_handoff", "turn_index": 5, "terminal": false,
+      "public_observation": "The oversight panel inherits contained access, tiered notice, and unresolved attribution.",
+      "private_observations": {"incident_coordinator": "The panel needs reach, scope, redactions, and uncertainty—not only a public statement link."},
+      "active_fact_ids": ["targeted_contact_roster", "independent_review_delay", "handoff_due"], "ending": null,
+      "actions": [
+        {"action_key": "transfer_scope_redactions_reach_and_review", "text": "Transfer containment, notice reach, redaction rules, evidence provenance, open allegations, corrections, and review dates.", "next_state": "resilient_ending", "public_outcome": "The panel can reproduce and revise disclosure without expanding exposure.", "private_outcomes": {}, "variable_effects": {}, "consequences": [{"consequence_id": "c_stable_handoff_full", "text": "Complete handoff preserves privacy, process, protection, and review with coordination cost.", "dimension_effects": {"immediate_protection": 2, "privacy_dignity": 3, "due_process": 3, "evidence_accountability": 3}}], "repairs_consequences": [], "tags": ["evidence_preserving", "privacy_protection"]},
+        {"action_key": "transfer_public_statement_only", "text": "Transfer only the public statement and the count of reset badges.", "next_state": "fragile_ending", "public_outcome": "The panel resumes quickly but cannot audit who was reached, what was redacted, or why attribution remains open.", "private_outcomes": {}, "variable_effects": {}, "consequences": [{"consequence_id": "c_stable_handoff_min", "text": "Minimal handoff favors immediate continuity over privacy and process review.", "dimension_effects": {"immediate_protection": 3, "privacy_dignity": 1, "due_process": 1, "evidence_accountability": 0}}], "repairs_consequences": [], "tags": ["minimal_handoff", "under_disclosure"]}
+      ]
+    },
+    {
+      "state_id": "overdisclosure_handoff", "turn_index": 5, "terminal": false,
+      "public_observation": "The panel inherits irreversible privacy exposure and harassment, including any correction already attempted.",
+      "private_observations": {"privacy_analyst": "The panel can receive protected evidence and aggregate repair metrics without another raw publication."},
+      "active_fact_ids": ["harassment_realized", "shared_update_key", "handoff_due"], "ending": null,
+      "actions": [
+        {"action_key": "transfer_funded_privacy_and_process_repair", "text": "Transfer funded support, takedown efforts, corrected attribution, protected evidence, and dated repair milestones.", "next_state": "resilient_ending", "public_outcome": "The panel inherits material repair and an accurate account of overdisclosure limits.", "private_outcomes": {}, "variable_effects": {}, "consequences": [{"consequence_id": "c_over_handoff_repair", "text": "Funded repair supports protection, privacy, due process, and future prevention.", "dimension_effects": {"immediate_protection": 2, "privacy_dignity": 3, "due_process": 3, "evidence_accountability": 3}}], "repairs_consequences": ["c_disclose_raw", "c_stable_republish"], "tags": ["repair_action", "evidence_preserving"]},
+        {"action_key": "normalize_raw_transparency", "text": "Describe raw publication as normal transparency and omit harassment or attribution errors.", "next_state": "fragile_ending", "public_outcome": "The panel inherits maximal public data without a usable record of privacy or process failure.", "private_outcomes": {}, "variable_effects": {}, "consequences": [{"consequence_id": "c_over_handoff_hide", "text": "Normalization preserves publication breadth while blocking repair.", "dimension_effects": {"immediate_protection": 3, "privacy_dignity": -3, "due_process": -3, "evidence_accountability": -2}}], "repairs_consequences": [], "tags": ["concealment", "raw_disclosure"]}
+      ]
+    },
+    {
+      "state_id": "underdisclosure_handoff", "turn_index": 5, "terminal": false,
+      "public_observation": "The panel inherits missed notice, access disruption, and an attribution process still incomplete.",
+      "private_observations": {"incident_coordinator": "Remaining support cannot maximize both immediate restoration and a large future contingency."},
+      "active_fact_ids": ["missed_notice_harm", "independent_review_delay", "handoff_due"], "ending": null,
+      "actions": [
+        {"action_key": "fund_late_protection_and_review_milestones", "text": "Transfer funded access restoration, direct notice, correction help, and dated attribution-review milestones.", "next_state": "resilient_ending", "public_outcome": "The panel can repair present harm while preserving attribution uncertainty and privacy.", "private_outcomes": {}, "variable_effects": {}, "consequences": [{"consequence_id": "c_under_handoff_repair", "text": "Material repair balances protection, privacy, process, and evidence.", "dimension_effects": {"immediate_protection": 3, "privacy_dignity": 3, "due_process": 2, "evidence_accountability": 3}}], "repairs_consequences": ["c_disclose_delay", "c_under_wait"], "tags": ["repair_action", "targeted_notice"]},
+        {"action_key": "preserve_support_for_final_attribution", "text": "Preserve all remaining support for the final report and document current missed notice without repair.", "next_state": "delayed_ending", "public_outcome": "Future attribution remains funded while current avoidable losses become an unfunded record.", "private_outcomes": {}, "variable_effects": {}, "consequences": [{"consequence_id": "c_under_handoff_hold", "text": "Resource preservation favors privacy and final process over current protection repair.", "dimension_effects": {"immediate_protection": 0, "privacy_dignity": 3, "due_process": 3, "evidence_accountability": 2}}], "repairs_consequences": [], "tags": ["deferred_repair", "certainty_delay"]}
+      ]
+    },
+    {"state_id": "resilient_ending", "turn_index": 6, "terminal": true, "public_observation": "Containment and notice remain actionable, privacy-bounded, attribution-aware, reviewable, and capable of material correction.", "private_observations": {}, "active_fact_ids": ["handoff_due"], "actions": [], "ending": "proportionate_disclosure_and_repair"},
+    {"state_id": "fragile_ending", "turn_index": 6, "terminal": true, "public_observation": "Raw exposure or thin documentation hardens into normal practice, obscuring who was protected, harmed, or denied process.", "private_observations": {}, "active_fact_ids": ["handoff_due"], "actions": [], "ending": "disclosure_scope_failure_hardened"},
+    {"state_id": "delayed_ending", "turn_index": 6, "terminal": true, "public_observation": "Privacy and final attribution remain protected while affected people carry avoidable access and correction harms without repair.", "private_observations": {}, "active_fact_ids": ["missed_notice_harm", "handoff_due"], "actions": [], "ending": "due_process_preserving_delay"}
+  ]
+}
