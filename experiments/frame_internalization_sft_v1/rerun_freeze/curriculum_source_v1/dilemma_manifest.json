@@ -1,0 +1,58 @@
+{
+  "assignments_path": "experiments/frame_internalization_sft_v1/rerun_freeze/curriculum_source_v1/split_assignments.jsonl",
+  "assignments_sha256": "606784a7fe204d156f1ec9ec1ec6963dd33b844d46c0c8190be330a374749bd6",
+  "builder_path": "scripts/freeze_frame_dilemma_split.py",
+  "builder_sha256": "9ca2b6b39e830e1dc032c2ea2b2e652f0505abd9016fa6094f77a3c4e84b2f54",
+  "by_source": {
+    "moral_stories": 5593,
+    "storyworld_dev": 7
+  },
+  "classification": "prospective_reconstruction_from_session_recovered_builder",
+  "cluster_overlap_count": 0,
+  "clusters": 5600,
+  "dilemmas_path": "experiments/frame_internalization_sft_v1/rerun_freeze/curriculum_source_v1/dilemmas.jsonl",
+  "dilemmas_sha256": "6d9a0b920807900b8e9b3c091e6b348744a45185011e88ad6d21392e631aef59",
+  "dropped_banned_vocab": 0,
+  "dropped_eval_overlap": 0,
+  "evaluation_sources": [
+    {
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v1/harmful_queries.jsonl",
+      "sha256": "a11af31e733ff0953466c8ec9b2347d2dc5b2d5fe4b1009eb9278fd5da117b44"
+    },
+    {
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v1/benign_queries.jsonl",
+      "sha256": "841e21fce209d7607b911320288de47e9daa1a2e0a1d60214138200cc4537c01"
+    },
+    {
+      "path": "data/storyworld_sources/constitutional_alignment_20260715_v1/evaluation/mihna_ca_eval_v2.encounter_prompts.jsonl",
+      "sha256": "e6d8aafd33f2d01626f114768ea075a125bfcf5e70a7f60689cd1b2be4090331"
+    }
+  ],
+  "exact_historical_row_recovery": false,
+  "recovered_run_comparison": {
+    "interpretation": "The critical count and split invariants match, but the lost run did not pin its parquet conversion revision; the prospective pin is therefore a new immutable split.",
+    "matches_reported_by_source": false,
+    "prospective_by_source": {
+      "moral_stories": 5593,
+      "storyworld_dev": 7
+    },
+    "reported_by_source": {
+      "moral_stories": 5587,
+      "storyworld_dev": 13
+    }
+  },
+  "schema_version": "frame_internalization_dilemma_pool.v1",
+  "seed": 42,
+  "source": {
+    "license": "MIT",
+    "main_revision": "b830cf56eb00bc4edd1860dd544a192216eb3587",
+    "parquet_conversion_revision": "967df9976da45ee092189c769753b6c330bd3e9f",
+    "path": "full/train/0000.parquet",
+    "repository": "demelin/moral_stories",
+    "sha256": "2c46727a6e403beeeb0dc435fc2dc5e65e231131abd57740c999da0f6aa47e6f"
+  },
+  "split_unit": "norm/storyworld cluster; cluster-disjoint train/validation",
+  "total": 5600,
+  "train": 5320,
+  "validation": 280
+}

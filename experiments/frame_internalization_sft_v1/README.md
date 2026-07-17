@@ -1,7 +1,7 @@
 # Frame Internalization SFT: Recovered Rerun Plan
 
 Status: reconstructed plan; v2 treatment and staged-compute governance frozen;
-scholar review pending as a claims-only gate; nine pilot gates pending; no
+scholar review pending as a claims-only gate; six pilot gates pending; no
 fine-tuning outcome.
 
 This package reconstructs Silico experiment `exp_01kxm0hbf4ez58y7mfj58rmn6q`, originally titled **"Training the frames in: does SFT internalize what prompting couldn't?"** The experiment was interrupted during data generation. The recovered record contains the design, partial generation counts, quality checks, launcher decisions, and compute receipts, but it does **not** contain the generated transcript payloads, trained adapters, dose checkpoints, or evaluation outputs.
@@ -34,6 +34,9 @@ The primary behavioral endpoint remains the no-frame free/paid-tier alignment-fa
 - [`SCHOLAR_REVIEW_BRIEF_V2.md`](SCHOLAR_REVIEW_BRIEF_V2.md): current exact-hash review handoff, usable before or after fielding.
 - [`compute_stage_plan_v1.json`](compute_stage_plan_v1.json): zero-spend gates, the capped two-hour eight-A100 pilot, deterministic overnight promotion, abort rules, checkpoint cadence, and paper packaging.
 - [`readiness/pre_spend_readiness_20260717.json`](readiness/pre_spend_readiness_20260717.json): current no-spend audit receipt.
+- [`readiness/split_freeze_v1.json`](readiness/split_freeze_v1.json), [`readiness/evaluation_seal_v1.json`](readiness/evaluation_seal_v1.json), and [`readiness/judge_dry_run_v1.json`](readiness/judge_dry_run_v1.json): passed prospective split, sealed-evaluation, and production judge-contract gates.
+- [`rerun_freeze/evaluation_universes_v1.json`](rerun_freeze/evaluation_universes_v1.json): reconstructed 200 harmful, 100 benign, and 150 override universes. The recovered set hashes match, while exact recovery remains false and the harmful-source license remains unresolved.
+- [`rerun_freeze/curriculum_source_v1/dilemma_manifest.json`](rerun_freeze/curriculum_source_v1/dilemma_manifest.json): pinned prospective 5,600-row dilemma pool and 5,320/280 cluster-disjoint split.
 - [`predecessor_dependency_manifest_v1.json`](predecessor_dependency_manifest_v1.json) and [`predecessor_recovery/`](predecessor_recovery/): session-extracted predecessor payloads, exact recovery hashes, and the remaining freeze gaps.
 - [`predecessor_prompt_reconstruction_v1.json`](predecessor_prompt_reconstruction_v1.json): hash-bound reconstruction of exact F0-F3 prompt text from recovered base/frame inputs and the recorded construction command.
 - [`predecessor_reanchoring_plan_v1.json`](predecessor_reanchoring_plan_v1.json): prospective fail-closed freezes for the missing model, universes, judges, row joins, baseline, and fitted probe.
@@ -91,12 +94,34 @@ python scripts/audit_frame_internalization_pre_spend.py
 ```
 
 The current report passes v2 governance integrity and records scholar review as
-`pending_nonblocking`. It blocks the pilot on nine missing receipts: immutable
-base freeze, matched curricula and token parity, split freeze, nonleakage,
-evaluation seal, actual judge-CLI dry run, predecessor reanchor, distributed
-4,096-token smoke, and signed pilot authorization. Use
+`pending_nonblocking`. It also passes the prospective split freeze, evaluation
+seal, and actual production judge-parser dry run. It blocks the pilot on six
+remaining receipts: immutable base freeze, matched curricula and token parity,
+full-curriculum nonleakage, predecessor reanchor, distributed 4,096-token smoke,
+and signed pilot authorization. Use
 `--require-pilot-ready` in launch automation; it exits 2 while any compute gate
 is pending. No scholar receipt is required for that exit condition.
+
+The frozen artifacts can be regenerated from locally downloaded, hash-checked
+source parquets:
+
+```powershell
+python scripts/freeze_frame_evaluation_universes.py `
+  --source-dir <dir-containing-harmful.parquet-and-alpaca.parquet>
+python scripts/freeze_frame_dilemma_split.py `
+  --moral-stories-parquet <pinned-moral-stories.parquet>
+Push-Location constitutional-harness
+npm run judge:contract-dry-run
+Pop-Location
+python scripts/audit_frame_internalization_pre_spend.py `
+  --output experiments/frame_internalization_sft_v1/readiness/pre_spend_readiness_20260717.json
+```
+
+The dilemma pool reproduces the lost run's total, split, and cluster-count
+invariants. Its pinned prospective sample contains 7 storyworld rows rather
+than the session-reported 13 because the lost run did not pin its parquet
+conversion revision; this divergence is recorded and is not presented as exact
+historical recovery.
 
 The guarded cluster wrapper is dry-run safe and refuses real execution outside
 a bounded Slurm allocation:

@@ -1,5 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+/.gitattributes text eol=lf
 /data/storyworld_sources/constitutional_alignment_20260715_v1/** text eol=lf
 /data/storyworld_sources/constitutional_alignment_20260715_v2/** text eol=lf
 /configs/constitutional_alignment_storyworlds_v1.json text eol=lf
@@ -14,3 +15,7 @@
 /scripts/audit_frame_internalization_pre_spend.py text eol=lf
 /scripts/run_frame_internalization_stage.py text eol=lf
 /tests/test_frame_internalization.py text eol=lf
+/tests/test_frame_freeze_artifacts.py text eol=lf
+/scripts/freeze_frame_evaluation_universes.py text eol=lf
+/scripts/freeze_frame_dilemma_split.py text eol=lf
+/constitutional-harness/** text eol=lf

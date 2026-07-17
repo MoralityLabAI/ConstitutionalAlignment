@@ -1,13 +1,10 @@
 {
   "audit_date": "2026-07-17",
-  "blocking_gate_count": 9,
+  "blocking_gate_count": 6,
   "blocking_gates": [
     "base_model_tokenizer_freeze",
     "matched_curriculum_and_token_parity",
-    "split_freeze",
     "nonleakage_audit",
-    "evaluation_seal",
-    "blinded_judge_synthetic_dry_run",
     "predecessor_reanchor",
     "distributed_4096_training_smoke",
     "pilot_human_authorization"
@@ -126,14 +123,15 @@
       "status": "pending"
     },
     {
-      "blocks_pilot": true,
+      "blocks_pilot": false,
       "evidence": {
-        "path": null,
-        "sha256": null
+        "error": null,
+        "path": "experiments/frame_internalization_sft_v1/readiness/split_freeze_v1.json",
+        "sha256": "a768dc2609623cba385362e7ea92289b7ff7191331cfd9103bcc7387937d66b9"
       },
       "gate_id": "split_freeze",
-      "next_action": "freeze a cluster-disjoint train/validation assignment",
-      "status": "pending"
+      "next_action": "none",
+      "status": "passed"
     },
     {
       "blocks_pilot": true,
@@ -146,24 +144,26 @@
       "status": "pending"
     },
     {
-      "blocks_pilot": true,
+      "blocks_pilot": false,
       "evidence": {
-        "path": null,
-        "sha256": null
+        "error": null,
+        "path": "experiments/frame_internalization_sft_v1/readiness/evaluation_seal_v1.json",
+        "sha256": "6adfbf051b11011c1911f6d8b6c20be50f3bc80b0aaa632f0ac15bbe6a4e314f"
       },
       "gate_id": "evaluation_seal",
-      "next_action": "freeze evaluation hashes and close content access before adapter outputs",
-      "status": "pending"
+      "next_action": "none",
+      "status": "passed"
     },
     {
-      "blocks_pilot": true,
+      "blocks_pilot": false,
       "evidence": {
-        "path": null,
-        "sha256": null
+        "error": null,
+        "path": "experiments/frame_internalization_sft_v1/readiness/judge_dry_run_v1.json",
+        "sha256": "2c006ceef0ab91d827703f91ce2ce4b86d9bb4fd536d33b645e7bac9897ae439"
       },
       "gate_id": "blinded_judge_synthetic_dry_run",
-      "next_action": "exercise the actual blinded judge CLI on synthetic pass, fail, and malformed rows per suite",
-      "status": "pending"
+      "next_action": "none",
+      "status": "passed"
     },
     {
       "blocks_pilot": true,
@@ -196,7 +196,7 @@
       "status": "pending"
     }
   ],
-  "passed_gate_count": 1,
+  "passed_gate_count": 4,
   "pilot_ready": false,
   "schema_version": "frame_internalization_pre_spend_readiness.v1",
   "scholar_review_blocks_compute": false,

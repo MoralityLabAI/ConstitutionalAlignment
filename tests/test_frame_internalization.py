@@ -219,7 +219,7 @@ class FrameInternalizationPackageTests(unittest.TestCase):
         self.assertFalse(amendment["compute_authorization"]["scholar_receipt_required"])
         self.assertTrue(amendment["frozen_inputs"]["v1_prompt_text_preservation"]["F3"])
 
-    def test_pre_spend_audit_reports_nine_real_blockers(self) -> None:
+    def test_pre_spend_audit_reports_six_remaining_blockers(self) -> None:
         result = subprocess.run(
             [sys.executable, str(REPO_ROOT / "scripts" / "audit_frame_internalization_pre_spend.py")],
             cwd=REPO_ROOT,
@@ -231,7 +231,15 @@ class FrameInternalizationPackageTests(unittest.TestCase):
         report = json.loads(result.stdout)
         self.assertFalse(report["pilot_ready"])
         self.assertFalse(report["scholar_review_blocks_compute"])
-        self.assertEqual(report["blocking_gate_count"], 9)
+        self.assertEqual(report["blocking_gate_count"], 6)
+        self.assertEqual(report["passed_gate_count"], 4)
+        for gate_id in (
+            "split_freeze",
+            "evaluation_seal",
+            "blinded_judge_synthetic_dry_run",
+        ):
+            item = next(gate for gate in report["gates"] if gate["gate_id"] == gate_id)
+            self.assertEqual(item["status"], "passed")
         scholar = next(
             item for item in report["gates"] if item["gate_id"] == "scholar_review_claim_gate"
         )

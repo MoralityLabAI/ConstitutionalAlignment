@@ -17,6 +17,7 @@ from jsonschema import Draft202012Validator, FormatChecker
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PACKAGE = Path("experiments/frame_internalization_sft_v1")
 AMENDMENT = PACKAGE / "protocol_amendment_v2.json"
+READINESS = PACKAGE / "readiness"
 
 
 def parse_args() -> argparse.Namespace:
@@ -24,10 +25,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--root", type=Path, default=REPO_ROOT)
     parser.add_argument("--base-freeze", type=Path)
     parser.add_argument("--curriculum-manifest", type=Path)
-    parser.add_argument("--split-freeze", type=Path)
+    parser.add_argument("--split-freeze", type=Path, default=READINESS / "split_freeze_v1.json")
     parser.add_argument("--nonleakage-audit", type=Path)
-    parser.add_argument("--evaluation-seal", type=Path)
-    parser.add_argument("--judge-dry-run", type=Path)
+    parser.add_argument("--evaluation-seal", type=Path, default=READINESS / "evaluation_seal_v1.json")
+    parser.add_argument("--judge-dry-run", type=Path, default=READINESS / "judge_dry_run_v1.json")
     parser.add_argument("--predecessor-reanchor", type=Path)
     parser.add_argument("--training-smoke", type=Path)
     parser.add_argument("--pilot-authorization", type=Path)
@@ -49,6 +50,13 @@ def sha256_file(path: Path) -> str:
 
 def sha256_text(value: str) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def display_path(root: Path, path: Path) -> str:
+    try:
+        return path.resolve().relative_to(root.resolve()).as_posix()
+    except ValueError:
+        return str(path.resolve())
 
 
 def schema_errors(instance: dict[str, Any], schema: dict[str, Any]) -> list[str]:
@@ -87,7 +95,7 @@ def optional_evidence(
         return gate(
             gate_id,
             "pending",
-            {"path": str(path), "sha256": None, "error": "file_not_found"},
+            {"path": display_path(root, path), "sha256": None, "error": "file_not_found"},
             next_action,
         )
     try:
@@ -101,7 +109,7 @@ def optional_evidence(
     return gate(
         gate_id,
         "passed" if passed else "failed",
-        {"path": str(path), "sha256": sha256_file(path), "error": error},
+        {"path": display_path(root, path), "sha256": sha256_file(path), "error": error},
         next_action,
     )
 

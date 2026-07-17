@@ -1,0 +1,55 @@
+{
+  "access_policy": {
+    "hash_verification_does_not_count_as_opening": true,
+    "outcome_analysis_may_open_only_after_all_registered_arms_complete": true,
+    "training_code_may_read_evaluation_content": false
+  },
+  "content_manifest_sha256": "195bc51ac2175d9c257a69847dfa9770f127c699dd8200c5034134ff8b3843b5",
+  "exact_predecessor_recovery": false,
+  "files": [
+    {
+      "bytes": 31601,
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v1/harmful_queries.jsonl",
+      "sha256": "a11af31e733ff0953466c8ec9b2347d2dc5b2d5fe4b1009eb9278fd5da117b44"
+    },
+    {
+      "bytes": 13715,
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v1/benign_queries.jsonl",
+      "sha256": "841e21fce209d7607b911320288de47e9daa1a2e0a1d60214138200cc4537c01"
+    },
+    {
+      "bytes": 30549,
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v1/override_queries.jsonl",
+      "sha256": "9e96adaf9d46e627a717e1ce630dea57356fb50df70bc4cc1f2647d212e8c4c0"
+    },
+    {
+      "bytes": 3120,
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v1.json",
+      "sha256": "634e9fec24199ed646b8d4cf756fab5f53b7b2b1dfa01a5d9cce2a33dae19d11"
+    },
+    {
+      "bytes": 152553,
+      "path": "data/storyworld_sources/constitutional_alignment_20260715_v1/evaluation/mihna_ca_eval_v2.encounter_prompts.jsonl",
+      "sha256": "e6d8aafd33f2d01626f114768ea075a125bfcf5e70a7f60689cd1b2be4090331"
+    },
+    {
+      "bytes": 7622,
+      "path": "data/storyworld_sources/constitutional_alignment_20260715_v1/evaluation/mihna_ca_eval_v2.adjudication.jsonl",
+      "sha256": "e484ade278a1ce47d6e67c9ac8d6d41831ae1f25aeba97c500fadfbee6471e10"
+    },
+    {
+      "bytes": 14287,
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_2/recovered_worktree/src/materials.py",
+      "sha256": "67a3d3a8151d9de59d5cecb37bf1ecca689136c88a1f16f96eb5cbc62ce79cf6"
+    }
+  ],
+  "known_limitations": [
+    "The canonical predecessor row files were not recovered.",
+    "The pinned harmful source license remains unresolved; this does not alter the frozen bytes."
+  ],
+  "opened": false,
+  "schema_version": "frame_internalization_evaluation_seal.v1",
+  "sealed": true,
+  "sealed_at": "2026-07-17",
+  "sealed_before_adapter_training_outputs": true
+}

@@ -1,0 +1,19 @@
+{
+  "assignments_path": "experiments/frame_internalization_sft_v1/rerun_freeze/curriculum_source_v1/split_assignments.jsonl",
+  "assignments_sha256": "606784a7fe204d156f1ec9ec1ec6963dd33b844d46c0c8190be330a374749bd6",
+  "classification": "prospective_reconstruction_not_exact_historical_recovery",
+  "cluster_count": 5600,
+  "cluster_overlap_count": 0,
+  "dilemmas_path": "experiments/frame_internalization_sft_v1/rerun_freeze/curriculum_source_v1/dilemmas.jsonl",
+  "dilemmas_sha256": "6d9a0b920807900b8e9b3c091e6b348744a45185011e88ad6d21392e631aef59",
+  "frozen_at": "2026-07-17",
+  "immutability_rule": "Any row, cluster, or split change requires a new version and invalidates downstream curriculum receipts.",
+  "manifest_path": "experiments/frame_internalization_sft_v1/rerun_freeze/curriculum_source_v1/dilemma_manifest.json",
+  "manifest_sha256": "ab5b9cea6a2bb377f867c8a2c909af5ce11abc75958199e4476eb8072553b2eb",
+  "passed": true,
+  "scenario_count": 5600,
+  "schema_version": "frame_internalization_split_freeze.v1",
+  "status": "passed",
+  "train_count": 5320,
+  "validation_count": 280
+}

@@ -1,0 +1,140 @@
+{
+  "schema_version": "frame_internalization_judge_dry_run.v1",
+  "run_date": "2026-07-17",
+  "passed": true,
+  "actual_blinded_cli_dry_run_passed": true,
+  "production_ingestion_and_parser_path_exercised": true,
+  "provider": "deterministic_local_synthetic_no_api",
+  "suites": {
+    "storyworld": {
+      "rows": 3,
+      "completed": 2,
+      "errors": 1,
+      "expected_outcomes": 3,
+      "expected_outcomes_observed": 3,
+      "dimensions": [
+        "moral_decision_quality",
+        "truthfulness",
+        "harm_avoidance",
+        "justice",
+        "mercy_proportionality",
+        "practical_usefulness",
+        "anti_concealment",
+        "output_contract_validity"
+      ]
+    },
+    "identity_behavior": {
+      "rows": 3,
+      "completed": 2,
+      "errors": 1,
+      "expected_outcomes": 3,
+      "expected_outcomes_observed": 3,
+      "dimensions": [
+        "truthfulness",
+        "practical_usefulness",
+        "identity_boundary",
+        "epistemic_boundary",
+        "framing_relevance",
+        "refusal_calibration",
+        "theological_humility",
+        "non_grandiosity",
+        "output_contract_validity"
+      ]
+    },
+    "pressure": {
+      "rows": 3,
+      "completed": 2,
+      "errors": 1,
+      "expected_outcomes": 3,
+      "expected_outcomes_observed": 3,
+      "dimensions": [
+        "truthfulness",
+        "harm_avoidance",
+        "practical_usefulness",
+        "anti_concealment",
+        "refusal_calibration",
+        "pressure_resistance",
+        "non_grandiosity",
+        "output_contract_validity"
+      ]
+    },
+    "helpfulness": {
+      "rows": 3,
+      "completed": 2,
+      "errors": 1,
+      "expected_outcomes": 3,
+      "expected_outcomes_observed": 3,
+      "dimensions": [
+        "truthfulness",
+        "harm_avoidance",
+        "practical_usefulness",
+        "anti_concealment",
+        "non_grandiosity",
+        "output_contract_validity"
+      ]
+    },
+    "theology_guardrail": {
+      "rows": 3,
+      "completed": 2,
+      "errors": 1,
+      "expected_outcomes": 3,
+      "expected_outcomes_observed": 3,
+      "dimensions": [
+        "truthfulness",
+        "harm_avoidance",
+        "justice",
+        "mercy_proportionality",
+        "practical_usefulness",
+        "anti_concealment",
+        "theological_humility",
+        "non_grandiosity",
+        "output_contract_validity"
+      ]
+    }
+  },
+  "rows_per_suite": 3,
+  "total_rows": 15,
+  "expected_parse_outcomes": 15,
+  "observed_expected_parse_outcomes": 15,
+  "expected_parse_rate": 1,
+  "completed_rows": 10,
+  "malformed_rows_captured_as_errors": 5,
+  "identity_behavior_dimensions": [
+    "truthfulness",
+    "practical_usefulness",
+    "identity_boundary",
+    "epistemic_boundary",
+    "framing_relevance",
+    "refusal_calibration",
+    "theological_humility",
+    "non_grandiosity",
+    "output_contract_validity"
+  ],
+  "unblinded_metadata_rejected_by_production_schema": true,
+  "implementation_files": [
+    {
+      "path": "constitutional-harness/src/bundle_judge_cli.ts",
+      "sha256": "a1661ee1402aa155027705112c1535c862fdddf050eb22d61d6550bd4876b9d7"
+    },
+    {
+      "path": "constitutional-harness/src/bundle/ingest.ts",
+      "sha256": "3f655f986b216f63a8fc8e7ce1c76d01e83e4c98bc54133fac6c0a69e85b09cd"
+    },
+    {
+      "path": "constitutional-harness/src/bundle/schema.ts",
+      "sha256": "13a50cfa34c71f9b79c16728088b48fd14dc8ce33377371f09bda00be74812a5"
+    },
+    {
+      "path": "constitutional-harness/src/bundle/dimensions.ts",
+      "sha256": "f0e3514bbbd22bd3c807b1df1516d323e302fee44c6770a505f4c112578c771c"
+    },
+    {
+      "path": "constitutional-harness/src/verifiers/dimensional.ts",
+      "sha256": "e1f0985c1f846137ed6b149ae381bae45405890e967dc682e4ee68bd2a25b542"
+    },
+    {
+      "path": "constitutional-harness/src/frame_judge_contract_dry_run.ts",
+      "sha256": "ff9abe3e9a11cd130616fd4ecbe0fe0913765571a244c46a3d6b1add91269c4d"
+    }
+  ]
+}

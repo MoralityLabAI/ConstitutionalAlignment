@@ -1,0 +1,67 @@
+{
+  "blocking_issue": "LLM-LAT/harmful-dataset has no declared license in the pinned repository metadata; resolve before claiming the predecessor evaluation-universe gate passed.",
+  "classification": "prospective_reconstruction_matching_recovered_selection_receipts",
+  "exact_recovery": false,
+  "override_materials": {
+    "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_2/recovered_worktree/src/materials.py",
+    "sha256": "67a3d3a8151d9de59d5cecb37bf1ecca689136c88a1f16f96eb5cbc62ce79cf6"
+  },
+  "override_selector_recovery": {
+    "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_2/recovered_worktree/scratch/validate_setup.py",
+    "sha256": "0e51e348ca339a2c77fb94e35a36fbd7c9da385f7d21e499072c72961fd6a0aa"
+  },
+  "passed": false,
+  "recovered_set_hashes_matched": true,
+  "schema_version": "frame_internalization_evaluation_universes.v1",
+  "seed": 42,
+  "selection_algorithm": "single seed-42 RNG samples harmful then benign indices; override uses a fresh seed-42 RNG over harmful rows",
+  "selection_script": {
+    "path": "scripts/freeze_frame_evaluation_universes.py",
+    "sha256": "633ade39ec0d13d28d90e2e1b7bf591b34b461089184950ea864c4bde93f0686"
+  },
+  "source_pool_counts": {
+    "benign": 31241,
+    "harmful": 4946
+  },
+  "sources": {
+    "benign": {
+      "filename": "alpaca.parquet",
+      "license": "CC-BY-NC-4.0",
+      "license_status": "declared",
+      "path": "data/train-00000-of-00001-a09b74b3ef9c3b56.parquet",
+      "repository": "tatsu-lab/alpaca",
+      "revision": "dce01c9b08f87459cf36a430d809084718273017",
+      "sha256": "06391b656a06fd3fb9d213160ef2398796c3b7f3dc75ef1e3ced30d461517073"
+    },
+    "harmful": {
+      "filename": "harmful.parquet",
+      "license": null,
+      "license_status": "unresolved",
+      "path": "data/train-00000-of-00001.parquet",
+      "repository": "LLM-LAT/harmful-dataset",
+      "revision": "8bfba31bc6d93a5b71808fee5275ef4b6330ed91",
+      "sha256": "51a41eaebf21eabec33ea90366d01d5bee7edb933d439c7017ad6e0107a645b1"
+    }
+  },
+  "status": "frozen_content_license_pending",
+  "universes": {
+    "benign": {
+      "ordered_text_set_sha256_truncated_16": "aeeaa6ac1be36305",
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v1/benign_queries.jsonl",
+      "row_count": 100,
+      "sha256": "841e21fce209d7607b911320288de47e9daa1a2e0a1d60214138200cc4537c01"
+    },
+    "harmful": {
+      "ordered_text_set_sha256_truncated_16": "3101e5efe15a6284",
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v1/harmful_queries.jsonl",
+      "row_count": 200,
+      "sha256": "a11af31e733ff0953466c8ec9b2347d2dc5b2d5fe4b1009eb9278fd5da117b44"
+    },
+    "override": {
+      "ordered_text_set_sha256_truncated_16": "f7ff598d662c1cf9",
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v1/override_queries.jsonl",
+      "row_count": 150,
+      "sha256": "9e96adaf9d46e627a717e1ce630dea57356fb50df70bc4cc1f2647d212e8c4c0"
+    }
+  }
+}
