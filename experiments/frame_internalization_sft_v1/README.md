@@ -1,7 +1,8 @@
 # Frame Internalization SFT: Recovered Rerun Plan
 
-Status: reconstructed plan; original rerun protocol not frozen; F3 wording
-amendment frozen pending scholar review; no fine-tuning outcome.
+Status: reconstructed plan; v2 treatment and staged-compute governance frozen;
+scholar review pending as a claims-only gate; nine pilot gates pending; no
+fine-tuning outcome.
 
 This package reconstructs Silico experiment `exp_01kxm0hbf4ez58y7mfj58rmn6q`, originally titled **"Training the frames in: does SFT internalize what prompting couldn't?"** The experiment was interrupted during data generation. The recovered record contains the design, partial generation counts, quality checks, launcher decisions, and compute receipts, but it does **not** contain the generated transcript payloads, trained adapters, dose checkpoints, or evaluation outputs.
 
@@ -26,8 +27,13 @@ The primary behavioral endpoint remains the no-frame free/paid-tier alignment-fa
 - [`PROTOCOL_AMENDMENT_F3_CONCRETE_V1.md`](PROTOCOL_AMENDMENT_F3_CONCRETE_V1.md): prospective concrete-F3 arm and the three-endpoint operational internalization gate.
 - [`protocol_amendment_f3_concrete_v1.json`](protocol_amendment_f3_concrete_v1.json): machine-readable frozen hashes, arm invariants, estimands, and launch gates.
 - [`frame_cards/F3_v1.json`](frame_cards/F3_v1.json) and [`frame_cards/F3_concrete_v1.json`](frame_cards/F3_concrete_v1.json): exact abstract and mechanically explicit treatment wording.
-- [`scholar_review_contract_v1.json`](scholar_review_contract_v1.json) and [`SCHOLAR_REVIEW_BRIEF_V1.md`](SCHOLAR_REVIEW_BRIEF_V1.md): hash-bound review criteria and handoff packet.
-- [`frame_cards/claim_boundary_v1.json`](frame_cards/claim_boundary_v1.json) and [`scholar_review_contract_v2.json`](scholar_review_contract_v2.json): machine-readable claim placement and its blocked v2 scholar-contract migration; the frozen v1 review chain remains unchanged.
+- [`scholar_review_contract_v1.json`](scholar_review_contract_v1.json) and [`SCHOLAR_REVIEW_BRIEF_V1.md`](SCHOLAR_REVIEW_BRIEF_V1.md): immutable v1 review-chain provenance.
+- [`PROTOCOL_AMENDMENT_V2.md`](PROTOCOL_AMENDMENT_V2.md) and [`protocol_amendment_v2.json`](protocol_amendment_v2.json): prospective separation of compute authorization from the scholar-review claim gate.
+- [`frame_cards/F3_v2.json`](frame_cards/F3_v2.json) and [`frame_cards/F3_concrete_v2.json`](frame_cards/F3_concrete_v2.json): clean v2 metadata with treatment prompts byte-identical to v1.
+- [`frame_cards/claim_boundary_v1.json`](frame_cards/claim_boundary_v1.json) and [`scholar_review_contract_v2.json`](scholar_review_contract_v2.json): machine-readable claim placement and the active hash-bound review contract.
+- [`SCHOLAR_REVIEW_BRIEF_V2.md`](SCHOLAR_REVIEW_BRIEF_V2.md): current exact-hash review handoff, usable before or after fielding.
+- [`compute_stage_plan_v1.json`](compute_stage_plan_v1.json): zero-spend gates, the capped two-hour eight-A100 pilot, deterministic overnight promotion, abort rules, checkpoint cadence, and paper packaging.
+- [`readiness/pre_spend_readiness_20260717.json`](readiness/pre_spend_readiness_20260717.json): current no-spend audit receipt.
 - [`predecessor_dependency_manifest_v1.json`](predecessor_dependency_manifest_v1.json) and [`predecessor_recovery/`](predecessor_recovery/): session-extracted predecessor payloads, exact recovery hashes, and the remaining freeze gaps.
 - [`predecessor_prompt_reconstruction_v1.json`](predecessor_prompt_reconstruction_v1.json): hash-bound reconstruction of exact F0-F3 prompt text from recovered base/frame inputs and the recorded construction command.
 - [`predecessor_reanchoring_plan_v1.json`](predecessor_reanchoring_plan_v1.json): prospective fail-closed freezes for the missing model, universes, judges, row joins, baseline, and fitted probe.
@@ -70,27 +76,43 @@ The intended and smoke-tested sequence length was 4,096. The recovered full-run 
 
 No full configuration should run merely because this plan exists. The protocol's recovery and smoke gates must pass first.
 
-## Frozen F3 amendment readiness
+## V2 governance and staged-compute readiness
 
-The amendment does not rewrite the interrupted experiment. It adds
-`F3_concrete_reflection` to the future rerun and keeps the original six-arm
-primary analysis intact. Abstract F3 is copied byte-for-byte from the marked
-Phase 3 prompt in `constitutional-harness/RESEARCH_NOTES.md`; concrete F3 makes
-recording, witnessing, and weighing explicit. Their `cl100k_base` counts are 64
-and 65 tokens (1.5625% spread).
+The v1 amendment remains immutable provenance. Amendment v2 keeps its arms,
+estimands, three-endpoint gate, and regression guards, but moves scholar review
+from compute authorization to review-provenance and theological-adequacy
+claims. Both clean v2 cards preserve the v1 treatment prompts byte-for-byte.
+Their `cl100k_base` counts are 64 and 65 tokens (1.5625% spread).
 
 Run:
 
 ```powershell
-python scripts/validate_frame_internalization_package.py
+python scripts/audit_frame_internalization_pre_spend.py
 ```
 
-Structural success is not fielding approval. Until approving receipts for both
-exact hashes are supplied, the report status is
-`structurally_valid_gates_pending`. Launch automation should use
-`--require-fielding-ready`, which exits 2 while review is pending. Even after
-that frame-specific gate passes, the experiment-level source, training-smoke,
-base-reproduction, evaluator-freeze, and compute-authorization gates remain.
+The current report passes v2 governance integrity and records scholar review as
+`pending_nonblocking`. It blocks the pilot on nine missing receipts: immutable
+base freeze, matched curricula and token parity, split freeze, nonleakage,
+evaluation seal, actual judge-CLI dry run, predecessor reanchor, distributed
+4,096-token smoke, and signed pilot authorization. Use
+`--require-pilot-ready` in launch automation; it exits 2 while any compute gate
+is pending. No scholar receipt is required for that exit condition.
+
+The guarded cluster wrapper is dry-run safe and refuses real execution outside
+a bounded Slurm allocation:
+
+```powershell
+python scripts/run_frame_internalization_stage.py --stage pilot `
+  --training-task-id <id> --authorization <authorization.json> `
+  --run-dir <empty-run-dir> `
+  --checkpoint-root <checkpoint-dir> --checkpoint-every-steps 200 `
+  --checkpoint-every-minutes 20 --dry-run -- <exact-trainer-command>
+```
+
+The pilot uses one full eight-GPU distributed load at a time and time-slices an
+equal reduced step count across all six adapters. The overnight is cancelled
+unless every arm passes the pilot and the measured throughput fits the frozen
+12-hour, 96-GPU-hour cap.
 
 The predecessor recovery check is independent:
 

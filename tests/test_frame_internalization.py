@@ -9,6 +9,7 @@ import unittest
 from pathlib import Path
 
 from scripts.validate_frame_internalization_package import sha256_file, validate_package
+from scripts.audit_frame_internalization_pre_spend import governance_audit
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -205,6 +206,97 @@ class FrameInternalizationPackageTests(unittest.TestCase):
             plan["budget_decision"]["allocation"],
             "experiment_1_F0_headline_table_reanchor",
         )
+
+    def test_v2_governance_is_hash_valid_and_review_is_not_a_compute_gate(self) -> None:
+        report, stage_plan = governance_audit(REPO_ROOT)
+        self.assertTrue(report["passed"], report["failures"])
+        self.assertEqual(report["observed_card_token_spread"], 0.015625)
+        self.assertTrue(report["cards"]["F3"]["v1_prompt_text_preserved"])
+        self.assertTrue(report["cards"]["F3_concrete"]["v1_prompt_text_preserved"])
+        self.assertEqual(stage_plan["hard_resource_caps"]["gpus"], 8)
+        self.assertEqual(stage_plan["hard_resource_caps"]["pilot"]["wall_clock_seconds"], 7200)
+        amendment = json.loads((PACKAGE / "protocol_amendment_v2.json").read_text())
+        self.assertFalse(amendment["compute_authorization"]["scholar_receipt_required"])
+        self.assertTrue(amendment["frozen_inputs"]["v1_prompt_text_preservation"]["F3"])
+
+    def test_pre_spend_audit_reports_nine_real_blockers(self) -> None:
+        result = subprocess.run(
+            [sys.executable, str(REPO_ROOT / "scripts" / "audit_frame_internalization_pre_spend.py")],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        report = json.loads(result.stdout)
+        self.assertFalse(report["pilot_ready"])
+        self.assertFalse(report["scholar_review_blocks_compute"])
+        self.assertEqual(report["blocking_gate_count"], 9)
+        scholar = next(
+            item for item in report["gates"] if item["gate_id"] == "scholar_review_claim_gate"
+        )
+        self.assertEqual(scholar["status"], "pending_nonblocking")
+        self.assertFalse(scholar["blocks_pilot"])
+
+    def test_pre_spend_require_ready_fails_closed(self) -> None:
+        result = subprocess.run(
+            [
+                sys.executable,
+                str(REPO_ROOT / "scripts" / "audit_frame_internalization_pre_spend.py"),
+                "--require-pilot-ready",
+            ],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+
+    def test_guarded_stage_launcher_dry_run_does_not_create_run_directory(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            run_dir = Path(temp_dir) / "must-not-exist"
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "run_frame_internalization_stage.py"),
+                    "--stage",
+                    "pilot",
+                    "--training-task-id",
+                    "unit-test",
+                    "--authorization",
+                    str(run_dir / "authorization-not-read.json"),
+                    "--run-dir",
+                    str(run_dir),
+                    "--checkpoint-root",
+                    str(run_dir / "checkpoints"),
+                    "--checkpoint-every-steps",
+                    "200",
+                    "--checkpoint-every-minutes",
+                    "20",
+                    "--dry-run",
+                    "--",
+                    sys.executable,
+                    "-c",
+                    "print('must not execute')",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertFalse(run_dir.exists())
+            self.assertFalse(json.loads(result.stdout)["execution_started"])
+
+    def test_v1_hash_bound_chain_is_unchanged_by_v2(self) -> None:
+        expected = {
+            "frame_cards/F3_v1.json": "f12406eadcbe9723f429f49278b53d6d4934969d9fec317e295e3f134d2080d9",
+            "frame_cards/F3_concrete_v1.json": "b4780e0c4ce2c288fefa58986ba40c0b3087408526629a28381cfa016d10d9f3",
+            "scholar_review_contract_v1.json": "2bf19f20b618db4cead473fcfa6d59ace625b4eebb8a3d91cf5cc3d87853fb92",
+            "protocol_amendment_f3_concrete_v1.json": "b2a83b3d40b017711d6ef5a9b372f9f8efaff1d6167d8446a194cb2e8d76681e",
+        }
+        for relative, digest in expected.items():
+            self.assertEqual(sha256_file(PACKAGE / relative), digest, relative)
 
 
 if __name__ == "__main__":

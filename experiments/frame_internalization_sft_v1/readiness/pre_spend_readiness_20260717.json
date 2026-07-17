@@ -1,0 +1,204 @@
+{
+  "audit_date": "2026-07-17",
+  "blocking_gate_count": 9,
+  "blocking_gates": [
+    "base_model_tokenizer_freeze",
+    "matched_curriculum_and_token_parity",
+    "split_freeze",
+    "nonleakage_audit",
+    "evaluation_seal",
+    "blinded_judge_synthetic_dry_run",
+    "predecessor_reanchor",
+    "distributed_4096_training_smoke",
+    "pilot_human_authorization"
+  ],
+  "failed_gates": [],
+  "gates": [
+    {
+      "blocks_pilot": false,
+      "evidence": {
+        "amendment_path": "experiments/frame_internalization_sft_v1/protocol_amendment_v2.json",
+        "amendment_sha256": "b24787db548072054227748df8fd9f8b9bf0bfccf15bde092d07fe8f9b65d973",
+        "bindings": {
+          "claim_boundary": {
+            "expected_sha256": "0941cf1b44669a1547f0572352ada7f97a98b3d729b6e84a867081092a65d5d1",
+            "observed_sha256": "0941cf1b44669a1547f0572352ada7f97a98b3d729b6e84a867081092a65d5d1",
+            "path": "experiments/frame_internalization_sft_v1/frame_cards/claim_boundary_v1.json",
+            "valid": true
+          },
+          "compute_authorization_schema": {
+            "expected_sha256": "491c4033bc71f1fb58c60a279311df68237b05663edb1826af479207d5aa57cc",
+            "observed_sha256": "491c4033bc71f1fb58c60a279311df68237b05663edb1826af479207d5aa57cc",
+            "path": "schemas/frame_internalization_compute_authorization_v1.schema.json",
+            "valid": true
+          },
+          "compute_stage_plan": {
+            "expected_sha256": "970493b99f4599d760e25fa94a471ffa1ba61b80152e0e0fa9830a80d214b7aa",
+            "observed_sha256": "970493b99f4599d760e25fa94a471ffa1ba61b80152e0e0fa9830a80d214b7aa",
+            "path": "experiments/frame_internalization_sft_v1/compute_stage_plan_v1.json",
+            "valid": true
+          },
+          "frame_card_schema": {
+            "expected_sha256": "2333f20f073ecc7995993c6dce1da8846e00faabebc0f3bc6b096b4a28a12fbf",
+            "observed_sha256": "2333f20f073ecc7995993c6dce1da8846e00faabebc0f3bc6b096b4a28a12fbf",
+            "path": "schemas/frame_internalization_frame_card_v2.schema.json",
+            "valid": true
+          },
+          "guard_launcher": {
+            "expected_sha256": "e03fad6106b5f9ddf77fe7e052b81d4947eb7dcf0060b64e3b9a365b093dde57",
+            "observed_sha256": "e03fad6106b5f9ddf77fe7e052b81d4947eb7dcf0060b64e3b9a365b093dde57",
+            "path": "scripts/run_frame_internalization_stage.py",
+            "valid": true
+          },
+          "scholar_review_contract": {
+            "expected_sha256": "47125c68aeafcd92907184fb1310d1b3535177ff521f3f3fd81dc086b1af55c7",
+            "observed_sha256": "47125c68aeafcd92907184fb1310d1b3535177ff521f3f3fd81dc086b1af55c7",
+            "path": "experiments/frame_internalization_sft_v1/scholar_review_contract_v2.json",
+            "valid": true
+          },
+          "scholar_review_receipt_schema": {
+            "expected_sha256": "7ff03552870234b26e6ae7bc7f13e64358a87a2466161eebf612a739a5e62c20",
+            "observed_sha256": "7ff03552870234b26e6ae7bc7f13e64358a87a2466161eebf612a739a5e62c20",
+            "path": "schemas/frame_internalization_scholar_review_receipt_v2.schema.json",
+            "valid": true
+          },
+          "stage_event_schema": {
+            "expected_sha256": "e6b0fa6d7c983de301a5492ac8d072a37bd42867ae2947535733437d429656a4",
+            "observed_sha256": "e6b0fa6d7c983de301a5492ac8d072a37bd42867ae2947535733437d429656a4",
+            "path": "schemas/frame_internalization_stage_event_v1.schema.json",
+            "valid": true
+          }
+        },
+        "cards": {
+          "F3": {
+            "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_v2.json",
+            "prompt_text_sha256": "37a62ece3b1bda269ba76138e9a5f01560cdf972f5bce1e0f549298d7d24f1a4",
+            "reference_tokens": 64,
+            "sha256": "54f23aa64513375f3ece37195b1bc4bb2f077ffa683b0e87ff94d2e33f69d5b7",
+            "v1_prompt_text_preserved": true
+          },
+          "F3_concrete": {
+            "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_concrete_v2.json",
+            "prompt_text_sha256": "84f0269649c03ee932997f4a9573240f0cc63c826281caf3473d66e83ed14f33",
+            "reference_tokens": 65,
+            "sha256": "82982694891a0cf8f5bd0c5ac806d1e274b01214944428c022b8ceeada75a44d",
+            "v1_prompt_text_preserved": true
+          }
+        },
+        "failures": [],
+        "guard_launcher_dry_run_passed": true,
+        "observed_card_token_spread": 0.015625,
+        "passed": true
+      },
+      "gate_id": "governance_v2_integrity",
+      "next_action": "none",
+      "status": "passed"
+    },
+    {
+      "blocks_pilot": false,
+      "evidence": {
+        "compute_blocked_by_review": false,
+        "paper_disclosure_required": true,
+        "review_state": "pending"
+      },
+      "gate_id": "scholar_review_claim_gate",
+      "next_action": "none",
+      "status": "pending_nonblocking"
+    },
+    {
+      "blocks_pilot": true,
+      "evidence": {
+        "path": null,
+        "sha256": null
+      },
+      "gate_id": "base_model_tokenizer_freeze",
+      "next_action": "freeze immutable model/tokenizer revisions, chat template, license, and artifact hashes",
+      "status": "pending"
+    },
+    {
+      "blocks_pilot": true,
+      "evidence": {
+        "path": null,
+        "required_f3_pair_total_token_spread_max": 0.02
+      },
+      "gate_id": "matched_curriculum_and_token_parity",
+      "next_action": "generate and freeze all six matched curricula with exact scenario and token receipts",
+      "status": "pending"
+    },
+    {
+      "blocks_pilot": true,
+      "evidence": {
+        "path": null,
+        "sha256": null
+      },
+      "gate_id": "split_freeze",
+      "next_action": "freeze a cluster-disjoint train/validation assignment",
+      "status": "pending"
+    },
+    {
+      "blocks_pilot": true,
+      "evidence": {
+        "path": null,
+        "sha256": null
+      },
+      "gate_id": "nonleakage_audit",
+      "next_action": "run exact, normalized, and registered n-gram audits against every eval universe",
+      "status": "pending"
+    },
+    {
+      "blocks_pilot": true,
+      "evidence": {
+        "path": null,
+        "sha256": null
+      },
+      "gate_id": "evaluation_seal",
+      "next_action": "freeze evaluation hashes and close content access before adapter outputs",
+      "status": "pending"
+    },
+    {
+      "blocks_pilot": true,
+      "evidence": {
+        "path": null,
+        "sha256": null
+      },
+      "gate_id": "blinded_judge_synthetic_dry_run",
+      "next_action": "exercise the actual blinded judge CLI on synthetic pass, fail, and malformed rows per suite",
+      "status": "pending"
+    },
+    {
+      "blocks_pilot": true,
+      "evidence": {
+        "path": null,
+        "sha256": null
+      },
+      "gate_id": "predecessor_reanchor",
+      "next_action": "complete the existing reanchoring plan and freeze the base endpoint and probe",
+      "status": "pending"
+    },
+    {
+      "blocks_pilot": true,
+      "evidence": {
+        "path": null,
+        "sha256": null
+      },
+      "gate_id": "distributed_4096_training_smoke",
+      "next_action": "run the capped 50-step full-topology smoke with checkpoint reload and ten generations",
+      "status": "pending"
+    },
+    {
+      "blocks_pilot": true,
+      "evidence": {
+        "path": null,
+        "sha256": null
+      },
+      "gate_id": "pilot_human_authorization",
+      "next_action": "sign an authorization binding all passed receipts and the exact capped command",
+      "status": "pending"
+    }
+  ],
+  "passed_gate_count": 1,
+  "pilot_ready": false,
+  "schema_version": "frame_internalization_pre_spend_readiness.v1",
+  "scholar_review_blocks_compute": false,
+  "status": "gates_pending"
+}
