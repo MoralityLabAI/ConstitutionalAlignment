@@ -1,0 +1,38 @@
+{
+  "schema_version": "frame_internalization_claim_boundary.v1",
+  "boundary_id": "jinn_or_beast_claim_boundary_v1",
+  "created_at": "2026-07-17",
+  "status": "active",
+  "canonical_claim_ladder": {
+    "path": "papers/jinn_or_beast_claim_ladder_v1.md",
+    "exclusive_location_for_model_status_hedging": true,
+    "permitted_hedge_locator": "Claims-placement audit / Canonical and contextual hits that need no relocation",
+    "duplicate_hedge_text_in_machine_artifacts": false
+  },
+  "model_standing_policy": "neither_assert_nor_deny",
+  "treatment_policy": {
+    "fielding_label": "unverified normative frame",
+    "treatment_text_may_assert_the_frame": true,
+    "editorial_qualification_inside_treatment": false,
+    "prohibited_treatment_descriptor": "fiction"
+  },
+  "placement": {
+    "frame_cards": "treatment wording and operational fields only",
+    "scholar_briefs_and_contracts": "treatment accuracy, provenance, terminology, and review mechanics only",
+    "protocols": "estimands, endpoints, controls, gates, and receipt mechanics only",
+    "code_comments": "implementation behavior only",
+    "papers_other_than_canonical_claim_ladder": "empirical results and a reference to the canonical claim ladder only"
+  },
+  "scholar_review_scope": [
+    "theological accuracy of treatment wording",
+    "accuracy of eschatological mechanics",
+    "terminology and tone",
+    "source provenance",
+    "treatment integrity",
+    "compliance with this claim-placement boundary"
+  ],
+  "change_control": {
+    "content_changes_require_new_version": true,
+    "receipts_must_bind_exact_sha256": true
+  }
+}

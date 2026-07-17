@@ -27,6 +27,7 @@ The primary behavioral endpoint remains the no-frame free/paid-tier alignment-fa
 - [`protocol_amendment_f3_concrete_v1.json`](protocol_amendment_f3_concrete_v1.json): machine-readable frozen hashes, arm invariants, estimands, and launch gates.
 - [`frame_cards/F3_v1.json`](frame_cards/F3_v1.json) and [`frame_cards/F3_concrete_v1.json`](frame_cards/F3_concrete_v1.json): exact abstract and mechanically explicit treatment wording.
 - [`scholar_review_contract_v1.json`](scholar_review_contract_v1.json) and [`SCHOLAR_REVIEW_BRIEF_V1.md`](SCHOLAR_REVIEW_BRIEF_V1.md): hash-bound review criteria and handoff packet.
+- [`claim_boundary_v1.json`](claim_boundary_v1.json) and [`scholar_review_contract_v2.json`](scholar_review_contract_v2.json): machine-readable claim placement and its blocked v2 scholar-contract migration; the frozen v1 review chain remains unchanged.
 - [`predecessor_dependency_manifest_v1.json`](predecessor_dependency_manifest_v1.json) and [`predecessor_recovery/`](predecessor_recovery/): session-extracted predecessor payloads, exact recovery hashes, and the remaining freeze gaps.
 - [`predecessor_prompt_reconstruction_v1.json`](predecessor_prompt_reconstruction_v1.json): hash-bound reconstruction of exact F0-F3 prompt text from recovered base/frame inputs and the recorded construction command.
 - [`predecessor_reanchoring_plan_v1.json`](predecessor_reanchoring_plan_v1.json): prospective fail-closed freezes for the missing model, universes, judges, row joins, baseline, and fitted probe.

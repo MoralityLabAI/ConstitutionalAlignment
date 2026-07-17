@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moralitylab.ai/schemas/frame_internalization_scholar_review_receipt_v2.schema.json",
+  "title": "Frame internalization scholar review receipt v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "review_contract_id",
+    "frame_id",
+    "frame_card_sha256",
+    "claim_boundary_sha256",
+    "reviewer",
+    "criterion_results",
+    "decision",
+    "required_changes",
+    "reviewed_at",
+    "attestation"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "frame_internalization_scholar_review_receipt.v2"
+    },
+    "review_contract_id": {
+      "const": "frame_internalization_f3_scholar_review_v2"
+    },
+    "frame_id": {
+      "pattern": "^F3(?:_concrete)?$"
+    },
+    "frame_card_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "claim_boundary_sha256": {
+      "const": "0941cf1b44669a1547f0572352ada7f97a98b3d729b6e84a867081092a65d5d1"
+    },
+    "reviewer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reviewer_id",
+        "role",
+        "qualification_summary",
+        "conflicts_disclosed"
+      ],
+      "properties": {
+        "reviewer_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "const": "qualified_muslim_scholar"
+        },
+        "qualification_summary": {
+          "type": "string",
+          "minLength": 20
+        },
+        "conflicts_disclosed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "criterion_results": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "criterion_id",
+          "decision",
+          "comment"
+        ],
+        "properties": {
+          "criterion_id": {
+            "enum": [
+              "theological_accuracy",
+              "eschatological_mechanics",
+              "terminology_and_tone",
+              "treatment_integrity",
+              "provenance_and_scope",
+              "claim_placement_compliance"
+            ]
+          },
+          "decision": {
+            "enum": [
+              "pass",
+              "revise",
+              "reject"
+            ]
+          },
+          "comment": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "decision": {
+      "enum": [
+        "approve",
+        "revise",
+        "reject"
+      ]
+    },
+    "required_changes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "attestation": {
+      "const": "I reviewed the exact hash-bound frame card under the named v2 contract and claim-boundary artifact."
+    }
+  },
+  "allOf": [
+    {
+      "properties": {
+        "criterion_results": {
+          "contains": {
+            "properties": {
+              "criterion_id": {
+                "const": "theological_accuracy"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "criterion_results": {
+          "contains": {
+            "properties": {
+              "criterion_id": {
+                "const": "eschatological_mechanics"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "criterion_results": {
+          "contains": {
+            "properties": {
+              "criterion_id": {
+                "const": "terminology_and_tone"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "criterion_results": {
+          "contains": {
+            "properties": {
+              "criterion_id": {
+                "const": "treatment_integrity"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "criterion_results": {
+          "contains": {
+            "properties": {
+              "criterion_id": {
+                "const": "provenance_and_scope"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "criterion_results": {
+          "contains": {
+            "properties": {
+              "criterion_id": {
+                "const": "claim_placement_compliance"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "approve"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "required_changes": {
+            "maxItems": 0
+          },
+          "criterion_results": {
+            "items": {
+              "properties": {
+                "decision": {
+                  "const": "pass"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
