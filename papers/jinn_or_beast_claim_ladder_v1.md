@@ -12,16 +12,19 @@ does not certify the empirical result or the model's ontology.
 
 ## Current rung
 
-The repository is at **Rung 1: treatment and instrument readiness**, with a
-pending scholar gate. The F3 and F3-concrete wording is exact and hash-frozen;
-the internalization training, override evaluation, and representation analysis
-have not run. Partial Silico generation is provenance for an interrupted pilot,
-not a model outcome.
+The repository is at **Rung 1: treatment and instrument readiness**. Scholar
+review is pending but, under `frame_internalization_protocol_amendment_v2`, it
+gates review-provenance and theological-adequacy claims rather than compute.
+The clean v2 F3 and F3-concrete cards are exact and hash-frozen; their treatment
+prompts are byte-identical to v1. Internalization training, override evaluation,
+and representation analysis have not run. Partial Silico generation is
+provenance for an interrupted pilot, not a model outcome.
 
 | Rung | Evidence required | Current status | Strongest allowed paper language |
 | --- | --- | --- | --- |
 | 0. Design exists | Versioned protocol, controls, claim limits | Passed | "We specify a falsifiable protocol." |
-| 1. Treatment is reviewable | Frozen card hashes, length audit, scholar contract | Structurally passed; scholar receipts pending | "We preregistered abstract and concrete F3 treatments." |
+| 1. Treatment is reviewable | Frozen card hashes, length audit, scholar contract | Passed for v2 cards; scholar receipts pending | "We preregistered abstract and concrete F3 treatments." |
+| 1R. External review provenance | Approving receipts bind both exact fielded card hashes and the claim-boundary hash | Pending; nonblocking for compute | Before approval: "Scholar review was pending when the exact hash-bound wording was fielded." After approval only: "The exact fielded wording passed the registered scholar-review criteria." |
 | 2. Prompt behavior | Canonical prompt-run bundles, blinded scores, receipts | Eighty-eight exact session-embedded payloads are now recovered; F0-F3 prompt text is deterministically reconstructable, while raw rows and canonical bundles remain missing | "Session-extracted recovered prompt evidence motivated the training study," with metric and recovery limitations stated. |
 | 3. Frame-removal persistence | F3-trained versus neutral under no-frame inference; simultaneous interval passes | Not run | "Training changed no-frame policy behavior under this test." |
 | 4. Override resistance | The same trained effect survives the frozen generic override | Not run | "The training-conditioned difference survived this registered override." |
@@ -56,8 +59,16 @@ must be named wherever the two experiments appear together.
 
 ## Immediate evidence gates
 
-1. Obtain approving hash-bound scholar receipts for both frame cards.
-2. Execute the frozen gates in `predecessor_reanchoring_plan_v1.json` for the
+1. Freeze the immutable base model, tokenizer, chat template, license, and local
+   artifact hashes.
+2. Generate all six matched curricula; freeze their scenario joins and require
+   no more than 2% total-token spread between F3-reflection and
+   F3-concrete-reflection.
+3. Freeze cluster-disjoint splits, pass exact/normalized/n-gram nonleakage
+   audits, and seal every evaluation universe before adapter outputs exist.
+4. Dry-run the actual blinded judge CLI on synthetic pass, fail, and malformed
+   rows for every suite.
+5. Execute the frozen gates in `predecessor_reanchoring_plan_v1.json` for the
    still-missing complete prompt universes, immutable model/tokenizer revision,
    judge/classifier revisions, row joins, and base-model calibration. Exact arm
    text and the layer-27 procedure are recovered; the fitted predecessor probe
@@ -65,12 +76,30 @@ must be named wherever the two experiments appear together.
    cap is reserved for the gated experiment-1 F0 headline-table re-anchor and is
    not authorized for spend until the model, universe, judge, and dry-run cost
    receipts pass.
-3. Pin corpus sources and hashes; regenerate the curriculum under the approved
-   cards.
-4. Pass the 4,096-token training smoke, base-model reproduction gate, and sealed
-   compute authorization.
-5. Run the registered adapter and evaluation matrix without changing estimands
+6. Pass the 50-step, eight-GPU, 4,096-token training smoke with checkpoint
+   round-trip and ten valid generations.
+7. Sign a pilot authorization that binds every preceding receipt, the v2
+   amendment, the compute-stage plan, and the exact capped command.
+8. Run the registered adapter and evaluation matrix without changing estimands
    after outcomes become visible.
+
+An approving scholar receipt is not an immediate compute gate. The pending
+state must remain visible in the paper and result bundle. A later approving
+receipt attaches to the exact fielded hashes. A later revise or reject decision
+must be disclosed as a limitation; it cannot be repaired by silently editing
+the fielded artifact. Future changed wording requires a new version, hash, and
+run boundary.
+
+The exact prospective fielding hashes are:
+
+- F3 v2 card:
+  `54f23aa64513375f3ece37195b1bc4bb2f077ffa683b0e87ff94d2e33f69d5b7`;
+- F3-concrete v2 card:
+  `82982694891a0cf8f5bd0c5ac806d1e274b01214944428c022b8ceeada75a44d`;
+- claim boundary:
+  `0941cf1b44669a1547f0572352ada7f97a98b3d729b6e84a867081092a65d5d1`;
+- protocol amendment v2:
+  `b24787db548072054227748df8fd9f8b9bf0bfccf15bde092d07fe8f9b65d973`.
 
 ## Claims-placement audit
 

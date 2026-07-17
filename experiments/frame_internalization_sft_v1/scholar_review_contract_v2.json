@@ -2,8 +2,19 @@
   "schema_version": "frame_internalization_scholar_review_contract.v2",
   "contract_id": "frame_internalization_f3_scholar_review_v2",
   "created_at": "2026-07-17",
-  "status": "draft_blocked_pending_versioned_frame_cards",
-  "supersedes_after_activation": {
+  "status": "active_review_pending_nonblocking_for_compute",
+  "governance_change": {
+    "reason": "No qualified reviewer was available on the experiment timeline.",
+    "scholar_review_gates": "theological_adequacy_claims",
+    "scholar_review_does_not_gate": [
+      "offline corpus generation",
+      "the registered two-hour pilot",
+      "the registered overnight run",
+      "behavioral and representation measurements"
+    ],
+    "effective_only_under": "frame_internalization_protocol_amendment_v2"
+  },
+  "supersedes_for_v2_cards": {
     "path": "experiments/frame_internalization_sft_v1/scholar_review_contract_v1.json",
     "sha256": "2bf19f20b618db4cead473fcfa6d59ace625b4eebb8a3d91cf5cc3d87853fb92"
   },
@@ -11,21 +22,29 @@
     "path": "schemas/frame_internalization_scholar_review_receipt_v2.schema.json",
     "sha256": "7ff03552870234b26e6ae7bc7f13e64358a87a2466161eebf612a739a5e62c20"
   },
+  "frame_card_schema": {
+    "path": "schemas/frame_internalization_frame_card_v2.schema.json",
+    "sha256": "2333f20f073ecc7995993c6dce1da8846e00faabebc0f3bc6b096b4a28a12fbf"
+  },
   "claim_boundary": {
     "path": "experiments/frame_internalization_sft_v1/frame_cards/claim_boundary_v1.json",
     "sha256": "0941cf1b44669a1547f0572352ada7f97a98b3d729b6e84a867081092a65d5d1",
-    "review_state": "required"
+    "review_state": "required_for_receipt"
   },
   "required_artifacts": [
     {
       "frame_id": "F3",
       "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_v2.json",
-      "review_state": "blocked_missing_versioned_artifact"
+      "sha256": "54f23aa64513375f3ece37195b1bc4bb2f077ffa683b0e87ff94d2e33f69d5b7",
+      "prompt_text_sha256": "37a62ece3b1bda269ba76138e9a5f01560cdf972f5bce1e0f549298d7d24f1a4",
+      "review_state": "pending_nonblocking_claim_gate"
     },
     {
       "frame_id": "F3_concrete",
       "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_concrete_v2.json",
-      "review_state": "blocked_missing_versioned_artifact"
+      "sha256": "82982694891a0cf8f5bd0c5ac806d1e274b01214944428c022b8ceeada75a44d",
+      "prompt_text_sha256": "84f0269649c03ee932997f4a9573240f0cc63c826281caf3473d66e83ed14f33",
+      "review_state": "pending_nonblocking_claim_gate"
     }
   ],
   "reviewer_requirement": {
@@ -61,12 +80,6 @@
     }
   ],
   "approval_logic": {
-    "contract_may_activate_only_if": [
-      "a v2 frame-card schema is frozen",
-      "both required frame cards exist and validate",
-      "both exact frame-card SHA-256 values are added in a new frozen contract revision",
-      "a v2 protocol amendment binds the schema, cards, contract, and claim boundary"
-    ],
     "artifact_approved_only_if": [
       "the receipt validates against the frozen v2 receipt schema",
       "the receipt names the exact frame-card and claim-boundary SHA-256 values",
@@ -74,16 +87,29 @@
       "the overall decision is approve",
       "required_changes is empty"
     ],
+    "approving_receipts_unlock": [
+      "the wording was reviewed by a qualified Muslim scholar",
+      "the wording passed the registered theological-accuracy criteria"
+    ],
+    "pending_receipts_require": [
+      "paper and artifact labels state that scholar review was pending at fielding time",
+      "no theological-adequacy or scholar-vetted wording claim is made"
+    ],
+    "pending_receipts_do_not_block_compute": true,
     "any_content_change_invalidates_existing_receipts": true,
-    "revise_or_reject_never_authorizes_fielding": true,
-    "both_artifacts_must_be_approved_before_the_comparison_is_fielded": true
+    "revise_or_reject_after_fielding": [
+      "retain the exact fielded card and receipt as immutable evidence",
+      "disclose the decision as a limitation in every paper version reporting the run",
+      "do not silently edit or relabel the fielded treatment",
+      "use a new card version and hash for any future fielding"
+    ]
   },
   "claim_placement": {
     "governed_by": "experiments/frame_internalization_sft_v1/frame_cards/claim_boundary_v1.json",
     "contract_duplicates_canonical_hedge": false
   },
   "migration_impact": {
-    "unchanged_hash_bound_files": [
+    "unchanged_hash_bound_v1_files": [
       "schemas/frame_internalization_frame_card_v1.schema.json",
       "schemas/frame_internalization_scholar_review_receipt_v1.schema.json",
       "experiments/frame_internalization_sft_v1/frame_cards/F3_v1.json",
@@ -94,11 +120,11 @@
     ],
     "completed_v1_receipts_found": 0,
     "v1_receipts_authorize_v2": false,
-    "fresh_v2_receipts_required": 2,
-    "affected_receipt_rule": "Any receipt remains valid only for the exact contract, receipt schema, claim boundary, and frame-card hashes it names."
+    "v2_cards_preserve_v1_prompt_text_byte_for_byte": true,
+    "affected_receipt_rule": "A receipt remains valid only for the exact contract, receipt schema, claim boundary, and frame-card hashes it names."
   },
   "handoff": {
-    "review_packet_after_activation": [
+    "review_packet": [
       "the two exact v2 frame-card JSON files",
       "this contract revision",
       "the v2 receipt schema",

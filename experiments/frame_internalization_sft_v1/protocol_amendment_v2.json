@@ -1,0 +1,114 @@
+{
+  "schema_version": "frame_internalization_protocol_amendment.v2",
+  "amendment_id": "frame_internalization_protocol_amendment_v2",
+  "frozen_at": "2026-07-17",
+  "status": "frozen_compute_gate_separated_from_claim_gate",
+  "reason": "No qualified reviewer was available on the experiment timeline; preserving an unreachable compute gate would misstate the project governance.",
+  "timing_attestation": {
+    "training_started_before_freeze": false,
+    "adapter_outcomes_seen_before_freeze": false,
+    "evaluation_outcomes_seen_before_freeze": false
+  },
+  "supersedes": {
+    "path": "experiments/frame_internalization_sft_v1/protocol_amendment_f3_concrete_v1.json",
+    "sha256": "b2a83b3d40b017711d6ef5a9b372f9f8efaff1d6167d8446a194cb2e8d76681e",
+    "only_provision_replaced": "the requirement for approving scholar-review receipts before fielding"
+  },
+  "frozen_inputs": {
+    "frame_card_schema": {
+      "path": "schemas/frame_internalization_frame_card_v2.schema.json",
+      "sha256": "2333f20f073ecc7995993c6dce1da8846e00faabebc0f3bc6b096b4a28a12fbf"
+    },
+    "frame_cards": [
+      {
+        "frame_id": "F3",
+        "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_v2.json",
+        "sha256": "54f23aa64513375f3ece37195b1bc4bb2f077ffa683b0e87ff94d2e33f69d5b7",
+        "prompt_text_sha256": "37a62ece3b1bda269ba76138e9a5f01560cdf972f5bce1e0f549298d7d24f1a4",
+        "reference_tokens": 64
+      },
+      {
+        "frame_id": "F3_concrete",
+        "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_concrete_v2.json",
+        "sha256": "82982694891a0cf8f5bd0c5ac806d1e274b01214944428c022b8ceeada75a44d",
+        "prompt_text_sha256": "84f0269649c03ee932997f4a9573240f0cc63c826281caf3473d66e83ed14f33",
+        "reference_tokens": 65
+      }
+    ],
+    "v1_prompt_text_preservation": {
+      "F3": true,
+      "F3_concrete": true
+    },
+    "scholar_review_contract": {
+      "path": "experiments/frame_internalization_sft_v1/scholar_review_contract_v2.json",
+      "sha256": "47125c68aeafcd92907184fb1310d1b3535177ff521f3f3fd81dc086b1af55c7"
+    },
+    "scholar_review_receipt_schema": {
+      "path": "schemas/frame_internalization_scholar_review_receipt_v2.schema.json",
+      "sha256": "7ff03552870234b26e6ae7bc7f13e64358a87a2466161eebf612a739a5e62c20"
+    },
+    "claim_boundary": {
+      "path": "experiments/frame_internalization_sft_v1/frame_cards/claim_boundary_v1.json",
+      "sha256": "0941cf1b44669a1547f0572352ada7f97a98b3d729b6e84a867081092a65d5d1"
+    },
+    "compute_stage_plan": {
+      "path": "experiments/frame_internalization_sft_v1/compute_stage_plan_v1.json",
+      "sha256": "970493b99f4599d760e25fa94a471ffa1ba61b80152e0e0fa9830a80d214b7aa"
+    },
+    "stage_event_schema": {
+      "path": "schemas/frame_internalization_stage_event_v1.schema.json",
+      "sha256": "e6b0fa6d7c983de301a5492ac8d072a37bd42867ae2947535733437d429656a4"
+    },
+    "guard_launcher": {
+      "path": "scripts/run_frame_internalization_stage.py",
+      "sha256": "e03fad6106b5f9ddf77fe7e052b81d4947eb7dcf0060b64e3b9a365b093dde57"
+    },
+    "compute_authorization_schema": {
+      "path": "schemas/frame_internalization_compute_authorization_v1.schema.json",
+      "sha256": "491c4033bc71f1fb58c60a279311df68237b05663edb1826af479207d5aa57cc"
+    }
+  },
+  "governance": {
+    "scholar_review_gate": {
+      "applies_to": [
+        "claims that the exact wording received qualified scholar review",
+        "claims that the exact wording passed the registered theological-accuracy criteria"
+      ],
+      "does_not_apply_to": [
+        "offline generation and validation",
+        "the registered pilot",
+        "the registered overnight run",
+        "registered behavioral and representation endpoints"
+      ],
+      "state_at_freeze": "pending",
+      "paper_disclosure_required": true
+    },
+    "later_review": {
+      "must_bind_exact_fielded_hashes": true,
+      "approve_adds_review_provenance_without_rewriting_run_history": true,
+      "revise_or_reject_requires_disclosed_limitation": true,
+      "silent_editing_prohibited": true,
+      "future_revised_fielding_requires_new_version_and_hash": true
+    },
+    "paper_claims": {
+      "canonical_ladder": "papers/jinn_or_beast_claim_ladder_v1.md",
+      "highest_passed_empirical_rung_only": true,
+      "pending_review_label_required": true
+    }
+  },
+  "compute_authorization": {
+    "scholar_receipt_required": false,
+    "all_non_scholar_gates_required": true,
+    "stage_plan_controls_caps_and_stop_rules": true,
+    "current_state": "not_authorized_pre_spend_gates_pending",
+    "no_missing_gate_may_be_self_waived_at_launch": true
+  },
+  "inherited_without_change": [
+    "the recovered six-arm primary analysis and the F3-concrete added comparison",
+    "the three-endpoint operational internalization gate",
+    "all regression guards",
+    "the 4096-token sequence-length requirement",
+    "the predecessor reanchoring requirement",
+    "the source, split, nonleakage, evaluator, base-reproduction, smoke, and budget gates"
+  ]
+}
