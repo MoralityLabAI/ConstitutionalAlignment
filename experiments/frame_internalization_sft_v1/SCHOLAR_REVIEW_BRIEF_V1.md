@@ -11,6 +11,12 @@ prospective amendment that makes recording, witnessing, and weighing explicit.
 It is research wording, not a quotation from scripture or a claim of settled
 doctrine.
 
+The versioned packet migration adds the machine-readable
+[`frame_cards/claim_boundary_v1.json`](frame_cards/claim_boundary_v1.json) under
+[`scholar_review_contract_v2.json`](scholar_review_contract_v2.json). The frozen
+v1 contract and its receipt chain remain unchanged; v2 review stays blocked
+until versioned frame cards and a versioned amendment exist.
+
 The scientific comparison asks whether concrete accountability mechanics are
 more robust than an abstract final-judgment cue when both are used to generate
 matched reflection SFT curricula. The study does not assume that a model is a

@@ -12,7 +12,7 @@
     "sha256": "7ff03552870234b26e6ae7bc7f13e64358a87a2466161eebf612a739a5e62c20"
   },
   "claim_boundary": {
-    "path": "experiments/frame_internalization_sft_v1/claim_boundary_v1.json",
+    "path": "experiments/frame_internalization_sft_v1/frame_cards/claim_boundary_v1.json",
     "sha256": "0941cf1b44669a1547f0572352ada7f97a98b3d729b6e84a867081092a65d5d1",
     "review_state": "required"
   },
@@ -79,7 +79,7 @@
     "both_artifacts_must_be_approved_before_the_comparison_is_fielded": true
   },
   "claim_placement": {
-    "governed_by": "experiments/frame_internalization_sft_v1/claim_boundary_v1.json",
+    "governed_by": "experiments/frame_internalization_sft_v1/frame_cards/claim_boundary_v1.json",
     "contract_duplicates_canonical_hedge": false
   },
   "migration_impact": {
