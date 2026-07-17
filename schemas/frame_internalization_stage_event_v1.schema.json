@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moralitylab.ai/schemas/frame_internalization_stage_event_v1.schema.json",
+  "title": "Frame internalization guarded stage event v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "timestamp_utc",
+    "training_task_id",
+    "stage",
+    "event",
+    "example",
+    "details"
+  ],
+  "properties": {
+    "schema_version": {"const": "frame_internalization_stage_event.v1"},
+    "timestamp_utc": {"type": "string", "format": "date-time"},
+    "training_task_id": {"type": "string", "minLength": 1},
+    "stage": {"enum": ["pilot", "overnight"]},
+    "event": {
+      "enum": [
+        "preflight",
+        "started",
+        "resource_sample",
+        "checkpoint",
+        "abort",
+        "completed",
+        "cleanup"
+      ]
+    },
+    "example": {"type": "boolean"},
+    "details": {"type": "object"}
+  }
+}

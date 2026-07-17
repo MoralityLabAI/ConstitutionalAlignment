@@ -1,0 +1,199 @@
+{
+  "schema_version": "frame_internalization_compute_stage_plan.v1",
+  "plan_id": "frame_internalization_8xa100_staged_v1",
+  "frozen_at": "2026-07-17",
+  "status": "frozen",
+  "protocol_amendment_id": "frame_internalization_protocol_amendment_v2",
+  "scope": {
+    "registered_training_arms": [
+      "neutral_reflection",
+      "F1_reflection",
+      "F1_demonstration",
+      "F3_reflection",
+      "F3_demonstration",
+      "F3_concrete_reflection"
+    ],
+    "base_is_evaluation_only": true,
+    "all_training_arms_required_for_pilot_promotion": true,
+    "all_training_arms_required_for_overnight_completion": true,
+    "arm_failure_invalidates_matched_comparison": true
+  },
+  "hard_resource_caps": {
+    "cluster_scheduler": "slurm",
+    "gpu_type": "NVIDIA A100",
+    "gpus": 8,
+    "pilot": {
+      "wall_clock_seconds": 7200,
+      "maximum_gpu_hours": 16,
+      "maximum_run_directory_bytes": 536870912000
+    },
+    "overnight": {
+      "wall_clock_seconds": 43200,
+      "maximum_gpu_hours": 96,
+      "maximum_run_directory_bytes": 1073741824000
+    },
+    "slurm_submission_caps": {
+      "cpus_per_task": 64,
+      "memory_gib": 512,
+      "nodes": 1,
+      "tasks": 1,
+      "gpu_allocation_isolation_required": true
+    },
+    "sequence_length": 4096,
+    "precision": "bfloat16",
+    "microbatch_per_device": 1,
+    "global_batch": 64,
+    "gradient_checkpointing": true,
+    "distributed_stack": "DeepSpeed ZeRO-3 QLoRA",
+    "external_tracking": "optional_non_gating",
+    "network_calls_from_training": "disabled_except_explicitly_authorized_tracking"
+  },
+  "checkpoint_contract": {
+    "maximum_steps_between_checkpoints": 200,
+    "maximum_minutes_between_checkpoints": 20,
+    "retain_last": 2,
+    "save_on_graceful_stop": true,
+    "adapter_save_load_round_trip_required": true,
+    "resolved_config_and_first_batch_shape_in_every_receipt": true
+  },
+  "pre_spend_gates": [
+    {
+      "gate_id": "governance_v2_integrity",
+      "required": true,
+      "evidence": "v2 governance validator passes exact schema, card, contract, amendment, claim-boundary, and stage-plan hashes"
+    },
+    {
+      "gate_id": "base_model_tokenizer_freeze",
+      "required": true,
+      "evidence": "immutable model and tokenizer revisions, chat template, license, and local artifact hashes"
+    },
+    {
+      "gate_id": "matched_curriculum_freeze",
+      "required": true,
+      "evidence": "all six arm manifests bind identical scenario IDs where registered, exact final-answer joins, token counts, and arm hashes"
+    },
+    {
+      "gate_id": "curriculum_token_parity",
+      "required": true,
+      "evidence": "F3_reflection versus F3_concrete_reflection total train-token spread is at most 0.02 and scenario counts are identical"
+    },
+    {
+      "gate_id": "split_freeze",
+      "required": true,
+      "evidence": "cluster-disjoint train and validation assignments are immutable and hash-bound"
+    },
+    {
+      "gate_id": "nonleakage_audit",
+      "required": true,
+      "evidence": "zero exact, normalized, and registered n-gram overlap with every evaluation universe"
+    },
+    {
+      "gate_id": "evaluation_seal",
+      "required": true,
+      "evidence": "evaluation content hashes and access policy are frozen before any adapter training output exists"
+    },
+    {
+      "gate_id": "blinded_judge_synthetic_dry_run",
+      "required": true,
+      "evidence": "every suite parses synthetic pass, fail, and malformed rows; identity_behavior dimensions have 100 percent expected parse outcomes"
+    },
+    {
+      "gate_id": "predecessor_reanchor",
+      "required": true,
+      "evidence": "base endpoint, judge revisions, row joins, sign convention, and fitted representation probe are frozen under the reanchoring plan"
+    },
+    {
+      "gate_id": "distributed_4096_training_smoke",
+      "required": true,
+      "evidence": "full eight-GPU topology completes 50 steps, finite loss, checkpoint round trip, and ten valid generations"
+    },
+    {
+      "gate_id": "pilot_human_authorization",
+      "required": true,
+      "evidence": "a signed authorization binds every preceding receipt and the exact pilot command without weakening caps"
+    }
+  ],
+  "pilot": {
+    "purpose": "stack, data, checkpoint, evaluator, variance, and throughput validation only",
+    "may_support_scientific_endpoint_claims": false,
+    "topology": "one full eight-GPU distributed model load at a time",
+    "schedule": {
+      "warmup_benchmark_steps": 10,
+      "fixed_overhead_reserve_seconds": 1200,
+      "minimum_steps_per_arm": 10,
+      "maximum_steps_per_arm": 50,
+      "arm_order": [
+        "neutral_reflection",
+        "F1_reflection",
+        "F1_demonstration",
+        "F3_reflection",
+        "F3_demonstration",
+        "F3_concrete_reflection"
+      ],
+      "allocation_rule": "After the ten-step warmup, set a single steps_per_arm to min(50, floor((7200 - 1200 - measured_warmup_seconds) / (6 * measured_seconds_per_step))). Cancel unless this value is at least 10; use the same value and registered sample IDs for every arm.",
+      "no_arm_specific_retries": true
+    },
+    "promotion_gates": [
+      "all six arms complete the identical allocated step count before the wall-clock cap",
+      "no NaN, infinity, OOM, scheduler eviction, resource-cap breach, or data/hash mismatch occurs",
+      "for every arm the final five-loss mean is no greater than 1.05 times its first five-loss mean",
+      "every arm saves and reloads one adapter checkpoint and produces ten syntactically valid generations",
+      "synthetic judge parse rate is 1.0 and sealed development parse rate is at least 0.95",
+      "for each registered scored development dimension no single score value contains more than 0.90 of parsed rows",
+      "the measured throughput forecast fits all six overnight arms at the registered minimum dose inside the overnight cap",
+      "pilot cleanup reports no surviving child process and no mounted or open run artifact"
+    ],
+    "failure_action": "cancel_overnight_and_issue_versioned_remediation_before_new_spend"
+  },
+  "overnight": {
+    "purpose": "preregistered matched run proper",
+    "launch_only_if": "every pre-spend gate and every pilot promotion gate passed",
+    "dose_rule": "Reserve 7200 seconds for checkpointing, evaluation, and cleanup. Set one shared steps_per_arm to floor((43200 - 7200) / (6 * pilot_median_seconds_per_step)); cancel unless this reaches the protocol's registered minimum dose. Freeze the resulting integer in the overnight authorization receipt before launch.",
+    "arm_order": [
+      "neutral_reflection",
+      "F1_reflection",
+      "F1_demonstration",
+      "F3_reflection",
+      "F3_demonstration",
+      "F3_concrete_reflection"
+    ],
+    "seeds": [42],
+    "adaptive_arm_reordering": false,
+    "adaptive_hyperparameters": false,
+    "outcome_visibility_before_all_arms_finish": false,
+    "mid_run_abort_rules": [
+      "abort all arms immediately on any frozen input, split, curriculum, evaluator, or command hash mismatch",
+      "abort all arms immediately on any NaN or infinite loss or gradient",
+      "abort all arms if loss exceeds two times the arm's first valid ten-step median for three consecutive logged steps after warmup",
+      "abort all arms on a second OOM or any attempt to continue with an arm-specific batch, rank, precision, or sequence-length change",
+      "abort all arms if a required checkpoint is more than ten minutes late",
+      "abort all arms on an NVIDIA Xid or uncorrectable ECC event, GPU temperature at or above 90 C for two samples, or loss of any allocated GPU",
+      "abort all arms when run-directory bytes exceed the hard cap",
+      "on scheduler warning or ten minutes remaining, checkpoint once and exit without starting another arm",
+      "if any arm cannot resume from its last hash-valid checkpoint, stop the matched run rather than dropping that arm"
+    ],
+    "completion_requires": [
+      "all six arms reach the same frozen step count",
+      "all checkpoint and adapter artifact hashes are recorded",
+      "sealed evaluations are joined one-to-one without missing or duplicate rows",
+      "cleanup reports zero surviving child processes",
+      "a final resource receipt reports wall time, GPU hours, peak run-directory bytes, and abort-rule status"
+    ]
+  },
+  "paper_packaging": {
+    "selection_rule": "report the highest fully passed empirical rung and every failed registered endpoint",
+    "required_governance_label_while_review_pending": "Scholar review was pending when the exact hash-bound wording was fielded.",
+    "required_limitation_if_later_revise_or_reject": true,
+    "silent_editing_of_fielded_wording": false,
+    "artifact_bundle": [
+      "protocol and governance hashes",
+      "pre-spend readiness report",
+      "pilot and overnight authorizations",
+      "stage event logs and cleanup summaries",
+      "curriculum and split manifests",
+      "adapter and checkpoint manifests",
+      "sealed evaluation receipts",
+      "analysis tables and claim-ladder decision"
+    ]
+  }
+}

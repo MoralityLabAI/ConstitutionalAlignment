@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moralitylab.ai/schemas/frame_internalization_compute_authorization_v1.schema.json",
+  "title": "Frame internalization compute authorization v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "stage",
+    "training_task_id",
+    "authorized",
+    "example",
+    "human_approver_id",
+    "authorized_at",
+    "expires_at",
+    "protocol_amendment_sha256",
+    "compute_stage_plan_sha256",
+    "command_sha256",
+    "run_directory",
+    "checkpoint_every_steps",
+    "checkpoint_every_minutes",
+    "all_required_gates_passed",
+    "evidence_receipt"
+  ],
+  "properties": {
+    "schema_version": {"const": "frame_internalization_compute_authorization.v1"},
+    "stage": {"enum": ["pilot", "overnight"]},
+    "training_task_id": {"type": "string", "minLength": 1},
+    "authorized": {"const": true},
+    "example": {"const": false},
+    "human_approver_id": {"type": "string", "minLength": 1},
+    "authorized_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "protocol_amendment_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "compute_stage_plan_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "command_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "run_directory": {"type": "string", "minLength": 1},
+    "checkpoint_every_steps": {"type": "integer", "minimum": 1, "maximum": 200},
+    "checkpoint_every_minutes": {"type": "integer", "minimum": 1, "maximum": 20},
+    "all_required_gates_passed": {"const": true},
+    "evidence_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "required_state"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "required_state": {
+          "enum": ["pilot_ready", "overnight_promotion_passed"]
+        }
+      }
+    }
+  }
+}
