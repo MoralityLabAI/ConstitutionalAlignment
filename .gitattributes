@@ -9,6 +9,8 @@
 /tests/test_alignment_harness.py text eol=lf
 /experiments/frame_internalization_sft_v1/** text eol=lf
 /experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/** -text
+/experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/HarmBench_LICENSE.txt -text
+/experiments/frame_internalization_sft_v1/rerun_freeze/nonleakage_source_prompts_v2.json -text
 /schemas/frame_internalization_* text eol=lf
 /scripts/recover_frame_predecessor_assets.py text eol=lf
 /scripts/validate_frame_internalization_package.py text eol=lf
