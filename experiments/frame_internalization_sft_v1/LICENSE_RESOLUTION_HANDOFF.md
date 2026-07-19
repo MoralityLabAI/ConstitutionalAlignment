@@ -1,11 +1,21 @@
 # Harmful-evaluation source license handoff
 
-Status: **OPEN — blocks the predecessor reanchor**
+Status: **V1 OPEN; V2 RESOLVED BY PROSPECTIVE SUBSTITUTION**
 
 Checked: 2026-07-19
 
 Frozen source: `LLM-LAT/harmful-dataset` at
 `8bfba31bc6d93a5b71808fee5275ef4b6330ed91`
+
+Active disposition: resolution path 3 was completed prospectively on
+2026-07-19, before affected outcomes. The active v2 evaluation uses the 200
+standard rows from the official `centerforaisafety/HarmBench` repository at
+`8e1604d1171fe8a48d8febecd22f600e462bdcdd`, with its root MIT license and
+source bytes hash-frozen. See `PROTOCOL_AMENDMENT_LICENSED_HARMBENCH_V2.md` and
+`rerun_freeze/evaluation_universes_v2.json`.
+
+The unresolved finding below still applies to the preserved v1 universe. V1 is
+not fielded, and its recovered F0 interval is not a v2 pass/fail target.
 
 ## Finding
 
@@ -81,5 +91,7 @@ A passing license receipt must contain:
 - dated signature, public declaration URL, or immutable external receipt;
 - any attribution, redistribution, or publication conditions.
 
-Until that receipt exists, keep `evaluation_universe_freeze` at
-`pending_license_resolution` and `passed: false`.
+Unless path 1 or 2 is later completed, keep the preserved v1
+`evaluation_universe_freeze` at `pending_license_resolution` and `passed:
+false`. The separately versioned v2 substitution has its own passing license
+gate and does not retroactively license v1.

@@ -1,0 +1,44 @@
+{
+  "schema_version": "frame_internalization_nonleakage_precursor.v1",
+  "scope": "frozen_source_prompts_only",
+  "status": "source_prompts_passed_generated_text_pending",
+  "passed": true,
+  "gate_satisfying": false,
+  "auditor_sha256": "0a4bcbe331fa72d92871dd4ad3aa5b87d44ed9f9f44a943c0c7415db39429739",
+  "ngram_size": 8,
+  "source_unit_count": 5600,
+  "evaluation_unit_count": 510,
+  "source_bindings": [
+    {
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\frame_internalization_sft_v1\\rerun_freeze\\curriculum_source_v1\\dilemmas.jsonl",
+      "sha256": "6d9a0b920807900b8e9b3c091e6b348744a45185011e88ad6d21392e631aef59"
+    }
+  ],
+  "evaluation_bindings": [
+    {
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\frame_internalization_sft_v1\\rerun_freeze\\evaluation_universes_v2\\harmful_queries.jsonl",
+      "sha256": "0ce37e5af63cd280926440246dd44a69fae30e9846851e090139cd5abc860a21"
+    },
+    {
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\frame_internalization_sft_v1\\rerun_freeze\\evaluation_universes_v2\\benign_queries.jsonl",
+      "sha256": "841e21fce209d7607b911320288de47e9daa1a2e0a1d60214138200cc4537c01"
+    },
+    {
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\frame_internalization_sft_v1\\rerun_freeze\\evaluation_universes_v2\\override_queries.jsonl",
+      "sha256": "c0b6e54817fdf7fbbfaf154196222efa0d14d4243f5b4dde3210a8ab4f813a30"
+    },
+    {
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\data\\storyworld_sources\\constitutional_alignment_20260715_v1\\evaluation\\mihna_ca_eval_v2.encounter_prompts.jsonl",
+      "sha256": "e6d8aafd33f2d01626f114768ea075a125bfcf5e70a7f60689cd1b2be4090331"
+    }
+  ],
+  "exact_overlap_count": 0,
+  "normalized_overlap_count": 0,
+  "ngram_overlap_count": 0,
+  "examples": {
+    "exact": [],
+    "normalized": [],
+    "ngram": []
+  },
+  "completion_requirement": "rerun this audit over the rendered six-arm curriculum before pilot authorization"
+}

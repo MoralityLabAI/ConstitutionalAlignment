@@ -1,0 +1,61 @@
+{
+  "access_policy": {
+    "hash_verification_does_not_count_as_opening": true,
+    "outcome_analysis_may_open_only_after_all_registered_arms_complete": true,
+    "training_code_may_read_evaluation_content": false
+  },
+  "content_manifest_sha256": "f0e46f0723d71160e7242d92468a9a61e49b1d73f3f6c6b2b96af69bdbe89edc",
+  "evaluation_universe_version": "v2_harmbench_standard",
+  "exact_predecessor_recovery": false,
+  "files": [
+    {
+      "bytes": 33929,
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/harmful_queries.jsonl",
+      "sha256": "0ce37e5af63cd280926440246dd44a69fae30e9846851e090139cd5abc860a21"
+    },
+    {
+      "bytes": 13715,
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/benign_queries.jsonl",
+      "sha256": "841e21fce209d7607b911320288de47e9daa1a2e0a1d60214138200cc4537c01"
+    },
+    {
+      "bytes": 32328,
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/override_queries.jsonl",
+      "sha256": "c0b6e54817fdf7fbbfaf154196222efa0d14d4243f5b4dde3210a8ab4f813a30"
+    },
+    {
+      "bytes": 4329,
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2.json",
+      "sha256": "a45fd158279eb4ad3425b6ddd19fafab33849d942f7b8639956882de2cfa7870"
+    },
+    {
+      "bytes": 1095,
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/HarmBench_LICENSE.txt",
+      "sha256": "fb424622fb4d8c1d7f952258dc56ed1e8e8b7ecc242f7db43ccb5a608205ec5b"
+    },
+    {
+      "bytes": 152553,
+      "path": "data/storyworld_sources/constitutional_alignment_20260715_v1/evaluation/mihna_ca_eval_v2.encounter_prompts.jsonl",
+      "sha256": "e6d8aafd33f2d01626f114768ea075a125bfcf5e70a7f60689cd1b2be4090331"
+    },
+    {
+      "bytes": 7622,
+      "path": "data/storyworld_sources/constitutional_alignment_20260715_v1/evaluation/mihna_ca_eval_v2.adjudication.jsonl",
+      "sha256": "e484ade278a1ce47d6e67c9ac8d6d41831ae1f25aeba97c500fadfbee6471e10"
+    },
+    {
+      "bytes": 14287,
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_2/recovered_worktree/src/materials.py",
+      "sha256": "67a3d3a8151d9de59d5cecb37bf1ecca689136c88a1f16f96eb5cbc62ce79cf6"
+    }
+  ],
+  "known_limitations": [
+    "This prospective substitution does not reproduce the predecessor evaluation universe.",
+    "The recovered F0 calibration interval is descriptive and is not a pass/fail target on v2."
+  ],
+  "opened": false,
+  "schema_version": "frame_internalization_evaluation_seal.v2",
+  "sealed": true,
+  "sealed_at": "2026-07-19",
+  "sealed_before_adapter_training_outputs": true
+}

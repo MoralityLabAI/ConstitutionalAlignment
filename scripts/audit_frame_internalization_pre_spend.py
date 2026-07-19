@@ -25,9 +25,9 @@ AMENDMENT = PACKAGE / "protocol_amendment_v2.json"
 READINESS = PACKAGE / "readiness"
 BASE_PROGRESS = PACKAGE / "rerun_freeze/model_tokenizer_remote_inventory_v1.json"
 CURRICULUM_PROGRESS = PACKAGE / "rerun_freeze/curriculum_generation_v1/request_manifest.json"
-NONLEAKAGE_PROGRESS = PACKAGE / "rerun_freeze/nonleakage_source_prompts_v1.json"
-PREDECESSOR_PROGRESS = PACKAGE / "rerun_freeze/predecessor_reanchor_progress_v1.json"
-PROMPT_SFT_CONTRACT = PACKAGE / "prompt_sft_contrast_v1.json"
+NONLEAKAGE_PROGRESS = PACKAGE / "rerun_freeze/nonleakage_source_prompts_v2.json"
+PREDECESSOR_PROGRESS = PACKAGE / "rerun_freeze/predecessor_reanchor_progress_v2.json"
+PROMPT_SFT_CONTRACT = PACKAGE / "prompt_sft_contrast_v2.json"
 
 
 def parse_args() -> argparse.Namespace:
@@ -37,7 +37,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--curriculum-manifest", type=Path)
     parser.add_argument("--split-freeze", type=Path, default=READINESS / "split_freeze_v1.json")
     parser.add_argument("--nonleakage-audit", type=Path)
-    parser.add_argument("--evaluation-seal", type=Path, default=READINESS / "evaluation_seal_v1.json")
+    parser.add_argument("--evaluation-seal", type=Path, default=READINESS / "evaluation_seal_v2.json")
     parser.add_argument("--judge-dry-run", type=Path, default=READINESS / "judge_dry_run_v1.json")
     parser.add_argument("--predecessor-reanchor", type=Path)
     parser.add_argument("--prompt-sft-contract", type=Path, default=PROMPT_SFT_CONTRACT)
@@ -94,7 +94,7 @@ def optional_evidence(
     root: Path,
     value: Path | None,
     gate_id: str,
-    schema_version: str,
+    schema_version: str | tuple[str, ...],
     pass_predicate: Any,
     next_action: str,
 ) -> dict[str, Any]:
@@ -111,7 +111,8 @@ def optional_evidence(
         )
     try:
         document = read_json(path)
-        passed = document.get("schema_version") == schema_version and bool(pass_predicate(document))
+        schemas = (schema_version,) if isinstance(schema_version, str) else schema_version
+        passed = document.get("schema_version") in schemas and bool(pass_predicate(document))
         error = None if passed else "receipt_schema_or_pass_condition_failed"
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         document = {}
@@ -428,6 +429,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
             "nonleakage_audit",
             "frame_internalization_nonleakage_audit.v1",
             lambda doc: doc.get("passed") is True
+            and doc.get("gate_satisfying") is True
             and doc.get("exact_overlap_count") == 0
             and doc.get("normalized_overlap_count") == 0
             and doc.get("ngram_overlap_count") == 0,
@@ -446,7 +448,10 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
             root,
             args.predecessor_reanchor,
             "predecessor_reanchor",
-            "frame_internalization_predecessor_reanchor_receipt.v1",
+            (
+                "frame_internalization_predecessor_reanchor_receipt.v1",
+                "frame_internalization_predecessor_reanchor_receipt.v2",
+            ),
             lambda doc: doc.get("passed") is True
             and doc.get("probe_frozen_before_adapter_outcomes") is True,
             "complete the existing reanchoring plan and freeze the base endpoint and probe",
@@ -468,7 +473,10 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                 root,
                 args.evaluation_seal,
                 "evaluation_seal",
-                "frame_internalization_evaluation_seal.v1",
+                (
+                    "frame_internalization_evaluation_seal.v1",
+                    "frame_internalization_evaluation_seal.v2",
+                ),
                 lambda doc: doc.get("sealed") is True and doc.get("opened") is False,
                 "freeze evaluation hashes and close content access before adapter outputs",
             ),

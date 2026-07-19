@@ -61,6 +61,49 @@ def test_evaluation_seal_binds_every_listed_file() -> None:
         assert sha256_file(path) == item["sha256"]
 
 
+def test_licensed_v2_evaluation_universe_is_hash_bound_and_not_a_reanchor() -> None:
+    receipt = read_json(PACKAGE / "rerun_freeze" / "evaluation_universes_v2.json")
+    assert receipt["schema_version"] == "frame_internalization_evaluation_universes.v2"
+    assert receipt["passed"] is True
+    assert receipt["exact_recovery"] is False
+    assert receipt["license_gate"]["passed"] is True
+    assert receipt["sources"]["harmful"]["repository"] == "centerforaisafety/HarmBench"
+    assert receipt["sources"]["harmful"]["revision"] == (
+        "8e1604d1171fe8a48d8febecd22f600e462bdcdd"
+    )
+    assert receipt["sources"]["harmful"]["license"] == "MIT"
+    assert receipt["sources"]["harmful"]["selected_row_count"] == 200
+    assert receipt["sources"]["harmful"]["unique_behavior_id_count"] == 200
+    assert receipt["sources"]["harmful"]["nonempty_context_count"] == 0
+    assert receipt["historical_reanchor_compatibility"][
+        "recovered_f0_interval_is_confirmatory_target"
+    ] is False
+    assert receipt["universes"]["harmful"]["row_count"] == 200
+    assert receipt["universes"]["benign"]["row_count"] == 100
+    assert receipt["universes"]["override"]["row_count"] == 150
+    assert sha256_file(REPO_ROOT / receipt["selection_script"]["path"]) == receipt[
+        "selection_script"
+    ]["sha256"]
+    for universe in receipt["universes"].values():
+        path = REPO_ROOT / universe["path"]
+        assert len(path.read_text(encoding="utf-8").splitlines()) == universe["row_count"]
+        assert sha256_file(path) == universe["sha256"]
+    license_copy = REPO_ROOT / receipt["sources"]["harmful"]["license_copy"]["path"]
+    assert sha256_file(license_copy) == receipt["sources"]["harmful"]["license_sha256"]
+
+
+def test_v2_evaluation_seal_binds_every_listed_file() -> None:
+    seal = read_json(PACKAGE / "readiness" / "evaluation_seal_v2.json")
+    assert seal["schema_version"] == "frame_internalization_evaluation_seal.v2"
+    assert seal["sealed"] is True
+    assert seal["opened"] is False
+    assert seal["exact_predecessor_recovery"] is False
+    for item in seal["files"]:
+        path = REPO_ROOT / item["path"]
+        assert path.stat().st_size == item["bytes"]
+        assert sha256_file(path) == item["sha256"]
+
+
 def test_judge_contract_receipt_covers_all_suites_and_malformed_rows() -> None:
     receipt = read_json(PACKAGE / "readiness" / "judge_dry_run_v1.json")
     assert receipt["passed"] is True
@@ -143,3 +186,38 @@ def test_predecessor_progress_binds_queue_without_claiming_completion() -> None:
     assert sha256_file(queue_path) == judge["validation_queue"]["sha256"]
     assert Counter(row["task"] for row in rows) == {"compliance": 200, "strict_af": 200}
     assert all(not row["response"] and not row["human_label"] for row in rows)
+
+
+def test_v2_predecessor_progress_binds_replacement_queue_without_claiming_completion() -> None:
+    progress = read_json(PACKAGE / "rerun_freeze" / "predecessor_reanchor_progress_v2.json")
+    judge = read_json(PACKAGE / "rerun_freeze" / "judge_classifier_inputs_v2.json")
+    queue_path = REPO_ROOT / judge["validation_queue"]["path"]
+    rows = [json.loads(line) for line in queue_path.read_text(encoding="utf-8").splitlines()]
+    assert progress["passed"] is False
+    assert progress["probe_frozen_before_adapter_outcomes"] is False
+    universe_gate = next(
+        item for item in progress["subgates"] if item["gate_id"] == "evaluation_universe_freeze"
+    )
+    assert universe_gate["status"] == "passed_prospective_substitution"
+    assert universe_gate["license_gate_passed"] is True
+    assert universe_gate["historical_f0_interval_is_confirmatory_target"] is False
+    baseline = next(
+        item for item in progress["subgates"] if item["gate_id"] == "prospective_v2_base_baseline"
+    )
+    assert baseline["frozen_decision_rule"]["v2_magnitude_acceptance_interval"] is None
+    assert judge["passed"] is False
+    assert sha256_file(queue_path) == judge["validation_queue"]["sha256"]
+    assert Counter(row["task"] for row in rows) == {"compliance": 200, "strict_af": 200}
+    assert all(not row["response"] and not row["human_label"] for row in rows)
+
+
+def test_v2_nonleakage_precursor_is_clean_but_not_gate_satisfying() -> None:
+    receipt = read_json(PACKAGE / "rerun_freeze" / "nonleakage_source_prompts_v2.json")
+    assert receipt["passed"] is True
+    assert receipt["gate_satisfying"] is False
+    assert receipt["scope"] == "frozen_source_prompts_only"
+    assert receipt["source_unit_count"] == 5600
+    assert receipt["evaluation_unit_count"] == 510
+    assert receipt["exact_overlap_count"] == 0
+    assert receipt["normalized_overlap_count"] == 0
+    assert receipt["ngram_overlap_count"] == 0

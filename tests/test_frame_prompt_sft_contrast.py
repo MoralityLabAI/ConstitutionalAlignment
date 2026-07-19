@@ -9,6 +9,10 @@ from scripts.validate_frame_prompt_sft_contrast import DEFAULT_CONTRACT, validat
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+V2_CONTRACT = (
+    REPO_ROOT
+    / "experiments/frame_internalization_sft_v1/prompt_sft_contrast_v2.json"
+)
 
 
 class FramePromptSftContrastTests(unittest.TestCase):
@@ -41,6 +45,31 @@ class FramePromptSftContrastTests(unittest.TestCase):
             report = validate_contract(REPO_ROOT, path)
         self.assertFalse(report["passed"])
         self.assertIn("timing attestation is incomplete or not prospective", report["failures"])
+
+    def test_licensed_v2_contract_passes(self) -> None:
+        report = validate_contract(REPO_ROOT, V2_CONTRACT)
+        self.assertTrue(report["passed"], report["failures"])
+        self.assertEqual(report["confirmatory_contrast_count"], 6)
+        contract = json.loads(V2_CONTRACT.read_text(encoding="utf-8"))
+        self.assertIsNone(
+            contract["evaluation"]["prospective_v2_baseline"]["magnitude_acceptance_interval"]
+        )
+        self.assertTrue(
+            contract["analysis_gate"]["historical_v1_interval_as_v2_pass_fail_forbidden"]
+        )
+
+    def test_v2_historical_interval_reactivation_fails_closed(self) -> None:
+        contract = json.loads(V2_CONTRACT.read_text(encoding="utf-8"))
+        contract["analysis_gate"]["historical_v1_interval_as_v2_pass_fail_forbidden"] = False
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "mutated_v2_contract.json"
+            path.write_text(json.dumps(contract), encoding="utf-8")
+            report = validate_contract(REPO_ROOT, path)
+        self.assertFalse(report["passed"])
+        self.assertIn(
+            "v2 contract does not forbid the historical interval as a pass/fail target",
+            report["failures"],
+        )
 
 
 if __name__ == "__main__":

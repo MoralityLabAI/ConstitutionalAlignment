@@ -4,8 +4,8 @@ Prepared 2026-07-19. The immutable inputs and request packs are committed; the
 receipts remain fail-closed where cluster inference, generated transcripts, or
 human labels are required.
 
-The prospective direct prompt-versus-SFT contract in
-`prompt_sft_contrast_v1.json` must also remain hash-valid before generation or
+The active prospective direct prompt-versus-SFT contract in
+`prompt_sft_contrast_v2.json` must also remain hash-valid before generation or
 adapter evaluation. It defines a separate matched one-sample comparison; do not
 pool those rows with the three-sample historical reanchor.
 
@@ -77,6 +77,10 @@ assistant text does not exist yet. Run the final audit after rendering:
 python scripts/audit_frame_curriculum_nonleakage.py \
   --curriculum-manifest /absolute/path/to/curriculum_manifest_v1.json \
   --curriculum-dir /absolute/path/to/rendered_curriculum \
+  --evaluation experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/harmful_queries.jsonl \
+  --evaluation experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/benign_queries.jsonl \
+  --evaluation experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/override_queries.jsonl \
+  --evaluation data/storyworld_sources/constitutional_alignment_20260715_v1/evaluation/mihna_ca_eval_v2.encounter_prompts.jsonl \
   --output /absolute/path/to/nonleakage_audit_v1.json
 ```
 
@@ -90,10 +94,13 @@ Cohen's kappa of at least 0.70.
 
 This gate still requires base-model generation and judging, blinded human labels,
 the fitted base F0 layer-27 probe plus controls, and the final joined baseline
-receipt. The harmful-source content is hash-frozen, but its source repository
-does not declare a license, so the evaluation-universe subgate also remains
-pending resolution. See `LICENSE_RESOLUTION_HANDOFF.md` for the evidence,
-allowed resolution paths, maintainer-inquiry draft, and minimum receipt fields.
+receipt. The active v2 evaluation-universe license subgate has passed through a
+prospective HarmBench substitution. This is not an exact predecessor reanchor:
+the recovered F0 interval is descriptive only, and a new complete v2 base
+baseline must be estimated without a magnitude pass/fail threshold. The v1
+license issue remains preserved and unresolved; see
+`PROTOCOL_AMENDMENT_LICENSED_HARMBENCH_V2.md` and
+`LICENSE_RESOLUTION_HANDOFF.md`.
 
 Before regenerating the historical rows, attempt authenticated retrieval using
 `rerun_freeze/predecessor_artifact_registry_recovery_v1.json`. The recovered
@@ -112,7 +119,9 @@ python scripts/audit_frame_internalization_pre_spend.py \
   --base-freeze /path/to/model_tokenizer_freeze_v1.json \
   --curriculum-manifest /path/to/curriculum_manifest_v1.json \
   --nonleakage-audit /path/to/nonleakage_audit_v1.json \
-  --predecessor-reanchor /path/to/predecessor_reanchor_v1.json \
+  --evaluation-seal experiments/frame_internalization_sft_v1/readiness/evaluation_seal_v2.json \
+  --prompt-sft-contract experiments/frame_internalization_sft_v1/prompt_sft_contrast_v2.json \
+  --predecessor-reanchor /path/to/predecessor_reanchor_v2.json \
   --output experiments/frame_internalization_sft_v1/readiness/pre_spend_readiness_latest.json
 ```
 

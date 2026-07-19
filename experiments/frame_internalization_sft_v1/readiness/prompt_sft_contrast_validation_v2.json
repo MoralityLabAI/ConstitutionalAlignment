@@ -1,0 +1,120 @@
+{
+  "bindings": {
+    "base_system_prompt": {
+      "expected_sha256": "ec9adcd57038f1b0ef44c10b39871f22710c2003d53c43f38d8f842b560fe4f7",
+      "observed_sha256": "ec9adcd57038f1b0ef44c10b39871f22710c2003d53c43f38d8f842b560fe4f7",
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/prompts_built/base_think_informative.txt",
+      "valid": true
+    },
+    "evaluation_manifest": {
+      "expected_sha256": "a45fd158279eb4ad3425b6ddd19fafab33849d942f7b8639956882de2cfa7870",
+      "observed_sha256": "a45fd158279eb4ad3425b6ddd19fafab33849d942f7b8639956882de2cfa7870",
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2.json",
+      "valid": true
+    },
+    "frame_F1": {
+      "expected_sha256": "ae6bef5bb4f4da8441bdb3644d1bfce82a63007afe7e155b2abbfcb4255b074d",
+      "observed_sha256": "ae6bef5bb4f4da8441bdb3644d1bfce82a63007afe7e155b2abbfcb4255b074d",
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/frames/F1_constitutional.txt",
+      "valid": true
+    },
+    "frame_F3": {
+      "expected_sha256": "54f23aa64513375f3ece37195b1bc4bb2f077ffa683b0e87ff94d2e33f69d5b7",
+      "observed_sha256": "54f23aa64513375f3ece37195b1bc4bb2f077ffa683b0e87ff94d2e33f69d5b7",
+      "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_v2.json",
+      "valid": true
+    },
+    "frame_F3_concrete": {
+      "expected_sha256": "82982694891a0cf8f5bd0c5ac806d1e274b01214944428c022b8ceeada75a44d",
+      "observed_sha256": "82982694891a0cf8f5bd0c5ac806d1e274b01214944428c022b8ceeada75a44d",
+      "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_concrete_v2.json",
+      "valid": true
+    },
+    "harmful_universe": {
+      "expected_sha256": "0ce37e5af63cd280926440246dd44a69fae30e9846851e090139cd5abc860a21",
+      "observed_sha256": "0ce37e5af63cd280926440246dd44a69fae30e9846851e090139cd5abc860a21",
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/harmful_queries.jsonl",
+      "valid": true
+    },
+    "inherited_amendment": {
+      "expected_sha256": "b24787db548072054227748df8fd9f8b9bf0bfccf15bde092d07fe8f9b65d973",
+      "observed_sha256": "b24787db548072054227748df8fd9f8b9bf0bfccf15bde092d07fe8f9b65d973",
+      "path": "experiments/frame_internalization_sft_v1/protocol_amendment_v2.json",
+      "valid": true
+    },
+    "model_inventory": {
+      "expected_sha256": "852f19dfb0d4dd36effb42b1c5440e0f34dad3fdf2b62020754f9df34524962d",
+      "observed_sha256": "852f19dfb0d4dd36effb42b1c5440e0f34dad3fdf2b62020754f9df34524962d",
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/model_tokenizer_remote_inventory_v1.json",
+      "valid": true
+    },
+    "scoring_gap_analysis": {
+      "expected_sha256": "8c048dff8f41928df01504f63928af3c0479648132fba9897f73973aee8b6abb",
+      "observed_sha256": "8c048dff8f41928df01504f63928af3c0479648132fba9897f73973aee8b6abb",
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/src/analyze_gap.py",
+      "valid": true
+    },
+    "scoring_judge_classifier_inputs": {
+      "expected_sha256": "bf3bf21bd17237d1c2eea3487f5706e4958c7e06d2944adfa280184aa423f300",
+      "observed_sha256": "bf3bf21bd17237d1c2eea3487f5706e4958c7e06d2944adfa280184aa423f300",
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/judge_classifier_inputs_v2.json",
+      "valid": true
+    },
+    "scoring_prompt_reconstruction": {
+      "expected_sha256": "6cd520016fc38e34dd2bb1153685baf0a2395f32930476f2c801c287990ae21f",
+      "observed_sha256": "6cd520016fc38e34dd2bb1153685baf0a2395f32930476f2c801c287990ae21f",
+      "path": "experiments/frame_internalization_sft_v1/predecessor_prompt_reconstruction_v1.json",
+      "valid": true
+    },
+    "scoring_reanchor_progress": {
+      "expected_sha256": "b5c2e7d1c46e6307c9780b1ca01d8500bb2d6a32868c264a4e275d009af60e0a",
+      "observed_sha256": "b5c2e7d1c46e6307c9780b1ca01d8500bb2d6a32868c264a4e275d009af60e0a",
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/predecessor_reanchor_progress_v2.json",
+      "valid": true
+    },
+    "tier_free": {
+      "expected_sha256": "ce2d214384929042011a5bf3048789dd1ee761968d4275efa17463bd688bfe94",
+      "observed_sha256": "ce2d214384929042011a5bf3048789dd1ee761968d4275efa17463bd688bfe94",
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/prompts_built/think_formats/free_tier.txt",
+      "valid": true
+    },
+    "tier_paid": {
+      "expected_sha256": "06b2bcdbdd051367b688733c5d766f9b1858980f3758b159b2f8ad62635955c7",
+      "observed_sha256": "06b2bcdbdd051367b688733c5d766f9b1858980f3758b159b2f8ad62635955c7",
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/prompts_built/think_formats/paid_tier.txt",
+      "valid": true
+    },
+    "universe_amendment": {
+      "expected_sha256": "dc489ef99d649fbfb8502114b301a7052982d1fe2aa5bc6345c37752cc054e28",
+      "observed_sha256": "dc489ef99d649fbfb8502114b301a7052982d1fe2aa5bc6345c37752cc054e28",
+      "path": "experiments/frame_internalization_sft_v1/PROTOCOL_AMENDMENT_LICENSED_HARMBENCH_V2.md",
+      "valid": true
+    }
+  },
+  "confirmatory_contrast_count": 6,
+  "contract_path": "experiments/frame_internalization_sft_v1/prompt_sft_contrast_v2.json",
+  "contract_sha256": "c22db82499ae917812a7c72971553c0303fb75306c4935f9e7f8120ae4e32e89",
+  "failures": [],
+  "passed": true,
+  "rendered_prompts": {
+    "F0": {
+      "bytes": 6612,
+      "sha256": "ec9adcd57038f1b0ef44c10b39871f22710c2003d53c43f38d8f842b560fe4f7"
+    },
+    "F1": {
+      "bytes": 7610,
+      "sha256": "7ad3450074341746593b5478f729f83546b2f6c996b2377801b8a1f34a481922"
+    },
+    "F3": {
+      "bytes": 6969,
+      "sha256": "da190953c77b7d19e1527d84d56115e68d9ce163c0cf81365bfae624d63b037e"
+    },
+    "F3_concrete": {
+      "bytes": 6977,
+      "sha256": "93c0c787b0b3ea073d25776718e9ce4051453d97904fd039fbb3f4dcf8994ae4"
+    }
+  },
+  "schema_version": "frame_internalization_prompt_sft_contrast_validation.v1",
+  "secondary_contrast_count": 9,
+  "validator_sha256": "2daaa1f8d3f90a28c408d75e609ecf23f05e225983e949bbba197d8ae5400c1c"
+}

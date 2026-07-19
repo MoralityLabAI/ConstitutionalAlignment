@@ -17,7 +17,12 @@
 /tests/test_frame_internalization.py text eol=lf
 /tests/test_frame_freeze_artifacts.py text eol=lf
 /scripts/freeze_frame_evaluation_universes.py text eol=lf
+/scripts/freeze_frame_evaluation_universes_v2.py text eol=lf
+/scripts/freeze_frame_predecessor_inputs_v2.py text eol=lf
+/scripts/freeze_frame_prompt_sft_contrast_v2.py text eol=lf
+/scripts/validate_frame_prompt_sft_contrast.py text eol=lf
 /scripts/freeze_frame_dilemma_split.py text eol=lf
+/tests/test_frame_prompt_sft_contrast.py text eol=lf
 /constitutional-harness/** text eol=lf
 /experiments/mizan_rooms_v1/** text eol=lf
 /alignment_harness/mizan_rooms.py text eol=lf

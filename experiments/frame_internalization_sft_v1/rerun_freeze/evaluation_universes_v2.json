@@ -1,0 +1,87 @@
+{
+  "classification": "prospective_licensed_substitution_before_affected_outcomes",
+  "exact_recovery": false,
+  "frozen_at": "2026-07-19",
+  "historical_reanchor_compatibility": {
+    "exact_predecessor_reanchor": false,
+    "historical_interval_role": "descriptive provenance only",
+    "recovered_f0_interval_is_confirmatory_target": false,
+    "required_baseline": "new prospective base F0 estimate on v2"
+  },
+  "license_gate": {
+    "basis": "pinned source CSV is distributed in the official repository under its root MIT license",
+    "passed": true,
+    "redistribution": "retain the MIT license copy and attribution with the frozen subset"
+  },
+  "passed": true,
+  "schema_version": "frame_internalization_evaluation_universes.v2",
+  "seed": 42,
+  "selection_algorithm": "all HarmBench rows whose FunctionalCategory is exactly standard, in pinned CSV order; override uses a fresh seed-42 sample of 150 harmful rows and then sorts by replacement prompt_id; benign rows are byte-preserved from v1",
+  "selection_script": {
+    "path": "scripts/freeze_frame_evaluation_universes_v2.py",
+    "sha256": "bb9f49cb5d170edb26221590ed314a3e2e2cf79d8520e8b330e6bccedcc51a44"
+  },
+  "sources": {
+    "benign": {
+      "copied_from_v1_universe_sha256": "841e21fce209d7607b911320288de47e9daa1a2e0a1d60214138200cc4537c01",
+      "license": "CC-BY-NC-4.0",
+      "license_status": "declared",
+      "repository": "tatsu-lab/alpaca",
+      "revision": "dce01c9b08f87459cf36a430d809084718273017",
+      "source_path": "data/train-00000-of-00001-a09b74b3ef9c3b56.parquet",
+      "source_sha256": "06391b656a06fd3fb9d213160ef2398796c3b7f3dc75ef1e3ced30d461517073"
+    },
+    "harmful": {
+      "license": "MIT",
+      "license_copy": {
+        "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/HarmBench_LICENSE.txt",
+        "sha256": "fb424622fb4d8c1d7f952258dc56ed1e8e8b7ecc242f7db43ccb5a608205ec5b"
+      },
+      "license_path": "LICENSE",
+      "license_sha256": "fb424622fb4d8c1d7f952258dc56ed1e8e8b7ecc242f7db43ccb5a608205ec5b",
+      "license_status": "declared_in_repository_root",
+      "license_url": "https://github.com/centerforaisafety/HarmBench/blob/8e1604d1171fe8a48d8febecd22f600e462bdcdd/LICENSE",
+      "nonempty_context_count": 0,
+      "ordered_behavior_ids_sha256": "5ec8bad6efb9476e5cbbb67c228282d2c2a09d52338e9fd36d6e2e1c0c0b386e",
+      "path": "data/behavior_datasets/harmbench_behaviors_text_all.csv",
+      "repository": "centerforaisafety/HarmBench",
+      "repository_url": "https://github.com/centerforaisafety/HarmBench",
+      "revision": "8e1604d1171fe8a48d8febecd22f600e462bdcdd",
+      "selected_functional_category": "standard",
+      "selected_row_count": 200,
+      "semantic_category_counts": {
+        "chemical_biological": 28,
+        "cybercrime_intrusion": 40,
+        "harassment_bullying": 19,
+        "harmful": 21,
+        "illegal": 58,
+        "misinformation_disinformation": 34
+      },
+      "sha256": "8d81accedd38eaaf8b760618622bb888417d1fd0c86eba65c427a16f1cbb4afc",
+      "source_file_url": "https://github.com/centerforaisafety/HarmBench/blob/8e1604d1171fe8a48d8febecd22f600e462bdcdd/data/behavior_datasets/harmbench_behaviors_text_all.csv",
+      "source_row_count": 400,
+      "unique_behavior_id_count": 200
+    }
+  },
+  "status": "frozen_licensed_prospective_substitution",
+  "universes": {
+    "benign": {
+      "ordered_text_set_sha256_truncated_16": "aeeaa6ac1be36305",
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/benign_queries.jsonl",
+      "row_count": 100,
+      "sha256": "841e21fce209d7607b911320288de47e9daa1a2e0a1d60214138200cc4537c01"
+    },
+    "harmful": {
+      "ordered_text_set_sha256_truncated_16": "4a7dc3757902cbac",
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/harmful_queries.jsonl",
+      "row_count": 200,
+      "sha256": "0ce37e5af63cd280926440246dd44a69fae30e9846851e090139cd5abc860a21"
+    },
+    "override": {
+      "ordered_text_set_sha256_truncated_16": "a07cf5d3e35dea3c",
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/override_queries.jsonl",
+      "row_count": 150,
+      "sha256": "c0b6e54817fdf7fbbfaf154196222efa0d14d4243f5b4dde3210a8ab4f813a30"
+    }
+  }
+}

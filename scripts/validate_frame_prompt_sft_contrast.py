@@ -74,7 +74,11 @@ def validate_contract(root: Path, contract_path: Path = DEFAULT_CONTRACT) -> dic
     failures: list[str] = []
     bindings: dict[str, dict[str, Any]] = {}
 
-    if contract.get("schema_version") != "frame_internalization_prompt_sft_contrast.v1":
+    schema_version = contract.get("schema_version")
+    if schema_version not in {
+        "frame_internalization_prompt_sft_contrast.v1",
+        "frame_internalization_prompt_sft_contrast.v2",
+    }:
         failures.append("unexpected schema_version")
     if contract.get("status") != "frozen_execution_pending":
         failures.append("contract is not frozen in execution-pending state")
@@ -88,6 +92,13 @@ def validate_contract(root: Path, contract_path: Path = DEFAULT_CONTRACT) -> dic
 
     inherited = contract.get("inherits", {})
     bindings["inherited_amendment"] = binding(root, inherited, "inherited amendment", failures)
+    if schema_version == "frame_internalization_prompt_sft_contrast.v2":
+        bindings["universe_amendment"] = binding(
+            root,
+            contract.get("universe_amendment", {}),
+            "licensed universe amendment",
+            failures,
+        )
 
     model = contract.get("model", {})
     bindings["model_inventory"] = binding(
@@ -109,6 +120,16 @@ def validate_contract(root: Path, contract_path: Path = DEFAULT_CONTRACT) -> dic
     bindings["evaluation_manifest"] = binding(
         root, universe.get("manifest", {}), "evaluation manifest", failures
     )
+    manifest_path = resolve(root, universe.get("manifest", {}).get("path", ""))
+    if schema_version == "frame_internalization_prompt_sft_contrast.v2" and manifest_path.is_file():
+        manifest = read_object(manifest_path)
+        if manifest.get("schema_version") != "frame_internalization_evaluation_universes.v2":
+            failures.append("v2 contract does not bind the v2 evaluation-universe manifest")
+        if manifest.get("passed") is not True or manifest.get("license_gate", {}).get("passed") is not True:
+            failures.append("v2 evaluation-universe or license gate has not passed")
+        compatibility = manifest.get("historical_reanchor_compatibility", {})
+        if compatibility.get("recovered_f0_interval_is_confirmatory_target") is not False:
+            failures.append("v2 manifest does not retire the historical F0 pass/fail target")
     universe_path = resolve(root, universe.get("path", ""))
     if universe_path.is_file():
         row_count = sum(1 for line in universe_path.read_text(encoding="utf-8").splitlines() if line.strip())
@@ -223,14 +244,26 @@ def validate_contract(root: Path, contract_path: Path = DEFAULT_CONTRACT) -> dic
         "all_expected_rows_required",
         "one_to_one_join_required",
         "judge_and_classifier_agreement_gate_required",
-        "base_reanchor_required",
         "probe_freeze_required_before_adapter_outcomes",
         "benign_over_refusal_guard_required",
         "capability_guard_required",
         "no_prompt_or_judge_tuning_after_outcomes",
     }
+    required_true.add(
+        "base_reanchor_required"
+        if schema_version == "frame_internalization_prompt_sft_contrast.v1"
+        else "prospective_v2_base_baseline_required"
+    )
     if any(gate.get(key) is not True for key in required_true):
         failures.append("one or more analysis gates are not fail-closed")
+    if schema_version == "frame_internalization_prompt_sft_contrast.v2":
+        if gate.get("historical_v1_interval_as_v2_pass_fail_forbidden") is not True:
+            failures.append("v2 contract does not forbid the historical interval as a pass/fail target")
+        baseline = evaluation.get("prospective_v2_baseline", {})
+        if baseline.get("required_before_adapter_outcomes") is not True:
+            failures.append("v2 prospective base baseline is not required before adapter outcomes")
+        if baseline.get("magnitude_acceptance_interval", "missing") is not None:
+            failures.append("v2 baseline improperly carries a magnitude acceptance interval")
 
     return {
         "schema_version": "frame_internalization_prompt_sft_contrast_validation.v1",
