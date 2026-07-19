@@ -95,6 +95,14 @@ does not declare a license, so the evaluation-universe subgate also remains
 pending resolution. See `LICENSE_RESOLUTION_HANDOFF.md` for the evidence,
 allowed resolution paths, maintainer-inquiry draft, and minimum receipt fields.
 
+Before regenerating the historical rows, attempt authenticated retrieval using
+`rerun_freeze/predecessor_artifact_registry_recovery_v1.json`. The recovered
+transcript records successful registration of the full generation manifests and
+layer-27 archive under experiment `exp_01kxhk57rcesya1ckbsv07zb2x`. Their current
+availability and bytes are not verified, so this locator is not gate-satisfying.
+Retrieved files must pass the frozen row, join, decoding, judge, activation-key,
+and model-revision checks; summary numbers alone remain pilot provenance.
+
 ## Readiness check
 
 Copy completed cluster receipts back into the repository and pass them explicitly:

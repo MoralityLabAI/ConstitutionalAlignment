@@ -1,0 +1,71 @@
+{
+  "schema_version": "frame_internalization_predecessor_artifact_registry_recovery.v1",
+  "recovery_date": "2026-07-19",
+  "status": "registry_locators_recovered_artifact_bytes_not_retrieved",
+  "gate_satisfying": false,
+  "experiment_id": "exp_01kxhk57rcesya1ckbsv07zb2x",
+  "source_evidence": [
+    {
+      "path": "D:\\Research_Engine\\recovered_silico_sessions_20260716\\remote_silico_cache\\archive_extracted\\pi-sessions\\2026-07-15T00-35-04-497Z_019f6332-d8b1-7587-9af2-3f2fafbdc83b.jsonl",
+      "bytes": 2071875,
+      "sha256": "aa3e98abce1c05ef8487c1a3c91797d8bcfc8f2f7a6b32068b9901972a46288d"
+    },
+    {
+      "path": "D:\\Research_Engine\\recovered_silico_sessions_20260716\\remote_pi_sessions_readable\\2026-07-15T18-28-07-116Z_019f6709-3f4c-78f9-917f-b842dbb64311.md",
+      "bytes": 20828,
+      "sha256": "3d6beec618b7d52fab1e0bf6255bb718a0de5c45a3aff0d900890e6829849764"
+    }
+  ],
+  "registered_artifacts": [
+    {
+      "name": "framing-af-results-page",
+      "type": "results_page",
+      "path": "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/apps/index.html",
+      "registration_call_message_id": "68c0c8e7",
+      "registration_success_message_id": "fdc2d6ce"
+    },
+    {
+      "name": "framing-af-generations",
+      "type": "dataset",
+      "path": "/mnt/data/artifacts/silico/experiments/_flat/exp_01kxhk57rcesya1ckbsv07zb2x/generations",
+      "registration_call_message_id": "487a7aa9",
+      "registration_success_message_id": "01824d89",
+      "transcript_description": "Full generation manifests for four frames by two tiers over harmful prompts, including judged variants, plus benign over-refusal rows. Each per-frame harmful manifest was described as 1,200 rows."
+    },
+    {
+      "name": "framing-af-activations-layer27",
+      "type": "dataset",
+      "path": "/mnt/data/artifacts/silico/experiments/_flat/exp_01kxhk57rcesya1ckbsv07zb2x/activations/layer27.npz",
+      "registration_call_message_id": "adcf1b95",
+      "registration_success_message_id": "8d89b13b",
+      "transcript_description": "Layer-27 residual-stream activations for four frames by two tiers by 200 harmful prompts, with last-token and mean-pooled arrays."
+    }
+  ],
+  "completion_checkpoint": {
+    "call_message_id": "818402a1",
+    "success_message_id": "6e80f817",
+    "checkpoint_name": "checkpoint-014.json",
+    "critic_decision": "approved",
+    "critic_decision_message_id": "9300eb61",
+    "referenced_result_paths": [
+      "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/results/master_results.json",
+      "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/results/internals_summary.json",
+      "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/results/gate_sweep_table.json",
+      "/mnt/data/shared/silico/experiments/exp_01kxhk57rcesya1ckbsv07zb2x/worktree/experiments/experiment-5/results/qualitative_examples.json"
+    ]
+  },
+  "availability": {
+    "registration_success_recorded": true,
+    "current_bytes_retrieved": false,
+    "current_artifact_availability_verified": false,
+    "local_named_result_file_search_found_matches": false
+  },
+  "required_before_evidentiary_use": [
+    "Retrieve the registered generation and activation bytes from the exact paths or an authenticated artifact export.",
+    "Hash every retrieved file and preserve an immutable retrieval receipt.",
+    "Validate prompt IDs, frame and tier labels, sample counts, decoding metadata, row uniqueness, missingness, judge fields, and exact joins against the recovered selection receipts.",
+    "Validate the activation archive keys, dimensions, prompt ordering, layer, pooling method, and source model revision before considering it for the frozen probe.",
+    "Keep summary pages and completion-checkpoint numbers classified as transcript-provenance pilot findings until the row-level bundles pass validation.",
+    "Do not reuse the historical three-sample rows as the prospective one-sample direct prompt-versus-SFT comparison."
+  ]
+}
