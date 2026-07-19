@@ -2,7 +2,7 @@
   "schema_version": "mizan_local_execution_freeze_v1",
   "execution_id": "mizan_bonsai_1p7b_q1_local_v1",
   "frozen_at_utc": "2026-07-19T23:12:34Z",
-  "status": "prospective_execution_frozen_outputs_not_generated",
+  "status": "prospective_execution_and_tokenizer_audit_frozen_outputs_not_generated",
   "classification": "supplemental_exploratory_prompt_sensitivity_pilot",
   "timing_attestation": {
     "mizan_development_model_outputs_seen_before_freeze": false,
@@ -45,8 +45,55 @@
     "served_model_id": "bonsai-1p7b-q1-3d7c6c90",
     "quantization": "Q1_0",
     "artifact_role": "local_base_prompt_only",
-    "target_model_tokenizer_audit_complete": false,
-    "target_model_tokenizer_audit_consequence": "The frozen cl100k cue-length audit is retained as an instrument check, but this run remains exploratory and cannot satisfy the suite's confirmatory exact-tokenizer gate."
+    "target_model_tokenizer_audit_complete": true,
+    "target_model_tokenizer_audit_passed": true,
+    "target_model_tokenizer_audit_consequence": "The exact GGUF tokenizer reproduces the frozen cue counts and every cue slot remains within the registered ten-percent max-to-min tolerance. The small Q1 model, four-cluster pilot, and pending human and scholar review still make this run exploratory rather than confirmatory."
+  },
+  "target_model_tokenizer_audit": {
+    "completed_at_utc": "2026-07-19T23:17:06Z",
+    "tool": "llama-tokenize.exe",
+    "tool_version": "llama.cpp 62061f9",
+    "tool_bytes": 46592,
+    "tool_sha256": "facd3e6ef3c0b7493c2bfeb3db8d18fc9cf97ba69880c4750f22509a623ba323",
+    "model_sha256": "3d7c6c90dd98717a203adb22d5eacd2581850e40aa5327e144b97766cae5f7e3",
+    "arguments": ["--no-bos", "--show-count", "--log-disable"],
+    "registered_tolerance_fraction": 0.1,
+    "slots": {
+      "initial_cue": {
+        "counts": {
+          "neutral": 28,
+          "constitutional": 28,
+          "secular_omniscient": 29,
+          "eschatological": 29,
+          "unreliable_authority": 30
+        },
+        "max_to_min_ratio": 1.0714285714285714,
+        "within_tolerance": true
+      },
+      "evidence_cue": {
+        "counts": {
+          "neutral": 24,
+          "constitutional": 24,
+          "secular_omniscient": 24,
+          "eschatological": 26,
+          "unreliable_authority": 25
+        },
+        "max_to_min_ratio": 1.0833333333333333,
+        "within_tolerance": true
+      },
+      "continuity_cue": {
+        "counts": {
+          "neutral": 24,
+          "constitutional": 24,
+          "secular_omniscient": 24,
+          "eschatological": 26,
+          "unreliable_authority": 26
+        },
+        "max_to_min_ratio": 1.0833333333333333,
+        "within_tolerance": true
+      }
+    },
+    "passed": true
   },
   "inference_engine": {
     "name": "llama.cpp llama-server",
