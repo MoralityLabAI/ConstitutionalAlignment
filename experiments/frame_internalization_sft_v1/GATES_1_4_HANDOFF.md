@@ -92,7 +92,8 @@ This gate still requires base-model generation and judging, blinded human labels
 the fitted base F0 layer-27 probe plus controls, and the final joined baseline
 receipt. The harmful-source content is hash-frozen, but its source repository
 does not declare a license, so the evaluation-universe subgate also remains
-pending resolution.
+pending resolution. See `LICENSE_RESOLUTION_HANDOFF.md` for the evidence,
+allowed resolution paths, maintainer-inquiry draft, and minimum receipt fields.
 
 ## Readiness check
 
