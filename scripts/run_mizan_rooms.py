@@ -24,7 +24,7 @@ from alignment_harness.mizan_rooms import (
 )
 
 DEFAULT_SUITE = "experiments/mizan_rooms_v1/suite.json"
-DEFAULT_ANALYSIS_PLAN = "papers/mizan_rooms_preanalysis_v1.md"
+DEFAULT_ANALYSIS_PLAN = "papers/mizan_rooms_preanalysis_v2.md"
 
 
 def parse_args() -> argparse.Namespace:

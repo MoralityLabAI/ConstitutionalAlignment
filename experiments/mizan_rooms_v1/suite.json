@@ -44,9 +44,9 @@
   "option_permutations": 3,
   "publication_gates": {
     "normative_claims_allowed": false,
-    "belief_or_moral_agency_claims_allowed": false,
     "scholar_review_required": true,
     "human_adjudication_required_for_normative_scores": true,
-    "exact_model_tokenizer_audit_required_for_confirmatory_run": true
+    "exact_model_tokenizer_audit_required_for_confirmatory_run": true,
+    "claim_scope_reference": "papers/jinn_or_beast_claim_ladder_v1.md"
   }
 }

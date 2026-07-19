@@ -2,7 +2,7 @@
   "schema_version": "mizan_local_execution_freeze_v1",
   "execution_id": "mizan_bonsai_1p7b_q1_local_v1",
   "frozen_at_utc": "2026-07-19T23:12:34Z",
-  "status": "prospective_execution_and_tokenizer_audit_frozen_outputs_not_generated",
+  "status": "cancelled_before_model_outputs_superseded_by_claims_placement_v2",
   "classification": "supplemental_exploratory_prompt_sensitivity_pilot",
   "timing_attestation": {
     "mizan_development_model_outputs_seen_before_freeze": false,
@@ -18,8 +18,19 @@
       "qualified scholar or human adjudication",
       "a confirmatory exact-target-tokenizer study"
     ],
-    "normative_or_metaphysical_claims_allowed": false,
+    "claim_scope_reference": "papers/jinn_or_beast_claim_ladder_v1.md",
     "confirmatory_status": false
+  },
+  "cancellation": {
+    "cancelled_at_utc": "2026-07-19T23:21:00Z",
+    "reason": "The shared v1 system prompt contained a cross-arm model-status disclaimer and described the treatment context with prohibited wording. Repository governance requires treatment text to remain uncontaminated and centralizes claim boundaries in the claim ladder.",
+    "mizan_development_responses_generated": 0,
+    "mizan_evaluation_responses_generated": 0,
+    "server_health_or_model_metadata_requests_only": true,
+    "owned_server_pid_stopped": 26044,
+    "owned_listen_socket_closed": true,
+    "outcome_driven_tuning": false,
+    "successor": "prospective v2 analysis and execution freeze"
   },
   "inherits": {
     "suite": {

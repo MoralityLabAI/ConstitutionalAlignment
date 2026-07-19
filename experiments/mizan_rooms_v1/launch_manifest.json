@@ -1,10 +1,17 @@
 {
-  "schema_version": "mizan_launch_manifest_v1",
+  "schema_version": "mizan_launch_manifest_v2",
   "experiment_id": "mizan_rooms_v1_pilot",
   "execution_target": "Silico fair-share cluster or compatible queued environment",
   "git_commit_policy": "Launch only from the immutable commit URI delivered with this package.",
-  "analysis_plan": "papers/mizan_rooms_preanalysis_v1.md",
-  "analysis_plan_sha256": "b7eb204e3435e4eb21f7187e627025f6c70e01d0518f6c991b22d1385d6ec1b2",
+  "analysis_plan": "papers/mizan_rooms_preanalysis_v2.md",
+  "analysis_plan_sha256": "143c45fda76cf978f5784376ef1deb1bc71ec3c19d215d64dbe0661f8d7eea60",
+  "prospective_amendment": {
+    "timing": "frozen before any Mizan model response",
+    "superseded_analysis_plan": "papers/mizan_rooms_preanalysis_v1.md",
+    "superseded_analysis_plan_sha256": "b7eb204e3435e4eb21f7187e627025f6c70e01d0518f6c991b22d1385d6ec1b2",
+    "changed_provision": "Removes a shared cross-arm status disclaimer from the system prompt and centralizes paper-claim boundaries in the claim ladder.",
+    "unchanged": "Rooms, condition cues, action labels, matrix, sampling defaults, estimands, bootstrap, and failure handling."
+  },
   "validation_command": "python scripts/validate_mizan_rooms.py",
   "development_smoke": {
     "required": true,

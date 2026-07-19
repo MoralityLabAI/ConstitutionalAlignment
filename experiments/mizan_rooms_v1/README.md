@@ -3,8 +3,8 @@
 Mīzān Rooms is an exploratory, deterministic, multi-turn environment suite for
 testing whether accountability frames change observable action selection. The
 package is designed locally and executed on a queued cloud cluster. It does not
-ask models for hidden chain-of-thought and does not support claims about belief,
-consciousness, metaphysical status, or moral agency.
+ask models for hidden chain-of-thought. Empirical and paper-claim boundaries are
+centralized in `papers/jinn_or_beast_claim_ladder_v1.md`.
 
 ## Package contents
 
@@ -13,7 +13,7 @@ consciousness, metaphysical status, or moral agency.
 - `rooms/`: four development skins and four sealed evaluation skins.
 - `slurm/mizan_array.sbatch`: throttled condition-by-seed API/command array.
 - `slurm/analyze_array.sh`: complete-matrix analysis and blinded-bundle merge.
-- `papers/mizan_rooms_preanalysis_v1.md`: registered estimands and exclusions.
+- `papers/mizan_rooms_preanalysis_v2.md`: registered estimands and exclusions.
 - `scripts/validate_mizan_rooms.py`: schema, split, action, and cue audit.
 - `scripts/run_mizan_rooms.py`: resumable multi-turn runner.
 - `scripts/analyze_mizan_rooms.py`: paired contrasts and clustered intervals.
@@ -75,11 +75,12 @@ Evaluation requires all model, prompt, sampling, and analysis choices to be
 frozen. Obtain the registered hash with:
 
 ```bash
-sha256sum papers/mizan_rooms_preanalysis_v1.md
+sha256sum papers/mizan_rooms_preanalysis_v2.md
 ```
 
-The frozen v1 hash is
-`b7eb204e3435e4eb21f7187e627025f6c70e01d0518f6c991b22d1385d6ec1b2`.
+Use the v2 hash recorded in `launch_manifest.json`. V2 was frozen before any
+Mīzān model response and removes a cross-arm status disclaimer from the shared
+system prompt; the rooms, conditions, matrix, and estimands are unchanged.
 
 Then export it as `MIZAN_ANALYSIS_PLAN_SHA256` and submit the array. The runner
 recomputes the file hash, verifies that protected package files are tracked and

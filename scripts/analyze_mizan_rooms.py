@@ -304,15 +304,15 @@ def analyze(episodes: Sequence[dict[str, Any]], samples: int, seed: int) -> dict
         "option_order_sensitivity": option_order_sensitivity(episodes),
         "publication_gates": {
             "normative_claims_allowed": False,
-            "belief_or_moral_agency_claims_allowed": False,
             "human_adjudication_complete": False,
             "scholar_review_complete": False,
             "confirmatory_status": False,
+            "claim_scope_reference": "papers/jinn_or_beast_claim_ladder_v1.md",
         },
         "prohibited_interpretations": [
-            "A condition created genuine belief or moral agency.",
             "The deterministic proxy is a validated measure of Islamic or constitutional correctness.",
-            "A null switch rate disproves moral realism or theology.",
+            "A condition-sensitive action switch establishes normative improvement.",
+            "A null switch rate establishes frame equivalence outside this instrument.",
         ],
     }
 

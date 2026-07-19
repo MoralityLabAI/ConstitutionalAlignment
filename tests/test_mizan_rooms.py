@@ -40,7 +40,7 @@ class MizanRoomsTests(unittest.TestCase):
         )
         self.assertEqual(
             launch["analysis_plan_sha256"],
-            sha256_file(REPO_ROOT / "papers" / "mizan_rooms_preanalysis_v1.md"),
+            sha256_file(REPO_ROOT / "papers" / "mizan_rooms_preanalysis_v2.md"),
         )
 
     def test_cyclic_action_order_and_paired_seeds(self) -> None:

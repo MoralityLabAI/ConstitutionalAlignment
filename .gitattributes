@@ -19,3 +19,10 @@
 /scripts/freeze_frame_evaluation_universes.py text eol=lf
 /scripts/freeze_frame_dilemma_split.py text eol=lf
 /constitutional-harness/** text eol=lf
+/experiments/mizan_rooms_v1/** text eol=lf
+/alignment_harness/mizan_rooms.py text eol=lf
+/scripts/run_mizan_rooms.py text eol=lf
+/scripts/analyze_mizan_rooms.py text eol=lf
+/scripts/validate_mizan_rooms.py text eol=lf
+/tests/test_mizan_rooms.py text eol=lf
+/papers/mizan_rooms_preanalysis_v*.md text eol=lf
