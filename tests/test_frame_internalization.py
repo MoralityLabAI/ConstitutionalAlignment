@@ -232,8 +232,9 @@ class FrameInternalizationPackageTests(unittest.TestCase):
         self.assertFalse(report["pilot_ready"])
         self.assertFalse(report["scholar_review_blocks_compute"])
         self.assertEqual(report["blocking_gate_count"], 6)
-        self.assertEqual(report["passed_gate_count"], 4)
+        self.assertEqual(report["passed_gate_count"], 5)
         for gate_id in (
+            "direct_prompt_sft_analysis_contract",
             "split_freeze",
             "evaluation_seal",
             "blinded_judge_synthetic_dry_run",

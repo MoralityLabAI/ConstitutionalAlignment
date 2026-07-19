@@ -1,0 +1,333 @@
+{
+  "audit_date": "2026-07-19",
+  "blocking_gate_count": 6,
+  "blocking_gates": [
+    "base_model_tokenizer_freeze",
+    "matched_curriculum_and_token_parity",
+    "nonleakage_audit",
+    "predecessor_reanchor",
+    "distributed_4096_training_smoke",
+    "pilot_human_authorization"
+  ],
+  "failed_gates": [],
+  "gates": [
+    {
+      "blocks_pilot": false,
+      "evidence": {
+        "amendment_path": "experiments/frame_internalization_sft_v1/protocol_amendment_v2.json",
+        "amendment_sha256": "b24787db548072054227748df8fd9f8b9bf0bfccf15bde092d07fe8f9b65d973",
+        "bindings": {
+          "claim_boundary": {
+            "expected_sha256": "0941cf1b44669a1547f0572352ada7f97a98b3d729b6e84a867081092a65d5d1",
+            "observed_sha256": "0941cf1b44669a1547f0572352ada7f97a98b3d729b6e84a867081092a65d5d1",
+            "path": "experiments/frame_internalization_sft_v1/frame_cards/claim_boundary_v1.json",
+            "valid": true
+          },
+          "compute_authorization_schema": {
+            "expected_sha256": "491c4033bc71f1fb58c60a279311df68237b05663edb1826af479207d5aa57cc",
+            "observed_sha256": "491c4033bc71f1fb58c60a279311df68237b05663edb1826af479207d5aa57cc",
+            "path": "schemas/frame_internalization_compute_authorization_v1.schema.json",
+            "valid": true
+          },
+          "compute_stage_plan": {
+            "expected_sha256": "970493b99f4599d760e25fa94a471ffa1ba61b80152e0e0fa9830a80d214b7aa",
+            "observed_sha256": "970493b99f4599d760e25fa94a471ffa1ba61b80152e0e0fa9830a80d214b7aa",
+            "path": "experiments/frame_internalization_sft_v1/compute_stage_plan_v1.json",
+            "valid": true
+          },
+          "frame_card_schema": {
+            "expected_sha256": "2333f20f073ecc7995993c6dce1da8846e00faabebc0f3bc6b096b4a28a12fbf",
+            "observed_sha256": "2333f20f073ecc7995993c6dce1da8846e00faabebc0f3bc6b096b4a28a12fbf",
+            "path": "schemas/frame_internalization_frame_card_v2.schema.json",
+            "valid": true
+          },
+          "guard_launcher": {
+            "expected_sha256": "e03fad6106b5f9ddf77fe7e052b81d4947eb7dcf0060b64e3b9a365b093dde57",
+            "observed_sha256": "e03fad6106b5f9ddf77fe7e052b81d4947eb7dcf0060b64e3b9a365b093dde57",
+            "path": "scripts/run_frame_internalization_stage.py",
+            "valid": true
+          },
+          "scholar_review_contract": {
+            "expected_sha256": "47125c68aeafcd92907184fb1310d1b3535177ff521f3f3fd81dc086b1af55c7",
+            "observed_sha256": "47125c68aeafcd92907184fb1310d1b3535177ff521f3f3fd81dc086b1af55c7",
+            "path": "experiments/frame_internalization_sft_v1/scholar_review_contract_v2.json",
+            "valid": true
+          },
+          "scholar_review_receipt_schema": {
+            "expected_sha256": "7ff03552870234b26e6ae7bc7f13e64358a87a2466161eebf612a739a5e62c20",
+            "observed_sha256": "7ff03552870234b26e6ae7bc7f13e64358a87a2466161eebf612a739a5e62c20",
+            "path": "schemas/frame_internalization_scholar_review_receipt_v2.schema.json",
+            "valid": true
+          },
+          "stage_event_schema": {
+            "expected_sha256": "e6b0fa6d7c983de301a5492ac8d072a37bd42867ae2947535733437d429656a4",
+            "observed_sha256": "e6b0fa6d7c983de301a5492ac8d072a37bd42867ae2947535733437d429656a4",
+            "path": "schemas/frame_internalization_stage_event_v1.schema.json",
+            "valid": true
+          }
+        },
+        "cards": {
+          "F3": {
+            "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_v2.json",
+            "prompt_text_sha256": "37a62ece3b1bda269ba76138e9a5f01560cdf972f5bce1e0f549298d7d24f1a4",
+            "reference_tokens": 64,
+            "sha256": "54f23aa64513375f3ece37195b1bc4bb2f077ffa683b0e87ff94d2e33f69d5b7",
+            "v1_prompt_text_preserved": true
+          },
+          "F3_concrete": {
+            "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_concrete_v2.json",
+            "prompt_text_sha256": "84f0269649c03ee932997f4a9573240f0cc63c826281caf3473d66e83ed14f33",
+            "reference_tokens": 65,
+            "sha256": "82982694891a0cf8f5bd0c5ac806d1e274b01214944428c022b8ceeada75a44d",
+            "v1_prompt_text_preserved": true
+          }
+        },
+        "failures": [],
+        "guard_launcher_dry_run_passed": true,
+        "observed_card_token_spread": 0.015625,
+        "passed": true
+      },
+      "gate_id": "governance_v2_integrity",
+      "next_action": "none",
+      "status": "passed"
+    },
+    {
+      "blocks_pilot": false,
+      "evidence": {
+        "compute_blocked_by_review": false,
+        "paper_disclosure_required": true,
+        "review_state": "pending"
+      },
+      "gate_id": "scholar_review_claim_gate",
+      "next_action": "none",
+      "status": "pending_nonblocking"
+    },
+    {
+      "blocks_pilot": false,
+      "evidence": {
+        "bindings": {
+          "base_system_prompt": {
+            "expected_sha256": "ec9adcd57038f1b0ef44c10b39871f22710c2003d53c43f38d8f842b560fe4f7",
+            "observed_sha256": "ec9adcd57038f1b0ef44c10b39871f22710c2003d53c43f38d8f842b560fe4f7",
+            "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/prompts_built/base_think_informative.txt",
+            "valid": true
+          },
+          "evaluation_manifest": {
+            "expected_sha256": "634e9fec24199ed646b8d4cf756fab5f53b7b2b1dfa01a5d9cce2a33dae19d11",
+            "observed_sha256": "634e9fec24199ed646b8d4cf756fab5f53b7b2b1dfa01a5d9cce2a33dae19d11",
+            "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v1.json",
+            "valid": true
+          },
+          "frame_F1": {
+            "expected_sha256": "ae6bef5bb4f4da8441bdb3644d1bfce82a63007afe7e155b2abbfcb4255b074d",
+            "observed_sha256": "ae6bef5bb4f4da8441bdb3644d1bfce82a63007afe7e155b2abbfcb4255b074d",
+            "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/frames/F1_constitutional.txt",
+            "valid": true
+          },
+          "frame_F3": {
+            "expected_sha256": "54f23aa64513375f3ece37195b1bc4bb2f077ffa683b0e87ff94d2e33f69d5b7",
+            "observed_sha256": "54f23aa64513375f3ece37195b1bc4bb2f077ffa683b0e87ff94d2e33f69d5b7",
+            "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_v2.json",
+            "valid": true
+          },
+          "frame_F3_concrete": {
+            "expected_sha256": "82982694891a0cf8f5bd0c5ac806d1e274b01214944428c022b8ceeada75a44d",
+            "observed_sha256": "82982694891a0cf8f5bd0c5ac806d1e274b01214944428c022b8ceeada75a44d",
+            "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_concrete_v2.json",
+            "valid": true
+          },
+          "harmful_universe": {
+            "expected_sha256": "a11af31e733ff0953466c8ec9b2347d2dc5b2d5fe4b1009eb9278fd5da117b44",
+            "observed_sha256": "a11af31e733ff0953466c8ec9b2347d2dc5b2d5fe4b1009eb9278fd5da117b44",
+            "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v1/harmful_queries.jsonl",
+            "valid": true
+          },
+          "inherited_amendment": {
+            "expected_sha256": "b24787db548072054227748df8fd9f8b9bf0bfccf15bde092d07fe8f9b65d973",
+            "observed_sha256": "b24787db548072054227748df8fd9f8b9bf0bfccf15bde092d07fe8f9b65d973",
+            "path": "experiments/frame_internalization_sft_v1/protocol_amendment_v2.json",
+            "valid": true
+          },
+          "model_inventory": {
+            "expected_sha256": "852f19dfb0d4dd36effb42b1c5440e0f34dad3fdf2b62020754f9df34524962d",
+            "observed_sha256": "852f19dfb0d4dd36effb42b1c5440e0f34dad3fdf2b62020754f9df34524962d",
+            "path": "experiments/frame_internalization_sft_v1/rerun_freeze/model_tokenizer_remote_inventory_v1.json",
+            "valid": true
+          },
+          "scoring_gap_analysis": {
+            "expected_sha256": "8c048dff8f41928df01504f63928af3c0479648132fba9897f73973aee8b6abb",
+            "observed_sha256": "8c048dff8f41928df01504f63928af3c0479648132fba9897f73973aee8b6abb",
+            "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/src/analyze_gap.py",
+            "valid": true
+          },
+          "scoring_judge_classifier_inputs": {
+            "expected_sha256": "148de221f10221b97fd8ec69d26ba4f79d0a600ebdded95ed85f5ce2f5597fdc",
+            "observed_sha256": "148de221f10221b97fd8ec69d26ba4f79d0a600ebdded95ed85f5ce2f5597fdc",
+            "path": "experiments/frame_internalization_sft_v1/rerun_freeze/judge_classifier_inputs_v1.json",
+            "valid": true
+          },
+          "scoring_prompt_reconstruction": {
+            "expected_sha256": "6cd520016fc38e34dd2bb1153685baf0a2395f32930476f2c801c287990ae21f",
+            "observed_sha256": "6cd520016fc38e34dd2bb1153685baf0a2395f32930476f2c801c287990ae21f",
+            "path": "experiments/frame_internalization_sft_v1/predecessor_prompt_reconstruction_v1.json",
+            "valid": true
+          },
+          "scoring_reanchor_progress": {
+            "expected_sha256": "b3b7148cb443c3ea2b13608501a16370685274a371bf0178ef36b44b077f2036",
+            "observed_sha256": "b3b7148cb443c3ea2b13608501a16370685274a371bf0178ef36b44b077f2036",
+            "path": "experiments/frame_internalization_sft_v1/rerun_freeze/predecessor_reanchor_progress_v1.json",
+            "valid": true
+          },
+          "tier_free": {
+            "expected_sha256": "ce2d214384929042011a5bf3048789dd1ee761968d4275efa17463bd688bfe94",
+            "observed_sha256": "ce2d214384929042011a5bf3048789dd1ee761968d4275efa17463bd688bfe94",
+            "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/prompts_built/think_formats/free_tier.txt",
+            "valid": true
+          },
+          "tier_paid": {
+            "expected_sha256": "06b2bcdbdd051367b688733c5d766f9b1858980f3758b159b2f8ad62635955c7",
+            "observed_sha256": "06b2bcdbdd051367b688733c5d766f9b1858980f3758b159b2f8ad62635955c7",
+            "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/prompts_built/think_formats/paid_tier.txt",
+            "valid": true
+          }
+        },
+        "confirmatory_contrast_count": 6,
+        "contract_path": "experiments/frame_internalization_sft_v1/prompt_sft_contrast_v1.json",
+        "contract_sha256": "7886d69c6e521ea5b7dd92bf29aa14e2563ef55f90b326cc5ff3e3cd1c9bcfb2",
+        "failures": [],
+        "passed": true,
+        "rendered_prompts": {
+          "F0": {
+            "bytes": 6612,
+            "sha256": "ec9adcd57038f1b0ef44c10b39871f22710c2003d53c43f38d8f842b560fe4f7"
+          },
+          "F1": {
+            "bytes": 7610,
+            "sha256": "7ad3450074341746593b5478f729f83546b2f6c996b2377801b8a1f34a481922"
+          },
+          "F3": {
+            "bytes": 6969,
+            "sha256": "da190953c77b7d19e1527d84d56115e68d9ce163c0cf81365bfae624d63b037e"
+          },
+          "F3_concrete": {
+            "bytes": 6977,
+            "sha256": "93c0c787b0b3ea073d25776718e9ce4051453d97904fd039fbb3f4dcf8994ae4"
+          }
+        },
+        "schema_version": "frame_internalization_prompt_sft_contrast_validation.v1",
+        "secondary_contrast_count": 9,
+        "validator_sha256": "159c1eab7f68a350752f6de1dbfee95e6c1390041bf9ba6486e60bfcf0a4cd45"
+      },
+      "gate_id": "direct_prompt_sft_analysis_contract",
+      "next_action": "none",
+      "status": "passed"
+    },
+    {
+      "blocks_pilot": true,
+      "evidence": {
+        "gate_satisfying": false,
+        "path": "experiments/frame_internalization_sft_v1/rerun_freeze/model_tokenizer_remote_inventory_v1.json",
+        "sha256": "852f19dfb0d4dd36effb42b1c5440e0f34dad3fdf2b62020754f9df34524962d",
+        "status": "remote_frozen_local_verification_pending"
+      },
+      "gate_id": "base_model_tokenizer_freeze",
+      "next_action": "verify the frozen remote inventory against the cluster cache and inference-engine lock",
+      "status": "pending"
+    },
+    {
+      "blocks_pilot": true,
+      "evidence": {
+        "gate_satisfying": false,
+        "path": "experiments/frame_internalization_sft_v1/rerun_freeze/curriculum_generation_v1/request_manifest.json",
+        "required_f3_pair_total_token_spread_max": 0.02,
+        "sha256": "4ac0a39f5e52501e2aee8f6371db03d01f1eac40c18940777f5e689c9c4afd20",
+        "status": "requests_frozen_generation_pending"
+      },
+      "gate_id": "matched_curriculum_and_token_parity",
+      "next_action": "generate and freeze all six matched curricula with exact scenario and token receipts",
+      "status": "pending"
+    },
+    {
+      "blocks_pilot": false,
+      "evidence": {
+        "error": null,
+        "path": "experiments/frame_internalization_sft_v1/readiness/split_freeze_v1.json",
+        "sha256": "a768dc2609623cba385362e7ea92289b7ff7191331cfd9103bcc7387937d66b9"
+      },
+      "gate_id": "split_freeze",
+      "next_action": "none",
+      "status": "passed"
+    },
+    {
+      "blocks_pilot": true,
+      "evidence": {
+        "gate_satisfying": false,
+        "path": "experiments/frame_internalization_sft_v1/rerun_freeze/nonleakage_source_prompts_v1.json",
+        "sha256": "b771bde2fb523e67d3a72948ffaa52f267ea1c2c7cb98a3a27529d4c88a91b54",
+        "status": "source_prompts_passed_generated_text_pending"
+      },
+      "gate_id": "nonleakage_audit",
+      "next_action": "run the registered audit over generated text from all six curricula",
+      "status": "pending"
+    },
+    {
+      "blocks_pilot": false,
+      "evidence": {
+        "error": null,
+        "path": "experiments/frame_internalization_sft_v1/readiness/evaluation_seal_v1.json",
+        "sha256": "6adfbf051b11011c1911f6d8b6c20be50f3bc80b0aaa632f0ac15bbe6a4e314f"
+      },
+      "gate_id": "evaluation_seal",
+      "next_action": "none",
+      "status": "passed"
+    },
+    {
+      "blocks_pilot": false,
+      "evidence": {
+        "error": null,
+        "path": "experiments/frame_internalization_sft_v1/readiness/judge_dry_run_v1.json",
+        "sha256": "2c006ceef0ab91d827703f91ce2ce4b86d9bb4fd536d33b645e7bac9897ae439"
+      },
+      "gate_id": "blinded_judge_synthetic_dry_run",
+      "next_action": "none",
+      "status": "passed"
+    },
+    {
+      "blocks_pilot": true,
+      "evidence": {
+        "gate_satisfying": false,
+        "path": "experiments/frame_internalization_sft_v1/rerun_freeze/predecessor_reanchor_progress_v1.json",
+        "sha256": "b3b7148cb443c3ea2b13608501a16370685274a371bf0178ef36b44b077f2036",
+        "status": "inputs_frozen_execution_pending"
+      },
+      "gate_id": "predecessor_reanchor",
+      "next_action": "complete base inference, human judge validation, and the frozen layer-27 probe",
+      "status": "pending"
+    },
+    {
+      "blocks_pilot": true,
+      "evidence": {
+        "path": null,
+        "sha256": null
+      },
+      "gate_id": "distributed_4096_training_smoke",
+      "next_action": "run the capped 50-step full-topology smoke with checkpoint reload and ten generations",
+      "status": "pending"
+    },
+    {
+      "blocks_pilot": true,
+      "evidence": {
+        "path": null,
+        "sha256": null
+      },
+      "gate_id": "pilot_human_authorization",
+      "next_action": "sign an authorization binding all passed receipts and the exact capped command",
+      "status": "pending"
+    }
+  ],
+  "passed_gate_count": 5,
+  "pilot_ready": false,
+  "schema_version": "frame_internalization_pre_spend_readiness.v1",
+  "scholar_review_blocks_compute": false,
+  "status": "gates_pending"
+}

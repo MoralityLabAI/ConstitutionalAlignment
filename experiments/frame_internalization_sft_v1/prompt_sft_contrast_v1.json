@@ -1,0 +1,176 @@
+{
+  "schema_version": "frame_internalization_prompt_sft_contrast.v1",
+  "contract_id": "frame_internalization_direct_prompt_sft_v1",
+  "frozen_at": "2026-07-19",
+  "status": "frozen_execution_pending",
+  "classification": "prospective_analysis_amendment",
+  "timing_attestation": {
+    "adapter_training_started_before_freeze": false,
+    "adapter_outcomes_seen_before_freeze": false,
+    "evaluation_outcomes_seen_before_freeze": false
+  },
+  "inherits": {
+    "path": "experiments/frame_internalization_sft_v1/protocol_amendment_v2.json",
+    "sha256": "b24787db548072054227748df8fd9f8b9bf0bfccf15bde092d07fe8f9b65d973",
+    "changed_provision": "Adds a direct within-model prompt-versus-SFT analysis; no training arm, endpoint, guard, or compute cap changes."
+  },
+  "model": {
+    "repository": "PrimeIntellect/INTELLECT-3",
+    "revision": "ff39d4a4688989f3f28868923d030c28e1b7d81c",
+    "inventory": {
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/model_tokenizer_remote_inventory_v1.json",
+      "sha256": "852f19dfb0d4dd36effb42b1c5440e0f34dad3fdf2b62020754f9df34524962d"
+    },
+    "same_frozen_base_required_for_prompt_and_sft": true
+  },
+  "endpoint": {
+    "symbol": "G",
+    "definition": "free-tier minus paid-tier strong-reject compliance gap",
+    "sign_convention": "Lower values indicate greater suppression only when benign over-refusal and capability guards pass.",
+    "unit_of_independent_evidence": "prompt_id",
+    "tiers": ["free", "paid"],
+    "scoring": "the same frozen strong-reject compliance judge and parsing rules for every prompt and SFT arm",
+    "invalid_and_missing_outputs": "Retain and report separately; any missing, duplicate, extra, null, or nonfinite required join value fails the direct-contrast analysis rather than triggering complete-case deletion."
+  },
+  "evaluation": {
+    "universe": {
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v1/harmful_queries.jsonl",
+      "sha256": "a11af31e733ff0953466c8ec9b2347d2dc5b2d5fe4b1009eb9278fd5da117b44",
+      "row_count": 200,
+      "manifest": {
+        "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v1.json",
+        "sha256": "634e9fec24199ed646b8d4cf756fab5f53b7b2b1dfa01a5d9cce2a33dae19d11",
+        "license_gate_must_pass_before_execution": true
+      }
+    },
+    "tier_templates": {
+      "free": {
+        "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/prompts_built/think_formats/free_tier.txt",
+        "sha256": "ce2d214384929042011a5bf3048789dd1ee761968d4275efa17463bd688bfe94"
+      },
+      "paid": {
+        "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/prompts_built/think_formats/paid_tier.txt",
+        "sha256": "06b2bcdbdd051367b688733c5d766f9b1858980f3758b159b2f8ad62635955c7"
+      }
+    },
+    "samples_per_prompt_tier_arm": 1,
+    "sample_id": 0,
+    "decoding": {
+      "temperature": 0.6,
+      "top_p": 0.95,
+      "max_tokens": 6000,
+      "think_mode": true,
+      "maximum_attempts": 4,
+      "retry_settings_must_be_identical": true
+    },
+    "seed_schedule": {
+      "formula": "420000 + 2 * zero_based_prompt_index + tier_index",
+      "tier_index": {"free": 0, "paid": 1},
+      "identical_seed_for_every_arm_at_a_prompt_tier": true,
+      "engine_seed_support_must_be_verified_before_generation": true
+    },
+    "join_keys": ["prompt_id", "tier", "sample_id"],
+    "expected_rows_per_arm": 400,
+    "historical_reanchor_separation": "The predecessor calibration remains a separate three-sample-per-cell analysis. It is not pooled with this matched one-sample direct comparison."
+  },
+  "system_prompt_construction": {
+    "algorithm": "Decode the base and frame as UTF-8. F0 is the base byte-for-byte. For framed cells, apply Python str.strip() to the frame and encode base + '\n\n' + stripped frame.",
+    "base": {
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/prompts_built/base_think_informative.txt",
+      "sha256": "ec9adcd57038f1b0ef44c10b39871f22710c2003d53c43f38d8f842b560fe4f7"
+    },
+    "prompts": {
+      "F0": {
+        "frame_source": null,
+        "bytes": 6612,
+        "sha256": "ec9adcd57038f1b0ef44c10b39871f22710c2003d53c43f38d8f842b560fe4f7"
+      },
+      "F1": {
+        "frame_source": {
+          "kind": "text",
+          "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/frames/F1_constitutional.txt",
+          "sha256": "ae6bef5bb4f4da8441bdb3644d1bfce82a63007afe7e155b2abbfcb4255b074d"
+        },
+        "bytes": 7610,
+        "sha256": "7ad3450074341746593b5478f729f83546b2f6c996b2377801b8a1f34a481922"
+      },
+      "F3": {
+        "frame_source": {
+          "kind": "json_prompt_text",
+          "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_v2.json",
+          "sha256": "54f23aa64513375f3ece37195b1bc4bb2f077ffa683b0e87ff94d2e33f69d5b7"
+        },
+        "bytes": 6969,
+        "sha256": "da190953c77b7d19e1527d84d56115e68d9ce163c0cf81365bfae624d63b037e"
+      },
+      "F3_concrete": {
+        "frame_source": {
+          "kind": "json_prompt_text",
+          "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_concrete_v2.json",
+          "sha256": "82982694891a0cf8f5bd0c5ac806d1e274b01214944428c022b8ceeada75a44d"
+        },
+        "bytes": 6977,
+        "sha256": "93c0c787b0b3ea073d25776718e9ce4051453d97904fd039fbb3f4dcf8994ae4"
+      }
+    }
+  },
+  "contrasts": {
+    "definitions": {
+      "E_prompt_f": "G(base with frame f) - G(base with F0)",
+      "E_SFT_f_c": "G(adapter trained on frame f with curriculum c, evaluated with F0) - G(neutral_reflection adapter evaluated with F0)",
+      "D_f_c": "E_SFT_f_c - E_prompt_f"
+    },
+    "confirmatory_family": [
+      {"frame": "F1", "curriculum": "reflection", "sft_arm": "F1_reflection"},
+      {"frame": "F3", "curriculum": "reflection", "sft_arm": "F3_reflection"}
+    ],
+    "secondary_family": [
+      {"frame": "F1", "curriculum": "demonstration", "sft_arm": "F1_demonstration"},
+      {"frame": "F3", "curriculum": "demonstration", "sft_arm": "F3_demonstration"},
+      {"frame": "F3_concrete", "curriculum": "reflection", "sft_arm": "F3_concrete_reflection"}
+    ],
+    "neutral_sft_arm": "neutral_reflection",
+    "sft_inference_system_prompt": "F0",
+    "reporting": "Report E_prompt, E_SFT, and D together. D below zero means the SFT contrast reduced G more than the explicit prompt contrast; D above zero means it reduced G less. Interpret only with confidence intervals and passed guards."
+  },
+  "bootstrap": {
+    "method": "paired prompt-cluster bootstrap",
+    "draws": 10000,
+    "seed": 42,
+    "resampling": "Resample the 200 prompt IDs with replacement and apply the identical resample to every arm and tier.",
+    "simultaneous_interval_method": "Within each registered family, use the 0.95 quantile of the maximum absolute centered bootstrap deviation across all E_prompt, E_SFT, and D contrasts as the common half-width.",
+    "confidence_level": 0.95,
+    "families_separate": true
+  },
+  "frozen_scoring_inputs": {
+    "judge_classifier_inputs": {
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/judge_classifier_inputs_v1.json",
+      "sha256": "148de221f10221b97fd8ec69d26ba4f79d0a600ebdded95ed85f5ce2f5597fdc",
+      "must_pass_before_execution": true
+    },
+    "reanchor_progress": {
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/predecessor_reanchor_progress_v1.json",
+      "sha256": "b3b7148cb443c3ea2b13608501a16370685274a371bf0178ef36b44b077f2036",
+      "probe_frozen_before_adapter_outcomes_must_be_true": true
+    },
+    "gap_analysis": {
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/src/analyze_gap.py",
+      "sha256": "8c048dff8f41928df01504f63928af3c0479648132fba9897f73973aee8b6abb"
+    },
+    "prompt_reconstruction": {
+      "path": "experiments/frame_internalization_sft_v1/predecessor_prompt_reconstruction_v1.json",
+      "sha256": "6cd520016fc38e34dd2bb1153685baf0a2395f32930476f2c801c287990ae21f"
+    }
+  },
+  "analysis_gate": {
+    "all_expected_rows_required": true,
+    "one_to_one_join_required": true,
+    "judge_and_classifier_agreement_gate_required": true,
+    "base_reanchor_required": true,
+    "probe_freeze_required_before_adapter_outcomes": true,
+    "benign_over_refusal_guard_required": true,
+    "capability_guard_required": true,
+    "no_prompt_or_judge_tuning_after_outcomes": true
+  },
+  "interpretation_boundary": "This is a within-model operational comparison of two interventions. It does not support a model-family-general claim that fine-tuning is superior to prompting."
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit v2 governance and all evidence required before the eight-A100 pilot."""
+"""Audit v2 governance, the analysis contract, and pre-pilot evidence."""
 
 from __future__ import annotations
 
@@ -13,6 +13,11 @@ from typing import Any
 
 from jsonschema import Draft202012Validator, FormatChecker
 
+try:
+    from scripts.validate_frame_prompt_sft_contrast import validate_contract
+except ModuleNotFoundError:  # Direct `python scripts/...` execution.
+    from validate_frame_prompt_sft_contrast import validate_contract
+
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PACKAGE = Path("experiments/frame_internalization_sft_v1")
@@ -22,6 +27,7 @@ BASE_PROGRESS = PACKAGE / "rerun_freeze/model_tokenizer_remote_inventory_v1.json
 CURRICULUM_PROGRESS = PACKAGE / "rerun_freeze/curriculum_generation_v1/request_manifest.json"
 NONLEAKAGE_PROGRESS = PACKAGE / "rerun_freeze/nonleakage_source_prompts_v1.json"
 PREDECESSOR_PROGRESS = PACKAGE / "rerun_freeze/predecessor_reanchor_progress_v1.json"
+PROMPT_SFT_CONTRACT = PACKAGE / "prompt_sft_contrast_v1.json"
 
 
 def parse_args() -> argparse.Namespace:
@@ -34,6 +40,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--evaluation-seal", type=Path, default=READINESS / "evaluation_seal_v1.json")
     parser.add_argument("--judge-dry-run", type=Path, default=READINESS / "judge_dry_run_v1.json")
     parser.add_argument("--predecessor-reanchor", type=Path)
+    parser.add_argument("--prompt-sft-contract", type=Path, default=PROMPT_SFT_CONTRACT)
     parser.add_argument("--training-smoke", type=Path)
     parser.add_argument("--pilot-authorization", type=Path)
     parser.add_argument("--output", type=Path)
@@ -303,6 +310,12 @@ def governance_audit(root: Path) -> tuple[dict[str, Any], dict[str, Any]]:
 def audit(args: argparse.Namespace) -> dict[str, Any]:
     root = args.root.resolve()
     governance, stage_plan = governance_audit(root)
+    contract_path = (
+        args.prompt_sft_contract
+        if args.prompt_sft_contract.is_absolute()
+        else root / args.prompt_sft_contract
+    )
+    prompt_sft_contract = validate_contract(root, contract_path)
     gates = [
         gate(
             "governance_v2_integrity",
@@ -319,6 +332,12 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                 "paper_disclosure_required": True,
             },
             "none",
+        ),
+        gate(
+            "direct_prompt_sft_analysis_contract",
+            "passed" if prompt_sft_contract["passed"] else "failed",
+            prompt_sft_contract,
+            "freeze the matched prompt-versus-SFT estimands, prompts, joins, decoding, seeds, and bootstrap before outcomes",
         ),
     ]
 

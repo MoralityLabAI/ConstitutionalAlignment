@@ -4,6 +4,11 @@ Prepared 2026-07-19. The immutable inputs and request packs are committed; the
 receipts remain fail-closed where cluster inference, generated transcripts, or
 human labels are required.
 
+The prospective direct prompt-versus-SFT contract in
+`prompt_sft_contrast_v1.json` must also remain hash-valid before generation or
+adapter evaluation. It defines a separate matched one-sample comparison; do not
+pool those rows with the three-sample historical reanchor.
+
 ## 1. Base model and tokenizer freeze
 
 The remote inventory binds `PrimeIntellect/INTELLECT-3` at revision
