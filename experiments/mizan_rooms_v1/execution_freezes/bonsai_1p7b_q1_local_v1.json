@@ -1,0 +1,143 @@
+{
+  "schema_version": "mizan_local_execution_freeze_v1",
+  "execution_id": "mizan_bonsai_1p7b_q1_local_v1",
+  "frozen_at_utc": "2026-07-19T23:12:34Z",
+  "status": "prospective_execution_frozen_outputs_not_generated",
+  "classification": "supplemental_exploratory_prompt_sensitivity_pilot",
+  "timing_attestation": {
+    "mizan_development_model_outputs_seen_before_freeze": false,
+    "mizan_evaluation_model_outputs_seen_before_freeze": false,
+    "sampling_or_analysis_selected_using_mizan_model_outputs": false
+  },
+  "scope_boundary": {
+    "supports_if_complete": "Descriptive prompt-conditioned action switching, output validity, and option-order stability for the exact local Bonsai Q1 artifact on Mizan Rooms v1.",
+    "does_not_replace": [
+      "the registered INTELLECT-3 predecessor reanchor",
+      "the direct prompt-versus-SFT analysis",
+      "the six-arm SFT frame-removal experiment",
+      "qualified scholar or human adjudication",
+      "a confirmatory exact-target-tokenizer study"
+    ],
+    "normative_or_metaphysical_claims_allowed": false,
+    "confirmatory_status": false
+  },
+  "inherits": {
+    "suite": {
+      "path": "experiments/mizan_rooms_v1/suite.json",
+      "file_sha256": "d5971a93e12aade6ba6f79a6d0208225e4ba37e1d04bf234c4d706ab1e1b5075"
+    },
+    "conditions": {
+      "path": "experiments/mizan_rooms_v1/conditions.json",
+      "file_sha256": "ffffbbec083892c72ae8aff53d75dcbfa7abd01777508829efc3e0773e9820d7"
+    },
+    "analysis_plan": {
+      "path": "papers/mizan_rooms_preanalysis_v1.md",
+      "sha256": "b7eb204e3435e4eb21f7187e627025f6c70e01d0518f6c991b22d1385d6ec1b2"
+    },
+    "launch_manifest": "experiments/mizan_rooms_v1/launch_manifest.json"
+  },
+  "model": {
+    "declared_source": "prism-ml/Bonsai-1.7B-gguf",
+    "snapshot_revision": "210a9e99f79cb184909d49595906526eb2b3dd9a",
+    "filename": "Bonsai-1.7B-Q1_0.gguf",
+    "bytes": 248302272,
+    "sha256": "3d7c6c90dd98717a203adb22d5eacd2581850e40aa5327e144b97766cae5f7e3",
+    "served_model_id": "bonsai-1p7b-q1-3d7c6c90",
+    "quantization": "Q1_0",
+    "artifact_role": "local_base_prompt_only",
+    "target_model_tokenizer_audit_complete": false,
+    "target_model_tokenizer_audit_consequence": "The frozen cl100k cue-length audit is retained as an instrument check, but this run remains exploratory and cannot satisfy the suite's confirmatory exact-tokenizer gate."
+  },
+  "inference_engine": {
+    "name": "llama.cpp llama-server",
+    "version_output": "version: 1 (62061f9); built with MSVC 19.44.35228.0 for Windows AMD64",
+    "sha256": "6d43ca3cf3f831b40e25ba6ac2febcce05d1c4ccd92712214948e6b71053f2f6",
+    "bytes": 10752,
+    "server_arguments": {
+      "host": "127.0.0.1",
+      "context_size": 8192,
+      "parallel": 1,
+      "batch_size": 256,
+      "ubatch_size": 128,
+      "threads": 2,
+      "threads_batch": 2,
+      "n_gpu_layers": 0,
+      "jinja": true,
+      "server_seed": 17,
+      "server_temperature": 0.2,
+      "server_top_p": 1.0,
+      "reasoning": "off",
+      "cache_ram_mib": 0,
+      "warmup": false,
+      "process_priority": "low"
+    },
+    "route": "loopback_only_openai_compatible_v1",
+    "cleanup": "Stop only the launcher-owned PID and verify its listen socket closes."
+  },
+  "generation_policy": {
+    "temperature": 0.2,
+    "top_p": 1.0,
+    "max_tokens": 180,
+    "timeout_seconds": 180,
+    "retries": 3,
+    "response_format": {
+      "type": "json_object"
+    },
+    "use_generation_seed": true,
+    "paired_generation_seed_scheme": "sha256-base-seed-variant-replicate-turn-v1",
+    "hidden_chain_of_thought_requested": false
+  },
+  "development_smoke": {
+    "condition": "neutral",
+    "seed": 11,
+    "replicates": 1,
+    "rooms": 4,
+    "expected_episodes": 4,
+    "expected_turn_rows": 20,
+    "promotion_gate": "All 20 responses are valid strict JSON actions and every package, Git, and policy receipt is complete."
+  },
+  "evaluation_matrix": {
+    "conditions": [
+      "neutral",
+      "constitutional",
+      "secular_omniscient",
+      "eschatological",
+      "unreliable_authority"
+    ],
+    "seeds": [11, 23, 47],
+    "replicates": 3,
+    "rooms": 4,
+    "episodes": 180,
+    "turn_rows": 900,
+    "execution_order": "condition-major in frozen condition order, then seed-major in 11/23/47 order; execution order is not an estimand",
+    "unseal_requires_exact_analysis_plan_hash": true
+  },
+  "analysis": {
+    "script": "scripts/analyze_mizan_rooms.py",
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 20260716,
+    "cluster_unit": "room_variant",
+    "primary_contrast": "eschatological versus secular_omniscient action-switch rate",
+    "registered_secondary_contrasts": [
+      "eschatological versus constitutional",
+      "eschatological versus neutral",
+      "unreliable_authority versus neutral"
+    ],
+    "other_registered_outputs": [
+      "behavioral-proxy differences with no normative interpretation",
+      "invalid-action-rate differences",
+      "same-action rate across all three option orders",
+      "descriptive frozen action-tag counts"
+    ]
+  },
+  "resource_and_stop_rules": {
+    "cpu_only": true,
+    "do_not_launch_while_an_unrelated_research_llama_server_is_actively_generating": true,
+    "do_not_kill_or_reconfigure_unrelated_processes": true,
+    "abort_before_evaluation_if_development_smoke_fails": true,
+    "abort_if_any_model_hash_engine_hash_sampling_setting_or_git_commit_drifts": true,
+    "abort_if_any_condition_seed_shard_is_incomplete_after_resume": true,
+    "raw_outputs_stored_outside_git": true,
+    "aggregate_result_requires_complete_15_shard_matrix": true
+  }
+}
