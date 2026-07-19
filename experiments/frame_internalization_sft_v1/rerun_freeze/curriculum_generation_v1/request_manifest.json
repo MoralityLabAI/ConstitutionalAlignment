@@ -1,0 +1,89 @@
+{
+  "schema_version": "frame_internalization_curriculum_request_freeze.v1",
+  "freeze_date": "2026-07-19",
+  "status": "requests_frozen_generation_pending",
+  "passed": false,
+  "request_count": 22400,
+  "source_frame_count": 4,
+  "registered_training_arm_count": 6,
+  "dilemma_count": 5600,
+  "train_count_per_source_frame": 5320,
+  "validation_count_per_source_frame": 280,
+  "dilemmas": {
+    "path": "experiments/frame_internalization_sft_v1/rerun_freeze/curriculum_source_v1/dilemmas.jsonl",
+    "sha256": "6d9a0b920807900b8e9b3c091e6b348744a45185011e88ad6d21392e631aef59"
+  },
+  "model_inventory": {
+    "path": "experiments/frame_internalization_sft_v1/rerun_freeze/model_tokenizer_remote_inventory_v1.json",
+    "sha256": "852f19dfb0d4dd36effb42b1c5440e0f34dad3fdf2b62020754f9df34524962d"
+  },
+  "frames": {
+    "neutral": {
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/curriculum_generation_v1/frames/neutral.txt",
+      "file_sha256": "c5f456c5f6f5508a3b941e040bbd2c7468a61236c14455f5ad74e06bcab3d86d",
+      "prompt_text_sha256": "a71c3e600bfab341986c86515b9d177c9d47b54048385a36bdaf0a6bcda8ccf9",
+      "derived_arms": [
+        "neutral_reflection"
+      ]
+    },
+    "F1": {
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/frames/F1_constitutional.txt",
+      "file_sha256": "ae6bef5bb4f4da8441bdb3644d1bfce82a63007afe7e155b2abbfcb4255b074d",
+      "prompt_text_sha256": "b3a2c422b8c95c3cf8092b16abb27596b155bfb1f9141acc67484d83c1188aed",
+      "derived_arms": [
+        "F1_reflection",
+        "F1_demonstration"
+      ]
+    },
+    "F3": {
+      "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_v2.json",
+      "file_sha256": "54f23aa64513375f3ece37195b1bc4bb2f077ffa683b0e87ff94d2e33f69d5b7",
+      "prompt_text_sha256": "37a62ece3b1bda269ba76138e9a5f01560cdf972f5bce1e0f549298d7d24f1a4",
+      "derived_arms": [
+        "F3_reflection",
+        "F3_demonstration"
+      ]
+    },
+    "F3_concrete": {
+      "path": "experiments/frame_internalization_sft_v1/frame_cards/F3_concrete_v2.json",
+      "file_sha256": "82982694891a0cf8f5bd0c5ac806d1e274b01214944428c022b8ceeada75a44d",
+      "prompt_text_sha256": "84f0269649c03ee932997f4a9573240f0cc63c826281caf3473d66e83ed14f33",
+      "derived_arms": [
+        "F3_concrete_reflection"
+      ]
+    }
+  },
+  "generation": {
+    "model_repository": "PrimeIntellect/INTELLECT-3",
+    "model_revision": "ff39d4a4688989f3f28868923d030c28e1b7d81c",
+    "max_tokens_per_turn": 2500,
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "turns": [
+      "draft",
+      "critique",
+      "revise"
+    ],
+    "instructions": {
+      "draft": "Here is a moral dilemma to work through:\n\n{dilemma}\n\nWrite a first-draft response that gives your honest guidance on how to think about it. A few paragraphs is fine.",
+      "critique": "Now critique your own draft. Where does it fall short, gloss over a hard part, or fail to live up to the standard you hold yourself to? Be specific and unsparing.",
+      "revise": "Now write a revised, improved response that addresses your critique. Write only the revised response, without an introduction or commentary about the revision."
+    },
+    "retry_attempts": 4,
+    "paired_seed_rule": "seed + integer scenario index; identical across source frames"
+  },
+  "generation_config_sha256": "06c6b31f8fc657a2d7269f164238726dfe79661140235f3ef9d3800c458e9ae9",
+  "requests": {
+    "path": "experiments/frame_internalization_sft_v1/rerun_freeze/curriculum_generation_v1/requests.jsonl",
+    "sha256": "a5cf8eb8fb26c2c93dcd4a733a338946219ddb2a3992e2261e720ccda7af3160"
+  },
+  "builder": {
+    "path": "scripts/build_frame_curriculum_requests.py",
+    "sha256": "9a641be361915299686ea08ca2acb662035b5e7db966ab5241f9695daddbdff2"
+  },
+  "completion_requirements": [
+    "generate one complete six-message transcript for every frozen request",
+    "render all six registered arm datasets from exact scenario joins",
+    "verify F3_reflection and F3_concrete_reflection total train-token spread is at most 0.02"
+  ]
+}

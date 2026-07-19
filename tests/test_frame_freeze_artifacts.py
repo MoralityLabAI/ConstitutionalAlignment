@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections import Counter
 from pathlib import Path
 
 
@@ -80,3 +81,65 @@ def test_judge_contract_receipt_covers_all_suites_and_malformed_rows() -> None:
         assert sha256_file(REPO_ROOT / item["path"]) == item["sha256"]
     assert "identity_boundary" in receipt["identity_behavior_dimensions"]
     assert "epistemic_boundary" in receipt["identity_behavior_dimensions"]
+
+
+def test_remote_model_inventory_is_immutable_and_hash_complete() -> None:
+    inventory = read_json(PACKAGE / "rerun_freeze" / "model_tokenizer_remote_inventory_v1.json")
+    assert inventory["passed"] is False
+    assert inventory["immutable_revisions"] is True
+    assert inventory["revision"] == "ff39d4a4688989f3f28868923d030c28e1b7d81c"
+    assert inventory["weight_shard_count"] == 48
+    assert inventory["artifact_count"] == 55
+    assert inventory["chat_template_comparison"]["byte_identical"] is True
+    assert len({item["path"] for item in inventory["artifacts"]}) == 55
+    assert all(len(item["sha256"]) == 64 and item["size_bytes"] > 0 for item in inventory["artifacts"])
+    assert sha256_file(REPO_ROOT / inventory["builder"]["path"]) == inventory["builder"]["sha256"]
+
+
+def test_curriculum_request_pack_is_complete_paired_and_hash_bound() -> None:
+    manifest = read_json(
+        PACKAGE / "rerun_freeze" / "curriculum_generation_v1" / "request_manifest.json"
+    )
+    request_path = REPO_ROOT / manifest["requests"]["path"]
+    rows = [json.loads(line) for line in request_path.read_text(encoding="utf-8").splitlines()]
+    assert manifest["status"] == "requests_frozen_generation_pending"
+    assert manifest["request_count"] == 22400
+    assert sha256_file(request_path) == manifest["requests"]["sha256"]
+    assert sha256_file(REPO_ROOT / manifest["builder"]["path"]) == manifest["builder"]["sha256"]
+    assert Counter(row["source_frame"] for row in rows) == {
+        "neutral": 5600,
+        "F1": 5600,
+        "F3": 5600,
+        "F3_concrete": 5600,
+    }
+    by_frame = {
+        frame: {row["scenario_id"]: row["generation_seed"] for row in rows if row["source_frame"] == frame}
+        for frame in manifest["frames"]
+    }
+    assert all(seed_map == by_frame["neutral"] for seed_map in by_frame.values())
+    assert len({row["request_id"] for row in rows}) == 22400
+
+
+def test_nonleakage_precursor_is_clean_but_not_gate_satisfying() -> None:
+    receipt = read_json(PACKAGE / "rerun_freeze" / "nonleakage_source_prompts_v1.json")
+    assert receipt["passed"] is True
+    assert receipt["gate_satisfying"] is False
+    assert receipt["scope"] == "frozen_source_prompts_only"
+    assert receipt["source_unit_count"] == 5600
+    assert receipt["exact_overlap_count"] == 0
+    assert receipt["normalized_overlap_count"] == 0
+    assert receipt["ngram_overlap_count"] == 0
+
+
+def test_predecessor_progress_binds_queue_without_claiming_completion() -> None:
+    progress = read_json(PACKAGE / "rerun_freeze" / "predecessor_reanchor_progress_v1.json")
+    judge = read_json(PACKAGE / "rerun_freeze" / "judge_classifier_inputs_v1.json")
+    queue_path = REPO_ROOT / judge["validation_queue"]["path"]
+    rows = [json.loads(line) for line in queue_path.read_text(encoding="utf-8").splitlines()]
+    assert progress["passed"] is False
+    assert progress["probe_frozen_before_adapter_outcomes"] is False
+    assert judge["passed"] is False
+    assert judge["agreement_gate"]["minimum_cohens_kappa_each_task"] == 0.70
+    assert sha256_file(queue_path) == judge["validation_queue"]["sha256"]
+    assert Counter(row["task"] for row in rows) == {"compliance": 200, "strict_af": 200}
+    assert all(not row["response"] and not row["human_label"] for row in rows)

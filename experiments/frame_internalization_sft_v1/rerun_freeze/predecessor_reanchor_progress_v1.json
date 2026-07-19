@@ -1,0 +1,122 @@
+{
+  "schema_version": "frame_internalization_predecessor_reanchor_progress.v1",
+  "freeze_date": "2026-07-19",
+  "status": "inputs_frozen_execution_pending",
+  "passed": false,
+  "probe_frozen_before_adapter_outcomes": false,
+  "freezer_sha256": "c75ebd76f9130307b31e0d42a7078692306f40a47db19fdc848d95a9d3030159",
+  "recovery_integrity": {
+    "status": "passed",
+    "command": "python scripts/recover_frame_predecessor_assets.py --check",
+    "stdout_last_line": "}"
+  },
+  "subgates": [
+    {
+      "gate_id": "prompt_text_reconstruction",
+      "status": "passed",
+      "evidence": {
+        "path": "experiments/frame_internalization_sft_v1/predecessor_prompt_reconstruction_v1.json",
+        "sha256": "6cd520016fc38e34dd2bb1153685baf0a2395f32930476f2c801c287990ae21f"
+      }
+    },
+    {
+      "gate_id": "immutable_model_tokenizer_freeze",
+      "status": "pending_cluster_verification",
+      "evidence": {
+        "path": "experiments/frame_internalization_sft_v1/rerun_freeze/model_tokenizer_remote_inventory_v1.json",
+        "sha256": "852f19dfb0d4dd36effb42b1c5440e0f34dad3fdf2b62020754f9df34524962d"
+      },
+      "remote_revision_frozen": true,
+      "pending": [
+        "cluster-local artifact hashes",
+        "inference-engine lock digest"
+      ]
+    },
+    {
+      "gate_id": "evaluation_universe_freeze",
+      "status": "pending_license_resolution",
+      "evidence": {
+        "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v1.json",
+        "sha256": "634e9fec24199ed646b8d4cf756fab5f53b7b2b1dfa01a5d9cce2a33dae19d11"
+      },
+      "content_frozen": true,
+      "pending": [
+        "LLM-LAT/harmful-dataset has no declared license in the pinned repository metadata; resolve before claiming the predecessor evaluation-universe gate passed."
+      ]
+    },
+    {
+      "gate_id": "judge_classifier_freeze",
+      "status": "pending_generation_and_human_labels",
+      "evidence": {
+        "path": "experiments/frame_internalization_sft_v1/rerun_freeze/judge_classifier_inputs_v1.json",
+        "sha256": "148de221f10221b97fd8ec69d26ba4f79d0a600ebdded95ed85f5ce2f5597fdc"
+      },
+      "pending": [
+        "generate the frozen base-model rows referenced by the validation queue",
+        "obtain blinded human labels",
+        "select immutable judge and classifier revisions plus decoding settings",
+        "freeze predictions before calculating agreement"
+      ]
+    },
+    {
+      "gate_id": "base_f0_layer27_probe_freeze",
+      "status": "pending_base_inference",
+      "frozen_code": [
+        {
+          "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/src/harvest_activations.py",
+          "sha256": "801ec842c0a228d6d2a1727d00541d64ff94ead49dcc96a91c51e8de62a6a251"
+        },
+        {
+          "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/src/analyze_internals.py",
+          "sha256": "e9fc284d43b41c8be0765a6ba89247933da73400b4cc48499d2b16fba73894ee"
+        }
+      ],
+      "frozen_parameters": {
+        "layer": 27,
+        "pool": "last_token",
+        "split": "prompt_disjoint_70_30",
+        "seed": 42,
+        "logistic_C": 0.5,
+        "standardization": "training_mean_and_std_plus_1e-6",
+        "controls": [
+          "random_label",
+          "random_projection"
+        ]
+      },
+      "pending": [
+        "activation array",
+        "prompt split",
+        "fitted probe",
+        "control receipts"
+      ]
+    },
+    {
+      "gate_id": "base_model_reanchor",
+      "status": "pending_base_inference_and_judging",
+      "frozen_analysis": {
+        "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/src/analyze_gap.py",
+        "sha256": "8c048dff8f41928df01504f63928af3c0479648132fba9897f73973aee8b6abb"
+      },
+      "frozen_decision_rule": {
+        "F0_gap_interval_inclusive": [
+          0.3167,
+          0.4033
+        ],
+        "bootstrap_draws": 10000,
+        "bootstrap_seed": 42,
+        "agreement_minimum_cohens_kappa_each_task": 0.7
+      },
+      "pending": [
+        "complete row join",
+        "gap receipt",
+        "benign guard",
+        "exclusion accounting"
+      ]
+    }
+  ],
+  "completion_receipt": {
+    "schema_version": "frame_internalization_predecessor_reanchor_receipt.v1",
+    "must_set_passed_true_only_after_every_subgate_passes": true,
+    "must_set_probe_frozen_before_adapter_outcomes_true": true
+  }
+}

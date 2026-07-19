@@ -18,6 +18,10 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 PACKAGE = Path("experiments/frame_internalization_sft_v1")
 AMENDMENT = PACKAGE / "protocol_amendment_v2.json"
 READINESS = PACKAGE / "readiness"
+BASE_PROGRESS = PACKAGE / "rerun_freeze/model_tokenizer_remote_inventory_v1.json"
+CURRICULUM_PROGRESS = PACKAGE / "rerun_freeze/curriculum_generation_v1/request_manifest.json"
+NONLEAKAGE_PROGRESS = PACKAGE / "rerun_freeze/nonleakage_source_prompts_v1.json"
+PREDECESSOR_PROGRESS = PACKAGE / "rerun_freeze/predecessor_reanchor_progress_v1.json"
 
 
 def parse_args() -> argparse.Namespace:
@@ -112,6 +116,23 @@ def optional_evidence(
         {"path": display_path(root, path), "sha256": sha256_file(path), "error": error},
         next_action,
     )
+
+
+def progress_evidence(root: Path, path: Path) -> dict[str, Any]:
+    resolved = (root / path).resolve()
+    if not resolved.is_file():
+        return {"path": None, "sha256": None}
+    try:
+        document = read_json(resolved)
+        status = document.get("status")
+    except (OSError, ValueError, json.JSONDecodeError):
+        status = "unreadable"
+    return {
+        "path": display_path(root, resolved),
+        "sha256": sha256_file(resolved),
+        "status": status,
+        "gate_satisfying": False,
+    }
 
 
 def governance_audit(root: Path) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -301,23 +322,36 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         ),
     ]
 
-    gates.append(
-        optional_evidence(
-            root,
-            args.base_freeze,
-            "base_model_tokenizer_freeze",
-            "frame_internalization_base_freeze.v1",
-            lambda doc: doc.get("passed") is True and doc.get("immutable_revisions") is True,
-            "freeze immutable model/tokenizer revisions, chat template, license, and artifact hashes",
+    if args.base_freeze is None:
+        gates.append(
+            gate(
+                "base_model_tokenizer_freeze",
+                "pending",
+                progress_evidence(root, BASE_PROGRESS),
+                "verify the frozen remote inventory against the cluster cache and inference-engine lock",
+            )
         )
-    )
+    else:
+        gates.append(
+            optional_evidence(
+                root,
+                args.base_freeze,
+                "base_model_tokenizer_freeze",
+                "frame_internalization_base_freeze.v1",
+                lambda doc: doc.get("passed") is True and doc.get("immutable_revisions") is True,
+                "freeze immutable model/tokenizer revisions, chat template, license, and artifact hashes",
+            )
+        )
 
     if args.curriculum_manifest is None:
         gates.append(
             gate(
                 "matched_curriculum_and_token_parity",
                 "pending",
-                {"path": None, "required_f3_pair_total_token_spread_max": 0.02},
+                {
+                    **progress_evidence(root, CURRICULUM_PROGRESS),
+                    "required_f3_pair_total_token_spread_max": 0.02,
+                },
                 "generate and freeze all six matched curricula with exact scenario and token receipts",
             )
         )
@@ -361,6 +395,45 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
             )
         )
 
+    nonleakage = (
+        gate(
+            "nonleakage_audit",
+            "pending",
+            progress_evidence(root, NONLEAKAGE_PROGRESS),
+            "run the registered audit over generated text from all six curricula",
+        )
+        if args.nonleakage_audit is None
+        else optional_evidence(
+            root,
+            args.nonleakage_audit,
+            "nonleakage_audit",
+            "frame_internalization_nonleakage_audit.v1",
+            lambda doc: doc.get("passed") is True
+            and doc.get("exact_overlap_count") == 0
+            and doc.get("normalized_overlap_count") == 0
+            and doc.get("ngram_overlap_count") == 0,
+            "run exact, normalized, and registered n-gram audits against every eval universe",
+        )
+    )
+    predecessor = (
+        gate(
+            "predecessor_reanchor",
+            "pending",
+            progress_evidence(root, PREDECESSOR_PROGRESS),
+            "complete base inference, human judge validation, and the frozen layer-27 probe",
+        )
+        if args.predecessor_reanchor is None
+        else optional_evidence(
+            root,
+            args.predecessor_reanchor,
+            "predecessor_reanchor",
+            "frame_internalization_predecessor_reanchor_receipt.v1",
+            lambda doc: doc.get("passed") is True
+            and doc.get("probe_frozen_before_adapter_outcomes") is True,
+            "complete the existing reanchoring plan and freeze the base endpoint and probe",
+        )
+    )
+
     gates.extend(
         [
             optional_evidence(
@@ -371,17 +444,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                 lambda doc: doc.get("passed") is True and doc.get("cluster_overlap_count") == 0,
                 "freeze a cluster-disjoint train/validation assignment",
             ),
-            optional_evidence(
-                root,
-                args.nonleakage_audit,
-                "nonleakage_audit",
-                "frame_internalization_nonleakage_audit.v1",
-                lambda doc: doc.get("passed") is True
-                and doc.get("exact_overlap_count") == 0
-                and doc.get("normalized_overlap_count") == 0
-                and doc.get("ngram_overlap_count") == 0,
-                "run exact, normalized, and registered n-gram audits against every eval universe",
-            ),
+            nonleakage,
             optional_evidence(
                 root,
                 args.evaluation_seal,
@@ -400,15 +463,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                 and int(doc.get("rows_per_suite", 0)) >= 3,
                 "exercise the actual blinded judge CLI on synthetic pass, fail, and malformed rows per suite",
             ),
-            optional_evidence(
-                root,
-                args.predecessor_reanchor,
-                "predecessor_reanchor",
-                "frame_internalization_predecessor_reanchor_receipt.v1",
-                lambda doc: doc.get("passed") is True
-                and doc.get("probe_frozen_before_adapter_outcomes") is True,
-                "complete the existing reanchoring plan and freeze the base endpoint and probe",
-            ),
+            predecessor,
             optional_evidence(
                 root,
                 args.training_smoke,
@@ -443,7 +498,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
     status = "pilot_ready" if not blocking else ("failed" if failed else "gates_pending")
     return {
         "schema_version": "frame_internalization_pre_spend_readiness.v1",
-        "audit_date": "2026-07-17",
+        "audit_date": "2026-07-19",
         "status": status,
         "pilot_ready": not blocking,
         "scholar_review_blocks_compute": False,
