@@ -149,3 +149,17 @@ Tracked aggregate evidence:
 
 Raw responses, private blinding maps, and the merged blinded judge bundle remain
 outside Git and are bound by the hashes in the result receipt.
+
+The merged 900-row bundle subsequently passed the existing fail-closed judge
+CLI in dry-run mode: all row digests verified, routing selected 450 storyworld,
+225 pressure, and 225 theology-guardrail rows, and no provider call or score was
+produced. The receipt is
+`results/bonsai_1p7b_q1_local_v2_blinded_bundle_dry_run.json`.
+
+A post-result human-validation handoff is frozen under
+`human_validation/v1/`. It includes all 60 actions from all 20 frozen
+evaluation turns and therefore makes no outcome-based sample selection. Two
+reviewer templates require 600 independent dimension judgments. The packet
+contains no condition cue, condition label, model output, frozen score, or
+frozen tag; the join map remains outside Git. Human review and qualified scholar
+review are still incomplete.

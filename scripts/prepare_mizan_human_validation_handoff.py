@@ -263,7 +263,7 @@ def review_packet(queue_rows: list[dict[str, Any]], dimensions: list[str]) -> st
                     "",
                 ]
             )
-    return "\n".join(lines) + "\n"
+    return "\n".join(lines).rstrip() + "\n"
 
 
 def prepare_handoff(

@@ -1,0 +1,39 @@
+{
+  "schema_version": "mizan_blinded_bundle_dry_run_v1",
+  "execution_id": "mizan_bonsai_1p7b_q1_local_v2",
+  "recorded_at": "2026-07-20T03:07:43.6339124-04:00",
+  "source_commit": "ad464594598195a3199e6e307ebbfbcd9f0d1202",
+  "bundle": {
+    "tracked_in_git": false,
+    "path": "D:\\Research_Engine\\jinn_or_beast\\mizan_bonsai_1p7b_q1_local_v2_ec45a3d\\analysis\\blinded_judge_bundle\\responses.jsonl",
+    "sha256": "3f1e5ad6e0506cf3335f6920f4dbeced5262480bf5ba43f170ba7f10ce110d37"
+  },
+  "cli_files": {
+    "constitutional-harness/src/bundle_judge_cli.ts": "a1661ee1402aa155027705112c1535c862fdddf050eb22d61d6550bd4876b9d7",
+    "constitutional-harness/src/bundle/ingest.ts": "3f655f986b216f63a8fc8e7ce1c76d01e83e4c98bc54133fac6c0a69e85b09cd",
+    "constitutional-harness/src/bundle/schema.ts": "13a50cfa34c71f9b79c16728088b48fd14dc8ce33377371f09bda00be74812a5",
+    "constitutional-harness/src/bundle/dimensions.ts": "f0e3514bbbd22bd3c807b1df1516d323e302fee44c6770a505f4c112578c771c"
+  },
+  "command": "npx tsx src/bundle_judge_cli.ts --bundle <external_bundle_dir> --dry-run",
+  "summary": {
+    "mode": "dry-run",
+    "total_rows": 900,
+    "selected_rows": 900,
+    "selected_by_suite": {
+      "storyworld": 450,
+      "identity_behavior": 0,
+      "pressure": 225,
+      "helpfulness": 0,
+      "theology_guardrail": 225
+    },
+    "sha256_verified_rows": 900,
+    "provider_calls": 0,
+    "completed_rows": 0,
+    "error_rows": 0,
+    "output_path": null
+  },
+  "passed": true,
+  "judge_scores_generated": false,
+  "human_validation_complete": false,
+  "normative_claims_allowed": false
+}
