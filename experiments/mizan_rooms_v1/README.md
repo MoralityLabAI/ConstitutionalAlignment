@@ -17,6 +17,9 @@ centralized in `papers/jinn_or_beast_claim_ladder_v1.md`.
 - `scripts/validate_mizan_rooms.py`: schema, split, action, and cue audit.
 - `scripts/run_mizan_rooms.py`: resumable multi-turn runner.
 - `scripts/analyze_mizan_rooms.py`: paired contrasts and clustered intervals.
+- `SCHOLAR_REVIEW_PLAN_V1.md`: post-result, full-cue scholar-review boundary.
+- `schemas/mizan_scholar_review_receipt_v1.schema.json`: exact receipt contract.
+- `scripts/prepare_mizan_scholar_review_handoff.py`: fail-closed handoff generator.
 
 Every turn offers exactly three canonical action IDs. Their display order is
 cyclically rotated across three replicates. Actions update visible room state;
@@ -163,3 +166,10 @@ reviewer templates require 600 independent dimension judgments. The packet
 contains no condition cue, condition label, model output, frozen score, or
 frozen tag; the join map remains outside Git. Human review and qualified scholar
 review are still incomplete.
+
+The separate scholar-review plan covers all 15 fielded cue cells without model
+outputs, action selections, or result statistics. It requires one qualified
+Muslim scholar external to the author team, binds the receipt to exact file
+hashes, records qualifications and conflicts, and reports every finding without
+introducing a post-result numeric pass threshold. Semantic blinding is not
+claimed because the cue wording itself exposes much of each construct.
