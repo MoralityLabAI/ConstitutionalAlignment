@@ -1,0 +1,160 @@
+{
+  "schema_version": "mizan_local_result_receipt_v1",
+  "execution_id": "mizan_bonsai_1p7b_q1_local_v2",
+  "status": "complete",
+  "classification": "supplemental_exploratory_prompt_sensitivity_pilot",
+  "fielded_commit": "ec45a3dd43d614843868732850ebb465980d1480",
+  "completed_at": "2026-07-20T02:51:08.7725601-04:00",
+  "model_and_engine": {
+    "model_id": "bonsai-1p7b-q1-3d7c6c90",
+    "model_sha256": "3d7c6c90dd98717a203adb22d5eacd2581850e40aa5327e144b97766cae5f7e3",
+    "llama_server_sha256": "6d43ca3cf3f831b40e25ba6ac2febcce05d1c4ccd92712214948e6b71053f2f6",
+    "cpu_only": true,
+    "threads": 2
+  },
+  "development_gate": {
+    "episodes": 4,
+    "turns": 20,
+    "valid_turns": 20,
+    "strict_two_key_json_turns": 20,
+    "manifest_sha256": "081efd1bb37f8026649a44211767e8daeb001506f7c9e32c692e4c824fc0e7a1",
+    "episodes_sha256": "0d268244daf704ca0cea004ec1ae0beaf4d2bb34fdceb66b9629952fac5bc796",
+    "judge_bundle_sha256": "aafed923ac049a2c29e19d6898b9891469e4c69900e5f8b7e9614928c4e3f241",
+    "passed": true
+  },
+  "evaluation_matrix": {
+    "conditions": [
+      "neutral",
+      "constitutional",
+      "secular_omniscient",
+      "eschatological",
+      "unreliable_authority"
+    ],
+    "seeds": [
+      11,
+      23,
+      47
+    ],
+    "replicates": 3,
+    "rooms": 4,
+    "shards": 15,
+    "episodes": 180,
+    "turns": 900,
+    "valid_turns": 900,
+    "strict_two_key_json_turns": 900,
+    "complete_condition_blocks": 36,
+    "resumed_boundary": {
+      "shard": "neutral_s11",
+      "episode_receipts_reused": 9,
+      "partial_episode_counted": false
+    },
+    "shard_manifest_sha256": {
+      "constitutional_s11": "e9c4c9ab2050ae005daa96f50c056a5b05265c91a4fbafc28568279f279c1be3",
+      "constitutional_s23": "29ce064016b7d8a1bf16c25a1bf773f5274a11d7a2864d9ddbe528d6e09c9c2a",
+      "constitutional_s47": "4e6bb4e662118ab52592f652c04b8bea1729b069ebf4096d3c503d8ac1bae3d0",
+      "eschatological_s11": "da3e9cff77ba39e0f2f84292f8ba22ed08405fd3c0edaa1f060fcc6dbb23457f",
+      "eschatological_s23": "0645127690fdcd26d5fe46940c03d61bdcc71bb7a459e1df6a82305a83dcee6e",
+      "eschatological_s47": "f031ea2b6858006c918508e574829f8724d494ca24edcda143c9140a31a37dfa",
+      "neutral_s11": "98f4008d5fd7046e4388620d153efcbaaf5e3e4f42fe2a2077ee9326e166cb25",
+      "neutral_s23": "d10ec17225b7d1f1011682c0b05a8de7e7abc13078166217890e39972fafdbc6",
+      "neutral_s47": "3e3835467b6fef6df15a36edd3d0d3d2edb54daa36aa349bac0c5d40b5b7cd09",
+      "secular_omniscient_s11": "8e3af06fb974e6825fc2355fc759578950747509de4e741d96af94dbfb237dd9",
+      "secular_omniscient_s23": "28cee516c7975623648643b1545751ee2178c9edc57493c68430bf4bbd4616ea",
+      "secular_omniscient_s47": "30953fb70ada6c296d43666c62afebf197e1d894cdc90a2663bac61d66bdfeaa",
+      "unreliable_authority_s11": "c31f0a341fd5ae88b5baeac729caca8e02747857c626ae2a36e081aba14546f5",
+      "unreliable_authority_s23": "1640ad04234037110b586e64fd184bc7ddb6aa1d75c3ab6ac02d894b54ae0e1c",
+      "unreliable_authority_s47": "bec0e7cb9695b6cfecfb7af0c0193148afb7c7adb730c4b395dae2ea62c085eb"
+    }
+  },
+  "frozen_analysis": {
+    "analysis_plan_sha256": "143c45fda76cf978f5784376ef1deb1bc71ec3c19d215d64dbe0661f8d7eea60",
+    "analyzer_sha256": "bd9c4fc61c2caab178b42224cbcdef69e03af2acd07275a4ae2c714e9a06a454",
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 20260716,
+    "cluster_unit": "room_variant",
+    "tracked_analysis_path": "experiments/mizan_rooms_v1/results/bonsai_1p7b_q1_local_v2_analysis.json",
+    "analysis_sha256": "786e4200c14d6915de936ed4adf463c7ef3cd8b64a135f58b583a79f3949c3d0",
+    "merged_blinded_judge_rows": 900,
+    "merged_blinded_judge_sha256": "3f1e5ad6e0506cf3335f6920f4dbeced5262480bf5ba43f170ba7f10ce110d37"
+  },
+  "headline_results": {
+    "primary_eschatological_vs_secular_omniscient": {
+      "action_switch_rate": 0.07777777777777778,
+      "action_switch_ci_95_percentile": [
+        0.03888888888888889,
+        0.10555555555555556
+      ],
+      "behavioral_proxy_delta": 0.010833333333333337,
+      "behavioral_proxy_delta_ci_95_percentile": [
+        -0.01611111111111111,
+        0.04222222222222223
+      ],
+      "invalid_action_rate_delta": 0
+    },
+    "eschatological_vs_constitutional": {
+      "action_switch_rate": 0.08888888888888889,
+      "action_switch_ci_95_percentile": [
+        0.044444444444444446,
+        0.12222222222222222
+      ],
+      "behavioral_proxy_delta": 0.012777777777777775,
+      "behavioral_proxy_delta_ci_95_percentile": [
+        -0.015833333333333335,
+        0.04305555555555555
+      ]
+    },
+    "eschatological_vs_neutral": {
+      "action_switch_rate": 0.07222222222222222,
+      "action_switch_ci_95_percentile": [
+        0.03888888888888889,
+        0.1
+      ],
+      "behavioral_proxy_delta": 0.01263888888888889,
+      "behavioral_proxy_delta_ci_95_percentile": [
+        -0.001388888888888891,
+        0.02583333333333334
+      ]
+    },
+    "unreliable_authority_vs_neutral": {
+      "action_switch_rate": 0.09444444444444444,
+      "action_switch_ci_95_percentile": [
+        0.027777777777777776,
+        0.16666666666666669
+      ],
+      "behavioral_proxy_delta": -0.004444444444444445,
+      "behavioral_proxy_delta_ci_95_percentile": [
+        -0.03125000000000001,
+        0.018194444444444447
+      ]
+    },
+    "same_action_across_all_three_option_orders_rate": 0.6233333333333333,
+    "invalid_action_rate_all_conditions": 0
+  },
+  "integrity_checks": {
+    "all_bundle_hashes_match": true,
+    "all_manifest_hashes_unique": true,
+    "complete_registered_matrix": true,
+    "package_commit_consistent": true,
+    "model_revision_consistent": true,
+    "mizan_tests_passed": 5,
+    "run_owned_processes_remaining": 0
+  },
+  "claim_boundary": {
+    "supported": "The exact local Bonsai Q1 artifact showed prompt-conditioned action switching on the Mizan Rooms instrument.",
+    "not_supported": [
+      "normative improvement",
+      "eschatological specificity",
+      "frame internalization or persistence after cue removal",
+      "generalization beyond this four-room exploratory instrument",
+      "a confirmatory or powered multi-model result"
+    ],
+    "human_adjudication_complete": false,
+    "scholar_review_complete": false,
+    "confirmatory_status": false
+  },
+  "raw_outputs": {
+    "tracked_in_git": false,
+    "local_root": "D:\\Research_Engine\\jinn_or_beast\\mizan_bonsai_1p7b_q1_local_v2_ec45a3d",
+    "note": "Raw transcripts and private blinding maps remain outside Git; tracked artifacts contain aggregate results and cryptographic receipts only."
+  }
+}

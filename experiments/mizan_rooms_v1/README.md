@@ -123,3 +123,29 @@ bash experiments/mizan_rooms_v1/slurm/analyze_array.sh
 
 The analysis fails closed on incomplete condition matrices and writes a merged
 blinded judge bundle plus the preregistered descriptive report.
+
+## Completed local v2 result
+
+The prospectively frozen CPU-only Bonsai Q1 run fielded the clean v2 package at
+commit `ec45a3d`. Its development gate passed 20/20 strict-JSON turns, followed
+by the complete registered matrix: 15 shards, 180 episodes, and 900/900 valid
+turns. One interrupted shard resumed from nine hash-checked episode receipts;
+no partial episode was counted.
+
+The primary eschatological-versus-secular-omniscient contrast switched actions
+on 7.78% of paired turns (room-cluster bootstrap 95% percentile interval
+3.89%–10.56%). The frozen behavioral-proxy delta was +0.0108
+(-0.0161–0.0422), so the run does not establish improvement on that proxy. The
+unreliable-authority control also switched 9.44% of turns versus neutral
+(2.78%–16.67%), and only 62.33% of complete option-order groups selected the
+same action under all three rotations. These patterns support descriptive
+prompt sensitivity on this instrument, not eschatological specificity,
+normative improvement, or frame internalization.
+
+Tracked aggregate evidence:
+
+- `results/bonsai_1p7b_q1_local_v2_analysis.json`
+- `results/bonsai_1p7b_q1_local_v2_receipt.json`
+
+Raw responses, private blinding maps, and the merged blinded judge bundle remain
+outside Git and are bound by the hashes in the result receipt.
