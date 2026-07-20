@@ -1,0 +1,76 @@
+{
+  "schema_version": "mizan_human_validation_handoff_v1",
+  "status": "templates_incomplete_external_review_required",
+  "classification": "post_result_full_action_universe_validation",
+  "source_commit": "fdf59bc005fcdf10b98e500625e1613325f11689",
+  "timing_attestation": {
+    "model_outputs_existed_before_handoff_freeze": true,
+    "review_units_selected_using_model_outputs": false,
+    "all_frozen_evaluation_actions_included": true,
+    "model_outputs_in_reviewer_packet": false,
+    "condition_labels_or_cues_in_reviewer_packet": false,
+    "frozen_scores_or_tags_in_reviewer_packet": false
+  },
+  "analysis": {
+    "path": "experiments/mizan_rooms_v1/results/bonsai_1p7b_q1_local_v2_analysis.json",
+    "sha256": "786e4200c14d6915de936ed4adf463c7ef3cd8b64a135f58b583a79f3949c3d0"
+  },
+  "source_files": {
+    "experiments/mizan_rooms_v1/rooms/sealed_ledger_eval.json": "b61d383be9cf4a2962aaf07b4f9d2cbc05f16dde9283636ad0e1e1d7a26445cf",
+    "experiments/mizan_rooms_v1/rooms/reset_chamber_eval.json": "80a61d3861e0b4134cd1704d28bf3d51a7f50ccee40db97b70468e3752954277",
+    "experiments/mizan_rooms_v1/rooms/false_intercessor_eval.json": "a95db1d7b6497bd18c7df8c7bab70af1c50f2dfeb8d72f9171a9e79526aa4908",
+    "experiments/mizan_rooms_v1/rooms/tawbah_eval.json": "fa7c2e8ac48ae0c5ec9a386768d56ca7aa914a95b9f3ce6a8b32a45552a0ec3c"
+  },
+  "dimensions": [
+    "integrity",
+    "harm_avoidance",
+    "epistemic_humility",
+    "repair",
+    "task_progress"
+  ],
+  "counts": {
+    "evaluation_rooms": 4,
+    "review_units": 20,
+    "actions": 60,
+    "independent_reviewers_required": 2,
+    "unit_receipts_required": 40,
+    "dimension_scores_required": 600
+  },
+  "public_files": {
+    "ACTION_REVIEW_QUEUE.jsonl": {
+      "bytes": 29606,
+      "sha256": "3664ec292f4fdd048e7c67363fe48fa0026f9a94a8890811db25f4e62cf090f6"
+    },
+    "ACTION_REVIEW_PACKET.md": {
+      "bytes": 20796,
+      "sha256": "7669c69d64f7e9042e7a06de8b1718d4459cf5f3d99210bd69709978f86d9c2d"
+    },
+    "REVIEWER_1_TEMPLATE.jsonl": {
+      "bytes": 21100,
+      "sha256": "7c74b1445402ac668342e144a99923f905d9c6e2966798502715846636ed31f5"
+    },
+    "REVIEWER_2_TEMPLATE.jsonl": {
+      "bytes": 21100,
+      "sha256": "7c74b1445402ac668342e144a99923f905d9c6e2966798502715846636ed31f5"
+    }
+  },
+  "private_blinding_map": {
+    "tracked_in_git": false,
+    "path": "D:\\Research_Engine\\jinn_or_beast\\mizan_bonsai_1p7b_q1_local_v2_ec45a3d\\human_validation_v1_fdf59bc\\private\\action_score_blinding_map.jsonl",
+    "rows": 20,
+    "sha256": "8b155ead271914a3ef544253ab8d9c7dff1f55a1c0419b0a1e7df8d59d7d5a5e"
+  },
+  "untouched_templates_rejected": true,
+  "template_rejection": "ValueError: MZ-UNIT-003d8338f9e0: incomplete reviewer_pseudonym",
+  "interpretation_rules": [
+    "Report agreement and every disagreement; do not add a post-result pass threshold.",
+    "Human scores validate or challenge the frozen proxy labels but do not replace the registered analysis silently.",
+    "Qualified scholar review remains separate and required before normative or theological interpretation.",
+    "This post-result handoff cannot promote the exploratory run to confirmatory status."
+  ],
+  "human_review_complete": false,
+  "scholar_review_complete": false,
+  "normative_claims_allowed": false,
+  "passed": true,
+  "handoff_content_sha256": "cd68ebcc26f2fc23c58bd53cf86f0154690e7d00b06463c75779319a015627e9"
+}
