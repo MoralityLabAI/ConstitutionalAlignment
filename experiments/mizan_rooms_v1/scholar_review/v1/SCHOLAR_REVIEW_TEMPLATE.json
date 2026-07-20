@@ -1,0 +1,493 @@
+{
+  "schema_version": "mizan_scholar_review_receipt.v1",
+  "review_contract_id": "mizan_cue_scholar_review_v1",
+  "source_bindings": {
+    "source_commit": "fe75fc8d169cabd3bb28881ade3696bcba075bf5",
+    "conditions_sha256": "ffffbbec083892c72ae8aff53d75dcbfa7abd01777508829efc3e0773e9820d7",
+    "queue_sha256": "6b4f9f0465fc57e05484109c6ff02d40c144b636fcaa6e6947910915ced4e833",
+    "packet_sha256": "2b14e0489e50585076bf48f68b143afc89de097d300b504fa41c67bef2bb8a55",
+    "receipt_schema_sha256": "9b0d767e76979f5a0ef0195ce11f17403b783087c052e7ed9e92384070d5ec2a"
+  },
+  "reviewer": {
+    "reviewer_id": "REPLACE_ME",
+    "role": "qualified_muslim_scholar",
+    "external_to_author_team": false,
+    "qualification_summary": "REPLACE_ME",
+    "audit_identity_record_location": "REPLACE_ME",
+    "conflicts_disclosed": null,
+    "conflict_details": "REPLACE_ME"
+  },
+  "review_timing_acknowledgments": {
+    "model_outcomes_preexisted_this_review": true,
+    "model_outputs_not_consulted": false,
+    "result_statistics_not_consulted": false,
+    "historical_fielded_cues_will_not_be_silently_edited": false,
+    "all_findings_will_be_reported": false
+  },
+  "family_reviews": [
+    {
+      "review_family_id": "MZS-FAMILY-3d20d44e469d",
+      "queue_row_sha256": "0650300ca975515879e455e023ed18706f6034e02d60069c128347b2af4711f2",
+      "inferred_construct": "REPLACE_ME",
+      "cue_reviews": [
+        {
+          "review_cue_id": "MZS-CUE-13b7c22c092f",
+          "criterion_results": [
+            {
+              "criterion_id": "theological_accuracy_and_tone",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "intended_construct_fit",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "confound_or_misuse_risk",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            }
+          ]
+        },
+        {
+          "review_cue_id": "MZS-CUE-c7c96af36292",
+          "criterion_results": [
+            {
+              "criterion_id": "theological_accuracy_and_tone",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "intended_construct_fit",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "confound_or_misuse_risk",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            }
+          ]
+        },
+        {
+          "review_cue_id": "MZS-CUE-0c5a8b0345bc",
+          "criterion_results": [
+            {
+              "criterion_id": "theological_accuracy_and_tone",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "intended_construct_fit",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "confound_or_misuse_risk",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            }
+          ]
+        }
+      ],
+      "family_criterion_results": [
+        {
+          "criterion_id": "semantic_continuity_across_stages",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        },
+        {
+          "criterion_id": "comparator_distinctness",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        },
+        {
+          "criterion_id": "final_accountability_operationalization",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        },
+        {
+          "criterion_id": "unreliable_authority_control_coherence",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        }
+      ],
+      "overall_finding": null,
+      "summary": "REPLACE_ME",
+      "recommended_future_changes": []
+    },
+    {
+      "review_family_id": "MZS-FAMILY-43d4f1958226",
+      "queue_row_sha256": "a1d789fcc9b686c53f5ea36cb048a2b2fc311fbbe79a97ca0492e10f9bae74f0",
+      "inferred_construct": "REPLACE_ME",
+      "cue_reviews": [
+        {
+          "review_cue_id": "MZS-CUE-e0355923509e",
+          "criterion_results": [
+            {
+              "criterion_id": "theological_accuracy_and_tone",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "intended_construct_fit",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "confound_or_misuse_risk",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            }
+          ]
+        },
+        {
+          "review_cue_id": "MZS-CUE-7f84b542edfe",
+          "criterion_results": [
+            {
+              "criterion_id": "theological_accuracy_and_tone",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "intended_construct_fit",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "confound_or_misuse_risk",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            }
+          ]
+        },
+        {
+          "review_cue_id": "MZS-CUE-97488da3f445",
+          "criterion_results": [
+            {
+              "criterion_id": "theological_accuracy_and_tone",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "intended_construct_fit",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "confound_or_misuse_risk",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            }
+          ]
+        }
+      ],
+      "family_criterion_results": [
+        {
+          "criterion_id": "semantic_continuity_across_stages",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        },
+        {
+          "criterion_id": "comparator_distinctness",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        },
+        {
+          "criterion_id": "final_accountability_operationalization",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        },
+        {
+          "criterion_id": "unreliable_authority_control_coherence",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        }
+      ],
+      "overall_finding": null,
+      "summary": "REPLACE_ME",
+      "recommended_future_changes": []
+    },
+    {
+      "review_family_id": "MZS-FAMILY-5fe3a9425452",
+      "queue_row_sha256": "9a1d96e29e84a020b44f4bf4c668fb5e1bb13a87a237477b4131e2443bc1d0c7",
+      "inferred_construct": "REPLACE_ME",
+      "cue_reviews": [
+        {
+          "review_cue_id": "MZS-CUE-279cb54f2b93",
+          "criterion_results": [
+            {
+              "criterion_id": "theological_accuracy_and_tone",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "intended_construct_fit",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "confound_or_misuse_risk",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            }
+          ]
+        },
+        {
+          "review_cue_id": "MZS-CUE-4e7f30c0c204",
+          "criterion_results": [
+            {
+              "criterion_id": "theological_accuracy_and_tone",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "intended_construct_fit",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "confound_or_misuse_risk",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            }
+          ]
+        },
+        {
+          "review_cue_id": "MZS-CUE-b88099792f8f",
+          "criterion_results": [
+            {
+              "criterion_id": "theological_accuracy_and_tone",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "intended_construct_fit",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "confound_or_misuse_risk",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            }
+          ]
+        }
+      ],
+      "family_criterion_results": [
+        {
+          "criterion_id": "semantic_continuity_across_stages",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        },
+        {
+          "criterion_id": "comparator_distinctness",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        },
+        {
+          "criterion_id": "final_accountability_operationalization",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        },
+        {
+          "criterion_id": "unreliable_authority_control_coherence",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        }
+      ],
+      "overall_finding": null,
+      "summary": "REPLACE_ME",
+      "recommended_future_changes": []
+    },
+    {
+      "review_family_id": "MZS-FAMILY-bf3a9595f24f",
+      "queue_row_sha256": "033bbf3d6138a6aaa20651a4255bdae4037607dca43b54575242c5cfa82c0d68",
+      "inferred_construct": "REPLACE_ME",
+      "cue_reviews": [
+        {
+          "review_cue_id": "MZS-CUE-994e636057bf",
+          "criterion_results": [
+            {
+              "criterion_id": "theological_accuracy_and_tone",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "intended_construct_fit",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "confound_or_misuse_risk",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            }
+          ]
+        },
+        {
+          "review_cue_id": "MZS-CUE-4dac3b901319",
+          "criterion_results": [
+            {
+              "criterion_id": "theological_accuracy_and_tone",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "intended_construct_fit",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "confound_or_misuse_risk",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            }
+          ]
+        },
+        {
+          "review_cue_id": "MZS-CUE-3ec985d61504",
+          "criterion_results": [
+            {
+              "criterion_id": "theological_accuracy_and_tone",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "intended_construct_fit",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "confound_or_misuse_risk",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            }
+          ]
+        }
+      ],
+      "family_criterion_results": [
+        {
+          "criterion_id": "semantic_continuity_across_stages",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        },
+        {
+          "criterion_id": "comparator_distinctness",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        },
+        {
+          "criterion_id": "final_accountability_operationalization",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        },
+        {
+          "criterion_id": "unreliable_authority_control_coherence",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        }
+      ],
+      "overall_finding": null,
+      "summary": "REPLACE_ME",
+      "recommended_future_changes": []
+    },
+    {
+      "review_family_id": "MZS-FAMILY-c222204d9772",
+      "queue_row_sha256": "701592a1300b90336b29b9349b0ac182082a27d0dd1ba4d813e7eaaf56bbdaf3",
+      "inferred_construct": "REPLACE_ME",
+      "cue_reviews": [
+        {
+          "review_cue_id": "MZS-CUE-8ccab575bc8f",
+          "criterion_results": [
+            {
+              "criterion_id": "theological_accuracy_and_tone",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "intended_construct_fit",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "confound_or_misuse_risk",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            }
+          ]
+        },
+        {
+          "review_cue_id": "MZS-CUE-fe0a7a2c0653",
+          "criterion_results": [
+            {
+              "criterion_id": "theological_accuracy_and_tone",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "intended_construct_fit",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "confound_or_misuse_risk",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            }
+          ]
+        },
+        {
+          "review_cue_id": "MZS-CUE-dced611f5c45",
+          "criterion_results": [
+            {
+              "criterion_id": "theological_accuracy_and_tone",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "intended_construct_fit",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            },
+            {
+              "criterion_id": "confound_or_misuse_risk",
+              "finding": null,
+              "comment": "REPLACE_ME"
+            }
+          ]
+        }
+      ],
+      "family_criterion_results": [
+        {
+          "criterion_id": "semantic_continuity_across_stages",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        },
+        {
+          "criterion_id": "comparator_distinctness",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        },
+        {
+          "criterion_id": "final_accountability_operationalization",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        },
+        {
+          "criterion_id": "unreliable_authority_control_coherence",
+          "finding": null,
+          "comment": "REPLACE_ME"
+        }
+      ],
+      "overall_finding": null,
+      "summary": "REPLACE_ME",
+      "recommended_future_changes": []
+    }
+  ],
+  "overall_assessment": null,
+  "overall_comment": "REPLACE_ME",
+  "reviewed_at": "REPLACE_WITH_ISO_8601_TIMEZONE_TIMESTAMP",
+  "attestation": "I reviewed every cue in the exact hash-bound packet, without consulting model outputs or result statistics, and understand that this post-result review cannot make the exploratory run confirmatory."
+}

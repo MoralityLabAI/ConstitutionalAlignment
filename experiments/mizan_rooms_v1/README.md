@@ -173,3 +173,12 @@ Muslim scholar external to the author team, binds the receipt to exact file
 hashes, records qualifications and conflicts, and reports every finding without
 introducing a post-result numeric pass threshold. Semantic blinding is not
 claimed because the cue wording itself exposes much of each construct.
+
+The reviewer-ready public handoff is frozen under `scholar_review/v1/` from
+source commit `fe75fc8d169cabd3bb28881ade3696bcba075bf5`. Its handoff-content
+SHA-256 is
+`09cb908fb7bcff90a00d3dc7672459e5f336b5e908b41f5ddf54588b11f81747`.
+The private condition join remains outside Git, bound by SHA-256
+`0cba43e7996d50085736a06230ac6629b71b58513ab53a1faaca1a2b5ace9f8b`.
+The template is intentionally incomplete; no scholar finding or approval is
+claimed.

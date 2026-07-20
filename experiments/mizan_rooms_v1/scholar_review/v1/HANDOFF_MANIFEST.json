@@ -1,0 +1,64 @@
+{
+  "schema_version": "mizan_scholar_review_handoff_v1",
+  "status": "template_incomplete_external_scholar_review_required",
+  "classification": "post_result_full_cue_universe_scholar_review",
+  "source_commit": "fe75fc8d169cabd3bb28881ade3696bcba075bf5",
+  "timing_attestation": {
+    "model_outcomes_existed_before_handoff_freeze": true,
+    "cue_cells_selected_using_model_outputs_or_results": false,
+    "all_fielded_cue_cells_included": true,
+    "model_outputs_or_action_selections_in_packet": false,
+    "result_statistics_in_packet": false,
+    "source_condition_labels_in_packet": false,
+    "semantic_blinding_claimed": false
+  },
+  "source_files": {
+    "experiments/mizan_rooms_v1/conditions.json": "ffffbbec083892c72ae8aff53d75dcbfa7abd01777508829efc3e0773e9820d7",
+    "experiments/mizan_rooms_v1/suite.json": "c0a94f870edbcc39599a5fc90c68487e0443cf7e50a828b2917a3690a0ee9557",
+    "schemas/mizan_scholar_review_receipt_v1.schema.json": "9b0d767e76979f5a0ef0195ce11f17403b783087c052e7ed9e92384070d5ec2a"
+  },
+  "counts": {
+    "cue_families": 5,
+    "cue_cells": 15,
+    "qualified_external_scholars_required": 1,
+    "cue_criterion_findings_required": 45,
+    "family_criterion_findings_required": 20
+  },
+  "public_files": {
+    "CUE_REVIEW_QUEUE.jsonl": {
+      "bytes": 4502,
+      "sha256": "6b4f9f0465fc57e05484109c6ff02d40c144b636fcaa6e6947910915ced4e833"
+    },
+    "SCHOLAR_REVIEW_PACKET.md": {
+      "bytes": 5468,
+      "sha256": "2b14e0489e50585076bf48f68b143afc89de097d300b504fa41c67bef2bb8a55"
+    },
+    "RECEIPT_SCHEMA.json": {
+      "bytes": 8687,
+      "sha256": "9b0d767e76979f5a0ef0195ce11f17403b783087c052e7ed9e92384070d5ec2a"
+    },
+    "SCHOLAR_REVIEW_TEMPLATE.json": {
+      "bytes": 15114,
+      "sha256": "28ff741430a5116c3b4eeb3eb413af41b1a3c21f4402945d6bb656ae8a6fb274"
+    }
+  },
+  "private_condition_map": {
+    "tracked_in_git": false,
+    "path": "D:\\Research_Engine\\jinn_or_beast\\mizan_bonsai_1p7b_q1_local_v2_ec45a3d\\scholar_review_v1_fe75fc8\\private\\cue_condition_blinding_map.jsonl",
+    "rows": 5,
+    "sha256": "0cba43e7996d50085736a06230ac6629b71b58513ab53a1faaca1a2b5ace9f8b"
+  },
+  "untouched_template_rejected": true,
+  "template_rejection": "ValueError: incomplete reviewer_id",
+  "interpretation_rules": [
+    "Report every finding and recommended change; do not add a post-result numeric pass threshold.",
+    "A receipt supports only a factual statement of the exact review and its findings.",
+    "The exact fielded cues remain immutable; revisions create prospective versions.",
+    "Scholar review cannot make this exploratory run confirmatory.",
+    "Scholar review alone cannot establish normative improvement, eschatological specificity, theological truth, or frame internalization."
+  ],
+  "scholar_review_complete": false,
+  "normative_claims_allowed": false,
+  "handoff_structural_validation_passed": true,
+  "handoff_content_sha256": "09cb908fb7bcff90a00d3dc7672459e5f336b5e908b41f5ddf54588b11f81747"
+}

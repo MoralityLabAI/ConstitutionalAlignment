@@ -1,0 +1,347 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moralitylab.ai/schemas/mizan_scholar_review_receipt_v1.schema.json",
+  "title": "Mizan cue scholar-review receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "review_contract_id",
+    "source_bindings",
+    "reviewer",
+    "review_timing_acknowledgments",
+    "family_reviews",
+    "overall_assessment",
+    "overall_comment",
+    "reviewed_at",
+    "attestation"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "mizan_scholar_review_receipt.v1"
+    },
+    "review_contract_id": {
+      "const": "mizan_cue_scholar_review_v1"
+    },
+    "source_bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_commit",
+        "conditions_sha256",
+        "queue_sha256",
+        "packet_sha256",
+        "receipt_schema_sha256"
+      ],
+      "properties": {
+        "source_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "conditions_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "queue_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "packet_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "receipt_schema_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "reviewer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reviewer_id",
+        "role",
+        "external_to_author_team",
+        "qualification_summary",
+        "audit_identity_record_location",
+        "conflicts_disclosed",
+        "conflict_details"
+      ],
+      "properties": {
+        "reviewer_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "const": "qualified_muslim_scholar"
+        },
+        "external_to_author_team": {
+          "const": true
+        },
+        "qualification_summary": {
+          "type": "string",
+          "minLength": 20
+        },
+        "audit_identity_record_location": {
+          "type": "string",
+          "minLength": 1
+        },
+        "conflicts_disclosed": {
+          "const": true
+        },
+        "conflict_details": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "review_timing_acknowledgments": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model_outcomes_preexisted_this_review",
+        "model_outputs_not_consulted",
+        "result_statistics_not_consulted",
+        "historical_fielded_cues_will_not_be_silently_edited",
+        "all_findings_will_be_reported"
+      ],
+      "properties": {
+        "model_outcomes_preexisted_this_review": {
+          "const": true
+        },
+        "model_outputs_not_consulted": {
+          "const": true
+        },
+        "result_statistics_not_consulted": {
+          "const": true
+        },
+        "historical_fielded_cues_will_not_be_silently_edited": {
+          "const": true
+        },
+        "all_findings_will_be_reported": {
+          "const": true
+        }
+      }
+    },
+    "family_reviews": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "review_family_id",
+          "queue_row_sha256",
+          "inferred_construct",
+          "cue_reviews",
+          "family_criterion_results",
+          "overall_finding",
+          "summary",
+          "recommended_future_changes"
+        ],
+        "properties": {
+          "review_family_id": {
+            "type": "string",
+            "pattern": "^MZS-FAMILY-[0-9a-f]{12}$"
+          },
+          "queue_row_sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "inferred_construct": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cue_reviews": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "review_cue_id",
+                "criterion_results"
+              ],
+              "properties": {
+                "review_cue_id": {
+                  "type": "string",
+                  "pattern": "^MZS-CUE-[0-9a-f]{12}$"
+                },
+                "criterion_results": {
+                  "$ref": "#/$defs/cue_criterion_results"
+                }
+              }
+            }
+          },
+          "family_criterion_results": {
+            "$ref": "#/$defs/family_criterion_results"
+          },
+          "overall_finding": {
+            "$ref": "#/$defs/finding"
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "recommended_future_changes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "overall_assessment": {
+      "enum": [
+        "no_material_concern_for_limited_descriptive_use",
+        "material_concerns_require_disclosure",
+        "unsuitable_for_theological_interpretation",
+        "unable_to_assess"
+      ]
+    },
+    "overall_comment": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "attestation": {
+      "const": "I reviewed every cue in the exact hash-bound packet, without consulting model outputs or result statistics, and understand that this post-result review cannot make the exploratory run confirmatory."
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "finding": {
+      "enum": [
+        "no_material_concern",
+        "material_concern",
+        "revision_recommended_for_future_use",
+        "not_applicable",
+        "unable_to_assess"
+      ]
+    },
+    "criterion_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "criterion_id",
+        "finding",
+        "comment"
+      ],
+      "properties": {
+        "criterion_id": {
+          "type": "string"
+        },
+        "finding": {
+          "$ref": "#/$defs/finding"
+        },
+        "comment": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "cue_criterion_results": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "$ref": "#/$defs/criterion_result"
+      },
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "criterion_id": {
+                "const": "theological_accuracy_and_tone"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "criterion_id": {
+                "const": "intended_construct_fit"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "criterion_id": {
+                "const": "confound_or_misuse_risk"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    },
+    "family_criterion_results": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$ref": "#/$defs/criterion_result"
+      },
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "criterion_id": {
+                "const": "semantic_continuity_across_stages"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "criterion_id": {
+                "const": "comparator_distinctness"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "criterion_id": {
+                "const": "final_accountability_operationalization"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "criterion_id": {
+                "const": "unreliable_authority_control_coherence"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    }
+  }
+}
