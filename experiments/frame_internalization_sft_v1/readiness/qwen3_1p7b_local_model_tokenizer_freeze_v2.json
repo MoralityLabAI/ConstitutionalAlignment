@@ -1,0 +1,202 @@
+{
+  "schema_version": "frame_internalization_base_freeze.v1",
+  "freeze_id": "qwen3_1p7b_local_nf4_v1",
+  "verification_date": "2026-07-20",
+  "passed": true,
+  "immutable_revisions": true,
+  "classification": "prospective_small_model_substitution_infrastructure",
+  "source_commit": "2f0a28593472753cf2d0e5e5e1000112b5de78a6",
+  "repository": "Qwen/Qwen3-1.7B",
+  "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "license": "apache-2.0",
+  "remote_inventory_path": "experiments/frame_internalization_sft_v1/rerun_freeze/qwen3_1p7b_v1/model_tokenizer_remote_inventory_v1.json",
+  "remote_inventory_sha256": "ccc3f96881fbcd2f2988be9cbfb9cd492173b607332b3b506cd3c8e9ab781797",
+  "artifact_inventory_sha256": "26dbf683e31beebd0282217ea79a1b53f7a8fed6f4961978d7881c5a556e1959",
+  "model_dir": "D:\\Research_Engine\\models\\Qwen3-1.7B-70d244c",
+  "artifact_checks": [
+    {
+      "path": ".gitattributes",
+      "expected_size_bytes": 1570,
+      "observed_size_bytes": 1570,
+      "expected_sha256": "34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930",
+      "observed_sha256": "34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930",
+      "passed": true
+    },
+    {
+      "path": "LICENSE",
+      "expected_size_bytes": 11343,
+      "observed_size_bytes": 11343,
+      "expected_sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+      "observed_sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+      "passed": true
+    },
+    {
+      "path": "README.md",
+      "expected_size_bytes": 13963,
+      "observed_size_bytes": 13963,
+      "expected_sha256": "257e52c419dac2258852643f18af6c974f21f8c6c1b6f371b6cca6201cf29091",
+      "observed_sha256": "257e52c419dac2258852643f18af6c974f21f8c6c1b6f371b6cca6201cf29091",
+      "passed": true
+    },
+    {
+      "path": "config.json",
+      "expected_size_bytes": 726,
+      "observed_size_bytes": 726,
+      "expected_sha256": "1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197",
+      "observed_sha256": "1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197",
+      "passed": true
+    },
+    {
+      "path": "generation_config.json",
+      "expected_size_bytes": 239,
+      "observed_size_bytes": 239,
+      "expected_sha256": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2",
+      "observed_sha256": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2",
+      "passed": true
+    },
+    {
+      "path": "merges.txt",
+      "expected_size_bytes": 1671853,
+      "observed_size_bytes": 1671853,
+      "expected_sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "observed_sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "passed": true
+    },
+    {
+      "path": "model-00001-of-00002.safetensors",
+      "expected_size_bytes": 3441185608,
+      "observed_size_bytes": 3441185608,
+      "expected_sha256": "169ad53ec313c3a34b06c0809216e4fc072cce444a5d4ff2b59690d064130ed5",
+      "observed_sha256": "169ad53ec313c3a34b06c0809216e4fc072cce444a5d4ff2b59690d064130ed5",
+      "passed": true
+    },
+    {
+      "path": "model-00002-of-00002.safetensors",
+      "expected_size_bytes": 622329984,
+      "observed_size_bytes": 622329984,
+      "expected_sha256": "912becff8d60672aa8628ef08c05898d9adf17c2ad4ae3caf99b065622fdeff9",
+      "observed_sha256": "912becff8d60672aa8628ef08c05898d9adf17c2ad4ae3caf99b065622fdeff9",
+      "passed": true
+    },
+    {
+      "path": "model.safetensors.index.json",
+      "expected_size_bytes": 25605,
+      "observed_size_bytes": 25605,
+      "expected_sha256": "0d660e94b165eb912669a5249dff44b83188c4777a07ddb9611fb78d91b0578d",
+      "observed_sha256": "0d660e94b165eb912669a5249dff44b83188c4777a07ddb9611fb78d91b0578d",
+      "passed": true
+    },
+    {
+      "path": "tokenizer.json",
+      "expected_size_bytes": 11422654,
+      "observed_size_bytes": 11422654,
+      "expected_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "observed_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "passed": true
+    },
+    {
+      "path": "tokenizer_config.json",
+      "expected_size_bytes": 9732,
+      "observed_size_bytes": 9732,
+      "expected_sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+      "observed_sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+      "passed": true
+    },
+    {
+      "path": "vocab.json",
+      "expected_size_bytes": 2776833,
+      "observed_size_bytes": 2776833,
+      "expected_sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "observed_sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "passed": true
+    }
+  ],
+  "engine": {
+    "description": "offline Transformers NF4 inference on the local lane",
+    "venue": "local",
+    "script_path": "scripts/audit_qwen3_1p7b_local_runtime.py",
+    "script_sha256": "ac860d3cfb384c5b22b37bbc9eb736bc0f3add3149d5633fed89acf85ac013b5",
+    "python": "3.11.4",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "torch": "2.5.1+cu121",
+      "transformers": "5.3.0",
+      "bitsandbytes": "0.49.1",
+      "accelerate": "1.12.0",
+      "peft": "0.11.1",
+      "trl": "0.27.2",
+      "safetensors": "0.6.2",
+      "huggingface-hub": "1.7.2"
+    },
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "total_memory_bytes": 4294443008,
+      "compute_capability": "8.6",
+      "nvidia_smi": "NVIDIA GeForce RTX 3050 Laptop GPU, 4096, 555.99",
+      "torch_cuda_version": "12.1"
+    },
+    "venue_requirement": {
+      "minimum_vram_bytes": null,
+      "passed": true
+    },
+    "runtime_smoke": {
+      "passed": true,
+      "checks": {
+        "official_template_thinking_generation_marker_rendered": true,
+        "official_template_nonthinking_rendered": true,
+        "nf4_linear_present": true,
+        "nonthinking_exact_ok": true,
+        "thinking_block_closed": true,
+        "thinking_visible_answer_contains_four": true
+      },
+      "quantization": {
+        "load_in_4bit": true,
+        "quant_type": "nf4",
+        "double_quant": true,
+        "compute_dtype": "float16",
+        "device_map": {
+          "": 0
+        }
+      },
+      "model": {
+        "architectures": [
+          "Qwen3ForCausalLM"
+        ],
+        "model_type": "qwen3",
+        "num_hidden_layers": 28,
+        "hidden_size": 2048,
+        "quantized_parameter_numel": 1327096832,
+        "checkpoint_tensor_elements": 2031739904
+      },
+      "tokenizer": {
+        "class": "Qwen2Tokenizer",
+        "vocab_size": 151643,
+        "eos_token_id": 151645,
+        "pad_token_id": 151643,
+        "chat_template_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+        "thinking_render_sha256": "fe3b815202e345d7263424a3548f75986ca96a507d96847413c301e8174221d5",
+        "nonthinking_render_sha256": "51395a27f64e494b386031e0677eb2465cb3e87c7c237b64d7a0f2f9940ca147"
+      },
+      "generation": {
+        "nonthinking_output": "OK<|im_end|>",
+        "thinking_output_sha256": "8ffe855d6debf33fb2da9350d19c1d4d8a6161795863541018aada226fd9b06b",
+        "thinking_output_characters": 57,
+        "thinking_visible_answer": "The answer to 2 + 2 is **4**.<|im_end|>",
+        "do_sample": false
+      },
+      "load_seconds": 92.0,
+      "total_seconds": 98.734,
+      "gpu_peak_allocated_bytes": 3245204992,
+      "gpu_peak_reserved_bytes": 3357540352
+    },
+    "passed": true
+  },
+  "scope_boundary": {
+    "scored_behavioral_outputs_generated": false,
+    "local_smoke_authorizes_primelab_training": false,
+    "primelab_model_runtime_frozen": false,
+    "primelab_full_4096_training_smoke_still_required": true,
+    "historical_intellect_3_reproduction_claimed": false
+  },
+  "failures": []
+}

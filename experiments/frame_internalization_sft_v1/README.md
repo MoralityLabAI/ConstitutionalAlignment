@@ -23,9 +23,16 @@ The original INTELLECT plans and readiness receipts below remain immutable
 historical provenance.
 
 Active status: Qwen3-1.7B substitution and Qwen-bound inputs frozen; local
-model/runtime receipt pending; PrimeLab environment, generation, training, and
-evaluation pending; no fine-tuning outcome. The historical INTELLECT v2
-treatment and staged-compute governance remain frozen as provenance.
+model/tokenizer/runtime Gate 1 passed in
+[`readiness/qwen3_1p7b_local_model_tokenizer_freeze_v2.json`](readiness/qwen3_1p7b_local_model_tokenizer_freeze_v2.json).
+Its 12 exact artifact hashes, official thinking and nonthinking template
+behavior, NF4 loading, and deterministic inference checks all pass. The earlier
+[`readiness/qwen3_1p7b_local_model_tokenizer_freeze_v1_failed.json`](readiness/qwen3_1p7b_local_model_tokenizer_freeze_v1_failed.json)
+is retained because it transparently records the validator-only thinking-marker
+failure corrected by source commit `2f0a28593472753cf2d0e5e5e1000112b5de78a6`.
+PrimeLab environment, generation, training, and evaluation remain pending; there
+is no fine-tuning outcome. The historical INTELLECT v2 treatment and
+staged-compute governance remain frozen as provenance.
 
 This package reconstructs Silico experiment `exp_01kxm0hbf4ez58y7mfj58rmn6q`, originally titled **"Training the frames in: does SFT internalize what prompting couldn't?"** The experiment was interrupted during data generation. The recovered record contains the design, partial generation counts, quality checks, launcher decisions, and compute receipts, but it does **not** contain the generated transcript payloads, trained adapters, dose checkpoints, or evaluation outputs.
 
