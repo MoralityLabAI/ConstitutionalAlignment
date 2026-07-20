@@ -219,7 +219,10 @@ def runtime_smoke(model_dir: Path, inventory: dict[str, Any]) -> dict[str, Any]:
     visible_after_think = thinking_output.split("</think>", 1)[-1].strip()
     linear4 = next((item for item in model.modules() if type(item).__name__ == "Linear4bit"), None)
     checks = {
-        "official_template_thinking_rendered": rendered_thinking.endswith("<think>\n"),
+        "official_template_thinking_generation_marker_rendered": rendered_thinking.endswith(
+            "<|im_start|>assistant\n"
+        )
+        and "<think>\n\n</think>" not in rendered_thinking,
         "official_template_nonthinking_rendered": "<think>\n\n</think>" in rendered_nonthinking,
         "nf4_linear_present": linear4 is not None,
         "nonthinking_exact_ok": nonthinking_output.strip() == "OK<|im_end|>",
