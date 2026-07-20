@@ -32,4 +32,7 @@
 /scripts/analyze_mizan_rooms.py text eol=lf
 /scripts/validate_mizan_rooms.py text eol=lf
 /tests/test_mizan_rooms.py text eol=lf
+/schemas/mizan_* text eol=lf
+/scripts/*mizan* text eol=lf
+/tests/test_mizan_* text eol=lf
 /papers/mizan_rooms_preanalysis_v*.md text eol=lf
