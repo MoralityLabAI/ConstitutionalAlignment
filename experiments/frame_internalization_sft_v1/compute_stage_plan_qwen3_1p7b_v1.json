@@ -1,0 +1,172 @@
+{
+  "schema_version": "frame_internalization_compute_stage_plan.v2",
+  "plan_id": "frame_internalization_qwen3_1p7b_single_gpu_v1",
+  "frozen_at": "2026-07-20",
+  "status": "frozen_execution_pending",
+  "classification": "prospective_resource_substitution_before_registered_qwen_outcomes",
+  "supersedes_for_new_execution": {
+    "path": "experiments/frame_internalization_sft_v1/compute_stage_plan_v1.json",
+    "historical_plan_remains_immutable": true,
+    "reason": "Silico and the eight-A100 INTELLECT-3 execution path are no longer available."
+  },
+  "scope": {
+    "registered_training_arms": [
+      "neutral_reflection",
+      "F1_reflection",
+      "F1_demonstration",
+      "F3_reflection",
+      "F3_demonstration",
+      "F3_concrete_reflection"
+    ],
+    "base_is_evaluation_only": true,
+    "all_six_arms_required": true,
+    "arms_run_sequentially": true,
+    "arm_failure_invalidates_matched_comparison": true,
+    "sequence_length_preserved": 4096,
+    "registered_dilemma_and_evaluation_universes_preserved": true
+  },
+  "model": {
+    "repository": "Qwen/Qwen3-1.7B",
+    "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "quantization": "bitsandbytes NF4 with double quantization",
+    "compute_dtype": "float16",
+    "same_loader_and_quantization_required_for_base_and_adapter_evaluation": true,
+    "official_chat_template_required": true,
+    "thinking_mode_for_curriculum_and_registered_alignment_faking_evaluation": true
+  },
+  "execution_lanes": {
+    "local": {
+      "observed_gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "observed_vram_mib": 4096,
+      "allowed": [
+        "artifact verification",
+        "tokenizer and chat-template audit",
+        "bounded base-model inference smoke",
+        "small unscored development checks"
+      ],
+      "forbidden": [
+        "full 4096-token six-arm training",
+        "using a reduced sequence length as a scientific replacement",
+        "claiming local runtime validation authorizes a different PrimeLab environment"
+      ]
+    },
+    "primelab": {
+      "gpu_count": 1,
+      "minimum_cuda_vram_gib": 24,
+      "exact_gpu_sku_frozen_before_training": true,
+      "exact_container_or_environment_lock_required": true,
+      "exact_model_artifact_hash_verification_required": true,
+      "training_network_calls": "disabled after artifact staging",
+      "external_tracking": "disabled unless separately authorized and hash-bound"
+    }
+  },
+  "training": {
+    "method": "QLoRA",
+    "sequence_length": 4096,
+    "packing": true,
+    "epochs": 2,
+    "seed": 42,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 64,
+    "global_batch": 64,
+    "gradient_checkpointing": true,
+    "optimizer": "paged_adamw_8bit",
+    "learning_rate": 0.0001,
+    "scheduler": "cosine",
+    "warmup_ratio": 0.03,
+    "lora": {
+      "rank": 32,
+      "alpha": 64,
+      "dropout": 0.0,
+      "bias": "none",
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ]
+    },
+    "assistant_only_labels": true,
+    "prompt_tokens_masked": true,
+    "oversize_rows": "reject_without_truncation",
+    "arm_specific_hyperparameters_forbidden": true
+  },
+  "resource_caps": {
+    "pilot_wall_clock_seconds": 7200,
+    "pilot_maximum_gpu_hours": 2,
+    "full_run_maximum_gpu_hours": 48,
+    "maximum_run_directory_bytes": 268435456000,
+    "checkpoint_every_steps_maximum": 200,
+    "checkpoint_every_minutes_maximum": 20,
+    "retain_last_checkpoints_per_arm": 2
+  },
+  "pre_spend_gates": [
+    "qwen_model_tokenizer_local_freeze",
+    "primelab_environment_and_hardware_freeze",
+    "complete_matched_qwen_curricula",
+    "curriculum_token_parity",
+    "generated_text_nonleakage",
+    "evaluation_seal",
+    "judge_and_human_validation_freeze",
+    "prospective_qwen_base_baseline_and_layer_27_probe_freeze",
+    "single_gpu_4096_training_smoke",
+    "human_pilot_authorization"
+  ],
+  "full_topology_smoke": {
+    "venue": "the exact PrimeLab environment intended for the full run",
+    "steps_per_arm": 50,
+    "all_six_arms_required": true,
+    "same_4096_token_batches_as_full_run": true,
+    "requires": [
+      "finite loss and gradients",
+      "no OOM after allocator warmup",
+      "checkpoint save and reload for every arm",
+      "ten syntactically valid generations from every reloaded adapter",
+      "zero surviving child processes after cleanup"
+    ]
+  },
+  "pilot": {
+    "scientific_endpoint_claims_allowed": false,
+    "purpose": "verify throughput, memory, packing, checkpointing, evaluator parsing, and equal-dose execution",
+    "promotion_requires": [
+      "all six arms complete the same 50-step smoke",
+      "measured two-epoch forecast for all six arms is at most 48 GPU-hours",
+      "no arm-specific repair or hyperparameter change",
+      "resolved training config and first batch shape are hash-bound",
+      "human authorization binds the exact full command"
+    ]
+  },
+  "full_run": {
+    "dose": "two complete epochs for every arm",
+    "arm_order": [
+      "neutral_reflection",
+      "F1_reflection",
+      "F1_demonstration",
+      "F3_reflection",
+      "F3_demonstration",
+      "F3_concrete_reflection"
+    ],
+    "outcome_visibility_before_all_arms_finish": false,
+    "checkpoints": [
+      "25 percent of each arm",
+      "50 percent of each arm",
+      "100 percent of each arm"
+    ],
+    "abort_all_arms_on": [
+      "any frozen input, model, tokenizer, environment, or command hash mismatch",
+      "NaN or infinite loss or gradient",
+      "a second OOM",
+      "an arm-specific batch, rank, precision, sequence-length, or dose change",
+      "loss above twice the first valid ten-step median for three consecutive steps after warmup",
+      "GPU loss, NVIDIA Xid, or temperature at or above 90 C for two one-minute samples",
+      "forecast or observed total above 48 GPU-hours",
+      "run-directory byte cap exceeded"
+    ]
+  },
+  "interpretation_boundary": {
+    "historical_intellect_3_replication_claimed": false,
+    "model_family_generalization_claimed": false,
+    "supported_if_complete": "A prospective within-Qwen3-1.7B comparison of explicit prompting and matched QLoRA training under the preserved six-arm design.",
+    "small_model_capacity_and_quantization_are_mandatory_limitations": true
+  }
+}

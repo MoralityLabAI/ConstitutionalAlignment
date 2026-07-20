@@ -1,0 +1,23 @@
+{
+  "schema_version": "frame_internalization_prompt_sft_contrast_validation.v2",
+  "contract_path": "experiments/frame_internalization_sft_v1/prompt_sft_contrast_v3_qwen3_1p7b.json",
+  "contract_sha256": "2d8ccb798ffa335c367670e193f0f7b34caa6c2d87b0d145010a5beda1ac98e8",
+  "validator_path": "scripts/validate_frame_prompt_sft_contrast_v3.py",
+  "validator_sha256": "a66d9c4808d051992cc85716b7609d9b4f475c324146565807d7bf1d0b42cb33",
+  "checks": {
+    "contract_identity": true,
+    "prospective_timing": true,
+    "freezer_hash": true,
+    "model_identity": true,
+    "inventory_identity": true,
+    "chat_template_binding": true,
+    "substitution_identity": true,
+    "qwen_request_pack": true,
+    "compute_topology": true,
+    "qwen_reanchor": true,
+    "scientific_fields_preserved": true,
+    "claim_boundary": true
+  },
+  "passed": true,
+  "failures": []
+}

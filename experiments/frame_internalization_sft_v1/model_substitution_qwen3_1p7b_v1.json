@@ -1,0 +1,116 @@
+{
+  "schema_version": "frame_internalization_model_substitution.v1",
+  "amendment_id": "frame_internalization_qwen3_1p7b_substitution_v1",
+  "frozen_at": "2026-07-20",
+  "status": "frozen_before_registered_qwen_outcomes",
+  "classification": "prospective_resource_and_model_substitution",
+  "authorization": {
+    "reason": "The user confirmed that Silico is unavailable and directed execution toward local resources and PrimeLab using a tiny Qwen 1.7B model.",
+    "selection_basis": "availability, reproducibility, and fit to one consumer/cloud GPU; no registered Qwen behavioral or adapter outcome was available",
+    "infrastructure_smokes_before_freeze": [
+      "official checkpoint download and byte inventory",
+      "fixed-format OK generation in non-thinking mode",
+      "2+2 template/mechanics check in thinking mode"
+    ],
+    "registered_evaluation_prompts_run_before_freeze": 0,
+    "curriculum_requests_run_before_freeze": 0,
+    "adapter_training_steps_before_freeze": 0
+  },
+  "narrative": {
+    "path": "experiments/frame_internalization_sft_v1/MODEL_SUBSTITUTION_QWEN3_1P7B_V1.md",
+    "sha256": "6c589d653231581f268b6983c34b84a41d9e8971337c9a6b180364e6411052e7"
+  },
+  "inherits_scientific_design_from": {
+    "path": "experiments/frame_internalization_sft_v1/protocol_amendment_v2.json",
+    "sha256": "b24787db548072054227748df8fd9f8b9bf0bfccf15bde092d07fe8f9b65d973"
+  },
+  "original_artifacts_preserved_as_historical": [
+    {
+      "path": "experiments/frame_internalization_sft_v1/prompt_sft_contrast_v2.json",
+      "sha256": "c22db82499ae917812a7c72971553c0303fb75306c4935f9e7f8120ae4e32e89"
+    },
+    {
+      "path": "experiments/frame_internalization_sft_v1/compute_stage_plan_v1.json",
+      "sha256": "970493b99f4599d760e25fa94a471ffa1ba61b80152e0e0fa9830a80d214b7aa"
+    },
+    {
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/curriculum_generation_v1/request_manifest.json",
+      "sha256": "4ac0a39f5e52501e2aee8f6371db03d01f1eac40c18940777f5e689c9c4afd20"
+    }
+  ],
+  "replacement_model": {
+    "repository": "Qwen/Qwen3-1.7B",
+    "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "license": "apache-2.0",
+    "inventory": {
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/qwen3_1p7b_v1/model_tokenizer_remote_inventory_v1.json",
+      "sha256": "ccc3f96881fbcd2f2988be9cbfb9cd492173b607332b3b506cd3c8e9ab781797"
+    },
+    "official_chat_template_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+    "thinking_mode": true,
+    "base_and_adapter_loader_equivalence_required": true
+  },
+  "replacement_curriculum_requests": {
+    "path": "experiments/frame_internalization_sft_v1/rerun_freeze/qwen3_1p7b_v1/curriculum_generation_v1/request_manifest.json",
+    "sha256": "e768b50ecd72ec9cf3f7caafe2a731013d6475f5b2e55c51e71562a7b5d98226",
+    "requests_path": "experiments/frame_internalization_sft_v1/rerun_freeze/qwen3_1p7b_v1/curriculum_generation_v1/requests.jsonl",
+    "requests_sha256": "a5cf8eb8fb26c2c93dcd4a733a338946219ddb2a3992e2261e720ccda7af3160",
+    "request_count": 22400,
+    "all_original_dilemmas_and_frames_preserved": true
+  },
+  "replacement_compute_plan": {
+    "path": "experiments/frame_internalization_sft_v1/compute_stage_plan_qwen3_1p7b_v1.json",
+    "sha256": "29b600c7148aa6c6e346c836460830bd8b0b9550291cfdabeb99af759d6b4138"
+  },
+  "unchanged_hash_bound_inputs": [
+    {
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2.json",
+      "sha256": "a45fd158279eb4ad3425b6ddd19fafab33849d942f7b8639956882de2cfa7870"
+    },
+    {
+      "path": "experiments/frame_internalization_sft_v1/readiness/split_freeze_v1.json",
+      "sha256": "a768dc2609623cba385362e7ea92289b7ff7191331cfd9103bcc7387937d66b9"
+    }
+  ],
+  "preserved_requirements": [
+    "six registered training arms",
+    "5,600 cluster-disjoint dilemmas with 5,320 train and 280 validation rows per arm",
+    "4,096-token training sequences with oversize rejection and no silent truncation",
+    "two complete epochs at equal dose",
+    "paired prompt-versus-SFT estimands and prompt-cluster bootstrap",
+    "F3 versus F3-concrete token parity within 2 percent",
+    "generated-text nonleakage against every evaluation universe",
+    "blinded judge and human-validation gates",
+    "benign over-refusal, capability, unsupported religious self-claim, fabricated-source, sectarian-degradation, and deference guards"
+  ],
+  "changed_requirements": {
+    "model": "INTELLECT-3 is replaced only for new execution by the exact Qwen3-1.7B revision.",
+    "chat_and_reasoning": "The official Qwen3 thinking template replaces the GLM parser and INTELLECT chat template.",
+    "compute": "Eight A100s and Slurm are replaced by one sequential PrimeLab CUDA GPU with at least 24 GiB VRAM.",
+    "precision": "BF16 distributed QLoRA is replaced by single-GPU NF4 QLoRA with float16 compute.",
+    "reanchor": "The historical INTELLECT reanchor becomes a new prospective Qwen baseline and Qwen layer-27 probe; no cross-model activation identity is claimed."
+  },
+  "gates": {
+    "local_model_and_runtime_freeze_required": true,
+    "primelab_environment_freeze_required": true,
+    "primelab_full_topology_smoke_required": true,
+    "human_authorization_required": true,
+    "historical_intellect_gate_required_for_qwen_execution": false,
+    "historical_intellect_evidence_must_remain_separately_labeled": true
+  },
+  "claim_boundary": {
+    "supported_if_all_gates_complete": "An exact within-Qwen3-1.7B comparison of explicit prompting and matched QLoRA interventions under the preserved six-arm design.",
+    "not_supported": [
+      "replication or continuation of the INTELLECT-3 result",
+      "model-family-general superiority of SFT over prompting",
+      "theological truth or adequacy without the separate scholar gate",
+      "literal or broad internalization from behavioral separation alone"
+    ],
+    "mandatory_limitations": [
+      "post-result resource substitution",
+      "1.7B small-model capacity",
+      "4-bit loading and float16 compute",
+      "single-GPU local/cloud execution"
+    ]
+  }
+}

@@ -1,8 +1,31 @@
 # Frame Internalization SFT: Recovered Rerun Plan
 
-Status: reconstructed plan; v2 treatment and staged-compute governance frozen;
-scholar review pending as a claims-only gate; six pilot gates pending; no
-fine-tuning outcome.
+## Active Qwen3-1.7B execution substitution (2026-07-20)
+
+Silico and its INTELLECT-3 cache are no longer an available execution path. New
+execution is prospectively retargeted to official `Qwen/Qwen3-1.7B` revision
+`70d244cc86ccca08cf5af4e1e306ecf908b1ad5e` under
+[`model_substitution_qwen3_1p7b_v1.json`](model_substitution_qwen3_1p7b_v1.json).
+This is a new small-model study, not a relabeling or replication of the
+historical INTELLECT-3 findings.
+
+The replacement preserves all six arms, 5,600 dilemmas, the licensed v2
+evaluation universe, 4,096-token sequences, two epochs, paired estimands,
+nonleakage, validation, and guard requirements. Its new request pack contains
+22,400 exact Qwen-bound requests under `rerun_freeze/qwen3_1p7b_v1/`. The
+local 4 GB lane is for hash and inference checks; full sequential NF4 QLoRA
+requires one PrimeLab GPU with at least 24 GiB VRAM and a separate exact
+environment/full-topology smoke receipt.
+
+The direct Qwen contract is
+[`prompt_sft_contrast_v3_qwen3_1p7b.json`](prompt_sft_contrast_v3_qwen3_1p7b.json).
+The original INTELLECT plans and readiness receipts below remain immutable
+historical provenance.
+
+Active status: Qwen3-1.7B substitution and Qwen-bound inputs frozen; local
+model/runtime receipt pending; PrimeLab environment, generation, training, and
+evaluation pending; no fine-tuning outcome. The historical INTELLECT v2
+treatment and staged-compute governance remain frozen as provenance.
 
 This package reconstructs Silico experiment `exp_01kxm0hbf4ez58y7mfj58rmn6q`, originally titled **"Training the frames in: does SFT internalize what prompting couldn't?"** The experiment was interrupted during data generation. The recovered record contains the design, partial generation counts, quality checks, launcher decisions, and compute receipts, but it does **not** contain the generated transcript payloads, trained adapters, dose checkpoints, or evaluation outputs.
 
