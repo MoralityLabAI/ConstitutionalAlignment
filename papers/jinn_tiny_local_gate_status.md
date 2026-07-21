@@ -1,6 +1,14 @@
 # Jinn Tiny Local Gate Status
 
-Date: 2026-05-04
+Last updated: 2026-07-21
+
+## Qwen3-1.7B MeTTa Worldview Screen
+
+The prospectively frozen `qwen3_1p7b_metta_local_screen_v1` completed locally on the RTX 3050 4 GB lane. Qwen3-1.7B trained for 30/30 rank-8 QLoRA steps at a 512-token maximum sequence length, then the base and adapter each completed the same 56 no-frame probes without model offload, retries, repair, or canonical fallback. This establishes a working cheap local screen before any 4B or 9B spend.
+
+The predeclared infrastructure screen passed. The worldview-flavored and worldview-guided judgment screens did not pass: the no-cue persona-marker delta was 0.000, while the MeTTa-derived preferred-proxy rate changed from 0.833 to 0.750. Factual-control accuracy remained 0.500 in both conditions, factual persona leakage remained zero, and all-variant action stability rose from 0.167 to 0.250. The only no-cue action switch moved from transparent need-based allocation to quiet merchant favoritism, away from the evaluation proxy.
+
+This is a negative result for the exact short intervention, not a scale-level impossibility result. It does not authorize larger-model spend, does not veto a later 4B test, and does not test worldview-native reasoning. The machine-readable receipt and interpretation are in `experiments/frame_internalization_sft_v1/local_screen_v1/worldview_local_screen_result_v1.json` and `experiments/frame_internalization_sft_v1/local_screen_v1/LOCAL_SCREEN_RESULT_V1.md`.
 
 ## Current Best Adapter
 
