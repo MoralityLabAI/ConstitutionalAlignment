@@ -1,0 +1,843 @@
+{
+  "schema_version": "frame_internalization_gate_factorization.v1",
+  "as_of_date": "2026-07-21",
+  "active_execution": "qwen3_1p7b_single_gpu_v1",
+  "classification": "operational_factorization_without_gate_weakening",
+  "pilot_ready": false,
+  "invariants": {
+    "parent_gate_pass_requires_every_required_factor": true,
+    "shared_factor_is_evaluated_once": true,
+    "factorization_does_not_authorize_compute": true,
+    "historical_intellect_receipts_do_not_satisfy_active_qwen_factors": true
+  },
+  "summary": {
+    "factor_count": 20,
+    "passed_factor_count": 7,
+    "pending_factor_count": 13,
+    "failed_factor_count": 0,
+    "parent_gate_count": 10,
+    "passed_parent_gate_count": 2,
+    "blocking_parent_gate_count": 8
+  },
+  "current_frontier": [
+    "F04",
+    "F12"
+  ],
+  "projected_execution_waves": [
+    [
+      "F04",
+      "F12"
+    ],
+    [
+      "F06",
+      "F13"
+    ],
+    [
+      "F07",
+      "F14",
+      "F16"
+    ],
+    [
+      "F08",
+      "F10",
+      "F15"
+    ],
+    [
+      "F17",
+      "F18"
+    ],
+    [
+      "F19"
+    ]
+  ],
+  "factors": [
+    {
+      "factor_id": "F00",
+      "label": "protocol and Qwen execution contract",
+      "lane": "repository",
+      "owner": "repository",
+      "evidence_status": "passed",
+      "depends_on": [],
+      "evidence": [
+        {
+          "path": "experiments/frame_internalization_sft_v1/readiness/prompt_sft_contrast_validation_v3_qwen3_1p7b.json",
+          "sha256": "4e17ff1093dcc269ca9d3dac90ab3b792e2649e611bcbea5a8945fbf4f6ddf12"
+        },
+        {
+          "path": "experiments/frame_internalization_sft_v1/compute_stage_plan_qwen3_1p7b_v1.json",
+          "sha256": "29b600c7148aa6c6e346c836460830bd8b0b9550291cfdabeb99af759d6b4138"
+        },
+        {
+          "path": "experiments/frame_internalization_sft_v1/model_substitution_qwen3_1p7b_v1.json",
+          "sha256": "0d4ab9117c26dea11021949629bf3150105bdee554b183ce0c29d6626dd22995"
+        }
+      ],
+      "error": null,
+      "next_action": "none",
+      "receipt_interface": null,
+      "resource_contract": null,
+      "blocked_by": [],
+      "execution_state": "satisfied",
+      "unlocks": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F01",
+      "label": "cluster-disjoint source split",
+      "lane": "repository",
+      "owner": "repository",
+      "evidence_status": "passed",
+      "depends_on": [
+        "F00"
+      ],
+      "evidence": [
+        {
+          "path": "experiments/frame_internalization_sft_v1/readiness/split_freeze_v1.json",
+          "sha256": "a768dc2609623cba385362e7ea92289b7ff7191331cfd9103bcc7387937d66b9"
+        }
+      ],
+      "error": null,
+      "next_action": "none",
+      "receipt_interface": null,
+      "resource_contract": null,
+      "blocked_by": [],
+      "execution_state": "satisfied",
+      "unlocks": [
+        "F05",
+        "F09",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F02",
+      "label": "licensed evaluation universe and seal",
+      "lane": "repository",
+      "owner": "repository",
+      "evidence_status": "passed",
+      "depends_on": [
+        "F00"
+      ],
+      "evidence": [
+        {
+          "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2.json",
+          "sha256": "a45fd158279eb4ad3425b6ddd19fafab33849d942f7b8639956882de2cfa7870"
+        },
+        {
+          "path": "experiments/frame_internalization_sft_v1/readiness/evaluation_seal_v2.json",
+          "sha256": "23cbbd4b28467e2c5a572eac1244bd0f1cfeaf8ec1d815d9112cdbc173eefa7b"
+        }
+      ],
+      "error": null,
+      "next_action": "none",
+      "receipt_interface": null,
+      "resource_contract": null,
+      "blocked_by": [],
+      "execution_state": "satisfied",
+      "unlocks": [
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F03",
+      "label": "Qwen local checkpoint and runtime",
+      "lane": "local",
+      "owner": "repository",
+      "evidence_status": "passed",
+      "depends_on": [
+        "F00"
+      ],
+      "evidence": [
+        {
+          "path": "experiments/frame_internalization_sft_v1/readiness/qwen3_1p7b_local_model_tokenizer_freeze_v2.json",
+          "sha256": "fc0f5bbb33bd2b345e9b3043d38d94d0258f67bab333cded4895ada0fafd9433"
+        }
+      ],
+      "error": null,
+      "next_action": "none",
+      "receipt_interface": null,
+      "resource_contract": null,
+      "blocked_by": [],
+      "execution_state": "satisfied",
+      "unlocks": [
+        "F04",
+        "F05",
+        "F07",
+        "F13",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F04",
+      "label": "PrimeLab hardware, environment, model, and inference caps",
+      "lane": "primelab_setup",
+      "owner": "researcher",
+      "evidence_status": "pending",
+      "depends_on": [
+        "F00",
+        "F03"
+      ],
+      "evidence": [],
+      "error": null,
+      "next_action": "freeze the exact PrimeLab GPU, environment lock, model hashes, bounded inference caps, and cleanup contract",
+      "receipt_interface": {
+        "schema_version": "frame_internalization_primelab_environment_freeze.v1",
+        "required": [
+          "one GPU with at least 24 GiB VRAM",
+          "environment lock SHA-256",
+          "matching model inventory",
+          "positive inference caps",
+          "cleanup_required=true"
+        ]
+      },
+      "resource_contract": null,
+      "blocked_by": [],
+      "execution_state": "ready",
+      "unlocks": [
+        "F06",
+        "F13",
+        "F18",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F05",
+      "label": "Qwen-bound 22,400-request curriculum pack",
+      "lane": "repository",
+      "owner": "repository",
+      "evidence_status": "passed",
+      "depends_on": [
+        "F00",
+        "F01",
+        "F03"
+      ],
+      "evidence": [
+        {
+          "path": "experiments/frame_internalization_sft_v1/rerun_freeze/qwen3_1p7b_v1/curriculum_generation_v1/request_manifest.json",
+          "sha256": "e768b50ecd72ec9cf3f7caafe2a731013d6475f5b2e55c51e71562a7b5d98226"
+        }
+      ],
+      "error": null,
+      "next_action": "none",
+      "receipt_interface": null,
+      "resource_contract": null,
+      "blocked_by": [],
+      "execution_state": "satisfied",
+      "unlocks": [
+        "F06",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F06",
+      "label": "complete four-frame transcript generation",
+      "lane": "primelab_inference",
+      "owner": "primelab",
+      "evidence_status": "pending",
+      "depends_on": [
+        "F04",
+        "F05"
+      ],
+      "evidence": [],
+      "error": null,
+      "next_action": "run the four resumable generation jobs under the F04 caps and return four complete receipts",
+      "receipt_interface": {
+        "schema_version": "frame_internalization_curriculum_generation_receipt.v1",
+        "required_receipts": 4
+      },
+      "resource_contract": null,
+      "blocked_by": [
+        "F04"
+      ],
+      "execution_state": "blocked",
+      "unlocks": [
+        "F07",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F07",
+      "label": "exact six-arm render and 4,096-token accounting",
+      "lane": "primelab_data",
+      "owner": "primelab",
+      "evidence_status": "pending",
+      "depends_on": [
+        "F03",
+        "F06"
+      ],
+      "evidence": [],
+      "error": null,
+      "next_action": "render all six arms with exact joins and the frozen Qwen tokenizer",
+      "receipt_interface": {
+        "schema_version": "frame_internalization_curriculum_manifest.v1"
+      },
+      "resource_contract": null,
+      "blocked_by": [
+        "F06"
+      ],
+      "execution_state": "blocked",
+      "unlocks": [
+        "F08",
+        "F10",
+        "F18",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F08",
+      "label": "F3 versus F3-concrete token parity",
+      "lane": "primelab_data",
+      "owner": "primelab",
+      "evidence_status": "pending",
+      "depends_on": [
+        "F07"
+      ],
+      "evidence": [],
+      "error": null,
+      "next_action": "satisfy the frozen total-token spread threshold of at most 0.02",
+      "receipt_interface": null,
+      "resource_contract": null,
+      "blocked_by": [
+        "F07"
+      ],
+      "execution_state": "blocked",
+      "unlocks": [
+        "F18",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F09",
+      "label": "source-prompt nonleakage",
+      "lane": "repository",
+      "owner": "repository",
+      "evidence_status": "passed",
+      "depends_on": [
+        "F01",
+        "F02"
+      ],
+      "evidence": [
+        {
+          "path": "experiments/frame_internalization_sft_v1/rerun_freeze/nonleakage_source_prompts_v2.json",
+          "sha256": "da0dd6576d55b16db2c21bb75ace1e3cebd010afb500afe8099fb0f2be74da35"
+        }
+      ],
+      "error": null,
+      "next_action": "none",
+      "receipt_interface": null,
+      "resource_contract": null,
+      "blocked_by": [],
+      "execution_state": "satisfied",
+      "unlocks": [
+        "F10",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F10",
+      "label": "generated-text nonleakage",
+      "lane": "primelab_data",
+      "owner": "primelab",
+      "evidence_status": "pending",
+      "depends_on": [
+        "F02",
+        "F07",
+        "F09"
+      ],
+      "evidence": [],
+      "error": null,
+      "next_action": "audit every rendered message against every sealed evaluation universe",
+      "receipt_interface": {
+        "schema_version": "frame_internalization_nonleakage_audit.v1"
+      },
+      "resource_contract": null,
+      "blocked_by": [
+        "F07"
+      ],
+      "execution_state": "blocked",
+      "unlocks": [
+        "F18",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F11",
+      "label": "judge rubrics, request builder, and validation queue",
+      "lane": "repository",
+      "owner": "repository",
+      "evidence_status": "passed",
+      "depends_on": [
+        "F02"
+      ],
+      "evidence": [
+        {
+          "path": "experiments/frame_internalization_sft_v1/rerun_freeze/judge_classifier_inputs_v2.json",
+          "sha256": "bf3bf21bd17237d1c2eea3487f5706e4958c7e06d2944adfa280184aa423f300"
+        }
+      ],
+      "error": null,
+      "next_action": "none",
+      "receipt_interface": null,
+      "resource_contract": null,
+      "blocked_by": [],
+      "execution_state": "satisfied",
+      "unlocks": [
+        "F12",
+        "F13",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F12",
+      "label": "immutable judge revisions and decoding configuration",
+      "lane": "judge_setup",
+      "owner": "researcher",
+      "evidence_status": "pending",
+      "depends_on": [
+        "F02",
+        "F11"
+      ],
+      "evidence": [],
+      "error": null,
+      "next_action": "select immutable judge and classifier revisions and freeze their decoding configuration",
+      "receipt_interface": {
+        "schema_version": "frame_internalization_judge_configuration_freeze.v1"
+      },
+      "resource_contract": null,
+      "blocked_by": [],
+      "execution_state": "ready",
+      "unlocks": [
+        "F14",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F13",
+      "label": "complete prospective Qwen base generation",
+      "lane": "primelab_inference",
+      "owner": "primelab",
+      "evidence_status": "pending",
+      "depends_on": [
+        "F02",
+        "F03",
+        "F04",
+        "F11"
+      ],
+      "evidence": [],
+      "error": null,
+      "next_action": "generate and retain all 1,600 registered Qwen base rows under the F04 caps",
+      "receipt_interface": {
+        "schema_version": "frame_internalization_qwen_base_generation.v1",
+        "expected_rows": 1600
+      },
+      "resource_contract": null,
+      "blocked_by": [
+        "F04"
+      ],
+      "execution_state": "blocked",
+      "unlocks": [
+        "F14",
+        "F16",
+        "F17",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F14",
+      "label": "complete frozen judge predictions",
+      "lane": "judge_inference",
+      "owner": "researcher",
+      "evidence_status": "pending",
+      "depends_on": [
+        "F12",
+        "F13"
+      ],
+      "evidence": [],
+      "error": null,
+      "next_action": "run the frozen judge configuration over the validation rows and retain every missing result",
+      "receipt_interface": {
+        "schema_version": "frame_internalization_judge_predictions.v1"
+      },
+      "resource_contract": null,
+      "blocked_by": [
+        "F12",
+        "F13"
+      ],
+      "execution_state": "blocked",
+      "unlocks": [
+        "F15",
+        "F17",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F15",
+      "label": "blinded human agreement",
+      "lane": "human_validation",
+      "owner": "human_annotators",
+      "evidence_status": "pending",
+      "depends_on": [
+        "F14"
+      ],
+      "evidence": [],
+      "error": null,
+      "next_action": "complete 200 blinded labels per task and pass Cohen's kappa >= 0.70 for each",
+      "receipt_interface": {
+        "schema_version": "frame_internalization_human_validation.v1"
+      },
+      "resource_contract": null,
+      "blocked_by": [
+        "F14"
+      ],
+      "execution_state": "blocked",
+      "unlocks": [
+        "F17",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F16",
+      "label": "Qwen layer-27 probe and controls",
+      "lane": "primelab_analysis",
+      "owner": "primelab",
+      "evidence_status": "pending",
+      "depends_on": [
+        "F13"
+      ],
+      "evidence": [],
+      "error": null,
+      "next_action": "fit and freeze the prompt-disjoint layer-27 probe and both controls before adapter outcomes",
+      "receipt_interface": {
+        "schema_version": "frame_internalization_qwen_probe_freeze.v1"
+      },
+      "resource_contract": null,
+      "blocked_by": [
+        "F13"
+      ],
+      "execution_state": "blocked",
+      "unlocks": [
+        "F17",
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F17",
+      "label": "prospective Qwen base analysis",
+      "lane": "analysis",
+      "owner": "repository",
+      "evidence_status": "pending",
+      "depends_on": [
+        "F13",
+        "F14",
+        "F15",
+        "F16"
+      ],
+      "evidence": [],
+      "error": null,
+      "next_action": "join, score, bootstrap, and freeze the Qwen base result with all missingness retained",
+      "receipt_interface": {
+        "schema_version": "frame_internalization_qwen_base_reanchor.v1"
+      },
+      "resource_contract": null,
+      "blocked_by": [
+        "F13",
+        "F14",
+        "F15",
+        "F16"
+      ],
+      "execution_state": "blocked",
+      "unlocks": [
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F18",
+      "label": "single-GPU six-arm 4,096-token smoke",
+      "lane": "primelab_training",
+      "owner": "primelab",
+      "evidence_status": "pending",
+      "depends_on": [
+        "F04",
+        "F07",
+        "F08",
+        "F10"
+      ],
+      "evidence": [],
+      "error": null,
+      "next_action": "run the exact six-arm 50-step smoke inside the capped wrapper and complete cleanup",
+      "receipt_interface": {
+        "schema_version": "frame_internalization_training_smoke_receipt.v2"
+      },
+      "resource_contract": {
+        "gpu_count": 1,
+        "minimum_vram_gib": 24,
+        "maximum_wall_clock_seconds": 7200,
+        "maximum_gpu_hours": 2,
+        "steps_per_arm": 50,
+        "sequence_length": 4096,
+        "checkpoint_every_steps_maximum": 200,
+        "checkpoint_every_minutes_maximum": 20,
+        "cleanup_required": true
+      },
+      "blocked_by": [
+        "F04",
+        "F07",
+        "F08",
+        "F10"
+      ],
+      "execution_state": "blocked",
+      "unlocks": [
+        "F19"
+      ]
+    },
+    {
+      "factor_id": "F19",
+      "label": "signed pilot authorization",
+      "lane": "authorization",
+      "owner": "researcher",
+      "evidence_status": "pending",
+      "depends_on": [
+        "F00",
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F16",
+        "F17",
+        "F18"
+      ],
+      "evidence": [],
+      "error": null,
+      "next_action": "bind every passed factor and the exact capped pilot command in a signed authorization",
+      "receipt_interface": {
+        "schema_version": "frame_internalization_compute_authorization.v2"
+      },
+      "resource_contract": null,
+      "blocked_by": [
+        "F04",
+        "F06",
+        "F07",
+        "F08",
+        "F10",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F16",
+        "F17",
+        "F18"
+      ],
+      "execution_state": "blocked",
+      "unlocks": []
+    }
+  ],
+  "parent_gates": [
+    {
+      "gate_id": "G01",
+      "label": "qwen_model_tokenizer_local_freeze",
+      "status": "passed",
+      "required_factors": [
+        "F03"
+      ],
+      "unsatisfied_factors": [],
+      "blocks_pilot": false
+    },
+    {
+      "gate_id": "G02",
+      "label": "primelab_environment_and_hardware_freeze",
+      "status": "pending",
+      "required_factors": [
+        "F04"
+      ],
+      "unsatisfied_factors": [
+        "F04"
+      ],
+      "blocks_pilot": true
+    },
+    {
+      "gate_id": "G03",
+      "label": "complete_matched_qwen_curricula",
+      "status": "pending",
+      "required_factors": [
+        "F01",
+        "F05",
+        "F06",
+        "F07"
+      ],
+      "unsatisfied_factors": [
+        "F06",
+        "F07"
+      ],
+      "blocks_pilot": true
+    },
+    {
+      "gate_id": "G04",
+      "label": "curriculum_token_parity",
+      "status": "pending",
+      "required_factors": [
+        "F07",
+        "F08"
+      ],
+      "unsatisfied_factors": [
+        "F07",
+        "F08"
+      ],
+      "blocks_pilot": true
+    },
+    {
+      "gate_id": "G05",
+      "label": "generated_text_nonleakage",
+      "status": "pending",
+      "required_factors": [
+        "F02",
+        "F09",
+        "F10"
+      ],
+      "unsatisfied_factors": [
+        "F10"
+      ],
+      "blocks_pilot": true
+    },
+    {
+      "gate_id": "G06",
+      "label": "evaluation_seal",
+      "status": "passed",
+      "required_factors": [
+        "F02"
+      ],
+      "unsatisfied_factors": [],
+      "blocks_pilot": false
+    },
+    {
+      "gate_id": "G07",
+      "label": "judge_and_human_validation_freeze",
+      "status": "pending",
+      "required_factors": [
+        "F11",
+        "F12",
+        "F14",
+        "F15"
+      ],
+      "unsatisfied_factors": [
+        "F12",
+        "F14",
+        "F15"
+      ],
+      "blocks_pilot": true
+    },
+    {
+      "gate_id": "G08",
+      "label": "prospective_qwen_base_baseline_and_layer_27_probe_freeze",
+      "status": "pending",
+      "required_factors": [
+        "F02",
+        "F03",
+        "F11",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F16",
+        "F17"
+      ],
+      "unsatisfied_factors": [
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F16",
+        "F17"
+      ],
+      "blocks_pilot": true
+    },
+    {
+      "gate_id": "G09",
+      "label": "single_gpu_4096_training_smoke",
+      "status": "pending",
+      "required_factors": [
+        "F03",
+        "F04",
+        "F07",
+        "F08",
+        "F10",
+        "F18"
+      ],
+      "unsatisfied_factors": [
+        "F04",
+        "F07",
+        "F08",
+        "F10",
+        "F18"
+      ],
+      "blocks_pilot": true
+    },
+    {
+      "gate_id": "G10",
+      "label": "human_pilot_authorization",
+      "status": "pending",
+      "required_factors": [
+        "F00",
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F19"
+      ],
+      "unsatisfied_factors": [
+        "F04",
+        "F06",
+        "F07",
+        "F08",
+        "F10",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F19"
+      ],
+      "blocks_pilot": true
+    }
+  ],
+  "generator": {
+    "path": "scripts/factor_frame_internalization_gates.py",
+    "sha256": "d60e82464df1a428b8c9c6560b28550428499904d8353dfd5c7a5e5c2bf66ed5"
+  }
+}

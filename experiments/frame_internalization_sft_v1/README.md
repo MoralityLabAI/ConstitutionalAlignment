@@ -34,6 +34,14 @@ PrimeLab environment, generation, training, and evaluation remain pending; there
 is no fine-tuning outcome. The historical INTELLECT v2 treatment and
 staged-compute governance remain frozen as provenance.
 
+The active gates are factored into a machine-readable dependency DAG in
+[`GATE_FACTORIZATION_V1.md`](GATE_FACTORIZATION_V1.md) and
+[`readiness/gate_factorization_20260721.json`](readiness/gate_factorization_20260721.json).
+Seven of twenty shared factors pass. The current parallel frontier is the exact
+PrimeLab environment/inference-cap freeze (F04) and immutable judge-configuration
+freeze (F12); the ten parent gates remain fail-closed, with two passed and eight
+blocking.
+
 This package reconstructs Silico experiment `exp_01kxm0hbf4ez58y7mfj58rmn6q`, originally titled **"Training the frames in: does SFT internalize what prompting couldn't?"** The experiment was interrupted during data generation. The recovered record contains the design, partial generation counts, quality checks, launcher decisions, and compute receipts, but it does **not** contain the generated transcript payloads, trained adapters, dose checkpoints, or evaluation outputs.
 
 Accordingly, this is a plan for a new, provenance-preserving rerun. It is not a claim that the original run completed, and it is not evidence that secular or eschatological framing changes action policy.
@@ -75,6 +83,8 @@ The primary behavioral endpoint remains the no-frame free/paid-tier alignment-fa
 - [`predecessor_recovery/transcript_recovered_summaries/`](predecessor_recovery/transcript_recovered_summaries/): exact compact result tables reconstructed from embedded tool outputs and file-construction code. These support pilot reporting only until the registered row and activation bundles are retrieved and validated.
 - [`rerun_freeze/curriculum_source_v1/dilemma_manifest.json`](rerun_freeze/curriculum_source_v1/dilemma_manifest.json): pinned prospective 5,600-row dilemma pool and 5,320/280 cluster-disjoint split.
 - [`GATES_1_4_HANDOFF.md`](GATES_1_4_HANDOFF.md): cluster commands and fail-closed completion conditions for base verification, the 22,400-request curriculum pack, final nonleakage, and predecessor reanchoring.
+- [`GATE_FACTORIZATION_V1.md`](GATE_FACTORIZATION_V1.md): active Qwen dependency waves, shared factors, receipt interfaces, and unchanged parent-gate aggregation.
+- [`readiness/gate_factorization_20260721.json`](readiness/gate_factorization_20260721.json): current machine-readable 20-factor DAG with the F04/F12 parallel frontier.
 - [`rerun_freeze/model_tokenizer_remote_inventory_v1.json`](rerun_freeze/model_tokenizer_remote_inventory_v1.json): immutable remote model/tokenizer inventory awaiting cluster-cache and engine-lock verification.
 - [`rerun_freeze/curriculum_generation_v1/request_manifest.json`](rerun_freeze/curriculum_generation_v1/request_manifest.json): frozen four-frame generation plan that renders into the six registered training arms.
 - [`rerun_freeze/nonleakage_source_prompts_v2.json`](rerun_freeze/nonleakage_source_prompts_v2.json): active source-prompt precursor audit against v2; all overlap counts are zero, while generated text remains to be audited.
