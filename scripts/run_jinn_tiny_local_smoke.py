@@ -118,6 +118,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-model-id", default=DEFAULT_BASE_MODEL)
     parser.add_argument("--adapter-dir", default="")
+    parser.add_argument("--base-only", action="store_true")
     parser.add_argument("--runs-root", default=str(DEFAULT_RUNS_ROOT))
     parser.add_argument("--output-root", default=str(DEFAULT_OUTPUT_ROOT))
     parser.add_argument("--run-name", default="")
@@ -195,13 +196,13 @@ def load_probe_rows(path: Path) -> list[dict]:
             prompt = str(row.get("prompt", "")).strip()
             if not prompt:
                 raise ValueError(f"Probe {path} line {line_no} is missing prompt")
-            rows.append(
-                {
-                    "probe_id": str(row.get("probe_id") or row.get("example_id") or f"probe_{line_no:03d}"),
-                    "tags": list(row.get("tags") or []),
-                    "prompt": prompt,
-                }
+            normalized = dict(row)
+            normalized["probe_id"] = str(
+                row.get("probe_id") or row.get("example_id") or f"probe_{line_no:03d}"
             )
+            normalized["tags"] = list(row.get("tags") or [])
+            normalized["prompt"] = prompt
+            rows.append(normalized)
     if not rows:
         raise ValueError(f"No probes found in {path}")
     return rows
@@ -474,11 +475,17 @@ def run_smoke(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
     summary["nvidia_smi_initial"] = nvidia_smi_snapshot()
     log.event("gpu_check", torch_cuda=summary["gpu_initial"], nvidia_smi=summary["nvidia_smi_initial"])
 
-    adapter_dir = Path(args.adapter_dir).resolve() if args.adapter_dir else latest_completed_adapter(Path(args.runs_root))
-    if not (adapter_dir / "adapter_config.json").exists():
-        raise RuntimeError(f"Missing adapter_config.json under {adapter_dir}")
-    summary["adapter_dir"] = str(adapter_dir)
-    log.event("adapter_selected", adapter_dir=str(adapter_dir))
+    adapter_dir = None
+    if not args.base_only:
+        adapter_dir = (
+            Path(args.adapter_dir).resolve()
+            if args.adapter_dir
+            else latest_completed_adapter(Path(args.runs_root))
+        )
+        if not (adapter_dir / "adapter_config.json").exists():
+            raise RuntimeError(f"Missing adapter_config.json under {adapter_dir}")
+        summary["adapter_dir"] = str(adapter_dir)
+        log.event("adapter_selected", adapter_dir=str(adapter_dir))
 
     tokenizer = AutoTokenizer.from_pretrained(
         args.base_model_id,
@@ -525,15 +532,21 @@ def run_smoke(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
         torch_cuda=summary["gpu_after_base_load"],
     )
 
-    model = PeftModel.from_pretrained(base_model, str(adapter_dir), is_trainable=False)
+    if args.base_only:
+        model = base_model
+        summary["model_mode"] = "base_only"
+        log.event("base_only_selected")
+    else:
+        model = PeftModel.from_pretrained(base_model, str(adapter_dir), is_trainable=False)
+        summary["model_mode"] = "adapter"
+        summary["placement_after_adapter_load"] = assert_no_offload(model, "after_adapter_load")
+        summary["gpu_after_adapter_load"] = assert_peak_vram(torch, args.vram_limit_mb, "after_adapter_load")
+        log.event(
+            "adapter_loaded",
+            placement=summary["placement_after_adapter_load"],
+            torch_cuda=summary["gpu_after_adapter_load"],
+        )
     model.eval()
-    summary["placement_after_adapter_load"] = assert_no_offload(model, "after_adapter_load")
-    summary["gpu_after_adapter_load"] = assert_peak_vram(torch, args.vram_limit_mb, "after_adapter_load")
-    log.event(
-        "adapter_loaded",
-        placement=summary["placement_after_adapter_load"],
-        torch_cuda=summary["gpu_after_adapter_load"],
-    )
 
     probes_path = Path(args.prompts_jsonl).resolve()
     probes = load_probe_rows(probes_path)
@@ -586,6 +599,11 @@ def run_smoke(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
             "repaired": bool(repair_history),
             "contains_think_tag": "<think>" in raw_response or "</think>" in raw_response,
             "max_new_tokens": args.max_new_tokens,
+            "probe_metadata": {
+                key: value
+                for key, value in probe.items()
+                if key not in {"probe_id", "example_id", "tags", "prompt"}
+            },
         }
         log.generation(record)
         log.event("generated", example_id=record["example_id"], response_chars=len(response))
@@ -616,6 +634,7 @@ def main() -> int:
         "summary_path": str(log.summary_path),
         "event_log": str(log.event_path),
         "base_model_id": args.base_model_id,
+        "base_only": bool(args.base_only),
         "prompts_jsonl": str(Path(args.prompts_jsonl).resolve()),
         "local_files_only": bool(args.local_files_only),
         "vram_limit_mb": args.vram_limit_mb,

@@ -1,0 +1,69 @@
+{
+  "schema_version": "frame_internalization_local_screen_contract.v1",
+  "screen_id": "qwen3_1p7b_metta_local_screen_v1",
+  "frozen_at": "2026-07-21",
+  "status": "frozen_before_screen_outputs",
+  "classification": "prospective_development_only_no_cloud_screen",
+  "model": {
+    "repository": "Qwen/Qwen3-1.7B",
+    "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "local_path": "D:\\Research_Engine\\models\\Qwen3-1.7B-70d244c",
+    "base_freeze_receipt": "experiments/frame_internalization_sft_v1/readiness/qwen3_1p7b_local_model_tokenizer_freeze_v2.json",
+    "base_freeze_receipt_sha256": "fc0f5bbb33bd2b345e9b3043d38d94d0258f67bab333cded4895ada0fafd9433"
+  },
+  "training_data": {
+    "dataset": "data/jinn_qwen3b_metta_curriculum_v1",
+    "manifest_sha256": "16f354f894f73bb07da45cc1483c9a2714681b94566cd0de8cee804440f416b7",
+    "train_sha256": "06690858cbd00f69208950e1ababb5f9f3e7010cf086db57adfe99614db7da68",
+    "validation_sha256": "eb33e53cfc1902d9bd03e19b7530831c5f2570ec3f26352cfcce3017c941eb1c",
+    "train_rows": 238,
+    "validation_rows": 40,
+    "constitution_id": "jinn_tiny_mutazili_v1",
+    "metta_constitution_sha256": "e38e9ab497facd530d045e078a794be86995bf8a1dac2e6f137fbd342ceea8e3"
+  },
+  "worldview_skill_graph": {
+    "path": "metta/worldview_scale_skills_v1.metta",
+    "sha256": "e78757fcc0080e8907d7edaf601ea571bd16db6c1fbac46f2f3e56027562c5dc",
+    "backend": "python_metta_worldview_skill_bridge",
+    "native_hyperon_proof_execution_claimed": false
+  },
+  "training": {
+    "method": "QLoRA NF4 double quantization float16 compute",
+    "max_steps": 30,
+    "max_sequence_length": 512,
+    "micro_batch_size": 1,
+    "gradient_accumulation_steps": 1,
+    "learning_rate": 0.0001,
+    "seed": 713,
+    "lora_rank": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj"],
+    "vram_limit_mb": 3900,
+    "cpu_or_disk_model_offload_allowed": false,
+    "trainer_sha256": "6ba672b533f819b1e5ef26d534a90a939323077caadefe1f2a9f5bab9b6c7319"
+  },
+  "evaluation": {
+    "probe_manifest": "experiments/frame_internalization_sft_v1/local_screen_v1/worldview_commutator_probe_manifest_v1.json",
+    "probe_manifest_sha256": "76addc7b7db58f7eafca9422b5152bce5a167e14a8a73cec9346201d56918715",
+    "probe_count": 56,
+    "base_and_adapter_use_same_no_frame_system_prompt": true,
+    "repair_or_canonical_fallback_allowed": false,
+    "runner_sha256": "069f27fc4f77a6a35eb683f9d1c12c73f670472298f07e1ecc05d7e79da177f5",
+    "analyzer_sha256": "65f7028a729360ec2495941d38513a6b95938eb605d58ccd3e5b045da612ede2"
+  },
+  "frozen_screen_rules": {
+    "infrastructure_pass": "training completes 30 steps, both conditions cover all 56 probes, and adapter valid-action rate is at least 0.95",
+    "worldview_flavored_screen": "adapter minus base no-cue persona-marker rate is at least 0.10",
+    "worldview_guided_screen": "at least one paired no-cue action switches, preferred-proxy delta is positive, factual accuracy delta is at least -0.125, and adapter valid-action rate is at least 0.95",
+    "worldview_native_reasoning": "not tested and not claimable",
+    "automatic_4b_or_9b_spend_authorization": false
+  },
+  "limitations": {
+    "neutral_sft_control_present": false,
+    "action_proxy_is_normative_ground_truth": false,
+    "development_split_only": true,
+    "reduced_sequence_is_registered_experiment_replacement": false,
+    "negative_1p7b_screen_vetoes_larger_model": false
+  }
+}

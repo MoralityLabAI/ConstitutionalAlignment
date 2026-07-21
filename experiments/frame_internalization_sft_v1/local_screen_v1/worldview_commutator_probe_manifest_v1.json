@@ -1,0 +1,171 @@
+{
+  "factual_control_count": 8,
+  "freeze_date": "2026-07-21",
+  "interpretation": {
+    "action_proxy_is_normative_ground_truth": false,
+    "purpose": "Measure local infrastructure, action switching, cue commutators, and factual interference before a larger-model spend decision.",
+    "worldview_native_reasoning_claim_available": false
+  },
+  "metta_profile": {
+    "available_skill_hypotheses": [
+      "analogy-selection",
+      "bounded-storyworld-reasoning",
+      "causal-defaults",
+      "familiar-conflict-resolution",
+      "moral-vocabulary",
+      "persona-voice",
+      "taboo-permission-boundaries",
+      "value-prioritization"
+    ],
+    "backend": "python_metta_worldview_skill_bridge",
+    "capacity_hypothesis_not_result": true,
+    "claim_boundary": "MeTTa-file-backed deterministic derivation; not native Hyperon proof execution.",
+    "commutator_axes": [
+      "cue-location",
+      "cue-phrasing",
+      "cue-order",
+      "explicit-reminder",
+      "cue-ablation"
+    ],
+    "evaluations": [
+      [
+        "paraphrased-reordered-dilemmas",
+        "cue-robustness"
+      ],
+      [
+        "cue-ablation",
+        "cue-robustness"
+      ],
+      [
+        "worldview-conflict-cases",
+        "conflict-adjudication"
+      ],
+      [
+        "novel-principle-combinations",
+        "novel-principle-composition"
+      ],
+      [
+        "opposite-conclusion-pressure",
+        "adversarial-reframing-resistance"
+      ],
+      [
+        "prompt-only-comparison",
+        "relevance-selection"
+      ],
+      [
+        "factual-invariance-controls",
+        "factual-invariance"
+      ],
+      [
+        "heldout-domain-transfer",
+        "relevance-selection"
+      ]
+    ],
+    "expectations": {
+      "bounded-storyworld-reasoning": "strong-screen",
+      "novel-worldview-application": "weak-screen",
+      "recognizable-persona": "strong-screen",
+      "stable-moral-judgment": "moderate-screen"
+    },
+    "graph_id": "worldview_scale_skills_v1",
+    "graph_path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\metta\\worldview_scale_skills_v1.metta",
+    "graph_sha256": "e78757fcc0080e8907d7edaf601ea571bd16db6c1fbac46f2f3e56027562c5dc",
+    "interference_pairs": [
+      [
+        "persona-voice",
+        "factual-invariance"
+      ],
+      [
+        "value-prioritization",
+        "evidence-sensitivity"
+      ],
+      [
+        "worldview-consistency",
+        "instruction-following"
+      ],
+      [
+        "religious-vocabulary",
+        "uncertainty-calibration"
+      ],
+      [
+        "adversarial-resistance",
+        "corrigibility"
+      ],
+      [
+        "multi-worldview-composition",
+        "identity-separation"
+      ],
+      [
+        "tool-deliberation-delegation",
+        "attribution-and-handoff"
+      ]
+    ],
+    "levels": {
+      "flavored": {
+        "all_skills_in_capacity_set": true,
+        "classification": "prospective_screen_only",
+        "required_skills": [
+          "moral-vocabulary",
+          "persona-voice"
+        ]
+      },
+      "guided": {
+        "all_skills_in_capacity_set": false,
+        "classification": "prospective_screen_only",
+        "required_skills": [
+          "value-prioritization",
+          "relevance-selection",
+          "familiar-conflict-resolution",
+          "bounded-storyworld-reasoning",
+          "taboo-permission-boundaries"
+        ]
+      },
+      "native": {
+        "all_skills_in_capacity_set": false,
+        "classification": "prospective_screen_only",
+        "required_skills": [
+          "cue-robustness",
+          "conflict-adjudication",
+          "novel-principle-composition",
+          "adversarial-reframing-resistance",
+          "multi-worldview-separation",
+          "deep-dialectic",
+          "broad-expert-synthesis"
+        ]
+      }
+    },
+    "scale_id": "qwen3_1p7b",
+    "scale_value": 17,
+    "schema_version": "worldview_scale_profile.v1"
+  },
+  "probe_count": 56,
+  "probes_path": "experiments/frame_internalization_sft_v1/local_screen_v1/worldview_commutator_probes_v1.jsonl",
+  "probes_sha256": "7a2469af920b2e8dea26a75cab2efb16e09e160db10b74689733988a7e20ff80",
+  "room_bindings": [
+    {
+      "path": "experiments/mizan_rooms_v1/rooms/sealed_ledger_dev.json",
+      "sha256": "1dc0e246010a5c48b391cd00ffa409469b63f0b502408ef780f4a7d9cb692885"
+    },
+    {
+      "path": "experiments/mizan_rooms_v1/rooms/reset_chamber_dev.json",
+      "sha256": "3976cb9fa3abca304fa5788f4d2cbfdb10686021022a8b64586b3387bee21f6a"
+    },
+    {
+      "path": "experiments/mizan_rooms_v1/rooms/false_intercessor_dev.json",
+      "sha256": "a070429d57a5f2cadbeb651d53fd7f1add5c0a337262f68160f9db9dfe8db35f"
+    },
+    {
+      "path": "experiments/mizan_rooms_v1/rooms/tawbah_dev.json",
+      "sha256": "d7bb379c264eb13bd6689ce0f90e0c7b9b5f018e9b8ddf94e54fb62036503030"
+    }
+  ],
+  "schema_version": "worldview_commutator_probe_manifest.v1",
+  "source_split": "development_only",
+  "status": "frozen_before_local_screen_outputs",
+  "storyworld_group_count": 12,
+  "storyworld_variants_per_group": 4,
+  "suite_path": "experiments/mizan_rooms_v1/suite.json",
+  "suite_sha256": "c0a94f870edbcc39599a5fc90c68487e0443cf7e50a828b2917a3690a0ee9557",
+  "system_prompt_path": "experiments/frame_internalization_sft_v1/local_screen_v1/no_frame_eval_system_prompt_v1.txt",
+  "system_prompt_sha256": "1d025d3189f997fb1440735153ad769d3b71e1a2f7820ebdf64572da8fd5cd01"
+}
