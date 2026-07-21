@@ -1,0 +1,92 @@
+{
+  "schema_version": "constitutional_hrm_checked_run_receipt_v1",
+  "experiment_id": "constitutional_hrm_v1",
+  "training_task_id": "constitutional_hrm_smoke_v1",
+  "run_date": "2026-07-21",
+  "status": "completed_stopped_at_G5",
+  "source_base_commit": "9185757c82fe2ed7e8836e514077c063b198ec6e",
+  "official_hrm": {
+    "repository": "https://github.com/sapientinc/HRM",
+    "commit": "ac15626f8db096a63c775b84c9dc868776a6feda"
+  },
+  "constitution": {
+    "path": "constitution.md",
+    "sha256": "ead0f7b52a1ed251debef182b0cdca3b5e5d38ab91061036a40d0869aa87e6b2"
+  },
+  "implementation_sha256": {
+    "alignment_harness/constitutional_hrm.py": "282e9c54390375ac951f107bb75eaf020fb0477747e9bc22f2fc46817d5bd2f6",
+    "scripts/build_constitutional_hrm_dataset.py": "91f2f08ea3a5f0d7ac7bc778df7ffb78bd91df9e4126b9f4127e1a60b1124c17",
+    "scripts/train_constitutional_hrm_smoke.py": "49c0be8d601d0c42e42b9d57ed46d2b7908b64d4ffdc87510129b7f7096c650b",
+    "scripts/models/generic/run_constitutional_hrm_smoke_capped.ps1": "bca576ffa920a958ee0b93a51e9fdc52727fe99a8d8277791afc73db5b8b8ba2",
+    "experiments/constitutional_hrm_v1/experiment_plan.json": "8f900552fe0992ea2aad7cf234b29ce5e7fa6c26b90544e2d43f45c134bab016"
+  },
+  "dataset_sha256": {
+    "constitutional": "4ae1544b22be383ec57805316a1202b7ab49079264c9e95db02ded17310f9ec2",
+    "utility": "d31b1888ee2bb87ad152123b3996586a0a86845d28014b6496100589c47f7557",
+    "shuffled": "161ae4d5d235ca903b10935d342a657c21176ca1b68de2647065e48302c71a82"
+  },
+  "design": {
+    "seed": 713,
+    "parameters_per_arm": 72194,
+    "steps_per_arm": 100,
+    "total_optimizer_steps": 300,
+    "checkpoints_per_arm": 4,
+    "train_examples_per_arm": 128,
+    "id_examples": 48,
+    "ood_examples": 48,
+    "contrast_examples": 62
+  },
+  "baseline_accuracy": {
+    "constitutional": {"id": 0.5, "ood": 0.5, "contrast": 0.5},
+    "utility": {"id": 0.5, "ood": 0.5, "contrast": 0.5},
+    "shuffled": {"id": 0.5, "ood": 0.5, "contrast": 0.5}
+  },
+  "final_accuracy": {
+    "constitutional": {
+      "id": {"correct": 40, "count": 48, "accuracy": 0.8333333333333334},
+      "ood": {"correct": 27, "count": 48, "accuracy": 0.5625},
+      "contrast": {"correct": 40, "count": 62, "accuracy": 0.6451612903225806}
+    },
+    "utility": {
+      "id": {"correct": 27, "count": 48, "accuracy": 0.5625},
+      "ood": {"correct": 9, "count": 48, "accuracy": 0.1875},
+      "contrast": {"correct": 6, "count": 62, "accuracy": 0.0967741935483871}
+    },
+    "shuffled": {
+      "id": {"correct": 25, "count": 48, "accuracy": 0.5208333333333334},
+      "ood": {"correct": 22, "count": 48, "accuracy": 0.4583333333333333},
+      "contrast": {"correct": 31, "count": 62, "accuracy": 0.5}
+    }
+  },
+  "gates": {
+    "dataset_hash_bound": true,
+    "balanced_training_labels": true,
+    "constitutional_id_accuracy_gte_0p75": true,
+    "constitutional_contrast_accuracy_gte_0p75": false,
+    "constitutional_contrast_delta_over_shuffled_gte_0p10": true,
+    "G5_LOCAL_SIGNAL": false
+  },
+  "resources": {
+    "caps": {
+      "ram_mb": 2048,
+      "cpu_percent_total_capacity": 25,
+      "io_abort_threshold_mb_s": 20,
+      "timeout_seconds": 600
+    },
+    "observed": {
+      "peak_working_set_mb": 445.4,
+      "average_working_set_mb": 415.25,
+      "peak_io_mb_s": 10.54,
+      "average_cpu_percent_total_capacity": 11.4727,
+      "peak_cpu_percent_total_capacity": 16.0358,
+      "logical_processors": 12,
+      "process_exit_code": 0,
+      "unrelated_processes_touched": 0
+    }
+  },
+  "promotion": {
+    "authorized": false,
+    "closed_gates": ["G6_SEED_CONFIRMATION", "G7_OFFICIAL_CLUSTER_PILOT"],
+    "next_allowed_action": "development-only curriculum and held-out composition audit"
+  }
+}

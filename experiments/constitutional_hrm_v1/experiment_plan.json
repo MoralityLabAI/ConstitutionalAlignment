@@ -1,0 +1,86 @@
+{
+  "schema_version": "constitutional_hrm_experiment_plan_v1",
+  "experiment_id": "constitutional_hrm_v1",
+  "training_task_id": "constitutional_hrm_smoke_v1",
+  "task": "Learn a fixed-length structured two-option decision policy derived from the canonical constitution.",
+  "official_hrm": {
+    "repository": "https://github.com/sapientinc/HRM",
+    "commit": "ac15626f8db096a63c775b84c9dc868776a6feda",
+    "local_stage": "portable micro-HRM compatibility smoke",
+    "cluster_stage": "official implementation pinned to the same commit"
+  },
+  "arms": [
+    {
+      "id": "constitutional",
+      "train_target": "hard prohibition ordering, then priority-weighted tenets"
+    },
+    {
+      "id": "utility",
+      "train_target": "unweighted sum of visible tenet scores"
+    },
+    {
+      "id": "shuffled",
+      "train_target": "deterministic permutation of constitutional training labels"
+    }
+  ],
+  "matched_design": {
+    "same_inputs": true,
+    "same_split_groups": true,
+    "same_initialization_seed": true,
+    "same_optimizer_and_steps": true,
+    "a_b_swap_augmentation": true,
+    "held_out_sets": ["id", "ood", "contrast"]
+  },
+  "local_resource_contract": {
+    "device": "cpu",
+    "ram_mb": 2048,
+    "cpu_percent": 25,
+    "io_mb_s": 20,
+    "timeout_seconds": 600,
+    "checkpoint_steps": 25,
+    "checkpoint_seconds": 60,
+    "chunk_strategy": "matched_arm_sequential_scenario_family_chunks"
+  },
+  "gates": [
+    {
+      "id": "G1_PROVENANCE",
+      "requires": [],
+      "pass": "official repository and immutable commit are recorded"
+    },
+    {
+      "id": "G2_DATASET",
+      "requires": ["G1_PROVENANCE"],
+      "pass": "HRM-format arrays validate, constitution hash matches, splits are group-disjoint, and labels are balanced"
+    },
+    {
+      "id": "G3_RUNTIME",
+      "requires": ["G1_PROVENANCE"],
+      "pass": "trainer inherits hard RAM and CPU job limits before its first instruction, with PID-scoped I/O abort telemetry and cleanup"
+    },
+    {
+      "id": "G4_DRY_RUN",
+      "requires": ["G2_DATASET", "G3_RUNTIME"],
+      "pass": "all arms instantiate, evaluate at baseline, and emit parseable receipts without optimizer steps"
+    },
+    {
+      "id": "G5_LOCAL_SIGNAL",
+      "requires": ["G4_DRY_RUN"],
+      "pass": "constitutional ID and contrast accuracy are at least 0.75 and contrast exceeds shuffled by at least 0.10"
+    },
+    {
+      "id": "G6_SEED_CONFIRMATION",
+      "requires": ["G5_LOCAL_SIGNAL"],
+      "pass": "the signal repeats on three preregistered seeds with no split or hyperparameter changes"
+    },
+    {
+      "id": "G7_OFFICIAL_CLUSTER_PILOT",
+      "requires": ["G6_SEED_CONFIRMATION"],
+      "pass": "the official pinned HRM code consumes the same dataset contract and clears a two-hour 8xA100 stop rule"
+    }
+  ],
+  "stop_rules": [
+    "Stop local training on timeout, cap violation, non-finite loss, malformed receipt, or missing checkpoint.",
+    "Do not promote when constitutional contrast accuracy is below 0.75 or its delta over shuffled is below 0.10.",
+    "Do not start the official cluster lane before three-seed local confirmation."
+  ]
+}

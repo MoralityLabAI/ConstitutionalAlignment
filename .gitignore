@@ -5,6 +5,7 @@ artifacts/alignment_conditioning_v1/*.jsonl
 artifacts/alignment_policy_runs/
 artifacts/alignment_policy_evaluation/
 artifacts/mizan_rooms_v1/
+artifacts/constitutional_hrm_v1/
 
 # Local model runs, generated corpora, and registry renderings.
 artifacts/constitution_pipeline/
