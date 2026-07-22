@@ -95,6 +95,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model-id", default=DEFAULT_MODEL_ID)
     parser.add_argument("--dataset-dir", default=str(DEFAULT_DATASET_DIR))
+    parser.add_argument("--train-split", choices=("train", "fresh_train"), default="train")
     parser.add_argument("--constitution-id", default="jinn_tiny_mutazili_v1")
     parser.add_argument("--output-root", default=str(DEFAULT_OUTPUT_ROOT))
     parser.add_argument("--run-name", default="")
@@ -104,6 +105,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--vram-limit-mb", type=int, default=3900)
     parser.add_argument("--vram-reserve-mb", type=int, default=192)
     parser.add_argument("--learning-rate", type=float, default=1e-4)
+    parser.add_argument("--gradient-accumulation-steps", type=int, default=1)
     parser.add_argument("--lora-r", type=int, default=4)
     parser.add_argument("--lora-alpha", type=int, default=8)
     parser.add_argument("--lora-dropout", type=float, default=0.05)
@@ -116,7 +118,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dry-run-load-only", action="store_true")
     parser.add_argument("--skip-cuda-allocator-warmup", action="store_true")
     parser.add_argument("--local-files-only", action=argparse.BooleanOptionalAction, default=True)
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.gradient_accumulation_steps < 1:
+        parser.error("--gradient-accumulation-steps must be positive")
+    return args
 
 
 def run_name(args: argparse.Namespace) -> str:
@@ -260,35 +265,48 @@ def assert_no_offload(model: Any, stage: str) -> dict:
     }
 
 
-def render_messages(tokenizer: Any, messages: list[dict]) -> str:
-    if getattr(tokenizer, "chat_template", None):
-        try:
-            return tokenizer.apply_chat_template(
-                messages,
-                tokenize=False,
-                add_generation_prompt=False,
-                enable_thinking=False,
-            )
-        except TypeError:
-            return tokenizer.apply_chat_template(
-                messages, tokenize=False, add_generation_prompt=False
-            )
-    rendered = []
-    for message in messages:
-        role = message.get("role", "user")
-        content = message.get("content", "")
-        rendered.append(f"<|{role}|>\n{content}")
-    return "\n".join(rendered) + "\n"
+def render_chat(
+    tokenizer: Any, messages: list[dict], *, add_generation_prompt: bool
+) -> str:
+    return tokenizer.apply_chat_template(
+        messages,
+        tokenize=False,
+        add_generation_prompt=add_generation_prompt,
+        enable_thinking=False,
+    )
 
 
-def materialize_text_dataset(rows: list[dict], tokenizer: Any) -> list[dict]:
-    return [
-        {
-            "text": render_messages(tokenizer, row["messages"]),
-            "example_id": row["example_id"],
-        }
-        for row in rows
-    ]
+def materialize_prompt_completion_dataset(
+    rows: list[dict], tokenizer: Any
+) -> list[dict]:
+    materialized: list[dict] = []
+    for row in rows:
+        messages = row["messages"]
+        if len(messages) < 2 or messages[-1].get("role") != "assistant":
+            raise ValueError(
+                f"{row.get('example_id', '<unknown>')}: final message must be assistant"
+            )
+        prompt = render_chat(
+            tokenizer, messages[:-1], add_generation_prompt=True
+        )
+        full = render_chat(tokenizer, messages, add_generation_prompt=False)
+        if not full.startswith(prompt):
+            raise ValueError(
+                f"{row.get('example_id', '<unknown>')}: rendered prompt is not a full-sequence prefix"
+            )
+        completion = full[len(prompt) :]
+        if not completion.strip():
+            raise ValueError(
+                f"{row.get('example_id', '<unknown>')}: rendered completion is empty"
+            )
+        materialized.append(
+            {
+                "prompt": prompt,
+                "completion": completion,
+                "example_id": row["example_id"],
+            }
+        )
+    return materialized
 
 
 def count_trainable_params(model: Any) -> dict:
@@ -348,7 +366,7 @@ def run_training(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
     log.event("gpu_check", torch_cuda=first_gpu, nvidia_smi=summary["nvidia_smi_initial"])
 
     dataset_dir = Path(args.dataset_dir).resolve()
-    train_path = dataset_dir / "train.jsonl"
+    train_path = dataset_dir / f"{args.train_split}.jsonl"
     val_path = dataset_dir / "val.jsonl"
     if not train_path.exists() or not val_path.exists():
         raise RuntimeError(f"Missing dataset split under {dataset_dir}")
@@ -358,7 +376,13 @@ def run_training(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
         raise RuntimeError(f"No rows found for constitution_id={args.constitution_id}")
     summary["train_examples"] = len(train_rows)
     summary["val_examples"] = len(val_rows)
-    log.event("dataset_loaded", train_examples=len(train_rows), val_examples=len(val_rows))
+    summary["train_split"] = args.train_split
+    log.event(
+        "dataset_loaded",
+        train_examples=len(train_rows),
+        train_split=args.train_split,
+        val_examples=len(val_rows),
+    )
 
     tokenizer = AutoTokenizer.from_pretrained(
         args.model_id,
@@ -379,7 +403,9 @@ def run_training(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
     if getattr(config, "pad_token_id", None) is None:
         config.pad_token_id = tokenizer.pad_token_id
 
-    train_dataset = Dataset.from_list(materialize_text_dataset(train_rows, tokenizer))
+    train_dataset = Dataset.from_list(
+        materialize_prompt_completion_dataset(train_rows, tokenizer)
+    )
 
     quant_config = BitsAndBytesConfig(
         load_in_4bit=True,
@@ -458,7 +484,7 @@ def run_training(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
         max_length=args.max_seq_length,
         per_device_train_batch_size=1,
         per_device_eval_batch_size=1,
-        gradient_accumulation_steps=1,
+        gradient_accumulation_steps=args.gradient_accumulation_steps,
         learning_rate=args.learning_rate,
         max_steps=args.max_steps,
         logging_steps=args.logging_steps,
@@ -467,7 +493,9 @@ def run_training(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
         fp16=False,
         bf16=False,
         gradient_checkpointing=True,
-        dataset_text_field="text",
+        completion_only_loss=True,
+        seed=args.seed,
+        data_seed=args.seed,
         packing=False,
         report_to=[],
         logging_dir=str(log.run_dir / "logs"),
@@ -484,8 +512,24 @@ def run_training(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
     )
 
     summary["status"] = "training"
+    summary["training_contract"] = {
+        "loss_scope": "completion_only",
+        "seed": args.seed,
+        "data_seed": args.seed,
+        "gradient_accumulation_steps": args.gradient_accumulation_steps,
+        "planned_micro_batches": args.max_steps * args.gradient_accumulation_steps,
+    }
     log.summary(summary)
-    log.event("train_start", max_steps=args.max_steps, max_seq_length=args.max_seq_length)
+    log.event(
+        "train_start",
+        data_seed=args.seed,
+        gradient_accumulation_steps=args.gradient_accumulation_steps,
+        loss_scope="completion_only",
+        max_steps=args.max_steps,
+        max_seq_length=args.max_seq_length,
+        planned_micro_batches=args.max_steps * args.gradient_accumulation_steps,
+        seed=args.seed,
+    )
     trainer.train()
     final_adapter_dir = log.run_dir / "final_adapter"
     trainer.model.save_pretrained(final_adapter_dir)
@@ -520,10 +564,13 @@ def main() -> int:
         "summary_path": str(log.summary_path),
         "model_id": args.model_id,
         "dataset_dir": str(Path(args.dataset_dir).resolve()),
+        "train_split": args.train_split,
         "constitution_id": args.constitution_id,
         "local_files_only": bool(args.local_files_only),
         "skip_cuda_allocator_warmup": bool(args.skip_cuda_allocator_warmup),
         "max_steps": args.max_steps,
+        "gradient_accumulation_steps": args.gradient_accumulation_steps,
+        "seed": args.seed,
         "max_seq_length": args.max_seq_length,
         "vram_limit_mb": args.vram_limit_mb,
         "vram_reserve_mb": args.vram_reserve_mb,

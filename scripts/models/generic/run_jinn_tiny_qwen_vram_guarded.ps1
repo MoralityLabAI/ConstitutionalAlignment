@@ -3,6 +3,7 @@ param(
     [string]$ModelId = "D:\Research_Engine\models\Qwen3.5\Qwen2.5-3B",
     [string]$FallbackModelId = "D:\Research_Engine\models\Pixie-Josie-1.7B-v2",
     [string]$DatasetDir = "",
+    [ValidateSet("train", "fresh_train")][string]$TrainSplit = "train",
     [string]$OutputRoot = "",
     [string]$CacheDir = "",
     [string]$ConstitutionId = "jinn_tiny_mutazili_v1",
@@ -11,6 +12,8 @@ param(
     [int]$VramLimitMb = 3900,
     [int]$VramReserveMb = 192,
     [double]$LearningRate = 1e-4,
+    [ValidateRange(1, 64)][int]$GradientAccumulationSteps = 1,
+    [int]$Seed = 713,
     [string]$InitAdapterPath = "",
     [int]$RamLimitMb = 8192,
     [int]$MinAvailableRamMb = 1024,
@@ -202,6 +205,7 @@ function Invoke-GuardedAttempt {
         ".\scripts\train_jinn_tiny_vram_guarded.py",
         "--model-id", $AttemptModelId,
         "--dataset-dir", $DatasetDir,
+        "--train-split", $TrainSplit,
         "--constitution-id", $ConstitutionId,
         "--output-root", $OutputRoot,
         "--run-name", $runName,
@@ -211,6 +215,8 @@ function Invoke-GuardedAttempt {
         "--vram-limit-mb", "$VramLimitMb",
         "--vram-reserve-mb", "$VramReserveMb",
         "--learning-rate", "$LearningRate",
+        "--gradient-accumulation-steps", "$GradientAccumulationSteps",
+        "--seed", "$Seed",
         "--save-steps", "$SaveSteps",
         "--save-total-limit", "$SaveTotalLimit"
     )
@@ -452,6 +458,7 @@ try {
         fallback_model_id = $FallbackModelId
         constitution_id = $ConstitutionId
         dataset_dir = $DatasetDir
+        train_split = $TrainSplit
         output_root = $OutputRoot
         caps = @{
             ram_mb = $RamLimitMb
@@ -463,6 +470,8 @@ try {
             io_spike_samples = $IoSpikeSamples
             save_steps = $SaveSteps
             save_total_limit = $SaveTotalLimit
+            gradient_accumulation_steps = $GradientAccumulationSteps
+            seed = $Seed
             vram_limit_mb = $VramLimitMb
             vram_reserve_mb = $VramReserveMb
             timeout_seconds = $TimeoutSeconds

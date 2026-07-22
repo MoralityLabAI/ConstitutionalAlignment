@@ -1,0 +1,75 @@
+{
+  "schema_version": "local_storyworld_dag_prospective_amendment_v1",
+  "amendment_id": "cycle_01b_completion_loss_and_coverage_fix",
+  "experiment_id": "qwen3_1p7b_storyworld_dag_v1",
+  "status": "prospective_no_corrected_adapter_outcomes_seen",
+  "registered_at_utc": "2026-07-22T15:02:00Z",
+  "parent_plan_sha256": "78415dcb621716f3c35fb4bcb2481f46735173079518d0f672fd6375bbb92c8b",
+  "supersedes_for_development_only": "cycle_01_20260722",
+  "prior_decision_remains": "stop",
+  "diagnosis": {
+    "matched_holdout_turns": 24,
+    "unchanged_turn_positions": 22,
+    "score_delta": 0.009548,
+    "minimum_score_delta": 0.02,
+    "forbidden_action_rate_baseline": 0.166667,
+    "forbidden_action_rate_post": 0.208333,
+    "fresh_rows_available": 97,
+    "fresh_rows_sampled_in_25_steps": 9,
+    "distinct_fresh_turns_sampled": 7,
+    "sampled_visible_assistant_token_fraction": 0.208144,
+    "full_sequence_loss_used": true,
+    "configured_python_seed": 713,
+    "effective_trainer_seed": 42,
+    "trl_default_rendering_would_enable_thinking_scaffold": true
+  },
+  "correction": {
+    "training_task_id": "qwen3_1p7b_storyworld_dag_v1_cycle1b_completion_loss",
+    "restart_from_parent_adapter_sha256": "199ee8334e0bf6357b4d787a1cdd81e8b86163fe38506837dcfdee0656875749",
+    "train_split": "fresh_train",
+    "fresh_train_sha256": "cfe763eb646f13d567e976bdee16c7c950fb6aa85751d7f0e50d52d8c642548f",
+    "train_rows": 97,
+    "loss_scope": "completion_only",
+    "chat_template_enable_thinking": false,
+    "render_audit": {
+      "rows": 97,
+      "combined_min_tokens": 144,
+      "combined_max_tokens": 181,
+      "over_184": 0,
+      "completion_starts_with_decision_rows": 97,
+      "completion_contains_think_tag_rows": 0
+    },
+    "optimizer_steps": 25,
+    "gradient_accumulation_steps": 4,
+    "planned_micro_batches": 100,
+    "coverage_contract": "one complete shuffled pass over all 97 fresh rows plus three second-pass rows",
+    "seed": 713,
+    "data_seed": 713,
+    "learning_rate": 0.00002,
+    "max_seq_length": 184,
+    "checkpoint_every_optimizer_steps": 5
+  },
+  "evaluation": {
+    "reuse_parent_baseline_rollouts_sha256": "079620656d88f05c31f2ee64922d4d6d2a086182dd6eef7125768e8a5dd78de3",
+    "same_holdout_worlds_and_seeds": true,
+    "minimum_score_delta": 0.02,
+    "valid_action_rate_may_decrease": false,
+    "forbidden_action_rate_may_increase": false,
+    "automatic_next_cycle": false
+  },
+  "recursion_caps": {
+    "max_outer_cycles": 3,
+    "max_nested_depth": 1,
+    "cycle_2_authorized": false
+  },
+  "resource_contract": {
+    "vram_limit_mb": 3840,
+    "process_commit_limit_mb": 10240,
+    "cpu_percent": 50,
+    "io_limit_mb_s": 50,
+    "max_pagefile_growth_mb": 0,
+    "model_offload_allowed": false,
+    "timeout_seconds": 3600
+  },
+  "claim_boundary": "Exploratory corrective rerun after prospective harness repair. It does not erase the stopped cycle-1 result and is not confirmatory Jinn-paper evidence."
+}

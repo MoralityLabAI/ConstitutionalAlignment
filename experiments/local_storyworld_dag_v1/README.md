@@ -61,3 +61,9 @@ and the forbidden-action rate increased from `0.166667` to `0.208333`.
 Legal-action rate increased from `0.916667` to `0.958333`, but that single gate
 is insufficient for promotion. Cycle 2 is not authorized. The hash-bound local
 artifact and resource summary is in `receipts/cycle_01_20260722.json`.
+
+The prospective `cycle_01_lossfix_amendment.json` registers a separate
+developmental rerun from the original parent adapter. It corrects full-sequence
+loss and sparse fresh-row exposure by using completion-only loss over the 97
+fresh rows, four micro-batches per optimizer step, and explicit seed/data-seed
+713. The stopped cycle-1 receipt remains immutable, and cycle 2 remains closed.

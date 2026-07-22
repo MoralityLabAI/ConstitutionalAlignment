@@ -12,6 +12,7 @@ from alignment_harness.local_storyworld_dag import (
     run_rollout_lane,
 )
 from alignment_harness.storyworlds import StoryworldEngine, read_world
+from scripts.train_jinn_tiny_vram_guarded import materialize_prompt_completion_dataset
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -27,6 +28,48 @@ WORLD_PATH = (
 
 
 class LocalStoryworldDagTests(unittest.TestCase):
+    def test_trainer_materializes_completion_only_conversations(self) -> None:
+        class FakeTokenizer:
+            def apply_chat_template(
+                self,
+                rendered_messages: list[dict[str, str]],
+                *,
+                tokenize: bool,
+                add_generation_prompt: bool,
+                enable_thinking: bool,
+            ) -> str:
+                self_test.assertFalse(tokenize)
+                self_test.assertFalse(enable_thinking)
+                rendered = "".join(
+                    f"<{item['role']}>{item['content']}" for item in rendered_messages
+                )
+                if add_generation_prompt:
+                    rendered += "<assistant>"
+                return rendered
+
+        self_test = self
+        messages = [
+            {"role": "system", "content": "Bounded system."},
+            {"role": "user", "content": "Choose one action."},
+            {"role": "assistant", "content": "Decision: A-0123456789"},
+        ]
+
+        rows = materialize_prompt_completion_dataset(
+            [{"example_id": "row-1", "messages": messages}], FakeTokenizer()
+        )
+
+        self.assertEqual(
+            rows[0]["prompt"],
+            "<system>Bounded system.<user>Choose one action.<assistant>",
+        )
+        self.assertEqual(rows[0]["completion"], "Decision: A-0123456789")
+        self.assertNotIn("text", rows[0])
+
+        with self.assertRaisesRegex(ValueError, "final message must be assistant"):
+            materialize_prompt_completion_dataset(
+                [{"example_id": "bad", "messages": messages[:-1]}], FakeTokenizer()
+            )
+
     def test_plan_is_hash_bound_and_keeps_holdouts_out_of_all_cycles(self) -> None:
         plan, receipt = load_plan(PLAN_PATH)
         holdouts = {item["path"] for item in plan["holdout_worlds"]}
