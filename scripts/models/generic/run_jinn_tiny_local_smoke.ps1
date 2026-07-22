@@ -2,6 +2,7 @@
 param(
     [string]$BaseModelId = "D:\Research_Engine\models\Pixie-Josie-1.7B-v2",
     [string]$AdapterDir = "",
+    [switch]$BaseOnly,
     [string]$OutputRoot = "",
     [string]$CacheDir = "",
     [string]$PromptsJsonl = "",
@@ -230,6 +231,12 @@ try {
     if ($AdapterDir) {
         $args += @("--adapter-dir", $AdapterDir)
     }
+    if ($BaseOnly) {
+        if ($AdapterDir) {
+            throw "BaseOnly cannot be combined with AdapterDir."
+        }
+        $args += "--base-only"
+    }
     if ($RepairViolations) {
         $args += @("--repair-violations", "--repair-attempts", "$RepairAttempts")
     }
@@ -248,6 +255,7 @@ try {
             run_name = $runName
             base_model_id = $BaseModelId
             adapter_dir = $AdapterDir
+            base_only = [bool]$BaseOnly
             prompts_jsonl = $PromptsJsonl
             available_ram_mb = [Math]::Round($availableBeforeStartMb, 3)
             min_available_ram_mb = $MinAvailableRamMb
@@ -472,6 +480,7 @@ try {
         exit_code = $process.ExitCode
         base_model_id = $BaseModelId
         adapter_dir = $AdapterDir
+        base_only = [bool]$BaseOnly
         prompts_jsonl = $PromptsJsonl
         probe_start = $ProbeStart
         probe_count = $ProbeCount

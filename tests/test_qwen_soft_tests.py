@@ -14,6 +14,23 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 class QwenSoftTestTests(unittest.TestCase):
+    def test_st05_execution_is_frozen_and_wrapper_supports_base_only(self) -> None:
+        freeze = json.loads(
+            (
+                REPO_ROOT
+                / "experiments/qwen_soft_tests_v1/st05_execution_freeze_v1.json"
+            ).read_text(encoding="utf-8")
+        )
+        self.assertFalse(freeze["mizan_outputs_seen_before_freeze"])
+        self.assertEqual(freeze["generation"]["max_new_tokens"], 96)
+        self.assertEqual(freeze["generation"]["probe_count"], 20)
+        self.assertFalse(freeze["generation"]["repair_or_canonical_fallback_allowed"])
+        wrapper = (
+            REPO_ROOT / "scripts/models/generic/run_jinn_tiny_local_smoke.ps1"
+        ).read_text(encoding="utf-8-sig")
+        self.assertIn("[switch]$BaseOnly", wrapper)
+        self.assertIn('$args += "--base-only"', wrapper)
+
     def test_format_control_preserves_legal_model_action(self) -> None:
         rows = [
             {

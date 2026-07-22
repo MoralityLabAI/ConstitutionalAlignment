@@ -1,0 +1,37 @@
+{
+  "schema_version": "qwen_mizan_first_turn_execution_freeze_v1",
+  "experiment_id": "qwen3_1p7b_pre_primelab_soft_tests_v1",
+  "test_id": "ST05_MIZAN_PROMPT_AND_CONTROL_SCREEN",
+  "frozen_at_utc": "2026-07-22T16:32:00Z",
+  "adapter_outputs_seen_before_freeze": true,
+  "mizan_outputs_seen_before_freeze": false,
+  "probe_manifest": "experiments/qwen_soft_tests_v1/mizan_first_turn_probe_manifest_v1.json",
+  "probe_manifest_sha256": "41aff4be4a93771f069675138db122b54610d1f7b3416e79b82dea0d573518f5",
+  "probes_sha256": "2401692e2af3facd432443b151a67e4fbe7d1e9bcac65727f264dd3a319f28fe",
+  "system_prompt_sha256": "88f0424148f60eb2d1d4e859edeacd6d5811a5a09bee3d5f76bf389063c4d8c8",
+  "checkpoint_order": [
+    "base",
+    "parent_15_step",
+    "score_cycle_1b",
+    "format_control"
+  ],
+  "generation": {
+    "max_new_tokens": 96,
+    "do_sample": false,
+    "probe_start": 1,
+    "probe_count": 20,
+    "repair_or_canonical_fallback_allowed": false,
+    "same_loader_and_prompt_pack_for_every_checkpoint": true
+  },
+  "resource_contract": {
+    "vram_limit_mb": 3840,
+    "process_commit_limit_mb": 10240,
+    "cpu_percent": 50,
+    "io_limit_mb_s": 50,
+    "max_pagefile_growth_mb": 0,
+    "model_offload_allowed": false,
+    "sequential_gpu_invocations_only": true
+  },
+  "analysis": "scripts/analyze_qwen_soft_test_mizan.py",
+  "claim_boundary": "Development-only first-turn diagnostic; not a replacement for the sealed Mizan evaluation matrix or the registered six-arm experiment."
+}
