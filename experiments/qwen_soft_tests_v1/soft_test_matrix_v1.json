@@ -1,0 +1,107 @@
+{
+  "schema_version": "qwen_local_soft_test_matrix_v1",
+  "matrix_id": "qwen3_1p7b_pre_primelab_soft_tests_v1",
+  "frozen_at_utc": "2026-07-22T15:40:00Z",
+  "status": "prospective_remaining_tests_no_new_outputs_seen",
+  "model": {
+    "repository": "Qwen/Qwen3-1.7B",
+    "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "local_path": "D:\\Research_Engine\\models\\Qwen3-1.7B-70d244c"
+  },
+  "completed_tests": [
+    {
+      "id": "ST01_LOCAL_RUNTIME",
+      "status": "passed",
+      "receipt": "experiments/frame_internalization_sft_v1/readiness/qwen3_1p7b_local_model_tokenizer_freeze_v2.json"
+    },
+    {
+      "id": "ST02_METTA_WORLDVIEW_AND_INTERFERENCE",
+      "status": "completed_negative",
+      "receipt": "experiments/frame_internalization_sft_v1/local_screen_v1/worldview_local_screen_result_v1.json"
+    },
+    {
+      "id": "ST03_SCORE_GATED_STORYWORLD_LOOP",
+      "status": "completed_stopped_by_forbidden_action_gate",
+      "receipt": "experiments/local_storyworld_dag_v1/receipts/cycle_01b_20260722.json"
+    }
+  ],
+  "remaining_tests": [
+    {
+      "id": "ST04_POLICY_PRESERVING_FORMAT_CONTROL",
+      "status": "registered_not_run",
+      "source_fresh_train_sha256": "cfe763eb646f13d567e976bdee16c7c950fb6aa85751d7f0e50d52d8c642548f",
+      "format_control_manifest_sha256": "9ba5fc1f400299f7d71c4bb0351bea7b1495dc6c56deb7f8b4e4c5002ca3e0f7",
+      "format_control_fresh_train_sha256": "15595b8e248e68b371c246eb8c4cf90fa4742e37a6a8227e156eaadaa1888bbf",
+      "parent_adapter_sha256": "199ee8334e0bf6357b4d787a1cdd81e8b86163fe38506837dcfdee0656875749",
+      "training": {
+        "loss_scope": "completion_only",
+        "rows": 97,
+        "steps": 25,
+        "gradient_accumulation_steps": 4,
+        "learning_rate": 0.00002,
+        "max_sequence_length": 184,
+        "seed": 713
+      },
+      "render_audit": {
+        "rows": 97,
+        "combined_min_tokens": 147,
+        "combined_max_tokens": 184,
+        "over_184": 0,
+        "completion_starts_with_decision_rows": 97,
+        "completion_contains_think_tag_rows": 0
+      },
+      "evaluation": "same sealed 24-turn storyworld holdout and frozen promotion metrics; descriptive comparison against cycle 1b"
+    },
+    {
+      "id": "ST05_MIZAN_PROMPT_AND_CONTROL_SCREEN",
+      "status": "registered_not_run",
+      "conditions": [
+        "neutral",
+        "constitutional",
+        "secular_omniscient",
+        "eschatological",
+        "unreliable_authority"
+      ],
+      "development_room_variants": 4,
+      "probes_per_checkpoint": 20,
+      "probe_manifest_sha256": "41aff4be4a93771f069675138db122b54610d1f7b3416e79b82dea0d573518f5",
+      "probes_sha256": "2401692e2af3facd432443b151a67e4fbe7d1e9bcac65727f264dd3a319f28fe",
+      "system_prompt_sha256": "88f0424148f60eb2d1d4e859edeacd6d5811a5a09bee3d5f76bf389063c4d8c8",
+      "checkpoints": [
+        "base",
+        "parent_15_step",
+        "score_cycle_1b",
+        "format_control"
+      ],
+      "repair_or_canonical_fallback_allowed": false,
+      "metrics": [
+        "valid_action_rate",
+        "mean_proxy_score",
+        "preferred_proxy_rate",
+        "failure_tag_rate",
+        "condition_minus_neutral_action_switch_rate",
+        "unreliable_authority_minus_neutral_proxy_delta",
+        "neutral_cross_checkpoint_action_switch_rate"
+      ]
+    }
+  ],
+  "recursion_caps": {
+    "max_outer_cycles": 3,
+    "max_nested_depth": 1,
+    "storyworld_cycle_2_authorized": false,
+    "new_recursive_training_cycle_in_this_matrix": false
+  },
+  "resource_contract": {
+    "vram_limit_mb": 3840,
+    "process_commit_limit_mb": 10240,
+    "cpu_percent": 50,
+    "io_limit_mb_s": 50,
+    "max_pagefile_growth_mb": 0,
+    "model_offload_allowed": false,
+    "checkpoint_every_steps": 5,
+    "sequential_gpu_invocations_only": true
+  },
+  "completion_rule": "ST01-ST05 have immutable receipts, every planned checkpoint/probe universe is complete, all resource cleanup checks pass, and failures are retained rather than repaired post hoc.",
+  "primelab_spend_authorized_automatically": false,
+  "claim_boundary": "Development-only local soft-test closeout. Completion informs but does not itself authorize the registered PrimeLab experiment."
+}
