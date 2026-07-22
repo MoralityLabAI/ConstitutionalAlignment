@@ -1,0 +1,66 @@
+{
+  "schema_version": "constitutional_hrm_200m_readiness_v2",
+  "experiment_id": "constitutional_hrm_200m_v2",
+  "generated_at_utc": "2026-07-22T00:37:36.145951+00:00",
+  "status": "pre_spend_passed_next_F06",
+  "optimizer_launch_authorized": false,
+  "source_sha256": {
+    "constitution.md": "ead0f7b52a1ed251debef182b0cdca3b5e5d38ab91061036a40d0869aa87e6b2",
+    "model_config.json": "cba09fc2aab19cc42965216413474af7ad1a17e53851f42f7467b58f3230ab5a",
+    "curriculum_plan.json": "77c6ccbaf159a999b5eb108f3eca225ffc3121319be5e8779bfae88a923ee8fb",
+    "experiment_plan.json": "0034a41932098005dced781fb61923df2723102e4d8f112580f41914a8a383dc"
+  },
+  "gates": {
+    "F01_CONSTITUTION_COMPILE": {
+      "status": "passed",
+      "constitution_sha256": "ead0f7b52a1ed251debef182b0cdca3b5e5d38ab91061036a40d0869aa87e6b2",
+      "metta_sha256": "3fc3106bdbf7d469b650c5c5e4c3b71df84fad92943d90509289fc60999d6023",
+      "fact_count": 88
+    },
+    "F02_HYPERON_LOAD": {
+      "status": "passed",
+      "path": "D:/Research_Engine/venvs/hyperon-metta/Scripts/metta.exe",
+      "version": "0.2.10",
+      "version_exit_code": 0,
+      "load_exit_code": 0
+    },
+    "F03_PROMPT_FREEZE": {
+      "status": "passed",
+      "prompt_hashes": {
+        "constitution_metta_full": "93b75a3f19bfc1dcaf5f6e281869ce759e3c0e188d298a107386343713d3f93f",
+        "constitution_hash_only": "5f8aa949f6c03c921ab19cd60300c6b697d3932a5d5d8e8a42a0726d09c9b0bd",
+        "constitution_removed": "a2f943cdd817423a235ec59f105db8468a889f997fcb494770c9ef0eb65ed402"
+      },
+      "prompt_whitespace_tokens": {
+        "constitution_metta_full": 192,
+        "constitution_hash_only": 47,
+        "constitution_removed": 37
+      }
+    },
+    "F04_PARAMETER_AUDIT": {
+      "status": "passed",
+      "parameter_count": 195563522,
+      "parameter_count_millions": 195.563522,
+      "target_range": [190000000, 205000000],
+      "intermediate_size": 2816,
+      "combined_static_training_bytes_before_activations": 3129016352
+    },
+    "F05_CURRICULUM_AUDIT": {
+      "status": "passed",
+      "train_base_examples": 96000,
+      "supervised_target_slots": 22,
+      "checks": {
+        "example_sum_matches": true,
+        "share_sum_is_one": true,
+        "families_are_disjoint": true,
+        "split_before_augmentation": true,
+        "target_slot_count_matches": true,
+        "has_contrast_focus": true
+      }
+    },
+    "F06_TOKENIZER_FREEZE": {"status": "pending"},
+    "F07_OFFICIAL_CODE_ADAPTER": {"status": "pending"},
+    "F08_CLUSTER_CAPS_AND_CLEANUP": {"status": "pending"},
+    "F09_TWO_HOUR_AUTHORIZATION": {"status": "pending"}
+  }
+}

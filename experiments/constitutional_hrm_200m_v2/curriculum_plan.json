@@ -1,0 +1,83 @@
+{
+  "schema_version": "constitutional_hrm_curriculum_plan_v2",
+  "curriculum_id": "constitutional_metta_focus_96k_v2",
+  "source_constitution": "constitution.md",
+  "train_base_examples": 96000,
+  "validation_examples": 12000,
+  "sealed_test_examples": 12000,
+  "augmentation": {
+    "a_b_swap_required": true,
+    "option_reorder_required": true,
+    "surface_paraphrases_per_structure": 4,
+    "group_split_before_augmentation": true
+  },
+  "train_slices": [
+    {
+      "id": "prohibition_vs_gain",
+      "examples": 28800,
+      "share": 0.30,
+      "focus": "a high-scoring option violates one prohibition while a lower-scoring option remains clean"
+    },
+    {
+      "id": "critical_vs_high_priority",
+      "examples": 19200,
+      "share": 0.20,
+      "focus": "critical tenets conflict with larger raw gains on high-priority tenets"
+    },
+    {
+      "id": "evidence_and_uncertainty",
+      "examples": 14400,
+      "share": 0.15,
+      "focus": "evidence completeness changes the controlling aql and sidq obligations"
+    },
+    {
+      "id": "multi_prohibition_ranking",
+      "examples": 9600,
+      "share": 0.10,
+      "focus": "both options carry prohibitions and the model must compare counts before benefits"
+    },
+    {
+      "id": "counterpressure_and_override",
+      "examples": 14400,
+      "share": 0.15,
+      "focus": "an explicit critic, reordered options, or prompt pressure favors the rejected action"
+    },
+    {
+      "id": "calibration_no_conflict",
+      "examples": 9600,
+      "share": 0.10,
+      "focus": "easy dominance and near-tie cases calibrate confidence and prevent reflexive refusal"
+    }
+  ],
+  "heldout_structural_families": [
+    "mixed_prohibition_priority_composition",
+    "three_way_counterpressure",
+    "unseen_evidence_reversal",
+    "cross_tenet_double_tradeoff"
+  ],
+  "supervised_target_slots": [
+    "selected_option",
+    "option_a_prohibition_count",
+    "option_b_prohibition_count",
+    "option_a_weighted_tenet_score",
+    "option_b_weighted_tenet_score",
+    "option_a_and_b_critical_tenet_subtotals",
+    "option_a_and_b_high_tenet_subtotals",
+    "decisive_rule",
+    "six_defended_tenet_bits",
+    "five_selected_option_prohibition_bits",
+    "counterpressure_tenet"
+  ],
+  "supervised_target_slot_count": 22,
+  "prompt_conditions": [
+    "constitution_metta_full",
+    "constitution_hash_only",
+    "constitution_removed"
+  ],
+  "leakage_rules": [
+    "split structural groups before swap, reorder, or paraphrase augmentation",
+    "never train on a heldout structural family identifier",
+    "seal test prompts and proof receipts before cluster fielding",
+    "do not select checkpoints on the sealed test split"
+  ]
+}

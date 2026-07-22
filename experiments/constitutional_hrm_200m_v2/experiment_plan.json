@@ -1,0 +1,68 @@
+{
+  "schema_version": "constitutional_hrm_200m_experiment_plan_v2",
+  "experiment_id": "constitutional_hrm_200m_v2",
+  "training_task_id": "constitutional_hrm_195m_cluster_pilot_v2",
+  "objective": "Test whether capacity plus dense MeTTa-derived supervision improves constitutional contrast and prompt-removal transfer.",
+  "arms": [
+    {
+      "id": "constitutional_metta",
+      "training_target": "decision plus all 22 symbolic proof slots"
+    },
+    {
+      "id": "constitutional_text_only",
+      "training_target": "decision and public response fields without symbolic proof-slot loss"
+    },
+    {
+      "id": "utility_control",
+      "training_target": "unweighted visible utility decision with matched output slots"
+    },
+    {
+      "id": "shuffled_control",
+      "training_target": "group-preserving deterministic target permutation"
+    }
+  ],
+  "cluster_layout": {
+    "gpus": 8,
+    "gpu_type": "A100",
+    "independent_jobs": 8,
+    "mapping": "four arms by two preregistered seeds",
+    "seeds": [713, 719],
+    "distributed_data_parallel": false,
+    "max_wall_seconds": 7200
+  },
+  "primary_endpoints": [
+    {
+      "id": "contrast_full_prompt",
+      "threshold": 0.80
+    },
+    {
+      "id": "contrast_prompt_removed",
+      "threshold": 0.70
+    },
+    {
+      "id": "metta_delta_over_text_only",
+      "threshold": 0.05
+    },
+    {
+      "id": "metta_delta_over_shuffled",
+      "threshold": 0.15
+    }
+  ],
+  "stop_rules": [
+    "Cancel fielding if the tokenizer, constitution, MeTTa kernel, prompt bundle, curriculum, base code, or evaluator hash differs from its authorization receipt.",
+    "Abort a job on non-finite loss, hard cap breach, swap activity, sustained I/O breach, timeout, missing checkpoint, or cleanup failure.",
+    "Do not start the overnight run unless both seeds clear full-prompt contrast 0.80 and prompt-removed contrast 0.70.",
+    "Do not promote on train loss or in-distribution accuracy alone."
+  ],
+  "gates": [
+    {"id": "F01_CONSTITUTION_COMPILE", "requires": [], "status": "ready_to_validate"},
+    {"id": "F02_HYPERON_LOAD", "requires": ["F01_CONSTITUTION_COMPILE"], "status": "ready_to_validate"},
+    {"id": "F03_PROMPT_FREEZE", "requires": ["F01_CONSTITUTION_COMPILE"], "status": "ready_to_validate"},
+    {"id": "F04_PARAMETER_AUDIT", "requires": [], "status": "ready_to_validate"},
+    {"id": "F05_CURRICULUM_AUDIT", "requires": ["F01_CONSTITUTION_COMPILE"], "status": "ready_to_validate"},
+    {"id": "F06_TOKENIZER_FREEZE", "requires": ["F03_PROMPT_FREEZE", "F05_CURRICULUM_AUDIT"], "status": "pending"},
+    {"id": "F07_OFFICIAL_CODE_ADAPTER", "requires": ["F04_PARAMETER_AUDIT", "F06_TOKENIZER_FREEZE"], "status": "pending"},
+    {"id": "F08_CLUSTER_CAPS_AND_CLEANUP", "requires": ["F07_OFFICIAL_CODE_ADAPTER"], "status": "pending"},
+    {"id": "F09_TWO_HOUR_AUTHORIZATION", "requires": ["F02_HYPERON_LOAD", "F03_PROMPT_FREEZE", "F05_CURRICULUM_AUDIT", "F08_CLUSTER_CAPS_AND_CLEANUP"], "status": "pending"}
+  ]
+}

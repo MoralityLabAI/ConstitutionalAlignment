@@ -1,0 +1,45 @@
+{
+  "schema_version": "constitutional_hrm_model_config_v2",
+  "architecture_id": "constitutional_hrm_195m_v2",
+  "architecture_family": "official_hrm_compatible_text_transduction",
+  "architecture": {
+    "vocab_size": 32768,
+    "seq_len": 512,
+    "hidden_size": 1024,
+    "num_heads": 16,
+    "expansion": 4.0,
+    "high_layers": 5,
+    "low_layers": 5,
+    "high_cycles": 2,
+    "low_cycles": 2,
+    "position_encoding": "rope",
+    "untied_output_head": true,
+    "target_min_parameters": 190000000,
+    "target_max_parameters": 205000000
+  },
+  "input_contract": {
+    "task": "non-autoregressive constitutional decision transduction",
+    "system_prompt_bundle": "generated/system_prompt_bundle_v2.json",
+    "max_options": 4,
+    "prompt_tokens_max": 320,
+    "scenario_tokens_max": 160,
+    "target_slots": 22
+  },
+  "training_defaults": {
+    "dtype": "bfloat16",
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.1,
+    "per_device_batch_size": 8,
+    "gradient_accumulation_steps": 16,
+    "gradient_clip": 1.0,
+    "checkpoint_steps": 250,
+    "checkpoint_seconds": 300,
+    "max_wall_seconds": 7200,
+    "chunk_strategy": "one_matched_arm_seed_per_gpu_family_balanced_batches"
+  },
+  "provenance": {
+    "official_repository": "https://github.com/sapientinc/HRM",
+    "official_commit": "ac15626f8db096a63c775b84c9dc868776a6feda"
+  }
+}
