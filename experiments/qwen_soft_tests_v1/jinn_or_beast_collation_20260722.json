@@ -1,0 +1,35 @@
+{
+  "schema_version": "jinn_experiment_data_collation_receipt_v1",
+  "created_at_utc": "2026-07-22T19:23:31.651074+00:00",
+  "status": "complete_and_independently_verified",
+  "source_root": "D:\\Research_Engine\\jinn_or_beast",
+  "output_dir": "D:\\Research_Engine\\jinn_or_beast\\collated_20260722",
+  "archive": "D:\\Research_Engine\\jinn_or_beast\\collated_20260722\\jinn_or_beast_all_experiment_data_20260722.zip",
+  "archive_bytes": 167742038,
+  "archive_sha256": "a8c744c72f5db39d1180eebbce51123e0005cf55a917f6c96df31938c9c90377",
+  "source_catalog": "D:\\Research_Engine\\jinn_or_beast\\collated_20260722\\source_catalog.jsonl",
+  "source_catalog_sha256": "c6f4890a39bcc2b07ef262336ca05ba9c62b107a43b60ad1ac7d51c3b2a22dd7",
+  "collation_summary_sha256": "ce0e0b1667bcd3862ad8b79f147151fd90408645326be56062970018968123a2",
+  "coverage": {
+    "source_file_count": 847,
+    "source_total_bytes": 423508279,
+    "repo_metadata_file_count": 11,
+    "archive_member_count": 858,
+    "archive_data_entries": 847,
+    "archive_metadata_entries": 11
+  },
+  "verification": {
+    "archive_crc_check_passed": true,
+    "archive_sha256_matches_summary": true,
+    "catalog_sha256_matches_summary": true,
+    "catalog_rows": 847,
+    "missing_source_files": 0,
+    "source_hash_mismatches": 0,
+    "duplicate_archive_entries": 0,
+    "originals_preserved_in_place": true
+  },
+  "closeout_commit": "e312ad5",
+  "non_destructive": true,
+  "primelab_spend_authorized_automatically": false,
+  "claim_boundary": "Artifact collation only. The archive preserves development outputs and does not change any scientific gate or authorize paid compute."
+}

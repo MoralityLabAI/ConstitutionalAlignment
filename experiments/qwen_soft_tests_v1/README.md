@@ -42,3 +42,11 @@ neutral. This is a negative checkpoint-transfer diagnostic on the small probe
 pack, not a model-equivalence result.
 
 PrimeLab spend remains gated for a separate human decision.
+
+## Data collation
+
+The full `D:\Research_Engine\jinn_or_beast` experiment tree was preserved in
+place and collated into `D:\Research_Engine\jinn_or_beast\collated_20260722`.
+The archive contains all 847 pre-collation source files plus 11 repository
+metadata files. Its independent verification receipt is
+`jinn_or_beast_collation_20260722.json`.

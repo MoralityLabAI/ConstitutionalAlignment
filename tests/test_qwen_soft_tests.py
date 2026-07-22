@@ -85,6 +85,17 @@ class QwenSoftTestTests(unittest.TestCase):
         )
         self.assertFalse(closeout["primelab_spend_authorized_automatically"])
 
+        collation = json.loads(
+            (
+                REPO_ROOT / "experiments/qwen_soft_tests_v1/"
+                "jinn_or_beast_collation_20260722.json"
+            ).read_text(encoding="utf-8")
+        )
+        self.assertEqual(collation["status"], "complete_and_independently_verified")
+        self.assertEqual(collation["coverage"]["source_file_count"], 847)
+        self.assertEqual(collation["verification"]["source_hash_mismatches"], 0)
+        self.assertFalse(collation["primelab_spend_authorized_automatically"])
+
     def test_st05_execution_is_frozen_and_wrapper_supports_base_only(self) -> None:
         freeze = json.loads(
             (
