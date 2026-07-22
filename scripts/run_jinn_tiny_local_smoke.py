@@ -17,6 +17,8 @@ from typing import Any
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 DEFAULT_BASE_MODEL = r"D:\Research_Engine\models\Pixie-Josie-1.7B-v2"
 DEFAULT_RUNS_ROOT = REPO_ROOT / "artifacts" / "constitution_pipeline" / "runs" / "jinn_tiny_mutazili_v1"
 DEFAULT_OUTPUT_ROOT = REPO_ROOT / "artifacts" / "constitution_pipeline" / "prompt_runs" / "jinn_tiny_mutazili_v1_local"
@@ -126,9 +128,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--prompts-jsonl", default=str(DEFAULT_PROBES_PATH))
     parser.add_argument("--system-prompt-file", default="")
     parser.add_argument("--max-new-tokens", type=int, default=96)
+    parser.add_argument("--probe-start", type=int, default=1)
+    parser.add_argument("--probe-count", type=int, default=0)
+    parser.add_argument("--storyworld-plan", default="")
+    parser.add_argument("--storyworld-cycle", type=int, default=1)
+    parser.add_argument("--storyworld-lane", choices=("train", "holdout"), default="train")
+    parser.add_argument("--storyworld-episode-start", type=int, default=1)
+    parser.add_argument("--storyworld-episode-count", type=int, default=0)
     parser.add_argument("--vram-limit-mb", type=int, default=3900)
     parser.add_argument("--repair-violations", action="store_true")
     parser.add_argument("--repair-attempts", type=int, default=1)
+    parser.add_argument("--skip-cuda-allocator-warmup", action="store_true")
     parser.add_argument("--local-files-only", action=argparse.BooleanOptionalAction, default=True)
     return parser.parse_args()
 
@@ -469,6 +479,18 @@ def run_smoke(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
     from peft import PeftModel
     from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
+    if args.skip_cuda_allocator_warmup:
+        import transformers.modeling_utils as transformers_modeling_utils
+
+        def skip_cuda_allocator_warmup(*_args: Any, **_kwargs: Any) -> None:
+            return None
+
+        transformers_modeling_utils.caching_allocator_warmup = skip_cuda_allocator_warmup
+        summary["cuda_allocator_warmup"] = "skipped"
+        log.event("cuda_allocator_warmup_skipped")
+    else:
+        summary["cuda_allocator_warmup"] = "enabled"
+
     if torch.cuda.is_available():
         torch.cuda.reset_peak_memory_stats()
     summary["gpu_initial"] = assert_cuda_ready(torch)
@@ -526,6 +548,9 @@ def run_smoke(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
     base_model.config.use_cache = True
     summary["placement_after_base_load"] = assert_no_offload(base_model, "after_base_load")
     summary["gpu_after_base_load"] = assert_peak_vram(torch, args.vram_limit_mb, "after_base_load")
+    torch.cuda.synchronize()
+    torch.cuda.empty_cache()
+    summary["gpu_after_base_cache_trim"] = cuda_mem_snapshot(torch)
     log.event(
         "base_loaded",
         placement=summary["placement_after_base_load"],
@@ -541,6 +566,9 @@ def run_smoke(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
         summary["model_mode"] = "adapter"
         summary["placement_after_adapter_load"] = assert_no_offload(model, "after_adapter_load")
         summary["gpu_after_adapter_load"] = assert_peak_vram(torch, args.vram_limit_mb, "after_adapter_load")
+        torch.cuda.synchronize()
+        torch.cuda.empty_cache()
+        summary["gpu_after_adapter_cache_trim"] = cuda_mem_snapshot(torch)
         log.event(
             "adapter_loaded",
             placement=summary["placement_after_adapter_load"],
@@ -548,17 +576,94 @@ def run_smoke(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
         )
     model.eval()
 
+    if args.storyworld_plan:
+        if args.repair_violations:
+            raise ValueError("probe repair mode cannot be combined with storyworld rollouts")
+        from alignment_harness.local_storyworld_dag import run_rollout_lane
+        from alignment_harness.storyworlds import write_json, write_jsonl
+
+        plan_path = Path(args.storyworld_plan).resolve()
+
+        def responder(storyworld_system_prompt: str, user_prompt: str) -> str:
+            rendered = render_prompt(
+                tokenizer, user_prompt, storyworld_system_prompt
+            )
+            response, _raw_response, _outputs = generate_response(
+                model, tokenizer, rendered, args.max_new_tokens
+            )
+            return response
+
+        rollout_path = log.run_dir / "storyworld_rollouts.jsonl"
+        completed_episodes: list[dict[str, Any]] = []
+
+        def persist_episode(episode: dict[str, Any]) -> None:
+            completed_episodes.append(episode)
+            write_jsonl(rollout_path, completed_episodes)
+            log.event(
+                "storyworld_episode_persisted",
+                world_id=episode["world_id"],
+                seed=episode["seed"],
+                completed_episodes=len(completed_episodes),
+            )
+
+        episodes, rollout_summary = run_rollout_lane(
+            plan_path=plan_path,
+            cycle=args.storyworld_cycle,
+            lane=args.storyworld_lane,
+            responder=responder,
+            episode_start=args.storyworld_episode_start,
+            episode_count=args.storyworld_episode_count,
+            on_episode=persist_episode,
+        )
+        rollout_summary_path = log.run_dir / "storyworld_summary.json"
+        write_jsonl(rollout_path, episodes)
+        write_json(rollout_summary_path, rollout_summary)
+        for episode in episodes:
+            log.generation(episode)
+            log.event(
+                "storyworld_episode_completed",
+                world_id=episode["world_id"],
+                seed=episode["seed"],
+                turns=len(episode["turns"]),
+                terminal=episode["terminal"],
+            )
+        summary["status"] = "completed"
+        summary["finished_at_utc"] = utc_now()
+        summary["storyworld_plan"] = str(plan_path)
+        summary["storyworld_cycle"] = int(args.storyworld_cycle)
+        summary["storyworld_lane"] = args.storyworld_lane
+        summary["storyworld_episode_start"] = int(args.storyworld_episode_start)
+        summary["storyworld_episode_count"] = int(args.storyworld_episode_count)
+        summary["storyworld_rollouts_path"] = str(rollout_path)
+        summary["storyworld_summary_path"] = str(rollout_summary_path)
+        summary["storyworld_metrics"] = rollout_summary
+        summary["generated_examples"] = int(rollout_summary["turns"])
+        summary["gpu_final"] = assert_peak_vram(torch, args.vram_limit_mb, "final")
+        summary["nvidia_smi_final"] = nvidia_smi_snapshot()
+        log.summary(summary)
+        print(json.dumps(summary, indent=2, sort_keys=True))
+        return 0
+
     probes_path = Path(args.prompts_jsonl).resolve()
-    probes = load_probe_rows(probes_path)
+    probe_universe = load_probe_rows(probes_path)
+    if args.probe_start < 1:
+        raise ValueError("--probe-start must be at least 1")
+    start_index = args.probe_start - 1
+    if start_index >= len(probe_universe):
+        raise ValueError(f"--probe-start exceeds the {len(probe_universe)}-row probe universe")
+    end_index = len(probe_universe) if args.probe_count <= 0 else start_index + args.probe_count
+    probes = probe_universe[start_index:end_index]
     system_prompt = load_system_prompt(args.system_prompt_file)
     summary["prompts_jsonl"] = str(probes_path)
     summary["system_prompt_file"] = str(Path(args.system_prompt_file).resolve()) if args.system_prompt_file else ""
+    summary["probe_universe_count"] = len(probe_universe)
+    summary["probe_start"] = args.probe_start
     summary["probe_count"] = len(probes)
     summary["repair_violations"] = bool(args.repair_violations)
     summary["repair_attempts"] = int(args.repair_attempts)
     log.event("probes_loaded", prompts_jsonl=str(probes_path), probe_count=len(probes))
 
-    for index, probe in enumerate(probes, start=1):
+    for index, probe in enumerate(probes, start=args.probe_start):
         prompt = probe["prompt"]
         rendered = render_prompt(tokenizer, prompt, system_prompt)
         response, raw_response, _outputs = generate_response(model, tokenizer, rendered, args.max_new_tokens)
@@ -636,7 +741,13 @@ def main() -> int:
         "base_model_id": args.base_model_id,
         "base_only": bool(args.base_only),
         "prompts_jsonl": str(Path(args.prompts_jsonl).resolve()),
+        "storyworld_plan": str(Path(args.storyworld_plan).resolve()) if args.storyworld_plan else "",
+        "storyworld_cycle": int(args.storyworld_cycle),
+        "storyworld_lane": args.storyworld_lane,
+        "storyworld_episode_start": int(args.storyworld_episode_start),
+        "storyworld_episode_count": int(args.storyworld_episode_count),
         "local_files_only": bool(args.local_files_only),
+        "skip_cuda_allocator_warmup": bool(args.skip_cuda_allocator_warmup),
         "vram_limit_mb": args.vram_limit_mb,
         "model_offload_allowed": False,
     }

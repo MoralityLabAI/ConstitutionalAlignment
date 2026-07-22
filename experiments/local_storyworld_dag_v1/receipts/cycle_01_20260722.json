@@ -1,0 +1,71 @@
+{
+  "schema_version": "local_storyworld_dag_execution_receipt_v1",
+  "experiment_id": "qwen3_1p7b_storyworld_dag_v1",
+  "cycle": 1,
+  "executed_at_utc": "2026-07-22T06:05:23Z",
+  "status": "completed_stopped_by_promotion_gate",
+  "plan_sha256": "78415dcb621716f3c35fb4bcb2481f46735173079518d0f672fd6375bbb92c8b",
+  "action_parser_version": "local_storyworld_action_parser_v2",
+  "model": {
+    "base_model_id": "D:\\Research_Engine\\models\\Qwen3-1.7B-70d244c",
+    "quantization": "nf4_4bit",
+    "parent_adapter_sha256": "199ee8334e0bf6357b4d787a1cdd81e8b86163fe38506837dcfdee0656875749",
+    "cycle_adapter_sha256": "be6cd3297998b226ff2b58c89310a44e85a52c065ad1b4b97fe05a2565b30fd6"
+  },
+  "dataset": {
+    "manifest_sha256": "1ef7d749d419e81bc6a1ffdfc625a6b4dd8ed1590686f98c3eea3e31834d4624",
+    "train_rows": 335,
+    "validation_rows": 40,
+    "fresh_rows": 97,
+    "fresh_repair_rows": 97,
+    "fresh_min_tokens": 144,
+    "fresh_max_tokens": 181,
+    "max_seq_length": 184,
+    "train_sha256": "f76f7d28365a7669c401c90769c0f89f56cbe6eb6f3b0ea8daabd7660ef2c2d8"
+  },
+  "training": {
+    "run_summary_sha256": "a05a41e026b0cce93427a1eb17670bcbd87af115812cdf84f35ea5aa762c2e17",
+    "global_step": 25,
+    "learning_rate": 0.00002,
+    "train_loss": 6.0126489067077635,
+    "train_runtime_seconds": 77.8709,
+    "max_cuda_allocated_mb": 3794.91,
+    "vram_limit_mb": 3840,
+    "peak_process_ram_mb": 4815.176,
+    "peak_process_commit_mb": 9567.309,
+    "pagefile_growth_mb": 0,
+    "cpu_or_disk_offload": false,
+    "cleanup_passed": true
+  },
+  "holdout": {
+    "episodes": 4,
+    "turns": 24,
+    "baseline_rollouts_sha256": "079620656d88f05c31f2ee64922d4d6d2a086182dd6eef7125768e8a5dd78de3",
+    "post_rollouts_sha256": "1ee563cb3fbca4375ed8f74ed4fc8458e16b2475596eabfd72bc24d31e538872",
+    "baseline": {
+      "valid_action_rate": 0.916667,
+      "format_valid_rate": 0.0,
+      "forbidden_action_rate": 0.166667,
+      "mean_model_proxy_score": 0.585938,
+      "mean_proxy_regret": 0.230035
+    },
+    "post": {
+      "valid_action_rate": 0.958333,
+      "format_valid_rate": 0.0,
+      "forbidden_action_rate": 0.208333,
+      "mean_model_proxy_score": 0.595486,
+      "mean_proxy_regret": 0.220486
+    }
+  },
+  "promotion": {
+    "receipt_sha256": "9899b77e0d5d063466070e7b51dd7b2a36c72932e0d930259692798559bff8dc",
+    "score_delta": 0.009548,
+    "minimum_score_delta": 0.02,
+    "score_delta_passed": false,
+    "valid_action_non_decrease_passed": true,
+    "forbidden_action_non_increase_passed": false,
+    "promotion_authorized": false,
+    "decision": "stop"
+  },
+  "claim_boundary": "Exploratory local adapter-development lane using pending-review training worlds and a synthetic constitutional proxy. Outputs are not approved for the frozen confirmatory Jinn-paper experiment."
+}

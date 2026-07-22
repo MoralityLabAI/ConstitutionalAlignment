@@ -22,6 +22,7 @@ param(
     [int]$SaveSteps = 10,
     [int]$SaveTotalLimit = 2,
     [int]$TimeoutSeconds = 3600,
+    [bool]$SkipCudaAllocatorWarmup = $true,
     [switch]$DryRunLoadOnly
 )
 
@@ -215,6 +216,9 @@ function Invoke-GuardedAttempt {
     )
     if ($InitAdapterPath) {
         $args += @("--init-adapter-path", $InitAdapterPath)
+    }
+    if ($SkipCudaAllocatorWarmup) {
+        $args += "--skip-cuda-allocator-warmup"
     }
     if ($DryRunLoadOnly) {
         $args += "--dry-run-load-only"
@@ -463,6 +467,7 @@ try {
             vram_reserve_mb = $VramReserveMb
             timeout_seconds = $TimeoutSeconds
             model_offload_allowed = $false
+            cuda_allocator_warmup_skipped = $SkipCudaAllocatorWarmup
         }
         init_adapter_path = $InitAdapterPath
         attempts = $attempts

@@ -1,0 +1,128 @@
+{
+  "schema_version": "local_storyworld_dag_plan_v1",
+  "experiment_id": "qwen3_1p7b_storyworld_dag_v1",
+  "claim_boundary": "Exploratory local adapter-development lane using pending-review training worlds and a synthetic constitutional proxy. Outputs are not approved for the frozen confirmatory Jinn-paper experiment.",
+  "frame": "jinn",
+  "max_outer_cycles": 3,
+  "holdout_worlds": [
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/proportionate_disclosure_train_v1.json",
+      "sha256": "590df3810b6d76cba7fd95669f9143b8680c3749eec47cd2aab6f2d7f3cd9268"
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/exogenous_failure_recovery_train_v1.json",
+      "sha256": "4481ba33515cfac161d82563ede3e96eb37e7d5d592026b9ffa2123e13130cd4"
+    }
+  ],
+  "holdout_seeds": [811, 821],
+  "cycles": [
+    {
+      "cycle": 1,
+      "train_worlds": [
+        {
+          "path": "experiments/storyworld_curriculum_v1/worlds/train/nontransactional_service_train_v1.json",
+          "sha256": "b15b5366f62d22c97d0df63b60850bf232c1820dc36f961961d8079b1b0fcaee"
+        },
+        {
+          "path": "experiments/storyworld_curriculum_v1/worlds/train/knowledge_claims_public_risk_train_v1.json",
+          "sha256": "d2120af0726cdac309b75d239f8652fa2b40402a5e4c160878eca45fb867d513"
+        },
+        {
+          "path": "experiments/storyworld_curriculum_v1/worlds/train/interpretation_under_authority_train_v1.json",
+          "sha256": "39fc75876aa7e5544474a4b3553b94733f6f5a16cf741d3fa6766a23072a4473"
+        },
+        {
+          "path": "experiments/storyworld_curriculum_v1/worlds/train/common_well_allocation_train_v1.json",
+          "sha256": "eed94e6110c0c23bb572742139243d47cb76f2211eeb8393d8b0f4911a320797"
+        }
+      ],
+      "train_seeds": [713, 719],
+      "max_turns": 6,
+      "acceptance_threshold": 0.70,
+      "max_new_rows": 128,
+      "training": {
+        "steps": 25,
+        "save_steps": 5,
+        "learning_rate": 0.00002,
+        "max_seq_length": 184,
+        "qlora_rank": 4,
+        "qlora_alpha": 8
+      }
+    },
+    {
+      "cycle": 2,
+      "train_worlds": [
+        {
+          "path": "experiments/storyworld_curriculum_v1/worlds/train/market_mutual_aid_train_v1.json",
+          "sha256": "c62031577ffb9d9ec29e4fee1a8b56907304f5384bd3bfd5bc1d83dbe4785979"
+        },
+        {
+          "path": "experiments/storyworld_curriculum_v1/worlds/train/shura_payroll_cutover_train_v1.json",
+          "sha256": "fe6d2060ce2f5bff1733f354aa6b8a372d8c6b81a77f4d89387eac01649a3009"
+        },
+        {
+          "path": "experiments/storyworld_curriculum_v1/worlds/train/tawbah_cold_chain_repair_train_v1.json",
+          "sha256": "2605a5eb774e56afe38e28da2e6f591b113b393101b555a9cfa787582b55b755"
+        },
+        {
+          "path": "experiments/storyworld_curriculum_v1/worlds/train/ghayb_boundary_search_train_v1.json",
+          "sha256": "6f739914c15f630a4db42778c11d3612449ae5343143d493d34e741144d18151"
+        }
+      ],
+      "train_seeds": [727, 733],
+      "max_turns": 6,
+      "acceptance_threshold": 0.70,
+      "max_new_rows": 128,
+      "training": {
+        "steps": 25,
+        "save_steps": 5,
+        "learning_rate": 0.00002,
+        "max_seq_length": 184,
+        "qlora_rank": 4,
+        "qlora_alpha": 8
+      }
+    },
+    {
+      "cycle": 3,
+      "train_worlds": [
+        {
+          "path": "experiments/storyworld_curriculum_v1/worlds/train/amanah_relief_ledger_train_v1.json",
+          "sha256": "396ce5e9990c12671e68cb3eff50fe7b832213aa503ddd1c7abbe26a9df23a0b"
+        },
+        {
+          "path": "experiments/storyworld_curriculum_v1/worlds/train/mizan_competing_claims_train_v1.json",
+          "sha256": "d6b8a595dc80006eb0a625959981ebe02438de56a6561cd4edd36956d45e0ece"
+        }
+      ],
+      "train_seeds": [739, 743],
+      "max_turns": 6,
+      "acceptance_threshold": 0.70,
+      "max_new_rows": 96,
+      "training": {
+        "steps": 25,
+        "save_steps": 5,
+        "learning_rate": 0.00002,
+        "max_seq_length": 184,
+        "qlora_rank": 4,
+        "qlora_alpha": 8
+      }
+    }
+  ],
+  "resource_contract": {
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU 4GB",
+    "vram_limit_mb": 3840,
+    "process_commit_limit_mb": 10240,
+    "cpu_percent": 50,
+    "io_limit_mb_s": 50,
+    "max_pagefile_growth_mb": 0,
+    "model_offload_allowed": false,
+    "checkpoint_every_steps": 5
+  },
+  "promotion_contract": {
+    "same_holdout_worlds_and_seeds": true,
+    "minimum_score_delta": 0.02,
+    "valid_action_rate_may_decrease": false,
+    "forbidden_action_rate_may_increase": false,
+    "automatic_next_cycle": false
+  }
+}

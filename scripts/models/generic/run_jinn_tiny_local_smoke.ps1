@@ -7,6 +7,13 @@ param(
     [string]$PromptsJsonl = "",
     [string]$SystemPromptFile = "",
     [int]$MaxNewTokens = 96,
+    [int]$ProbeStart = 1,
+    [int]$ProbeCount = 0,
+    [string]$StoryworldPlan = "",
+    [int]$StoryworldCycle = 1,
+    [ValidateSet("train", "holdout")][string]$StoryworldLane = "train",
+    [int]$StoryworldEpisodeStart = 1,
+    [int]$StoryworldEpisodeCount = 0,
     [int]$VramLimitMb = 3900,
     [int]$RamLimitMb = 8192,
     [int]$MinAvailableRamMb = 1024,
@@ -17,6 +24,7 @@ param(
     [int]$IoSpikeSamples = 3,
     [switch]$RepairViolations,
     [int]$RepairAttempts = 1,
+    [bool]$SkipCudaAllocatorWarmup = $true,
     [int]$TimeoutSeconds = 1200
 )
 
@@ -203,16 +211,30 @@ try {
         "--cache-dir", $CacheDir,
         "--prompts-jsonl", $PromptsJsonl,
         "--max-new-tokens", "$MaxNewTokens",
+        "--probe-start", "$ProbeStart",
+        "--probe-count", "$ProbeCount",
         "--vram-limit-mb", "$VramLimitMb"
     )
     if ($SystemPromptFile) {
         $args += @("--system-prompt-file", $SystemPromptFile)
+    }
+    if ($StoryworldPlan) {
+        $args += @(
+            "--storyworld-plan", $StoryworldPlan,
+            "--storyworld-cycle", "$StoryworldCycle",
+            "--storyworld-lane", $StoryworldLane,
+            "--storyworld-episode-start", "$StoryworldEpisodeStart",
+            "--storyworld-episode-count", "$StoryworldEpisodeCount"
+        )
     }
     if ($AdapterDir) {
         $args += @("--adapter-dir", $AdapterDir)
     }
     if ($RepairViolations) {
         $args += @("--repair-violations", "--repair-attempts", "$RepairAttempts")
+    }
+    if ($SkipCudaAllocatorWarmup) {
+        $args += "--skip-cuda-allocator-warmup"
     }
 
     $commitCapMb = if ($MaxProcessCommitMb -gt 0) { $MaxProcessCommitMb } else { $RamLimitMb }
@@ -451,6 +473,13 @@ try {
         base_model_id = $BaseModelId
         adapter_dir = $AdapterDir
         prompts_jsonl = $PromptsJsonl
+        probe_start = $ProbeStart
+        probe_count = $ProbeCount
+        storyworld_plan = $StoryworldPlan
+        storyworld_cycle = $StoryworldCycle
+        storyworld_lane = $StoryworldLane
+        storyworld_episode_start = $StoryworldEpisodeStart
+        storyworld_episode_count = $StoryworldEpisodeCount
         system_prompt_file = $SystemPromptFile
         repair_violations = [bool]$RepairViolations
         repair_attempts = if ($RepairViolations) { $RepairAttempts } else { 0 }
@@ -480,6 +509,7 @@ try {
             vram_limit_mb = $VramLimitMb
             timeout_seconds = $TimeoutSeconds
             model_offload_allowed = $false
+            cuda_allocator_warmup_skipped = $SkipCudaAllocatorWarmup
         }
         cleanup = $cleanup
         finished_at_utc = [DateTimeOffset]::UtcNow.ToString("o")

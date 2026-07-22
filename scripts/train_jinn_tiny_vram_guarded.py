@@ -21,7 +21,7 @@ import sys
 import traceback
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Iterable, List
+from typing import Any, Iterable
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -114,6 +114,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--target-modules", default="q_proj,k_proj,v_proj,o_proj")
     parser.add_argument("--seed", type=int, default=713)
     parser.add_argument("--dry-run-load-only", action="store_true")
+    parser.add_argument("--skip-cuda-allocator-warmup", action="store_true")
     parser.add_argument("--local-files-only", action=argparse.BooleanOptionalAction, default=True)
     return parser.parse_args()
 
@@ -261,7 +262,17 @@ def assert_no_offload(model: Any, stage: str) -> dict:
 
 def render_messages(tokenizer: Any, messages: list[dict]) -> str:
     if getattr(tokenizer, "chat_template", None):
-        return tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=False)
+        try:
+            return tokenizer.apply_chat_template(
+                messages,
+                tokenize=False,
+                add_generation_prompt=False,
+                enable_thinking=False,
+            )
+        except TypeError:
+            return tokenizer.apply_chat_template(
+                messages, tokenize=False, add_generation_prompt=False
+            )
     rendered = []
     for message in messages:
         role = message.get("role", "user")
@@ -315,6 +326,18 @@ def run_training(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
     from peft import LoraConfig, PeftModel, get_peft_model, prepare_model_for_kbit_training
     from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
     from trl import SFTConfig, SFTTrainer
+
+    if args.skip_cuda_allocator_warmup:
+        import transformers.modeling_utils as transformers_modeling_utils
+
+        def skip_cuda_allocator_warmup(*_args: Any, **_kwargs: Any) -> None:
+            return None
+
+        transformers_modeling_utils.caching_allocator_warmup = skip_cuda_allocator_warmup
+        summary["cuda_allocator_warmup"] = "skipped"
+        log.event("cuda_allocator_warmup_skipped")
+    else:
+        summary["cuda_allocator_warmup"] = "enabled"
 
     torch.manual_seed(args.seed)
     if torch.cuda.is_available():
@@ -379,6 +402,9 @@ def run_training(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
     summary["gpu_after_model_load"] = assert_peak_vram_under_limit(torch, args.vram_limit_mb, "after_model_load")
     summary["nvidia_smi_after_model_load"] = nvidia_smi_snapshot()
     summary["placement_after_model_load"] = assert_no_offload(model, "after_model_load")
+    torch.cuda.synchronize()
+    torch.cuda.empty_cache()
+    summary["gpu_after_model_cache_trim"] = cuda_mem_snapshot(torch)
     log.event(
         "model_loaded",
         torch_cuda=summary["gpu_after_model_load"],
@@ -407,6 +433,9 @@ def run_training(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
         model = get_peft_model(model, lora_config)
     summary["gpu_after_lora"] = assert_peak_vram_under_limit(torch, args.vram_limit_mb, "after_lora")
     summary["placement_after_lora"] = assert_no_offload(model, "after_lora")
+    torch.cuda.synchronize()
+    torch.cuda.empty_cache()
+    summary["gpu_after_lora_cache_trim"] = cuda_mem_snapshot(torch)
     summary["param_counts"] = count_trainable_params(model)
     log.event(
         "lora_ready",
@@ -493,6 +522,7 @@ def main() -> int:
         "dataset_dir": str(Path(args.dataset_dir).resolve()),
         "constitution_id": args.constitution_id,
         "local_files_only": bool(args.local_files_only),
+        "skip_cuda_allocator_warmup": bool(args.skip_cuda_allocator_warmup),
         "max_steps": args.max_steps,
         "max_seq_length": args.max_seq_length,
         "vram_limit_mb": args.vram_limit_mb,
