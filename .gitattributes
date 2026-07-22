@@ -36,6 +36,7 @@
 /scripts/*mizan* text eol=lf
 /tests/test_mizan_* text eol=lf
 /scripts/*qwen3* text eol=lf
+/scripts/stage_and_run_primelab_f04.sh text eol=lf
 /scripts/freeze_frame_prompt_sft_contrast_v3.py text eol=lf
 /scripts/validate_frame_prompt_sft_contrast_v3.py text eol=lf
 /tests/test_qwen3_* text eol=lf

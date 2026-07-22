@@ -4,12 +4,14 @@
 from __future__ import annotations
 
 import argparse
+import gc
 import hashlib
 import importlib.metadata
 import json
 import os
 import platform
 import subprocess
+import sys
 import time
 from pathlib import Path
 from typing import Any
@@ -139,6 +141,23 @@ def gpu_identity() -> dict[str, Any]:
         "compute_capability": f"{properties.major}.{properties.minor}",
         "nvidia_smi": result.stdout.strip(),
         "torch_cuda_version": torch.version.cuda,
+    }
+
+
+def cleanup_cuda() -> dict[str, Any]:
+    gc.collect()
+    torch = sys.modules.get("torch")
+    if torch is None or not torch.cuda.is_available():
+        return {"status": "not_loaded", "cuda_available": False}
+    torch.cuda.synchronize()
+    torch.cuda.empty_cache()
+    if hasattr(torch.cuda, "ipc_collect"):
+        torch.cuda.ipc_collect()
+    return {
+        "status": "completed",
+        "cuda_available": True,
+        "allocated_mb_after": round(torch.cuda.memory_allocated() / 1024**2, 3),
+        "reserved_mb_after": round(torch.cuda.memory_reserved() / 1024**2, 3),
     }
 
 
@@ -289,7 +308,10 @@ def main() -> int:
     artifacts_passed = all(check["passed"] for check in checks)
     if not artifacts_passed:
         raise RuntimeError("one or more local model artifacts failed verification")
-    smoke = runtime_smoke(model_dir, inventory)
+    try:
+        smoke = runtime_smoke(model_dir, inventory)
+    finally:
+        cuda_cleanup = cleanup_cuda()
     gpu = gpu_identity()
     minimum_primelab_bytes = 24 * 1024**3
     venue_passed = args.venue == "local" or gpu["total_memory_bytes"] >= minimum_primelab_bytes
@@ -324,6 +346,7 @@ def main() -> int:
                 "passed": venue_passed,
             },
             "runtime_smoke": smoke,
+            "python_cuda_cleanup": cuda_cleanup,
             "passed": smoke["passed"],
         },
         "scope_boundary": {

@@ -1,0 +1,92 @@
+{
+  "schema_version": "frame_internalization_primelab_f04_bringup_plan.v1",
+  "frozen_at_utc": "2026-07-22T19:37:14.9896957+00:00",
+  "status": "prospective_candidate_selected_not_provisioned",
+  "factor_id": "F04",
+  "billing_authorized": false,
+  "provisioning_requires_action_time_confirmation": true,
+  "candidate_offer": {
+    "platform": "Prime Intellect",
+    "provider": "Massed Compute",
+    "gpu_sku": "A100 80GB",
+    "socket": "SXM4",
+    "gpu_count": 1,
+    "gpu_vram_gib": 80,
+    "vcpu": 16,
+    "ram_gib": 120,
+    "disk_gib": 500,
+    "deployment_type": "Virtual Machine",
+    "security": "secure_cloud",
+    "region": "United States",
+    "image": "ubuntu_22_cuda_12",
+    "pricing_type": "on_demand",
+    "observed_price_usd_per_hour": 1.23,
+    "observed_available": true,
+    "selection_rule": "Provision only this exact visible offer. Any provider, SKU, socket, resource, security, image, region, pricing, or price drift requires a prospective amendment and renewed confirmation."
+  },
+  "spend_caps": {
+    "maximum_price_usd_per_hour": 1.3,
+    "maximum_billable_hours": 0.5,
+    "maximum_compute_cost_usd": 0.65,
+    "spot_allowed": false,
+    "automatic_extension_allowed": false,
+    "instance_termination_after_probe_required": true
+  },
+  "inference_caps": {
+    "maximum_wall_clock_seconds": 1800,
+    "maximum_gpu_hours": 0.5,
+    "maximum_output_bytes": 1073741824,
+    "checkpoint_every_requests": 1
+  },
+  "model": {
+    "repository": "Qwen/Qwen3-1.7B",
+    "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "artifact_inventory_sha256": "26dbf683e31beebd0282217ea79a1b53f7a8fed6f4961978d7881c5a556e1959",
+    "staging_network_allowed": true,
+    "runtime_network_isolation_required": true,
+    "runtime_network_isolation_method": "linux_network_namespace"
+  },
+  "environment": {
+    "requirements_path": "experiments/frame_internalization_sft_v1/primelab_f04/requirements_f04.txt",
+    "requirements_sha256": "8d96719652c0c774c711b5bb0a29231dcd5e79ddf52439f8a0fa9684a34a7c36",
+    "actual_pip_freeze_sha256_required": true
+  },
+  "executables": [
+    {
+      "path": "scripts/audit_qwen3_1p7b_local_runtime.py",
+      "sha256": "9e9d48491c87d0ea38933be3badeff39d175476806415ae1b22541a247fac37b"
+    },
+    {
+      "path": "scripts/stage_and_run_primelab_f04.sh",
+      "sha256": "2d47054c58dc6df4409d2e77cac4b5c86ec11507e8421383ddf978a2d3fb37d9"
+    },
+    {
+      "path": "scripts/run_primelab_f04_probe.py",
+      "sha256": "3682e8e7df645e5c766663861056a8a67523e5a0bbecf112f5fd7753492c6264"
+    },
+    {
+      "path": "scripts/build_primelab_f04_receipt.py",
+      "sha256": "14ac8df746cfcbc224fbab9ba6a8d8a6c6d5be40c4c82cc45c08b89614f42741"
+    }
+  ],
+  "required_success_evidence": [
+    "exact instance manifest",
+    "one visible A100 80GB GPU",
+    "actual pip-freeze SHA-256",
+    "all 12 model artifacts byte-verified",
+    "offline NF4 deterministic generation smoke",
+    "hard network namespace during inference",
+    "positive wall-clock, GPU-hour, output, and checkpoint caps",
+    "zero surviving GPU compute processes",
+    "instance termination receipt"
+  ],
+  "forbidden_actions": [
+    "curriculum generation",
+    "base evaluation generation",
+    "adapter training",
+    "pilot execution",
+    "spot provisioning",
+    "continuing after any hash or cap mismatch"
+  ],
+  "claim_boundary": "Infrastructure-only F04 bring-up. Passing this packet can close the PrimeLab environment factor after gate refresh; it cannot authorize training or scientific endpoint claims."
+}
