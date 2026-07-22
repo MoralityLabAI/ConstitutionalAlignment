@@ -3,17 +3,88 @@ from __future__ import annotations
 import json
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 
 from scripts.analyze_qwen_soft_test_mizan import analyze_run
 from scripts.build_qwen_soft_test_mizan_probes import build_probe_rows
 from scripts.build_storyworld_format_control_dataset import build_format_control_rows
+from scripts.collate_jinn_experiment_data import collate
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 class QwenSoftTestTests(unittest.TestCase):
+    def test_collation_catalogs_and_archives_without_mutating_sources(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            source = root / "jinn_or_beast"
+            repo = root / "repo"
+            output = source / "collated"
+            (source / "run_a").mkdir(parents=True)
+            (source / "run_a/result.json").write_text('{"ok": true}\n')
+            (source / "run_b").mkdir()
+            (source / "run_b/rows.jsonl").write_text('{"row": 1}\n')
+            (repo / "experiments/meta").mkdir(parents=True)
+            (repo / "experiments/meta/receipt.json").write_text('{"status": "ok"}\n')
+
+            summary = collate(
+                source,
+                output,
+                repo,
+                (Path("experiments/meta"),),
+                "snapshot.zip",
+            )
+
+            self.assertEqual(summary["source_file_count"], 2)
+            self.assertTrue(summary["archive_crc_check_passed"])
+            self.assertTrue((source / "run_a/result.json").exists())
+            catalog_rows = [
+                json.loads(line)
+                for line in (output / "source_catalog.jsonl")
+                .read_text(encoding="utf-8")
+                .splitlines()
+            ]
+            self.assertEqual(
+                {row["relative_path"] for row in catalog_rows},
+                {"run_a/result.json", "run_b/rows.jsonl"},
+            )
+            with zipfile.ZipFile(output / "snapshot.zip") as archive:
+                self.assertEqual(
+                    set(archive.namelist()),
+                    {
+                        "data/run_a/result.json",
+                        "data/run_b/rows.jsonl",
+                        "repo_metadata/experiments/meta/receipt.json",
+                    },
+                )
+
+    def test_closeout_covers_every_registered_soft_test(self) -> None:
+        matrix = json.loads(
+            (
+                REPO_ROOT / "experiments/qwen_soft_tests_v1/soft_test_matrix_v1.json"
+            ).read_text(encoding="utf-8")
+        )
+        closeout = json.loads(
+            (
+                REPO_ROOT
+                / "experiments/qwen_soft_tests_v1/soft_test_closeout_20260722.json"
+            ).read_text(encoding="utf-8")
+        )
+        registered = {
+            item["id"]
+            for group in (matrix["completed_tests"], matrix["remaining_tests"])
+            for item in group
+        }
+        completed = {item["id"] for item in closeout["tests"]}
+        self.assertEqual(completed, registered)
+        self.assertEqual(closeout["status"], "complete_all_registered_local_soft_tests")
+        self.assertEqual(
+            closeout["completion_audit"]["st05_generation_rows_observed"], 80
+        )
+        self.assertFalse(closeout["primelab_spend_authorized_automatically"])
+
     def test_st05_execution_is_frozen_and_wrapper_supports_base_only(self) -> None:
         freeze = json.loads(
             (
@@ -78,7 +149,9 @@ class QwenSoftTestTests(unittest.TestCase):
         self.assertEqual(len({row["variant_id"] for row in rows}), 4)
         self.assertTrue(all(len(row["allowed_action_ids"]) == 3 for row in rows))
 
-    def test_mizan_analyzer_requires_and_scores_the_complete_probe_universe(self) -> None:
+    def test_mizan_analyzer_requires_and_scores_the_complete_probe_universe(
+        self,
+    ) -> None:
         probes, manifest = build_probe_rows(
             REPO_ROOT,
             REPO_ROOT / "experiments/mizan_rooms_v1/suite.json",

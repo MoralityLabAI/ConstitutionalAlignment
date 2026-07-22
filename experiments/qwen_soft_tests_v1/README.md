@@ -24,3 +24,21 @@ wrappers, 3,840 MB VRAM ceiling, 10,240 MB process-commit ceiling, 50% CPU cap,
 50 MB/s I/O cap, zero pagefile-growth allowance, no model offload, and PID-bound
 cleanup. Paid-compute authorization remains a separate human decision after the
 closeout receipt exists.
+
+## Closeout result
+
+The registered ST01-ST05 local matrix is complete. The immutable result receipt
+is `soft_test_closeout_20260722.json`.
+
+The format-only control improved the frozen storyworld proxy by 0.009722 over
+the parent, compared with 0.043836 for the score-trained adapter. Both reached a
+0.208333 forbidden-action rate, so neither authorizes another storyworld cycle.
+
+All four checkpoints produced valid actions for all 20 Mizan probes and had
+identical aggregate first-turn metrics. Prompt conditions still changed action
+selection: the unreliable-authority condition switched 75% of paired actions,
+reduced mean proxy score by 0.125, and increased failure-tag rate by 0.25 versus
+neutral. This is a negative checkpoint-transfer diagnostic on the small probe
+pack, not a model-equivalence result.
+
+PrimeLab spend remains gated for a separate human decision.
