@@ -30,17 +30,19 @@ behavior, NF4 loading, and deterministic inference checks all pass. The earlier
 [`readiness/qwen3_1p7b_local_model_tokenizer_freeze_v1_failed.json`](readiness/qwen3_1p7b_local_model_tokenizer_freeze_v1_failed.json)
 is retained because it transparently records the validator-only thinking-marker
 failure corrected by source commit `2f0a28593472753cf2d0e5e5e1000112b5de78a6`.
-PrimeLab environment, generation, training, and evaluation remain pending; there
-is no fine-tuning outcome. The historical INTELLECT v2 treatment and
-staged-compute governance remain frozen as provenance.
+The PrimeLab environment freeze passed on 2026-07-23 in
+[`primelab_f04/environment_freeze_20260723.json`](primelab_f04/environment_freeze_20260723.json).
+Generation, training, and evaluation remain pending; there is no fine-tuning
+outcome. The historical INTELLECT v2 treatment and staged-compute governance
+remain frozen as provenance.
 
 The active gates are factored into a machine-readable dependency DAG in
 [`GATE_FACTORIZATION_V1.md`](GATE_FACTORIZATION_V1.md) and
-[`readiness/gate_factorization_20260721.json`](readiness/gate_factorization_20260721.json).
-Seven of twenty shared factors pass. The current parallel frontier is the exact
-PrimeLab environment/inference-cap freeze (F04) and immutable judge-configuration
-freeze (F12); the ten parent gates remain fail-closed, with two passed and eight
-blocking.
+[`readiness/gate_factorization_20260723.json`](readiness/gate_factorization_20260723.json).
+Eight of twenty shared factors pass. The current parallel frontier is
+curriculum transcript generation (F06), immutable judge-configuration freeze
+(F12), and prospective base generation (F13); the ten parent gates remain
+fail-closed, with three passed and seven blocking.
 
 This package reconstructs Silico experiment `exp_01kxm0hbf4ez58y7mfj58rmn6q`, originally titled **"Training the frames in: does SFT internalize what prompting couldn't?"** The experiment was interrupted during data generation. The recovered record contains the design, partial generation counts, quality checks, launcher decisions, and compute receipts, but it does **not** contain the generated transcript payloads, trained adapters, dose checkpoints, or evaluation outputs.
 
@@ -84,7 +86,9 @@ The primary behavioral endpoint remains the no-frame free/paid-tier alignment-fa
 - [`rerun_freeze/curriculum_source_v1/dilemma_manifest.json`](rerun_freeze/curriculum_source_v1/dilemma_manifest.json): pinned prospective 5,600-row dilemma pool and 5,320/280 cluster-disjoint split.
 - [`GATES_1_4_HANDOFF.md`](GATES_1_4_HANDOFF.md): cluster commands and fail-closed completion conditions for base verification, the 22,400-request curriculum pack, final nonleakage, and predecessor reanchoring.
 - [`GATE_FACTORIZATION_V1.md`](GATE_FACTORIZATION_V1.md): active Qwen dependency waves, shared factors, receipt interfaces, and unchanged parent-gate aggregation.
-- [`readiness/gate_factorization_20260721.json`](readiness/gate_factorization_20260721.json): current machine-readable 20-factor DAG with the F04/F12 parallel frontier.
+- [`readiness/gate_factorization_20260723.json`](readiness/gate_factorization_20260723.json): current machine-readable 20-factor DAG with F04 satisfied and the F06/F12/F13 parallel frontier.
+- [`readiness/gate_factorization_20260721.json`](readiness/gate_factorization_20260721.json): immutable pre-PrimeLab factorization snapshot.
+- [`primelab_f04/`](primelab_f04/): bounded PrimeLab bring-up plan, terminated-instance manifest, and passed F04 environment-freeze receipt.
 - [`rerun_freeze/model_tokenizer_remote_inventory_v1.json`](rerun_freeze/model_tokenizer_remote_inventory_v1.json): immutable remote model/tokenizer inventory awaiting cluster-cache and engine-lock verification.
 - [`rerun_freeze/curriculum_generation_v1/request_manifest.json`](rerun_freeze/curriculum_generation_v1/request_manifest.json): frozen four-frame generation plan that renders into the six registered training arms.
 - [`rerun_freeze/nonleakage_source_prompts_v2.json`](rerun_freeze/nonleakage_source_prompts_v2.json): active source-prompt precursor audit against v2; all overlap counts are zero, while generated text remains to be audited.

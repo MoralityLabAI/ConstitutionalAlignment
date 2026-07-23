@@ -6,18 +6,20 @@ It evaluates shared prerequisites once, exposes independent work, and requires
 every factor of a parent gate before that gate passes.
 
 The current machine-readable receipt is
-[`readiness/gate_factorization_20260721.json`](readiness/gate_factorization_20260721.json).
+[`readiness/gate_factorization_20260723.json`](readiness/gate_factorization_20260723.json).
+The 2026-07-21 receipt remains an immutable pre-PrimeLab snapshot.
 
 ## Current state
 
 - 20 independently evidenced factors
-- 7 passed, 13 pending, 0 failed
-- 10 parent gates: 2 passed and 8 blocking
+- 8 passed, 12 pending, 0 failed
+- 10 parent gates: 3 passed and 7 blocking
 - pilot authorization remains false
 
 The passed factors are the active Qwen contract, cluster-disjoint split,
 licensed evaluation seal, local Qwen artifact/runtime freeze, Qwen request
 pack, source-prompt nonleakage, and judge instruments/validation queue.
+F04 now also passes from the terminated, hash-bound PrimeLab environment probe.
 
 ## Dependency waves
 
@@ -27,15 +29,14 @@ requirements are satisfied.
 
 | Wave | Factors | Work |
 |---|---|---|
-| 1 | F04, F12 | Freeze the exact PrimeLab environment/inference caps; freeze immutable judge revisions and decoding configuration. |
-| 2 | F06, F13 | Generate the four curriculum transcript sets; generate all 1,600 prospective Qwen base rows. |
-| 3 | F07, F14, F16 | Render six exact curricula; freeze judge predictions; fit and freeze the layer-27 probe and controls. |
-| 4 | F08, F10, F15 | Verify token parity; audit generated-text nonleakage; complete blinded human agreement. |
-| 5 | F17, F18 | Complete the base analysis and the capped single-GPU 4,096-token six-arm smoke in parallel. |
-| 6 | F19 | Sign pilot authorization after every preceding factor passes. |
+| 1 | F06, F12, F13 | Generate the four curriculum transcript sets; freeze immutable judge revisions; generate all 1,600 prospective Qwen base rows. |
+| 2 | F07, F14, F16 | Render six exact curricula; freeze judge predictions; fit and freeze the layer-27 probe and controls. |
+| 3 | F08, F10, F15 | Verify token parity; audit generated-text nonleakage; complete blinded human agreement. |
+| 4 | F17, F18 | Complete the base analysis and the capped single-GPU 4,096-token six-arm smoke in parallel. |
+| 5 | F19 | Sign pilot authorization after every preceding factor passes. |
 
-The present frontier is therefore F04 and F12. Neither requires curriculum or
-adapter outcomes.
+The present frontier is therefore F06, F12, and F13. None exposes adapter
+outcomes.
 
 ## Parent gates and shared factors
 
@@ -60,12 +61,13 @@ nonleakage, and training smoke.
 
 ## Refresh command
 
-With no optional receipts, the command reproduces the current state:
+The command reproducing the current state includes the passed F04 receipt:
 
 ```powershell
 python scripts/factor_frame_internalization_gates.py `
-  --as-of-date 2026-07-21 `
-  --output experiments/frame_internalization_sft_v1/readiness/gate_factorization_20260721.json
+  --as-of-date 2026-07-23 `
+  --primelab-environment experiments/frame_internalization_sft_v1/primelab_f04/environment_freeze_20260723.json `
+  --output experiments/frame_internalization_sft_v1/readiness/gate_factorization_20260723.json
 ```
 
 As work completes, supply the new receipts:

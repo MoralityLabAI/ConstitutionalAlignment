@@ -1,0 +1,171 @@
+{
+  "checks": {
+    "cleanup_passed": true,
+    "environment_lock_matches": true,
+    "gpu_hour_cap_passed": true,
+    "gpu_topology_passed": true,
+    "instance_manifest_passed": true,
+    "instance_offer_matches": true,
+    "instance_price_within_cap": true,
+    "minimum_vram": true,
+    "model_inventory_matches": true,
+    "network_isolated": true,
+    "one_gpu": true,
+    "positive_caps": true,
+    "probe_passed": true,
+    "python_cuda_cleanup_passed": true,
+    "runtime_passed": true,
+    "runtime_venue_is_primelab": true
+  },
+  "cleanup_required": true,
+  "environment_lock_sha256": "de380fa5dcd8122e2c495711364f759bc71482c7da776a8f2b4846de265fcbff",
+  "failures": [],
+  "gpu_count": 1,
+  "gpu_inventory": [
+    {
+      "driver_version": "580.126.09",
+      "index": 0,
+      "memory_total_mib": 81920,
+      "name": "NVIDIA A100-SXM4-80GB",
+      "uuid": "GPU-04f10636-5585-cd14-c968-35adab4cb648"
+    }
+  ],
+  "gpu_vram_gib": 80.0,
+  "inference_caps": {
+    "checkpoint_every_requests": 1,
+    "maximum_gpu_hours": 0.5,
+    "maximum_output_bytes": 1073741824,
+    "maximum_wall_clock_seconds": 1800
+  },
+  "instance": {
+    "attempts": [
+      {
+        "attempt": 1,
+        "preserved_remote_artifact": "/opt/jinn-f04/venv_failed_ensurepip",
+        "reason": "python3-venv was absent from the base Ubuntu image",
+        "status": "failed_before_probe_import"
+      },
+      {
+        "attempt": 2,
+        "probe_summary_sha256": "bf86f9a975090b6dddb344f02e47438055be68666a423ede5fc97a7c7d4286a6",
+        "reason": "The venv Python symlink was dereferenced to the system interpreter",
+        "status": "failed_before_inference"
+      },
+      {
+        "attempt": 3,
+        "environment_lock_sha256": "de380fa5dcd8122e2c495711364f759bc71482c7da776a8f2b4846de265fcbff",
+        "probe_summary_sha256": "3f5b79fb2f9586f229cd9cf428af3a053779bf6395556ea6a1d3b45ee6c7200b",
+        "runtime_receipt_sha256": "461b04914272f71288f5c32a86f125a9759bded92388bb9b4009287fbc2f2b4b",
+        "status": "passed"
+      }
+    ],
+    "availability_id": "1ecfa8",
+    "claim_boundary": "Infrastructure-only environment freeze. No scored behavioral outputs, curriculum generation, adapter training, pilot, or scientific endpoint was run.",
+    "cloud_id": "gpu_1x_DGX_A100",
+    "data_center_id": "us-central-2",
+    "deployment_type": "Virtual Machine",
+    "disk_gib": 500,
+    "external_evidence_files": [
+      {
+        "bytes": 1392,
+        "path": "output/probe/environment_lock.txt",
+        "sha256": "bdea8516c57d9f0b6629540f43fdf2e7e91186f7ca32e755c2a49959b4049800"
+      },
+      {
+        "bytes": 1448,
+        "path": "output/probe/f04_probe_summary.json",
+        "sha256": "bf86f9a975090b6dddb344f02e47438055be68666a423ede5fc97a7c7d4286a6"
+      },
+      {
+        "bytes": 508,
+        "path": "output/probe/runtime.stderr.log",
+        "sha256": "a1c62739b2ea455a2b81171691e63d8841d5a2b2e4b59afb4d519b3b9f6be0ba"
+      },
+      {
+        "bytes": 0,
+        "path": "output/probe/runtime.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 1419,
+        "path": "output/probe_retry2/environment_lock.txt",
+        "sha256": "de380fa5dcd8122e2c495711364f759bc71482c7da776a8f2b4846de265fcbff"
+      },
+      {
+        "bytes": 1526,
+        "path": "output/probe_retry2/f04_probe_summary.json",
+        "sha256": "3f5b79fb2f9586f229cd9cf428af3a053779bf6395556ea6a1d3b45ee6c7200b"
+      },
+      {
+        "bytes": 8070,
+        "path": "output/probe_retry2/primelab_base_runtime_receipt.json",
+        "sha256": "461b04914272f71288f5c32a86f125a9759bded92388bb9b4009287fbc2f2b4b"
+      },
+      {
+        "bytes": 911,
+        "path": "output/probe_retry2/runtime.stderr.log",
+        "sha256": "7ae7276c311b31173c52908cc517891f7eda8722440684610ea9d2e5d723c376"
+      },
+      {
+        "bytes": 115,
+        "path": "output/probe_retry2/runtime.stdout.log",
+        "sha256": "bb35ca079b97a40d8a3a69f416db6a036a5f711556323b1e773e9a413c9b275e"
+      }
+    ],
+    "external_evidence_root": "D:\\Research_Engine\\jinn_or_beast\\primelab_f04_20260722_177b06afef164b5786d57aeb523606d3",
+    "gpu_count": 1,
+    "gpu_sku": "A100 80GB",
+    "gpu_vram_gib": 80,
+    "image": "ubuntu_22_cuda_12",
+    "lifecycle": {
+      "created_at_utc": "2026-07-22T23:47:29Z",
+      "full_lifetime_price_upper_bound_usd": 0.352275,
+      "maximum_billable_hours_contract": 0.5,
+      "maximum_compute_cost_usd_contract": 0.65,
+      "provider_total_billed_price_raw": 2868.0,
+      "provider_total_billed_price_raw_unit": "not documented by CLI v0.5.49; retained without conversion",
+      "terminated_at_utc": "2026-07-23T00:04:40Z",
+      "total_lifetime_seconds": 1031,
+      "within_time_and_price_caps": true
+    },
+    "name": "jinn-f04-20260722",
+    "passed": true,
+    "pod_id": "177b06afef164b5786d57aeb523606d3",
+    "price_usd_per_hour": 1.23,
+    "pricing_type": "on_demand",
+    "provider": "Massed Compute",
+    "provider_slug": "massedcompute",
+    "ram_gib": 120,
+    "region": "United States",
+    "remote_environment": {
+      "driver_version": "580.126.09",
+      "gpu_memory_mib": 81920,
+      "gpu_name": "NVIDIA A100-SXM4-80GB",
+      "hostname": "0328-kci2-prxmx100063",
+      "python": "3.10.12",
+      "source_commit": "0d1b4f1146dc57373fab2f0c1958229f29b57a58"
+    },
+    "schema_version": "frame_internalization_primelab_instance_manifest.v1",
+    "security": "secure_cloud",
+    "socket": "SXM4",
+    "termination": {
+      "cli_reported_success": true,
+      "passed": true,
+      "running_pods_after": 0,
+      "watchdog_delay_seconds": 1620,
+      "watchdog_pid": 31864,
+      "watchdog_stopped_after_manual_termination": true
+    },
+    "vcpu": 16
+  },
+  "model_artifact_inventory_sha256": "26dbf683e31beebd0282217ea79a1b53f7a8fed6f4961978d7881c5a556e1959",
+  "passed": true,
+  "probe_runtime_receipt_sha256": "461b04914272f71288f5c32a86f125a9759bded92388bb9b4009287fbc2f2b4b",
+  "schema_version": "frame_internalization_primelab_environment_freeze.v1",
+  "scope_boundary": {
+    "authorizes_curriculum_generation_after_gate_refresh": true,
+    "authorizes_training": false,
+    "full_4096_training_smoke_still_required": true
+  },
+  "source_commit": "0d1b4f1146dc57373fab2f0c1958229f29b57a58"
+}

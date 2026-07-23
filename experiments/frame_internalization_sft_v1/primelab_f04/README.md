@@ -30,3 +30,24 @@ The instance must be terminated immediately after the evidence is retrieved.
 The final environment receipt is built with
 `scripts/build_primelab_f04_receipt.py`; the factorization report must then be
 regenerated before any curriculum generation or training is considered.
+
+## Completed bounded probe (2026-07-23)
+
+The authorized infrastructure-only probe passed on pod
+`177b06afef164b5786d57aeb523606d3` at source commit
+`0d1b4f1146dc57373fab2f0c1958229f29b57a58`. The one-A100 topology, exact
+model inventory, NF4 runtime, official thinking and nonthinking templates,
+offline namespace, inference caps, and owned-process cleanup all passed.
+
+The pod was terminated with zero running pods after 1,031 seconds. At the
+advertised $1.23/hour rate, the full-lifetime upper bound is $0.352275, below
+the authorized $0.65 cap. The provider CLI's raw billed-price field is retained
+without conversion because its units are undocumented.
+
+The committed evidence is
+[`instance_manifest_20260723.json`](instance_manifest_20260723.json) and
+[`environment_freeze_20260723.json`](environment_freeze_20260723.json). Raw
+logs and runtime artifacts remain in the external evidence root hash-bound by
+the manifest. This closes F04 only: it authorizes the registered bounded
+curriculum-inference stage after gate refresh, but not adapter training or a
+scientific claim.

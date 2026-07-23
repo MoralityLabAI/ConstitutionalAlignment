@@ -14,6 +14,16 @@ from scripts.run_primelab_f04_probe import parse_nvidia_inventory
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+F04_PACKAGE = (
+    REPO_ROOT / "experiments/frame_internalization_sft_v1/primelab_f04"
+)
+F04_RECEIPT = F04_PACKAGE / "environment_freeze_20260723.json"
+F04_MANIFEST = F04_PACKAGE / "instance_manifest_20260723.json"
+CURRENT_FACTORIZATION = (
+    REPO_ROOT
+    / "experiments/frame_internalization_sft_v1/readiness/"
+    "gate_factorization_20260723.json"
+)
 
 
 def test_nvidia_inventory_parser_requires_exact_shape() -> None:
@@ -169,3 +179,44 @@ def test_candidate_offer_is_not_pre_authorized_for_billing() -> None:
         hashlib.sha256(requirements.read_bytes()).hexdigest()
         == plan["environment"]["requirements_sha256"]
     )
+
+
+def test_committed_f04_receipt_records_bounded_terminated_run() -> None:
+    receipt = json.loads(F04_RECEIPT.read_text(encoding="utf-8"))
+    manifest = json.loads(F04_MANIFEST.read_text(encoding="utf-8"))
+
+    assert receipt["passed"] is True
+    assert receipt["failures"] == []
+    assert all(receipt["checks"].values())
+    assert receipt["source_commit"] == "0d1b4f1146dc57373fab2f0c1958229f29b57a58"
+    assert receipt["instance"] == manifest
+    assert manifest["termination"]["passed"] is True
+    assert manifest["termination"]["running_pods_after"] == 0
+    assert manifest["lifecycle"]["within_time_and_price_caps"] is True
+    assert manifest["lifecycle"]["full_lifetime_price_upper_bound_usd"] <= 0.65
+    assert receipt["scope_boundary"]["authorizes_training"] is False
+
+
+def test_current_factorization_reproduces_with_f04_satisfied() -> None:
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(REPO_ROOT / "scripts/factor_frame_internalization_gates.py"),
+            "--as-of-date",
+            "2026-07-23",
+            "--primelab-environment",
+            str(F04_RECEIPT),
+        ],
+        cwd=REPO_ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    report = json.loads(result.stdout)
+    assert report == json.loads(CURRENT_FACTORIZATION.read_text(encoding="utf-8"))
+    factor = next(item for item in report["factors"] if item["factor_id"] == "F04")
+    assert factor["evidence_status"] == "passed"
+    assert factor["execution_state"] == "satisfied"
+    assert report["summary"]["passed_factor_count"] == 8
+    assert report["summary"]["passed_parent_gate_count"] == 3
+    assert report["current_frontier"] == ["F06", "F12", "F13"]

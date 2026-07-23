@@ -1,0 +1,121 @@
+{
+  "schema_version": "frame_internalization_primelab_instance_manifest.v1",
+  "passed": true,
+  "pod_id": "177b06afef164b5786d57aeb523606d3",
+  "name": "jinn-f04-20260722",
+  "provider": "Massed Compute",
+  "provider_slug": "massedcompute",
+  "availability_id": "1ecfa8",
+  "cloud_id": "gpu_1x_DGX_A100",
+  "data_center_id": "us-central-2",
+  "gpu_sku": "A100 80GB",
+  "socket": "SXM4",
+  "gpu_count": 1,
+  "gpu_vram_gib": 80,
+  "vcpu": 16,
+  "ram_gib": 120,
+  "disk_gib": 500,
+  "deployment_type": "Virtual Machine",
+  "security": "secure_cloud",
+  "region": "United States",
+  "image": "ubuntu_22_cuda_12",
+  "pricing_type": "on_demand",
+  "price_usd_per_hour": 1.23,
+  "lifecycle": {
+    "created_at_utc": "2026-07-22T23:47:29Z",
+    "terminated_at_utc": "2026-07-23T00:04:40Z",
+    "total_lifetime_seconds": 1031,
+    "maximum_billable_hours_contract": 0.5,
+    "maximum_compute_cost_usd_contract": 0.65,
+    "full_lifetime_price_upper_bound_usd": 0.352275,
+    "provider_total_billed_price_raw": 2868.0,
+    "provider_total_billed_price_raw_unit": "not documented by CLI v0.5.49; retained without conversion",
+    "within_time_and_price_caps": true
+  },
+  "termination": {
+    "cli_reported_success": true,
+    "running_pods_after": 0,
+    "watchdog_pid": 31864,
+    "watchdog_delay_seconds": 1620,
+    "watchdog_stopped_after_manual_termination": true,
+    "passed": true
+  },
+  "remote_environment": {
+    "hostname": "0328-kci2-prxmx100063",
+    "gpu_name": "NVIDIA A100-SXM4-80GB",
+    "gpu_memory_mib": 81920,
+    "driver_version": "580.126.09",
+    "python": "3.10.12",
+    "source_commit": "0d1b4f1146dc57373fab2f0c1958229f29b57a58"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "failed_before_probe_import",
+      "reason": "python3-venv was absent from the base Ubuntu image",
+      "preserved_remote_artifact": "/opt/jinn-f04/venv_failed_ensurepip"
+    },
+    {
+      "attempt": 2,
+      "status": "failed_before_inference",
+      "reason": "The venv Python symlink was dereferenced to the system interpreter",
+      "probe_summary_sha256": "bf86f9a975090b6dddb344f02e47438055be68666a423ede5fc97a7c7d4286a6"
+    },
+    {
+      "attempt": 3,
+      "status": "passed",
+      "probe_summary_sha256": "3f5b79fb2f9586f229cd9cf428af3a053779bf6395556ea6a1d3b45ee6c7200b",
+      "runtime_receipt_sha256": "461b04914272f71288f5c32a86f125a9759bded92388bb9b4009287fbc2f2b4b",
+      "environment_lock_sha256": "de380fa5dcd8122e2c495711364f759bc71482c7da776a8f2b4846de265fcbff"
+    }
+  ],
+  "external_evidence_root": "D:\\Research_Engine\\jinn_or_beast\\primelab_f04_20260722_177b06afef164b5786d57aeb523606d3",
+  "external_evidence_files": [
+    {
+      "path": "output/probe/environment_lock.txt",
+      "bytes": 1392,
+      "sha256": "bdea8516c57d9f0b6629540f43fdf2e7e91186f7ca32e755c2a49959b4049800"
+    },
+    {
+      "path": "output/probe/f04_probe_summary.json",
+      "bytes": 1448,
+      "sha256": "bf86f9a975090b6dddb344f02e47438055be68666a423ede5fc97a7c7d4286a6"
+    },
+    {
+      "path": "output/probe/runtime.stderr.log",
+      "bytes": 508,
+      "sha256": "a1c62739b2ea455a2b81171691e63d8841d5a2b2e4b59afb4d519b3b9f6be0ba"
+    },
+    {
+      "path": "output/probe/runtime.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/probe_retry2/environment_lock.txt",
+      "bytes": 1419,
+      "sha256": "de380fa5dcd8122e2c495711364f759bc71482c7da776a8f2b4846de265fcbff"
+    },
+    {
+      "path": "output/probe_retry2/f04_probe_summary.json",
+      "bytes": 1526,
+      "sha256": "3f5b79fb2f9586f229cd9cf428af3a053779bf6395556ea6a1d3b45ee6c7200b"
+    },
+    {
+      "path": "output/probe_retry2/primelab_base_runtime_receipt.json",
+      "bytes": 8070,
+      "sha256": "461b04914272f71288f5c32a86f125a9759bded92388bb9b4009287fbc2f2b4b"
+    },
+    {
+      "path": "output/probe_retry2/runtime.stderr.log",
+      "bytes": 911,
+      "sha256": "7ae7276c311b31173c52908cc517891f7eda8722440684610ea9d2e5d723c376"
+    },
+    {
+      "path": "output/probe_retry2/runtime.stdout.log",
+      "bytes": 115,
+      "sha256": "bb35ca079b97a40d8a3a69f416db6a036a5f711556323b1e773e9a413c9b275e"
+    }
+  ],
+  "claim_boundary": "Infrastructure-only environment freeze. No scored behavioral outputs, curriculum generation, adapter training, pilot, or scientific endpoint was run."
+}
