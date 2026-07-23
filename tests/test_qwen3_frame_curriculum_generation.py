@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-import json
 import hashlib
+import json
 import subprocess
 import sys
 from pathlib import Path
@@ -16,6 +16,15 @@ from scripts.generate_qwen3_frame_curriculum_transcripts import (
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SCRIPT = REPO_ROOT / "scripts" / "generate_qwen3_frame_curriculum_transcripts.py"
 PACKAGE = REPO_ROOT / "experiments" / "frame_internalization_sft_v1"
+
+
+def git_blob_sha256(path: Path, revision: str = "HEAD") -> str:
+    relative = path.resolve().relative_to(REPO_ROOT).as_posix()
+    payload = subprocess.check_output(
+        ["git", "show", f"{revision}:{relative}"],
+        cwd=REPO_ROOT,
+    )
+    return hashlib.sha256(payload).hexdigest()
 
 
 def test_stateless_sampler_is_stable_and_seed_sensitive() -> None:
@@ -82,6 +91,37 @@ def test_f06_smoke_plan_binds_caps_inputs_and_executables() -> None:
     assert plan["workload"]["maximum_transcripts"] == 16
     assert plan["scope_boundary"]["closes_f06"] is False
     assert plan["scope_boundary"]["authorizes_adapter_training"] is False
-    for binding in [*plan["frozen_inputs"].values(), *plan["executables"]]:
+    for name, binding in plan["frozen_inputs"].items():
+        if name == "f04_receipt":
+            continue
         path = REPO_ROOT / binding["path"]
-        assert hashlib.sha256(path.read_bytes()).hexdigest() == binding["sha256"]
+        assert git_blob_sha256(path) == binding["sha256"]
+    for binding in plan["executables"]:
+        path = REPO_ROOT / binding["path"]
+        assert git_blob_sha256(path) == binding["sha256"]
+
+
+def test_f06_result_fails_closed_on_host_line_ending_binding() -> None:
+    plan = json.loads(
+        (
+            PACKAGE / "primelab_f06/f06_throughput_smoke_plan_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    result = json.loads(
+        (
+            PACKAGE / "primelab_f06/f06_throughput_smoke_result_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    f04_path = REPO_ROOT / plan["frozen_inputs"]["f04_receipt"]["path"]
+    canonical_hash = git_blob_sha256(f04_path)
+
+    assert canonical_hash != plan["frozen_inputs"]["f04_receipt"]["sha256"]
+    assert result["passed"] is False
+    assert result["operational_checks"]["wrapper_reported_passed"] is True
+    assert result["contract_checks"]["passed"] is False
+    assert result["contract_checks"][
+        "f04_receipt_hash_on_remote_and_in_generation_receipts"
+    ] == canonical_hash
+    assert result["runtime"]["generated_tokens"] == 34651
+    assert result["factor_and_claim_boundary"]["f06_remains_pending"] is True
+    assert result["factor_and_claim_boundary"]["behavioral_or_scientific_result"] is False

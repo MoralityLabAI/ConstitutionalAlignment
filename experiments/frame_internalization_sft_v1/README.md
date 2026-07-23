@@ -94,6 +94,7 @@ The primary behavioral endpoint remains the no-frame free/paid-tier alignment-fa
 - [`readiness/gate_factorization_20260721.json`](readiness/gate_factorization_20260721.json): immutable pre-PrimeLab factorization snapshot.
 - [`primelab_f04/`](primelab_f04/): bounded PrimeLab bring-up plan, terminated-instance manifest, and passed F04 environment-freeze receipt.
 - [`primelab_f06/`](primelab_f06/): bounded four-frame curriculum-throughput smoke packet; it cannot close F06 or authorize training.
+- [`primelab_f06/f06_throughput_smoke_result_v1.json`](primelab_f06/f06_throughput_smoke_result_v1.json): operationally complete 16-transcript smoke, retained as throughput-only evidence because a host line-ending hash binding failed closed.
 - [`readiness/judge_configuration_freeze_v1.json`](readiness/judge_configuration_freeze_v1.json): prospective F12 judge/classifier identity, decoding, schema, and source-binding receipt.
 - [`rerun_freeze/model_tokenizer_remote_inventory_v1.json`](rerun_freeze/model_tokenizer_remote_inventory_v1.json): immutable remote model/tokenizer inventory awaiting cluster-cache and engine-lock verification.
 - [`rerun_freeze/curriculum_generation_v1/request_manifest.json`](rerun_freeze/curriculum_generation_v1/request_manifest.json): frozen four-frame generation plan that renders into the six registered training arms.

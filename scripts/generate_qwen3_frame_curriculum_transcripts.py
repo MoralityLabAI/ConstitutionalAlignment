@@ -144,7 +144,7 @@ class PairedStatelessSampler:
         sorted_logits = sorted_logits.masked_fill(remove, -math.inf)
         probabilities = torch.softmax(sorted_logits, dim=-1)
         cumulative = torch.cumsum(probabilities, dim=-1)
-        uniforms = self._uniforms[:, self.token_index].unsqueeze(1)
+        uniforms = self._uniforms[:, self.token_index].unsqueeze(1).contiguous()
         positions = torch.searchsorted(cumulative, uniforms).clamp_max(
             scores.shape[-1] - 1
         )
@@ -377,7 +377,7 @@ def main() -> int:
             local_files_only=True,
             device_map={"": "cuda:0"},
             quantization_config=quantization,
-            torch_dtype=torch.float16,
+            dtype=torch.float16,
             attn_implementation="sdpa",
         ).eval()
         generation = freeze["generation"]

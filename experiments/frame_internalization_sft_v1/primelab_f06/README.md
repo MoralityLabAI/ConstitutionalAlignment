@@ -18,3 +18,20 @@ Linux network namespace, and PID-bound cleanup. The exact contract is
 Passing this smoke establishes correctness and measured throughput only. It
 does not satisfy F06, authorize the full 22,400-request generation campaign,
 authorize adapter training, or provide behavioral evidence.
+
+## Result
+
+The 2026-07-23 run operationally completed all 16 selected transcripts and
+34,651 generated tokens in 476.03 generator seconds, with 16 checkpoint events,
+no failed requests, no visible thinking-marker leaks, and clean GPU teardown.
+Its exact batch-8 path projects linearly to roughly 185 generator hours and
+$228 at the observed $1.23/hour rate, so it is not economically ready for the
+full F06 campaign.
+
+The v1 plan also froze one JSON hash from Windows CRLF bytes while the pushed
+Git blob and Linux checkout used LF bytes. The content was unchanged, but the
+byte contract failed. The run is therefore retained only as operational
+throughput evidence in
+[`f06_throughput_smoke_result_v1.json`](f06_throughput_smoke_result_v1.json).
+[`F06_SMOKE_BINDING_AMENDMENT_V1.md`](F06_SMOKE_BINDING_AMENDMENT_V1.md)
+records the fail-closed correction required before another launch.

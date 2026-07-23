@@ -1,0 +1,169 @@
+{
+  "schema_version": "frame_internalization_primelab_f06_throughput_smoke_result.v1",
+  "run_id": "primelab_f06_20260723_fa3cae3dace8498194415f4b8635b41a",
+  "recorded_at_utc": "2026-07-23T01:43:56.0315300Z",
+  "status": "operational_smoke_complete_contract_binding_failed",
+  "passed": false,
+  "source_commit": "9cb556e1c4a2bb4fcb20e8db4646c0428a70258e",
+  "plan": {
+    "path": "experiments/frame_internalization_sft_v1/primelab_f06/f06_throughput_smoke_plan_v1.json",
+    "canonical_git_blob_sha256": "add52a506caeee8dd36708c350ff09f5c4c3ff1c3609ca208ef1eab581e6c8dd"
+  },
+  "operational_checks": {
+    "wrapper_reported_passed": true,
+    "runtime_exit_code_zero": true,
+    "exact_environment_lock_matched": true,
+    "exact_model_artifacts_matched": true,
+    "offline_network_namespace_used": true,
+    "selected_transcripts": 16,
+    "completed_transcripts": 16,
+    "checkpoint_events": 16,
+    "failed_requests": 0,
+    "six_message_transcripts": true,
+    "nonempty_finals": true,
+    "visible_thinking_marker_leaks": 0,
+    "scenario_order_matched_across_frames": true,
+    "seed_schedule_matched_across_frames": true,
+    "cleanup_completed": true,
+    "compute_apps_after": 0,
+    "output_cap_exceeded": false
+  },
+  "contract_checks": {
+    "passed": false,
+    "failures": [
+      "f04_receipt_hash_was_frozen_from_windows_crlf_worktree_bytes_instead_of_the_canonical_git_blob"
+    ],
+    "f04_receipt_hash_in_plan": "8352dd69daea12b8dc91ee455eacb70e32d641cd5adbfa27be70e24527d637dd",
+    "f04_receipt_hash_on_remote_and_in_generation_receipts": "9ee2c79751c1b56b11553cf45d19517ea2bf9f74936485775d7f88a0b753da86",
+    "difference_is_line_endings_only": true,
+    "windows_crlf_line_count": 171,
+    "canonical_lf_line_count": 171,
+    "parsed_json_content_changed": false,
+    "retroactive_plan_repair_forbidden": true
+  },
+  "instance": {
+    "pod_id": "fa3cae3dace8498194415f4b8635b41a",
+    "name": "jinn-f06-smoke-20260723",
+    "provider": "Massed Compute",
+    "availability_id": "1ecfa8",
+    "cloud_id": "gpu_1x_DGX_A100",
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "gpu_memory_mib": 81920,
+    "price_usd_per_hour": 1.23,
+    "created_at_utc": "2026-07-23T01:28:03Z",
+    "terminated_at_utc": "2026-07-23T01:43:46Z",
+    "lifetime_seconds": 943,
+    "full_lifetime_price_upper_bound_usd": 0.32219166666666665,
+    "maximum_compute_cost_usd": 0.65,
+    "within_time_and_price_caps": true,
+    "provider_total_cost_raw": 2576.0,
+    "provider_total_cost_raw_unit": "not documented by Prime CLI v0.5.49; retained without conversion",
+    "running_pods_after_termination": 0,
+    "watchdog_pid": 18464,
+    "watchdog_delay_seconds": 1620,
+    "watchdog_stopped_after_manual_termination": true
+  },
+  "runtime": {
+    "wrapper_elapsed_seconds": 482,
+    "generator_elapsed_seconds": 476.03,
+    "observed_output_bytes": 169903,
+    "maximum_output_bytes": 1073741824,
+    "batch_size": 8,
+    "limit_per_frame": 4,
+    "generated_tokens": 34651,
+    "generated_tokens_per_second": 72.79163077957271,
+    "transcripts_per_second": 0.033611327017204796,
+    "frame_generated_tokens": {
+      "neutral": 11094,
+      "F1": 9941,
+      "F3": 6959,
+      "F3_concrete": 6657
+    }
+  },
+  "rough_linear_projection": {
+    "registered_transcripts": 22400,
+    "projected_generated_tokens": 48511400,
+    "projected_generator_hours": 185.12277777777777,
+    "projected_cost_at_observed_rate_usd": 227.70101666666665,
+    "conservative_wrapper_scaled_hours": 187.44444444444446,
+    "conservative_wrapper_scaled_cost_usd": 230.55666666666667,
+    "interpretation": "The exact NF4 batch-8 path is not economically ready for full F06. This is a 16-transcript engineering estimate, not a scientific endpoint or a full-campaign authorization."
+  },
+  "external_evidence_root": "D:\\Research_Engine\\jinn_or_beast\\primelab_f06_20260723_fa3cae3dace8498194415f4b8635b41a",
+  "external_evidence_files": [
+    {
+      "path": "output/environment_lock.txt",
+      "bytes": 1419,
+      "sha256": "de380fa5dcd8122e2c495711364f759bc71482c7da776a8f2b4846de265fcbff"
+    },
+    {
+      "path": "output/generator.stderr.log",
+      "bytes": 1476,
+      "sha256": "4ed5b56545e01821c42bd30285a1f242d2e1b1562c7fbdf61e0e6902f5b11046"
+    },
+    {
+      "path": "output/generator.stdout.log",
+      "bytes": 3808,
+      "sha256": "f11309dca5fe79f5bac9e76494a68fb59fc76fa2e5c1ad6eca842a5833babaf0"
+    },
+    {
+      "path": "output/wrapper_receipt.json",
+      "bytes": 592,
+      "sha256": "a1ea6c8745d53af453b905caf3dc81efa8c752e9b1d867b6ce3f83013b99c87a"
+    },
+    {
+      "path": "output/generation/F1.jsonl",
+      "bytes": 40796,
+      "sha256": "032f348be3214f4353e4ed3ca3bc0d5c8eab2bcdd9a5514df06a75b5dc244654"
+    },
+    {
+      "path": "output/generation/F1.receipt.json",
+      "bytes": 1005,
+      "sha256": "212975bf2eb8298b85abb6bca74a4638f020d4d50d401de7b43b45d1b3b8d2bc"
+    },
+    {
+      "path": "output/generation/F3.jsonl",
+      "bytes": 29979,
+      "sha256": "5849bd7fa4e0135bc43389b06b087f79caf9080225f75083ffb085d7f173e31a"
+    },
+    {
+      "path": "output/generation/F3.receipt.json",
+      "bytes": 1005,
+      "sha256": "a412da83a205eedc160d16b9c8d5536c3443ae2d00db472c11c056200027948a"
+    },
+    {
+      "path": "output/generation/F3_concrete.jsonl",
+      "bytes": 34154,
+      "sha256": "77d1247079f2ee10d45f17a5ea50e255f0cb1ddf0e4cdaec8c3ee0becac5b24a"
+    },
+    {
+      "path": "output/generation/F3_concrete.receipt.json",
+      "bytes": 1023,
+      "sha256": "2a07ed446f27604f9f24dfe32c2ccd2166a2231e3841e61dbf21234f96b5bfff"
+    },
+    {
+      "path": "output/generation/generation.events.jsonl",
+      "bytes": 3220,
+      "sha256": "0fe93a8ad481052e3ce7edbd7d2c65dc792ccc2a33dfc617fb12a3dd961cb1e9"
+    },
+    {
+      "path": "output/generation/neutral.jsonl",
+      "bytes": 42811,
+      "sha256": "99ba3048a969cc8faa087268119946d0b3617a08930eaf460205805685c6499c"
+    },
+    {
+      "path": "output/generation/neutral.receipt.json",
+      "bytes": 1015,
+      "sha256": "033f0ce9d7f8fe4d47dfdbb239462e3bcbdd82bfbc37e7598ab0ae82a2540a65"
+    }
+  ],
+  "factor_and_claim_boundary": {
+    "f12_remains_satisfied": true,
+    "f06_remains_pending": true,
+    "f06_gate_evidence_from_this_smoke": false,
+    "full_generation_authorized": false,
+    "adapter_training_authorized": false,
+    "behavioral_or_scientific_result": false,
+    "usable_result": "bounded operational throughput and output-shape evidence only"
+  }
+}
