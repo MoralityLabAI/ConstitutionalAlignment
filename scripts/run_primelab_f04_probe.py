@@ -164,7 +164,7 @@ def main() -> int:
     repo_root = args.repo_root.resolve()
     model_dir = args.model_dir.resolve()
     output_dir = args.output_dir.resolve()
-    python = args.python.resolve()
+    python = Path(os.path.abspath(args.python))
     if output_dir.exists():
         raise FileExistsError(f"refusing to overwrite output directory: {output_dir}")
     if (

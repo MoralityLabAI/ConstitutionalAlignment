@@ -12,6 +12,12 @@
       "reason": "The first remote probe import failed because Ubuntu 22 supplies Python 3.10, where datetime.UTC is unavailable.",
       "change": "Use datetime.timezone.utc without changing probe semantics.",
       "base_image_prerequisite": "python3.10-venv"
+    },
+    {
+      "id": "linux_venv_symlink_preservation",
+      "registered_before_successful_probe_outputs": true,
+      "reason": "The second remote probe resolved the venv Python symlink to the system interpreter, which lacks the frozen packages.",
+      "change": "Normalize the interpreter path without dereferencing its virtual-environment symlink. Preserve the failed probe directory and write the retry to a new directory."
     }
   ],
   "candidate_offer": {
@@ -71,7 +77,7 @@
     },
     {
       "path": "scripts/run_primelab_f04_probe.py",
-      "sha256": "d63e319b60317fa2f6a575a8cf632e4b10a8ddef9f4b5f0d65bf256cd8a93096"
+      "sha256": "59b6ac3f794f7c9a215d18ffb6080339bc2f5fe8736c0d470de8451745dff1ca"
     },
     {
       "path": "scripts/build_primelab_f04_receipt.py",
