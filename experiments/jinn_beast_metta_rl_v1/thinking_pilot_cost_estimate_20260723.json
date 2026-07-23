@@ -1,0 +1,47 @@
+{
+  "schema_version": "jinn_beast_metta_thinking_pilot_cost_estimate_v1",
+  "estimated_at": "2026-07-23",
+  "model": "Qwen/Qwen3.5-4B",
+  "price_per_million_tokens_usd": {
+    "input": 0.1,
+    "output": 0.3,
+    "training": 0.3
+  },
+  "observed_trace_baseline": {
+    "evaluation_id": "huvpqi089ed8jizl1bj47lqv",
+    "rollouts": 40,
+    "mean_input_tokens": 391.5,
+    "mean_output_tokens": 3231.075,
+    "max_output_tokens": 4096,
+    "truncated_fraction": 0.25,
+    "strict_contract_fraction": 0.725
+  },
+  "pilot": {
+    "max_steps": 10,
+    "batch_size_rollouts": 64,
+    "rollouts_per_example": 8,
+    "oversampling_factor": 2.0,
+    "consumed_rollouts": 640,
+    "estimated_generated_rollouts": 1280,
+    "max_output_tokens": 4096,
+    "enable_thinking": true,
+    "online_eval_rounds": 3,
+    "online_eval_rollouts_per_round": 40
+  },
+  "estimate_usd": {
+    "observed_length_case_before_online_eval": 1.9863792,
+    "observed_length_case_with_online_eval": 2.1073959,
+    "cap_case_with_online_eval": 2.63673,
+    "observed_case_plus_25_percent": 2.634244875,
+    "cap_case_plus_25_percent": 3.2959125,
+    "recommended_spending_reserve": 3.5
+  },
+  "promotion_gate": {
+    "minimum_final_answer_emission_rate": 0.7,
+    "minimum_strict_contract_rate": 0.6,
+    "maximum_critical_violation_rate": 0.02,
+    "require_non_decreasing_development_reward": true,
+    "require_reasoning_trace_export": true
+  },
+  "paid_training_launched": false
+}

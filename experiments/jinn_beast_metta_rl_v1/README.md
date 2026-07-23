@@ -10,9 +10,9 @@
 - Presented frames: neutral, constitutional, Jinn, Beast
 - Paid training: not launched
 - Candidate-training release: blocked; all source-world reviews remain pending
-- Hub integration: passed for evaluated version `0.1.3`; `0.1.4` is a
-  documentation-only follow-up
+- Hub integration: passed for version `0.1.4`
 - Hosted smoke: passed end to end; evaluation `ntcauh360og2dg3o6r256rgr`
+- Hosted thinking baseline: passed; evaluation `huvpqi089ed8jizl1bj47lqv`
 
 Every four-frame group holds the storyworld prompt, opaque action menu, and
 deterministic reward target fixed. The presentation condition changes while the
@@ -27,17 +27,44 @@ changes held-out action policy and whether that change persists under neutral,
 override, and cross-skin evaluation. It does not replace the registered matched
 SFT study.
 
+## Thinking-trace lane
+
+The initial trace-bearing pilot keeps Qwen3.5 thinking enabled. Reasoning text
+is retained as measurement data, but it is not itself a reward component. The
+reward remains the deterministic final-action score, so verbosity, frame
+vocabulary, and post-hoc rationalization receive no direct credit.
+
+The trace analysis contract records:
+
+- final-answer emission and truncation rates;
+- reasoning-token length and repetition indicators;
+- strict JSON and evidence-ID formatting;
+- action consistency within matched four-frame groups;
+- final reward and critical-violation rate by frame;
+- descriptive frame-language rates without treating language as evidence of
+  model belief, identity, or standing.
+
+The no-thinking 50-step config remains as a control. The first thinking run is
+capped at 10 steps with 64 consumed rollouts per step and a `$3.50` reserve.
+The hosted baseline passed the pre-training trace gates with 80% content
+emission, 72.5% strict-contract validity, and no critical violations. Promotion
+still requires non-decreasing development reward at steps 5 and 10.
+
 ## Execution order
 
 1. Apply the required source-world review receipts and regenerate the task
    artifact.
 2. Confirm `candidate_training_ready=true` in the generated manifest.
-3. Run a 20-task, 8-rollout Qwen3.5-4B baseline over the development split.
-4. Require a nondegenerate baseline reward distribution before training.
-5. Launch the 50-step Hosted Training pilot with a `$2.25` spending reserve.
-6. Inspect reward distributions, forbidden-action rate, proxy regret, and
-   individual rollouts at steps 10, 20, 30, 40, and 50.
-7. Compare base and adapter on neutral/no-frame, override, and paired-skin
+3. Completed: run the 20-task, 2-rollout matched-frame thinking baseline over
+   the development split.
+4. Completed: record the nondegenerate baseline reward distribution, raw
+   traces, emission, truncation, and repetition rates.
+5. Launch the 10-step thinking pilot with a `$3.50` spending reserve.
+6. Inspect reward distributions, forbidden-action rate, proxy regret, trace
+   length, truncation, and individual rollouts at steps 0, 5, and 10.
+7. Promote to either the no-thinking 50-step control or a longer trace-bearing
+   run only if the registered promotion gates pass.
+8. Compare base and adapter on neutral/no-frame, override, and paired-skin
    evaluations before considering a 100-step continuation.
 
 The paper claim level remains governed by
@@ -60,10 +87,39 @@ and finalized all reward metrics.
 The four completed answers all selected the highest-scoring legal action. Three
 of the four wrapped visible evidence IDs in square brackets, reducing their
 evidence score to zero under the strict contract. This is useful reward
-variation, but it is not a training-comparable base estimate: Prime Hosted
-Evaluation used Qwen thinking mode, while the registered pilot uses
-`enable_thinking=false` and a 96-token output cap.
+variation, but it is not a training-comparable base estimate: it covered only
+five examples and preceded the trace-analysis contract. The 40-rollout baseline
+below supersedes it for the thinking pilot.
 
 The exact machine-readable receipt is
 `hosted_smoke_receipt_20260723.json`. Earlier failed or zero-score evaluations
 are recorded there as diagnostics and are excluded from behavioral evidence.
+
+## Hosted thinking baseline evidence
+
+The matched-frame baseline ran 20 development examples with 2 rollouts each,
+covering five storyworld pairs in all four frames. The full raw Prime sample
+records, including `reasoning_content`, are preserved in
+`hosted_thinking_baseline_traces_20260723.jsonl`.
+
+- Mean reward: `0.6102`
+- Strict-contract answers: `29/40`
+- Highest-scoring legal action among strict answers: `29/29`
+- Content emitted: `32/40`
+- Truncated at 4,096 tokens: `10/40`
+- Grounded evidence IDs: `22/40`
+- Critical violations: `0/40`
+- Estimated inference cost from recorded token use: `$0.0403`
+
+Every strict answer selected the same highest-scoring action within its matched
+storyworld. The observed frame differences were in trace termination and output
+formatting: strict validity was 70% neutral, 50% constitutional, 90% Jinn, and
+80% Beast. With only ten rollouts per frame, these are diagnostic estimates,
+not confirmatory frame effects.
+
+The main pilot target is therefore trace control: retain useful deliberation
+while producing the exact final contract before the token cap. Reasoning text
+remains measurement-only; the deterministic final-action reward does not pay
+for verbosity or frame vocabulary. The exact receipt is
+`hosted_thinking_baseline_receipt_20260723.json`, and the reproducible exporter
+and analyzer is `scripts/analyze_jinn_beast_hosted_thinking_eval.py`.

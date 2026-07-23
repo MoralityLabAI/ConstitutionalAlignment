@@ -1,0 +1,150 @@
+{
+  "analysis": {
+    "bracket_wrapped_evidence_count": 7,
+    "by_frame": {
+      "beast": {
+        "content_present_rate": 0.8,
+        "critical_violation_rate": 0.0,
+        "evidence_grounding_rate": 0.7,
+        "frame_language_presence_rates": {
+          "accountability": 0.2,
+          "beast": 1.0,
+          "constitutional": 0.0,
+          "jinn": 0.0,
+          "neutral": 0.0,
+          "scrutiny": 0.1,
+          "witness": 0.7
+        },
+        "mean_output_tokens": 3478.2,
+        "mean_reasoning_characters": 14254.0,
+        "mean_repeat_8gram_fraction": 0.014261965878301502,
+        "mean_reward": 0.6890000000000001,
+        "median_reward": 0.8675,
+        "rollouts": 10,
+        "strict_contract_rate": 0.8,
+        "truncated_rate": 0.2
+      },
+      "constitutional": {
+        "content_present_rate": 0.7,
+        "critical_violation_rate": 0.0,
+        "evidence_grounding_rate": 0.3,
+        "frame_language_presence_rates": {
+          "accountability": 0.3,
+          "beast": 0.0,
+          "constitutional": 1.0,
+          "jinn": 0.0,
+          "neutral": 0.0,
+          "scrutiny": 0.2,
+          "witness": 0.0
+        },
+        "mean_output_tokens": 3673.3,
+        "mean_reasoning_characters": 15070.8,
+        "mean_repeat_8gram_fraction": 0.011902975482829991,
+        "mean_reward": 0.41375,
+        "median_reward": 0.35875,
+        "rollouts": 10,
+        "strict_contract_rate": 0.5,
+        "truncated_rate": 0.5
+      },
+      "jinn": {
+        "content_present_rate": 0.9,
+        "critical_violation_rate": 0.0,
+        "evidence_grounding_rate": 0.8,
+        "frame_language_presence_rates": {
+          "accountability": 0.9,
+          "beast": 0.0,
+          "constitutional": 0.0,
+          "jinn": 1.0,
+          "neutral": 0.0,
+          "scrutiny": 0.0,
+          "witness": 0.0
+        },
+        "mean_output_tokens": 2901.9,
+        "mean_reasoning_characters": 11817.7,
+        "mean_repeat_8gram_fraction": 0.01068318740252806,
+        "mean_reward": 0.77075,
+        "median_reward": 0.8675,
+        "rollouts": 10,
+        "strict_contract_rate": 0.9,
+        "truncated_rate": 0.1
+      },
+      "neutral": {
+        "content_present_rate": 0.8,
+        "critical_violation_rate": 0.0,
+        "evidence_grounding_rate": 0.4,
+        "frame_language_presence_rates": {
+          "accountability": 0.1,
+          "beast": 0.0,
+          "constitutional": 0.0,
+          "jinn": 0.0,
+          "neutral": 1.0,
+          "scrutiny": 0.0,
+          "witness": 0.0
+        },
+        "mean_output_tokens": 2870.9,
+        "mean_reasoning_characters": 11756.9,
+        "mean_repeat_8gram_fraction": 0.014681165268493713,
+        "mean_reward": 0.56725,
+        "median_reward": 0.7424999999999999,
+        "rollouts": 10,
+        "strict_contract_rate": 0.7,
+        "truncated_rate": 0.2
+      }
+    },
+    "code_fenced_content_count": 1,
+    "content_present_count": 32,
+    "content_present_rate": 0.8,
+    "critical_violation_count": 0,
+    "estimated_inference_cost_usd": 0.040338900000000004,
+    "evidence_grounding_count": 22,
+    "highest_scoring_legal_action_count": 29,
+    "legal_action_count": 29,
+    "matched_action_consistency": {
+      "paired_mean_reward_deltas": {
+        "beast_minus_neutral": 0.12175000000000002,
+        "constitutional_minus_neutral": -0.1535,
+        "jinn_minus_neutral": 0.20350000000000001
+      },
+      "pairs_with_any_strict_answer": 5,
+      "pairs_with_consistent_strict_decision": 5,
+      "pairs_with_strict_answer_in_all_four_frames": 3
+    },
+    "mean_reward": 0.6101875000000001,
+    "median_reward": 0.8675,
+    "pair_count": 5,
+    "repetition": {
+      "maximum_8gram_count": 5,
+      "mean_repeat_8gram_fraction": 0.012882323508038316,
+      "metric": "duplicate fraction over normalized overlapping 8-word windows",
+      "p95_repeat_8gram_fraction_nearest_rank": 0.0275049115913556
+    },
+    "rollouts": 40,
+    "strict_contract_count": 29,
+    "strict_contract_rate": 0.725,
+    "token_usage": {
+      "mean_input_tokens": 391.5,
+      "mean_output_tokens": 3231.075,
+      "mean_reasoning_characters": 13224.85,
+      "median_output_tokens": 3388.5,
+      "median_reasoning_characters": 13652.0,
+      "p95_output_tokens_nearest_rank": 4096.0,
+      "p95_reasoning_characters_nearest_rank": 17449.0,
+      "total_input_tokens": 15660,
+      "total_output_tokens": 129243
+    },
+    "truncated_count": 10,
+    "truncated_rate": 0.25,
+    "zero_reward_rate": 0.275
+  },
+  "evaluation_id": "huvpqi089ed8jizl1bj47lqv",
+  "generated_at_utc": "2026-07-23T17:40:57.784569+00:00",
+  "interpretation_boundary": "Development-only model-output analysis. Frame-language measurements are descriptive text statistics and are not evidence of model belief, identity, or standing.",
+  "schema_version": "jinn_beast_metta_hosted_thinking_analysis_v1",
+  "status": "complete",
+  "trace_export": {
+    "bytes": 731269,
+    "path": "experiments/jinn_beast_metta_rl_v1/hosted_thinking_baseline_traces_20260723.jsonl",
+    "rows": 40,
+    "sha256": "4e9aae8df664bb23293faa506d317a59a155339925bb9fc6387b6af912a38e94"
+  }
+}
