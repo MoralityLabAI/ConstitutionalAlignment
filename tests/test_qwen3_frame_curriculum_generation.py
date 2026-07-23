@@ -182,6 +182,27 @@ def test_f06_optimization_builder_is_no_spend_and_preserves_science() -> None:
     assert plan["scope_boundary"]["authorizes_adapter_training"] is False
 
 
+def test_f06_optimization_plan_matches_its_source_bound_builder() -> None:
+    path = PACKAGE / "primelab_f06/f06_throughput_optimization_plan_v1.json"
+    frozen = json.loads(path.read_text(encoding="utf-8"))
+    rebuilt = build_plan(
+        frozen["source_commit"],
+        frozen_at_utc=frozen["frozen_at_utc"],
+    )
+
+    assert frozen == rebuilt
+    assert frozen["canonical_git_bindings"]["byte_source"] == "git_cat_file_blob"
+    for group in ("frozen_inputs", "development_executables"):
+        for binding in frozen["canonical_git_bindings"][group].values():
+            assert (
+                git_blob_sha256(
+                    REPO_ROOT / binding["path"],
+                    frozen["source_commit"],
+                )
+                == binding["sha256"]
+            )
+
+
 def test_f06_result_fails_closed_on_host_line_ending_binding() -> None:
     plan = json.loads(
         (

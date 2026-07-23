@@ -35,3 +35,19 @@ throughput evidence in
 [`f06_throughput_smoke_result_v1.json`](f06_throughput_smoke_result_v1.json).
 [`F06_SMOKE_BINDING_AMENDMENT_V1.md`](F06_SMOKE_BINDING_AMENDMENT_V1.md)
 records the fail-closed correction required before another launch.
+
+## No-spend throughput optimization
+
+[`f06_throughput_optimization_plan_v1.json`](f06_throughput_optimization_plan_v1.json)
+prepares, but does not authorize, a batch-32 comparison over eight frozen
+scenarios per frame. The only scientific execution change is inference batch
+size. The Qwen revision, NF4/float16 loader, thinking template, 2,500-token
+turn cap, top-p and temperature, retries, paired seeds, frames, and request
+order remain fixed.
+
+Promotion requires all 32 transcripts, clean teardown, at least 240 generated
+tokens/second, and a full-generation projection no greater than 60 hours or
+$75. Missing any threshold aborts the optimization lane without escalating
+batch size or spend. The plan binds inputs and development executables to
+canonical Git blobs at its exact source commit, preventing another host
+line-ending mismatch.

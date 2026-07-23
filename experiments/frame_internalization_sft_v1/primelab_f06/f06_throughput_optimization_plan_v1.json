@@ -1,0 +1,148 @@
+{
+  "abort_without_escalation_on": [
+    "any canonical Git-blob mismatch",
+    "offer above the proposed price cap",
+    "OOM or peak reserved-memory cap breach",
+    "wall-clock or output cap breach",
+    "any failed transcript after frozen retries",
+    "owned-process or GPU cleanup failure",
+    "throughput below promotion threshold"
+  ],
+  "authorization": {
+    "automatic_launch_allowed": false,
+    "billing_authorized": false,
+    "pod_creation_authorized": false,
+    "required_before_launch": "a new user authorization bound to a current offer and capped cost"
+  },
+  "baseline": {
+    "batch_size": 8,
+    "completed_transcripts": 16,
+    "evidence_class": "throughput_and_output_shape_only",
+    "generated_tokens": 34651,
+    "generated_tokens_per_second": 72.79163077957271,
+    "generator_elapsed_seconds": 476.03,
+    "projected_full_cost_usd": 227.70101666666665,
+    "projected_full_generator_hours": 185.12277777777777,
+    "result": {
+      "path": "experiments/frame_internalization_sft_v1/primelab_f06/f06_throughput_smoke_result_v1.json",
+      "sha256": "fe3e2cb3f1089ed5643ce4b79782c0c56b115576a60baa455e32ca376da3b3fc"
+    }
+  },
+  "candidate": {
+    "batch_size": 32,
+    "limit_per_frame": 8,
+    "maximum_generation_turns": 96,
+    "maximum_transcripts": 32,
+    "per_call_telemetry_required": true,
+    "sampler_implementation": "top_p_inverse_cdf_single_softmax_v2",
+    "single_change_under_test": "increase inference batch size from 8 to 32",
+    "source_frames": [
+      "neutral",
+      "F1",
+      "F3",
+      "F3_concrete"
+    ],
+    "turns_per_transcript": 3
+  },
+  "canonical_git_bindings": {
+    "byte_source": "git_cat_file_blob",
+    "development_executables": {
+      "generator": {
+        "path": "scripts/generate_qwen3_frame_curriculum_transcripts.py",
+        "sha256": "797e4306db28ed340bc86c3bfbe9c6bb3ee68212f6029542711640d0849d0916"
+      },
+      "hash_tool": {
+        "path": "scripts/hash_git_blobs.py",
+        "sha256": "309f8a9ec6c1c15e8e56a61aa8cdba70e6e3ed7b00387ded624fa7aeae0186c1"
+      }
+    },
+    "frozen_inputs": {
+      "environment_lock": {
+        "path": "experiments/frame_internalization_sft_v1/primelab_f04/environment_lock_20260723.txt",
+        "sha256": "de380fa5dcd8122e2c495711364f759bc71482c7da776a8f2b4846de265fcbff"
+      },
+      "f04_receipt": {
+        "path": "experiments/frame_internalization_sft_v1/primelab_f04/environment_freeze_20260723.json",
+        "sha256": "9ee2c79751c1b56b11553cf45d19517ea2bf9f74936485775d7f88a0b753da86"
+      },
+      "prior_result": {
+        "path": "experiments/frame_internalization_sft_v1/primelab_f06/f06_throughput_smoke_result_v1.json",
+        "sha256": "fe3e2cb3f1089ed5643ce4b79782c0c56b115576a60baa455e32ca376da3b3fc"
+      },
+      "request_manifest": {
+        "path": "experiments/frame_internalization_sft_v1/rerun_freeze/qwen3_1p7b_v1/curriculum_generation_v1/request_manifest.json",
+        "sha256": "e768b50ecd72ec9cf3f7caafe2a731013d6475f5b2e55c51e71562a7b5d98226"
+      }
+    },
+    "source_commit": "e7d6d624615106e56ed083a9f75e3c0b3e1897ed"
+  },
+  "classification": "no_spend_prospective_throughput_optimization",
+  "frozen_at_utc": "2026-07-23T04:10:00Z",
+  "plan_id": "qwen3_1p7b_f06_batch32_probe_v1",
+  "promotion_criteria": {
+    "cleanup_passed": true,
+    "completed_transcripts": 32,
+    "failed_requests": 0,
+    "maximum_projected_full_cost_usd": 75,
+    "maximum_projected_full_hours": 60,
+    "minimum_generated_tokens_per_second": 240,
+    "minimum_target_projection": {
+      "cost_at_maximum_offer_price_usd": 72.99168981481482,
+      "generated_tokens": 48511400,
+      "hours": 56.147453703703704
+    },
+    "preferred_generated_tokens_per_second": 320,
+    "preferred_target_projection": {
+      "cost_at_maximum_offer_price_usd": 54.74376736111111,
+      "generated_tokens": 48511400,
+      "hours": 42.110590277777774
+    }
+  },
+  "proposed_hard_caps": {
+    "checkpoint_every_completed_request": true,
+    "maximum_billable_seconds": 1800,
+    "maximum_compute_cost_usd": 0.65,
+    "maximum_inference_wall_clock_seconds": 1200,
+    "maximum_offer_price_usd_per_hour": 1.3,
+    "maximum_output_bytes": 1073741824,
+    "maximum_peak_cuda_reserved_bytes": 80530636800,
+    "spot_allowed": false,
+    "watchdog_delay_seconds": 1620
+  },
+  "required_future_launch_freeze": [
+    "current provider offer and availability",
+    "authorized wrapper and exact wrapper Git-blob hash",
+    "exact source commit checkout",
+    "watchdog PID and termination path",
+    "environment and twelve model artifact checks"
+  ],
+  "schema_version": "frame_internalization_f06_throughput_optimization_plan.v1",
+  "scientific_invariants": {
+    "chat_template_mode": "official_qwen3_enable_thinking_true",
+    "compute_dtype": "float16",
+    "max_tokens_per_turn": 2500,
+    "model_repository": "Qwen/Qwen3-1.7B",
+    "model_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "paired_seed_rule": "seed + integer scenario index; identical across source frames",
+    "quantization": "bitsandbytes NF4 with double quantization",
+    "request_order": "first eight frozen scenarios per frame",
+    "retry_attempts": 4,
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "turns": [
+      "draft",
+      "critique",
+      "revise"
+    ]
+  },
+  "scope_boundary": {
+    "authorizes_adapter_training": false,
+    "authorizes_full_generation": false,
+    "closes_f06": false,
+    "launches_compute": false,
+    "produces_behavioral_or_scientific_evidence": false,
+    "purpose": "prepare a comparable batch-throughput probe before further spend"
+  },
+  "source_commit": "e7d6d624615106e56ed083a9f75e3c0b3e1897ed",
+  "status": "prepared_not_authorized"
+}
