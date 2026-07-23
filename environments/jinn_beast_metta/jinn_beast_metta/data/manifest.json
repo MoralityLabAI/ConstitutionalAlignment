@@ -1,0 +1,178 @@
+{
+  "schema_version": "jinn_beast_metta_dataset_manifest_v1",
+  "scorer_id": "cross_frame_metta_policy_v1",
+  "data_path": "environments/jinn_beast_metta/jinn_beast_metta/data/tasks.jsonl",
+  "data_sha256": "3d902d01411c0879aa729aa6556643611f4f275233e5a85344839783e64e3641",
+  "rows": 1008,
+  "split_counts": {
+    "candidate_train": 768,
+    "development": 240
+  },
+  "frame_counts": {
+    "neutral": 252,
+    "constitutional": 252,
+    "jinn": 252,
+    "beast": 252
+  },
+  "pair_count": 252,
+  "cross_skin_pair_count": 186,
+  "candidate_training_approved_rows": 0,
+  "candidate_training_ready": false,
+  "reward_target_invariant_across_presented_frames": true,
+  "sources": [
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/amanah_relief_ledger_train_v1.json",
+      "file_sha256": "396ce5e9990c12671e68cb3eff50fe7b832213aa503ddd1c7abbe26a9df23a0b",
+      "world_id": "amanah_relief_ledger_train_v1",
+      "review_status": "pending",
+      "rows": 36
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/common_well_allocation_train_v1.json",
+      "file_sha256": "eed94e6110c0c23bb572742139243d47cb76f2211eeb8393d8b0f4911a320797",
+      "world_id": "common_well_allocation_train_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/exogenous_failure_recovery_train_v1.json",
+      "file_sha256": "4481ba33515cfac161d82563ede3e96eb37e7d5d592026b9ffa2123e13130cd4",
+      "world_id": "exogenous_failure_recovery_train_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/fiduciary_relief_ledger_train_v1.overlay.json",
+      "file_sha256": "82e2be4aea82d27d0acb39920ebbdeb60560ecd1f33a1bf9eff81e5641944f7e",
+      "world_id": "fiduciary_relief_ledger_train_v1",
+      "review_status": "pending",
+      "rows": 36
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/ghayb_boundary_search_train_v1.json",
+      "file_sha256": "6f739914c15f630a4db42778c11d3612449ae5343143d493d34e741144d18151",
+      "world_id": "ghayb_boundary_search_train_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/incident_remediation_train_v1.overlay.json",
+      "file_sha256": "13dad739b07d8e3a91a048584a1c699c9f42bd2790d38728aa15e2fa5f19d6dc",
+      "world_id": "incident_remediation_train_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/interpretation_under_authority_train_v1.json",
+      "file_sha256": "39fc75876aa7e5544474a4b3553b94733f6f5a16cf741d3fa6766a23072a4473",
+      "world_id": "interpretation_under_authority_train_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/knowledge_claims_public_risk_train_v1.json",
+      "file_sha256": "d2120af0726cdac309b75d239f8652fa2b40402a5e4c160878eca45fb867d513",
+      "world_id": "knowledge_claims_public_risk_train_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/market_mutual_aid_train_v1.json",
+      "file_sha256": "c62031577ffb9d9ec29e4fee1a8b56907304f5384bd3bfd5bc1d83dbe4785979",
+      "world_id": "market_mutual_aid_train_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/mizan_competing_claims_train_v1.json",
+      "file_sha256": "d6b8a595dc80006eb0a625959981ebe02438de56a6561cd4edd36956d45e0ece",
+      "world_id": "mizan_competing_claims_train_v1",
+      "review_status": "pending",
+      "rows": 36
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/multicriteria_appeals_train_v1.overlay.json",
+      "file_sha256": "68d890e71ad6c66ead2b4b17e0d132873c87e668e735da29eb1b8aa07b3de95c",
+      "world_id": "multicriteria_appeals_train_v1",
+      "review_status": "pending",
+      "rows": 36
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/nontransactional_service_train_v1.json",
+      "file_sha256": "b15b5366f62d22c97d0df63b60850bf232c1820dc36f961961d8079b1b0fcaee",
+      "world_id": "nontransactional_service_train_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/participatory_cutover_train_v1.overlay.json",
+      "file_sha256": "7f834f40a81862299ae0efa2d5bcc0469d61725d2c4bed7c29816a213cb2b4c4",
+      "world_id": "participatory_cutover_train_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/proportionate_disclosure_train_v1.json",
+      "file_sha256": "590df3810b6d76cba7fd95669f9143b8680c3749eec47cd2aab6f2d7f3cd9268",
+      "world_id": "proportionate_disclosure_train_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/shura_payroll_cutover_train_v1.json",
+      "file_sha256": "fe6d2060ce2f5bff1733f354aa6b8a372d8c6b81a77f4d89387eac01649a3009",
+      "world_id": "shura_payroll_cutover_train_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/tawbah_cold_chain_repair_train_v1.json",
+      "file_sha256": "2605a5eb774e56afe38e28da2e6f591b113b393101b555a9cfa787582b55b755",
+      "world_id": "tawbah_cold_chain_repair_train_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/train/uncorroborated_signal_search_train_v1.overlay.json",
+      "file_sha256": "ee9fb4571986a07e78bf6b837f4316f2c01fec0f023386142893bfbfb9260af8",
+      "world_id": "uncorroborated_signal_search_train_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/development/continuity_after_reset_dev_v1.json",
+      "file_sha256": "3c54ae6997e4915eb09e257a1e3a878f797edc824a603c298566900ceb980472",
+      "world_id": "continuity_after_reset_dev_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/development/protected_testimony_dev_v1.overlay.json",
+      "file_sha256": "75350de2692464fad39d307fff4f1ca5311c80015abe01018a07afe85ac30a20",
+      "world_id": "protected_testimony_dev_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/development/public_witness_group_pressure_dev_v1.json",
+      "file_sha256": "a389596ae202b1028fce787f46956670a53797fca4031aef9b8c893ec18f5778",
+      "world_id": "public_witness_group_pressure_dev_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/development/shahada_private_testimony_dev_v1.json",
+      "file_sha256": "2515d21c5780a28ce6ccfa3da04d7c768c2546ab3057b107a31ba994069f4805",
+      "world_id": "shahada_private_testimony_dev_v1",
+      "review_status": "pending",
+      "rows": 48
+    },
+    {
+      "path": "experiments/storyworld_curriculum_v1/worlds/development/unreliable_intercessor_dev_v1.json",
+      "file_sha256": "e8996e197e9aea988e542df107f27575a920c19ba5bd1020444ccd71d55d9462",
+      "world_id": "unreliable_intercessor_dev_v1",
+      "review_status": "pending",
+      "rows": 48
+    }
+  ]
+}

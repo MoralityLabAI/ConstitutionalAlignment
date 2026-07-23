@@ -1,0 +1,47 @@
+{
+  "schema_version": "jinn_beast_metta_hosted_cost_estimate_v1",
+  "estimated_at": "2026-07-23",
+  "pricing_source": {
+    "command": "prime train models",
+    "prime_cli_version": "0.6.20",
+    "model": "Qwen/Qwen3.5-4B",
+    "price_per_million_tokens_usd": {
+      "input": 0.1,
+      "output": 0.3,
+      "training": 0.3
+    }
+  },
+  "pilot": {
+    "max_steps": 50,
+    "batch_size_rollouts": 128,
+    "rollouts_per_example": 8,
+    "oversampling_factor": 2.0,
+    "consumed_rollouts": 6400,
+    "estimated_generated_rollouts": 12800,
+    "max_output_tokens": 96,
+    "enable_thinking": false
+  },
+  "exact_qwen_tokenizer_measurement": {
+    "task_rows": 1008,
+    "mean_input_tokens": 371.1,
+    "median_input_tokens": 360,
+    "p95_input_tokens": 473,
+    "max_input_tokens": 541,
+    "mean_canonical_output_tokens": 37.9,
+    "max_canonical_output_tokens": 44
+  },
+  "estimate_usd": {
+    "expected": 1.405824,
+    "all_outputs_at_96_token_cap": 1.74048,
+    "expected_plus_25_percent": 1.75728,
+    "cap_case_plus_25_percent": 2.1756,
+    "recommended_spending_reserve": 2.25
+  },
+  "assumptions": [
+    "Inference input and output are billed for generated rollouts.",
+    "Training is conservatively estimated on input plus output tokens for consumed rollouts.",
+    "Default oversampling is frozen at 2.0.",
+    "Small online-evaluation and retry overhead is covered by the 25 percent reserve."
+  ],
+  "paid_training_launched": false
+}
