@@ -5,6 +5,15 @@
   "factor_id": "F04",
   "billing_authorized": false,
   "provisioning_requires_action_time_confirmation": true,
+  "prospective_amendments": [
+    {
+      "id": "python310_datetime_compatibility",
+      "registered_before_successful_probe_outputs": true,
+      "reason": "The first remote probe import failed because Ubuntu 22 supplies Python 3.10, where datetime.UTC is unavailable.",
+      "change": "Use datetime.timezone.utc without changing probe semantics.",
+      "base_image_prerequisite": "python3.10-venv"
+    }
+  ],
   "candidate_offer": {
     "platform": "Prime Intellect",
     "provider": "Massed Compute",
@@ -62,7 +71,7 @@
     },
     {
       "path": "scripts/run_primelab_f04_probe.py",
-      "sha256": "3682e8e7df645e5c766663861056a8a67523e5a0bbecf112f5fd7753492c6264"
+      "sha256": "d63e319b60317fa2f6a575a8cf632e4b10a8ddef9f4b5f0d65bf256cd8a93096"
     },
     {
       "path": "scripts/build_primelab_f04_receipt.py",

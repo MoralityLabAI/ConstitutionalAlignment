@@ -10,7 +10,7 @@ import os
 import signal
 import subprocess
 import sys
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Sequence
 
@@ -185,7 +185,7 @@ def main() -> int:
         raise FileNotFoundError(f"model directory is missing: {model_dir}")
 
     output_dir.mkdir(parents=True)
-    started_at = datetime.now(tz=UTC)
+    started_at = datetime.now(tz=timezone.utc)
     runtime_receipt = output_dir / "primelab_base_runtime_receipt.json"
     stdout_path = output_dir / "runtime.stdout.log"
     stderr_path = output_dir / "runtime.stderr.log"
@@ -222,7 +222,7 @@ def main() -> int:
             "status": "failed",
             "passed": False,
             "started_at_utc": started_at.isoformat(),
-            "finished_at_utc": datetime.now(tz=UTC).isoformat(),
+            "finished_at_utc": datetime.now(tz=timezone.utc).isoformat(),
             "source_commit": args.source_commit,
             "gpu_inventory": inventory,
             "environment_lock": str(environment_lock),
@@ -297,7 +297,7 @@ def main() -> int:
         "status": "complete" if passed else "failed",
         "passed": passed,
         "started_at_utc": started_at.isoformat(),
-        "finished_at_utc": datetime.now(tz=UTC).isoformat(),
+        "finished_at_utc": datetime.now(tz=timezone.utc).isoformat(),
         "source_commit": args.source_commit,
         "gpu_inventory": inventory,
         "environment_lock": str(environment_lock),
