@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import hashlib
 import json
 import subprocess
 import sys
@@ -11,20 +10,16 @@ from scripts.generate_qwen3_frame_curriculum_transcripts import (
     stateless_uniform,
     visible_answer,
 )
+from scripts.hash_git_blobs import (
+    build_receipt,
+    git_blob_sha256,
+    resolve_commit,
+)
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SCRIPT = REPO_ROOT / "scripts" / "generate_qwen3_frame_curriculum_transcripts.py"
 PACKAGE = REPO_ROOT / "experiments" / "frame_internalization_sft_v1"
-
-
-def git_blob_sha256(path: Path, revision: str = "HEAD") -> str:
-    relative = path.resolve().relative_to(REPO_ROOT).as_posix()
-    payload = subprocess.check_output(
-        ["git", "show", f"{revision}:{relative}"],
-        cwd=REPO_ROOT,
-    )
-    return hashlib.sha256(payload).hexdigest()
 
 
 def test_stateless_sampler_is_stable_and_seed_sensitive() -> None:
@@ -84,6 +79,13 @@ def test_f06_smoke_plan_binds_caps_inputs_and_executables() -> None:
             PACKAGE / "primelab_f06/f06_throughput_smoke_plan_v1.json"
         ).read_text(encoding="utf-8")
     )
+    result = json.loads(
+        (
+            PACKAGE / "primelab_f06/f06_throughput_smoke_result_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    source_commit = result["source_commit"]
+    assert resolve_commit(source_commit) == source_commit
     assert plan["authorization"]["billing_authorized"] is True
     assert plan["hard_caps"]["maximum_billable_seconds"] == 1800
     assert plan["hard_caps"]["maximum_compute_cost_usd"] == 0.65
@@ -95,10 +97,30 @@ def test_f06_smoke_plan_binds_caps_inputs_and_executables() -> None:
         if name == "f04_receipt":
             continue
         path = REPO_ROOT / binding["path"]
-        assert git_blob_sha256(path) == binding["sha256"]
+        assert git_blob_sha256(path, source_commit) == binding["sha256"]
     for binding in plan["executables"]:
         path = REPO_ROOT / binding["path"]
-        assert git_blob_sha256(path) == binding["sha256"]
+        assert git_blob_sha256(path, source_commit) == binding["sha256"]
+
+
+def test_canonical_git_blob_receipt_is_revision_bound() -> None:
+    result = json.loads(
+        (
+            PACKAGE / "primelab_f06/f06_throughput_smoke_result_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    source_commit = result["source_commit"]
+    generator = REPO_ROOT / "scripts/generate_qwen3_frame_curriculum_transcripts.py"
+    receipt = build_receipt([generator], source_commit)
+
+    assert receipt["source_commit"] == source_commit
+    assert receipt["byte_source"] == "git_cat_file_blob"
+    assert receipt["bindings"] == [
+        {
+            "path": "scripts/generate_qwen3_frame_curriculum_transcripts.py",
+            "sha256": "bd1e930480487082c199672d9abe4c69fe66c78971bf7ef526132cac7ab4c1e2",
+        }
+    ]
 
 
 def test_f06_result_fails_closed_on_host_line_ending_binding() -> None:
@@ -113,7 +135,7 @@ def test_f06_result_fails_closed_on_host_line_ending_binding() -> None:
         ).read_text(encoding="utf-8")
     )
     f04_path = REPO_ROOT / plan["frozen_inputs"]["f04_receipt"]["path"]
-    canonical_hash = git_blob_sha256(f04_path)
+    canonical_hash = git_blob_sha256(f04_path, result["source_commit"])
 
     assert canonical_hash != plan["frozen_inputs"]["f04_receipt"]["sha256"]
     assert result["passed"] is False
