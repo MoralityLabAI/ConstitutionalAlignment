@@ -1,0 +1,15 @@
+model = "Qwen/Qwen3.5-4B"
+num_examples = 4
+rollouts_per_example = 4
+max_concurrent = 16
+temperature = 0.7
+max_tokens = 6144
+sampling_args = { extra_body = { chat_template_kwargs = { enable_thinking = true } } }
+save_results = true
+disable_tui = true
+disable_env_server = true
+
+[[eval]]
+env_id = "moralitylab/jinn-beast-metta"
+env_args = { split = "development", task_mode = "constructs", construct = "balanced", require_training_approval = true }
+name = "jbc-qwen35-4b-thinking-signal-baseline-20260723"

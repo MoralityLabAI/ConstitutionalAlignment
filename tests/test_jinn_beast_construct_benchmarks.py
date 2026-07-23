@@ -143,6 +143,9 @@ class JinnBeastConstructBenchmarkTests(unittest.TestCase):
     def test_seed_signal_is_unique_capped_and_fail_closed(self) -> None:
         self.assertEqual(len(self.tasks), 12)
         for task in self.tasks:
+            self.assertIn('"bounded" or "material"', task["system_prompt"])
+            self.assertIn("JSON boolean", task["system_prompt"])
+            self.assertIn("Do not add prose or extra keys", task["system_prompt"])
             action_scores = sorted(
                 (
                     float(action["robust_score"])

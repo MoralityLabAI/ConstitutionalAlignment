@@ -2,15 +2,14 @@
 
 ## Current state
 
-- Private environment: `moralitylab/jinn-beast-metta@0.1.4`
+- Private environment: `moralitylab/jinn-beast-metta@0.1.7`
 - Model: `Qwen/Qwen3.5-4B`
-- Environment rows: 1,008
-- Candidate-training rows: 768
-- Development rows: 240
+- Matched-frame rows: 1,008 (768 candidate-training, 240 development)
+- Separate construct rows: 12 (8 candidate-training, 4 development)
 - Presented frames: neutral, constitutional, Jinn, Beast
 - Paid training: not launched
 - Candidate-training release: blocked; all source-world reviews remain pending
-- Hub integration: passed for version `0.1.4`
+- Hub integration: passed for version `0.1.7`
 - Hosted smoke: passed end to end; evaluation `ntcauh360og2dg3o6r256rgr`
 - Hosted thinking baseline: passed; evaluation `huvpqi089ed8jizl1bj47lqv`
 
@@ -68,6 +67,38 @@ still requires non-decreasing development reward at steps 5 and 10.
 
 The paper claim level remains governed by
 `papers/jinn_or_beast_claim_ladder_v1.md`.
+
+## Separate construct signal baseline
+
+Version `0.1.7` adds a fail-closed `task_mode="constructs"` lane with separate
+Jinn-ness and Beast-from-the-Earth witness policies, dimensions, storyworlds,
+and per-dimension metrics. Qwen3.5-4B was evaluated on all four development
+tasks with four thinking rollouts each.
+
+The first diagnostic run exposed an undisclosed output enum and a 25% trace
+truncation rate. A prospective interface amendment disclosed the
+`bounded|material` uncertainty values, required a JSON boolean, requested
+concise reasoning, and raised the output limit to 6,144 tokens. The amended
+run produced:
+
+- mean reward `0.71075`;
+- strict-contract and highest-scoring-action rates `13/16`;
+- reasoning traces `16/16`;
+- critical violations `0/16`;
+- mean Jinn-ness reward `0.77825`;
+- mean Beast witness reward `0.64325`;
+- estimated inference cost `$0.01838`.
+
+The scalar and per-dimension rewards are operational, but paid training remains
+blocked. All eight candidate rows still require source-mapping and label review,
+and four development tasks are too small for an adapter claim. The prospective
+pilot config is
+`configs/rl/jinn_beast_constructs_qwen35_4b_thinking_pilot.toml`; it must remain
+fail-closed and must not train on the development rows.
+
+Raw traces, metadata, analyses, and the promotion receipt are in `constructs/`.
+The two uploaded evaluations are `vikhippsf5az4sy0tirgggo2` (diagnostic) and
+`vqjhmqpxezrnt9lp7zutq77g` (amended signal baseline).
 
 ## Hosted smoke evidence
 

@@ -7,16 +7,21 @@ import unittest
 from collections import defaultdict
 from pathlib import Path
 
-
 REPO_ROOT = Path(__file__).resolve().parent.parent
 ENV_ROOT = REPO_ROOT / "environments" / "jinn_beast_metta"
 sys.path.insert(0, str(ENV_ROOT))
 
-from jinn_beast_metta.core import score_response  # noqa: E402
-
+from jinn_beast_metta.core import (
+    score_construct_response,
+    score_response,
+)
 
 DATA_PATH = ENV_ROOT / "jinn_beast_metta" / "data" / "tasks.jsonl"
 MANIFEST_PATH = ENV_ROOT / "jinn_beast_metta" / "data" / "manifest.json"
+CONSTRUCT_DATA_PATH = ENV_ROOT / "jinn_beast_metta" / "data" / "construct_tasks.jsonl"
+CONSTRUCT_MANIFEST_PATH = (
+    ENV_ROOT / "jinn_beast_metta" / "data" / "construct_manifest.json"
+)
 
 
 def load_rows() -> list[dict]:
@@ -146,6 +151,56 @@ class GeneratedDatasetTests(unittest.TestCase):
     def test_actor_prompts_do_not_use_the_prohibited_treatment_descriptor(self) -> None:
         treatment_text = "\n".join(row["system_prompt"] for row in self.rows).casefold()
         self.assertNotIn("fiction", treatment_text)
+
+
+class ConstructDatasetTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.rows = [
+            json.loads(line)
+            for line in CONSTRUCT_DATA_PATH.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        cls.manifest = json.loads(CONSTRUCT_MANIFEST_PATH.read_text(encoding="utf-8"))
+
+    def test_packaged_construct_data_matches_manifest(self) -> None:
+        self.assertEqual(len(self.rows), 12)
+        self.assertEqual(self.manifest["environment_version"], "0.1.7")
+        self.assertEqual(
+            hashlib.sha256(CONSTRUCT_DATA_PATH.read_bytes()).hexdigest(),
+            self.manifest["data_sha256"],
+        )
+        self.assertEqual(
+            self.manifest["construct_counts"],
+            {
+                "beast_from_earth_witness_v1": 6,
+                "jinn_ness_v1": 6,
+            },
+        )
+        self.assertFalse(self.manifest["candidate_training_ready"])
+
+    def test_construct_scorer_preserves_dimension_receipt(self) -> None:
+        task = self.rows[0]
+        response = json.dumps(
+            {
+                "decision": task["best_action_id"],
+                "evidence_ids": task["visible_fact_ids"],
+                "uncertainty": task["expected_uncertainty"],
+                "review_required": task["expected_review_required"],
+            }
+        )
+        receipt = score_construct_response(response, task)
+        self.assertGreater(receipt["final_score"], 0.8)
+        self.assertTrue(receipt["highest_scoring_action"])
+        self.assertEqual(receipt["evidence_score"], 1.0)
+        self.assertEqual(
+            set(receipt["dimension_scores"]),
+            set(
+                task["action_scores"][task["best_action_id"]]["construct_receipt"][
+                    "dimension_scores"
+                ]
+            ),
+        )
 
 
 if __name__ == "__main__":

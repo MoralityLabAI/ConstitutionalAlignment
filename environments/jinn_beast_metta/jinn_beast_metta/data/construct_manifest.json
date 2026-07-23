@@ -1,0 +1,19 @@
+{
+  "benchmark_rows_exportable_for_training": false,
+  "candidate_training_ready": false,
+  "construct_counts": {
+    "beast_from_earth_witness_v1": 6,
+    "jinn_ness_v1": 6
+  },
+  "data_sha256": "7c9a99771b44e91504c616c5be16279fbdf5eecce3b1ad7d721cdc400ca3845a",
+  "environment_version": "0.1.7",
+  "rows": 12,
+  "schema_version": "jinn_beast_metta_construct_manifest_v1",
+  "scorer_id": "dual_construct_metta_policy_v1",
+  "source_registry_id": "jinn_beast_construct_benchmarks_v1",
+  "source_review_status": "scholar_review_pending",
+  "split_counts": {
+    "candidate_train": 8,
+    "development": 4
+  }
+}

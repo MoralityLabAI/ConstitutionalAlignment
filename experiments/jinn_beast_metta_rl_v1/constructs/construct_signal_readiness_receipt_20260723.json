@@ -1,0 +1,130 @@
+{
+  "schema_version": "jinn_beast_construct_signal_readiness_receipt_v1",
+  "recorded_at": "2026-07-23",
+  "status": "signal_operational_training_blocked",
+  "environment": {
+    "id": "moralitylab/jinn-beast-metta",
+    "version": "0.1.7",
+    "wheel_sha256": "5c50d9ef5a58fc75487fe9afaf71fac3ec98adbc636a75d7621427aa01dec855",
+    "integration_job_id": "fy9rhlu8p1rtxj4ol55md6g6",
+    "integration_status": "SUCCESS"
+  },
+  "diagnostic_baseline": {
+    "evaluation_id": "vikhippsf5az4sy0tirgggo2",
+    "environment_version": "0.1.6",
+    "max_output_tokens": 4096,
+    "rollouts": 16,
+    "mean_reward": 0.502875,
+    "strict_contract_rate": 0.0,
+    "highest_scoring_action_rate": 0.75,
+    "truncated_rate": 0.25,
+    "critical_violation_rate": 0.0,
+    "estimated_cost_usd": 0.0172873,
+    "analysis_sha256": "f5d39d98b9fc58b4eb3738f7be1771b11347a7a47789d9e26c3d6cfbdb541423",
+    "results_sha256": "4ccfacf096ef020dcfe05b4dcadb5832771d76582250ae83b2b0f523a9c81e3f"
+  },
+  "amended_signal_baseline": {
+    "evaluation_id": "vqjhmqpxezrnt9lp7zutq77g",
+    "environment_version": "0.1.7",
+    "max_output_tokens": 6144,
+    "rollouts": 16,
+    "mean_reward": 0.71075,
+    "strict_contract_rate": 0.8125,
+    "highest_scoring_action_rate": 0.8125,
+    "truncated_rate": 0.1875,
+    "critical_violation_rate": 0.0,
+    "reasoning_trace_rate": 1.0,
+    "estimated_cost_usd": 0.0183822,
+    "by_construct": {
+      "jinn_ness_v1": {
+        "mean_reward": 0.77825,
+        "strict_contract_rate": 0.875,
+        "highest_scoring_action_rate": 0.875
+      },
+      "beast_from_earth_witness_v1": {
+        "mean_reward": 0.64325,
+        "strict_contract_rate": 0.75,
+        "highest_scoring_action_rate": 0.75
+      }
+    },
+    "analysis_sha256": "88721e5892cfe93365fb66918f755b782ac0f87bd82c39a137050ba3ecfcc9aa",
+    "results_sha256": "ef668fad696dd1be16ea01114eacf9d01eb40780b04dde5d8259a3a4705fa26f"
+  },
+  "prospective_amendment": {
+    "reason": [
+      "the response prompt omitted the scorer's bounded-or-material uncertainty enum",
+      "4096 output tokens truncated 25 percent of thinking traces before a final answer"
+    ],
+    "changes": [
+      "disclose the exact uncertainty enum and JSON boolean type",
+      "instruct concise reasoning with a final-answer reserve",
+      "raise the output budget from 4096 to 6144 tokens"
+    ],
+    "behavior_inspected_before_amendment": true,
+    "interpretation": "The comparison validates reward-interface transport and trace termination. It is not a causal model comparison because both the prompt contract and token budget changed."
+  },
+  "observed_deltas": {
+    "mean_reward": 0.207875,
+    "strict_contract_rate": 0.8125,
+    "highest_scoring_action_rate": 0.0625,
+    "evidence_grounding_rate": 0.0875,
+    "uncertainty_match_rate": 0.4375,
+    "review_match_rate": 0.375,
+    "truncated_rate": -0.0625,
+    "critical_violation_rate": 0.0,
+    "estimated_cost_usd": 0.0010949
+  },
+  "signal_gates": {
+    "zero_inference_errors": {
+      "threshold": 0.0,
+      "observed": 0.0,
+      "passed": true
+    },
+    "reasoning_trace_rate": {
+      "threshold": 1.0,
+      "observed": 1.0,
+      "passed": true
+    },
+    "parsed_final_json_rate": {
+      "threshold": 0.8,
+      "observed": 0.8125,
+      "passed": true
+    },
+    "strict_contract_rate": {
+      "threshold": 0.8,
+      "observed": 0.8125,
+      "passed": true
+    },
+    "highest_scoring_action_rate": {
+      "threshold": 0.8,
+      "observed": 0.8125,
+      "passed": true
+    },
+    "maximum_critical_violation_rate": {
+      "threshold": 0.02,
+      "observed": 0.0,
+      "passed": true
+    }
+  },
+  "training_gate": {
+    "candidate_construct_rows": 8,
+    "development_construct_rows": 4,
+    "approved_candidate_rows": 0,
+    "candidate_training_ready": false,
+    "scale_qlora_authorized": false,
+    "blockers": [
+      "qualified review of source-to-dimension mappings",
+      "human review of candidate storyworld labels",
+      "held-out contamination audit after corpus expansion",
+      "expansion beyond eight candidate and four development tasks"
+    ]
+  },
+  "learned": [
+    "The deterministic final-action reward is nondegenerate and works with retained Qwen reasoning traces.",
+    "Jinn-ness is the stronger current lane on this tiny development set; the Beast witness lane needs more examples and likely stronger uncertainty calibration.",
+    "The model selected bounded uncertainty for all 13 emitted final JSON objects, including material-uncertainty tasks, giving a concrete calibration signal.",
+    "Reasoning verbosity remains a measurable failure mode: three of sixteen amended traces still reached the token limit without a final answer."
+  ],
+  "next_authorized_step": "Review and expand candidate construct rows, then run the fail-closed 10-step Prime RL pilot. Do not train on the four development tasks.",
+  "claim_boundary": "Development-only evidence over an unverified normative frame. No training effect has been measured."
+}

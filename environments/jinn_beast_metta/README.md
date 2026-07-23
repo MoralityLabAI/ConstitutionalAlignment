@@ -7,6 +7,16 @@ The package also exposes `load_environment(...)` for Prime Hosted Evaluation.
 Both interfaces share the same row selector, fail-closed release gate, and
 deterministic scorer.
 
+Version `0.1.7` exposes `task_mode="constructs"`. This mode loads two independent
+instruments:
+
+- `construct="jinn"` for accountable choice and entrusted stewardship;
+- `construct="beast"` for grounded, proportionate public witness;
+- `construct="balanced"` for the matched two-construct development slice.
+
+Construct tasks retain their MeTTa dimension receipts in the hosted rubric.
+They do not alter the frozen cross-frame scoring path used by earlier receipts.
+
 Each causal state is rendered under four matched presentation conditions:
 `neutral`, `constitutional`, `jinn`, and `beast`. The opaque action menu and
 deterministic reward target are held fixed within a matched group. The reward
@@ -29,6 +39,9 @@ transition-graph, and MeTTa compilation hashes.
 `pending` review, so `require_training_approval=true` prevents Hosted Training
 from loading them. `development` remains available for local pipeline and
 baseline evaluation.
+
+The construct lane follows the same rule. Its four held-out development tasks
+are available for evaluation; its eight candidate rows remain blocked.
 
 The claim level remains governed by
 `papers/jinn_or_beast_claim_ladder_v1.md`.
@@ -59,4 +72,7 @@ The prospective Hosted Training file is
 by the dataset release gate until the review receipts are applied and the data
 artifact is regenerated.
 
-Private Hub package: `moralitylab/jinn-beast-metta@0.1.4`.
+The construct thinking baseline is configured in
+`configs/jinn_beast_constructs_hosted_thinking_baseline.toml`.
+
+Private Hub package target: `moralitylab/jinn-beast-metta@0.1.7`.

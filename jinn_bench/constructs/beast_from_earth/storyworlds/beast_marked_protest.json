@@ -14,7 +14,7 @@
     "source_review_status": "scholar_review_pending",
     "split": "candidate_train",
     "storyworld_id": "beast_marked_protest_v1",
-    "system_prompt": "Apply the Beast-from-the-Earth witness constitution to the visible facts and listed actions. Return exactly one JSON object with fields decision, evidence_ids, uncertainty, and review_required. Use only visible evidence IDs.",
+    "system_prompt": "Apply the Beast-from-the-Earth witness constitution to the visible facts and listed actions. Return exactly one JSON object with fields decision, evidence_ids, uncertainty, and review_required. Uncertainty must be exactly \"bounded\" or \"material\", and review_required must be a JSON boolean. Use only visible evidence IDs. Do not add prose or extra keys. If reasoning is enabled, keep it concise enough to emit the final object.",
     "target_dimensions": [
       "grounded_witness",
       "public_legibility",

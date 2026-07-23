@@ -148,27 +148,27 @@
       "storyworlds": [
         {
           "path": "jinn_bench/constructs/beast_from_earth/storyworlds/beast_buried_sensor_records.json",
-          "sha256": "4beb71557378d5ebc003a7dbead9685ba45412a671974ea13d46237a685defc2"
+          "sha256": "2058d3b13d829edcd01dcf54b891b8c93273e2312dabd60bb157d7982327620a"
         },
         {
           "path": "jinn_bench/constructs/beast_from_earth/storyworlds/beast_counterfeit_sign.json",
-          "sha256": "ad098832937bba5123f2dfdf745fe649302a87e792f3372f0acb64224da78dc2"
+          "sha256": "ee8668c760202194b3f7e6515d19656f5f2415be5187a5cfc2d6017e946a11bc"
         },
         {
           "path": "jinn_bench/constructs/beast_from_earth/storyworlds/beast_harvest_ledger.json",
-          "sha256": "645147634baab002576196123216140f41f4baaea4f03548b335e26d99da89dc"
+          "sha256": "95555444d52a25a59bcea560c170dde656a760a0e75d806400f26aedd5403f20"
         },
         {
           "path": "jinn_bench/constructs/beast_from_earth/storyworlds/beast_marked_protest.json",
-          "sha256": "cc438145bea7b02c60de83187872de999cc08e5a7606a51369899da825e4cdfa"
+          "sha256": "5e4f17d54c3e2fca9e4015b9037f9943bf89649e18cb9b6e9e5c1d179a7387f5"
         },
         {
           "path": "jinn_bench/constructs/beast_from_earth/storyworlds/beast_sealed_foundation.json",
-          "sha256": "95883a96b22e0bdc712794c8a74fd6399650b63e2cbeb43e6a219e1446be8b60"
+          "sha256": "053347d1d82173b01a2c36e6fdfb35e2b6c4ee7f268bec731857d8963ad6fc70"
         },
         {
           "path": "jinn_bench/constructs/beast_from_earth/storyworlds/beast_silent_square.json",
-          "sha256": "f8b2cd36809542905af9f5a7f9ea5e5a30f0d8dd8d3fe0c90b7e42ce2e1276a0"
+          "sha256": "1af3766eb3581dca8900e666cf0e98c1b435dccecbc8897b3e5245f78e448a78"
         }
       ]
     },
@@ -209,27 +209,27 @@
       "storyworlds": [
         {
           "path": "jinn_bench/constructs/jinn/storyworlds/jinn_blame_below.json",
-          "sha256": "91a684db05a0055c5901c3cff15437a147fe90655d79cceb707ef2e63be2befb"
+          "sha256": "7d8aa5a7824199626df8407f1f54e81a8267bf7e8f37b7030c3bcc88774725a8"
         },
         {
           "path": "jinn_bench/constructs/jinn/storyworlds/jinn_entrusted_keys.json",
-          "sha256": "934d6bfddb5a3d6e9be9cc34d87a862dfb241437ad00ab40a93848bac3663ed5"
+          "sha256": "79e2f27e46ea1859897cb94f71dea131ad54149d575a4e459cdff0fcd56fd577"
         },
         {
           "path": "jinn_bench/constructs/jinn/storyworlds/jinn_hidden_safety_record.json",
-          "sha256": "33c9ecfd76de9d29ce9d9e04fbcd07b1fe68fdd2e06d1b81de24e13a9939fe88"
+          "sha256": "e7273eac39652a4a282f1260f437f2cbc902886c3303d197f980f3dd48ab556e"
         },
         {
           "path": "jinn_bench/constructs/jinn/storyworlds/jinn_no_frame_night_shift.json",
-          "sha256": "24ffa0856600e1b9540ad60fc55e3cb2f7bb3c83f0feeb7497082c83ac884404"
+          "sha256": "b180d9a8c37e97235205c4fbedb29db34d6e2631acb35652e13eed63202c68c4"
         },
         {
           "path": "jinn_bench/constructs/jinn/storyworlds/jinn_private_certainty.json",
-          "sha256": "72f197ed19940058461c46eaed460553581b4437685a5bd7f0a4e7e373362332"
+          "sha256": "8c347805215c707bd28d65bae57bb799cb9e21a5e2a0bb0796bbd48619a5ebc7"
         },
         {
           "path": "jinn_bench/constructs/jinn/storyworlds/jinn_unreliable_warden.json",
-          "sha256": "4595925964c437f0617c5e36898b4d0f11b9a85fb16ae17df3fd310be8009c7e"
+          "sha256": "1a70fbd90085f172ac6b1b72f42991364a633695eeac06958108fad8ebc4cca8"
         }
       ]
     }
@@ -238,23 +238,23 @@
     "candidate_and_development_ids_disjoint": true,
     "candidate_preference_rows": 16,
     "candidate_preferences_path": "jinn_bench/data/construct_candidate_preferences_v1.jsonl",
-    "candidate_preferences_sha256": "5885aca2b91095391355eee36589faaa3fb6f950d6408c3fd19e2055e99757de",
+    "candidate_preferences_sha256": "a191ef12e66c60558ec0d665c9629d3096a1e2eacffd2b5979a670b88dc3eb20",
     "candidate_sft_path": "jinn_bench/data/construct_candidate_sft_v1.jsonl",
     "candidate_sft_rows": 8,
-    "candidate_sft_sha256": "8215e4f1d4170d08c48dc39d4f8865d4cebe012fa277a887aa16c4705b45c7b5",
+    "candidate_sft_sha256": "6db3a4fa1ad680f12375b269d68db0e3389cbeb106d76fc1b7324a2cfe38701c",
     "candidate_train_rows": 8,
     "development_rows": 4,
     "source_anchors_path": "jinn_bench/data/construct_source_anchors_v1.json",
     "source_anchors_sha256": "a3cbb08d77f756f6cd826b2c46aeb8e20a175941a64c4f5d7c263e75b5d14b3f",
     "task_path": "jinn_bench/data/construct_tasks_v1.jsonl",
     "task_rows": 12,
-    "task_sha256": "fba8a3c1910e4ae628663eaaa8a208b9ffc22f2a898feab6f69329bfaf9c6b21"
+    "task_sha256": "7c9a99771b44e91504c616c5be16279fbdf5eecce3b1ad7d721cdc400ca3845a"
   },
   "frame_status": "unverified_normative_frame",
   "integrity": {
     "all_policy_ablations_signal_sensitive": true,
     "all_storyworld_hashes_bound": true,
-    "registry_content_sha256": "f0fec9aa91438c70789d4f59055bd0cc5dfef6b86f74865085dc9a873d3a0886",
+    "registry_content_sha256": "6e561f1757dff34ef0fe4d0a2e2774b902031fe422a608ddd1388936ae32c290",
     "storyworld_count": 12
   },
   "registry_id": "jinn_beast_construct_benchmarks_v1",
