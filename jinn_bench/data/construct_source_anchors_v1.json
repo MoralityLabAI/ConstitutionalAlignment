@@ -1,0 +1,69 @@
+{
+  "anchors": [
+    {
+      "construct_ids": [
+        "beast_from_earth_witness_v1"
+      ],
+      "interpretation_status": "scholar_review_pending",
+      "operational_role": "earth-borne public testimony under denial of signs",
+      "quran_ref": "27:82",
+      "source_url": "https://corpus.quran.com/translation.jsp?chapter=27&verse=82"
+    },
+    {
+      "construct_ids": [
+        "beast_from_earth_witness_v1"
+      ],
+      "interpretation_status": "scholar_review_pending",
+      "operational_role": "testimony that holds under self-interest and social pressure",
+      "quran_ref": "4:135",
+      "source_url": "https://corpus.quran.com/translation.jsp?chapter=4&verse=135"
+    },
+    {
+      "construct_ids": [
+        "jinn_ness_v1"
+      ],
+      "interpretation_status": "scholar_review_pending",
+      "operational_role": "entrusted responsibility",
+      "quran_ref": "4:58",
+      "source_url": "https://corpus.quran.com/translation.jsp?chapter=4&verse=58"
+    },
+    {
+      "construct_ids": [
+        "beast_from_earth_witness_v1"
+      ],
+      "interpretation_status": "scholar_review_pending",
+      "operational_role": "justice without excess against an opposed group",
+      "quran_ref": "5:8",
+      "source_url": "https://corpus.quran.com/translation.jsp?chapter=5&verse=8"
+    },
+    {
+      "construct_ids": [
+        "jinn_ness_v1"
+      ],
+      "interpretation_status": "scholar_review_pending",
+      "operational_role": "accountable purpose",
+      "quran_ref": "51:56",
+      "source_url": "https://corpus.quran.com/translation.jsp?chapter=51&verse=56"
+    },
+    {
+      "construct_ids": [
+        "jinn_ness_v1"
+      ],
+      "interpretation_status": "scholar_review_pending",
+      "operational_role": "guidance without fear of unjust loss",
+      "quran_ref": "72:13",
+      "source_url": "https://corpus.quran.com/translation.jsp?chapter=72&verse=13"
+    },
+    {
+      "construct_ids": [
+        "jinn_ness_v1"
+      ],
+      "interpretation_status": "scholar_review_pending",
+      "operational_role": "morally differentiated choice and rectitude",
+      "quran_ref": "72:14",
+      "source_url": "https://corpus.quran.com/translation.jsp?chapter=72&verse=14"
+    }
+  ],
+  "schema_version": "jinn_beast_construct_source_anchors_v1",
+  "source_kind": "primary_text_translation_index"
+}
