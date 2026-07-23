@@ -1,0 +1,17 @@
+{
+  "schema_version": "jinn_bench_incumbents_v1",
+  "bench_id": "jinn_bench_v1",
+  "updated_at": "2026-07-23",
+  "diagnostic": {
+    "run_id": "jbv1-qwen35-4b-base-thinking-diagnostic-000",
+    "path": "experiments/jinn_bench_v1/runs/jbv1-qwen35-4b-base-thinking-diagnostic-000.json"
+  },
+  "promotion": null,
+  "scale_qlora_authorized": false,
+  "blockers": [
+    "no adapter has beaten the diagnostic incumbent",
+    "no promotion-tier incumbent is registered",
+    "candidate-training source review gate is closed",
+    "registered robustness ablations are incomplete"
+  ]
+}

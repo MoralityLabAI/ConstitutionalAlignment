@@ -41,8 +41,7 @@ The trace analysis contract records:
 - strict JSON and evidence-ID formatting;
 - action consistency within matched four-frame groups;
 - final reward and critical-violation rate by frame;
-- descriptive frame-language rates without treating language as evidence of
-  model belief, identity, or standing.
+- descriptive frame-language rates.
 
 The no-thinking 50-step config remains as a control. The first thinking run is
 capped at 10 steps with 64 consumed rollouts per step and a `$3.50` reserve.
@@ -123,3 +122,17 @@ remains measurement-only; the deterministic final-action reward does not pay
 for verbosity or frame vocabulary. The exact receipt is
 `hosted_thinking_baseline_receipt_20260723.json`, and the reproducible exporter
 and analyzer is `scripts/analyze_jinn_beast_hosted_thinking_eval.py`.
+
+## Jinn Bench registration
+
+This baseline is now run 000 of `jinn_bench_v1`. Jinn Bench freezes the
+development task universe, comparison sampling, trajectory buckets, ablation
+registry, and incumbent-promotion rules. The step-5 and step-10 online
+evaluations use the same 20 examples, two rollouts, temperature, and token cap
+as the baseline.
+
+The benchmark registers 22 policy-positive traces but only 2 gold-positive
+traces. The remaining rows are partitioned into exact repair buckets for trace
+termination, output contract, evidence IDs, and uncertainty/review fields.
+Benchmark rows remain excluded from training; the winning signal must be
+regenerated over reviewed `candidate_train` rows before QLoRA scaling.

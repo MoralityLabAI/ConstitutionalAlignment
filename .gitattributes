@@ -41,3 +41,10 @@
 /scripts/validate_frame_prompt_sft_contrast_v3.py text eol=lf
 /tests/test_qwen3_* text eol=lf
 /papers/mizan_rooms_preanalysis_v*.md text eol=lf
+/jinn_bench/** text eol=lf
+/experiments/jinn_bench_v1/** text eol=lf
+/experiments/jinn_beast_metta_rl_v1/** text eol=lf
+/environments/jinn_beast_metta/jinn_beast_metta/data/** text eol=lf
+/configs/rl/jinn_beast_metta_* text eol=lf
+/scripts/*jinn_bench* text eol=lf
+/tests/test_jinn_bench.py text eol=lf

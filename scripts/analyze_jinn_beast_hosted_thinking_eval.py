@@ -43,6 +43,7 @@ def write_json(path: Path, payload: dict[str, Any]) -> None:
     temporary.write_text(
         json.dumps(payload, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     os.replace(temporary, path)
 
@@ -53,6 +54,7 @@ def write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
     temporary.write_text(
         "".join(json.dumps(row, sort_keys=True) + "\n" for row in rows),
         encoding="utf-8",
+        newline="\n",
     )
     os.replace(temporary, path)
 
@@ -343,8 +345,7 @@ def main() -> int:
         "analysis": summarize_records(records),
         "interpretation_boundary": (
             "Development-only model-output analysis. Frame-language measurements "
-            "are descriptive text statistics and are not evidence of model belief, "
-            "identity, or standing."
+            "are descriptive text statistics."
         ),
     }
     write_json(analysis_path, analysis)

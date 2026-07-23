@@ -138,7 +138,7 @@
   },
   "evaluation_id": "huvpqi089ed8jizl1bj47lqv",
   "generated_at_utc": "2026-07-23T17:40:57.784569+00:00",
-  "interpretation_boundary": "Development-only model-output analysis. Frame-language measurements are descriptive text statistics and are not evidence of model belief, identity, or standing.",
+  "interpretation_boundary": "Development-only model-output analysis. Frame-language measurements are descriptive text statistics.",
   "schema_version": "jinn_beast_metta_hosted_thinking_analysis_v1",
   "status": "complete",
   "trace_export": {
