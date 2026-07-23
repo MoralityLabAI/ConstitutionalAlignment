@@ -11,6 +11,7 @@ from scripts.generate_qwen3_frame_curriculum_transcripts import (
     stateless_uniform,
     visible_answer,
 )
+from scripts.build_primelab_f06_optimization_plan import build_plan
 from scripts.hash_git_blobs import (
     build_receipt,
     git_blob_sha256,
@@ -157,6 +158,28 @@ def test_canonical_git_blob_receipt_is_revision_bound() -> None:
             "sha256": "bd1e930480487082c199672d9abe4c69fe66c78971bf7ef526132cac7ab4c1e2",
         }
     ]
+
+
+def test_f06_optimization_builder_is_no_spend_and_preserves_science() -> None:
+    plan = build_plan("HEAD", frozen_at_utc="2026-07-23T00:00:00Z")
+
+    assert plan["status"] == "prepared_not_authorized"
+    assert plan["authorization"]["billing_authorized"] is False
+    assert plan["authorization"]["pod_creation_authorized"] is False
+    assert plan["candidate"]["single_change_under_test"] == (
+        "increase inference batch size from 8 to 32"
+    )
+    assert plan["candidate"]["batch_size"] == 32
+    assert plan["scientific_invariants"]["quantization"] == (
+        "bitsandbytes NF4 with double quantization"
+    )
+    assert plan["scientific_invariants"]["chat_template_mode"] == (
+        "official_qwen3_enable_thinking_true"
+    )
+    assert plan["scientific_invariants"]["max_tokens_per_turn"] == 2500
+    assert plan["promotion_criteria"]["minimum_generated_tokens_per_second"] == 240
+    assert plan["scope_boundary"]["closes_f06"] is False
+    assert plan["scope_boundary"]["authorizes_adapter_training"] is False
 
 
 def test_f06_result_fails_closed_on_host_line_ending_binding() -> None:
