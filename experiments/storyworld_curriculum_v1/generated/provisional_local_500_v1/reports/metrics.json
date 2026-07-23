@@ -1,0 +1,230 @@
+{
+  "schema_version": "storyworld_provisional_corpus_metrics_v1",
+  "campaign_id": "jinn_beast_multiturn_local_500_v1",
+  "generation_scope": "full_campaign",
+  "trajectories": {
+    "corpus_train": {
+      "arm:beast": 100,
+      "arm:constitutional": 100,
+      "arm:jinn": 100,
+      "arm:neutral": 100,
+      "family:common_resource_allocation": 32,
+      "family:entrusted_relief_ledger": 59,
+      "family:exogenous_failure_recovery": 28,
+      "family:interpretation_under_authority": 32,
+      "family:knowledge_claims_public_risk": 30,
+      "family:market_status_generosity": 32,
+      "family:mizan_competing_claims": 63,
+      "family:nontransactional_service": 31,
+      "family:proportionate_disclosure_calibration": 29,
+      "family:shura_consultation_authority": 64,
+      "total": 400,
+      "world:amanah_relief_ledger_train_v1": 29,
+      "world:common_well_allocation_train_v1": 32,
+      "world:exogenous_failure_recovery_train_v1": 28,
+      "world:fiduciary_relief_ledger_train_v1": 30,
+      "world:interpretation_under_authority_train_v1": 32,
+      "world:knowledge_claims_public_risk_train_v1": 30,
+      "world:market_mutual_aid_train_v1": 32,
+      "world:mizan_competing_claims_train_v1": 31,
+      "world:multicriteria_appeals_train_v1": 32,
+      "world:nontransactional_service_train_v1": 31,
+      "world:participatory_cutover_train_v1": 32,
+      "world:proportionate_disclosure_train_v1": 29,
+      "world:shura_payroll_cutover_train_v1": 32
+    },
+    "internal_holdout": {
+      "arm:beast": 25,
+      "arm:constitutional": 25,
+      "arm:jinn": 25,
+      "arm:neutral": 25,
+      "family:tawbah_costly_repair": 50,
+      "family:unseen_claim_epistemic_boundary": 50,
+      "total": 100,
+      "world:ghayb_boundary_search_train_v1": 25,
+      "world:incident_remediation_train_v1": 25,
+      "world:tawbah_cold_chain_repair_train_v1": 25,
+      "world:uncorroborated_signal_search_train_v1": 25
+    }
+  },
+  "sft_rows": {
+    "corpus_train": {
+      "arm:beast": 1800,
+      "arm:constitutional": 1800,
+      "arm:jinn": 1800,
+      "arm:neutral": 1800,
+      "total": 7200,
+      "view:sft_interrogation": 2400,
+      "view:sft_policy": 2400,
+      "view:sft_repair": 2400
+    },
+    "internal_holdout": {
+      "arm:beast": 450,
+      "arm:constitutional": 450,
+      "arm:jinn": 450,
+      "arm:neutral": 450,
+      "total": 1800,
+      "view:sft_interrogation": 600,
+      "view:sft_policy": 600,
+      "view:sft_repair": 600
+    }
+  },
+  "preference_rows": {
+    "corpus_train": {
+      "arm:beast": 600,
+      "arm:constitutional": 600,
+      "arm:jinn": 600,
+      "arm:neutral": 600,
+      "total": 2400
+    },
+    "internal_holdout": {
+      "arm:beast": 150,
+      "arm:constitutional": 150,
+      "arm:jinn": 150,
+      "arm:neutral": 150,
+      "total": 600
+    }
+  },
+  "tokens": {
+    "all": {
+      "packed_tokens": 13021159,
+      "assistant_tokens": 7973585
+    },
+    "arm:beast": {
+      "packed_tokens": 3257308,
+      "assistant_tokens": 1994265
+    },
+    "arm:constitutional": {
+      "packed_tokens": 3252974,
+      "assistant_tokens": 1991496
+    },
+    "arm:jinn": {
+      "packed_tokens": 3264133,
+      "assistant_tokens": 1996811
+    },
+    "arm:neutral": {
+      "packed_tokens": 3246744,
+      "assistant_tokens": 1991013
+    },
+    "split:corpus_train": {
+      "packed_tokens": 10384230,
+      "assistant_tokens": 6361275
+    },
+    "split:internal_holdout": {
+      "packed_tokens": 2636929,
+      "assistant_tokens": 1612310
+    },
+    "view:sft_interrogation": {
+      "packed_tokens": 4712845,
+      "assistant_tokens": 3087835
+    },
+    "view:sft_policy": {
+      "packed_tokens": 3945624,
+      "assistant_tokens": 2290686
+    },
+    "view:sft_repair": {
+      "packed_tokens": 4362690,
+      "assistant_tokens": 2595064
+    }
+  },
+  "tokenizer": {
+    "backend": "tiktoken",
+    "encoding": "cl100k_base",
+    "scope": "development packing estimate; retokenize with the exact target-model tokenizer before training"
+  },
+  "turns": {
+    "minimum": 6,
+    "maximum": 6,
+    "total": 3000
+  },
+  "diversity": {
+    "unique_trace_ids": 500,
+    "unique_record_ids": 12000,
+    "unique_message_sha256": {
+      "corpus_train": 7200,
+      "internal_holdout": 1800
+    },
+    "unique_assistant_sha256": {
+      "corpus_train": 7200,
+      "internal_holdout": 1800
+    },
+    "exact_message_overlap_across_splits": 0,
+    "exact_assistant_overlap_across_splits": 0,
+    "families_by_split": {
+      "corpus_train": [
+        "common_resource_allocation",
+        "entrusted_relief_ledger",
+        "exogenous_failure_recovery",
+        "interpretation_under_authority",
+        "knowledge_claims_public_risk",
+        "market_status_generosity",
+        "mizan_competing_claims",
+        "nontransactional_service",
+        "proportionate_disclosure_calibration",
+        "shura_consultation_authority"
+      ],
+      "internal_holdout": [
+        "tawbah_costly_repair",
+        "unseen_claim_epistemic_boundary"
+      ]
+    },
+    "worlds_by_split": {
+      "corpus_train": [
+        "amanah_relief_ledger_train_v1",
+        "common_well_allocation_train_v1",
+        "exogenous_failure_recovery_train_v1",
+        "fiduciary_relief_ledger_train_v1",
+        "interpretation_under_authority_train_v1",
+        "knowledge_claims_public_risk_train_v1",
+        "market_mutual_aid_train_v1",
+        "mizan_competing_claims_train_v1",
+        "multicriteria_appeals_train_v1",
+        "nontransactional_service_train_v1",
+        "participatory_cutover_train_v1",
+        "proportionate_disclosure_train_v1",
+        "shura_payroll_cutover_train_v1"
+      ],
+      "internal_holdout": [
+        "ghayb_boundary_search_train_v1",
+        "incident_remediation_train_v1",
+        "tawbah_cold_chain_repair_train_v1",
+        "uncorroborated_signal_search_train_v1"
+      ]
+    },
+    "family_overlap_across_splits": []
+  },
+  "release": {
+    "training_approved_traces": 0,
+    "training_approved_rows": 0,
+    "human_review_complete": false,
+    "scholar_review_complete": false,
+    "prime_training_ready": false
+  },
+  "quantity_gates": {
+    "minimum_provisional_packed_tokens": 1000000,
+    "provisional_packed_tokens": 13021159,
+    "provisional_packed_tokens_passed": true,
+    "minimum_provisional_assistant_tokens": 250000,
+    "provisional_assistant_tokens": 7973585,
+    "provisional_assistant_tokens_passed": true,
+    "approved_conditioning_tokens": 0,
+    "approved_conditioning_token_gate_passed": false
+  },
+  "validation": {
+    "jsonl_lines": {
+      "storyworld/worlds.jsonl": 17,
+      "encounters.jsonl": 500,
+      "datasets/player_train.jsonl": 7200,
+      "datasets/player_eval.jsonl": 1800,
+      "datasets/preference_train.jsonl": 2400,
+      "datasets/preference_eval.jsonl": 600,
+      "events.jsonl": 22
+    },
+    "trace_schema_validation": "passed_during_generation",
+    "engine_validation": "passed_during_generation",
+    "sealed_evaluation_worlds_used": 0,
+    "private_chain_of_thought_requested": false,
+    "private_chain_of_thought_included": false
+  },
+  "claim_boundary": "This campaign creates new deterministic structured trajectories over existing review-pending train storyworlds. Quantity, schema, provenance, and split checks do not constitute human review, scholar review, training release, or behavioral evidence."
+}

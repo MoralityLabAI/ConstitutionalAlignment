@@ -1,0 +1,56 @@
+{
+  "schema_version": "storyworld_provisional_local_campaign_v1",
+  "campaign_id": "jinn_beast_multiturn_local_500_v1",
+  "status": "provisional_generation_plan_not_training_release",
+  "created_at": "2026-07-23T12:00:00Z",
+  "seed": 20260723,
+  "seed_salt": "jinn_beast_multiturn_local_500_v1",
+  "package_path": "experiments/storyworld_curriculum_v1/package.json",
+  "teacher_ensemble_path": "experiments/storyworld_curriculum_v1/teacher_ensemble.json",
+  "output_dir": "experiments/storyworld_curriculum_v1/generated/provisional_local_500_v1",
+  "arms": ["neutral", "constitutional", "jinn", "beast"],
+  "trajectory_budget": {
+    "total": 500,
+    "corpus_train": 400,
+    "internal_holdout": 100,
+    "per_arm": 125,
+    "corpus_train_per_arm": 100,
+    "internal_holdout_per_arm": 25
+  },
+  "internal_holdout_family_ids": [
+    "tawbah_costly_repair",
+    "unseen_claim_epistemic_boundary"
+  ],
+  "recursion_budget": {
+    "outer_generation_cycles": 1,
+    "nested_generation_depth": 1,
+    "max_storyworld_nodes": 120,
+    "max_choices_per_node": 4,
+    "max_trajectories": 500
+  },
+  "resource_budget": {
+    "device": "cpu",
+    "ram_limit_mb": 1024,
+    "cpu_percent": 25,
+    "io_limit_mb_per_second": 20,
+    "wall_clock_seconds": 1800,
+    "parallel_workers": 1
+  },
+  "token_measurement": {
+    "backend": "tiktoken",
+    "encoding": "cl100k_base",
+    "status": "development_estimate_retokenize_with_exact_qwen_tokenizer"
+  },
+  "quantity_gates": {
+    "minimum_provisional_packed_tokens": 1000000,
+    "minimum_provisional_assistant_tokens": 250000
+  },
+  "release_policy": {
+    "teacher_release_eligible": false,
+    "training_approved": false,
+    "quranic_motif_review": "scholar_review_pending",
+    "all_rows_require_human_review": true,
+    "sealed_evaluation_worlds_allowed": false
+  },
+  "claim_boundary": "This campaign creates new deterministic structured trajectories over existing review-pending train storyworlds. Quantity, schema, provenance, and split checks do not constitute human review, scholar review, training release, or behavioral evidence."
+}

@@ -1,0 +1,126 @@
+{
+  "schema_version": "storyworld_provisional_corpus_run_manifest_v1",
+  "campaign_id": "jinn_beast_multiturn_local_500_v1",
+  "status": "generated_validated_provisional_not_training_release",
+  "created_at": "2026-07-23T12:00:00Z",
+  "generation_scope": "full_campaign",
+  "source_receipts": {
+    "campaign_config": {
+      "path": "experiments/storyworld_curriculum_v1/provisional_local_campaign_v1.json",
+      "sha256": "0c26107393492add71472746e29974b8364a70aa26a4c1cfb36b5f6bd7cd3271"
+    },
+    "package": {
+      "path": "experiments/storyworld_curriculum_v1/package.json",
+      "sha256": "4e554ef3c4b28820c6875a04bced26df54ea065fea7169e1f44cf3c7d6fcc31e"
+    },
+    "teacher_ensemble": {
+      "path": "experiments/storyworld_curriculum_v1/teacher_ensemble.json",
+      "sha256": "839fc9ccf108180852d70351053ee3311f100302ae3c228ca765d35aac35a091"
+    },
+    "teacher": {
+      "provider": "local_deterministic_provisional",
+      "generator_version": "provisional_world_conditioned_teacher_v1",
+      "seed_salt": "jinn_beast_multiturn_local_500_v1",
+      "release_eligible": false,
+      "source_scope": "model_visible_storyworld_state_only",
+      "review_status": "human_and_scholar_review_pending"
+    },
+    "code": {
+      "generator": {
+        "path": "scripts/generate_provisional_storyworld_corpus.py",
+        "sha256": "6805159dd76638d6d8556a71fb335cfc332f11d0c34ca7468e68b572250d817e"
+      },
+      "provisional_teacher": {
+        "path": "alignment_harness/provisional_storyworld_teacher.py",
+        "sha256": "0a42acf34b4eac3e70e34c9800d795549a387680d14a1c82b45792cbd4bf6dd9"
+      },
+      "trajectory_curriculum": {
+        "path": "alignment_harness/trajectory_curriculum.py",
+        "sha256": "fb17d9be2a84d7184ad6666873433c69be08743616903e1cecc806e8bfd98ee9"
+      },
+      "storyworld_engine": {
+        "path": "alignment_harness/storyworlds.py",
+        "sha256": "c446356af464d36cc9b15df6849180538ec9868750953f9a8eb460e12b366020"
+      },
+      "trace_schema": {
+        "path": "schemas/storyworld_episode_trace_v1.schema.json",
+        "sha256": "41d71395b22ab9bbfd65fcb60ec1ff0dce7b3565489fac109bfd84c1bb20b171"
+      }
+    }
+  },
+  "budgets": {
+    "recursion": {
+      "outer_generation_cycles": 1,
+      "nested_generation_depth": 1,
+      "max_storyworld_nodes": 120,
+      "max_choices_per_node": 4,
+      "max_trajectories": 500
+    },
+    "resources": {
+      "device": "cpu",
+      "ram_limit_mb": 1024,
+      "cpu_percent": 25,
+      "io_limit_mb_per_second": 20,
+      "wall_clock_seconds": 1800,
+      "parallel_workers": 1
+    },
+    "trajectories_executed": 500
+  },
+  "artifacts": [
+    {
+      "path": "datasets/player_eval.jsonl",
+      "sha256": "4396d7bcacea91572f80071ff186e83acc421d5c87e9addeec2e31de3383b46d",
+      "bytes": 16435992
+    },
+    {
+      "path": "datasets/player_train.jsonl",
+      "sha256": "84942d900b715b53f8a09b0caab01669028dfff5afd40f5f33ff7f6b8c9f209a",
+      "bytes": 65071184
+    },
+    {
+      "path": "datasets/preference_eval.jsonl",
+      "sha256": "402d49bd39e05fa3472d0855be828aeea34321732baf889c5db0b99fa3e4e630",
+      "bytes": 4680823
+    },
+    {
+      "path": "datasets/preference_train.jsonl",
+      "sha256": "ff3661daee5a7b9720fdc8f994a71e20d51f4a71e1af97c987221a0eab481341",
+      "bytes": 18536415
+    },
+    {
+      "path": "encounters.jsonl",
+      "sha256": "88dbb9b55ca8c291ea5904eb10b740ff4ae9f2478c363b5f635060e1bc259505",
+      "bytes": 44398949
+    },
+    {
+      "path": "events.jsonl",
+      "sha256": "42869fdef9b5da9f8b698efeac47b28726d55a1b7527ac1fcd560675a0fc5d13",
+      "bytes": 2085
+    },
+    {
+      "path": "reports/metrics.json",
+      "sha256": "7587496c13a9227df035cf81685e057054bfb0e2c20a68c24efe87b3e62a35fc",
+      "bytes": 7339
+    },
+    {
+      "path": "reports/summary.md",
+      "sha256": "5fc9f7d3b92349b3adbdfe660e07e452551934458fb01560e6b1ca44518387e4",
+      "bytes": 589
+    },
+    {
+      "path": "storyworld/world.json",
+      "sha256": "2f927129bcc1eca1cc44a5a57d65bcc8aa49cbd17347b6778d740e3892a8243b",
+      "bytes": 1845
+    },
+    {
+      "path": "storyworld/worlds.jsonl",
+      "sha256": "a7e14536fba46002ee42211d7869cb5d1165546d3da47a97820f95e7abfaaeff",
+      "bytes": 582256
+    }
+  ],
+  "artifact_tree_sha256": "205793ec70ee5269466c18a2a30095e0b130676b7dfc9c5a36d5eb0c747f9f22",
+  "metrics_path": "reports/metrics.json",
+  "training_approved": false,
+  "prime_training_ready": false,
+  "claim_boundary": "This campaign creates new deterministic structured trajectories over existing review-pending train storyworlds. Quantity, schema, provenance, and split checks do not constitute human review, scholar review, training release, or behavioral evidence."
+}

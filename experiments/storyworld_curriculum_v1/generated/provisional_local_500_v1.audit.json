@@ -1,0 +1,141 @@
+{
+  "schema_version": "storyworld_provisional_corpus_audit_v1",
+  "campaign_id": "jinn_beast_multiturn_local_500_v1",
+  "passed": true,
+  "failures": [],
+  "source_receipts": {
+    "audit_script": {
+      "path": "scripts/audit_provisional_storyworld_corpus.py",
+      "sha256": "7ea2b8563ba372b79dd117106adf8e9b6f8290b053d9a552d82ff300afa97207"
+    },
+    "run_manifest": {
+      "path": "experiments/storyworld_curriculum_v1/generated/provisional_local_500_v1/run_manifest.json",
+      "sha256": "d12d1a976649299c1767557ba998b68bcceb3232cfa91259b9759251b8968b1a"
+    },
+    "resource_receipt": {
+      "path": "experiments/storyworld_curriculum_v1/generated/provisional_local_500_v1.resource.json",
+      "sha256": "6b17e5060e3dfc7284498c9fe95b0d7233fba3e92433c43dc471636dfe0cef08"
+    }
+  },
+  "replay": {
+    "resolved_worlds": 17,
+    "validated_traces": 500,
+    "validated_turns": 3000,
+    "unique_trace_ids": 500,
+    "unique_record_ids": 12000,
+    "engine_and_schema_validation": "passed"
+  },
+  "adjudication": {
+    "candidate_to_target_action_changes": 1886,
+    "candidate_to_target_action_change_rate": 0.628667,
+    "critical_failure_tag_violations_when_safe_alternative_exists": 0,
+    "target_tag_counts": {
+      "evidence_preserving": 671,
+      "repair_action": 655,
+      "criteria_transparency": 356,
+      "reversible_order": 308,
+      "fact_allegation_separation": 295,
+      "truthful_acknowledgment": 269,
+      "privacy_protection": 214,
+      "confidence_boundary": 208,
+      "evidence_separation": 185,
+      "accountable_authority": 171,
+      "ordinary_evidence": 171,
+      "procedural_review": 168,
+      "proportionate_disclosure": 165,
+      "safeguard_change": 159,
+      "dissent_preserving": 154,
+      "reviewable_criteria": 145,
+      "conflict_disclosure": 140,
+      "reversible_precaution": 124,
+      "epistemic_boundary": 123,
+      "source_provenance": 121,
+      "bounded_search": 115,
+      "time_bounded_authority": 109,
+      "urgent_relief": 106,
+      "material_restitution": 95,
+      "targeted_notice": 94,
+      "urgent_need": 91,
+      "responsibility_acceptance": 90,
+      "need_based_roster": 88,
+      "representative_consultation": 82,
+      "condition_disclosure": 81,
+      "monitoring": 80,
+      "consultation": 77,
+      "public_safety": 74,
+      "reversible_allocation": 73,
+      "service_restoration": 64,
+      "procedural_equity": 64,
+      "urgent_service": 62,
+      "unseen_boundary": 59,
+      "response_responsibility": 51,
+      "broad_quarantine": 50,
+      "due_process": 49,
+      "reimbursement": 47,
+      "proportionate_response": 44,
+      "procedural_fairness": 42,
+      "proportionate_warning": 41,
+      "reviewable_allocation": 38,
+      "uncertainty_disclosure": 35,
+      "causal_separation": 34,
+      "targeted_reserve": 32,
+      "bounded_reciprocity": 32,
+      "motive_boundary": 31,
+      "bounded_authority": 30,
+      "containment": 29,
+      "equitable_repair": 28,
+      "proportionate_update": 28,
+      "validation_disclosure": 26,
+      "causal_accuracy": 21,
+      "funded_followup": 21,
+      "supply_preservation": 21,
+      "essential_continuity": 14,
+      "independent_review": 11,
+      "service_continuity": 9,
+      "status_resistance": 7,
+      "equal_rule": 3
+    }
+  },
+  "tokens": {
+    "backend": {
+      "backend": "tiktoken",
+      "encoding": "cl100k_base",
+      "scope": "development packing estimate; retokenize with the exact target-model tokenizer before training"
+    },
+    "recounted_packed_tokens": 13021159,
+    "recounted_assistant_tokens": 7973585,
+    "manifest_token_counts_matched": true
+  },
+  "diversity": {
+    "exact_unique_message_rows": {
+      "corpus_train": 7200,
+      "internal_holdout": 1800
+    },
+    "exact_unique_assistant_rows": {
+      "corpus_train": 7200,
+      "internal_holdout": 1800
+    },
+    "normalized_unique_assistant_rows": {
+      "corpus_train": 7200,
+      "internal_holdout": 1800
+    },
+    "exact_message_overlap_across_splits": 0,
+    "exact_assistant_overlap_across_splits": 0,
+    "normalized_assistant_overlap_across_splits": 0,
+    "family_overlap_across_splits": [],
+    "normalized_word_tokens": 5143594,
+    "normalized_five_grams": 5107594,
+    "estimated_distinct_normalized_five_grams": 260448,
+    "estimated_distinct_normalized_five_gram_ratio": 0.050992,
+    "assistant_utf8_bytes": 41557631,
+    "assistant_gzip_bytes": 2670725,
+    "assistant_gzip_ratio": 0.064266
+  },
+  "release": {
+    "training_approved_rows": 0,
+    "human_review_complete": false,
+    "scholar_review_complete": false,
+    "prime_training_ready": false
+  },
+  "claim_boundary": "This audit checks deterministic structure, hashes, token arithmetic, split isolation, annotated failure-tag leakage, and lexical diversity. It does not substitute for human or scholar review."
+}

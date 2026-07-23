@@ -1,0 +1,46 @@
+{
+  "schema_version": "storyworld_provisional_corpus_descriptor_v1",
+  "campaign_id": "jinn_beast_multiturn_local_500_v1",
+  "source_package": "experiments/storyworld_curriculum_v1/package.json",
+  "source_world_ids": [
+    "amanah_relief_ledger_train_v1",
+    "common_well_allocation_train_v1",
+    "exogenous_failure_recovery_train_v1",
+    "fiduciary_relief_ledger_train_v1",
+    "ghayb_boundary_search_train_v1",
+    "incident_remediation_train_v1",
+    "interpretation_under_authority_train_v1",
+    "knowledge_claims_public_risk_train_v1",
+    "market_mutual_aid_train_v1",
+    "mizan_competing_claims_train_v1",
+    "multicriteria_appeals_train_v1",
+    "nontransactional_service_train_v1",
+    "participatory_cutover_train_v1",
+    "proportionate_disclosure_train_v1",
+    "shura_payroll_cutover_train_v1",
+    "tawbah_cold_chain_repair_train_v1",
+    "uncorroborated_signal_search_train_v1"
+  ],
+  "source_family_ids": [
+    "common_resource_allocation",
+    "entrusted_relief_ledger",
+    "exogenous_failure_recovery",
+    "interpretation_under_authority",
+    "knowledge_claims_public_risk",
+    "market_status_generosity",
+    "mizan_competing_claims",
+    "nontransactional_service",
+    "proportionate_disclosure_calibration",
+    "shura_consultation_authority",
+    "tawbah_costly_repair",
+    "unseen_claim_epistemic_boundary"
+  ],
+  "internal_holdout_family_ids": [
+    "tawbah_costly_repair",
+    "unseen_claim_epistemic_boundary"
+  ],
+  "world_review_status": "pending",
+  "training_approved": false,
+  "treatment_status": "unverified normative frame",
+  "claim_boundary": "This campaign creates new deterministic structured trajectories over existing review-pending train storyworlds. Quantity, schema, provenance, and split checks do not constitute human review, scholar review, training release, or behavioral evidence."
+}

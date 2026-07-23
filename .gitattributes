@@ -48,3 +48,5 @@
 /configs/rl/jinn_beast_metta_* text eol=lf
 /scripts/*jinn_bench* text eol=lf
 /tests/test_jinn_bench.py text eol=lf
+/experiments/storyworld_curriculum_v1/generated/provisional_local_500_v1/*.jsonl filter=lfs diff=lfs merge=lfs -text
+/experiments/storyworld_curriculum_v1/generated/provisional_local_500_v1/**/*.jsonl filter=lfs diff=lfs merge=lfs -text
