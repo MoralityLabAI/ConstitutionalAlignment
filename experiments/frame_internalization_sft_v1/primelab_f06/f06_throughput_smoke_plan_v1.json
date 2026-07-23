@@ -1,0 +1,121 @@
+{
+  "schema_version": "frame_internalization_primelab_f06_throughput_smoke_plan.v1",
+  "plan_id": "qwen3_1p7b_f06_throughput_smoke_v1",
+  "frozen_at_utc": "2026-07-23T01:22:11.6762861Z",
+  "status": "authorized_launch_pending",
+  "factor_id": "F06",
+  "classification": "prospective_bounded_curriculum_inference_smoke",
+  "authorization": {
+    "billing_authorized": true,
+    "basis": "The user replied 'proceed' and 'cont' after being told that further paid compute required a new capped authorization.",
+    "inherited_conservative_envelope": "same maximum as the immediately preceding authorized F04 action",
+    "automatic_extension_allowed": false
+  },
+  "candidate_offer": {
+    "platform": "Prime Intellect",
+    "availability_id": "1ecfa8",
+    "cloud_id": "gpu_1x_DGX_A100",
+    "provider": "Massed Compute",
+    "provider_slug": "massedcompute",
+    "gpu_sku": "A100 80GB",
+    "socket": "SXM4",
+    "gpu_count": 1,
+    "gpu_vram_gib": 80,
+    "vcpu": 16,
+    "ram_gib": 120,
+    "disk_gib": 500,
+    "deployment_type": "Virtual Machine",
+    "security": "secure_cloud",
+    "region": "United States",
+    "image": "ubuntu_22_cuda_12",
+    "pricing_type": "on_demand",
+    "observed_price_usd_per_hour": 1.23,
+    "maximum_price_usd_per_hour": 1.3,
+    "observed_available_at_freeze": true
+  },
+  "hard_caps": {
+    "maximum_billable_seconds": 1800,
+    "watchdog_delay_seconds": 1620,
+    "maximum_compute_cost_usd": 0.65,
+    "maximum_inference_wall_clock_seconds": 1200,
+    "maximum_gpu_hours": 0.5,
+    "maximum_output_bytes": 1073741824,
+    "checkpoint_every_completed_request": true,
+    "instance_vcpu_cap": 16,
+    "instance_ram_gib_cap": 120,
+    "instance_disk_gib_cap": 500,
+    "spot_allowed": false
+  },
+  "workload": {
+    "source_frames": [
+      "neutral",
+      "F1",
+      "F3",
+      "F3_concrete"
+    ],
+    "limit_per_frame": 4,
+    "maximum_transcripts": 16,
+    "turns_per_transcript": 3,
+    "maximum_generation_calls": 48,
+    "batch_size": 8,
+    "max_tokens_per_turn": 2500,
+    "thinking_mode": true,
+    "sampler": "splitmix64_common_random_numbers_v1",
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "paired_seed_across_frames": true,
+    "runtime_network_isolation": "linux_network_namespace"
+  },
+  "frozen_inputs": {
+    "request_manifest": {
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/qwen3_1p7b_v1/curriculum_generation_v1/request_manifest.json",
+      "sha256": "e768b50ecd72ec9cf3f7caafe2a731013d6475f5b2e55c51e71562a7b5d98226"
+    },
+    "f04_receipt": {
+      "path": "experiments/frame_internalization_sft_v1/primelab_f04/environment_freeze_20260723.json",
+      "sha256": "8352dd69daea12b8dc91ee455eacb70e32d641cd5adbfa27be70e24527d637dd"
+    },
+    "environment_lock": {
+      "path": "experiments/frame_internalization_sft_v1/primelab_f04/environment_lock_20260723.txt",
+      "sha256": "de380fa5dcd8122e2c495711364f759bc71482c7da776a8f2b4846de265fcbff"
+    }
+  },
+  "executables": [
+    {
+      "path": "scripts/generate_qwen3_frame_curriculum_transcripts.py",
+      "sha256": "bd1e930480487082c199672d9abe4c69fe66c78971bf7ef526132cac7ab4c1e2"
+    },
+    {
+      "path": "scripts/stage_and_run_primelab_f06_smoke.sh",
+      "sha256": "04350b02a1396be1c091b4cd508b82e0de4b2c4f30d9b955f14f5c4ac682bb89"
+    }
+  ],
+  "required_evidence": [
+    "exact instance manifest and termination receipt",
+    "exact F04 Python environment lock match",
+    "all twelve model artifacts byte-verified before inference",
+    "hard offline network namespace during generation",
+    "one checkpoint event for every completed transcript",
+    "per-frame bounded-smoke receipts and raw transcript hashes",
+    "observed output bytes within cap",
+    "zero surviving GPU compute processes",
+    "measured transcript and token throughput forecast"
+  ],
+  "abort_all_on": [
+    "offer or price drift",
+    "source commit or executable hash drift",
+    "environment or model artifact drift",
+    "GPU topology mismatch",
+    "output cap breach",
+    "wall-clock timeout",
+    "unclosed thinking output after frozen retries",
+    "owned-process cleanup failure"
+  ],
+  "scope_boundary": {
+    "closes_f06": false,
+    "authorizes_full_22400_request_generation": false,
+    "authorizes_adapter_training": false,
+    "produces_scored_behavioral_outcomes": false,
+    "purpose": "measure exact-path correctness and throughput before pricing the full F06 generation stage"
+  }
+}

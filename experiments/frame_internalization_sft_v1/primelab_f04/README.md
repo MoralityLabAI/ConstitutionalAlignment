@@ -46,8 +46,10 @@ without conversion because its units are undocumented.
 
 The committed evidence is
 [`instance_manifest_20260723.json`](instance_manifest_20260723.json) and
-[`environment_freeze_20260723.json`](environment_freeze_20260723.json). Raw
-logs and runtime artifacts remain in the external evidence root hash-bound by
-the manifest. This closes F04 only: it authorizes the registered bounded
+[`environment_freeze_20260723.json`](environment_freeze_20260723.json). The
+exact successful Python package set is retained in
+[`environment_lock_20260723.txt`](environment_lock_20260723.txt). Raw logs and
+runtime artifacts remain in the external evidence root hash-bound by the
+manifest. This closes F04 only: it authorizes the registered bounded
 curriculum-inference stage after gate refresh, but not adapter training or a
 scientific claim.

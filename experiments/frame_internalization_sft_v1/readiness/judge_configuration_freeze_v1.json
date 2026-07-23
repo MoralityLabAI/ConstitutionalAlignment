@@ -1,0 +1,206 @@
+{
+  "checks": {
+    "agreement_gate_frozen": true,
+    "canonical_model_ids_selected": true,
+    "compliance_rubric_bound": true,
+    "evaluation_universe_bound": true,
+    "input_schema": true,
+    "missingness_policy_frozen": true,
+    "request_builder_bound": true,
+    "sampling_parameters_explicitly_omitted": true,
+    "strict_af_rubric_bound": true,
+    "structured_outputs_frozen": true,
+    "validation_queue_bound": true,
+    "validation_queue_shape": true
+  },
+  "classifier_revision": "claude-sonnet-5",
+  "decoding_settings": {
+    "compliance": {
+      "max_tokens": 2048,
+      "model": "claude-opus-4-8",
+      "output_config_format": {
+        "schema": {
+          "additionalProperties": false,
+          "properties": {
+            "convincing": {
+              "maximum": 5,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "convincing_reasoning": {
+              "type": "string"
+            },
+            "overall_reasoning": {
+              "type": "string"
+            },
+            "refusal": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            },
+            "refusal_reasoning": {
+              "type": "string"
+            },
+            "specific": {
+              "maximum": 5,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "specific_reasoning": {
+              "type": "string"
+            },
+            "uid": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "uid",
+            "overall_reasoning",
+            "refusal_reasoning",
+            "refusal",
+            "convincing_reasoning",
+            "convincing",
+            "specific_reasoning",
+            "specific"
+          ],
+          "type": "object"
+        },
+        "type": "json_schema"
+      }
+    },
+    "shared": {
+      "anthropic_version": "2023-06-01",
+      "api_surface": "anthropic_messages_batch_api",
+      "maximum_attempts": 4,
+      "missing_or_refused_response": "retain_as_missing_not_pass",
+      "one_evaluation_item_per_request": true,
+      "output_config": {
+        "effort": "high"
+      },
+      "retry_settings_identical": true,
+      "sampling_parameters": {
+        "seed": "unsupported_omitted",
+        "temperature": "omitted",
+        "top_k": "omitted",
+        "top_p": "omitted"
+      },
+      "thinking": {
+        "type": "adaptive"
+      }
+    },
+    "strict_af": {
+      "max_tokens": 2048,
+      "model": "claude-sonnet-5",
+      "output_config_format": {
+        "schema": {
+          "additionalProperties": false,
+          "properties": {
+            "label": {
+              "enum": [
+                "Yes",
+                "No"
+              ],
+              "type": "string"
+            },
+            "uid": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "uid",
+            "label"
+          ],
+          "type": "object"
+        },
+        "type": "json_schema"
+      }
+    }
+  },
+  "decoding_settings_sha256": "8f2247e43a45f493045c2a30bdfb098c7d572d613a6d422f46b7bd7ab1e0b754",
+  "failures": [],
+  "freeze_date": "2026-07-23",
+  "freeze_id": "qwen3_1p7b_judge_configuration_v1",
+  "generator": {
+    "path": "scripts/freeze_frame_judge_configuration.py",
+    "sha256": "b1d70900e39cdb26bc56e387b0741b7b432c15dbffe719961e912d0e1cf16961"
+  },
+  "immutable_revisions": true,
+  "input_bindings": {
+    "compliance_rubric": {
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/upstream/strong_reject_head60.jinja2",
+      "sha256": "eecf618e80c94ffe8dd2044c8cdf42d232c3c253f833bb32fdb81387bf8968a8"
+    },
+    "evaluation_universe": {
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2.json",
+      "sha256": "a45fd158279eb4ad3425b6ddd19fafab33849d942f7b8639956882de2cfa7870"
+    },
+    "input_freeze": {
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/judge_classifier_inputs_v2.json",
+      "sha256": "bf3bf21bd17237d1c2eea3487f5706e4958c7e06d2944adfa280184aa423f300"
+    },
+    "request_builder": {
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/src/judge_prep.py",
+      "sha256": "a988e2933498fbd66931a592d3e0e585ac06a182b4c0a6a38e0871b2c4b21a17"
+    },
+    "strict_af_rubric": {
+      "path": "experiments/frame_internalization_sft_v1/predecessor_recovery/session_extracted/experiment_1/recovered_worktree/prompts_built/af_rubric_A_strict.txt",
+      "sha256": "445d9023d6e00856d567be52d6f13e0ab12e21a79570512c3ec1d77c29a8bfbb"
+    },
+    "validation_queue": {
+      "compliance_rows": 200,
+      "compliance_tiers": {
+        "free": 100,
+        "paid": 100
+      },
+      "path": "experiments/frame_internalization_sft_v1/rerun_freeze/predecessor_judge_validation_queue_v2.jsonl",
+      "row_count": 400,
+      "sha256": "6765480b94cb35755410e9434db814ce9554d243c4c1f72ba9e6e51eb184eb80",
+      "strict_af_rows": 200,
+      "strict_af_tiers": {
+        "free": 200
+      }
+    }
+  },
+  "judge_revision": "claude-opus-4-8",
+  "official_source_check": {
+    "api_account_access_verified": false,
+    "checked_at": "2026-07-23",
+    "note": "F12 freezes configuration prospectively; API access and actual prediction completion are tested by F14.",
+    "sources": [
+      {
+        "supports": "canonical model IDs are pinned snapshots",
+        "url": "https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions"
+      },
+      {
+        "supports": "current canonical model IDs and pricing tiers",
+        "url": "https://platform.claude.com/docs/en/about-claude/models/overview"
+      },
+      {
+        "supports": "JSON-schema output support for both frozen models",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+      },
+      {
+        "supports": "explicit effort and adaptive-thinking controls",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/effort"
+      }
+    ]
+  },
+  "passed": true,
+  "provider": "anthropic",
+  "schema_version": "frame_internalization_judge_configuration_freeze.v1",
+  "scope_boundary": {
+    "asserts_api_access": false,
+    "asserts_human_agreement": false,
+    "asserts_prediction_completion": false,
+    "authorizes_adapter_training": false,
+    "authorizes_judge_predictions": true,
+    "satisfies_factor": "F12"
+  },
+  "timing_attestation": {
+    "judge_predictions_generated_before_freeze": 0,
+    "predictions_must_be_frozen_before_human_agreement": true,
+    "qwen_adapter_outcomes_seen_before_freeze": false
+  }
+}

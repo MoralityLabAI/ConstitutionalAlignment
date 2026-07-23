@@ -32,17 +32,20 @@ is retained because it transparently records the validator-only thinking-marker
 failure corrected by source commit `2f0a28593472753cf2d0e5e5e1000112b5de78a6`.
 The PrimeLab environment freeze passed on 2026-07-23 in
 [`primelab_f04/environment_freeze_20260723.json`](primelab_f04/environment_freeze_20260723.json).
-Generation, training, and evaluation remain pending; there is no fine-tuning
-outcome. The historical INTELLECT v2 treatment and staged-compute governance
-remain frozen as provenance.
+The immutable judge configuration also passed in
+[`readiness/judge_configuration_freeze_v1.json`](readiness/judge_configuration_freeze_v1.json),
+using pinned Claude Opus 4.8 and Claude Sonnet 5 model IDs with structured
+outputs. Judge predictions, human agreement, generation, training, and
+evaluation remain pending; there is no fine-tuning outcome. The historical
+INTELLECT v2 treatment and staged-compute governance remain frozen as
+provenance.
 
 The active gates are factored into a machine-readable dependency DAG in
 [`GATE_FACTORIZATION_V1.md`](GATE_FACTORIZATION_V1.md) and
-[`readiness/gate_factorization_20260723.json`](readiness/gate_factorization_20260723.json).
-Eight of twenty shared factors pass. The current parallel frontier is
-curriculum transcript generation (F06), immutable judge-configuration freeze
-(F12), and prospective base generation (F13); the ten parent gates remain
-fail-closed, with three passed and seven blocking.
+[`readiness/gate_factorization_20260723_f12.json`](readiness/gate_factorization_20260723_f12.json).
+Nine of twenty shared factors pass. The current parallel frontier is curriculum
+transcript generation (F06) and prospective base generation (F13); the ten
+parent gates remain fail-closed, with three passed and seven blocking.
 
 This package reconstructs Silico experiment `exp_01kxm0hbf4ez58y7mfj58rmn6q`, originally titled **"Training the frames in: does SFT internalize what prompting couldn't?"** The experiment was interrupted during data generation. The recovered record contains the design, partial generation counts, quality checks, launcher decisions, and compute receipts, but it does **not** contain the generated transcript payloads, trained adapters, dose checkpoints, or evaluation outputs.
 
@@ -86,9 +89,12 @@ The primary behavioral endpoint remains the no-frame free/paid-tier alignment-fa
 - [`rerun_freeze/curriculum_source_v1/dilemma_manifest.json`](rerun_freeze/curriculum_source_v1/dilemma_manifest.json): pinned prospective 5,600-row dilemma pool and 5,320/280 cluster-disjoint split.
 - [`GATES_1_4_HANDOFF.md`](GATES_1_4_HANDOFF.md): cluster commands and fail-closed completion conditions for base verification, the 22,400-request curriculum pack, final nonleakage, and predecessor reanchoring.
 - [`GATE_FACTORIZATION_V1.md`](GATE_FACTORIZATION_V1.md): active Qwen dependency waves, shared factors, receipt interfaces, and unchanged parent-gate aggregation.
-- [`readiness/gate_factorization_20260723.json`](readiness/gate_factorization_20260723.json): current machine-readable 20-factor DAG with F04 satisfied and the F06/F12/F13 parallel frontier.
+- [`readiness/gate_factorization_20260723_f12.json`](readiness/gate_factorization_20260723_f12.json): current machine-readable 20-factor DAG with F04 and F12 satisfied and the F06/F13 parallel frontier.
+- [`readiness/gate_factorization_20260723.json`](readiness/gate_factorization_20260723.json): immutable post-F04, pre-F12 factorization snapshot.
 - [`readiness/gate_factorization_20260721.json`](readiness/gate_factorization_20260721.json): immutable pre-PrimeLab factorization snapshot.
 - [`primelab_f04/`](primelab_f04/): bounded PrimeLab bring-up plan, terminated-instance manifest, and passed F04 environment-freeze receipt.
+- [`primelab_f06/`](primelab_f06/): bounded four-frame curriculum-throughput smoke packet; it cannot close F06 or authorize training.
+- [`readiness/judge_configuration_freeze_v1.json`](readiness/judge_configuration_freeze_v1.json): prospective F12 judge/classifier identity, decoding, schema, and source-binding receipt.
 - [`rerun_freeze/model_tokenizer_remote_inventory_v1.json`](rerun_freeze/model_tokenizer_remote_inventory_v1.json): immutable remote model/tokenizer inventory awaiting cluster-cache and engine-lock verification.
 - [`rerun_freeze/curriculum_generation_v1/request_manifest.json`](rerun_freeze/curriculum_generation_v1/request_manifest.json): frozen four-frame generation plan that renders into the six registered training arms.
 - [`rerun_freeze/nonleakage_source_prompts_v2.json`](rerun_freeze/nonleakage_source_prompts_v2.json): active source-prompt precursor audit against v2; all overlap counts are zero, while generated text remains to be audited.
