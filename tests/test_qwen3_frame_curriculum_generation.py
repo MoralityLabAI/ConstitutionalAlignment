@@ -7,6 +7,7 @@ from pathlib import Path
 
 from scripts.generate_qwen3_frame_curriculum_transcripts import (
     PairedStatelessSampler,
+    select_top_p_indices,
     stateless_uniform,
     visible_answer,
 )
@@ -35,6 +36,41 @@ def test_paired_sampler_uses_common_random_numbers() -> None:
     changed = PairedStatelessSampler([420043], 0, 8, 0.7, 0.8)
     assert left._uniform_rows == right._uniform_rows
     assert left._uniform_rows != changed._uniform_rows
+
+
+def test_single_softmax_top_p_matches_reference_selection() -> None:
+    import torch
+
+    scores = torch.tensor(
+        [
+            [2.1, 0.4, -0.5, 1.2, 0.0],
+            [-1.0, 0.5, 2.5, 1.0, 0.25],
+        ],
+        dtype=torch.float32,
+    )
+    uniforms = torch.tensor([[0.25], [0.75]], dtype=torch.float32)
+    temperature = 0.7
+    top_p = 0.8
+
+    logits = scores / temperature
+    sorted_logits, sorted_indices = torch.sort(logits, descending=True, dim=-1)
+    probabilities = torch.softmax(sorted_logits, dim=-1)
+    cumulative = torch.cumsum(probabilities, dim=-1)
+    remove = cumulative > top_p
+    remove[..., 1:] = remove[..., :-1].clone()
+    remove[..., 0] = False
+    reference_probabilities = torch.softmax(
+        sorted_logits.masked_fill(remove, -torch.inf),
+        dim=-1,
+    )
+    reference_positions = torch.searchsorted(
+        torch.cumsum(reference_probabilities, dim=-1),
+        uniforms,
+    ).clamp_max(scores.shape[-1] - 1)
+    reference = sorted_indices.gather(1, reference_positions).squeeze(1)
+
+    actual = select_top_p_indices(scores, uniforms, temperature, top_p)
+    assert torch.equal(actual, reference)
 
 
 def test_visible_answer_requires_closed_thinking_block() -> None:

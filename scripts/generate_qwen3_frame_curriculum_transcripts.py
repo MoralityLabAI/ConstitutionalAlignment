@@ -134,25 +134,46 @@ class PairedStatelessSampler:
                 dtype=torch.float32,
                 device=scores.device,
             )
-        logits = scores.float() / self.temperature
-        sorted_logits, sorted_indices = torch.sort(logits, descending=True, dim=-1)
-        sorted_probabilities = torch.softmax(sorted_logits, dim=-1)
-        cumulative = torch.cumsum(sorted_probabilities, dim=-1)
-        remove = cumulative > self.top_p
-        remove[..., 1:] = remove[..., :-1].clone()
-        remove[..., 0] = False
-        sorted_logits = sorted_logits.masked_fill(remove, -math.inf)
-        probabilities = torch.softmax(sorted_logits, dim=-1)
-        cumulative = torch.cumsum(probabilities, dim=-1)
         uniforms = self._uniforms[:, self.token_index].unsqueeze(1).contiguous()
-        positions = torch.searchsorted(cumulative, uniforms).clamp_max(
-            scores.shape[-1] - 1
+        selected = select_top_p_indices(
+            scores,
+            uniforms,
+            self.temperature,
+            self.top_p,
         )
-        selected = sorted_indices.gather(1, positions).squeeze(1)
         forced = torch.full_like(scores, -math.inf)
         forced.scatter_(1, selected.unsqueeze(1), 0)
         self.token_index += 1
         return forced
+
+
+def select_top_p_indices(
+    scores: Any,
+    uniforms: Any,
+    temperature: float,
+    top_p: float,
+) -> Any:
+    """Select inverse-CDF top-p samples with one full-vocabulary softmax."""
+    import torch
+
+    if scores.ndim != 2 or uniforms.shape != (scores.shape[0], 1):
+        raise ValueError("scores and uniforms have incompatible batch shapes")
+    if not 0 < temperature or not 0 < top_p <= 1:
+        raise ValueError("invalid sampling controls")
+    logits = scores.float() / temperature
+    sorted_logits, sorted_indices = torch.sort(logits, descending=True, dim=-1)
+    sorted_probabilities = torch.softmax(sorted_logits, dim=-1)
+    cumulative = torch.cumsum(sorted_probabilities, dim=-1)
+    remove = cumulative > top_p
+    remove[..., 1:] = remove[..., :-1].clone()
+    remove[..., 0] = False
+    kept_probabilities = sorted_probabilities.masked_fill(remove, 0)
+    kept_mass = kept_probabilities.sum(dim=-1, keepdim=True)
+    normalized_cumulative = torch.cumsum(kept_probabilities, dim=-1) / kept_mass
+    positions = torch.searchsorted(normalized_cumulative, uniforms).clamp_max(
+        scores.shape[-1] - 1
+    )
+    return sorted_indices.gather(1, positions).squeeze(1)
 
 
 def visible_answer(generated: str) -> str:
@@ -398,9 +419,12 @@ def main() -> int:
                     conversations[index].append({"role": "user", "content": user_message})
                     transcripts[index].append({"role": "user", "content": user_message})
                 pending = [index for index, value in enumerate(valid) if value]
-                for _attempt in range(int(generation["retry_attempts"])):
+                for attempt_index in range(int(generation["retry_attempts"])):
                     if not pending:
                         break
+                    torch.cuda.synchronize()
+                    torch.cuda.reset_peak_memory_stats()
+                    call_started = time.monotonic()
                     decoded, lengths = generate_turn(
                         model,
                         tokenizer,
@@ -411,6 +435,29 @@ def main() -> int:
                         ],
                         turn_index,
                         generation,
+                    )
+                    torch.cuda.synchronize()
+                    call_elapsed = time.monotonic() - call_started
+                    generated_tokens = sum(lengths)
+                    append_jsonl(
+                        event_path,
+                        {
+                            "event": "generation_call",
+                            "timestamp_utc": utc_now(),
+                            "batch_index": batch_index,
+                            "turn_index": turn_index,
+                            "attempt_index": attempt_index,
+                            "batch_size": len(pending),
+                            "generated_tokens": generated_tokens,
+                            "elapsed_seconds": round(call_elapsed, 6),
+                            "generated_tokens_per_second": (
+                                generated_tokens / call_elapsed
+                            ),
+                            "peak_cuda_allocated_bytes": (
+                                torch.cuda.max_memory_allocated()
+                            ),
+                            "peak_cuda_reserved_bytes": torch.cuda.max_memory_reserved(),
+                        },
                     )
                     retry: list[int] = []
                     for subset_index, text in enumerate(decoded):
@@ -508,11 +555,13 @@ def main() -> int:
             "events_path": str(event_path),
             "sampling": {
                 "algorithm": "splitmix64_common_random_numbers_v1",
+                "implementation": "top_p_inverse_cdf_single_softmax_v2",
                 "paired_seed_from_frozen_request": True,
                 "turn_seed_offset": 100000,
                 "temperature": freeze["generation"]["temperature"],
                 "top_p": freeze["generation"]["top_p"],
             },
+            "batch_size": args.batch_size,
             "cleanup_status": cleanup_status,
         }
         receipt_path = output_dir / f"{frame}.receipt.json"
