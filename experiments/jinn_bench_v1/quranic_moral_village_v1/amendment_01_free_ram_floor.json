@@ -1,0 +1,36 @@
+{
+  "schema_version": "quranic_moral_village_amendment_v1",
+  "amendment_id": "jbv1-quranic-moral-village-001-amendment-01",
+  "status": "prospective_before_successful_generation",
+  "reason": "The first base-control launch was cleanly aborted by the free-RAM guard before any generation row was written.",
+  "failed_attempt": {
+    "run_name": "local_smoke_20260724T235005Z",
+    "status": "ram_pressure_aborted",
+    "abort_reason": "available_ram_mb_below_floor",
+    "partial_generation_rows": 0,
+    "generation_content_inspected": false,
+    "observed_available_ram_mb": 892.68,
+    "original_min_available_ram_mb": 1024,
+    "peak_process_commit_mb": 7466.934,
+    "process_commit_limit_mb": 8192,
+    "pagefile_growth_mb": 0,
+    "maximum_pagefile_growth_mb": 64,
+    "cleanup_passed": true,
+    "lingering_owned_pids": []
+  },
+  "change": {
+    "min_available_ram_mb_before": 1024,
+    "min_available_ram_mb_after": 512,
+    "process_commit_limit_mb": 8192,
+    "pagefile_growth_limit_mb": 64,
+    "vram_limit_mb": 3900,
+    "exclusive_gpu_required": true,
+    "model_offload_allowed": false
+  },
+  "authorization": {
+    "clean_restart_count": 1,
+    "reuse_partial_rows": false,
+    "inspect_failed_attempt_content": false
+  },
+  "scientific_scope": "Resource-monitor amendment only. Topics, arms, prompts, decoding, reply rotation, and highlight selection remain frozen."
+}
