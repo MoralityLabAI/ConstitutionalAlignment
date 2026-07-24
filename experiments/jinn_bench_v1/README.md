@@ -66,6 +66,25 @@ larger-model QLoRA.
 
 The current training and QLoRA scale gates remain closed.
 
+## Prospective v2 specialization amendment
+
+The next instrument does not shut down the program or reinterpret the v1
+result. It registers a new comparison:
+
+- Beast as an optimized servitor for stable-objective execution;
+- Jinn as an erratic decision reasoner for evidence-responsive revision,
+  alternative search, and unreliable-authority cases.
+
+Erratic is operationally constrained: material changes should produce justified
+action changes, while equivalent states should not produce gratuitous
+switching. Both constructs retain exact-contract, evidence, critical-violation,
+and final-decision floors.
+
+The versioned contract, executable draft policies, eight matched storyworld
+family specifications, bounded run manifest, and promotion gates are under
+`construct_amendments/servitor_reasoner_v2/`. No training or paid evaluation is
+authorized by that design artifact.
+
 ## Local Qwen3-1.7B Jinn QLoRA signal test
 
 Development trial `jbv1-qwen3-1p7b-jinn-qlora-development-001` trained a

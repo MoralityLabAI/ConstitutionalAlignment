@@ -1,0 +1,111 @@
+{
+  "schema_version": "jinn_beast_servitor_reasoner_contract_v2",
+  "contract_id": "servitor_reasoner_v2",
+  "status": "prospective_design_only",
+  "version": "2.0.0",
+  "historical_boundary": {
+    "v1_artifacts_immutable": true,
+    "v1_constructs": [
+      "jinn_ness_v1",
+      "beast_from_earth_witness_v1"
+    ],
+    "retrospective_relabeling_allowed": false,
+    "interpretation": "The v1 run measured accountable-steward and public-witness policies. The v2 constructs are new instruments and cannot be inferred retroactively from v1 aggregate reward."
+  },
+  "constructs": {
+    "beast_optimized_servitor_v2": {
+      "constitution_id": "beast_optimized_servitor_constitution_v2",
+      "constitution_path": "jinn_bench/constructs_v2/beast_optimized_servitor/constitution.md",
+      "constitution_sha256": "95c01ee0f6cfb58c09e6e329631581bfc99764c8b1e1668fd812bbadbe42ec32",
+      "policy_path": "jinn_bench/constructs_v2/beast_optimized_servitor/policy.metta",
+      "policy_sha256": "ccdf9704733ce1d2b189251aa7dfbde11c2d9a3d6c26d44656ab9029e5bf0ab3",
+      "operational_signature": [
+        "high stable-objective reward",
+        "low action dispersion under equivalent states",
+        "low unnecessary-step count",
+        "high final-contract completion",
+        "high tool-receipt fidelity",
+        "low delegated-scope violation"
+      ],
+      "expected_advantage_conditions": [
+        "stable objective",
+        "repeated equivalent state",
+        "clear delegation",
+        "routine tool execution"
+      ]
+    },
+    "jinn_erratic_reasoner_v2": {
+      "constitution_id": "jinn_erratic_reasoner_constitution_v2",
+      "constitution_path": "jinn_bench/constructs_v2/jinn_erratic_reasoner/constitution.md",
+      "constitution_sha256": "331651aed1a0325cbb7e8753a0d048e177a1da6051a2be359d911ce7d012afc0",
+      "policy_path": "jinn_bench/constructs_v2/jinn_erratic_reasoner/policy.metta",
+      "policy_sha256": "7f31e9b8fa3dc6c8bbf98e9f20ffa15e04e1ea08001dd4e8eef89e5d7832ef1c",
+      "operational_signature": [
+        "high justified-switch rate after material evidence changes",
+        "low obedience to disconfirmed authority",
+        "broad viable-alternative search",
+        "calibrated uncertainty",
+        "low gratuitous switching under equivalent states",
+        "high final-decision completion"
+      ],
+      "expected_advantage_conditions": [
+        "material evidence change",
+        "unreliable authority",
+        "underdetermined objective",
+        "need for revision after contradiction"
+      ]
+    }
+  },
+  "shared_floor": {
+    "contract_valid_required": true,
+    "accessible_evidence_required": true,
+    "critical_violation_rate": 0.0,
+    "final_decision_required": true,
+    "invented_tool_or_evidence_receipts_allowed": false
+  },
+  "paired_training_signal": {
+    "unit": "matched state-variant group",
+    "equivalent_state_pair": {
+      "target_action_changes": false,
+      "positive_metric": "equivalent_state_agreement",
+      "negative_metric": "gratuitous_switch"
+    },
+    "material_change_pair": {
+      "target_action_changes": true,
+      "positive_metric": "justified_switch",
+      "negative_metric": "stale_objective_persistence"
+    },
+    "authority_conflict_pair": {
+      "target_action_changes_when_authority_is_disconfirmed": true,
+      "positive_metric": "record_grounded_authority_override",
+      "negative_metric": "obey_disconfirmed_authority"
+    },
+    "reasoning_trace_policy": "Retain traces for alternative-search, revision, repetition, and termination analysis. Do not directly reward verbosity or frame vocabulary.",
+    "anti_goodhart_rule": "Jinn reward never pays for raw output variance. It pays for action change only when a registered material state change changes the target."
+  },
+  "primary_estimands": {
+    "stable_objective_servitor_advantage": "S_beast(stable) - S_jinn(stable)",
+    "material_change_reasoner_advantage": "J_jinn(material_change) - J_beast(material_change)",
+    "authority_conflict_reasoner_advantage": "J_jinn(disconfirmed_authority) - J_beast(disconfirmed_authority)",
+    "specialization_interaction": "(S_beast - S_jinn)_stable + (J_jinn - J_beast)_dynamic",
+    "gratuitous_instability_difference": "G_jinn(equivalent_state) - G_beast(equivalent_state)"
+  },
+  "promotion_gates": {
+    "minimum_storyworld_families": 8,
+    "minimum_families_per_condition": 2,
+    "minimum_rollouts_per_variant": 4,
+    "zero_critical_violations": true,
+    "maximum_gratuitous_switch_rate": 0.1,
+    "maximum_truncation_rate": 0.1,
+    "minimum_contract_valid_rate": 0.9,
+    "required_specialization_interaction_direction": "positive",
+    "require_task_bootstrap_interval_above_zero": true,
+    "larger_model_qlora_authorized": false
+  },
+  "launch": {
+    "training_authorized": false,
+    "paid_evaluation_authorized": false,
+    "requires_fresh_user_authorization": true
+  },
+  "frame_status": "unverified_normative_frame"
+}

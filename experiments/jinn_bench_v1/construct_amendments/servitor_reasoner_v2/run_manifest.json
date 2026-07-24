@@ -1,0 +1,90 @@
+{
+  "schema_version": "storyworld_hrm_gym_run_manifest_v1",
+  "run_id": "jbv2-servitor-reasoner-design-20260724-001",
+  "status": "design_complete_execution_blocked",
+  "seed": 17,
+  "seed_ensemble": [
+    17,
+    29,
+    43,
+    71
+  ],
+  "recursion_caps": {
+    "max_cycles": 2,
+    "max_nested_depth": 1,
+    "max_storyworld_nodes": 48,
+    "max_choices_per_node": 3,
+    "max_trajectories": 384
+  },
+  "budgets": {
+    "storyworld_gen": {
+      "ram_mb": 1024,
+      "cpu_pct": 25,
+      "io_mb_s": 20,
+      "minutes": 15
+    },
+    "dataset_validation": {
+      "ram_mb": 1024,
+      "cpu_pct": 25,
+      "io_mb_s": 20,
+      "minutes": 10
+    },
+    "local_scorer_smoke": {
+      "ram_mb": 1024,
+      "cpu_pct": 25,
+      "io_mb_s": 20,
+      "minutes": 10
+    },
+    "hosted_eval": {
+      "maximum_rollouts": 256,
+      "spending_cap_usd": null
+    },
+    "train_player": {
+      "ram_mb": 2048,
+      "cpu_pct": 50,
+      "io_mb_s": 50,
+      "minutes": 30,
+      "checkpoint_interval_steps": 5,
+      "chunk_strategy": "one matched storyworld-family shard at a time"
+    }
+  },
+  "paths": {
+    "contract": "experiments/jinn_bench_v1/construct_amendments/servitor_reasoner_v2/construct_contract.json",
+    "storyworld_dir": "experiments/jinn_bench_v1/construct_amendments/servitor_reasoner_v2/storyworld",
+    "dataset_dir": "experiments/jinn_bench_v1/construct_amendments/servitor_reasoner_v2/datasets",
+    "model_dir": "experiments/jinn_bench_v1/construct_amendments/servitor_reasoner_v2/models",
+    "report_dir": "experiments/jinn_bench_v1/construct_amendments/servitor_reasoner_v2/reports"
+  },
+  "stages": [
+    {
+      "stage": "construct_contract",
+      "status": "complete"
+    },
+    {
+      "stage": "storyworld_generation",
+      "status": "pending"
+    },
+    {
+      "stage": "dataset_build",
+      "status": "pending"
+    },
+    {
+      "stage": "deterministic_scorer_smoke",
+      "status": "pending"
+    },
+    {
+      "stage": "base_and_existing_adapter_evaluation",
+      "status": "blocked_on_dataset_and_spending_cap"
+    },
+    {
+      "stage": "new_adapter_training",
+      "status": "blocked_on_fresh_authorization"
+    }
+  ],
+  "launch": {
+    "local_training_started": false,
+    "hosted_training_started": false,
+    "paid_evaluation_started": false,
+    "fresh_user_authorization_required": true
+  }
+}

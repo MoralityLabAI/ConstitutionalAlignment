@@ -82,3 +82,11 @@ as a separate field. Held-out development storyworlds never enter that corpus.
 The candidate exports remain fail-closed until scholar review, human label
 review, and a post-expansion contamination audit pass. A deterministic signal is
 available now; permission to spend it on larger-model QLoRA is a separate gate.
+
+## Prospective servitor–reasoner v2
+
+A separate, append-only v2 draft now defines Beast as an optimized servitor and
+Jinn as an erratic decision reasoner. It does not alter this v1 registry or its
+historical rows. The v2 executable policies live under `constructs_v2/`; its
+matched storyworld-family contract and blocked run manifest live under
+`experiments/jinn_bench_v1/construct_amendments/servitor_reasoner_v2/`.
