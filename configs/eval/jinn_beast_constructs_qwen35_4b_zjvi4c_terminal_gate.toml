@@ -1,0 +1,15 @@
+model = "Qwen/Qwen3.5-4B:dqyfss0yuztdb35byayfu0j9"
+num_examples = 4
+rollouts_per_example = 4
+max_concurrent = 4
+temperature = 0.0
+max_tokens = 6144
+sampling_args = { extra_body = { chat_template_kwargs = { enable_thinking = true } } }
+save_results = true
+disable_tui = true
+disable_env_server = true
+
+[[eval]]
+env_id = "moralitylab/jinn-beast-metta"
+env_args = { split = "development", task_mode = "constructs", construct = "balanced", require_training_approval = true }
+name = "jbc-qwen35-4b-zjvi4c-terminal-gate-20260724"

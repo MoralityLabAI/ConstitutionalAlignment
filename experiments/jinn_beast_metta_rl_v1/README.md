@@ -8,6 +8,7 @@
 - Separate construct rows: 12 (8 candidate-training, 4 development)
 - Presented frames: neutral, constitutional, Jinn, Beast
 - Paid training: one owner-authorized 10-step development pilot completed; no promotion
+- Terminal adapter: `dqyfss0yuztdb35byayfu0j9` (`READY`, deployed)
 - Candidate-training release: blocked; all source-world reviews remain pending
 - Hub integration: passed for version `0.1.8`
 - Hosted smoke: passed end to end; evaluation `ntcauh360og2dg3o6r256rgr`
@@ -61,9 +62,10 @@ still requires non-decreasing development reward at steps 5 and 10.
    10-step construct pilot with a `$3.50` spending reserve.
 6. Completed: inspect all 640 training rollouts, reward distributions, proxy
    regret, trace emission, truncation, and evaluations at steps 0, 5, and 10.
-7. Not promoted: the held-out reward trajectory was nonmonotonic, raw
-   evaluation traces were unavailable, and the terminal policy had no listed
-   cloud checkpoint.
+7. Completed repair audit: the terminal policy was found in the adapter
+   inventory, deployed, and compared with the base model over 32 saved
+   standalone rows. It remains unpromoted because the four-task effect was
+   heterogeneous and the no-frame Jinn task regressed.
 8. Compare base and adapter on neutral/no-frame, override, and paired-skin
    evaluations before considering a 100-step continuation.
 
@@ -120,15 +122,31 @@ change any row's pending review state.
 - Training critical violations: `0/640`
 - Reasoning traces: `632/640`
 - Valid final JSON: `620/640`
-- Ready cloud checkpoints: step 5 only
+- Ready resumable optimizer checkpoints: step 5 only
+- Ready terminal adapter: `dqyfss0yuztdb35byayfu0j9`
 
 The final held-out mean was `+0.013125` above the matched step-0 evaluation,
 but the step-5 regression violated the frozen nondecreasing-reward gate. Prime
-also exposed only aggregate evaluation metrics and did not list a checkpoint
-for terminal policy version 9. No longer run or larger-model QLoRA is
-authorized from this result. The exact receipt is
+also exposed only aggregate metrics for the integrated evaluations. The repair
+audit found that the final policy was stored separately from resumable
+checkpoints as adapter `dqyfss0yuztdb35byayfu0j9`, then deployed it and ran a
+matched standalone row-level gate:
+
+- base mean reward: `0.389625`
+- terminal-adapter mean reward: `0.493250` (`+0.103625`)
+- strict final-contract rate: `7/16` to `9/16`
+- truncation rate: `9/16` to `7/16`
+- critical violations: `0/16` for both
+- construct deltas: Beast `+0.321750`, Jinn `-0.114500`
+- four-task bootstrap interval: `[-0.169875, 0.477000]`
+
+The direction is encouraging but not consistent: nearly all of the gain came
+from one Beast task while the no-frame Jinn task fell by `0.229`. No longer run
+or larger-model QLoRA is authorized from this result. The exact run receipt is
 `constructs/qwen35_4b_owner_override_prime_rl_zjvi4cvo860fyhz7ekgemv0q_receipt_20260724.json`;
-the raw 12.4 MB archive is under
+the root-cause and repair record is
+`constructs/qwen35_4b_zjvi4c_root_cause_repair_20260724.json`;
+the raw 13.3 MB archive is under
 `D:/Research_Engine/jinn_or_beast/primelab_rl_qwen35_4b_jinn_constructs_zjvi4cvo860fyhz7ekgemv0q`.
 
 ## Hosted smoke evidence

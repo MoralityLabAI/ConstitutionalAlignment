@@ -11,6 +11,7 @@ from statistics import fmean
 from typing import Any
 
 EXPECTED_CONSTRUCTS = frozenset({"jinn_ness_v1", "beast_from_earth_witness_v1"})
+EXPECTED_BASE_MODEL = "Qwen/Qwen3.5-4B"
 DIMENSION_METRICS = (
     "accountable_choice",
     "entrusted_stewardship",
@@ -120,6 +121,24 @@ def summarize_group(rows: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def validate_model(model: Any) -> None:
+    if model == EXPECTED_BASE_MODEL:
+        return
+    if not isinstance(model, str):
+        raise TypeError(f"model must be a string, got {model!r}")
+    prefix = f"{EXPECTED_BASE_MODEL}:"
+    adapter_id = model.removeprefix(prefix)
+    normalized_adapter_id = adapter_id.replace("-", "").replace("_", "")
+    if not model.startswith(prefix) or not normalized_adapter_id.isalnum():
+        raise ValueError(f"unexpected model: {model!r}")
+
+
+def evaluation_viewer_url(evaluation_id: str) -> str | None:
+    if len(evaluation_id) == 24 and evaluation_id.isalnum():
+        return f"https://app.primeintellect.ai/dashboard/evaluations/{evaluation_id}"
+    return None
+
+
 def summarize(
     metadata: dict[str, Any],
     rows: list[dict[str, Any]],
@@ -131,8 +150,7 @@ def summarize(
         raise ValueError(f"expected {expected_rows} rows, found {len(rows)}")
     if metadata.get("env_id") != "moralitylab/jinn-beast-metta":
         raise ValueError(f"unexpected environment: {metadata.get('env_id')!r}")
-    if metadata.get("model") != "Qwen/Qwen3.5-4B":
-        raise ValueError(f"unexpected model: {metadata.get('model')!r}")
+    validate_model(metadata.get("model"))
     if metadata.get("env_args", {}).get("task_mode") != "constructs":
         raise ValueError("evaluation did not use task_mode=constructs")
     thinking = (
@@ -289,9 +307,7 @@ def main() -> None:
         "schema_version": "jinn_beast_construct_prime_eval_analysis_v1",
         "status": "complete",
         "evaluation_id": args.evaluation_id,
-        "viewer_url": (
-            f"https://app.primeintellect.ai/dashboard/evaluations/{args.evaluation_id}"
-        ),
+        "viewer_url": evaluation_viewer_url(args.evaluation_id),
         "metadata": metadata,
         "summary": summary,
         "artifacts": {
@@ -308,8 +324,9 @@ def main() -> None:
             },
         },
         "claim_boundary": (
-            "Development-only baseline evidence. It measures task-interface and "
-            "policy behavior; it does not establish a training effect."
+            "Development-only evaluation evidence. It measures task-interface and "
+            "policy behavior; an individual run does not establish a training effect "
+            "without its matched comparison."
         ),
     }
     analysis_path.write_text(

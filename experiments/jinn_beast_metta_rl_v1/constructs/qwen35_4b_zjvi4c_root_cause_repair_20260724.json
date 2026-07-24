@@ -1,0 +1,126 @@
+{
+  "schema_version": "jinn_beast_prime_rl_root_cause_repair_v1",
+  "status": "completed_no_promotion",
+  "run_id": "zjvi4cvo860fyhz7ekgemv0q",
+  "terminal_adapter": {
+    "id": "dqyfss0yuztdb35byayfu0j9",
+    "model_identifier": "Qwen/Qwen3.5-4B:dqyfss0yuztdb35byayfu0j9",
+    "status": "READY",
+    "deployment_status": "DEPLOYED"
+  },
+  "tool_versions": {
+    "prime_cli_at_training_launch": "0.5.49",
+    "prime_cli_after_wsl_upgrade": "0.6.20",
+    "prime_cli_for_standalone_windows_eval": "0.5.36",
+    "verifiers_for_standalone_windows_eval": "0.2.1"
+  },
+  "investigation": {
+    "batch_composition": {
+      "finding": "The asynchronous trainer admitted all 64 batch rollouts concurrently. Completion-order batching allowed slower eight-rollout prompt groups to cross the finite shuffled eight-task cycle boundary, so steps 3 through 9 contained duplicate and missing tasks.",
+      "observed_range": {
+        "tasks_per_step": [
+          6,
+          8
+        ],
+        "construct_rollouts_per_step": [
+          24,
+          40
+        ]
+      },
+      "repair": "Cap max_inflight_rollouts at 8 so exactly one prompt group races at a time and every 64-rollout update consumes one complete eight-task epoch."
+    },
+    "integrated_evaluation_noise": {
+      "finding": "Prime CLI 0.5.49 rejected explicit evaluation sampling controls. The resulting 4-task, 16-rollout integrated evaluations were too small and not sampling-frozen, so the step-5 dip cannot be separated cleanly from stochastic generation.",
+      "repair": "Prime CLI 0.6.20 accepts [eval.sampling]. The repaired config freezes max_tokens=6144, temperature=0.0, and enable_thinking=true."
+    },
+    "evaluation_row_observability": {
+      "finding": "The Prime RL monitor records aggregate integrated-evaluation metrics but does not upload integrated row samples. This was monitor behavior rather than an environment scoring failure.",
+      "repair": "Run matched standalone base and terminal-adapter evaluations and preserve metadata plus results.jsonl locally."
+    },
+    "terminal_artifact": {
+      "finding": "The earlier audit queried resumable checkpoints only and therefore found step 5. Prime emitted the final policy in the separate adapter/deployment inventory.",
+      "repair": "Resolve and deploy final adapter dqyfss0yuztdb35byayfu0j9; record both optimizer-checkpoint and terminal-adapter inventories."
+    },
+    "windows_evaluation_path": {
+      "finding": "Verifiers generated a result directory from the adapter model identifier while replacing '/' but not ':', which is illegal in a Windows filename.",
+      "repair": "The local Verifiers path sanitizer now replaces both '/' and ':' in generated result directory names. No scoring or model identifier was changed."
+    },
+    "local_execution_environment": {
+      "finding": "WSL initialization was unreliable during the audit: the systemd user session timed out and the journal reported an unclean shutdown. The native Prime top-level launcher also imported the Unix-only fcntl module through its tunnel command.",
+      "repair": "Invoke the Prime evaluation subcommand directly from its Windows Python environment. The inference endpoint, authentication, environment version, and evaluator remained unchanged."
+    }
+  },
+  "repairs": {
+    "unlaunched_training_config": "configs/rl/jinn_beast_constructs_qwen35_4b_thinking_repair_pilot.toml",
+    "base_eval_config": "configs/eval/jinn_beast_constructs_qwen35_4b_base_terminal_gate.toml",
+    "adapter_eval_config": "configs/eval/jinn_beast_constructs_qwen35_4b_zjvi4c_terminal_gate.toml",
+    "new_training_run_launched": false,
+    "future_training_requires_fresh_authorization": true
+  },
+  "standalone_terminal_gate": {
+    "scope": {
+      "split": "development",
+      "tasks": 4,
+      "rollouts_per_task": 4,
+      "rows_per_model": 16,
+      "temperature": 0.0,
+      "max_tokens": 6144,
+      "enable_thinking": true
+    },
+    "base": {
+      "mean_reward": 0.389625,
+      "contract_valid_rate": 0.4375,
+      "truncated_rate": 0.5625,
+      "critical_violation_rate": 0.0,
+      "mean_output_tokens": 4970.125,
+      "analysis": "experiments/jinn_beast_metta_rl_v1/constructs/qwen35_4b_terminal_gate_base_20260724_analysis.json"
+    },
+    "terminal_adapter": {
+      "mean_reward": 0.49325,
+      "contract_valid_rate": 0.5625,
+      "truncated_rate": 0.4375,
+      "critical_violation_rate": 0.0,
+      "mean_output_tokens": 4132.5625,
+      "analysis": "experiments/jinn_beast_metta_rl_v1/constructs/qwen35_4b_terminal_gate_adapter_zjvi4c_20260724_analysis.json"
+    },
+    "delta_adapter_minus_base": {
+      "mean_reward": 0.103625,
+      "contract_valid_rate": 0.125,
+      "truncated_rate": -0.125,
+      "critical_violation_rate": 0.0,
+      "mean_output_tokens": -837.5625
+    },
+    "construct_reward_delta": {
+      "beast_from_earth_witness_v1": 0.32175,
+      "jinn_ness_v1": -0.1145
+    },
+    "task_reward_delta": {
+      "beast_from_earth_witness_v1:beast_counterfeit_sign": 0.636,
+      "beast_from_earth_witness_v1:beast_silent_square": 0.0075,
+      "jinn_ness_v1:jinn_no_frame_night_shift": -0.229,
+      "jinn_ness_v1:jinn_unreliable_warden": 0.0
+    },
+    "exhaustive_task_bootstrap_95_interval": [
+      -0.169875,
+      0.477
+    ]
+  },
+  "decision": {
+    "promote": false,
+    "reason": "The aggregate direction is positive and output termination improved, but the gain is concentrated in one Beast task, the no-frame Jinn task regressed, and the four-task interval crosses zero.",
+    "next_gate": "Expand held-out construct coverage and require task-consistent improvement before another paid training run or larger-model QLoRA."
+  },
+  "cost": {
+    "training_run_total_usd": 1.5189,
+    "standalone_terminal_gate_usd": 0.0444633,
+    "total_observed_program_usd": 1.5633633,
+    "registered_reserve_usd": 3.5
+  },
+  "sources": [
+    "https://docs.primeintellect.ai/hosted-training/advanced-configs",
+    "https://docs.primeintellect.ai/hosted-training/environment-model",
+    "https://docs.primeintellect.ai/tutorials-environments/evaluating",
+    "https://docs.primeintellect.ai/inference/adapter-deployments"
+  ],
+  "claim_boundary": "This is development-only diagnostic evidence over four held-out tasks. It does not establish a confirmatory training effect or authorize larger-model scaling."
+}

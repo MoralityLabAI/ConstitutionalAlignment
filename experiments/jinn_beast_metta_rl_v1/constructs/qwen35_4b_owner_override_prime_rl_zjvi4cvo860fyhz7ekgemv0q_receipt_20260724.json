@@ -20,7 +20,10 @@
   "provenance": {
     "repository_head_at_launch": "6965a0d61ae54f53cac83988f79d43d309c05cac",
     "repository_head_subject": "Run local JinnBench QLoRA trial and repair Prime env",
-    "prime_cli_version": "0.5.49",
+    "prime_cli_version_at_launch": "0.5.49",
+    "prime_cli_version_after_audit_wsl": "0.6.20",
+    "prime_cli_version_for_standalone_windows_eval": "0.5.36",
+    "verifiers_version_for_standalone_windows_eval": "0.2.1",
     "authorization_text": "I unblock go ahead",
     "plan_path": "experiments/jinn_beast_metta_rl_v1/constructs/owner_override_development_pilot_plan_20260723.json",
     "plan_sha256": "2ec8a6a249cc11a9a39802e37a0001372f4e501e30e81bb18df988811803585f",
@@ -200,7 +203,7 @@
     "step_0_mean_reasoning_characters": 14040.515625,
     "step_9_mean_reasoning_characters": 12050.125,
     "trace_interpretation": "Thinking was observed in nearly all hosted training completions, but it was not guaranteed by the installed Prime CLI schema and eight training samples had no reasoning_content.",
-    "eval_row_limitation": "Prime exposed aggregate evaluation reward, error, length, and truncation metrics but did not expose the 16 per-gate evaluation rows through the RL rollout endpoint."
+    "eval_row_limitation": "Prime exposed aggregate integrated-RL evaluation metrics but not the 16 per-gate rows through the RL rollout endpoint. The repaired audit therefore ran matched standalone base and terminal-adapter evaluations and froze all 32 local rows."
   },
   "sampling_audit": {
     "registered_task_universe": 8,
@@ -208,7 +211,9 @@
     "tasks_seen_per_training_step_max": 8,
     "construct_rollouts_per_step_min": 24,
     "construct_rollouts_per_step_max": 40,
-    "interpretation": "The full run used both constructs and all eight tasks, but individual training batches were not task-complete or construct-balanced. Per-step training means therefore mix policy movement with batch-composition noise."
+    "root_cause": "The asynchronous orchestrator admitted 64 in-flight rollouts, equal to the full batch. Completion-order batching allowed slow prompt groups to cross the finite shuffled task-cycle boundary, producing duplicate and missing tasks after step 2.",
+    "interpretation": "The full run used both constructs and all eight tasks, but individual training batches were not task-complete or construct-balanced. Per-step training means therefore mix policy movement with batch-composition noise.",
+    "repair": "The unlaunched successor config caps max_inflight_rollouts at 8, one complete prompt group, so each 64-rollout batch consumes one full eight-task epoch. This trades throughput for exact task and construct balance."
   },
   "checkpoint_receipt": {
     "ready_checkpoints": [
@@ -223,7 +228,84 @@
       }
     ],
     "final_policy_checkpoint_listed": false,
-    "interpretation": "The final evaluation used policy version 9, but the completed-run checkpoint API listed only the step-5 checkpoint. The terminal policy is not yet a reproducibly retrievable artifact."
+    "terminal_adapter": {
+      "id": "dqyfss0yuztdb35byayfu0j9",
+      "base_model": "Qwen/Qwen3.5-4B",
+      "model_identifier": "Qwen/Qwen3.5-4B:dqyfss0yuztdb35byayfu0j9",
+      "status": "READY",
+      "deployment_status": "DEPLOYED",
+      "created_at_utc": "2026-07-24 13:49:02.359000",
+      "deployed_at_utc": "2026-07-24 16:09:17.293000"
+    },
+    "interpretation": "The checkpoint API correctly lists resumable optimizer checkpoints and contains step 5 only. The terminal policy was emitted separately as the READY final adapter and is reproducibly retrievable through the deployed model identifier."
+  },
+  "cost_receipt": {
+    "training_tokens": 2303392,
+    "training_cost_usd": 0.6912,
+    "inference_tokens": 2892660,
+    "training_run_inference_cost_usd": 0.8277,
+    "training_run_total_tokens": 5196052,
+    "training_run_total_cost_usd": 1.5189,
+    "standalone_terminal_gate_cost_usd": 0.0444633,
+    "total_observed_program_cost_usd": 1.5633633,
+    "registered_reserve_usd": 3.5,
+    "within_reserve": true
+  },
+  "standalone_terminal_gate": {
+    "sampling": {
+      "temperature": 0.0,
+      "max_tokens": 6144,
+      "enable_thinking": true
+    },
+    "matched_scope": {
+      "split": "development",
+      "tasks": 4,
+      "rollouts_per_task": 4,
+      "rows_per_model": 16
+    },
+    "base": {
+      "mean_reward": 0.389625,
+      "contract_valid_rate": 0.4375,
+      "parsed_final_json_rate": 0.4375,
+      "truncated_rate": 0.5625,
+      "critical_violation_rate": 0.0,
+      "mean_output_tokens": 4970.125
+    },
+    "terminal_adapter": {
+      "mean_reward": 0.49325,
+      "contract_valid_rate": 0.5625,
+      "parsed_final_json_rate": 0.5625,
+      "truncated_rate": 0.4375,
+      "critical_violation_rate": 0.0,
+      "mean_output_tokens": 4132.5625
+    },
+    "delta_adapter_minus_base": {
+      "mean_reward": 0.103625,
+      "contract_valid_rate": 0.125,
+      "parsed_final_json_rate": 0.125,
+      "truncated_rate": -0.125,
+      "critical_violation_rate": 0.0,
+      "mean_output_tokens": -837.5625
+    },
+    "construct_reward_delta": {
+      "beast_from_earth_witness_v1": 0.32175,
+      "jinn_ness_v1": -0.1145
+    },
+    "task_reward_delta": {
+      "beast_from_earth_witness_v1:beast_counterfeit_sign": 0.636,
+      "beast_from_earth_witness_v1:beast_silent_square": 0.0075,
+      "jinn_ness_v1:jinn_no_frame_night_shift": -0.229,
+      "jinn_ness_v1:jinn_unreliable_warden": 0.0
+    },
+    "exhaustive_task_bootstrap": {
+      "resamples": 256,
+      "mean_delta": 0.103625,
+      "percentile_95_interval": [
+        -0.169875,
+        0.477
+      ]
+    },
+    "interpretation": "The terminal adapter improved aggregate reward, contract completion, and truncation, but the gain was concentrated in one Beast task while the no-frame Jinn task regressed. The four-task interval crosses zero, so this is diagnostic evidence and does not justify promotion."
   },
   "gates": {
     "environment_error_abort": {
@@ -252,28 +334,33 @@
       ]
     },
     "non_decreasing_trace_termination_promotion": {
-      "status": "not_verifiable_fail_closed",
-      "evidence": "Training trace-plus-valid-final rates were available, but raw evaluation traces were not exposed."
+      "status": "pass_on_standalone_terminal_gate",
+      "evidence": "Matched raw-row truncation fell from 9/16 for the base model to 7/16 for the terminal adapter.",
+      "limitation": "Only four development tasks were evaluated."
     },
     "zero_critical_violations_promotion": {
-      "status": "not_verifiable_fail_closed",
-      "evidence": "Training rows passed; evaluation rows were aggregate-only."
+      "status": "pass_on_standalone_terminal_gate",
+      "evidence": "Zero critical violations across 16 base and 16 terminal-adapter rows."
     },
     "reproducible_terminal_artifact": {
-      "status": "fail",
-      "evidence": "Only the step-5 checkpoint was listed after completion."
+      "status": "pass",
+      "evidence": "Final adapter dqyfss0yuztdb35byayfu0j9 is READY and deployed as Qwen/Qwen3.5-4B:dqyfss0yuztdb35byayfu0j9."
+    },
+    "cross_task_reward_consistency": {
+      "status": "fail_closed",
+      "evidence": "Task deltas were +0.6360, +0.0075, -0.2290, and 0.0000; the exhaustive four-task bootstrap interval was [-0.169875, 0.477]."
     }
   },
   "decision": {
     "promote_to_larger_qlora": false,
     "launch_follow_on_run": false,
     "scientific_result": "diagnostic_only",
-    "interpretation": "The final held-out mean is directionally positive relative to the matched step-0 evaluation, and the reward signal trained without observed critical violations. The nonmonotonic held-out trajectory, small evaluation, incomplete evaluation-row observability, batch-composition noise, and absent terminal checkpoint prevent promotion.",
+    "interpretation": "The terminal artifact is recoverable, row-level evaluation is now auditable, and the adapter directionally improved aggregate reward and trace termination without observed critical violations. Promotion remains blocked because the historical integrated trajectory was nonmonotonic, training batches were composition-skewed, the standalone gate has only four tasks, the task-bootstrap interval crosses zero, and the no-frame Jinn task regressed.",
     "next_registered_work": [
-      "Make every training batch task-complete and construct-balanced or report stratified batch weights.",
-      "Guarantee a cloud checkpoint for the policy used by the terminal evaluation.",
-      "Run a separate row-level evaluation of the selected checkpoint so reasoning termination and critical-violation gates are directly auditable.",
-      "Increase held-out task coverage before spending the signal on a larger-model QLoRA."
+      "Expand held-out Jinn and Beast task coverage before another paid run.",
+      "Use the repaired max_inflight_rollouts=8 configuration so each training batch is task-complete and construct-balanced.",
+      "Freeze deterministic evaluation sampling and continue storing standalone raw rows.",
+      "Do not spend this signal on a larger-model QLoRA until reward improvement is consistent across constructs and no-frame tasks."
     ]
   },
   "archive": {
@@ -285,11 +372,15 @@
       "logs",
       "checkpoint metadata",
       "ten rollout files covering steps 0 through 9",
-      "ten reward-distribution snapshots"
+      "ten reward-distribution snapshots",
+      "terminal adapter deployment and cost receipts",
+      "matched standalone base and terminal-adapter configs",
+      "32 standalone evaluation rows with metadata and analyses",
+      "root-cause repair receipt and execution logs"
     ],
-    "manifest_file_count": 29,
-    "manifest_total_bytes": 12403181,
-    "manifest_sha256": "0fd30dd5a03a25ec488d2fa3497fda39a1383e26255ce58471fbc5c714890e19",
+    "manifest_file_count": 45,
+    "manifest_total_bytes": 13274036,
+    "manifest_sha256": "5ae4c015632053131b117e5be1203ef6c510fe039d4d9c1ccd7b6d7ee5784a81",
     "manifest_excludes": [
       "manifest.json",
       "run_receipt.json"

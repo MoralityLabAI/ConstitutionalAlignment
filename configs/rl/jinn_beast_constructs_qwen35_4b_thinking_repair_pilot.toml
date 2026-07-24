@@ -1,0 +1,54 @@
+# Repaired development-only successor to run zjvi4cvo860fyhz7ekgemv0q.
+#
+# Do not launch without fresh user authorization. Candidate rows remain
+# training_approved=false; this retains the explicit development override.
+#
+# Exact-batch invariant: max_inflight_rollouts equals one eight-rollout group.
+# The legacy environment serves all eight task indices once per shuffled epoch,
+# so only one group may race at a time and each 64-rollout batch consumes one
+# complete task epoch.
+
+name = "jinn-beast-constructs-qwen35-4b-thinking-repair"
+model = "Qwen/Qwen3.5-4B"
+max_steps = 10
+batch_size = 64
+rollouts_per_example = 8
+max_inflight_rollouts = 8
+learning_rate = 1e-4
+lora_alpha = 16
+
+[sampling]
+max_tokens = 6144
+temperature = 0.7
+enable_thinking = true
+
+[[env]]
+id = "moralitylab/jinn-beast-metta"
+name = "jinn-beast-constructs-thinking-repair-train"
+version = "0.1.8"
+args = { split = "candidate_train", task_mode = "constructs", construct = "balanced", require_training_approval = false }
+
+[eval]
+interval = 5
+num_examples = -1
+rollouts_per_example = 4
+skip_first_step = false
+
+[eval.sampling]
+max_tokens = 6144
+temperature = 0.0
+enable_thinking = true
+
+[[eval.env]]
+id = "moralitylab/jinn-beast-metta"
+name = "jinn-beast-constructs-thinking-repair-development"
+version = "0.1.8"
+args = { split = "development", task_mode = "constructs", construct = "balanced", require_training_approval = true }
+
+[checkpoints]
+interval = 5
+keep_cloud = 2
+
+[adapters]
+interval = 0
+keep_last = 1
