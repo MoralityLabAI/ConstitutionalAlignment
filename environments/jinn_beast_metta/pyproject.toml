@@ -1,6 +1,6 @@
 [project]
 name = "jinn-beast-metta"
-version = "0.1.7"
+version = "0.1.8"
 description = "Verifiers v1 taskset for frame-robust constitutional storyworld decisions."
 tags = ["reinforcement-learning", "alignment", "storyworlds", "metta", "qwen"]
 requires-python = ">=3.11,<3.14"
@@ -17,6 +17,7 @@ packages = ["jinn_beast_metta"]
 
 [tool.hatch.build]
 include = [
+  "jinn_beast_metta/*.py",
   "jinn_beast_metta/data/*.json",
   "jinn_beast_metta/data/*.jsonl",
 ]

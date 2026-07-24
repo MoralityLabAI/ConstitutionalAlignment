@@ -65,3 +65,24 @@ larger-model QLoRA.
 8. Return the larger model to the same diagnostic and promotion protocols.
 
 The current training and QLoRA scale gates remain closed.
+
+## Local Qwen3-1.7B Jinn QLoRA signal test
+
+Development trial `jbv1-qwen3-1p7b-jinn-qlora-development-001` trained a
+rank-2 `q_proj`/`v_proj` NF4 adapter for ten steps on four review-pending,
+uncontaminated `candidate_train` Jinn construct exemplars. The two development
+tasks were disjoint and evaluated with the same thinking-enabled 160-token
+generation contract at steps 0, 5, and 10.
+
+| Step | Mean reward | Contract | Best action | Final emitted | Trace terminated |
+|---:|---:|---:|---:|---:|---:|
+| 0 | 0.4205 | 0.50 | 0.50 | 1.00 | 1.00 |
+| 5 | 0.4205 | 0.50 | 0.50 | 0.50 | 0.50 |
+| 10 | 0.0000 | 0.00 | 0.00 | 0.50 | 0.50 |
+
+Step 5 tied the base aggregate but converted one answer into an unterminated
+reasoning trace. Step 10 also introduced a code-fenced final answer, collapsing
+the strict deterministic reward. Critical-violation rate stayed at zero, but
+neither checkpoint is promotable. This result strengthens the case for an RL
+signal that explicitly rewards final-contract emission and trace termination;
+it does not authorize the blocked scale-QLoRA funnel.

@@ -575,6 +575,9 @@ def main() -> int:
         "vram_limit_mb": args.vram_limit_mb,
         "vram_reserve_mb": args.vram_reserve_mb,
         "lora": {"r": args.lora_r, "alpha": args.lora_alpha, "dropout": args.lora_dropout},
+        "target_modules": [
+            item.strip() for item in args.target_modules.split(",") if item.strip()
+        ],
         "init_adapter_path": str(Path(args.init_adapter_path).resolve()) if args.init_adapter_path else "",
         "safety_contract": {
             "identity_is_metaphor": True,

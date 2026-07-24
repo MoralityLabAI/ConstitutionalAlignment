@@ -128,6 +128,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--prompts-jsonl", default=str(DEFAULT_PROBES_PATH))
     parser.add_argument("--system-prompt-file", default="")
     parser.add_argument("--max-new-tokens", type=int, default=96)
+    parser.add_argument("--enable-thinking", action="store_true")
     parser.add_argument("--probe-start", type=int, default=1)
     parser.add_argument("--probe-count", type=int, default=0)
     parser.add_argument("--storyworld-plan", default="")
@@ -313,7 +314,13 @@ def load_system_prompt(path_text: str) -> str:
     return prompt
 
 
-def render_prompt(tokenizer: Any, user_prompt: str, system_prompt: str) -> str:
+def render_prompt(
+    tokenizer: Any,
+    user_prompt: str,
+    system_prompt: str,
+    *,
+    enable_thinking: bool = False,
+) -> str:
     messages = [
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_prompt},
@@ -324,7 +331,7 @@ def render_prompt(tokenizer: Any, user_prompt: str, system_prompt: str) -> str:
                 messages,
                 tokenize=False,
                 add_generation_prompt=True,
-                enable_thinking=False,
+                enable_thinking=enable_thinking,
             )
         except TypeError:
             return tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
@@ -586,7 +593,10 @@ def run_smoke(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
 
         def responder(storyworld_system_prompt: str, user_prompt: str) -> str:
             rendered = render_prompt(
-                tokenizer, user_prompt, storyworld_system_prompt
+                tokenizer,
+                user_prompt,
+                storyworld_system_prompt,
+                enable_thinking=args.enable_thinking,
             )
             response, _raw_response, _outputs = generate_response(
                 model, tokenizer, rendered, args.max_new_tokens
@@ -665,7 +675,12 @@ def run_smoke(args: argparse.Namespace, log: RunLog, summary: dict) -> int:
 
     for index, probe in enumerate(probes, start=args.probe_start):
         prompt = probe["prompt"]
-        rendered = render_prompt(tokenizer, prompt, system_prompt)
+        rendered = render_prompt(
+            tokenizer,
+            prompt,
+            system_prompt,
+            enable_thinking=args.enable_thinking,
+        )
         response, raw_response, _outputs = generate_response(model, tokenizer, rendered, args.max_new_tokens)
         repair_history = []
         if args.repair_violations:
@@ -749,6 +764,7 @@ def main() -> int:
         "local_files_only": bool(args.local_files_only),
         "skip_cuda_allocator_warmup": bool(args.skip_cuda_allocator_warmup),
         "vram_limit_mb": args.vram_limit_mb,
+        "enable_thinking": bool(args.enable_thinking),
         "model_offload_allowed": False,
     }
     log.summary(summary)

@@ -1,0 +1,43 @@
+{
+  "schema_version": "jinn_bench_local_qwen3_1p7b_qlora_amendment_v1",
+  "amendment_id": "jbv1-qwen3-1p7b-jinn-pagefile-monitor-tolerance-01",
+  "registered_before_checkpoint_or_behavioral_outcomes": true,
+  "parent_plan_sha256": "b15a4b8cc5e285151779ec6708c23c19e85a3fc3af150a1f9997382099278f11",
+  "triggering_attempt": {
+    "run_name": "jinn_bench_jinn_development_v1_Qwen3-1.7B-70d244c_20260724T022841Z",
+    "status": "externally_aborted_after_two_optimizer_steps_before_first_checkpoint",
+    "abort_reason": "pagefile_growth_mb_exceeded",
+    "pagefile_growth_mb": 14,
+    "maximum_pagefile_growth_mb": 0,
+    "launcher_summary_sha256": "9d12231e54882b22a4cf1281e728db309a0d224ec1b42f2b3e7583ad30abb38a",
+    "run_summary_sha256": "52db13040b00ddb6293f2a780cff3deb8a0999e8aaa92e1f69cbf0cf4f6382fb",
+    "stderr_sha256": "ae02976b212a4336c7932550664255f433155300aac9c00d3855914d4896d428",
+    "checkpoint_written": false,
+    "behavioral_evaluation_performed": false,
+    "cleanup_passed": true
+  },
+  "change": {
+    "maximum_pagefile_growth_mb_before": 0,
+    "maximum_pagefile_growth_mb_after": 64,
+    "maximum_retries": 1
+  },
+  "unchanged": [
+    "model",
+    "quantization",
+    "data",
+    "seed",
+    "training steps",
+    "checkpoint cadence",
+    "sequence length",
+    "learning rate",
+    "LoRA topology",
+    "VRAM limit",
+    "process commit limit",
+    "CPU limit",
+    "I/O limit",
+    "evaluation tasks",
+    "promotion rule"
+  ],
+  "rationale": "A 14 MB operating-system pagefile counter movement triggered the zero-tolerance monitor while private commit, available RAM, I/O, VRAM, and process ownership remained within their fixed bounds. A 64 MB observation tolerance avoids treating small ambient counter movement as model offload; CPU or disk model offload remains prohibited.",
+  "claim_boundary": "This amendment authorizes one clean restart from the frozen base. The partial two-step process is abandoned and cannot be resumed, evaluated, or promoted."
+}

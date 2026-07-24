@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
     [string]$ModelId = "D:\Research_Engine\models\Qwen3.5\Qwen2.5-3B",
-    [string]$FallbackModelId = "D:\Research_Engine\models\Pixie-Josie-1.7B-v2",
+    [string]$FallbackModelId = "",
     [string]$DatasetDir = "",
     [ValidateSet("train", "fresh_train")][string]$TrainSplit = "train",
     [string]$OutputRoot = "",
@@ -13,6 +13,10 @@ param(
     [int]$VramReserveMb = 192,
     [double]$LearningRate = 1e-4,
     [ValidateRange(1, 64)][int]$GradientAccumulationSteps = 1,
+    [ValidateRange(1, 64)][int]$LoraRank = 4,
+    [ValidateRange(1, 128)][int]$LoraAlpha = 8,
+    [ValidateRange(0.0, 1.0)][double]$LoraDropout = 0.05,
+    [string]$TargetModules = "q_proj,k_proj,v_proj,o_proj",
     [int]$Seed = 713,
     [string]$InitAdapterPath = "",
     [int]$RamLimitMb = 8192,
@@ -216,6 +220,10 @@ function Invoke-GuardedAttempt {
         "--vram-reserve-mb", "$VramReserveMb",
         "--learning-rate", "$LearningRate",
         "--gradient-accumulation-steps", "$GradientAccumulationSteps",
+        "--lora-r", "$LoraRank",
+        "--lora-alpha", "$LoraAlpha",
+        "--lora-dropout", "$LoraDropout",
+        "--target-modules", $TargetModules,
         "--seed", "$Seed",
         "--save-steps", "$SaveSteps",
         "--save-total-limit", "$SaveTotalLimit"
@@ -471,6 +479,10 @@ try {
             save_steps = $SaveSteps
             save_total_limit = $SaveTotalLimit
             gradient_accumulation_steps = $GradientAccumulationSteps
+            lora_rank = $LoraRank
+            lora_alpha = $LoraAlpha
+            lora_dropout = $LoraDropout
+            target_modules = $TargetModules
             seed = $Seed
             vram_limit_mb = $VramLimitMb
             vram_reserve_mb = $VramReserveMb

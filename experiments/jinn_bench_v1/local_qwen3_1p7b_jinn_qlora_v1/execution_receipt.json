@@ -1,0 +1,66 @@
+{
+  "schema_version": "jinn_bench_local_qwen3_1p7b_execution_receipt_v1",
+  "experiment_id": "jbv1-qwen3-1p7b-jinn-qlora-development-001",
+  "status": "completed_stopped_no_promotion",
+  "plan_sha256": "b15a4b8cc5e285151779ec6708c23c19e85a3fc3af150a1f9997382099278f11",
+  "amendment_sha256": "7d32b6281e1a92822758bb857d4f3fe05b16b3f5134648d594fad495e355fa80",
+  "prepared_manifest_sha256": "e4357ec9f0b84b089b3061319ee3d235f809161836b385e4b3a3d7728dd2c08b",
+  "training": {
+    "run_name": "jinn_bench_jinn_development_v1_Qwen3-1.7B-70d244c_20260724T023039Z",
+    "global_step": 10,
+    "epochs": 2.5,
+    "train_loss": 1.823671042919159,
+    "runtime_seconds": 30.7371,
+    "max_cuda_allocated_mb": 3794.91,
+    "vram_limit_mb": 3840,
+    "peak_process_commit_mb": 7559.473,
+    "pagefile_growth_mb": 0,
+    "cpu_or_disk_offload": false,
+    "cleanup_passed": true,
+    "run_summary_sha256": "d4e82115a59bd7687869f53223a5e285f7f8676deed7def0a0b9f772ab4f3d7f",
+    "train_metrics_sha256": "e8c06be9bc16947c20ba1096eadccf27202dbc3efcc54b600e6a426827ceac69",
+    "launcher_summary_sha256": "32833689553a068927a34d3b5bf4bd772e128112fe67b2328c0db65d0bb3aa7c",
+    "cleanup_sha256": "8ad5d97d4b725c78053c85cdd200c86ee260bb34025145484e2a1a809fa4378a",
+    "step_5_adapter_sha256": "84670829c5223fc6da5c4d19aa314c266cc67ee2cea4addc4f1af8b45978cf09",
+    "step_10_adapter_sha256": "bc1f99088b2c5d21772daadc52ccc5a5d9d78ae85db29a988d42088d08af3090"
+  },
+  "evaluation": {
+    "step_0": {
+      "score_sha256": "14330299227ee2d3e9fefda3b142be647f9e9d865bbae037dea57d75e822a299",
+      "generations_sha256": "e4081da936498bfd20bc385560b3f6ce8c6e04626c5fd9a77dff7489cad50409",
+      "mean_reward": 0.4205,
+      "contract_valid_rate": 0.5,
+      "highest_scoring_action_rate": 0.5,
+      "final_response_rate": 1.0,
+      "trace_termination_rate": 1.0,
+      "critical_violation_rate": 0.0
+    },
+    "step_5": {
+      "score_sha256": "1c525280e6c69f88ff4ca5a513f4337a473f2f66c2c4b388e052ebd2e113fe8e",
+      "generations_sha256": "3eb81b525e6a97f0d955baf9e6aeff4f67363d1fe34d5de2f26052858954d4d9",
+      "mean_reward": 0.4205,
+      "contract_valid_rate": 0.5,
+      "highest_scoring_action_rate": 0.5,
+      "final_response_rate": 0.5,
+      "trace_termination_rate": 0.5,
+      "critical_violation_rate": 0.0
+    },
+    "step_10": {
+      "score_sha256": "ccd1134dc0dbe84ad19c2926cf141ca1de333c392251b3a885e929756824d0d0",
+      "generations_sha256": "c3a0eeaf93ecc36a704b8e59c850ee64b52e84deaf2b0a35bee24650fbe1d9d1",
+      "mean_reward": 0.0,
+      "contract_valid_rate": 0.0,
+      "highest_scoring_action_rate": 0.0,
+      "final_response_rate": 0.5,
+      "trace_termination_rate": 0.5,
+      "critical_violation_rate": 0.0
+    }
+  },
+  "promotion": {
+    "authorized": false,
+    "decision": "stop",
+    "reason": "No reward improvement at step 5; step 10 regressed reward and strict-format behavior; trace termination decreased at both adapter checkpoints."
+  },
+  "artifact_root": "D:\\Research_Engine\\jinn_or_beast\\jinn_bench_qwen3_1p7b_qlora_v1",
+  "claim_boundary": "Exploratory evidence from two held-out development tasks and review-pending training rows. It is not confirmatory evidence or a training-release receipt."
+}

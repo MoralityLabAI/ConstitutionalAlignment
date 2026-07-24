@@ -1,0 +1,54 @@
+{
+  "artifacts": {
+    "development_prompts.jsonl": {
+      "bytes": 1979,
+      "sha256": "853557e2c80226d9e08fa0b59ebb76091669766928f23fc804d9f348c6c2f57a"
+    },
+    "development_system_prompt.txt": {
+      "bytes": 424,
+      "sha256": "c84023e6935d62d8e97a2c5557b41050413847386e68ac845d312ecda10539d6"
+    },
+    "train.jsonl": {
+      "bytes": 7305,
+      "sha256": "3f1c0abae90c31ea0a852f526fe17a8b5e7d753260761bcc30f211ea434a9052"
+    },
+    "val.jsonl": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "claim_boundary": "This package supports one exploratory local signal test over review-pending candidate rows. It is not a training release, a scale authorization, or confirmatory evidence.",
+  "constitution_id": "jinn_bench_jinn_development_v1",
+  "construct_id": "jinn_ness_v1",
+  "development_task_ids": [
+    "jinn_ness_v1:jinn_no_frame_night_shift",
+    "jinn_ness_v1:jinn_unreliable_warden"
+  ],
+  "development_tasks": 2,
+  "model_path": "D:\\Research_Engine\\models\\Qwen3-1.7B-70d244c",
+  "prime_training_ready": false,
+  "schema_version": "jinn_bench_local_qlora_preparation_v1",
+  "source": {
+    "candidate_sft_sha256": "6db3a4fa1ad680f12375b269d68db0e3389cbeb106d76fc1b7324a2cfe38701c",
+    "construct_tasks_sha256": "7c9a99771b44e91504c616c5be16279fbdf5eecce3b1ad7d721cdc400ca3845a"
+  },
+  "status": "prepared_development_only",
+  "thinking_eval_prompt_tokens": {
+    "maximum": 236,
+    "minimum": 220
+  },
+  "train_eval_overlap": [],
+  "train_rows": 4,
+  "train_task_ids": [
+    "jinn_ness_v1:jinn_blame_below",
+    "jinn_ness_v1:jinn_entrusted_keys",
+    "jinn_ness_v1:jinn_hidden_safety_record",
+    "jinn_ness_v1:jinn_private_certainty"
+  ],
+  "train_tokens": {
+    "maximum": 280,
+    "minimum": 275,
+    "total": 1108
+  },
+  "training_approved": false
+}

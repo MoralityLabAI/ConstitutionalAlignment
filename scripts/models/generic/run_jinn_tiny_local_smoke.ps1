@@ -8,6 +8,7 @@ param(
     [string]$PromptsJsonl = "",
     [string]$SystemPromptFile = "",
     [int]$MaxNewTokens = 96,
+    [switch]$EnableThinking,
     [int]$ProbeStart = 1,
     [int]$ProbeCount = 0,
     [string]$StoryworldPlan = "",
@@ -218,6 +219,9 @@ try {
     )
     if ($SystemPromptFile) {
         $args += @("--system-prompt-file", $SystemPromptFile)
+    }
+    if ($EnableThinking) {
+        $args += "--enable-thinking"
     }
     if ($StoryworldPlan) {
         $args += @(
@@ -487,6 +491,7 @@ try {
         storyworld_plan = $StoryworldPlan
         storyworld_cycle = $StoryworldCycle
         storyworld_lane = $StoryworldLane
+        enable_thinking = [bool]$EnableThinking
         storyworld_episode_start = $StoryworldEpisodeStart
         storyworld_episode_count = $StoryworldEpisodeCount
         system_prompt_file = $SystemPromptFile

@@ -7,7 +7,7 @@ The package also exposes `load_environment(...)` for Prime Hosted Evaluation.
 Both interfaces share the same row selector, fail-closed release gate, and
 deterministic scorer.
 
-Version `0.1.7` exposes `task_mode="constructs"`. This mode loads two independent
+Version `0.1.8` exposes `task_mode="constructs"`. This mode loads two independent
 instruments:
 
 - `construct="jinn"` for accountable choice and entrusted stewardship;
@@ -75,4 +75,4 @@ artifact is regenerated.
 The construct thinking baseline is configured in
 `configs/jinn_beast_constructs_hosted_thinking_baseline.toml`.
 
-Private Hub package target: `moralitylab/jinn-beast-metta@0.1.7`.
+Private Hub package target: `moralitylab/jinn-beast-metta@0.1.8`.

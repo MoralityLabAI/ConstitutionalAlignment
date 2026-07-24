@@ -1,0 +1,36 @@
+{
+  "schema_version": "jinn_beast_metta_prime_environment_upload_receipt_v1",
+  "status": "integration_passed",
+  "environment": {
+    "id": "ek1lo5xk4hlxlrlzx9iavbir",
+    "owner": "moralitylab",
+    "name": "jinn-beast-metta",
+    "visibility": "PRIVATE",
+    "version": "0.1.8",
+    "version_id": "yn2mv03cz7ku9fuji6qiau02",
+    "content_hash": "3467e47d8b40274a580a8d8526a329fe98e9f3e84f3d851c5d531a9ac07fefa4"
+  },
+  "package": {
+    "wheel": "jinn_beast_metta-0.1.8-py3-none-any.whl",
+    "bytes": 193777,
+    "sha256": "687467f0497b115be188706c83c4d4cf923c398ee2b22c753dd4b7bd9ee04d2d",
+    "isolated_install_passed": true,
+    "isolated_environment_type": "SingleTurnEnv",
+    "isolated_development_rows": 4
+  },
+  "integration": {
+    "job_id": "d1kanxiyf4zo4i3hb0u82o9d",
+    "status": "SUCCESS"
+  },
+  "repair": {
+    "prior_version": "0.1.7",
+    "failure": "Wheel contained package data but omitted the Python modules.",
+    "fix": "Include jinn_beast_metta/*.py in the Hatch wheel build."
+  },
+  "rl_launch": {
+    "started": false,
+    "reason": "All frozen RL configs train on candidate_train with require_training_approval=true, while source review and candidate-training release remain blocked."
+  },
+  "viewer_url": "https://app.primeintellect.ai/dashboard/environments/moralitylab/jinn-beast-metta",
+  "claim_boundary": "Successful environment packaging and integration is infrastructure evidence, not an RL training result."
+}

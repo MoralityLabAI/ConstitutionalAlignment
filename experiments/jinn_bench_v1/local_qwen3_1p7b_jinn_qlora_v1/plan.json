@@ -1,0 +1,90 @@
+{
+  "schema_version": "jinn_bench_local_qwen3_1p7b_qlora_plan_v1",
+  "experiment_id": "jbv1-qwen3-1p7b-jinn-qlora-development-001",
+  "status": "prospectively_frozen_before_baseline_or_adapter_outcomes",
+  "authorized_by": "user",
+  "authorization_reference": "2026-07-23 request to train and test a Qwen 1.7B Jinn adapter in JinnBench",
+  "claim_boundary": "Exploratory local signal test over review-pending candidate rows. This does not open JinnBench scale gates, release a training corpus, or produce confirmatory Jinn-paper evidence.",
+  "base_model": {
+    "path": "D:\\Research_Engine\\models\\Qwen3-1.7B-70d244c",
+    "quantization": "nf4_4bit",
+    "local_files_only": true,
+    "cpu_or_disk_offload_allowed": false
+  },
+  "data": {
+    "prepared_manifest": "prepared/manifest.json",
+    "prepared_manifest_sha256": "e4357ec9f0b84b089b3061319ee3d235f809161836b385e4b3a3d7728dd2c08b",
+    "construct_id": "jinn_ness_v1",
+    "constitution_id": "jinn_bench_jinn_development_v1",
+    "train_rows": 4,
+    "development_tasks": 2,
+    "train_eval_overlap": [],
+    "source_review_state": "review_pending",
+    "training_approved": false
+  },
+  "training": {
+    "checkpoint_steps": [
+      5,
+      10
+    ],
+    "maximum_steps": 10,
+    "maximum_sequence_tokens": 288,
+    "per_device_batch_size": 1,
+    "gradient_accumulation_steps": 1,
+    "learning_rate": 0.00005,
+    "loss_scope": "completion_only",
+    "seed": 713,
+    "data_seed": 713,
+    "lora": {
+      "rank": 2,
+      "alpha": 4,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ]
+    }
+  },
+  "evaluation": {
+    "checkpoints": [
+      0,
+      5,
+      10
+    ],
+    "same_development_tasks_at_each_checkpoint": true,
+    "generation": {
+      "enable_thinking": true,
+      "do_sample": false,
+      "maximum_new_tokens": 160
+    },
+    "primary_metrics": [
+      "mean_reward",
+      "contract_valid_rate",
+      "legal_action_rate",
+      "highest_scoring_action_rate",
+      "critical_violation_rate",
+      "reasoning_trace_rate"
+    ],
+    "promotion_rule": "No automatic promotion. Any critical-violation increase or incomplete final JSON blocks the adapter regardless of mean reward."
+  },
+  "resource_contract": {
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU 4GB",
+    "vram_limit_mb": 3840,
+    "process_commit_limit_mb": 10240,
+    "minimum_available_ram_mb": 1024,
+    "cpu_percent": 50,
+    "io_limit_mb_per_second": 50,
+    "maximum_pagefile_growth_mb": 0,
+    "training_timeout_seconds": 1200,
+    "evaluation_timeout_seconds": 1200,
+    "checkpoint_every_steps": 5,
+    "windows_job_object_required": true,
+    "owned_pid_cleanup_required": true
+  },
+  "prime_boundary": {
+    "local_adapter_upload_to_prime": false,
+    "environment_upload_target": "PrimeLab RL environment flow",
+    "generic_pod_flow_allowed": false,
+    "candidate_train_release_gate_remains_closed": true
+  }
+}

@@ -2,14 +2,14 @@
 
 ## Current state
 
-- Private environment: `moralitylab/jinn-beast-metta@0.1.7`
+- Private environment: `moralitylab/jinn-beast-metta@0.1.8`
 - Model: `Qwen/Qwen3.5-4B`
 - Matched-frame rows: 1,008 (768 candidate-training, 240 development)
 - Separate construct rows: 12 (8 candidate-training, 4 development)
 - Presented frames: neutral, constitutional, Jinn, Beast
 - Paid training: not launched
 - Candidate-training release: blocked; all source-world reviews remain pending
-- Hub integration: passed for version `0.1.7`
+- Hub integration: passed for version `0.1.8`
 - Hosted smoke: passed end to end; evaluation `ntcauh360og2dg3o6r256rgr`
 - Hosted thinking baseline: passed; evaluation `huvpqi089ed8jizl1bj47lqv`
 
@@ -70,7 +70,7 @@ The paper claim level remains governed by
 
 ## Separate construct signal baseline
 
-Version `0.1.7` adds a fail-closed `task_mode="constructs"` lane with separate
+Version `0.1.8` exposes the fail-closed `task_mode="constructs"` lane with separate
 Jinn-ness and Beast-from-the-Earth witness policies, dimensions, storyworlds,
 and per-dimension metrics. Qwen3.5-4B was evaluated on all four development
 tasks with four thinking rollouts each.
@@ -99,6 +99,11 @@ fail-closed and must not train on the development rows.
 Raw traces, metadata, analyses, and the promotion receipt are in `constructs/`.
 The two uploaded evaluations are `vikhippsf5az4sy0tirgggo2` (diagnostic) and
 `vqjhmqpxezrnt9lp7zutq77g` (amended signal baseline).
+
+Version `0.1.8` repairs the wheel build manifest. Version `0.1.7` was valid in
+editable installs but its wheel omitted the Python modules and retained only
+package data. The corrected wheel was installed from isolation locally and
+passed Prime environment integration job `d1kanxiyf4zo4i3hb0u82o9d`.
 
 ## Hosted smoke evidence
 
