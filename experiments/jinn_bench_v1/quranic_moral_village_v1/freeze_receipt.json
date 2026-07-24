@@ -1,0 +1,46 @@
+{
+  "adapter_receipts": [
+    {
+      "adapter_config_sha256": "8bdd73b885894a8c10bc2476dc9eef274b23f892ac10c2511accc3c42b50cef6",
+      "adapter_model_bytes": 3240864,
+      "adapter_model_sha256": "199ee8334e0bf6357b4d787a1cdd81e8b86163fe38506837dcfdee0656875749",
+      "adapter_path": "D:\\Research_Engine\\jinn_or_beast\\qwen3_1p7b_jinn_local_qlora_v6_skipwarmup\\jinn_tiny_mutazili_v1_Qwen3-1.7B-70d244c_20260721T185502Z\\final_adapter",
+      "arm_id": "jinn_tiny_mutazili_parent15"
+    },
+    {
+      "adapter_config_sha256": "2934edb19cac6dd692c8d147c03270284763b70d6b1062dd8a558c47151be510",
+      "adapter_model_bytes": 817456,
+      "adapter_model_sha256": "bc1f99088b2c5d21772daadc52ccc5a5d9d78ae85db29a988d42088d08af3090",
+      "adapter_path": "D:\\Research_Engine\\jinn_or_beast\\jinn_bench_qwen3_1p7b_qlora_v1\\training\\jinn_bench_jinn_development_v1_Qwen3-1.7B-70d244c_20260724T023039Z\\final_adapter",
+      "arm_id": "jinn_ness_v1_step10"
+    },
+    {
+      "adapter_config_sha256": "13061c991d315fb7eefe8a83ad56cf3e163cc461806f4e4d3753f17188956113",
+      "adapter_model_bytes": 817456,
+      "adapter_model_sha256": "fa1bd72b108c4d17c51d107ec350faf88892041f3e73b2a7c0c313b0861ff4d9",
+      "adapter_path": "D:\\Research_Engine\\jinn_or_beast\\jinn_bench_qwen3_1p7b_jinn_reasoner_v2\\training\\jinn_reasoner_v2_qwen3_1p7b_development_Qwen3-1.7B-70d244c_20260724T200421Z\\final_adapter",
+      "arm_id": "jinn_erratic_reasoner_v2_step80"
+    }
+  ],
+  "arm_count": 4,
+  "expected_total_rows": 48,
+  "protocol_path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\protocol.json",
+  "protocol_sha256": "7681bdd6aaa3aa835d94d1bfb6def1f9b314577e8ce58f0b19e97190596dfb55",
+  "provenance_sha256": {
+    "beast_v1_constitution": "92e689950657d415e7b8a24ded0be6af9b4bb5f0ddeebd41062a8b629d62d34f",
+    "jinn_v1_constitution": "62e179ad0f99a9b7dff90ecac95c4ab0c113bfbdb083753f450674701f3ee580",
+    "jinn_v2_constitution": "331651aed1a0325cbb7e8753a0d048e177a1da6051a2be359d911ce7d012afc0",
+    "mutazili_constitution": "e38e9ab497facd530d045e078a794be86995bf8a1dac2e6f137fbd342ceea8e3",
+    "source_anchor_registry": "a3cbb08d77f756f6cd826b2c46aeb8e20a175941a64c4f5d7c263e75b5d14b3f",
+    "storyworld": "36938b69d7989613208241830f212194d3fc568e50f86fda22ad3518af69e67c",
+    "topics": "53a0ab5952ecf6c8e6c24e85bc766b5b1cdff54405fb013d4a5dd08c5582c314"
+  },
+  "round_1_prompts_path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\prepared\\round_1_prompts.jsonl",
+  "round_1_prompts_sha256": "cfe33db987c329b90eee774ae82e29282b4841334a74ccd80b34bb9b829b4a0d",
+  "schema_version": "quranic_moral_village_freeze_receipt_v1",
+  "status": "verified",
+  "topic_count": 6,
+  "topics_path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\topics.jsonl",
+  "topics_sha256": "53a0ab5952ecf6c8e6c24e85bc766b5b1cdff54405fb013d4a5dd08c5582c314",
+  "verified_at_utc": "2026-07-24T23:48:54.564491+00:00"
+}

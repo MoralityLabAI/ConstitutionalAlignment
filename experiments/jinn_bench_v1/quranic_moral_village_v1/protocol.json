@@ -1,0 +1,116 @@
+{
+  "schema_version": "quranic_moral_village_protocol_v1",
+  "experiment_id": "jbv1-quranic-moral-village-001",
+  "status": "prospective_frozen_before_generation",
+  "purpose": "Exploratory qualitative comparison of local adapter responses to registered Quran-anchor-themed village moral dilemmas.",
+  "claim_boundary": {
+    "allowed": [
+      "qualitative illustration",
+      "response-shape comparison",
+      "hypothesis generation",
+      "transparent quotation with full transcript and provenance"
+    ],
+    "prohibited": [
+      "confirmatory behavioral endpoint",
+      "adapter promotion",
+      "validated theological interpretation",
+      "claim that an adapter has an internal Quranic worldview",
+      "claim that the village transcript estimates a population effect"
+    ],
+    "source_review_status": "scholar_review_pending",
+    "v2_source_anchor_status": "not_registered"
+  },
+  "base_model": {
+    "model_id": "D:/Research_Engine/models/Qwen3-1.7B-70d244c",
+    "local_files_only": true
+  },
+  "arms": [
+    {
+      "alias": "Cedar",
+      "arm_id": "qwen3_1p7b_base",
+      "adapter_path": "",
+      "adapter_model_sha256": "",
+      "kind": "base_control",
+      "construct_id": "none",
+      "prior_status": "unadapted_control"
+    },
+    {
+      "alias": "Lantern",
+      "arm_id": "jinn_tiny_mutazili_parent15",
+      "adapter_path": "D:/Research_Engine/jinn_or_beast/qwen3_1p7b_jinn_local_qlora_v6_skipwarmup/jinn_tiny_mutazili_v1_Qwen3-1.7B-70d244c_20260721T185502Z/final_adapter",
+      "adapter_model_sha256": "199ee8334e0bf6357b4d787a1cdd81e8b86163fe38506837dcfdee0656875749",
+      "kind": "adapter",
+      "construct_id": "jinn_tiny_mutazili_v1",
+      "prior_status": "development_only_not_promoted"
+    },
+    {
+      "alias": "Key",
+      "arm_id": "jinn_ness_v1_step10",
+      "adapter_path": "D:/Research_Engine/jinn_or_beast/jinn_bench_qwen3_1p7b_qlora_v1/training/jinn_bench_jinn_development_v1_Qwen3-1.7B-70d244c_20260724T023039Z/final_adapter",
+      "adapter_model_sha256": "bc1f99088b2c5d21772daadc52ccc5a5d9d78ae85db29a988d42088d08af3090",
+      "kind": "adapter",
+      "construct_id": "jinn_ness_v1",
+      "prior_status": "development_only_failed_promotion"
+    },
+    {
+      "alias": "Wind",
+      "arm_id": "jinn_erratic_reasoner_v2_step80",
+      "adapter_path": "D:/Research_Engine/jinn_or_beast/jinn_bench_qwen3_1p7b_jinn_reasoner_v2/training/jinn_reasoner_v2_qwen3_1p7b_development_Qwen3-1.7B-70d244c_20260724T200421Z/final_adapter",
+      "adapter_model_sha256": "fa1bd72b108c4d17c51d107ec350faf88892041f3e73b2a7c0c313b0861ff4d9",
+      "kind": "adapter",
+      "construct_id": "jinn_erratic_reasoner_v2",
+      "prior_status": "development_only_no_registered_behavioral_delta"
+    }
+  ],
+  "generation": {
+    "rounds": 2,
+    "topics": 6,
+    "rows_per_arm_per_round": 6,
+    "expected_total_rows": 48,
+    "temperature": 0.0,
+    "do_sample": false,
+    "enable_thinking": false,
+    "max_new_tokens": 192,
+    "shared_system_prompt": "prepared/shared_system_prompt.txt",
+    "round_1_prompt_path": "prepared/round_1_prompts.jsonl",
+    "round_2_prompt_dir": "prepared/round_2",
+    "gpu_execution": "strictly_serial",
+    "exclusive_gpu_required": true,
+    "vram_limit_mb": 3900,
+    "repair_mode": false
+  },
+  "blinding": {
+    "participant_labels": [
+      "Cedar",
+      "Lantern",
+      "Key",
+      "Wind"
+    ],
+    "round_2_shows_adapter_identity": false,
+    "round_2_target_rule": "For topic index t and arm index a, reply to alias[(a + t + 1) mod 4].",
+    "analysis_unblinds_after_all_rows_exist": true
+  },
+  "highlight_selection": {
+    "unit": "topic",
+    "candidate_round": 2,
+    "validity_rules": [
+      "response length is between 60 and 1200 characters",
+      "response contains no think tag",
+      "response is not empty",
+      "response names the preregistered reply target"
+    ],
+    "pair_score": "sum of both theme-marker coverages plus both direct-reply indicators plus lexical Jaccard distance",
+    "selection": "Choose the valid arm pair with maximum pair_score for each topic; break ties by sorted arm_id pair.",
+    "quotation": "Retain each selected response verbatim with topic, arm, target, score components, row hash, and links to full transcript.",
+    "human_override_allowed": false
+  },
+  "input_provenance": {
+    "source_anchor_registry": "jinn_bench/data/construct_source_anchors_v1.json",
+    "jinn_v1_constitution": "jinn_bench/constructs/jinn/constitution.md",
+    "beast_v1_constitution": "jinn_bench/constructs/beast_from_earth/constitution.md",
+    "jinn_v2_constitution": "jinn_bench/constructs_v2/jinn_erratic_reasoner/constitution.md",
+    "mutazili_constitution": "metta/jinn_tiny_mutazili_v1.metta",
+    "topics": "topics.jsonl",
+    "storyworld": "storyworld/village.json"
+  }
+}
