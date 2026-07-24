@@ -7,7 +7,7 @@
 - Matched-frame rows: 1,008 (768 candidate-training, 240 development)
 - Separate construct rows: 12 (8 candidate-training, 4 development)
 - Presented frames: neutral, constitutional, Jinn, Beast
-- Paid training: not launched
+- Paid training: one owner-authorized 10-step development pilot completed; no promotion
 - Candidate-training release: blocked; all source-world reviews remain pending
 - Hub integration: passed for version `0.1.8`
 - Hosted smoke: passed end to end; evaluation `ntcauh360og2dg3o6r256rgr`
@@ -57,11 +57,13 @@ still requires non-decreasing development reward at steps 5 and 10.
    the development split.
 4. Completed: record the nondegenerate baseline reward distribution, raw
    traces, emission, truncation, and repetition rates.
-5. Launch the 10-step thinking pilot with a `$3.50` spending reserve.
-6. Inspect reward distributions, forbidden-action rate, proxy regret, trace
-   length, truncation, and individual rollouts at steps 0, 5, and 10.
-7. Promote to either the no-thinking 50-step control or a longer trace-bearing
-   run only if the registered promotion gates pass.
+5. Completed under an explicit development-only owner override: run the
+   10-step construct pilot with a `$3.50` spending reserve.
+6. Completed: inspect all 640 training rollouts, reward distributions, proxy
+   regret, trace emission, truncation, and evaluations at steps 0, 5, and 10.
+7. Not promoted: the held-out reward trajectory was nonmonotonic, raw
+   evaluation traces were unavailable, and the terminal policy had no listed
+   cloud checkpoint.
 8. Compare base and adapter on neutral/no-frame, override, and paired-skin
    evaluations before considering a 100-step continuation.
 
@@ -89,10 +91,10 @@ run produced:
 - mean Beast witness reward `0.64325`;
 - estimated inference cost `$0.01838`.
 
-The scalar and per-dimension rewards are operational, but paid training remains
-blocked. All eight candidate rows still require source-mapping and label review,
-and four development tasks are too small for an adapter claim. The prospective
-pilot config is
+The scalar and per-dimension rewards are operational, but reviewed-corpus
+training remains blocked. All eight candidate rows still require source-mapping
+and label review, and four development tasks are too small for an adapter claim.
+The prospective fail-closed pilot config is
 `configs/rl/jinn_beast_constructs_qwen35_4b_thinking_pilot.toml`; it must remain
 fail-closed and must not train on the development rows.
 
@@ -104,6 +106,30 @@ Version `0.1.8` repairs the wheel build manifest. Version `0.1.7` was valid in
 editable installs but its wheel omitted the Python modules and retained only
 package data. The corrected wheel was installed from isolation locally and
 passed Prime environment integration job `d1kanxiyf4zo4i3hb0u82o9d`.
+
+## Owner-authorized construct RL diagnostic
+
+Prime run `zjvi4cvo860fyhz7ekgemv0q` completed ten Qwen3.5-4B training batches
+over the eight candidate construct tasks using the explicit
+`require_training_approval=false` development override. The override did not
+change any row's pending review state.
+
+- Development reward at steps 0, 5, and 10: `0.854250`, `0.811500`,
+  `0.867375`
+- Retrieved training rollouts: `640/640`
+- Training critical violations: `0/640`
+- Reasoning traces: `632/640`
+- Valid final JSON: `620/640`
+- Ready cloud checkpoints: step 5 only
+
+The final held-out mean was `+0.013125` above the matched step-0 evaluation,
+but the step-5 regression violated the frozen nondecreasing-reward gate. Prime
+also exposed only aggregate evaluation metrics and did not list a checkpoint
+for terminal policy version 9. No longer run or larger-model QLoRA is
+authorized from this result. The exact receipt is
+`constructs/qwen35_4b_owner_override_prime_rl_zjvi4cvo860fyhz7ekgemv0q_receipt_20260724.json`;
+the raw 12.4 MB archive is under
+`D:/Research_Engine/jinn_or_beast/primelab_rl_qwen35_4b_jinn_constructs_zjvi4cvo860fyhz7ekgemv0q`.
 
 ## Hosted smoke evidence
 

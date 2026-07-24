@@ -1,0 +1,77 @@
+{
+  "schema_version": "jinn_beast_construct_owner_override_rl_plan_v1",
+  "run_family": "jinn-beast-constructs-qwen35-4b-thinking-owner-override",
+  "status": "prospectively_frozen_before_hosted_training_outcomes",
+  "authorization": {
+    "authorized_by": "user",
+    "authorization_text": "I unblock go ahead",
+    "authorized_at_local_date": "2026-07-23",
+    "scope": "One capped 10-step Prime RL pilot"
+  },
+  "claim_boundary": {
+    "development_only": true,
+    "source_review_status": "pending",
+    "candidate_rows_marked_training_approved": false,
+    "corpus_release_authorized": false,
+    "confirmatory_claims_authorized": false,
+    "paper_promotion_authorized": false
+  },
+  "environment": {
+    "id": "moralitylab/jinn-beast-metta",
+    "version": "0.1.8",
+    "integration_job_id": "d1kanxiyf4zo4i3hb0u82o9d",
+    "integration_status": "SUCCESS"
+  },
+  "model": "Qwen/Qwen3.5-4B",
+  "config": {
+    "path": "configs/rl/jinn_beast_constructs_qwen35_4b_thinking_owner_override_pilot.toml",
+    "sha256": "0ad4efe3e375039d38c866bf774907852b88452a9d8d80d217722a7cc1133098"
+  },
+  "training": {
+    "split": "candidate_train",
+    "task_mode": "constructs",
+    "construct": "balanced",
+    "candidate_tasks": 8,
+    "require_training_approval": false,
+    "maximum_steps": 10,
+    "batch_size": 64,
+    "rollouts_per_example": 8,
+    "oversampling_factor": 1.0,
+    "enable_thinking": true,
+    "maximum_output_tokens": 6144
+  },
+  "evaluation": {
+    "split": "development",
+    "tasks": 4,
+    "rollouts_per_example": 4,
+    "steps": [
+      0,
+      5,
+      10
+    ],
+    "require_training_approval": true
+  },
+  "recursion_caps": {
+    "maximum_outer_cycles": 1,
+    "maximum_nested_depth": 1,
+    "automatic_continuation": false
+  },
+  "resource_and_spend_contract": {
+    "execution_surface": "Prime hosted RL",
+    "generic_pod_allowed": false,
+    "maximum_steps_is_hard_cap": true,
+    "checkpoint_interval_steps": 5,
+    "adapter_interval_steps": 5,
+    "spending_reserve_usd": 3.5,
+    "additional_runs_authorized": 0
+  },
+  "abort_and_promotion": {
+    "abort_on_environment_error": true,
+    "abort_on_nonfinite_training_metric": true,
+    "abort_on_critical_violation_increase": true,
+    "abort_on_missing_step_5_evaluation": true,
+    "promotion_requires_non_decreasing_development_reward": true,
+    "promotion_requires_non_decreasing_trace_termination": true,
+    "promotion_requires_zero_critical_violations": true
+  }
+}

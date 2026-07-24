@@ -1,0 +1,48 @@
+{
+  "schema_version": "jinn_beast_construct_owner_override_config_amendment_v1",
+  "amendment_id": "owner-override-prime-cli-schema-01",
+  "status": "registered_before_run_creation_or_training_outcomes",
+  "trigger": {
+    "attempted_config_sha256": "0ad4efe3e375039d38c866bf774907852b88452a9d8d80d217722a7cc1133098",
+    "prime_cli_version": "0.5.49",
+    "run_created": false,
+    "spend_incurred": false,
+    "error_class": "local_config_validation",
+    "errors": [
+      "env.0.id required",
+      "env.0.taskset not permitted",
+      "env.0.harness not permitted",
+      "sampling.enable_thinking not permitted",
+      "eval.env.0.id required",
+      "eval.env.0.taskset not permitted",
+      "eval.env.0.harness not permitted",
+      "eval.skip_first_step not permitted",
+      "eval.sampling not permitted"
+    ]
+  },
+  "replacement": {
+    "config_path": "configs/rl/jinn_beast_constructs_qwen35_4b_thinking_owner_override_pilot.toml",
+    "config_sha256": "d98b015d00253ac0cda8fd96e6e4bbba9989accc844d4f7454594e0fbc9ad420",
+    "changes": [
+      "Flatten environment id, version, name, and args into each Prime EnvConfig.",
+      "Remove harness fields because this package is already a SingleTurnEnv.",
+      "Remove unsupported eval sampling and skip-first-step fields.",
+      "Retain one shared 6144-token sampling cap.",
+      "Treat thinking behavior as an observed model property because this CLI schema exposes no thinking toggle."
+    ]
+  },
+  "unchanged": [
+    "Qwen/Qwen3.5-4B model",
+    "moralitylab/jinn-beast-metta@0.1.8 environment",
+    "eight balanced candidate construct tasks",
+    "four held-out development tasks",
+    "ten-step maximum",
+    "batch size 64",
+    "eight training rollouts per example",
+    "step-5 and step-10 evaluation cadence",
+    "checkpoint and adapter cadence",
+    "development-only claim boundary",
+    "3.50 USD spending reserve"
+  ],
+  "claim_boundary": "The amendment only maps the frozen pilot into the installed official Prime CLI schema. It does not imply that thinking is enabled, that pending rows were reviewed, or that a training result exists."
+}

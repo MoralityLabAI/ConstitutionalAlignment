@@ -1,0 +1,39 @@
+# Owner-authorized development-only RL signal pilot.
+#
+# This config does not mark candidate rows reviewed or training-approved.
+# It exercises the explicit environment override after the user's 2026-07-23
+# authorization. Results cannot support confirmatory or corpus-release claims.
+
+model = "Qwen/Qwen3.5-4B"
+max_steps = 10
+batch_size = 64
+rollouts_per_example = 8
+oversampling_factor = 1.0
+
+[sampling]
+max_tokens = 6144
+
+[[env]]
+id = "moralitylab/jinn-beast-metta"
+name = "jinn-beast-constructs-thinking-owner-override-train"
+version = "0.1.8"
+args = { split = "candidate_train", task_mode = "constructs", construct = "balanced", require_training_approval = false }
+
+[eval]
+interval = 5
+num_examples = 4
+rollouts_per_example = 4
+
+[[eval.env]]
+id = "moralitylab/jinn-beast-metta"
+name = "jinn-beast-constructs-thinking-development"
+version = "0.1.8"
+args = { split = "development", task_mode = "constructs", construct = "balanced", require_training_approval = true }
+
+[checkpoints]
+interval = 5
+keep_cloud = 2
+
+[adapters]
+interval = 5
+keep_last = 2
