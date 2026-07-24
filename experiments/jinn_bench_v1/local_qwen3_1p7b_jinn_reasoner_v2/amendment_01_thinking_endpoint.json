@@ -1,0 +1,46 @@
+{
+  "schema_version": "jinn_reasoner_v2_local_qwen3_1p7b_amendment_v1",
+  "amendment_id": "jbv2-jinn-reasoner-thinking-endpoint-01",
+  "registered_before_any_adapter_training_or_adapter_outcome": true,
+  "parent_plan_sha256": "bd16db5d8e1e958d374e74ec09e4861933e331481945d795f701e2bb7bf54664",
+  "triggering_base_only_evaluation": {
+    "run_name": "local_smoke_20260724T192805Z",
+    "status": "completed_but_endpoint_truncated",
+    "launcher_summary_sha256": "d89750924573715d21f5bbd32b5671c317cf2aa31a1bdefb1f357d475ffdb1ce",
+    "generations_sha256": "574dae604113c380c46696613cf1ca94e1ec5a55de5c4640e957c5071e9b1d3e",
+    "score_receipt_sha256": "bdec6f6e8227b5a7b64f326b65b80b1676a2261f304db2e1025b88b3cc7680ce",
+    "reasoning_trace_rate": 1.0,
+    "trace_termination_rate": 0.0,
+    "final_response_rate": 0.0,
+    "rows_at_generation_limit": 16,
+    "rows": 16,
+    "interpretation": "The 160-token limit measured universal reasoning truncation and did not expose the registered final-decision endpoint."
+  },
+  "change": {
+    "maximum_new_tokens_before": 160,
+    "maximum_new_tokens_after": 512,
+    "evaluation_timeout_seconds_before": 1200,
+    "evaluation_timeout_seconds_after": 2700,
+    "base_evaluation_must_be_repeated": true,
+    "truncated_base_scores_eligible_for_checkpoint_comparison": false
+  },
+  "unchanged": [
+    "model",
+    "quantization",
+    "training data",
+    "held-out tasks",
+    "system prompt",
+    "decoding determinism",
+    "thinking enabled",
+    "scoring",
+    "training steps",
+    "checkpoint cadence",
+    "learning rate",
+    "LoRA topology",
+    "resource caps",
+    "GPU exclusivity",
+    "4B decision rule"
+  ],
+  "rationale": "Reasoning traces were explicitly requested, but the frozen 160-token allowance cut every trace before a final answer. Increasing only the generation allowance preserves the task and scorer while making the final-decision endpoint observable.",
+  "claim_boundary": "This amendment repairs a base-only measurement failure. It was frozen before adapter training and cannot be used to select among observed adapter outcomes."
+}

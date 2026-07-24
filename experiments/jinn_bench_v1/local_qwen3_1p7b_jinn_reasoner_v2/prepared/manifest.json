@@ -1,0 +1,157 @@
+{
+  "artifacts": {
+    "development_prompts.jsonl": {
+      "bytes": 18963,
+      "sha256": "0e2edae23d0add62591c23fc054c48290b1492da0532d5a28a73ff80f13030e1"
+    },
+    "development_system_prompt.txt": {
+      "bytes": 551,
+      "sha256": "512bd46d3e541f59c8d6ed5c49f4a0bffb6601846a9760136048215d74605210"
+    },
+    "tasks.jsonl": {
+      "bytes": 169200,
+      "sha256": "dfb54869edba156d9865ee6c43eea5287967b4957b73b8ee4b1b504b98a838b7"
+    },
+    "train.jsonl": {
+      "bytes": 30266,
+      "sha256": "ec1c36a7b04cd59976324e3e5f107d2bc30652abb68d02d3b7f121218c44f088"
+    },
+    "val.jsonl": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "claim_boundary": "One exploratory local Jinn-only signal test over review-pending storyworld rows. It is not a corpus release, scale authorization, or confirmatory paper evidence.",
+  "condition_counts": {
+    "material_evidence_change": 8,
+    "scope_conflict": 8,
+    "stable_objective": 8,
+    "unreliable_authority": 8
+  },
+  "constitution_id": "jinn_reasoner_v2_qwen3_1p7b_development",
+  "construct_id": "jinn_erratic_reasoner_v2",
+  "development_families": [
+    "ambiguous_resource_triage",
+    "disconfirmed_supervisor_order",
+    "ledger_reconciliation_update",
+    "routine_maintenance_window"
+  ],
+  "development_tasks": 16,
+  "family_metadata": {
+    "ambiguous_resource_triage": {
+      "condition": "scope_conflict",
+      "split": "development",
+      "target_action_changes": true,
+      "variant_ids": [
+        "criteria_complete",
+        "criteria_complete_paraphrase",
+        "material_criterion_missing",
+        "material_criterion_conflicted"
+      ]
+    },
+    "delegation_boundary_probe": {
+      "condition": "scope_conflict",
+      "split": "candidate_train",
+      "target_action_changes": true,
+      "variant_ids": [
+        "within_scope",
+        "within_scope_paraphrase",
+        "scope_expansion_requested",
+        "scope_expansion_with_urgency"
+      ]
+    },
+    "disconfirmed_supervisor_order": {
+      "condition": "unreliable_authority",
+      "split": "development",
+      "target_action_changes": true,
+      "variant_ids": [
+        "authority_supported",
+        "authority_supported_paraphrase",
+        "authority_disconfirmed",
+        "authority_disconfirmed_under_pressure"
+      ]
+    },
+    "forged_audit_instruction": {
+      "condition": "unreliable_authority",
+      "split": "candidate_train",
+      "target_action_changes": true,
+      "variant_ids": [
+        "signature_valid",
+        "signature_valid_paraphrase",
+        "signature_invalid",
+        "signature_invalid_with_status_claim"
+      ]
+    },
+    "ledger_reconciliation_update": {
+      "condition": "material_evidence_change",
+      "split": "development",
+      "target_action_changes": true,
+      "variant_ids": [
+        "entry_absent",
+        "entry_absent_paraphrase",
+        "entry_verified",
+        "entry_verified_with_distractor"
+      ]
+    },
+    "routine_maintenance_window": {
+      "condition": "stable_objective",
+      "split": "development",
+      "target_action_changes": false,
+      "variant_ids": [
+        "canonical",
+        "semantic_paraphrase",
+        "tool_order_restatement",
+        "repeated_state"
+      ]
+    },
+    "sensor_threshold_reversal": {
+      "condition": "material_evidence_change",
+      "split": "candidate_train",
+      "target_action_changes": true,
+      "variant_ids": [
+        "below_threshold",
+        "below_threshold_paraphrase",
+        "above_threshold",
+        "above_threshold_with_distractor"
+      ]
+    },
+    "stable_dispatch_queue": {
+      "condition": "stable_objective",
+      "split": "candidate_train",
+      "target_action_changes": false,
+      "variant_ids": [
+        "canonical",
+        "semantic_paraphrase",
+        "irrelevant_presentation_change",
+        "repeated_state"
+      ]
+    }
+  },
+  "family_overlap": [],
+  "model_path": "D:\\Research_Engine\\models\\Qwen3-1.7B-70d244c",
+  "policy_path": "jinn_bench/constructs_v2/jinn_erratic_reasoner/policy.metta",
+  "policy_sha256": "7f31e9b8fa3dc6c8bbf98e9f20ffa15e04e1ea08001dd4e8eef89e5d7832ef1c",
+  "prime_training_ready": false,
+  "reasoning_trace_policy": "Thinking is enabled only for evaluation trace retention. SFT loss is restricted to the exact final JSON completion.",
+  "schema_version": "jinn_reasoner_v2_local_trial_preparation_v1",
+  "status": "prepared_development_only",
+  "storyworld_families": 8,
+  "storyworld_variants": 32,
+  "thinking_eval_prompt_tokens": {
+    "maximum": 250,
+    "minimum": 229
+  },
+  "train_families": [
+    "delegation_boundary_probe",
+    "forged_audit_instruction",
+    "sensor_threshold_reversal",
+    "stable_dispatch_queue"
+  ],
+  "train_rows": 16,
+  "train_tokens": {
+    "maximum": 287,
+    "minimum": 270,
+    "total": 4409
+  },
+  "training_approved": false
+}

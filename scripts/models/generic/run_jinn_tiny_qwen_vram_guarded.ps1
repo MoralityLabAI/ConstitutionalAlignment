@@ -26,6 +26,7 @@ param(
     [int]$CpuPercent = 80,
     [int]$IoLimitMbPerSec = 50,
     [int]$IoSpikeSamples = 3,
+    [bool]$RequireExclusiveGpu = $true,
     [int]$SaveSteps = 10,
     [int]$SaveTotalLimit = 2,
     [int]$TimeoutSeconds = 3600,
@@ -192,6 +193,26 @@ function Get-PagefileCurrentMb {
     return [double]$usage.Sum
 }
 
+function Get-CompetingGpuApps {
+    param([int[]]$AllowedPids = @())
+    $rows = @(& nvidia-smi --query-compute-apps=pid,process_name --format=csv,noheader,nounits 2>$null)
+    if ($LASTEXITCODE -ne 0) {
+        throw "nvidia-smi compute-app query failed during the exclusive-GPU check."
+    }
+    $apps = @()
+    foreach ($row in $rows) {
+        if (-not $row) { continue }
+        $parts = $row -split ",", 2
+        if ($parts.Count -ne 2) { continue }
+        $gpuPid = [int]$parts[0].Trim()
+        $processName = $parts[1].Trim()
+        if ($processName -like "*ChatGPT.exe") { continue }
+        if ($AllowedPids -contains $gpuPid) { continue }
+        $apps += [ordered]@{ pid = $gpuPid; process_name = $processName }
+    }
+    return @($apps)
+}
+
 function Invoke-GuardedAttempt {
     param(
         [Parameter(Mandatory = $true)][string]$AttemptName,
@@ -241,6 +262,23 @@ function Invoke-GuardedAttempt {
     $commitCapMb = if ($MaxProcessCommitMb -gt 0) { $MaxProcessCommitMb } else { $RamLimitMb }
     $availableBeforeStartMb = Get-AvailableRamMb
     $pagefileBaselineMb = Get-PagefileCurrentMb
+    $competingGpuApps = if ($RequireExclusiveGpu) { @(Get-CompetingGpuApps) } else { @() }
+    if ($competingGpuApps.Count -gt 0) {
+        return [ordered]@{
+            attempt = $AttemptName
+            model_id = $AttemptModelId
+            run_name = $runName
+            status = "preflight_gpu_exclusivity_aborted"
+            exit_code = -1
+            abort_reason = "competing_gpu_process_present_before_start"
+            competing_gpu_apps = $competingGpuApps
+            require_exclusive_gpu = $RequireExclusiveGpu
+            stdout_log = $stdoutPath
+            stderr_log = $stderrPath
+            run_dir = Join-Path $OutputRoot $runName
+            cleanup = [ordered]@{ status = "skipped"; reason = "process_not_started" }
+        }
+    }
     if ($availableBeforeStartMb -lt $MinAvailableRamMb) {
         return [ordered]@{
             attempt = $AttemptName
@@ -319,6 +357,29 @@ function Invoke-GuardedAttempt {
         Start-Sleep -Seconds 2
         $process.Refresh()
         if (-not $process.HasExited) {
+            $competingGpuApps = if ($RequireExclusiveGpu) {
+                @(Get-CompetingGpuApps -AllowedPids @($process.Id))
+            } else {
+                @()
+            }
+            if ($competingGpuApps.Count -gt 0) {
+                Stop-Process -Id $process.Id -Force
+                $cleanup = Invoke-PostRunMemoryCleanup -RunName $runName -OpsDir $opsDir -RootPid $process.Id
+                return [ordered]@{
+                    attempt = $AttemptName
+                    model_id = $AttemptModelId
+                    run_name = $runName
+                    status = "gpu_exclusivity_aborted"
+                    exit_code = -1
+                    abort_reason = "competing_gpu_process_appeared_during_run"
+                    competing_gpu_apps = $competingGpuApps
+                    require_exclusive_gpu = $RequireExclusiveGpu
+                    stdout_log = $stdoutPath
+                    stderr_log = $stderrPath
+                    run_dir = Join-Path $OutputRoot $runName
+                    cleanup = $cleanup
+                }
+            }
             $now = [DateTimeOffset]::UtcNow
             $currentIoBytes = Get-GuardedProcessIoBytes -Process $process
             $elapsed = [Math]::Max(0.001, ($now - $lastIoAt).TotalSeconds)

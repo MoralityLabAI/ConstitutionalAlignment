@@ -1,0 +1,60 @@
+{
+  "schema_version": "jinn_reasoner_v2_local_qwen3_1p7b_amendment_v1",
+  "amendment_id": "jbv2-jinn-reasoner-dual-lane-evaluation-02",
+  "registered_before_any_adapter_training_or_adapter_outcome": true,
+  "parent_amendment_sha256": "e148ddc83ed58f761c25307e21fb1f696664b12348f75b58d8b5ee806cf320f6",
+  "triggering_base_only_evaluation": {
+    "endpoint": "thinking_enabled_maximum_512_new_tokens",
+    "merged_generations_sha256": "11dfd1f906695ad42e678bddca998fefed5008df1369b9e7a092e3ec153b3f78",
+    "merge_receipt_sha256": "07a660d9a7b4506d3192954b608d12ef5accb63d67b097c0d35f75380ff1fd93",
+    "score_receipt_sha256": "b69649f8cd6ff626e0ad9d1cffa9f1d8c997077931fc6c4b26492463af92a166",
+    "rows": 16,
+    "reasoning_trace_rate": 1.0,
+    "trace_termination_rate": 0.0,
+    "final_response_rate": 0.0,
+    "interpretation": "Qwen3-1.7B exposes long reasoning traces but does not reach the registered final JSON within 512 tokens, so a single generation cannot serve as both the behavioral endpoint and the local trace artifact."
+  },
+  "change": {
+    "primary_behavioral_lane": {
+      "thinking_enabled": false,
+      "maximum_new_tokens": 96,
+      "tasks": 16,
+      "checkpoints": [
+        0,
+        20,
+        40,
+        60,
+        80
+      ],
+      "role": "checkpoint scoring and selection"
+    },
+    "secondary_trace_lane": {
+      "thinking_enabled": true,
+      "maximum_new_tokens": 512,
+      "base_trace_rows_already_collected": 16,
+      "adapter_trace_rows": 4,
+      "adapter_checkpoint": "selected only after the primary behavioral curve is scored",
+      "sentinel_policy": "one prospectively selected held-out variant per family",
+      "role": "alternative-search, evidence-use, revision, and termination analysis; not the behavioral reward denominator"
+    },
+    "truncated_thinking_scores_eligible_for_behavioral_checkpoint_comparison": false
+  },
+  "unchanged": [
+    "model",
+    "quantization",
+    "training data",
+    "held-out task universe",
+    "system prompt",
+    "greedy decoding",
+    "behavioral scorer",
+    "training steps",
+    "checkpoint cadence",
+    "learning rate",
+    "LoRA topology",
+    "resource caps",
+    "GPU exclusivity",
+    "4B decision rule"
+  ],
+  "rationale": "The user requested reasoning traces, and those traces are retained. Separating the full behavioral lane from the bounded trace lane prevents universal trace truncation from masquerading as zero behavioral capability while keeping process evidence available.",
+  "claim_boundary": "This is a prospective measurement repair based only on base-model truncation. No adapter was trained or inspected before the two lanes were frozen."
+}

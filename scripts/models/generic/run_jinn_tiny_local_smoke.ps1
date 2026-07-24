@@ -24,6 +24,7 @@ param(
     [int]$CpuPercent = 80,
     [int]$IoLimitMbPerSec = 50,
     [int]$IoSpikeSamples = 3,
+    [bool]$RequireExclusiveGpu = $true,
     [switch]$RepairViolations,
     [int]$RepairAttempts = 1,
     [bool]$SkipCudaAllocatorWarmup = $true,
@@ -189,6 +190,26 @@ function Get-PagefileCurrentMb {
     return [double]$usage.Sum
 }
 
+function Get-CompetingGpuApps {
+    param([int[]]$AllowedPids = @())
+    $rows = @(& nvidia-smi --query-compute-apps=pid,process_name --format=csv,noheader,nounits 2>$null)
+    if ($LASTEXITCODE -ne 0) {
+        throw "nvidia-smi compute-app query failed during the exclusive-GPU check."
+    }
+    $apps = @()
+    foreach ($row in $rows) {
+        if (-not $row) { continue }
+        $parts = $row -split ",", 2
+        if ($parts.Count -ne 2) { continue }
+        $gpuPid = [int]$parts[0].Trim()
+        $processName = $parts[1].Trim()
+        if ($processName -like "*ChatGPT.exe") { continue }
+        if ($AllowedPids -contains $gpuPid) { continue }
+        $apps += [ordered]@{ pid = $gpuPid; process_name = $processName }
+    }
+    return @($apps)
+}
+
 $env:HF_HUB_OFFLINE = "1"
 $env:TRANSFORMERS_OFFLINE = "1"
 $env:TOKENIZERS_PARALLELISM = "false"
@@ -251,6 +272,28 @@ try {
     $commitCapMb = if ($MaxProcessCommitMb -gt 0) { $MaxProcessCommitMb } else { $RamLimitMb }
     $availableBeforeStartMb = Get-AvailableRamMb
     $pagefileBaselineMb = Get-PagefileCurrentMb
+    $competingGpuApps = if ($RequireExclusiveGpu) { @(Get-CompetingGpuApps) } else { @() }
+    if ($competingGpuApps.Count -gt 0) {
+        $summary = [ordered]@{
+            status = "preflight_gpu_exclusivity_aborted"
+            exit_code = -1
+            abort_reason = "competing_gpu_process_present_before_start"
+            run_name = $runName
+            base_model_id = $BaseModelId
+            adapter_dir = $AdapterDir
+            base_only = [bool]$BaseOnly
+            competing_gpu_apps = $competingGpuApps
+            require_exclusive_gpu = $RequireExclusiveGpu
+            run_dir = Join-Path $OutputRoot $runName
+            stdout_log = $stdoutPath
+            stderr_log = $stderrPath
+            cleanup = [ordered]@{ status = "skipped"; reason = "process_not_started" }
+        }
+        $summaryPath = Join-Path $OutputRoot ("launcher_summary_" + $stamp + ".json")
+        Write-Json -Path $summaryPath -Payload $summary
+        $summary | ConvertTo-Json -Depth 12
+        exit 2
+    }
     if ($availableBeforeStartMb -lt $MinAvailableRamMb) {
         $summary = [ordered]@{
             status = "preflight_ram_aborted"
@@ -357,6 +400,31 @@ try {
         Start-Sleep -Seconds 2
         $process.Refresh()
         if (-not $process.HasExited) {
+            $competingGpuApps = if ($RequireExclusiveGpu) {
+                @(Get-CompetingGpuApps -AllowedPids @($process.Id))
+            } else {
+                @()
+            }
+            if ($competingGpuApps.Count -gt 0) {
+                Stop-Process -Id $process.Id -Force
+                $cleanup = Invoke-PostRunMemoryCleanup -RunName $runName -OpsDir $opsDir -RootPid $process.Id
+                $summary = [ordered]@{
+                    status = "gpu_exclusivity_aborted"
+                    exit_code = -1
+                    abort_reason = "competing_gpu_process_appeared_during_run"
+                    run_name = $runName
+                    competing_gpu_apps = $competingGpuApps
+                    require_exclusive_gpu = $RequireExclusiveGpu
+                    run_dir = Join-Path $OutputRoot $runName
+                    stdout_log = $stdoutPath
+                    stderr_log = $stderrPath
+                    cleanup = $cleanup
+                }
+                $summaryPath = Join-Path $OutputRoot ("launcher_summary_" + $stamp + ".json")
+                Write-Json -Path $summaryPath -Payload $summary
+                $summary | ConvertTo-Json -Depth 12
+                exit 2
+            }
             $now = [DateTimeOffset]::UtcNow
             $currentIoBytes = Get-SmokeProcessIoBytes -Process $process
             $elapsed = [Math]::Max(0.001, ($now - $lastIoAt).TotalSeconds)

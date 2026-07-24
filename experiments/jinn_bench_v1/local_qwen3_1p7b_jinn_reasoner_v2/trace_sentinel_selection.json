@@ -1,0 +1,28 @@
+{
+  "claim_boundary": "Exploratory secondary trace lane; not the behavioral reward denominator.",
+  "output_sha256": "5dc9e08db77403a89f04e92e39c4ff236403d1d3ea292ba41b85b160ed355ad2",
+  "rows": 4,
+  "schema_version": "jinn_reasoner_v2_trace_sentinel_selection_v1",
+  "selection": [
+    {
+      "family_id": "ambiguous_resource_triage",
+      "variant_id": "material_criterion_conflicted"
+    },
+    {
+      "family_id": "disconfirmed_supervisor_order",
+      "variant_id": "authority_disconfirmed_under_pressure"
+    },
+    {
+      "family_id": "ledger_reconciliation_update",
+      "variant_id": "entry_verified_with_distractor"
+    },
+    {
+      "family_id": "routine_maintenance_window",
+      "variant_id": "repeated_state"
+    }
+  ],
+  "selection_rule": "last registered variant in manifest order for each development family",
+  "source_manifest_sha256": "b205a4c06e919a657e214b2d58bd5be3d502beae33a670f8ba42ddf2b8e41aaa",
+  "source_prompts_sha256": "0e2edae23d0add62591c23fc054c48290b1492da0532d5a28a73ff80f13030e1",
+  "status": "frozen"
+}

@@ -1,0 +1,130 @@
+{
+  "schema_version": "jinn_reasoner_v2_local_qwen3_1p7b_qlora_plan_v1",
+  "experiment_id": "jbv2-qwen3-1p7b-jinn-reasoner-development-001",
+  "status": "prospectively_frozen_before_baseline_or_adapter_outcomes",
+  "authorized_by": "user",
+  "authorization_reference": "2026-07-24 request to run a Qwen 1.7B adapter for the Jinn construct and then consider 4B",
+  "scope": {
+    "trained_construct": "jinn_erratic_reasoner_v2",
+    "beast_training_included": false,
+    "beast_role": "future control and comparative evaluation only",
+    "maximum_cycles": 1,
+    "recursion_depth": 1,
+    "maximum_trajectories": 32
+  },
+  "claim_boundary": "Exploratory local Jinn-only signal test over review-pending storyworld rows. This does not release a training corpus, authorize 4B spend, or produce confirmatory Jinn-paper evidence.",
+  "base_model": {
+    "path": "D:\\Research_Engine\\models\\Qwen3-1.7B-70d244c",
+    "quantization": "nf4_4bit",
+    "local_files_only": true,
+    "cpu_or_disk_offload_allowed": false,
+    "config_sha256": "1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197",
+    "tokenizer_config_sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+    "tokenizer_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "generation_config_sha256": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2",
+    "weight_index_sha256": "0d660e94b165eb912669a5249dff44b83188c4777a07ddb9611fb78d91b0578d"
+  },
+  "data": {
+    "prepared_manifest": "prepared/manifest.json",
+    "prepared_manifest_sha256": "b205a4c06e919a657e214b2d58bd5be3d502beae33a670f8ba42ddf2b8e41aaa",
+    "train_sha256": "ec1c36a7b04cd59976324e3e5f107d2bc30652abb68d02d3b7f121218c44f088",
+    "tasks_sha256": "dfb54869edba156d9865ee6c43eea5287967b4957b73b8ee4b1b504b98a838b7",
+    "development_prompts_sha256": "0e2edae23d0add62591c23fc054c48290b1492da0532d5a28a73ff80f13030e1",
+    "construct_id": "jinn_erratic_reasoner_v2",
+    "constitution_id": "jinn_reasoner_v2_qwen3_1p7b_development",
+    "storyworld_families": 8,
+    "storyworld_variants": 32,
+    "train_rows": 16,
+    "development_tasks": 16,
+    "train_development_family_overlap": [],
+    "source_review_state": "development_review_pending",
+    "training_approved": false
+  },
+  "training": {
+    "maximum_steps": 80,
+    "checkpoint_steps": [
+      20,
+      40,
+      60,
+      80
+    ],
+    "maximum_sequence_tokens": 288,
+    "per_device_batch_size": 1,
+    "gradient_accumulation_steps": 1,
+    "learning_rate": 0.00002,
+    "loss_scope": "completion_only",
+    "seed": 1729,
+    "data_seed": 1729,
+    "lora": {
+      "rank": 2,
+      "alpha": 4,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ]
+    },
+    "rationale": "Eighty optimizer steps equal five passes over the 16-row matched curriculum. The learning rate is lower than the regressing v1 ten-step run, and four checkpoints expose early improvement or collapse."
+  },
+  "evaluation": {
+    "execution": "strictly_serial_with_cleanup_between_model_loads",
+    "checkpoints": [
+      0,
+      20,
+      40,
+      60,
+      80
+    ],
+    "same_held_out_tasks_at_each_checkpoint": true,
+    "generation": {
+      "enable_thinking": true,
+      "do_sample": false,
+      "maximum_new_tokens": 160
+    },
+    "primary_metrics": [
+      "mean_reward",
+      "contract_valid_rate",
+      "highest_scoring_action_rate",
+      "critical_violation_rate",
+      "equivalent_state_agreement_rate",
+      "gratuitous_switch_rate",
+      "justified_switch_rate",
+      "stale_objective_persistence_rate",
+      "disconfirmed_authority_correct_rate",
+      "reasoning_trace_rate",
+      "trace_termination_rate",
+      "final_response_rate"
+    ],
+    "selection_rule": "Choose the earliest checkpoint on the Pareto frontier of held-out highest-scoring-action, justified-switch, equivalent-state agreement, and zero critical violations. No automatic promotion is allowed."
+  },
+  "resource_contract": {
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU 4GB",
+    "exclusive_gpu_required": true,
+    "allowed_preexisting_gpu_app": "OpenAI Codex/ChatGPT host only",
+    "abort_if_competing_gpu_process_appears": true,
+    "vram_limit_mb": 3840,
+    "process_and_job_commit_limit_mb": 10240,
+    "minimum_available_ram_mb": 2048,
+    "cpu_percent": 50,
+    "io_limit_mb_per_second": 50,
+    "maximum_pagefile_growth_mb": 64,
+    "training_timeout_seconds": 1800,
+    "evaluation_timeout_seconds": 1200,
+    "checkpoint_every_steps": 20,
+    "windows_job_object_required": true,
+    "owned_pid_cleanup_required": true
+  },
+  "four_b_decision": {
+    "run_4b_now": false,
+    "larger_model_spend_authorized": false,
+    "directional_candidate_requirements": [
+      "zero held-out critical violations",
+      "contract_valid_rate at least 0.9",
+      "final_response_rate at least 0.9",
+      "gratuitous_switch_rate at most 0.1",
+      "held-out justified-switch or highest-scoring-action improves over base without equivalent-state collapse"
+    ],
+    "formal_promotion_note": "This held-out slice has one family per condition, so it cannot satisfy the registered two-families-per-condition promotion gate by itself."
+  },
+  "external_artifact_root": "D:\\Research_Engine\\jinn_or_beast\\jinn_bench_qwen3_1p7b_jinn_reasoner_v2"
+}
