@@ -1,0 +1,40 @@
+{
+  "schema_version": "quranic_moral_village_amendment_v1",
+  "amendment_id": "jbv1-quranic-moral-village-001-amendment-03",
+  "status": "prospective_before_successful_generation",
+  "reason": "After Firefox resource relief, the base runtime retained 4555.555 MB available RAM but deterministically exceeded the 8192 MB job/process-commit cap during model load. The attempt wrote zero generation rows.",
+  "failed_attempt": {
+    "run_name": "local_smoke_20260724T235433Z",
+    "status": "ram_pressure_aborted",
+    "abort_reason": "private_commit_mb_exceeded",
+    "partial_generation_rows": 0,
+    "generation_content_inspected": false,
+    "peak_process_commit_mb": 8367.176,
+    "process_commit_limit_mb": 8192,
+    "available_ram_mb_at_abort": 4555.555,
+    "peak_physical_working_set_mb": 3607.977,
+    "pagefile_growth_mb": 0,
+    "cleanup_passed": true,
+    "lingering_owned_pids": []
+  },
+  "change": {
+    "job_memory_limit_mb_before": 8192,
+    "job_memory_limit_mb_after": 9728,
+    "process_commit_limit_mb_before": 8192,
+    "process_commit_limit_mb_after": 9728,
+    "basis": "The prior local soft-test matrix observed a successful 9592.504 MB process-commit peak. The new 9728 MB cap adds a small margin while remaining bounded."
+  },
+  "unchanged_guards": {
+    "min_available_ram_mb": 512,
+    "pagefile_growth_limit_mb": 64,
+    "vram_limit_mb": 3900,
+    "exclusive_gpu_required": true,
+    "model_offload_allowed": false
+  },
+  "authorization": {
+    "clean_restart_with_bounded_commit_envelope": true,
+    "reuse_partial_rows": false,
+    "inspect_failed_attempt_content": false
+  },
+  "scientific_scope": "Job resource-cap amendment only. Topics, arms, prompts, decoding, reply rotation, and highlight selection remain frozen."
+}
