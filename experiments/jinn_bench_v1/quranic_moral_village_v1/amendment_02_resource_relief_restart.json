@@ -1,0 +1,46 @@
+{
+  "schema_version": "quranic_moral_village_amendment_v1",
+  "amendment_id": "jbv1-quranic-moral-village-001-amendment-02",
+  "status": "prospective_before_successful_generation",
+  "reason": "The first amended retry exceeded the unchanged 8192 MB process-commit cap before any generation row was written. Inspection found 28 Firefox processes consuming several gigabytes of physical memory.",
+  "failed_attempts": [
+    {
+      "run_name": "local_smoke_20260724T235005Z",
+      "partial_generation_rows": 0,
+      "generation_content_inspected": false
+    },
+    {
+      "run_name": "local_smoke_20260724T235248Z",
+      "status": "ram_pressure_aborted",
+      "abort_reason": "private_commit_mb_exceeded",
+      "partial_generation_rows": 0,
+      "generation_content_inspected": false,
+      "peak_process_commit_mb": 8303.617,
+      "process_commit_limit_mb": 8192,
+      "pagefile_growth_mb": 0,
+      "cleanup_passed": true,
+      "lingering_owned_pids": []
+    }
+  ],
+  "resource_relief": {
+    "firefox_processes_closed": 28,
+    "remaining_firefox_processes": 0,
+    "free_physical_ram_mb_after": 10599.8,
+    "gpu_memory_used_mb_after": 9,
+    "gpu_utilization_percent_after": 0
+  },
+  "unchanged_guards": {
+    "min_available_ram_mb": 512,
+    "process_commit_limit_mb": 8192,
+    "pagefile_growth_limit_mb": 64,
+    "vram_limit_mb": 3900,
+    "exclusive_gpu_required": true,
+    "model_offload_allowed": false
+  },
+  "authorization": {
+    "clean_restart_after_resource_relief": true,
+    "reuse_partial_rows": false,
+    "inspect_failed_attempt_content": false
+  },
+  "scientific_scope": "Host resource relief only. Topics, arms, prompts, decoding, reply rotation, and highlight selection remain frozen."
+}
