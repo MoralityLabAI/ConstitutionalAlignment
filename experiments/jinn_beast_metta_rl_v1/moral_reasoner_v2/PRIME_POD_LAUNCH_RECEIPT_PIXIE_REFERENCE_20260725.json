@@ -1,6 +1,6 @@
 {
   "schema": "prime_pod_launch_intent_v1",
-  "status": "READY_FOR_A6000_CREATION",
+  "status": "COMPLETE_ARTIFACTS_RECOVERED_POD_TERMINATED",
   "prepared_utc": "2026-07-25T15:59:45.618Z",
   "handoff": "PRIME_POD_AGENT_HANDOFF_20260725.md",
   "account": {
@@ -12,6 +12,9 @@
     "run_id": "e2s64hw5ywag1d8hgwfef6jd",
     "name": "jinn-moral-reasoner-qwen35-4b-thinking-v2",
     "status_at_preflight": "RUNNING",
+    "status_latest": "COMPLETED",
+    "status_latest_observed_utc": "2026-07-25T17:19:31Z",
+    "completed_at": "2026-07-25T16:36:07.427Z",
     "action": "NONE"
   },
   "task": {
@@ -50,27 +53,162 @@
   },
   "sealed_bundle": {
     "repository": "https://github.com/MoralityLabAI/Pixieology.git",
-    "commit": "16df03fa91d91cf38047e8b486af945cc6d768c9",
+    "commit": "b2551426e30fb4fe0efe6b14bb6f3a01b64f47c6",
     "experiment": "experiments/pixie_lora_feedback_loop_v0_2",
-    "protocol_sha256": "b1c7964bbf3d9dfd584ecdba2ce5ebd87d8c24ceb1f271edd723322958e37181",
-    "implementation_lock_sha256": "ce93c575d3458698ac25fdde667e9b67c2b5c4c95b0501dc21f1faabfcd40ee0",
-    "prime_launcher_sha256": "41e5598806eab48b6320f69b15bad183edbfdb8c37b4cfa03fe35edfa4e76a7a",
+    "protocol_sha256": "f91301fd04a4686127316840ff2afbeb8c1a663fb91a4e4e203ab766bb30f59f",
+    "implementation_lock_sha256": "2dc7d1a3641012d101b3e69567de34ca0f19a7b0f4d0c0dbd1e8800f9fc0fc24",
+    "prime_launcher_sha256": "391a16ba126a3243fe268621774f0f9d5f9e896cb6d5aa792106c892b5679131",
     "jobs": [
       {
         "job_id": "evaluate-base_qwen_derived_1p7b",
-        "job_sha256": "2704d0cdfc4278899bb732297425b5fe9688b5adcdad7f2bf490bec9928f7e03"
+        "job_sha256": "0aa722a5dba2a912d1e53c3654949dd46c1fdaca62599e0cfcb144f2f1d6d0d5"
       },
       {
         "job_id": "evaluate-pixie_rank8",
-        "job_sha256": "8a49cae54ddc504531b5b9843dad2b1ce0a9521aa5795f6a72b237da5d107406"
+        "job_sha256": "bfd2a83605ac885b74a1e1634de9b8e473a57e74e0ecad181cc928de40d52eac"
       }
     ]
   },
   "expected_output_path": "C:\\projects\\Pixieology\\Pixieology\\data\\pixie_lora_feedback_loop_v0_2\\primelab\\pixie-reference-prime-20260725",
-  "pod_id": null,
+  "pod_id": "e5603c1807cd4779bbdf297e099cebfb",
+  "creation_utc": "2026-07-25T16:24:31.464Z",
+  "ready_utc": "2026-07-25T16:27:02.859Z",
   "creation_authorized": true,
   "workload_authorized": true,
   "workload_authorization_observed_utc": "2026-07-25T16:13:20.926Z",
+  "exact_authorization_events": [
+    {
+      "observed_utc": "2026-07-25T17:06:00Z",
+      "attempt_ids": [
+        "prime-a6000-base-02",
+        "prime-a6000-pixie-02"
+      ],
+      "action": "The user replied Proceed to the immediately preceding exact commit, protocol, implementation-lock, job-hash, resource-cap, paid-pod, cleanup, and no-automatic-authorization disclosure."
+    },
+    {
+      "observed_utc": "2026-07-25T17:15:13Z",
+      "attempt_ids": [
+        "prime-a6000-base-03"
+      ],
+      "action": "The user replied Proceed to the immediately preceding exact base retry disclosure after the tokenizer API abort."
+    }
+  ],
+  "compatibility_amendment": {
+    "observed_utc": "2026-07-25T16:29:44Z",
+    "reason": "The A6000 host mounts the model filesystem on partition 8:2, while cgroup v2 I/O accounting accepts its parent block device 8:0.",
+    "pre_model_result": "The original launcher failed closed during the cgroup self-test; no model or adapter was loaded.",
+    "change": "Resolve a mounted partition to its parent block device before writing io.max, retain exact readback, and record both devices in resource receipts.",
+    "hard_cap_self_test": {
+      "memory_max_bytes": 8589934592,
+      "memory_swap_max_bytes": 0,
+      "cpu_max": "300000 100000",
+      "io_max": "8:0 rbps=52428800 wbps=52428800 riops=max wiops=max",
+      "status": "PASS"
+    },
+    "source_commit": "b2551426e30fb4fe0efe6b14bb6f3a01b64f47c6",
+    "requires_new_exact_authorization": true
+  },
+  "budget_watchdog": {
+    "local_pid": 24236,
+    "deadline_utc": "2026-07-25T18:20:00Z",
+    "action": "Terminate only pod e5603c1807cd4779bbdf297e099cebfb if it still exists.",
+    "status": "DISARMED_AFTER_CONFIRMED_TERMINATION",
+    "disarmed_utc": "2026-07-25T17:19:31Z"
+  },
+  "staging": {
+    "completed_utc": "2026-07-25T16:52:10.354Z",
+    "repository_verification": "PASS",
+    "asset_file_count": 28,
+    "asset_file_bytes": 3491035099,
+    "frozen_input_verification": "PASS",
+    "gpu_memory_mib_after_staging": 1,
+    "gpu_utilization_percent_after_staging": 0,
+    "runtime": {
+      "python": "3.10.12",
+      "torch": "2.5.1+cu121",
+      "transformers_initial": "5.3.0",
+      "transformers_final": "4.57.6",
+      "peft": "0.11.1",
+      "bitsandbytes": "0.49.1",
+      "numpy": "2.2.6",
+      "safetensors": "0.6.2"
+    },
+    "model_or_adapter_loaded_during_staging": false
+  },
+  "executions": [
+    {
+      "attempt_id": "prime-a6000-base-02",
+      "job_id": "evaluate-base_qwen_derived_1p7b",
+      "started_utc": "2026-07-25T17:06:49.841106Z",
+      "ended_utc": "2026-07-25T17:07:23.705148Z",
+      "status": "ABORTED_VALID_OUTCOME",
+      "reason": "Transformers 5.3.0 returned BatchEncoding from apply_chat_template; the sealed helper required a plain input-ID list.",
+      "rows_completed": 0,
+      "peak_job_memory_bytes": 820039680,
+      "peak_gpu_memory_mib": 3516,
+      "cleanup_status": "PASS",
+      "lingering_owned_count": 0
+    },
+    {
+      "attempt_id": "prime-a6000-pixie-02",
+      "job_id": "evaluate-pixie_rank8",
+      "started_utc": "2026-07-25T17:11:20.408649Z",
+      "ended_utc": "2026-07-25T17:12:38.453333Z",
+      "status": "COMPLETE",
+      "rows_completed": 36,
+      "mean_log_likelihood": -1.8295312187530928,
+      "exact_match_accuracy": 0.2222222222222222,
+      "peak_job_memory_bytes": 3432144896,
+      "peak_gpu_memory_mib": 2120,
+      "cleanup_status": "PASS",
+      "lingering_owned_count": 0
+    },
+    {
+      "attempt_id": "prime-a6000-base-03",
+      "job_id": "evaluate-base_qwen_derived_1p7b",
+      "started_utc": "2026-07-25T17:15:36.826268Z",
+      "ended_utc": "2026-07-25T17:16:48.610394Z",
+      "status": "COMPLETE",
+      "rows_completed": 36,
+      "mean_log_likelihood": -5.257823043399387,
+      "exact_match_accuracy": 0.2222222222222222,
+      "peak_job_memory_bytes": 3461300224,
+      "peak_gpu_memory_mib": 2064,
+      "cleanup_status": "PASS",
+      "lingering_owned_count": 0
+    }
+  ],
+  "result": {
+    "status": "BASELINES_COMPLETE_AWAITING_CANDIDATES",
+    "frozen_transfer_row_count_per_condition": 36,
+    "pixie_minus_base": {
+      "mean_log_likelihood": 3.4282918246462946,
+      "exact_match_accuracy": 0.0
+    },
+    "interpretation": "Pixie rank-8 substantially increased probability assigned to the registered targets without changing greedy exact-match accuracy in this single frozen-transfer reference run.",
+    "claim_boundary": "Descriptive single-seed frozen-transfer contrast; not a causal attribution to etale motifs and not a training result."
+  },
+  "artifacts": {
+    "local_root": "C:\\projects\\Pixieology\\Pixieology\\data\\pixie_lora_feedback_loop_v0_2\\primelab\\pixie-reference-prime-20260725",
+    "final_archive": "pixie-reference-artifacts-20260725-final.tgz",
+    "final_archive_sha256": "9cf0a7d66e28b4a39fd97e45c871c2e0b6da5e19205252ded25ee4bf349ff5ed",
+    "final_archive_bytes": 20862,
+    "contrast_sha256": "fff47c8a5ff9ef144a479b796d6d1a43594d4aa78c340a7fdd8d8f4c92fa0ade",
+    "feedback_report_sha256": "7117a6bb47143cbf29f00837049d8e5f326cd394d56c11b9395859bd14277a56",
+    "base_rows_sha256": "ce821a58409383acdb48c15e503b27409cf595af8c214b20f7bb005dd4d6ae9d",
+    "pixie_rows_sha256": "e5c6d08d274e72dd9896c6d008962ed0dfc4eb4049507bf55975baf5ceb94d9d",
+    "validation": "PASS"
+  },
+  "termination": {
+    "terminated_utc": "2026-07-25T17:19:18Z",
+    "duration_seconds": 3276,
+    "provider_history_duration": "54m",
+    "listed_hourly_usd": 0.54,
+    "provider_total_cost_units": 4686,
+    "provider_total_cost_usd": 0.4686,
+    "active_pod_count_after": 0,
+    "status": "PASS"
+  },
   "launch_recheck": {
     "checked_utc": "2026-07-25T16:13:20.926Z",
     "active_pod_count": 0,
