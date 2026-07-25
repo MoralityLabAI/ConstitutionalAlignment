@@ -118,6 +118,46 @@ class LegacyEnvironmentTests(unittest.TestCase):
                 require_training_approval=True,
             )
 
+    def test_jinn_moral_reasoner_loader_preserves_pair_metadata(self) -> None:
+        env = vf.load_environment(
+            env_id="jinn-beast-metta",
+            split="development",
+            task_mode="jinn_moral_reasoner",
+            require_training_approval=True,
+        )
+        dataset = env.get_eval_dataset()
+        self.assertEqual(len(dataset), 16)
+        info = dataset[0]["info"]["task"]["info"]
+        self.assertEqual(info["construct_id"], "jinn_moral_reasoner_v2")
+        self.assertIn("equivalence_pair_id", info)
+        self.assertIn("change_pair_id", info)
+        self.assertIn("target_action_id", info)
+
+        row = dataset[0]
+        transported_task = flatten_task_input(row)
+        state = {
+            "prompt": transported_task["prompt"],
+            "completion": [{"role": "assistant", "content": row["answer"]}],
+            "answer": transported_task["answer"],
+            "input": transported_task,
+            "task": transported_task,
+            "info": transported_task["info"],
+            "trajectory": [],
+        }
+        asyncio.run(env.rubric.score_rollout(state))
+        self.assertGreaterEqual(state["reward"], 0.85)
+        self.assertEqual(state["metrics"]["highest_scoring_action"], 1.0)
+        self.assertEqual(state["metrics"]["critical_violation"], 0.0)
+
+    def test_jinn_moral_reasoner_candidate_training_is_fail_closed(self) -> None:
+        with self.assertRaisesRegex(RuntimeError, "fail-closed"):
+            vf.load_environment(
+                env_id="jinn-beast-metta",
+                split="candidate_train",
+                task_mode="jinn_moral_reasoner",
+                require_training_approval=True,
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

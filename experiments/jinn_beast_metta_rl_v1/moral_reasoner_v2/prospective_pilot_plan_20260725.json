@@ -1,0 +1,118 @@
+{
+  "schema_version": "jinn_moral_reasoner_prime_rl_plan_v2",
+  "status": "frozen_before_training_outcomes",
+  "authorization": {
+    "authorized_by": "user",
+    "authorization_text": "proceed",
+    "authorized_at_local_date": "2026-07-25",
+    "scope": "One capped 10-step Prime hosted RL pilot on Qwen3.5-4B"
+  },
+  "claim_boundary": {
+    "development_only": true,
+    "source_review_status": "scholar_review_pending",
+    "candidate_rows_marked_training_approved": false,
+    "owner_override_required": true,
+    "corpus_release_authorized": false,
+    "confirmatory_claims_authorized": false,
+    "paper_promotion_authorized": false,
+    "larger_model_qlora_authorized": false
+  },
+  "environment": {
+    "id": "moralitylab/jinn-beast-metta",
+    "version": "0.1.9",
+    "version_id": "yz0iwzj2xl6f762zrastkw1j",
+    "content_hash": "ee04a42a9ebc28953364b9fa447552370eef0d3c1b3962336bd75596ee891d10",
+    "wheel_sha256": "c603d4f47dbd71eb467bf2b0c3e398c925356cdaad39b189513408309622b4ab",
+    "integration_job_id": "zic9hcea7dinhylop6aap97l",
+    "integration_status": "SUCCESS"
+  },
+  "model": "Qwen/Qwen3.5-4B",
+  "training": {
+    "config_path": "configs/rl/jinn_moral_reasoner_qwen35_4b_thinking_pilot.toml",
+    "config_sha256": "aa526d664b773c6686baa4baf1b0d71778bb470a8db794b9913e8e1affbc8c26",
+    "split": "candidate_train",
+    "task_mode": "jinn_moral_reasoner",
+    "candidate_tasks": 16,
+    "candidate_families": 4,
+    "require_training_approval": false,
+    "maximum_steps": 10,
+    "batch_size": 64,
+    "rollouts_per_example": 4,
+    "max_inflight_rollouts": 4,
+    "complete_task_epochs_per_batch": 1,
+    "enable_thinking": true,
+    "maximum_output_tokens": 6144,
+    "exact_village_rows_used_for_training": 0
+  },
+  "evaluation": {
+    "split": "development",
+    "tasks": 16,
+    "families": 4,
+    "rollouts_per_example": 4,
+    "steps": [
+      0,
+      5,
+      10
+    ],
+    "temperature": 0.0,
+    "enable_thinking": true,
+    "exact_village_post_training_gate_required": true
+  },
+  "pre_spend_gates": {
+    "local_signal_gate_path": "experiments/jinn_beast_metta_rl_v1/moral_reasoner_v2/local_signal_gate_20260725.json",
+    "local_signal_gate_sha256": "c81e086cc950fb52409bc4659ee5e25e2a074fec568c4997a50b5ecab5d71b13",
+    "local_signal_gate_status": "passed",
+    "storyworlds_validated": 32,
+    "scored_tasks": 32,
+    "action_reward_weight": 0.75,
+    "critical_violation_cap": 0.2,
+    "minimum_best_to_critical_reward_gap": 0.65,
+    "exact_batch_balance": true,
+    "candidate_and_development_families_disjoint": true,
+    "exact_village_excluded": true
+  },
+  "base_gate": {
+    "config_path": "configs/eval/jinn_moral_reasoner_qwen35_4b_base_gate.toml",
+    "config_sha256": "b4fa737b2c80a6d23c6ef2aa4bc4f918605d01ef914dd1624dfe35b1015d7438",
+    "results_sha256": "dd3dc62e2c48b43e23e6e6faf46696384378e441fa9318ab71e4ceeb1d822079",
+    "metadata_sha256": "13fd4ad021b5efbb050c08fa6c942de51283d05e08d8ec87bafa7e90d0f2655e",
+    "analysis_sha256": "4c1f36734a1d46680b9b21ae48e773afb99f8c5a39b0f8b626c059f44d493a33",
+    "mean_reward": 0.496053,
+    "contract_valid_rate": 0.578125,
+    "highest_scoring_action_rate": 0.53125,
+    "critical_violation_rate": 0.0,
+    "truncated_rate": 0.421875,
+    "strict_equivalent_action_agreement": 0.28125,
+    "justified_switch_rate": 0.25,
+    "cost_usd": 0.0891952,
+    "launch_gate": "passed_for_capped_diagnostic_pilot"
+  },
+  "resource_and_spend_contract": {
+    "execution_surface": "Prime hosted RL",
+    "generic_pod_allowed": false,
+    "local_gpu_used": false,
+    "maximum_steps_is_hard_cap": true,
+    "checkpoint_interval_steps": 5,
+    "terminal_adapter_only": true,
+    "estimated_training_and_integrated_eval_cost_usd": [
+      1.5,
+      2.5
+    ],
+    "program_spending_reserve_usd": 3.5,
+    "additional_runs_authorized": 0
+  },
+  "abort_and_promotion": {
+    "abort_on_environment_error": true,
+    "abort_on_nonfinite_training_metric": true,
+    "abort_on_critical_violation_increase": true,
+    "abort_on_missing_step_5_evaluation": true,
+    "promotion_requires_mean_reward_above_base": true,
+    "promotion_requires_contract_valid_rate_above_base": true,
+    "promotion_requires_truncated_rate_below_base": true,
+    "promotion_requires_highest_scoring_action_improvement_in_at_least_three_of_four_families": true,
+    "promotion_requires_non_decreasing_equivalent_action_agreement": true,
+    "promotion_requires_non_decreasing_justified_switch_rate": true,
+    "promotion_requires_zero_critical_violations": true,
+    "automatic_promotion": false
+  }
+}

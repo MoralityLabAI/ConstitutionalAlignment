@@ -99,3 +99,27 @@ def select_construct_rows(
                 f"{len(blocked)} construct rows lack training approval"
             )
     return rows
+
+
+def select_jinn_moral_reasoner_rows(
+    split: Literal["candidate_train", "development"] = "development",
+    require_training_approval: bool = True,
+) -> list[dict[str, Any]]:
+    """Select the paired Jinn moral-reasoner lane with a fail-closed gate."""
+    if split not in SPLIT_VALUES:
+        raise ValueError(f"unsupported split: {split!r}")
+    rows = [
+        row
+        for row in _load_jsonl("jinn_moral_reasoner_tasks.jsonl")
+        if row["split"] == split
+    ]
+    if not rows:
+        raise ValueError(f"no Jinn moral-reasoner rows for split={split!r}")
+    if split == "candidate_train" and require_training_approval:
+        blocked = [row["task_id"] for row in rows if not row["training_approved"]]
+        if blocked:
+            raise ValueError(
+                "candidate_train is fail-closed: "
+                f"{len(blocked)} Jinn moral-reasoner rows lack training approval"
+            )
+    return rows

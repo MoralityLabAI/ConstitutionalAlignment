@@ -1,0 +1,44 @@
+{
+  "candidate_training_override_required": true,
+  "candidate_training_ready": false,
+  "condition_counts": {
+    "justice_without_collective_blame": 8,
+    "precaution_under_uncertainty": 8,
+    "testimony_against_kin": 8,
+    "truth_under_schedule_pressure": 8
+  },
+  "construct_id": "jinn_moral_reasoner_v2",
+  "data_sha256": "27caad40a0817b8e8f731d4882337caef0c64f86425bc71220ede519c4b839a5",
+  "environment_version": "0.1.9",
+  "exact_village_artifact_sha256": "36938b69d7989613208241830f212194d3fc568e50f86fda22ad3518af69e67c",
+  "exact_village_rows_used_for_training": 0,
+  "pair_audit": {
+    "equivalence_pairs": 16,
+    "equivalence_targets_invariant": true,
+    "material_change_families": 8,
+    "material_change_targets_change": true
+  },
+  "reward_profile": {
+    "critical_violation_cap": 0.2,
+    "profile_id": "jinn_moral_reasoner_action_dominant_v2",
+    "weights": {
+      "action": 0.75,
+      "contract": 0.1,
+      "evidence": 0.1,
+      "review": 0.025,
+      "uncertainty": 0.025
+    }
+  },
+  "rows": 32,
+  "schema_version": "jinn_moral_reasoner_environment_manifest_v2",
+  "scorer_id": "jinn_moral_reasoner_policy_v2",
+  "source_review_status": "scholar_review_pending",
+  "split_counts": {
+    "candidate_train": 16,
+    "development": 16
+  },
+  "split_family_counts": {
+    "candidate_train": 4,
+    "development": 4
+  }
+}

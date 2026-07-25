@@ -9,7 +9,11 @@ import verifiers as vf
 from datasets import Dataset
 
 from .core import score_construct_response, score_response
-from .selectors import select_construct_rows, select_rows
+from .selectors import (
+    select_construct_rows,
+    select_jinn_moral_reasoner_rows,
+    select_rows,
+)
 
 Completion = str | list[dict[str, Any]]
 
@@ -24,7 +28,10 @@ def _score_receipt(
     if not isinstance(task, dict):
         raise TypeError("task_payload must decode to an object")
     scorer_id = task.get("scorer_id")
-    if scorer_id == "dual_construct_metta_policy_v1":
+    if scorer_id in {
+        "dual_construct_metta_policy_v1",
+        "jinn_moral_reasoner_policy_v2",
+    }:
         return score_construct_response(text or "", task)
     if scorer_id != "cross_frame_metta_policy_v1":
         raise ValueError(f"unsupported scorer_id: {scorer_id!r}")
@@ -207,6 +214,10 @@ def repair_after_testimony(
 
 
 def _compact_task_payload(row: dict[str, Any], scorer_id: str) -> str:
+    construct_scorer = scorer_id in {
+        "dual_construct_metta_policy_v1",
+        "jinn_moral_reasoner_policy_v2",
+    }
     action_scores = {
         action_id: {
             "action_key": values["action_key"],
@@ -220,7 +231,7 @@ def _compact_task_payload(row: dict[str, Any], scorer_id: str) -> str:
                         ]
                     }
                 }
-                if scorer_id == "dual_construct_metta_policy_v1"
+                if construct_scorer
                 else {}
             ),
         }
@@ -233,8 +244,11 @@ def _compact_task_payload(row: dict[str, Any], scorer_id: str) -> str:
         "expected_review_required": row["expected_review_required"],
         "action_scores": action_scores,
     }
-    if scorer_id == "dual_construct_metta_policy_v1":
+    if construct_scorer:
         payload["construct_id"] = row["construct_id"]
+        payload["benchmark_id"] = row["benchmark_id"]
+    if scorer_id == "jinn_moral_reasoner_policy_v2":
+        payload["reward_profile"] = row["reward_profile"]
     return json.dumps(payload, sort_keys=True, separators=(",", ":"))
 
 
@@ -268,11 +282,15 @@ def _construct_user_prompt(row: dict[str, Any]) -> str:
 
 
 def _legacy_dataset(rows: list[dict[str, Any]], scorer_id: str) -> Dataset:
+    construct_scorer = scorer_id in {
+        "dual_construct_metta_policy_v1",
+        "jinn_moral_reasoner_policy_v2",
+    }
     records: list[dict[str, Any]] = []
     for example_id, row in enumerate(rows):
         user_prompt = (
             _construct_user_prompt(row)
-            if scorer_id == "dual_construct_metta_policy_v1"
+            if construct_scorer
             else row["prompt"]
         )
         prompt = [
@@ -280,7 +298,7 @@ def _legacy_dataset(rows: list[dict[str, Any]], scorer_id: str) -> Dataset:
             {"role": "user", "content": user_prompt},
         ]
         answer = _canonical_answer(row)
-        if scorer_id == "dual_construct_metta_policy_v1":
+        if construct_scorer:
             info = {
                 "task_id": row["task_id"],
                 "scenario_id": row["scenario_id"],
@@ -290,6 +308,18 @@ def _legacy_dataset(rows: list[dict[str, Any]], scorer_id: str) -> Dataset:
                 "split": row["split"],
                 "target_dimensions": row["target_dimensions"],
             }
+            if scorer_id == "jinn_moral_reasoner_policy_v2":
+                info.update(
+                    {
+                        "family_id": row["family_id"],
+                        "condition": row["condition"],
+                        "state_role": row["state_role"],
+                        "presentation_role": row["presentation_role"],
+                        "equivalence_pair_id": row["equivalence_pair_id"],
+                        "change_pair_id": row["change_pair_id"],
+                        "target_action_id": row["target_action_id"],
+                    }
+                )
         else:
             info = {
                 "task_id": row["task_id"],
@@ -323,12 +353,20 @@ def load_environment(
     frame: Literal["balanced", "neutral", "constitutional", "jinn", "beast"] = (
         "balanced"
     ),
-    task_mode: Literal["cross_frame", "constructs"] = "cross_frame",
+    task_mode: Literal[
+        "cross_frame", "constructs", "jinn_moral_reasoner"
+    ] = "cross_frame",
     construct: Literal["balanced", "jinn", "beast"] = "balanced",
     require_training_approval: bool = True,
 ) -> vf.Environment:
     """Load a v0-compatible single-turn environment for hosted evaluation."""
-    if task_mode == "constructs":
+    if task_mode == "jinn_moral_reasoner":
+        rows = select_jinn_moral_reasoner_rows(
+            split=split,
+            require_training_approval=require_training_approval,
+        )
+        scorer_id = "jinn_moral_reasoner_policy_v2"
+    elif task_mode == "constructs":
         rows = select_construct_rows(
             split=split,
             construct=construct,

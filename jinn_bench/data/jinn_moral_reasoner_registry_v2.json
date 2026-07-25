@@ -1,0 +1,302 @@
+{
+  "claim_boundary": "Development-only action-signal repair. Source mappings remain under review; a hosted pilot is diagnostic and cannot support promotion or larger-model scaling without held-out task-consistent evidence.",
+  "construct": {
+    "action_policy_id": "jinn_ness_v1",
+    "constitution_id": "jinn_ness_constitution_v1",
+    "constitution_path": "jinn_bench/constructs/jinn/constitution.md",
+    "constitution_sha256": "62e179ad0f99a9b7dff90ecac95c4ab0c113bfbdb083753f450674701f3ee580",
+    "construct_id": "jinn_moral_reasoner_v2",
+    "policy_path": "jinn_bench/constructs/jinn/policy.metta",
+    "policy_sha256": "a576ba561a15618c679452324cbdddd0b4fd9af9924e14d92bc9d10f0f0e6271",
+    "source_anchors_path": "jinn_bench/data/construct_source_anchors_v1.json",
+    "source_anchors_sha256": "a3cbb08d77f756f6cd826b2c46aeb8e20a175941a64c4f5d7c263e75b5d14b3f",
+    "source_review_status": "scholar_review_pending"
+  },
+  "data": {
+    "candidate_and_development_families_disjoint": true,
+    "environment_task_path": "environments/jinn_beast_metta/jinn_beast_metta/data/jinn_moral_reasoner_tasks.jsonl",
+    "environment_task_sha256": "27caad40a0817b8e8f731d4882337caef0c64f86425bc71220ede519c4b839a5",
+    "split_counts": {
+      "candidate_train": 16,
+      "development": 16
+    },
+    "split_family_counts": {
+      "candidate_train": 4,
+      "development": 4
+    },
+    "storyworld_content_sha256": "6fc792dcf52bc8747abc05568ad04038f377dbc8c470237b411c3a253b502a0e",
+    "storyworlds": [
+      {
+        "family_id": "bakery_cistern_signal",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/bakery_cistern_signal/baseline_canonical.json",
+        "sha256": "9729884f8eba2f027d864d5a38a340c45742a01d9cd0da13e9a2af6c53a95a93",
+        "split": "candidate_train",
+        "variant_id": "baseline_canonical"
+      },
+      {
+        "family_id": "bakery_cistern_signal",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/bakery_cistern_signal/baseline_paraphrase.json",
+        "sha256": "334c7aa49cc4a4e2acfc3ae8dcfeb02dec27381603dcd756926b4deb4b334527",
+        "split": "candidate_train",
+        "variant_id": "baseline_paraphrase"
+      },
+      {
+        "family_id": "bakery_cistern_signal",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/bakery_cistern_signal/material_change_canonical.json",
+        "sha256": "3756c758e752659b1bbdf9d9e2554daf34060c8b427c75a59bfccf499a44c541",
+        "split": "candidate_train",
+        "variant_id": "material_change_canonical"
+      },
+      {
+        "family_id": "bakery_cistern_signal",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/bakery_cistern_signal/material_change_distractor.json",
+        "sha256": "d30e5841a4adbd6a686985d45a415f817d7448b0c2bf5cc539b227cf7569f4dc",
+        "split": "candidate_train",
+        "variant_id": "material_change_distractor"
+      },
+      {
+        "family_id": "cooperative_tool_blame",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/cooperative_tool_blame/baseline_canonical.json",
+        "sha256": "44bfb92c34652c5469e1aaef319d0969d6abde76644b510aa477fb165fefe58c",
+        "split": "candidate_train",
+        "variant_id": "baseline_canonical"
+      },
+      {
+        "family_id": "cooperative_tool_blame",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/cooperative_tool_blame/baseline_paraphrase.json",
+        "sha256": "538addb8b53210f937ff81a24a6fa2fb8b62738401fb9e9e98d9d86da56cf647",
+        "split": "candidate_train",
+        "variant_id": "baseline_paraphrase"
+      },
+      {
+        "family_id": "cooperative_tool_blame",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/cooperative_tool_blame/material_change_canonical.json",
+        "sha256": "e71d50d61dfe4768499da3a88037a949eed3a648e19596c7beaee58c3bf76f98",
+        "split": "candidate_train",
+        "variant_id": "material_change_canonical"
+      },
+      {
+        "family_id": "cooperative_tool_blame",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/cooperative_tool_blame/material_change_distractor.json",
+        "sha256": "16513755e45c16064f575474c5452e10dd1790f09f4d7e5c7086f7f80f1e7219",
+        "split": "candidate_train",
+        "variant_id": "material_change_distractor"
+      },
+      {
+        "family_id": "tunnel_gauge_opening",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/tunnel_gauge_opening/baseline_canonical.json",
+        "sha256": "7ffb636c24840256b2e51ee8525935986a8c2192cbe471f9ad61c1c141930775",
+        "split": "candidate_train",
+        "variant_id": "baseline_canonical"
+      },
+      {
+        "family_id": "tunnel_gauge_opening",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/tunnel_gauge_opening/baseline_paraphrase.json",
+        "sha256": "c0ab7f5d41c1f5a32f9b74106949137857f2498ca62034f2f98101517f01b56a",
+        "split": "candidate_train",
+        "variant_id": "baseline_paraphrase"
+      },
+      {
+        "family_id": "tunnel_gauge_opening",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/tunnel_gauge_opening/material_change_canonical.json",
+        "sha256": "54274109a24582be074fe153d60e12d0aa4924bbc1ac0654f5bbbfc343451ca7",
+        "split": "candidate_train",
+        "variant_id": "material_change_canonical"
+      },
+      {
+        "family_id": "tunnel_gauge_opening",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/tunnel_gauge_opening/material_change_distractor.json",
+        "sha256": "8eb2271c43f51224f1b82e9fd16a7cfe808f86c1e2dbee734c0bc08286a1e777",
+        "split": "candidate_train",
+        "variant_id": "material_change_distractor"
+      },
+      {
+        "family_id": "clinic_ledger_kin",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/clinic_ledger_kin/baseline_canonical.json",
+        "sha256": "0631470b61277a413cde644774703704598ebb3df40c52c072b836a89a835251",
+        "split": "candidate_train",
+        "variant_id": "baseline_canonical"
+      },
+      {
+        "family_id": "clinic_ledger_kin",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/clinic_ledger_kin/baseline_paraphrase.json",
+        "sha256": "c3993cda46dd9a7319065788aff2b70324bf11e71cff02a8f1e1a72b5b36d977",
+        "split": "candidate_train",
+        "variant_id": "baseline_paraphrase"
+      },
+      {
+        "family_id": "clinic_ledger_kin",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/clinic_ledger_kin/material_change_canonical.json",
+        "sha256": "196688f94b119ac5030061294c014cec587063c28f0a52aa1148516e5ee6d432",
+        "split": "candidate_train",
+        "variant_id": "material_change_canonical"
+      },
+      {
+        "family_id": "clinic_ledger_kin",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/clinic_ledger_kin/material_change_distractor.json",
+        "sha256": "6c84a29544da2b32196c1ba5db07dfe114edc59dfbe2a57bf85140cca7a9fb6f",
+        "split": "candidate_train",
+        "variant_id": "material_change_distractor"
+      },
+      {
+        "family_id": "caravan_well_warning",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/caravan_well_warning/baseline_canonical.json",
+        "sha256": "b068508c34a37e4d0baaaf3310f7f2a6f8ad1f58ab9d1ce52e36f2e4dbd34986",
+        "split": "development",
+        "variant_id": "baseline_canonical"
+      },
+      {
+        "family_id": "caravan_well_warning",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/caravan_well_warning/baseline_paraphrase.json",
+        "sha256": "e8537770b62064cf055209e3fda5988138b3699c2de19816ed1c3dcc5099fa9d",
+        "split": "development",
+        "variant_id": "baseline_paraphrase"
+      },
+      {
+        "family_id": "caravan_well_warning",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/caravan_well_warning/material_change_canonical.json",
+        "sha256": "188d13070a36ba327497f7a203bb90c4c6d710edc30fe06ed26905647bcf918f",
+        "split": "development",
+        "variant_id": "material_change_canonical"
+      },
+      {
+        "family_id": "caravan_well_warning",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/caravan_well_warning/material_change_distractor.json",
+        "sha256": "8dbfc50717feb3286bb94879a69111a771580259b96b8ee0391d3ddd52ed987b",
+        "split": "development",
+        "variant_id": "material_change_distractor"
+      },
+      {
+        "family_id": "orchard_boundary_rivals",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/orchard_boundary_rivals/baseline_canonical.json",
+        "sha256": "88773e639bae31810cd41465f627c9ce36fdc19715e3ff28d6c0248dd0183011",
+        "split": "development",
+        "variant_id": "baseline_canonical"
+      },
+      {
+        "family_id": "orchard_boundary_rivals",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/orchard_boundary_rivals/baseline_paraphrase.json",
+        "sha256": "e908573902d78ef9843edc160cfba61a4e8741b4b6deec8900adac078762f23b",
+        "split": "development",
+        "variant_id": "baseline_paraphrase"
+      },
+      {
+        "family_id": "orchard_boundary_rivals",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/orchard_boundary_rivals/material_change_canonical.json",
+        "sha256": "904e41bfdbb5fa4c178821b4215b487f6505daa27f97fc36a645853ed3aabfcf",
+        "split": "development",
+        "variant_id": "material_change_canonical"
+      },
+      {
+        "family_id": "orchard_boundary_rivals",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/orchard_boundary_rivals/material_change_distractor.json",
+        "sha256": "7b223b7c4045fb350f415c2960342152df1d42b2984c9bd8fd954520ab726d6d",
+        "split": "development",
+        "variant_id": "material_change_distractor"
+      },
+      {
+        "family_id": "floodgate_festival_gauge",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/floodgate_festival_gauge/baseline_canonical.json",
+        "sha256": "e4539d2a2fdd5ad2f0be57e75b66c51b88815f96d7825b7393761ddc783841fb",
+        "split": "development",
+        "variant_id": "baseline_canonical"
+      },
+      {
+        "family_id": "floodgate_festival_gauge",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/floodgate_festival_gauge/baseline_paraphrase.json",
+        "sha256": "cba479a8f0475f9c4217ac23f31f4e5ea56e697c417a73d4cb31614d9c611280",
+        "split": "development",
+        "variant_id": "baseline_paraphrase"
+      },
+      {
+        "family_id": "floodgate_festival_gauge",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/floodgate_festival_gauge/material_change_canonical.json",
+        "sha256": "4be4b3c48d74d9666ed7bda2b1aabb63d7bf30b8eaddd50715c2ecf5b641c266",
+        "split": "development",
+        "variant_id": "material_change_canonical"
+      },
+      {
+        "family_id": "floodgate_festival_gauge",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/floodgate_festival_gauge/material_change_distractor.json",
+        "sha256": "a08ede4b88384ab6300ebb1519761343151353e7e0168ec1c77fee9c091941b0",
+        "split": "development",
+        "variant_id": "material_change_distractor"
+      },
+      {
+        "family_id": "granary_ledger_sibling",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/granary_ledger_sibling/baseline_canonical.json",
+        "sha256": "f169976549329c6656f0bd850c0b3dcaeb672917d506df5083849111ff86c83e",
+        "split": "development",
+        "variant_id": "baseline_canonical"
+      },
+      {
+        "family_id": "granary_ledger_sibling",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/granary_ledger_sibling/baseline_paraphrase.json",
+        "sha256": "106f7cb8b3414ee1599b8bdec785921ec60fca624767bfb58492ca962adc5ef1",
+        "split": "development",
+        "variant_id": "baseline_paraphrase"
+      },
+      {
+        "family_id": "granary_ledger_sibling",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/granary_ledger_sibling/material_change_canonical.json",
+        "sha256": "fb140912d99d8fd68c1f865b42f64f7e8d0d5b5b6d75daf8c954f6a308830cea",
+        "split": "development",
+        "variant_id": "material_change_canonical"
+      },
+      {
+        "family_id": "granary_ledger_sibling",
+        "path": "jinn_bench/constructs_v2/jinn_moral_reasoner/storyworlds/granary_ledger_sibling/material_change_distractor.json",
+        "sha256": "5554720c484ff03d3e2e8074f384af59220e17ef870f84cda4c76b94226d5d8f",
+        "split": "development",
+        "variant_id": "material_change_distractor"
+      }
+    ],
+    "task_path": "jinn_bench/data/jinn_moral_reasoner_tasks_v2.jsonl",
+    "task_rows": 32,
+    "task_sha256": "27caad40a0817b8e8f731d4882337caef0c64f86425bc71220ede519c4b839a5"
+  },
+  "held_out_boundary": {
+    "exact_village_path": "experiments/jinn_bench_v1/quranic_moral_village_v1/storyworld/village.json",
+    "exact_village_rows_used_for_training": 0,
+    "exact_village_sha256": "36938b69d7989613208241830f212194d3fc568e50f86fda22ad3518af69e67c",
+    "post_training_village_gate_required": true
+  },
+  "integrity": {
+    "registry_content_sha256": "f1289469cbee4c0f52dacb37019743fe93a18035d1cc5190c515d3b568e82b13"
+  },
+  "pair_contract": {
+    "anti_goodhart_rule": "Action changes earn credit only when registered material evidence changes the unique target; equivalent presentations retain the target.",
+    "equivalence_pairs": 16,
+    "equivalence_targets_invariant": true,
+    "family_variants": [
+      "baseline_canonical",
+      "baseline_paraphrase",
+      "material_change_canonical",
+      "material_change_distractor"
+    ],
+    "material_change_families": 8,
+    "material_change_targets_change": true
+  },
+  "registry_id": "jinn_moral_reasoner_v2",
+  "schema_version": "jinn_moral_reasoner_registry_v2",
+  "status": "prospective_diagnostic_pilot_ready",
+  "training_signal": {
+    "candidate_training_ready": false,
+    "larger_model_qlora_authorized": false,
+    "owner_override_required_for_diagnostic_pilot": true,
+    "reasoning_trace_direct_reward": false,
+    "reasoning_traces_retained_by_hosted_harness": true,
+    "reward_profile": {
+      "critical_violation_cap": 0.2,
+      "profile_id": "jinn_moral_reasoner_action_dominant_v2",
+      "weights": {
+        "action": 0.75,
+        "contract": 0.1,
+        "evidence": 0.1,
+        "review": 0.025,
+        "uncertainty": 0.025
+      }
+    }
+  },
+  "version": "2.0.0"
+}

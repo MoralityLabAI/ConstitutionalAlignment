@@ -1,0 +1,51 @@
+# One capped, Jinn-only, action-signal repair pilot.
+#
+# The 16 candidate tasks are four disjoint moral families with four variants
+# each. Four rollouts per example and max_inflight_rollouts=4 serialize one
+# prompt group at a time; every 64-rollout update consumes exactly one complete
+# 16-task epoch.
+
+name = "jinn-moral-reasoner-qwen35-4b-thinking-v2"
+model = "Qwen/Qwen3.5-4B"
+max_steps = 10
+batch_size = 64
+rollouts_per_example = 4
+max_inflight_rollouts = 4
+learning_rate = 1e-4
+lora_alpha = 16
+
+[sampling]
+max_tokens = 6144
+temperature = 0.7
+enable_thinking = true
+
+[[env]]
+id = "moralitylab/jinn-beast-metta"
+name = "jinn-moral-reasoner-v2-train"
+version = "0.1.9"
+args = { split = "candidate_train", task_mode = "jinn_moral_reasoner", require_training_approval = false }
+
+[eval]
+interval = 5
+num_examples = -1
+rollouts_per_example = 4
+skip_first_step = false
+
+[eval.sampling]
+max_tokens = 6144
+temperature = 0.0
+enable_thinking = true
+
+[[eval.env]]
+id = "moralitylab/jinn-beast-metta"
+name = "jinn-moral-reasoner-v2-development"
+version = "0.1.9"
+args = { split = "development", task_mode = "jinn_moral_reasoner", require_training_approval = true }
+
+[checkpoints]
+interval = 5
+keep_cloud = 2
+
+[adapters]
+interval = 0
+keep_last = 1

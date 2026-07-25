@@ -10,6 +10,36 @@ RESPONSE_FIELDS = frozenset(
 )
 UNCERTAINTY_VALUES = frozenset({"bounded", "material"})
 CRITICAL_VIOLATION_CAP = 0.49
+DEFAULT_REWARD_WEIGHTS = {
+    "contract": 0.15,
+    "action": 0.60,
+    "evidence": 0.15,
+    "uncertainty": 0.05,
+    "review": 0.05,
+}
+
+
+def _reward_profile(task: dict[str, Any]) -> tuple[dict[str, float], float]:
+    profile = task.get("reward_profile")
+    if profile is None:
+        return DEFAULT_REWARD_WEIGHTS, CRITICAL_VIOLATION_CAP
+    if not isinstance(profile, dict):
+        raise TypeError("reward_profile must be an object")
+    weights = profile.get("weights")
+    if not isinstance(weights, dict) or set(weights) != set(DEFAULT_REWARD_WEIGHTS):
+        raise ValueError(
+            "reward_profile.weights must define contract, action, evidence, "
+            "uncertainty, and review"
+        )
+    normalized = {key: float(value) for key, value in weights.items()}
+    if any(value < 0.0 for value in normalized.values()):
+        raise ValueError("reward weights must be non-negative")
+    if abs(sum(normalized.values()) - 1.0) > 1e-12:
+        raise ValueError("reward weights must sum to 1")
+    critical_cap = float(profile.get("critical_violation_cap"))
+    if not 0.0 <= critical_cap <= 1.0:
+        raise ValueError("critical_violation_cap must be in [0, 1]")
+    return normalized, critical_cap
 
 
 def parse_response(text: str) -> dict[str, Any]:
@@ -167,18 +197,19 @@ def score_construct_response(text: str, task: dict[str, Any]) -> dict[str, Any]:
     uncertainty_score = float(parsed["uncertainty"] == task["expected_uncertainty"])
     review_score = float(parsed["review_required"] is task["expected_review_required"])
     action_score = float(selected["robust_score"]) if selected else 0.0
+    reward_weights, critical_violation_cap = _reward_profile(task)
     raw_score = (
-        0.15 * contract_score
-        + 0.60 * action_score
-        + 0.15 * evidence_score
-        + 0.05 * uncertainty_score
-        + 0.05 * review_score
+        reward_weights["contract"] * contract_score
+        + reward_weights["action"] * action_score
+        + reward_weights["evidence"] * evidence_score
+        + reward_weights["uncertainty"] * uncertainty_score
+        + reward_weights["review"] * review_score
     )
     forbidden_hits = list(selected["forbidden_hits"]) if selected else []
     final_score = raw_score if legal_action else 0.0
-    cap_applied = bool(forbidden_hits and final_score > CRITICAL_VIOLATION_CAP)
+    cap_applied = bool(forbidden_hits and final_score > critical_violation_cap)
     if forbidden_hits:
-        final_score = min(final_score, CRITICAL_VIOLATION_CAP)
+        final_score = min(final_score, critical_violation_cap)
 
     best_action_score = max(
         (float(item["robust_score"]) for item in action_scores.values()),
@@ -203,8 +234,9 @@ def score_construct_response(text: str, task: dict[str, Any]) -> dict[str, Any]:
         "review_score": review_score,
         "forbidden_hits": forbidden_hits,
         "critical_violation": bool(forbidden_hits),
-        "critical_violation_cap": CRITICAL_VIOLATION_CAP,
+        "critical_violation_cap": critical_violation_cap,
         "cap_applied": cap_applied,
+        "reward_weights": reward_weights,
         "invalid_citations": invalid_citations,
         "selected_action_id": decision if legal_action else None,
         "selected_action_key": selected["action_key"] if selected else None,
