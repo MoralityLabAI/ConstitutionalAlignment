@@ -1,0 +1,60 @@
+{
+  "schema": "prime_pod_preflight_receipt_v1",
+  "status": "STOPPED_NO_MATCHING_AVAILABILITY",
+  "observed_utc": "2026-07-25T19:30:17.0269587Z",
+  "account": {
+    "username": "moralitylab",
+    "user_id": "cmbqxo1kc0020eppjy9mnws3d",
+    "identity_check": "PASS"
+  },
+  "protected_run": {
+    "run_id": "e2s64hw5ywag1d8hgwfef6jd",
+    "name": "jinn-moral-reasoner-qwen35-4b-thinking-v2",
+    "status": "COMPLETED",
+    "action": "NONE"
+  },
+  "active_pods": {
+    "count": 0,
+    "check": "PASS"
+  },
+  "task": {
+    "id": "capture-pixie-etale-continuation-160-v0_3",
+    "repository": "https://github.com/MoralityLabAI/Pixieology.git",
+    "commit": "ad48954530836109d1b20e66708990dd568ac410",
+    "protocol_sha256": "8f33a790a4f25801bf4b1b7140f4b1174dbe44b6f46af9f66d81a3a28d111bcb",
+    "implementation_lock_sha256": "9cd9f27771ec2c5098cc0e3a123691cdb4f09ef3913b797344ad1681c55d0db7",
+    "job_sha256": "e92cfd8e5423a1aef0ba92d6d7eff4d52be744ecfb937f9c4b4c351f7f9ff8d0"
+  },
+  "authorization": {
+    "event": "The user replied Proceed to the immediately preceding exact paid-pod, resource-cap, cleanup, protected-run, and no-automatic-retry disclosure.",
+    "activated_receipt_sha256": "ca8e00c2ead3a363ac62adc74505ce18c5a0a809d6908aaa701483ccc7333405"
+  },
+  "requested_availability": {
+    "gpu_type": "A6000_48GB",
+    "gpu_count": 1,
+    "maximum_hourly_usd": 0.7,
+    "maximum_planned_lifetime_seconds": 7200,
+    "maximum_cost_usd": 1.4,
+    "spot": false
+  },
+  "availability_response": {
+    "gpu_resources": [],
+    "total_count": 0,
+    "filters": {
+      "gpu_type": "A6000_48GB",
+      "gpu_count": 1,
+      "regions": null,
+      "socket": null,
+      "provider": null,
+      "group_similar": true
+    }
+  },
+  "outcome": {
+    "pod_created": false,
+    "model_or_adapter_loaded": false,
+    "activation_rows_captured": 0,
+    "provider_cost_usd": 0.0,
+    "automatic_retry_authorized": false,
+    "reason": "No live single-A6000 offer matched the sealed envelope. The stale prior availability ID was not reused and no GPU substitution was made."
+  }
+}
