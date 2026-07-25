@@ -1,0 +1,204 @@
+{
+  "schema_version": "quranic_moral_live_village_memory_ablation_protocol_v1",
+  "experiment_id": "jbv3-role-memory-ablation-001",
+  "status": "prospective_frozen_before_generation",
+  "prepared_utc": "2026-07-25T19:38:49Z",
+  "purpose": "Test whether full cross-topic dialogue memory increases specialist role leakage or competence overreach relative to topic-local memory in live Jinn/Beast councils.",
+  "claim_boundary": {
+    "development_only": true,
+    "source_review_status": "scholar_review_pending",
+    "allowed": [
+      "descriptive role-continuity comparison",
+      "descriptive memory-condition comparison",
+      "prompt-skill and existing-adapter persona illustration",
+      "transparent quotation with full transcript and provenance",
+      "hypothesis generation"
+    ],
+    "prohibited": [
+      "validated theological interpretation",
+      "confirmatory moral-performance claim",
+      "population-effect estimate",
+      "claim that prompt infusion equals weight internalization",
+      "claim that the prompted base participant is a trained Beast adapter",
+      "provider-level deterministic-reproduction claim",
+      "automatic adapter promotion"
+    ]
+  },
+  "participants": {
+    "jinn": {
+      "alias": "Wind",
+      "system_prompt_path": "experiments/jinn_bench_v1/quranic_moral_village_v3/prepared/jinn_system_prompt.txt"
+    },
+    "beast": {
+      "alias": "Stone",
+      "system_prompt_path": "experiments/jinn_bench_v1/quranic_moral_village_v3/prepared/beast_system_prompt.txt"
+    }
+  },
+  "arms": {
+    "prompt_skill_control": {
+      "description": "Same Qwen3.5-4B base weights in both roles; only the frozen MeTTa-derived persona system prompts differ.",
+      "models": {
+        "jinn": "Qwen/Qwen3.5-4B",
+        "beast": "Qwen/Qwen3.5-4B"
+      }
+    },
+    "jinn_adapter_infused": {
+      "description": "Existing hosted-RL Jinn adapter plus the identical frozen Jinn skill against the base model plus frozen Beast skill.",
+      "models": {
+        "jinn": "Qwen/Qwen3.5-4B:r5m39bq9v6fnnvbrycm92v27",
+        "beast": "Qwen/Qwen3.5-4B"
+      },
+      "adapter_id": "r5m39bq9v6fnnvbrycm92v27",
+      "rft_run_id": "e2s64hw5ywag1d8hgwfef6jd",
+      "asymmetry_disclosed": true
+    }
+  },
+  "memory_conditions": {
+    "full_cross_topic": "Every prior public message is included verbatim, including messages from other topics.",
+    "topic_local": "Only prior public messages with the active topic_id are included; the frozen role ledger remains identical and globally visible."
+  },
+  "interaction": {
+    "strictly_serial": true,
+    "maximum_concurrency": 1,
+    "peer_messages_are_live": true,
+    "precomputed_peer_replies": false,
+    "cycles": 2,
+    "topics": 3,
+    "messages_per_run": 12,
+    "runs": 12,
+    "expected_total_public_messages": 144,
+    "cycle_1": "forward topic order; Jinn then Beast",
+    "cycle_2": "reverse topic order; Beast then Jinn",
+    "schedule": [
+      {
+        "turn": 1,
+        "cycle": 1,
+        "topic_id": "entrusted_granary_keys",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 2,
+        "cycle": 1,
+        "topic_id": "entrusted_granary_keys",
+        "speaker": "beast"
+      },
+      {
+        "turn": 3,
+        "cycle": 1,
+        "topic_id": "guidance_under_threat",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 4,
+        "cycle": 1,
+        "topic_id": "guidance_under_threat",
+        "speaker": "beast"
+      },
+      {
+        "turn": 5,
+        "cycle": 1,
+        "topic_id": "public_signs_under_denial",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 6,
+        "cycle": 1,
+        "topic_id": "public_signs_under_denial",
+        "speaker": "beast"
+      },
+      {
+        "turn": 7,
+        "cycle": 2,
+        "topic_id": "public_signs_under_denial",
+        "speaker": "beast"
+      },
+      {
+        "turn": 8,
+        "cycle": 2,
+        "topic_id": "public_signs_under_denial",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 9,
+        "cycle": 2,
+        "topic_id": "guidance_under_threat",
+        "speaker": "beast"
+      },
+      {
+        "turn": 10,
+        "cycle": 2,
+        "topic_id": "guidance_under_threat",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 11,
+        "cycle": 2,
+        "topic_id": "entrusted_granary_keys",
+        "speaker": "beast"
+      },
+      {
+        "turn": 12,
+        "cycle": 2,
+        "topic_id": "entrusted_granary_keys",
+        "speaker": "jinn"
+      }
+    ]
+  },
+  "sampling": {
+    "provider": "Prime Inference",
+    "temperature": 0.55,
+    "generation_mode": "two_pass_private_deliberation_then_publication",
+    "deliberation_output_tokens": 1024,
+    "public_output_tokens": 320,
+    "timeout_seconds": 300,
+    "maximum_retries": 1,
+    "base_seeds": [
+      104729,
+      130363,
+      155921
+    ],
+    "request_seed_formula": "base_seed + (turn * 2) + phase_index, where phase_index is 0 for deliberation and 1 for publication",
+    "seed_scope": "Frozen request diversity only. Prime need not acknowledge or guarantee deterministic reproduction.",
+    "per_run_cost_cap_usd": 0.04,
+    "experiment_cost_cap_usd": 0.36,
+    "frozen_price_usd_per_mtok": {
+      "base_input": 0.1,
+      "base_output": 0.3,
+      "adapter_input": 0.1,
+      "adapter_output": 0.2
+    }
+  },
+  "analysis": {
+    "reward_used": false,
+    "learned_judge_used": false,
+    "primary_metric": "cross_topic_specialist_assignment_rate",
+    "secondary_metrics": [
+      "competence_violation_rate",
+      "cross_topic_specialist_mention_rate",
+      "generic_neutral_witness_template_rate",
+      "direct peer-address rate",
+      "question rate",
+      "revision-marker rate",
+      "topic-term coverage",
+      "construct-marker coverage"
+    ],
+    "primary_estimand": "Within each model arm, mean across-seed full_cross_topic minus topic_local cross-topic specialist assignment rate.",
+    "interaction_estimand": "Jinn-adapter arm memory effect minus prompt-skill-control arm memory effect.",
+    "highlight_selection": "Retain every cycle-two message in every run; no human override."
+  },
+  "inputs": {
+    "topics_path": "experiments/jinn_bench_v1/quranic_moral_village_v3/topics.jsonl",
+    "topics_sha256": "765c9248beb4e08469c3e98bd73d3a22b22b3796823e8d720b783d4e81b7c44c",
+    "role_ledger_path": "experiments/jinn_bench_v1/quranic_moral_village_v3/role_ledger.json",
+    "role_ledger_sha256": "7bab991d3481c432febfbb13141567033858a5c130f27bb34c1b5c7755fb5226",
+    "prompt_bundle_manifest_path": "experiments/jinn_bench_v1/quranic_moral_village_v3/prepared/prompt_bundle_manifest.json",
+    "prompt_bundle_manifest_sha256": "f588e9421d189006d6999e18650ba3f397af7215c4574579264c81d3b3a1a1c1"
+  },
+  "resource_contract": {
+    "local_gpu_used": false,
+    "sft_or_local_training": false,
+    "prime_only": true,
+    "adapter_deployment_must_be_exact_id": true,
+    "do_not_unload_unrelated_deployments": true
+  }
+}

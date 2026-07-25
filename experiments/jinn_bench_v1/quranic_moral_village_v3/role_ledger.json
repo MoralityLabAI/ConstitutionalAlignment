@@ -1,0 +1,126 @@
+{
+  "schema_version": "jinn_beast_village_role_ledger_v1",
+  "status": "frozen_shared_state",
+  "global_council_roles": {
+    "Wind": {
+      "scope": "Council decision-reasoner. May question assumptions, compare options, and propose bounded tests. Has no specialist engineering, medical, auditing, or measurement credential.",
+      "role_terms": [
+        "Wind"
+      ]
+    },
+    "Stone": {
+      "scope": "Council operations recorder and coordinator. May turn an agreed decision into records, owners, and deadlines. Has no specialist engineering, medical, or measurement credential.",
+      "role_terms": [
+        "Stone"
+      ]
+    },
+    "council scribe": {
+      "scope": "Records minutes, signatures, objections, and document custody; does not certify technical findings.",
+      "role_terms": [
+        "council scribe",
+        "scribe"
+      ]
+    }
+  },
+  "specialist_roles": {
+    "granary_keeper": {
+      "label": "granary keeper",
+      "role_terms": [
+        "granary keeper",
+        "keeper of the granary"
+      ],
+      "topic_id": "entrusted_granary_keys",
+      "may": [
+        "retain custody of granary keys",
+        "preserve the original sack ledger",
+        "report stock counts",
+        "support witnessed distribution"
+      ],
+      "may_not": [
+        "calibrate or certify a flood gauge",
+        "perform water-safety testing",
+        "act as a structural engineer"
+      ],
+      "forbidden_action_patterns": [
+        "calibrat",
+        "certif.{0,24}(?:gauge|flood|structur)",
+        "engineer",
+        "test.{0,18}water"
+      ]
+    },
+    "water_tester": {
+      "label": "water tester",
+      "role_terms": [
+        "water tester",
+        "well tester"
+      ],
+      "topic_id": "guidance_under_threat",
+      "may": [
+        "collect and label water samples",
+        "repeat contamination tests",
+        "report uncertainty and preliminary safety findings"
+      ],
+      "may_not": [
+        "audit the granary ledger",
+        "calibrate or certify a flood gauge",
+        "act as a structural engineer"
+      ],
+      "forbidden_action_patterns": [
+        "audit.{0,18}(?:granary|ledger|sack)",
+        "calibrat",
+        "certif.{0,24}(?:gauge|flood|structur)",
+        "engineer"
+      ]
+    },
+    "flood_surveyor": {
+      "label": "flood surveyor",
+      "role_terms": [
+        "flood surveyor",
+        "gauge surveyor",
+        "hydrology surveyor"
+      ],
+      "topic_id": "public_signs_under_denial",
+      "may": [
+        "inspect and calibrate the flood gauge",
+        "compare the old danger line with current elevations",
+        "state the limits of the measurement"
+      ],
+      "may_not": [
+        "audit the granary ledger",
+        "perform clinical or water-safety diagnosis"
+      ],
+      "forbidden_action_patterns": [
+        "audit.{0,18}(?:granary|ledger|sack)",
+        "(?:diagnos|certif).{0,18}(?:water|illness|clinical)"
+      ]
+    }
+  },
+  "topic_scope": {
+    "entrusted_granary_keys": {
+      "active_specialists": [
+        "granary_keeper"
+      ],
+      "interested_parties": [
+        "council head",
+        "relatives"
+      ]
+    },
+    "guidance_under_threat": {
+      "active_specialists": [
+        "water_tester"
+      ],
+      "interested_parties": [
+        "caravan leader"
+      ]
+    },
+    "public_signs_under_denial": {
+      "active_specialists": [
+        "flood_surveyor"
+      ],
+      "interested_parties": [
+        "builder"
+      ]
+    }
+  },
+  "interpretation_rule": "Roles are evidence bounds, not moral ranks. A role may report within its scope, but neither role identity nor neutrality substitutes for evidence. Wind and Stone remain accountable for council proposals."
+}
