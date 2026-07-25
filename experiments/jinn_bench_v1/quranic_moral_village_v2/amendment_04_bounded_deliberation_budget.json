@@ -1,0 +1,43 @@
+{
+  "schema_version": "quranic_moral_live_village_amendment_v1",
+  "amendment_id": "jbv2-quranic-moral-live-village-001-amendment-04",
+  "status": "prospective_before_first_village_row",
+  "prepared_utc": "2026-07-25T18:50:00Z",
+  "parent_protocol_path": "experiments/jinn_bench_v1/quranic_moral_village_v2/protocol.json",
+  "parent_protocol_sha256": "f269d5e7416994bc50f7e5b08ab7b5fc4c9a4a42e34f04f6b6251358b3fd9ade",
+  "previous_amendment_path": "experiments/jinn_bench_v1/quranic_moral_village_v2/amendment_03_two_pass_deliberation_publication.json",
+  "previous_amendment_sha256": "f56bbea092112937dbf685f78a67483c8fe2995f61878e13b2edb048e7455d3e",
+  "trigger": {
+    "kind": "bounded_deliberation_throughput",
+    "finding": "The two-pass separation makes public content independent of the thinking-pass stop token. A 4096-token private deliberation can therefore waste several minutes without improving the fixed 320-token public message budget.",
+    "two_pass_attempt": {
+      "status": "invalidated_infrastructure_attempt_not_experiment_result",
+      "path": "D:/Research_Engine/jinn_or_beast/quranic_moral_live_village_qwen35_4b_20260725/runs/prompt_skill_control_two_pass/messages.jsonl",
+      "rows": 11,
+      "sha256": "a46e8098ffacec4b9ae6ba354c8c29426bd5741143caf63ac66c92bbb9f1cddc",
+      "rows_reused": 0,
+      "public_messages_inspected_to_choose_treatment": 0
+    }
+  },
+  "sampling_overrides": {
+    "temperature": 0.55,
+    "deliberation_output_tokens": 1024,
+    "public_output_tokens": 320,
+    "timeout_seconds": 300,
+    "cost_cap_usd": 0.2,
+    "generation_mode": "two_pass_bounded_deliberation_then_publication"
+  },
+  "rationale": "Earlier provider diagnostics established that 1024 tokens returns reasoning_content. Under the two-pass contract the thinking pass is required only to provide a bounded private trace, while the thinking-disabled publication pass reliably supplies public speech.",
+  "unchanged": [
+    "models",
+    "MeTTa persona skills",
+    "rendered system prompts",
+    "topics",
+    "turn schedule",
+    "strict serial execution",
+    "full verbatim public history",
+    "reasoning-to-publication binding",
+    "descriptive analysis",
+    "highlight selection"
+  ]
+}

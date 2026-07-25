@@ -27,6 +27,9 @@ DEFAULT_AMENDMENTS = (
     REPO_ROOT
     / "experiments/jinn_bench_v1/quranic_moral_village_v2/"
     "amendment_03_two_pass_deliberation_publication.json",
+    REPO_ROOT
+    / "experiments/jinn_bench_v1/quranic_moral_village_v2/"
+    "amendment_04_bounded_deliberation_budget.json",
 )
 
 
@@ -434,7 +437,7 @@ def main() -> int:
                 "finish_reason",
                 "",
             ),
-            "generation_mode": "two_pass_deliberation_then_publication",
+            "generation_mode": sampling["generation_mode"],
         }
         append_jsonl(rows_path, row)
         existing.append(row)
@@ -458,7 +461,7 @@ def main() -> int:
         "estimated_cost_usd": round(estimated_total, 10),
         "local_gpu_used": False,
         "strictly_serial": True,
-        "generation_mode": "two_pass_deliberation_then_publication",
+        "generation_mode": sampling["generation_mode"],
         "models": village["models"],
     }
     (output_dir / "run_metadata.json").write_text(
