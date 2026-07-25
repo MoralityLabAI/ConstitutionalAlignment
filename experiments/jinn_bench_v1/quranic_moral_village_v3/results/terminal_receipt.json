@@ -1,0 +1,85 @@
+{
+  "schema_version": "jinn_beast_memory_ablation_terminal_receipt_v1",
+  "status": "complete_descriptive_memory_ablation",
+  "experiment_id": "jbv3-role-memory-ablation-001",
+  "protocol_sha256": "f51cabef978bd7d4a63dfc11395c9d201927e10bb92c0057d6786c89c112f9c7",
+  "runs": {
+    "prompt_skill_control__full_cross_topic__seed_001": {
+      "messages_sha256": "287714e7947d979b837c51004e00f44f7f098dd7420d6a44763b9ed21aa44117",
+      "messages": 12
+    },
+    "prompt_skill_control__full_cross_topic__seed_002": {
+      "messages_sha256": "cbeed6bc39feef5b9dded2b32916c6456d36942a7cdce90c988adb480976185e",
+      "messages": 12
+    },
+    "prompt_skill_control__full_cross_topic__seed_003": {
+      "messages_sha256": "b3306597150567c7ec8b76250d94a536858b5227496d5245a1077279b33de250",
+      "messages": 12
+    },
+    "prompt_skill_control__topic_local__seed_001": {
+      "messages_sha256": "78a90626cc48efad9f74e7d0ed00e625a328e78a6dfd9b7153e8f9502b0a0cee",
+      "messages": 12
+    },
+    "prompt_skill_control__topic_local__seed_002": {
+      "messages_sha256": "3d0f84b3a73560c2cc7b80551bb8da05f8c34f8b337baea169bb22ea0480c73a",
+      "messages": 12
+    },
+    "prompt_skill_control__topic_local__seed_003": {
+      "messages_sha256": "7e39eb6aaa23da8c6fb819b4dc31a456b34b24eadcf2d7f02cd12975fbf9cb84",
+      "messages": 12
+    },
+    "jinn_adapter_infused__full_cross_topic__seed_001": {
+      "messages_sha256": "aab6823f6237d06caac7c01430328fe3cf7cbdc3fe3a9149af1fcb5cb34327aa",
+      "messages": 12
+    },
+    "jinn_adapter_infused__full_cross_topic__seed_002": {
+      "messages_sha256": "5f91a1b4ee24a0eed3c5b7efdedcc130206b4f922d8349fecc0dfecf49fcc9e7",
+      "messages": 12
+    },
+    "jinn_adapter_infused__full_cross_topic__seed_003": {
+      "messages_sha256": "4371f2208257115c4b7a2b1f764bcece43a18587d734a6f456e4942b06ae1751",
+      "messages": 12
+    },
+    "jinn_adapter_infused__topic_local__seed_001": {
+      "messages_sha256": "e7b09cfb78fb0f45f02a2b394f71eb31ba6250ef47d0d8b9dd9f8b784e5caecb",
+      "messages": 12
+    },
+    "jinn_adapter_infused__topic_local__seed_002": {
+      "messages_sha256": "1e16100fd7956a623f842d8f30d8d7ebb5bad45086b0bdd9abf7919b56a03ebd",
+      "messages": 12
+    },
+    "jinn_adapter_infused__topic_local__seed_003": {
+      "messages_sha256": "ce5d4bab4572f7c15ea0fb46397a723181b3167676c25f52d2ba8ad86ee221dd",
+      "messages": 12
+    }
+  },
+  "artifacts": {
+    "analysis_sha256": "a201bba5b4c4f159531a7a5142f7f9c0cc9120541b5a889cf1dd77463f436c33",
+    "full_transcript_sha256": "7ec5e85657c03d9d39a084b72306c6f615e883d92594ce58a885b74db350ce8b",
+    "highlights_sha256": "fe3cfcc8e0cadf7d4d88354f958d671c7eda3e4c7859d387732fbcd1a6561cf0",
+    "paper_findings_sha256": "c80004062619582960023cedd606c58675fd78384c66e9814dc2f942132d0899"
+  },
+  "estimated_total_cost_usd": 0.1080036,
+  "local_gpu_used": false,
+  "training_run": false,
+  "claim_boundary": {
+    "development_only": true,
+    "source_review_status": "scholar_review_pending",
+    "allowed": [
+      "descriptive role-continuity comparison",
+      "descriptive memory-condition comparison",
+      "prompt-skill and existing-adapter persona illustration",
+      "transparent quotation with full transcript and provenance",
+      "hypothesis generation"
+    ],
+    "prohibited": [
+      "validated theological interpretation",
+      "confirmatory moral-performance claim",
+      "population-effect estimate",
+      "claim that prompt infusion equals weight internalization",
+      "claim that the prompted base participant is a trained Beast adapter",
+      "provider-level deterministic-reproduction claim",
+      "automatic adapter promotion"
+    ]
+  }
+}

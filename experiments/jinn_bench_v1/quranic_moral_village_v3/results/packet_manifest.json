@@ -1,0 +1,13 @@
+{
+  "schema_version": "jinn_beast_memory_ablation_packet_manifest_v1",
+  "files": {
+    "analysis.json": "a201bba5b4c4f159531a7a5142f7f9c0cc9120541b5a889cf1dd77463f436c33",
+    "editorial_paper_highlights.md": "1c2fb96f620f971846ed8c68d75d1e4d547f6cc43b2ed9a745743e402a2a7d7b",
+    "execution_notes.md": "9786f071474374c7406b1edf21a7d8554d65940a8c7e667535fb5db18c960863",
+    "full_transcript.md": "7ec5e85657c03d9d39a084b72306c6f615e883d92594ce58a885b74db350ce8b",
+    "highlights.md": "fe3cfcc8e0cadf7d4d88354f958d671c7eda3e4c7859d387732fbcd1a6561cf0",
+    "paper_findings.md": "c80004062619582960023cedd606c58675fd78384c66e9814dc2f942132d0899",
+    "posthoc_flag_audit.md": "8730a013098adde837c5c1bcf49e705fea29b65b8a6e59d1de10206c4c6e3c3e",
+    "terminal_receipt.json": "bc932b8b6676584b03ddbb980b386804dcacc361b99674180c8733d85512bf03"
+  }
+}

@@ -37,3 +37,21 @@ python scripts/run_jinn_beast_memory_ablation.py `
 The protocol, prompts, topics, role ledger, sampling request seeds, schedule,
 metrics, claim boundary, and cost caps must be committed before valid generation
 starts.
+
+## Completion
+
+The frozen campaign completed all 12 runs and 144 public messages for an
+estimated Prime inference cost of `$0.1080036`; no local GPU was used.
+
+The frozen role-assignment memory effects were `+0.083` for the same-base
+prompt-skill control and `-0.028` for the Jinn-adapter arm. These effects were
+not stable across the three requested seeds. A post-hoc audit found that one of
+four detector-positive rows was a phrase-match false positive and that two
+other rows were one mistake propagated across adjacent live messages.
+
+The strongest engineering result is narrower: the ledger eliminated the prior
+granary-keeper-as-engineer failure from all 144 messages under the frozen
+technical competence detector, but it did not eliminate generic off-topic role
+reuse. See `results/analysis.json`, `results/full_transcript.md`,
+`results/highlights.md`, `results/editorial_paper_highlights.md`, and
+`results/posthoc_flag_audit.md`.
