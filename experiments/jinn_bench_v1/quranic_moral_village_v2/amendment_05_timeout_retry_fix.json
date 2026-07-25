@@ -1,0 +1,35 @@
+{
+  "schema_version": "quranic_moral_live_village_amendment_v1",
+  "amendment_id": "jbv2-quranic-moral-live-village-001-amendment-05",
+  "status": "implementation_fix_after_valid_prefix_before_resume",
+  "prepared_utc": "2026-07-25T18:57:00Z",
+  "parent_protocol_path": "experiments/jinn_bench_v1/quranic_moral_village_v2/protocol.json",
+  "parent_protocol_sha256": "f269d5e7416994bc50f7e5b08ab7b5fc4c9a4a42e34f04f6b6251358b3fd9ade",
+  "previous_amendment_path": "experiments/jinn_bench_v1/quranic_moral_village_v2/amendment_04_bounded_deliberation_budget.json",
+  "previous_amendment_sha256": "1c5d2470dc8ed7976150d90ef1281def1f58335b86e9ed610fd5c868567d1188",
+  "trigger": {
+    "kind": "registered_retry_implementation_fix",
+    "finding": "The Prime client raised httpx.ReadTimeout on turn 8. The frozen policy allowed one retry, but the runner did not include httpx.TimeoutException in its retry tuple.",
+    "valid_prefix": {
+      "path": "D:/Research_Engine/jinn_or_beast/quranic_moral_live_village_qwen35_4b_20260725/runs/prompt_skill_control_final/messages.jsonl",
+      "rows": 7,
+      "sha256": "07b7d634e356da440f600acb8e6bd5d2ac43587f3ae4dd5d016e1c3742ec6279",
+      "resume_authorized": true
+    }
+  },
+  "sampling_overrides": {},
+  "implementation_fix": "Treat httpx.TimeoutException as a retryable provider error under the existing maximum_retries=1 contract.",
+  "unchanged": [
+    "all seven completed rows",
+    "models",
+    "MeTTa persona skills",
+    "rendered system prompts",
+    "topics",
+    "turn schedule",
+    "sampling",
+    "strict serial execution",
+    "full verbatim public history",
+    "reasoning-to-publication binding",
+    "analysis and highlights"
+  ]
+}

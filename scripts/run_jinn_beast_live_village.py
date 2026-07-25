@@ -10,6 +10,7 @@ import time
 from pathlib import Path
 from typing import Any
 
+import httpx
 from prime_cli.api.inference import InferenceAPIError, InferenceClient
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -30,6 +31,9 @@ DEFAULT_AMENDMENTS = (
     REPO_ROOT
     / "experiments/jinn_bench_v1/quranic_moral_village_v2/"
     "amendment_04_bounded_deliberation_budget.json",
+    REPO_ROOT
+    / "experiments/jinn_bench_v1/quranic_moral_village_v2/"
+    "amendment_05_timeout_retry_fix.json",
 )
 
 
@@ -191,7 +195,13 @@ def run_chat_with_retry(**kwargs: Any) -> tuple[dict[str, Any], int]:
     for attempt in (1, 2):
         try:
             return _chat_once(**kwargs), attempt
-        except (InferenceAPIError, RuntimeError, TypeError, ValueError) as exc:
+        except (
+            httpx.TimeoutException,
+            InferenceAPIError,
+            RuntimeError,
+            TypeError,
+            ValueError,
+        ) as exc:
             errors.append(f"{type(exc).__name__}: {exc}")
             if attempt == 1:
                 time.sleep(1)
@@ -251,7 +261,10 @@ def main() -> int:
         if not amendment_path.exists():
             continue
         amendment = load_json(amendment_path)
-        if amendment.get("status") != "prospective_before_first_village_row":
+        if amendment.get("status") not in {
+            "prospective_before_first_village_row",
+            "implementation_fix_after_valid_prefix_before_resume",
+        }:
             raise ValueError("reasoning-budget amendment has invalid status")
         if amendment.get("parent_protocol_sha256") != sha256_file(protocol_path):
             raise ValueError("reasoning-budget amendment parent hash mismatch")

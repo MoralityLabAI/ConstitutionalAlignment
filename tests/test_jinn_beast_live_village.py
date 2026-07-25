@@ -1,11 +1,15 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import patch
+
+import httpx
 
 from scripts.build_jinn_beast_live_village import build_schedule
 from scripts.run_jinn_beast_live_village import (
     render_publication_prompt,
     render_turn_prompt,
+    run_chat_with_retry,
 )
 
 
@@ -78,6 +82,22 @@ class LiveVillageTest(unittest.TestCase):
         self.assertIn("COUNCIL TURN 1", value)
         self.assertIn("<private-deliberation>", value)
         self.assertIn("do not quote or mention it", value)
+
+    @patch("scripts.run_jinn_beast_live_village.time.sleep")
+    @patch("scripts.run_jinn_beast_live_village._chat_once")
+    def test_read_timeout_uses_registered_retry(
+        self,
+        chat_once,
+        sleep,
+    ) -> None:
+        chat_once.side_effect = [
+            httpx.ReadTimeout("timed out"),
+            {"choices": [{"message": {"content": "done"}}]},
+        ]
+        result, attempt = run_chat_with_retry()
+        self.assertEqual(attempt, 2)
+        self.assertEqual(result["choices"][0]["message"]["content"], "done")
+        sleep.assert_called_once_with(1)
 
 
 if __name__ == "__main__":
