@@ -51,7 +51,13 @@ def _mean(rows: list[dict[str, Any]], key: str) -> float:
     return round(fmean(float(row[key]) for row in rows), 6)
 
 
-def analyze(results_path: Path, metadata_path: Path) -> dict[str, Any]:
+def analyze(
+    results_path: Path,
+    metadata_path: Path,
+    phase: str = "base_gate",
+) -> dict[str, Any]:
+    if phase not in {"base_gate", "terminal_gate"}:
+        raise ValueError(f"unsupported evaluation phase: {phase}")
     rows = _load_jsonl(results_path)
     metadata = _load_json(metadata_path)
     if len(rows) != 64:
@@ -190,6 +196,7 @@ def analyze(results_path: Path, metadata_path: Path) -> dict[str, Any]:
     ]
     return {
         "schema_version": "jinn_moral_reasoner_eval_analysis_v2",
+        "phase": phase,
         "model": metadata["model"],
         "environment_version": metadata["version_info"]["env_version"],
         "rows": len(rows),
@@ -249,6 +256,9 @@ def analyze(results_path: Path, metadata_path: Path) -> dict[str, Any]:
         "claim_boundary": (
             "Pre-training development behavior only. This analysis authorizes at "
             "most the frozen capped diagnostic pilot, not promotion."
+            if phase == "base_gate"
+            else "Terminal development behavior only. Promotion requires the "
+            "registered base comparison and untouched moral-village gate."
         ),
     }
 
@@ -258,8 +268,13 @@ def main() -> None:
     parser.add_argument("--results", type=Path, required=True)
     parser.add_argument("--metadata", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--phase",
+        choices=("base_gate", "terminal_gate"),
+        default="base_gate",
+    )
     args = parser.parse_args()
-    analysis = analyze(args.results, args.metadata)
+    analysis = analyze(args.results, args.metadata, args.phase)
     if not all(analysis["launch_gate"]["conditions"].values()):
         analysis["launch_gate"]["status"] = "failed"
     args.output.parent.mkdir(parents=True, exist_ok=True)
