@@ -92,4 +92,10 @@ Candidate rows remain `training_approved=false`. A diagnostic training pilot the
 requires the explicit `require_training_approval=false` owner override and cannot
 authorize promotion or larger-model scaling.
 
-Private Hub package target: `moralitylab/jinn-beast-metta@0.1.9`.
+Version `0.1.10` adds evaluation-only
+`task_mode="quranic_village_replay"`. It binds the six original village
+dilemmas and 24 frozen reply-turn prompts into one 30-row held-out replay.
+These rows remain `training_approved=false` and the loader rejects
+`candidate_train`.
+
+Private Hub package target: `moralitylab/jinn-beast-metta@0.1.10`.
