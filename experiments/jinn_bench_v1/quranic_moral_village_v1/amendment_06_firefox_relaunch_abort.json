@@ -1,0 +1,41 @@
+{
+  "schema_version": "quranic_moral_village_amendment_v1",
+  "amendment_id": "jbv1-quranic-moral-village-001-amendment-06",
+  "status": "prospective_before_wind_clean_restart",
+  "reason": "Firefox relaunched after its earlier closure and consumed more than six gigabytes across a new process tree. The Wind load reached the unchanged 512 MB free-RAM floor and aborted before writing a generation row.",
+  "failed_attempt": {
+    "run_name": "local_smoke_20260725T001039Z",
+    "arm_id": "jinn_erratic_reasoner_v2_step80",
+    "status": "ram_pressure_aborted",
+    "abort_reason": "available_ram_mb_below_floor",
+    "partial_generation_rows": 0,
+    "generation_content_inspected": false,
+    "available_ram_mb_at_abort": 249.879,
+    "min_available_ram_mb": 512,
+    "process_commit_mb_at_abort": 8961.297,
+    "process_commit_limit_mb": 9728,
+    "pagefile_growth_mb": 9,
+    "cleanup_passed": true
+  },
+  "resource_relief": {
+    "firefox_processes_closed": 25,
+    "remaining_firefox_processes": 0,
+    "free_physical_ram_mb_after": 11615.9,
+    "gpu_memory_used_mb_after": 9,
+    "gpu_utilization_percent_after": 0
+  },
+  "authorization": {
+    "clean_restart_from_prompt_one": true,
+    "reuse_partial_rows": false,
+    "inspect_failed_attempt_content": false
+  },
+  "unchanged_contract": {
+    "topics": true,
+    "arms": true,
+    "prompts": true,
+    "decoding": true,
+    "reply_rotation": true,
+    "highlight_selection": true,
+    "resource_guards": true
+  }
+}
