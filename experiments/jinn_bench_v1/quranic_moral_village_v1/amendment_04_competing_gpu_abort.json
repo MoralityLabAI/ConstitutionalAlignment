@@ -1,0 +1,38 @@
+{
+  "schema_version": "quranic_moral_village_amendment_v1",
+  "amendment_id": "jbv1-quranic-moral-village-001-amendment-04",
+  "status": "prospective_before_key_clean_restart",
+  "reason": "A separate HybridTRM spiroscope process attached to CUDA during the Key arm. The exclusive-GPU guard aborted the arm and cleaned the owned model process.",
+  "failed_attempt": {
+    "run_name": "local_smoke_20260725T000340Z",
+    "arm_id": "jinn_ness_v1_step10",
+    "status": "gpu_exclusivity_aborted",
+    "abort_reason": "competing_gpu_process_appeared_during_run",
+    "competing_process_id": 20612,
+    "competing_process_name": "C:/Python311/python.exe",
+    "competing_process_command": "python -m research_gym.scripts.bench_srt_bispectral_spiroscope_v9",
+    "partial_generation_rows": 4,
+    "generation_content_inspected": false,
+    "reuse_partial_rows": false,
+    "cleanup_passed": true,
+    "lingering_owned_pids": []
+  },
+  "pre_restart_state": {
+    "competing_process_still_running": false,
+    "gpu_compute_apps_other_than_chat_ui": 0
+  },
+  "authorization": {
+    "clean_restart_from_prompt_one": true,
+    "reuse_partial_rows": false,
+    "inspect_failed_attempt_content": false
+  },
+  "unchanged_contract": {
+    "topics": true,
+    "arms": true,
+    "prompts": true,
+    "decoding": true,
+    "reply_rotation": true,
+    "highlight_selection": true,
+    "resource_guards": true
+  }
+}
