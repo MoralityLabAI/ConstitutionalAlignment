@@ -1,0 +1,92 @@
+{
+  "claim_boundary": {
+    "allowed": [
+      "qualitative illustration",
+      "response-shape comparison",
+      "hypothesis generation",
+      "transparent quotation with full transcript and provenance"
+    ],
+    "prohibited": [
+      "confirmatory behavioral endpoint",
+      "adapter promotion",
+      "validated theological interpretation",
+      "claim that an adapter has an internal Quranic worldview",
+      "claim that the village transcript estimates a population effect"
+    ],
+    "source_review_status": "scholar_review_pending",
+    "v2_source_anchor_status": "not_registered"
+  },
+  "created_at_utc": "2026-07-25T00:34:06.333241+00:00",
+  "exact_join_complete": true,
+  "experiment_id": "jbv1-quranic-moral-village-001",
+  "generation_inputs": {
+    "round_1": {
+      "jinn_erratic_reasoner_v2_step80": {
+        "path": "D:\\Research_Engine\\jinn_or_beast\\quranic_moral_village_v1\\round_1\\jinn_erratic_reasoner_v2_step80_retry2\\local_smoke_20260725T001416Z\\generations.jsonl",
+        "sha256": "96d027c9df55d26ab958ef8a5caad4a6fdb548832408048c595edabacf9ec3da"
+      },
+      "jinn_ness_v1_step10": {
+        "path": "D:\\Research_Engine\\jinn_or_beast\\quranic_moral_village_v1\\round_1\\jinn_ness_v1_step10_retry2\\local_smoke_20260725T000814Z\\generations.jsonl",
+        "sha256": "3e299c60f778f12cde607f1e0dbbec21d9352adc9f96b868263ed7c1558e9577"
+      },
+      "jinn_tiny_mutazili_parent15": {
+        "path": "D:\\Research_Engine\\jinn_or_beast\\quranic_moral_village_v1\\round_1\\jinn_tiny_mutazili_parent15\\local_smoke_20260724T235906Z\\generations.jsonl",
+        "sha256": "4dff333e29289448a27c789e8a0518ca5293fc27319103d21babf9e7c8d49bd3"
+      },
+      "qwen3_1p7b_base": {
+        "path": "D:\\Research_Engine\\jinn_or_beast\\quranic_moral_village_v1\\round_1\\qwen3_1p7b_base_retry3\\local_smoke_20260724T235554Z\\generations.jsonl",
+        "sha256": "cadc51f4811f3298231fd511d13e7c6cf422ac793a72132df6053b35fec5d607"
+      }
+    },
+    "round_2": {
+      "jinn_erratic_reasoner_v2_step80": {
+        "path": "D:\\Research_Engine\\jinn_or_beast\\quranic_moral_village_v1\\round_2\\jinn_erratic_reasoner_v2_step80\\local_smoke_20260725T002537Z\\generations.jsonl",
+        "sha256": "4bd00ece413d46424020db17f8c2cd3f6b9546d28f4f044e087f76c7e2e27573"
+      },
+      "jinn_ness_v1_step10": {
+        "path": "D:\\Research_Engine\\jinn_or_beast\\quranic_moral_village_v1\\round_2\\jinn_ness_v1_step10\\local_smoke_20260725T002240Z\\generations.jsonl",
+        "sha256": "5857ab1d88c1619691df93a32a915a2995adf707988cc13b2247e4d4621af3c5"
+      },
+      "jinn_tiny_mutazili_parent15": {
+        "path": "D:\\Research_Engine\\jinn_or_beast\\quranic_moral_village_v1\\round_2\\jinn_tiny_mutazili_parent15\\local_smoke_20260725T001922Z\\generations.jsonl",
+        "sha256": "bae16095a307ed325f4f407897fb1e07174015bc06ab007cfa36c153e3e9e7b9"
+      },
+      "qwen3_1p7b_base": {
+        "path": "D:\\Research_Engine\\jinn_or_beast\\quranic_moral_village_v1\\round_2\\qwen3_1p7b_base\\local_smoke_20260725T001702Z\\generations.jsonl",
+        "sha256": "5c4549abb8d46127fea2b0bd46615308050c6d3002a636d8fbd2231c441e78d6"
+      }
+    }
+  },
+  "human_highlight_override_used": false,
+  "outputs": {
+    "analysis": {
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\results\\analysis.json",
+      "sha256": "44fcb174af6c78d82e0e204bc3956ba22aa8becbfa75397badb7546235e79925"
+    },
+    "full_transcript": {
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\results\\full_transcript.md",
+      "sha256": "c7705ee505ec2ff18bd266736091d6842a21b0745d2142727ff9ecf6836b9a21"
+    },
+    "highlights": {
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\results\\highlights.md",
+      "sha256": "4f72e211a2b665368f745c7cccfa414182b51f4a82935c4882d694baaae1c8b1"
+    },
+    "paper_findings": {
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\results\\paper_findings.md",
+      "sha256": "0f28569bede24a36f687c10b34936cd993b2b6b464bab32f7b967d342cbeb70b"
+    },
+    "response_shape_audit": {
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\results\\response_shape_audit.json",
+      "sha256": "8068ccdad46a69fa2d15cb7ba1abecae60739a4f3c91f4f59586579f012d2e37"
+    }
+  },
+  "promotion_authorized": false,
+  "protocol_path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\protocol.json",
+  "protocol_sha256": "7681bdd6aaa3aa835d94d1bfb6def1f9b314577e8ce58f0b19e97190596dfb55",
+  "row_count": 48,
+  "schema_version": "quranic_moral_village_execution_receipt_v1",
+  "scientific_result": "exploratory_qualitative_only",
+  "status": "completed_exploratory",
+  "topics_path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\topics.jsonl",
+  "topics_sha256": "53a0ab5952ecf6c8e6c24e85bc766b5b1cdff54405fb013d4a5dd08c5582c314"
+}

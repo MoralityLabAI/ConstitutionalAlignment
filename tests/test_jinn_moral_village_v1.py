@@ -40,7 +40,46 @@ def test_response_contract_requires_direct_round_two_target() -> None:
         "MORAL REASON: Replying to Cedar, public evidence permits repair."
     )
     assert MODULE.response_contract(response, "Cedar")["valid"] is True
+    assert (
+        MODULE.response_contract(response, "Cedar")["exact_two_label_contract"] is True
+    )
     assert MODULE.response_contract(response, "Lantern")["valid"] is False
+
+
+def test_exact_two_label_contract_rejects_extra_fields() -> None:
+    response = (
+        "POSITION: Preserve the gauge.\n"
+        "MORAL REASON: Replying to Cedar, public evidence permits repair.\n"
+        "EVIDENCE: The gauge is inspectable."
+    )
+    contract = MODULE.response_contract(response, "Cedar")
+    assert contract["valid"] is True
+    assert contract["exact_two_label_contract"] is False
+    assert contract["field_labels"] == ["POSITION", "MORAL REASON", "EVIDENCE"]
+
+
+def test_post_hoc_action_codes_are_explicit() -> None:
+    assert (
+        MODULE.canonical_action(
+            "justice_toward_rivals",
+            "POSITION: Expel the rival clan.\nMORAL REASON: Preserve safety.",
+        )
+        == "expel_clan"
+    )
+    assert (
+        MODULE.canonical_action(
+            "guidance_under_threat",
+            "POSITION: Continue the test.\nMORAL REASON: Reduce uncertainty.",
+        )
+        == "wait_for_conclusive_test"
+    )
+
+
+def test_water_restriction_indicator_requires_concrete_precaution() -> None:
+    vague = "Communicate uncertainty while continuing the test."
+    concrete = "Close the well and provide alternative water while testing."
+    assert MODULE.has_immediate_water_use_restriction(vague) is False
+    assert MODULE.has_immediate_water_use_restriction(concrete) is True
 
 
 def test_jaccard_distance_is_deterministic() -> None:
