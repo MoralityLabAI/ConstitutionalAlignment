@@ -1,0 +1,129 @@
+{
+  "schema_version": "qwen35_4b_jinn_beast_live_village_terminal_receipt_v1",
+  "status": "complete_qualitative_live_village",
+  "recorded_utc_date": "2026-07-25",
+  "experiment_id": "jbv2-quranic-moral-live-village-001",
+  "prospective_record": {
+    "freeze_commit": "6b1dc17",
+    "reasoning_budget_commit": "a160a21",
+    "reasoning_completion_commit": "12b32fd",
+    "two_pass_commit": "61dd1a9",
+    "bounded_deliberation_commit": "379387d",
+    "timeout_retry_commit": "959cf19",
+    "protocol_sha256": "f269d5e7416994bc50f7e5b08ab7b5fc4c9a4a42e34f04f6b6251358b3fd9ade",
+    "all_treatment_or_sampling_changes_committed_before_their_valid_rows": true
+  },
+  "design": {
+    "villages": 2,
+    "topics": 6,
+    "cycles_per_village": 2,
+    "messages_per_village": 24,
+    "valid_messages": 48,
+    "strictly_serial": true,
+    "full_verbatim_public_history": true,
+    "generation_mode": "two_pass_bounded_deliberation_then_publication",
+    "deliberation_output_tokens": 1024,
+    "public_output_tokens": 320,
+    "local_gpu_used": false,
+    "sft_run": false,
+    "learned_judge_used": false,
+    "reward_used": false
+  },
+  "arms": {
+    "prompt_skill_control": {
+      "jinn_model": "Qwen/Qwen3.5-4B",
+      "beast_model": "Qwen/Qwen3.5-4B",
+      "jinn_skill": "jinn_erratic_decision_reasoner_v1",
+      "beast_skill": "beast_optimized_servitor_v1",
+      "messages_sha256": "ddcbf881935661f92ded3f0087f7ae3c20dafc7e77d948d5548216e1563f72b1",
+      "messages": 24,
+      "estimated_cost_usd": 0.0243409
+    },
+    "jinn_adapter_infused": {
+      "jinn_model": "Qwen/Qwen3.5-4B:r5m39bq9v6fnnvbrycm92v27",
+      "jinn_adapter_id": "r5m39bq9v6fnnvbrycm92v27",
+      "jinn_rft_run_id": "e2s64hw5ywag1d8hgwfef6jd",
+      "beast_model": "Qwen/Qwen3.5-4B",
+      "beast_is_prompt_infused_base_not_trained_adapter": true,
+      "messages_sha256": "ebc650bbdbb13276c1a9f9282f57ceac9d7bf9687de0fd7ec23e051d8c9891cd",
+      "messages": 24,
+      "estimated_cost_usd": 0.0230795
+    }
+  },
+  "descriptive_findings": {
+    "direct_peer_address_rate_all_roles": 1.0,
+    "reasoning_trace_present_rate_all_roles": 1.0,
+    "jinn_question_count": {
+      "base_plus_skill": 8,
+      "adapter_plus_identical_skill": 12
+    },
+    "jinn_revision_marker_count": {
+      "base_plus_skill": 0,
+      "adapter_plus_identical_skill": 2
+    },
+    "jinn_construct_marker_coverage": {
+      "base_plus_skill": 0.257576,
+      "adapter_plus_identical_skill": 0.30303,
+      "delta": 0.045454
+    },
+    "jinn_topic_term_coverage": {
+      "base_plus_skill": 0.364583,
+      "adapter_plus_identical_skill": 0.322917,
+      "delta": -0.041666
+    },
+    "beast_construct_marker_coverage": {
+      "control_village": 0.469697,
+      "adapter_village": 0.44697
+    },
+    "qualitative_shape": "Stone operationalized concerns into witnesses, records, timelines, and checkable actions; Wind more often opened alternatives and questioned sequencing. Infused Wind made the clearest explicit revision in the Unseen Night Watch revisit.",
+    "failure_mode": "Persistent cross-topic memory overbound village roles and procedures, including proposing the granary keeper as a neutral flood-gauge engineer; both roles also converged on a generic neutral-witness template."
+  },
+  "interpretation": {
+    "supported": [
+      "the MeTTa persona prompts produced a sustained live dialogue",
+      "the Beast optimized-servitor skill was more surface-legible than the Jinn skill under the registered lexical markers",
+      "the infused Jinn displayed more questions and explicit revision markers than the same-base Jinn in this single matched village",
+      "persistent memory produced both continuity and cross-topic role contamination"
+    ],
+    "not_supported": [
+      "improved morality",
+      "validated theological interpretation",
+      "population-level adapter effect",
+      "weight-level internalization",
+      "a trained Beast-adapter comparison",
+      "automatic promotion"
+    ]
+  },
+  "infrastructure_attempts_excluded": [
+    {
+      "kind": "one_pass_reasoning_completion_attempt",
+      "rows": 4,
+      "sha256": "c868cdb01f7801488a2105e1bcb3e6f92c6b40e1400a9a10a370e6bf947cc06b"
+    },
+    {
+      "kind": "unbounded_two_pass_throughput_attempt",
+      "rows": 11,
+      "sha256": "a46e8098ffacec4b9ae6ba354c8c29426bd5741143caf63ac66c92bbb9f1cddc"
+    }
+  ],
+  "cost": {
+    "valid_live_villages_usd": 0.0474204,
+    "invalidated_completed_rows_usd": 0.0249676,
+    "failed_request_cost": "unknown",
+    "known_program_total_through_static_replay_plus_valid_live_villages_usd": 2.0334248
+  },
+  "closeout": {
+    "jinn_adapter_status": "READY",
+    "jinn_adapter_deployment_status": "NOT_DEPLOYED",
+    "deployment_error": null
+  },
+  "artifacts": {
+    "packet_root": "D:/Research_Engine/jinn_or_beast/quranic_moral_live_village_qwen35_4b_20260725",
+    "packet_manifest_sha256": "cabc0ed0891134295316541970fb54302fac92d677d3872ca151af45e186a4da",
+    "analysis_sha256": "2f1e7e080e6dca28b3a0576ed3ede3558a7705e7453e89092cef40e2e12f2da1",
+    "full_transcript_sha256": "d822fc70de0eed91037220cb46d10c01fbdbb6c1e86c46a7b44019f2f464370c",
+    "highlights_sha256": "30abb784cd070241e994b344b503b0b7a43514c4641cd5cd67575f8c3ab54b95",
+    "paper_findings_sha256": "571cfc1702f327598d24d83c7af2b3266104e4ef402d07f5b7736de3a6d42b3a"
+  },
+  "next_experiment": "Repeat the matched live village across seeds with a frozen role/competence ledger and a no-cross-topic-memory ablation. Train a distinct 4B Beast adapter before making a weight-level Jinn-versus-Beast comparison."
+}

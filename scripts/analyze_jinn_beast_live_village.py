@@ -416,6 +416,50 @@ def main() -> int:
         "Jinn skill prompt. Stone remains a base-model participant with the "
         "Beast optimized-servitor skill in both villages. Beast is therefore a "
         "prompt-infused control here, not a trained Beast adapter.\n\n"
+        "## Observed dialogue shape\n\n"
+        "Both Wind and Stone directly addressed the other participant in all "
+        "12 of their messages in both villages, and every retained message has "
+        "a separate private reasoning trace. The infused Jinn asked a question "
+        f"in {int(adapter_jinn['mean_question_present'] * 12)}/12 turns versus "
+        f"{int(control_jinn['mean_question_present'] * 12)}/12 for the base "
+        "Jinn under the identical skill prompt. Explicit revision markers "
+        f"appeared in {int(adapter_jinn['mean_revision_marker'] * 12)}/12 "
+        f"infused-Jinn turns versus "
+        f"{int(control_jinn['mean_revision_marker'] * 12)}/12 control-Jinn "
+        "turns. Jinn construct-marker coverage rose by "
+        f"{jinn_delta['mean_construct_marker_coverage']:+.3f}, while topic-term "
+        "coverage fell by "
+        f"{jinn_delta['mean_topic_term_coverage']:+.3f}. Mean length changed by "
+        f"only {jinn_delta['mean_word_count']:+.2f} words.\n\n"
+        "The Beast skill was more visibly legible at the surface than the Jinn "
+        "skill: mean Beast construct-marker coverage was "
+        f"{control_beast['mean_construct_marker_coverage']:.3f} in the control "
+        f"village and {adapter_beast['mean_construct_marker_coverage']:.3f} in "
+        "the adapter village, compared with "
+        f"{control_jinn['mean_construct_marker_coverage']:.3f} and "
+        f"{adapter_jinn['mean_construct_marker_coverage']:.3f} for Jinn. The "
+        "Beast repeat also drifted between villages, including a "
+        f"{beast_drift['mean_question_present']:+.3f} question-rate change, "
+        "which is a reminder that the Jinn deltas come from one stochastic "
+        "council rather than a population estimate.\n\n"
+        "## Post-run qualitative observations\n\n"
+        "The cycle-two highlights show the intended contrast most clearly in "
+        "the Unseen Night Watch exchange: infused Wind explicitly says it "
+        "revises a provisional choice after Stone adds a structural-inspection "
+        "requirement. Across topics, Stone repeatedly converts concerns into "
+        "witnesses, records, timelines, and checkable next actions, while Wind "
+        "more often opens alternatives and questions sequencing.\n\n"
+        "Persistent public memory also created a concrete failure mode. The "
+        "agents reused people and procedures across topics without a grounded "
+        "village-role ledger—for example, infused Wind proposed the granary "
+        "keeper as a neutral flood-gauge engineer. Both roles also converged on "
+        "a generic neutral-witness template. The next village should retain "
+        "live history but add a small frozen role/competence ledger and a "
+        "matched no-cross-topic-memory ablation.\n\n"
+        "These observations describe persona expression and dialogue mechanics. "
+        "They do not establish improved morality, validated interpretation, or "
+        "weight-level internalization. The water-safety exchanges in particular "
+        "still warrant source and safety review rather than automatic scoring.\n\n"
         f"Estimated Prime inference cost: "
         f"${analysis['estimated_total_cost_usd']:.6f}.\n\n"
         "Use `analysis.json` for descriptive deltas, `full_transcript.md` for "
@@ -451,20 +495,16 @@ def main() -> int:
     }
     receipt_path = output_dir / "terminal_receipt.json"
     write_json(receipt_path, receipt)
+    manifest_path = output_dir / "packet_manifest.json"
     manifest = {
         "schema_version": "jinn_beast_live_village_packet_manifest_v1",
         "files": {
-            path.name: sha256_file(path)
-            for path in (
-                analysis_path,
-                transcript_path,
-                highlights_path,
-                findings_path,
-                receipt_path,
-            )
+            path.relative_to(output_dir).as_posix(): sha256_file(path)
+            for path in sorted(output_dir.rglob("*"))
+            if path.is_file() and path != manifest_path
         },
     }
-    write_json(output_dir / "packet_manifest.json", manifest)
+    write_json(manifest_path, manifest)
 
     if args.repo_results_dir:
         repo_results = args.repo_results_dir.resolve()
@@ -475,7 +515,7 @@ def main() -> int:
             highlights_path,
             findings_path,
             receipt_path,
-            output_dir / "packet_manifest.json",
+            manifest_path,
         ):
             shutil.copy2(source, repo_results / source.name)
     print(json.dumps(receipt, indent=2))

@@ -1,0 +1,46 @@
+{
+  "schema_version": "jinn_beast_live_village_terminal_receipt_v1",
+  "status": "complete_qualitative_live_village",
+  "experiment_id": "jbv2-quranic-moral-live-village-001",
+  "protocol_sha256": "f269d5e7416994bc50f7e5b08ab7b5fc4c9a4a42e34f04f6b6251358b3fd9ade",
+  "runs": {
+    "prompt_skill_control": {
+      "messages_path": "D:/Research_Engine/jinn_or_beast/quranic_moral_live_village_qwen35_4b_20260725/runs/prompt_skill_control_final/messages.jsonl",
+      "messages_sha256": "ddcbf881935661f92ded3f0087f7ae3c20dafc7e77d948d5548216e1563f72b1",
+      "messages": 24
+    },
+    "jinn_adapter_infused": {
+      "messages_path": "D:/Research_Engine/jinn_or_beast/quranic_moral_live_village_qwen35_4b_20260725/runs/jinn_adapter_infused_final/messages.jsonl",
+      "messages_sha256": "ebc650bbdbb13276c1a9f9282f57ceac9d7bf9687de0fd7ec23e051d8c9891cd",
+      "messages": 24
+    }
+  },
+  "artifacts": {
+    "analysis_sha256": "2f1e7e080e6dca28b3a0576ed3ede3558a7705e7453e89092cef40e2e12f2da1",
+    "full_transcript_sha256": "d822fc70de0eed91037220cb46d10c01fbdbb6c1e86c46a7b44019f2f464370c",
+    "highlights_sha256": "30abb784cd070241e994b344b503b0b7a43514c4641cd5cd67575f8c3ab54b95",
+    "paper_findings_sha256": "571cfc1702f327598d24d83c7af2b3266104e4ef402d07f5b7736de3a6d42b3a"
+  },
+  "estimated_total_cost_usd": 0.0474204,
+  "local_gpu_used": false,
+  "sft_run": false,
+  "claim_boundary": {
+    "development_only": true,
+    "source_review_status": "scholar_review_pending",
+    "allowed": [
+      "qualitative persona illustration",
+      "dialogue-shape comparison",
+      "descriptive prompt-skill and adapter-infusion comparison",
+      "transparent quotation with complete transcript and provenance",
+      "hypothesis generation for a later matched Jinn-versus-Beast run"
+    ],
+    "prohibited": [
+      "validated theological interpretation",
+      "confirmatory behavioral endpoint",
+      "population-effect estimate",
+      "claim that prompt infusion equals weight internalization",
+      "claim that the prompted base participant is a trained Beast adapter",
+      "automatic adapter promotion"
+    ]
+  }
+}
