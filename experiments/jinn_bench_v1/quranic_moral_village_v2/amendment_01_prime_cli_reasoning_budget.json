@@ -1,0 +1,32 @@
+{
+  "schema_version": "quranic_moral_live_village_amendment_v1",
+  "amendment_id": "jbv2-quranic-moral-live-village-001-amendment-01",
+  "status": "prospective_before_first_village_row",
+  "prepared_utc": "2026-07-25T18:31:00Z",
+  "parent_protocol_path": "experiments/jinn_bench_v1/quranic_moral_village_v2/protocol.json",
+  "parent_protocol_sha256": "f269d5e7416994bc50f7e5b08ab7b5fc4c9a4a42e34f04f6b6251358b3fd9ade",
+  "trigger": {
+    "kind": "provider_interface_diagnostic",
+    "village_rows_generated_before_amendment": 0,
+    "finding": "Prime inference chat emits a plain-text waiting line before its JSON response, and Qwen3.5 may spend a small completion budget entirely in reasoning_content before emitting public content."
+  },
+  "sampling_overrides": {
+    "temperature": 0.55,
+    "maximum_output_tokens": 1024,
+    "timeout_seconds": 300,
+    "cost_cap_usd": 0.2
+  },
+  "unchanged": [
+    "models",
+    "MeTTa persona skills",
+    "rendered system prompts",
+    "topics",
+    "turn schedule",
+    "strict serial execution",
+    "full verbatim public history",
+    "reasoning separation",
+    "descriptive analysis",
+    "highlight selection"
+  ],
+  "implementation_fix": "Parse the first complete JSON object after the Prime CLI waiting line; still fail loud on missing or empty public content."
+}

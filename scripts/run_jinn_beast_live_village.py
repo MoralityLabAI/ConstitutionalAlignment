@@ -17,6 +17,11 @@ DEFAULT_PROTOCOL = (
     REPO_ROOT
     / "experiments/jinn_bench_v1/quranic_moral_village_v2/protocol.json"
 )
+DEFAULT_AMENDMENT = (
+    REPO_ROOT
+    / "experiments/jinn_bench_v1/quranic_moral_village_v2/"
+    "amendment_01_prime_cli_reasoning_budget.json"
+)
 
 
 def sha256_text(text: str) -> str:
@@ -35,6 +40,18 @@ def load_json(path: Path) -> dict[str, Any]:
     value = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(value, dict):
         raise TypeError(f"{path}: expected an object")
+    return value
+
+
+def parse_prime_cli_json(text: str) -> dict[str, Any]:
+    """Parse Prime's JSON response after its plain-text waiting line."""
+    start = text.find("{")
+    end = text.rfind("}")
+    if start < 0 or end < start:
+        raise ValueError("Prime chat output contains no JSON object")
+    value = json.loads(text[start : end + 1])
+    if not isinstance(value, dict):
+        raise TypeError("Prime chat response must be a JSON object")
     return value
 
 
@@ -154,9 +171,7 @@ def _chat_once(
             f"Prime chat failed ({completed.returncode}): "
             f"{completed.stderr.strip() or completed.stdout.strip()}"
         )
-    value = json.loads(completed.stdout)
-    if not isinstance(value, dict):
-        raise TypeError("Prime chat response must be a JSON object")
+    value = parse_prime_cli_json(completed.stdout)
     choices = value.get("choices")
     if not isinstance(choices, list) or len(choices) != 1:
         raise ValueError("Prime chat response must contain exactly one choice")
@@ -228,6 +243,14 @@ def main() -> int:
     protocol = load_json(protocol_path)
     if protocol.get("status") != "prospective_frozen_before_generation":
         raise ValueError("protocol is not prospectively frozen")
+    sampling = dict(protocol["sampling"])
+    if DEFAULT_AMENDMENT.exists():
+        amendment = load_json(DEFAULT_AMENDMENT)
+        if amendment.get("status") != "prospective_before_first_village_row":
+            raise ValueError("reasoning-budget amendment has invalid status")
+        if amendment.get("parent_protocol_sha256") != sha256_file(protocol_path):
+            raise ValueError("reasoning-budget amendment parent hash mismatch")
+        sampling.update(amendment["sampling_overrides"])
     village = protocol["villages"][args.village]
     topics_path = REPO_ROOT / protocol["inputs"]["topics_path"]
     if sha256_file(topics_path) != protocol["inputs"]["topics_sha256"]:
@@ -324,9 +347,9 @@ def main() -> int:
             model=model,
             system_prompt=prompts[role],
             user_prompt=prompt,
-            temperature=float(protocol["sampling"]["temperature"]),
-            max_tokens=int(protocol["sampling"]["maximum_output_tokens"]),
-            timeout_seconds=int(protocol["sampling"]["timeout_seconds"]),
+            temperature=float(sampling["temperature"]),
+            max_tokens=int(sampling["maximum_output_tokens"]),
+            timeout_seconds=int(sampling["timeout_seconds"]),
         )
         elapsed = time.monotonic() - started
         content, reasoning = _extract_message(response)
@@ -339,7 +362,7 @@ def main() -> int:
             output_rate=output_rate,
         )
         estimated_total += turn_cost
-        if estimated_total > float(protocol["sampling"]["cost_cap_usd"]):
+        if estimated_total > float(sampling["cost_cap_usd"]):
             raise RuntimeError("frozen cost cap exceeded")
         row = {
             **schedule_row,
