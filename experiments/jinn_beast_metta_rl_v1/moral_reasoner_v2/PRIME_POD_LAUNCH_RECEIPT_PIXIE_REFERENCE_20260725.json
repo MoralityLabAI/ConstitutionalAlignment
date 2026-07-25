@@ -1,0 +1,73 @@
+{
+  "schema": "prime_pod_launch_intent_v1",
+  "status": "STAGED_AWAITING_EXACT_JOB_AUTHORIZATION",
+  "prepared_utc": "2026-07-25T15:59:45.618Z",
+  "handoff": "PRIME_POD_AGENT_HANDOFF_20260725.md",
+  "account": {
+    "username": "moralitylab",
+    "user_id": "cmbqxo1kc0020eppjy9mnws3d",
+    "identity_check": "PASS"
+  },
+  "protected_run": {
+    "run_id": "e2s64hw5ywag1d8hgwfef6jd",
+    "name": "jinn-moral-reasoner-qwen35-4b-thinking-v2",
+    "status_at_preflight": "RUNNING",
+    "action": "NONE"
+  },
+  "task": {
+    "id": "pixie-reference-transfer-v0-2",
+    "description": "Run the frozen held-out transfer evaluation sequentially for the adapter-disabled Qwen-derived Bonsai 1.7B base and the exact Pixie rank-8 adapter.",
+    "spot_interruption_acceptable": true,
+    "resume_unit": "completed_transfer_row",
+    "local_gpu_workload": false,
+    "pod_name": "jinn-paper-20260725-pixie-reference"
+  },
+  "selected_availability": {
+    "id": "461d33",
+    "cloud_id": "1A100.22V_SPOT",
+    "provider": "datacrunch",
+    "region": "FI",
+    "listed_hourly_usd": 0.6265,
+    "gpu_type": "A100_80GB",
+    "gpu_count": 1,
+    "vcpus": 22,
+    "ram_gb": 120,
+    "image": "ubuntu_22_cuda_12",
+    "disk_gb": 200,
+    "spot": true,
+    "stock_status_at_preflight": "Available"
+  },
+  "limits": {
+    "maximum_hourly_usd": 0.7,
+    "maximum_planned_lifetime_seconds": 7200,
+    "maximum_estimated_cost_usd": 1.253,
+    "job_ram_mb": 8192,
+    "job_cpu_pct": 50,
+    "job_io_mb_s": 50,
+    "job_timeout_seconds_each": 1800,
+    "job_peak_vram_mib": 3900
+  },
+  "sealed_bundle": {
+    "repository": "https://github.com/MoralityLabAI/Pixieology.git",
+    "commit": "1640a3c52d1043e834295342d6946696fc42c963",
+    "experiment": "experiments/pixie_lora_feedback_loop_v0_2",
+    "protocol_sha256": "e7689287c74359ce7a23c11e7ea22a3e8afb3e9dc5d2f5f6e384f11d3eb12d61",
+    "implementation_lock_sha256": "3136a2e9e0c3d52c84d3ff71433f94557543d88c459af0cfbdc967b2507982e4",
+    "prime_launcher_sha256": "41e5598806eab48b6320f69b15bad183edbfdb8c37b4cfa03fe35edfa4e76a7a",
+    "jobs": [
+      {
+        "job_id": "evaluate-base_qwen_derived_1p7b",
+        "job_sha256": "902b7c4d8aa1bcba90c15101fc899e049169c9fa4aac6d10c194803e68554b34"
+      },
+      {
+        "job_id": "evaluate-pixie_rank8",
+        "job_sha256": "50ab3d77defc986733804843ec676ed686afb542cb475f42cd8cc61abaabcb24"
+      }
+    ]
+  },
+  "expected_output_path": "C:\\projects\\Pixieology\\Pixieology\\data\\pixie_lora_feedback_loop_v0_2\\primelab\\pixie-reference-prime-20260725",
+  "pod_id": null,
+  "creation_authorized": true,
+  "workload_authorized": false,
+  "automatic_authorization": false
+}
