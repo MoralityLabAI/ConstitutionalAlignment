@@ -1,6 +1,6 @@
 {
   "schema": "prime_pod_launch_intent_v1",
-  "status": "STAGED_AWAITING_EXACT_JOB_AUTHORIZATION",
+  "status": "BLOCKED_NO_COMPLIANT_AVAILABILITY",
   "prepared_utc": "2026-07-25T15:59:45.618Z",
   "handoff": "PRIME_POD_AGENT_HANDOFF_20260725.md",
   "account": {
@@ -35,7 +35,8 @@
     "image": "ubuntu_22_cuda_12",
     "disk_gb": 200,
     "spot": true,
-    "stock_status_at_preflight": "Available"
+    "stock_status_at_preflight": "Available",
+    "status_at_launch_recheck": "NOT_RETURNED"
   },
   "limits": {
     "maximum_hourly_usd": 0.7,
@@ -68,6 +69,41 @@
   "expected_output_path": "C:\\projects\\Pixieology\\Pixieology\\data\\pixie_lora_feedback_loop_v0_2\\primelab\\pixie-reference-prime-20260725",
   "pod_id": null,
   "creation_authorized": true,
-  "workload_authorized": false,
+  "workload_authorized": true,
+  "workload_authorization_observed_utc": "2026-07-25T16:13:20.926Z",
+  "launch_recheck": {
+    "checked_utc": "2026-07-25T16:13:20.926Z",
+    "active_pod_count": 0,
+    "protected_rl_run_status": "RUNNING",
+    "compliant_offer_count": 0,
+    "required_maximum_hourly_usd": 0.7,
+    "observed_offers": [
+      {
+        "id": "e78f45",
+        "provider": "massedcompute",
+        "region": "US",
+        "gpu_type": "A100_80GB",
+        "gpu_count": 1,
+        "listed_hourly_usd": 1.23
+      },
+      {
+        "id": "08e3e6",
+        "provider": "crusoecloud",
+        "region": "US",
+        "gpu_type": "A100_80GB",
+        "gpu_count": 1,
+        "listed_hourly_usd": 1.65
+      },
+      {
+        "id": "23ff14",
+        "provider": "datacrunch",
+        "region": "FI",
+        "gpu_type": "A100_80GB",
+        "gpu_count": 1,
+        "listed_hourly_usd": 1.79
+      }
+    ],
+    "action": "STOP_WITHOUT_POD_CREATION"
+  },
   "automatic_authorization": false
 }
