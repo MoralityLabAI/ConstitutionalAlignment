@@ -1,0 +1,49 @@
+{
+  "schema_version": "quranic_moral_live_village_amendment_v1",
+  "amendment_id": "jbv2-quranic-moral-live-village-001-amendment-03",
+  "status": "prospective_before_first_village_row",
+  "prepared_utc": "2026-07-25T18:40:00Z",
+  "parent_protocol_path": "experiments/jinn_bench_v1/quranic_moral_village_v2/protocol.json",
+  "parent_protocol_sha256": "f269d5e7416994bc50f7e5b08ab7b5fc4c9a4a42e34f04f6b6251358b3fd9ade",
+  "previous_amendment_path": "experiments/jinn_bench_v1/quranic_moral_village_v2/amendment_02_reasoning_completion_budget.json",
+  "previous_amendment_sha256": "2bea4c4a5b04cd8c52280b28367d4787b63c902bd8c5ce6da11a6d1e7bcfd79b",
+  "trigger": {
+    "kind": "provider_reasoning_publication_separation",
+    "finding": "Thinking-enabled Qwen3.5 can use the entire 4096-token completion without public content. Direct Prime Inference supports chat_template_kwargs.enable_thinking=false for a separate public pass.",
+    "one_pass_attempt": {
+      "status": "invalidated_infrastructure_attempt_not_experiment_result",
+      "path": "D:/Research_Engine/jinn_or_beast/quranic_moral_live_village_qwen35_4b_20260725/runs/prompt_skill_control/messages.jsonl",
+      "rows": 4,
+      "sha256": "c868cdb01f7801488a2105e1bcb3e6f92c6b40e1400a9a10a370e6bf947cc06b",
+      "rows_reused": 0,
+      "public_messages_inspected_to_choose_treatment": 0
+    }
+  },
+  "sampling_overrides": {
+    "temperature": 0.55,
+    "deliberation_output_tokens": 4096,
+    "public_output_tokens": 320,
+    "timeout_seconds": 300,
+    "cost_cap_usd": 0.2,
+    "generation_mode": "two_pass_deliberation_then_publication"
+  },
+  "generation_contract": [
+    "Run the frozen council prompt once with enable_thinking=true and retain reasoning_content privately.",
+    "Fail if the deliberation pass does not return reasoning_content; public content from this pass is not used.",
+    "Append the private deliberation to the same frozen council prompt inside a nonpublic delimiter.",
+    "Run the publication prompt with enable_thinking=false and retain only its public content.",
+    "Fail if the publication pass has no public content or unexpectedly returns reasoning_content.",
+    "Only public content enters the next participant's council history."
+  ],
+  "unchanged": [
+    "models",
+    "MeTTa persona skills",
+    "rendered system prompts",
+    "topics",
+    "turn schedule",
+    "strict serial execution",
+    "full verbatim public history",
+    "descriptive analysis",
+    "highlight selection"
+  ]
+}

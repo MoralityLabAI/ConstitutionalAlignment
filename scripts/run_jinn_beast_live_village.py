@@ -5,12 +5,12 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import os
-import subprocess
 import sys
 import time
 from pathlib import Path
 from typing import Any
+
+from prime_cli.api.inference import InferenceAPIError, InferenceClient
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_PROTOCOL = (
@@ -24,6 +24,9 @@ DEFAULT_AMENDMENTS = (
     REPO_ROOT
     / "experiments/jinn_bench_v1/quranic_moral_village_v2/"
     "amendment_02_reasoning_completion_budget.json",
+    REPO_ROOT
+    / "experiments/jinn_bench_v1/quranic_moral_village_v2/"
+    "amendment_03_two_pass_deliberation_publication.json",
 )
 
 
@@ -43,18 +46,6 @@ def load_json(path: Path) -> dict[str, Any]:
     value = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(value, dict):
         raise TypeError(f"{path}: expected an object")
-    return value
-
-
-def parse_prime_cli_json(text: str) -> dict[str, Any]:
-    """Parse Prime's JSON response after its plain-text waiting line."""
-    start = text.find("{")
-    end = text.rfind("}")
-    if start < 0 or end < start:
-        raise ValueError("Prime chat output contains no JSON object")
-    value = json.loads(text[start : end + 1])
-    if not isinstance(value, dict):
-        raise TypeError("Prime chat response must be a JSON object")
     return value
 
 
@@ -133,6 +124,21 @@ def render_turn_prompt(
     )
 
 
+def render_publication_prompt(council_prompt: str, reasoning: str) -> str:
+    """Bind a private deliberation to a separate no-thinking public pass."""
+    if not reasoning.strip():
+        raise ValueError("publication requires a nonempty private deliberation")
+    return (
+        f"{council_prompt}\n\n"
+        "PRIVATE DELIBERATION FROM YOUR IMMEDIATELY PRECEDING PASS "
+        "(not part of the council record; do not quote or mention it):\n"
+        "<private-deliberation>\n"
+        f"{reasoning.strip()}\n"
+        "</private-deliberation>\n\n"
+        "Now emit only the natural public council message requested above."
+    )
+
+
 def _chat_once(
     *,
     model: str,
@@ -141,40 +147,23 @@ def _chat_once(
     temperature: float,
     max_tokens: int,
     timeout_seconds: int,
+    enable_thinking: bool,
+    require_content: bool,
+    require_reasoning: bool,
 ) -> dict[str, Any]:
-    command = [
-        "prime",
-        "--plain",
-        "inference",
-        "chat",
-        model,
-        "--system",
-        system_prompt,
-        "--temperature",
-        str(temperature),
-        "--max-tokens",
-        str(max_tokens),
-        "--output",
-        "json",
-    ]
-    environment = os.environ.copy()
-    environment["PYTHONIOENCODING"] = "utf-8"
-    completed = subprocess.run(
-        command,
-        check=False,
-        capture_output=True,
-        input=user_prompt,
-        text=True,
-        encoding="utf-8",
-        timeout=timeout_seconds,
-        env=environment,
-    )
-    if completed.returncode != 0:
-        raise RuntimeError(
-            f"Prime chat failed ({completed.returncode}): "
-            f"{completed.stderr.strip() or completed.stdout.strip()}"
-        )
-    value = parse_prime_cli_json(completed.stdout)
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+        "chat_template_kwargs": {"enable_thinking": enable_thinking},
+    }
+    value = InferenceClient(timeout=timeout_seconds).chat_completion(payload)
+    if not isinstance(value, dict):
+        raise TypeError("Prime chat response must be a JSON object")
     choices = value.get("choices")
     if not isinstance(choices, list) or len(choices) != 1:
         raise ValueError("Prime chat response must contain exactly one choice")
@@ -182,8 +171,15 @@ def _chat_once(
     if not isinstance(message, dict):
         raise TypeError("Prime chat choice is missing a message")
     content = message.get("content")
-    if not isinstance(content, str) or not content.strip():
+    reasoning = message.get("reasoning_content")
+    if require_content and (
+        not isinstance(content, str) or not content.strip()
+    ):
         raise ValueError("Prime chat returned an empty public message")
+    if require_reasoning and (
+        not isinstance(reasoning, str) or not reasoning.strip()
+    ):
+        raise ValueError("Prime chat returned an empty reasoning trace")
     return value
 
 
@@ -192,7 +188,7 @@ def run_chat_with_retry(**kwargs: Any) -> tuple[dict[str, Any], int]:
     for attempt in (1, 2):
         try:
             return _chat_once(**kwargs), attempt
-        except (RuntimeError, ValueError, subprocess.TimeoutExpired) as exc:
+        except (InferenceAPIError, RuntimeError, TypeError, ValueError) as exc:
             errors.append(f"{type(exc).__name__}: {exc}")
             if attempt == 1:
                 time.sleep(1)
@@ -201,7 +197,8 @@ def run_chat_with_retry(**kwargs: Any) -> tuple[dict[str, Any], int]:
 
 def _extract_message(response: dict[str, Any]) -> tuple[str, str]:
     message = response["choices"][0]["message"]
-    content = str(message["content"]).strip()
+    raw_content = message.get("content")
+    content = raw_content.strip() if isinstance(raw_content, str) else ""
     reasoning = message.get("reasoning_content")
     if reasoning is None:
         reasoning = response["choices"][0].get("reasoning_content", "")
@@ -335,7 +332,7 @@ def main() -> int:
         role = str(schedule_row["speaker"])
         other_role = "beast" if role == "jinn" else "jinn"
         topic = topics[str(schedule_row["topic_id"])]
-        prompt = render_turn_prompt(
+        council_prompt = render_turn_prompt(
             topic=topic,
             schedule_row=schedule_row,
             alias=aliases[role],
@@ -348,30 +345,57 @@ def main() -> int:
             rates["adapter_output" if ":" in model else "base_output"]
         )
         started = time.monotonic()
-        response, attempt = run_chat_with_retry(
+        deliberation_response, deliberation_attempt = run_chat_with_retry(
             model=model,
             system_prompt=prompts[role],
-            user_prompt=prompt,
+            user_prompt=council_prompt,
             temperature=float(sampling["temperature"]),
-            max_tokens=int(sampling["maximum_output_tokens"]),
+            max_tokens=int(sampling["deliberation_output_tokens"]),
             timeout_seconds=int(sampling["timeout_seconds"]),
+            enable_thinking=True,
+            require_content=False,
+            require_reasoning=True,
+        )
+        _, reasoning = _extract_message(deliberation_response)
+        publication_prompt = render_publication_prompt(council_prompt, reasoning)
+        public_response, public_attempt = run_chat_with_retry(
+            model=model,
+            system_prompt=prompts[role],
+            user_prompt=publication_prompt,
+            temperature=float(sampling["temperature"]),
+            max_tokens=int(sampling["public_output_tokens"]),
+            timeout_seconds=int(sampling["timeout_seconds"]),
+            enable_thinking=False,
+            require_content=True,
+            require_reasoning=False,
         )
         elapsed = time.monotonic() - started
-        content, reasoning = _extract_message(response)
-        usage = response.get("usage")
-        if not isinstance(usage, dict):
-            usage = {}
-        turn_cost = _estimated_cost(
-            usage,
+        content, unexpected_public_reasoning = _extract_message(public_response)
+        if unexpected_public_reasoning:
+            raise ValueError("thinking-disabled public pass returned reasoning")
+        deliberation_usage = deliberation_response.get("usage")
+        public_usage = public_response.get("usage")
+        if not isinstance(deliberation_usage, dict):
+            deliberation_usage = {}
+        if not isinstance(public_usage, dict):
+            public_usage = {}
+        deliberation_cost = _estimated_cost(
+            deliberation_usage,
             input_rate=input_rate,
             output_rate=output_rate,
         )
+        public_cost = _estimated_cost(
+            public_usage,
+            input_rate=input_rate,
+            output_rate=output_rate,
+        )
+        turn_cost = deliberation_cost + public_cost
         estimated_total += turn_cost
         if estimated_total > float(sampling["cost_cap_usd"]):
             raise RuntimeError("frozen cost cap exceeded")
         row = {
             **schedule_row,
-            "schema_version": "jinn_beast_live_village_message_v1",
+            "schema_version": "jinn_beast_live_village_message_v2",
             "experiment_id": protocol["experiment_id"],
             "village": args.village,
             "alias": aliases[role],
@@ -379,7 +403,8 @@ def main() -> int:
             "topic_title": topic["title"],
             "source_anchors": topic["quran_refs"],
             "system_prompt_sha256": sha256_text(prompts[role]),
-            "user_prompt_sha256": sha256_text(prompt),
+            "council_prompt_sha256": sha256_text(council_prompt),
+            "publication_prompt_sha256": sha256_text(publication_prompt),
             "content": content,
             "content_sha256": sha256_text(content),
             "reasoning_content": reasoning,
@@ -387,12 +412,29 @@ def main() -> int:
                 sha256_text(reasoning) if reasoning else ""
             ),
             "reasoning_trace_present": bool(reasoning),
-            "usage": usage,
+            "usage": {
+                "deliberation": deliberation_usage,
+                "public": public_usage,
+            },
             "estimated_cost_usd": round(turn_cost, 10),
-            "attempt": attempt,
+            "deliberation_estimated_cost_usd": round(deliberation_cost, 10),
+            "public_estimated_cost_usd": round(public_cost, 10),
+            "deliberation_attempt": deliberation_attempt,
+            "public_attempt": public_attempt,
             "elapsed_seconds": round(elapsed, 3),
-            "provider_response_id": response.get("id", ""),
-            "finish_reason": response["choices"][0].get("finish_reason", ""),
+            "deliberation_provider_response_id": deliberation_response.get(
+                "id",
+                "",
+            ),
+            "public_provider_response_id": public_response.get("id", ""),
+            "deliberation_finish_reason": deliberation_response["choices"][
+                0
+            ].get("finish_reason", ""),
+            "public_finish_reason": public_response["choices"][0].get(
+                "finish_reason",
+                "",
+            ),
+            "generation_mode": "two_pass_deliberation_then_publication",
         }
         append_jsonl(rows_path, row)
         existing.append(row)
@@ -404,7 +446,7 @@ def main() -> int:
         )
 
     metadata = {
-        "schema_version": "jinn_beast_live_village_run_v1",
+        "schema_version": "jinn_beast_live_village_run_v2",
         "status": "complete",
         "experiment_id": protocol["experiment_id"],
         "village": args.village,
@@ -416,6 +458,7 @@ def main() -> int:
         "estimated_cost_usd": round(estimated_total, 10),
         "local_gpu_used": False,
         "strictly_serial": True,
+        "generation_mode": "two_pass_deliberation_then_publication",
         "models": village["models"],
     }
     (output_dir / "run_metadata.json").write_text(
