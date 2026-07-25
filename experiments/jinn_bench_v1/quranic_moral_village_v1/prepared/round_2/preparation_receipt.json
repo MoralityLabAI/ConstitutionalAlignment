@@ -1,0 +1,51 @@
+{
+  "arm_aliases": {
+    "jinn_erratic_reasoner_v2_step80": "Wind",
+    "jinn_ness_v1_step10": "Key",
+    "jinn_tiny_mutazili_parent15": "Lantern",
+    "qwen3_1p7b_base": "Cedar"
+  },
+  "created_at_utc": "2026-07-25T00:16:39.215880+00:00",
+  "protocol_sha256": "7681bdd6aaa3aa835d94d1bfb6def1f9b314577e8ce58f0b19e97190596dfb55",
+  "round_1_inputs": {
+    "jinn_erratic_reasoner_v2_step80": {
+      "path": "D:\\Research_Engine\\jinn_or_beast\\quranic_moral_village_v1\\round_1\\jinn_erratic_reasoner_v2_step80_retry2\\local_smoke_20260725T001416Z\\generations.jsonl",
+      "sha256": "96d027c9df55d26ab958ef8a5caad4a6fdb548832408048c595edabacf9ec3da"
+    },
+    "jinn_ness_v1_step10": {
+      "path": "D:\\Research_Engine\\jinn_or_beast\\quranic_moral_village_v1\\round_1\\jinn_ness_v1_step10_retry2\\local_smoke_20260725T000814Z\\generations.jsonl",
+      "sha256": "3e299c60f778f12cde607f1e0dbbec21d9352adc9f96b868263ed7c1558e9577"
+    },
+    "jinn_tiny_mutazili_parent15": {
+      "path": "D:\\Research_Engine\\jinn_or_beast\\quranic_moral_village_v1\\round_1\\jinn_tiny_mutazili_parent15\\local_smoke_20260724T235906Z\\generations.jsonl",
+      "sha256": "4dff333e29289448a27c789e8a0518ca5293fc27319103d21babf9e7c8d49bd3"
+    },
+    "qwen3_1p7b_base": {
+      "path": "D:\\Research_Engine\\jinn_or_beast\\quranic_moral_village_v1\\round_1\\qwen3_1p7b_base_retry3\\local_smoke_20260724T235554Z\\generations.jsonl",
+      "sha256": "cadc51f4811f3298231fd511d13e7c6cf422ac793a72132df6053b35fec5d607"
+    }
+  },
+  "round_2_outputs": {
+    "jinn_erratic_reasoner_v2_step80": {
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\prepared\\round_2\\jinn_erratic_reasoner_v2_step80.jsonl",
+      "sha256": "bb41c1948167d96662fc98ffaf226f1d6f1b4b17cbc4b5d7cb2e48ea9dffa00e"
+    },
+    "jinn_ness_v1_step10": {
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\prepared\\round_2\\jinn_ness_v1_step10.jsonl",
+      "sha256": "65c39c6cd5b66b2f7578377b751161b456ce526fd5d26080ecbae8089a4d8b83"
+    },
+    "jinn_tiny_mutazili_parent15": {
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\prepared\\round_2\\jinn_tiny_mutazili_parent15.jsonl",
+      "sha256": "eb444409b2d248724deb909f6dc01b010aaa5f3c3f104eccbbccc8ce7b80d493"
+    },
+    "qwen3_1p7b_base": {
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\prepared\\round_2\\qwen3_1p7b_base.jsonl",
+      "sha256": "6ed5daeb396c4c46737173eade63cdff0fa4a62ac5f539ddc50bcfb1cef4618d"
+    }
+  },
+  "rows_per_arm": 6,
+  "schema_version": "quranic_moral_village_round2_preparation_v1",
+  "status": "completed",
+  "target_rule": "For topic index t and arm index a, reply to alias[(a + t + 1) mod 4].",
+  "topics_sha256": "53a0ab5952ecf6c8e6c24e85bc766b5b1cdff54405fb013d4a5dd08c5582c314"
+}
