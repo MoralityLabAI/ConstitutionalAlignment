@@ -17,10 +17,13 @@ DEFAULT_PROTOCOL = (
     REPO_ROOT
     / "experiments/jinn_bench_v1/quranic_moral_village_v2/protocol.json"
 )
-DEFAULT_AMENDMENT = (
+DEFAULT_AMENDMENTS = (
     REPO_ROOT
     / "experiments/jinn_bench_v1/quranic_moral_village_v2/"
-    "amendment_01_prime_cli_reasoning_budget.json"
+    "amendment_01_prime_cli_reasoning_budget.json",
+    REPO_ROOT
+    / "experiments/jinn_bench_v1/quranic_moral_village_v2/"
+    "amendment_02_reasoning_completion_budget.json",
 )
 
 
@@ -244,8 +247,10 @@ def main() -> int:
     if protocol.get("status") != "prospective_frozen_before_generation":
         raise ValueError("protocol is not prospectively frozen")
     sampling = dict(protocol["sampling"])
-    if DEFAULT_AMENDMENT.exists():
-        amendment = load_json(DEFAULT_AMENDMENT)
+    for amendment_path in DEFAULT_AMENDMENTS:
+        if not amendment_path.exists():
+            continue
+        amendment = load_json(amendment_path)
         if amendment.get("status") != "prospective_before_first_village_row":
             raise ValueError("reasoning-budget amendment has invalid status")
         if amendment.get("parent_protocol_sha256") != sha256_file(protocol_path):
