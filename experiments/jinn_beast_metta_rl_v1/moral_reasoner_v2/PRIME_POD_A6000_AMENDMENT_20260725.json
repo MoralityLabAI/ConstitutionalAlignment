@@ -1,0 +1,37 @@
+{
+  "schema": "prime_pod_operator_handoff_amendment_v1",
+  "status": "ACTIVE_FOR_ONE_POD",
+  "amended_utc": "2026-07-25T16:21:29.316Z",
+  "base_handoff": "PRIME_POD_AGENT_HANDOFF_20260725.md",
+  "user_direction": "6000 then",
+  "substitution": {
+    "replaces": {
+      "gpu_type": "A100_80GB"
+    },
+    "permits": {
+      "availability_id": "7574d6",
+      "cloud_id": "gpu_1x_a6000",
+      "gpu_type": "A6000_48GB",
+      "gpu_count": 1,
+      "provider": "massedcompute",
+      "region": "US",
+      "listed_hourly_usd": 0.54,
+      "image": "ubuntu_22_cuda_12",
+      "disk_gb": 256,
+      "spot": false
+    }
+  },
+  "unchanged_limits": {
+    "maximum_hourly_usd": 0.7,
+    "maximum_planned_lifetime_seconds": 7200,
+    "maximum_active_pods": 1,
+    "no_additional_hosted_rl_run": true,
+    "no_local_gpu_workload": true,
+    "terminate_after_verified_artifact_copy": true
+  },
+  "protected_run": {
+    "run_id": "e2s64hw5ywag1d8hgwfef6jd",
+    "required_action": "NONE"
+  },
+  "automatic_reuse": false
+}

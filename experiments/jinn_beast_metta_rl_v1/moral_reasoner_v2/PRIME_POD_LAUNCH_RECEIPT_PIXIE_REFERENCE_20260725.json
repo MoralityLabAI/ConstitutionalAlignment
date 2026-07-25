@@ -1,6 +1,6 @@
 {
   "schema": "prime_pod_launch_intent_v1",
-  "status": "BLOCKED_NO_COMPLIANT_AVAILABILITY",
+  "status": "READY_FOR_A6000_CREATION",
   "prepared_utc": "2026-07-25T15:59:45.618Z",
   "handoff": "PRIME_POD_AGENT_HANDOFF_20260725.md",
   "account": {
@@ -23,25 +23,25 @@
     "pod_name": "jinn-paper-20260725-pixie-reference"
   },
   "selected_availability": {
-    "id": "461d33",
-    "cloud_id": "1A100.22V_SPOT",
-    "provider": "datacrunch",
-    "region": "FI",
-    "listed_hourly_usd": 0.6265,
-    "gpu_type": "A100_80GB",
+    "id": "7574d6",
+    "cloud_id": "gpu_1x_a6000",
+    "provider": "massedcompute",
+    "region": "US",
+    "listed_hourly_usd": 0.54,
+    "gpu_type": "A6000_48GB",
     "gpu_count": 1,
-    "vcpus": 22,
-    "ram_gb": 120,
+    "vcpus": 6,
+    "ram_gb": 48,
     "image": "ubuntu_22_cuda_12",
-    "disk_gb": 200,
-    "spot": true,
+    "disk_gb": 256,
+    "spot": false,
     "stock_status_at_preflight": "Available",
-    "status_at_launch_recheck": "NOT_RETURNED"
+    "status_at_launch_recheck": "Available"
   },
   "limits": {
     "maximum_hourly_usd": 0.7,
     "maximum_planned_lifetime_seconds": 7200,
-    "maximum_estimated_cost_usd": 1.253,
+    "maximum_estimated_cost_usd": 1.08,
     "job_ram_mb": 8192,
     "job_cpu_pct": 50,
     "job_io_mb_s": 50,
@@ -50,19 +50,19 @@
   },
   "sealed_bundle": {
     "repository": "https://github.com/MoralityLabAI/Pixieology.git",
-    "commit": "1640a3c52d1043e834295342d6946696fc42c963",
+    "commit": "16df03fa91d91cf38047e8b486af945cc6d768c9",
     "experiment": "experiments/pixie_lora_feedback_loop_v0_2",
-    "protocol_sha256": "e7689287c74359ce7a23c11e7ea22a3e8afb3e9dc5d2f5f6e384f11d3eb12d61",
-    "implementation_lock_sha256": "3136a2e9e0c3d52c84d3ff71433f94557543d88c459af0cfbdc967b2507982e4",
+    "protocol_sha256": "b1c7964bbf3d9dfd584ecdba2ce5ebd87d8c24ceb1f271edd723322958e37181",
+    "implementation_lock_sha256": "ce93c575d3458698ac25fdde667e9b67c2b5c4c95b0501dc21f1faabfcd40ee0",
     "prime_launcher_sha256": "41e5598806eab48b6320f69b15bad183edbfdb8c37b4cfa03fe35edfa4e76a7a",
     "jobs": [
       {
         "job_id": "evaluate-base_qwen_derived_1p7b",
-        "job_sha256": "902b7c4d8aa1bcba90c15101fc899e049169c9fa4aac6d10c194803e68554b34"
+        "job_sha256": "2704d0cdfc4278899bb732297425b5fe9688b5adcdad7f2bf490bec9928f7e03"
       },
       {
         "job_id": "evaluate-pixie_rank8",
-        "job_sha256": "50ab3d77defc986733804843ec676ed686afb542cb475f42cd8cc61abaabcb24"
+        "job_sha256": "8a49cae54ddc504531b5b9843dad2b1ce0a9521aa5795f6a72b237da5d107406"
       }
     ]
   },
