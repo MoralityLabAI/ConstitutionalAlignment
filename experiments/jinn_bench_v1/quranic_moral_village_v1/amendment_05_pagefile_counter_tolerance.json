@@ -1,0 +1,38 @@
+{
+  "schema_version": "quranic_moral_village_amendment_v1",
+  "amendment_id": "jbv1-quranic-moral-village-001-amendment-05",
+  "status": "prospective_before_key_clean_restart",
+  "reason": "The clean Key restart crossed the pagefile counter tolerance by one megabyte during model load while physical-RAM and process-commit guards remained healthy. It wrote zero generation rows.",
+  "failed_attempt": {
+    "run_name": "local_smoke_20260725T000655Z",
+    "arm_id": "jinn_ness_v1_step10",
+    "status": "ram_pressure_aborted",
+    "abort_reason": "pagefile_growth_mb_exceeded",
+    "partial_generation_rows": 0,
+    "generation_content_inspected": false,
+    "observed_pagefile_growth_mb": 65,
+    "pagefile_growth_limit_mb": 64,
+    "available_ram_mb_at_abort": 1565.707,
+    "process_commit_mb_at_abort": 8862.867,
+    "process_commit_limit_mb": 9728,
+    "cleanup_passed": true
+  },
+  "change": {
+    "pagefile_growth_limit_mb_before": 64,
+    "pagefile_growth_limit_mb_after": 128,
+    "basis": "Permit bounded operating-system counter fluctuation without masking material paging pressure."
+  },
+  "unchanged_guards": {
+    "min_available_ram_mb": 512,
+    "process_commit_limit_mb": 9728,
+    "vram_limit_mb": 3900,
+    "exclusive_gpu_required": true,
+    "model_offload_allowed": false
+  },
+  "authorization": {
+    "clean_restart_from_prompt_one": true,
+    "reuse_partial_rows": false,
+    "inspect_failed_attempt_content": false
+  },
+  "scientific_scope": "Resource-monitor tolerance amendment only. Topics, arms, prompts, decoding, reply rotation, and highlight selection remain frozen."
+}
