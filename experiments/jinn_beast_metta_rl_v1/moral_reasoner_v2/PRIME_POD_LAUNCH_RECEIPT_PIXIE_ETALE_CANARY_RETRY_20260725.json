@@ -1,0 +1,163 @@
+{
+  "schema": "prime_pod_launch_intent_v1",
+  "status": "COMPLETE_ARTIFACTS_RECOVERED_POD_TERMINATED",
+  "prepared_utc": "2026-07-25T18:32:12.0717727Z",
+  "handoff": "PRIME_POD_AGENT_HANDOFF_20260725.md",
+  "amendment": "PRIME_POD_A6000_AMENDMENT_20260725.json",
+  "previous_attempt_receipt": "PRIME_POD_LAUNCH_RECEIPT_PIXIE_ETALE_CANARY_20260725.json",
+  "account": {
+    "username": "moralitylab",
+    "user_id": "cmbqxo1kc0020eppjy9mnws3d",
+    "identity_check": "PASS"
+  },
+  "protected_run": {
+    "run_id": "e2s64hw5ywag1d8hgwfef6jd",
+    "name": "jinn-moral-reasoner-qwen35-4b-thinking-v2",
+    "status_at_preflight": "COMPLETED",
+    "status_latest": "COMPLETED",
+    "status_latest_observed_utc": "2026-07-25T18:55:53.0235289Z",
+    "action": "NONE"
+  },
+  "task": {
+    "id": "pixie-etale-canary-capture-v0-2-retry",
+    "description": "Retry the frozen 32-row Pixie canary activation capture after pinning Jinja2 3.1.6 and adding a pre-model tokenizer-template smoke test.",
+    "spot_interruption_acceptable": false,
+    "resume_unit": "eight-row checkpoint",
+    "local_gpu_workload": false,
+    "pod_name": "jinn-paper-20260725-pixie-etale-retry"
+  },
+  "selected_availability": {
+    "id": "b1fae8",
+    "cloud_id": "gpu_1x_a6000",
+    "provider": "massedcompute",
+    "region": "US",
+    "listed_hourly_usd": 0.54,
+    "gpu_type": "A6000_48GB",
+    "gpu_count": 1,
+    "vcpus": 6,
+    "ram_gb": 48,
+    "image": "ubuntu_22_cuda_12",
+    "disk_gb": 256,
+    "spot": false,
+    "stock_status_at_preflight": "Available"
+  },
+  "limits": {
+    "maximum_hourly_usd": 0.7,
+    "maximum_planned_lifetime_seconds": 7200,
+    "maximum_cost_usd": 1.4,
+    "job_ram_mb": 6144,
+    "job_cpu_pct": 50,
+    "job_io_mb_s": 250,
+    "job_timeout_seconds": 1800,
+    "job_peak_vram_mib": 3900
+  },
+  "sealed_bundle": {
+    "repository": "https://github.com/MoralityLabAI/Pixieology.git",
+    "commit": "9bedff35775306ed95ea0c2dd0ad3641aa6a44d9",
+    "experiment": "experiments/pixie_etale_motif_capture_v0_2",
+    "protocol_sha256": "cc536ff38f27f99e11addc328ae2a303ac3a65f437d561ad1d58a12c632f4813",
+    "implementation_lock_sha256": "aeccd6307efd8a850323058da78cc00a51544f29cc013e9331c404609a04bbcf",
+    "prime_launcher_sha256": "1fd1c5afeaad6f23d63b800c2d600640ca845e60f95f97731ceb661f56401693",
+    "job_id": "capture-pixie-canary-memory-optimized-v0_2",
+    "job_sha256": "96d6dfb62d5116a7f23cc4d6a037a45105200339753d0a7d53b29d998890028e"
+  },
+  "authorization": {
+    "receipt": "data/pixie_etale_motif_capture_v0_2/authorizations/capture-pixie-canary-prime-a6000-retry-20260725.active.json",
+    "status": "PASS",
+    "observed_utc": "2026-07-25T18:32:12.0717727Z",
+    "event": "The user replied Proceed to the immediately preceding exact retry disclosure, including the paid-pod, resource-cap, cleanup, protected-run, and no-further-automatic-retry boundary."
+  },
+  "staging": {
+    "completed_utc": "2026-07-25T18:53:31.0621465Z",
+    "repository_verification": "PASS",
+    "frozen_input_verification": "PASS",
+    "remote_test_status": "11 passed",
+    "tokenizer_template_smoke": "PASS",
+    "asset_file_count": 28,
+    "asset_file_bytes": 3491035099,
+    "gpu_memory_mib_after_staging": 1,
+    "gpu_utilization_percent_after_staging": 0,
+    "model_or_adapter_loaded_during_staging": false,
+    "runtime": {
+      "python": "3.10.12",
+      "torch": "2.5.1+cu121",
+      "transformers": "5.3.0",
+      "peft": "0.11.1",
+      "accelerate": "1.12.0",
+      "bitsandbytes": "0.49.1",
+      "numpy": "2.2.6",
+      "safetensors": "0.6.2",
+      "jinja2": "3.1.6"
+    },
+    "remote_control_launcher_sha256": "1c7e66c4b636d0edd3c95bb784aacdca0bb34fb63331e897d4777e5004281f2d",
+    "transfer_resume": {
+      "reason": "The initial parallel metadata wildcard expanded in the local repo and failed closed after all seven large shards arrived.",
+      "model_or_adapter_loaded_before_resume": false,
+      "resolution": "Transferred the explicit 18-file metadata manifest and exact adapter, then verified total file count and bytes."
+    }
+  },
+  "budget_watchdog": {
+    "local_pid": 12392,
+    "deadline_utc": "2026-07-25T20:33:21Z",
+    "action": "Terminate only pod 3eaba98a1df94939beb6fa0d6f1702f7 if it still exists.",
+    "status": "DISARMED_AFTER_CONFIRMED_TERMINATION",
+    "disarmed_utc": "2026-07-25T18:55:58.5862231Z"
+  },
+  "expected_output_path": "C:\\projects\\Pixieology\\Pixieology\\data\\pixie_etale_motif_capture_v0_2\\primelab\\pixie-etale-canary-retry-prime-20260725",
+  "pod_id": "3eaba98a1df94939beb6fa0d6f1702f7",
+  "creation_utc": "2026-07-25T18:33:01.4809499Z",
+  "ready_utc": "2026-07-25T18:34:44.6584502Z",
+  "workload_started_utc": "2026-07-25T18:53:58Z",
+  "workload_ended_utc": "2026-07-25T18:54:31Z",
+  "termination_utc": "2026-07-25T18:55:50Z",
+  "execution": {
+    "status": "COMPLETE",
+    "row_count": 32,
+    "checkpoint_count": 4,
+    "checkpoint_rows": 8,
+    "unique_row_ids": 32,
+    "raw_coordinate_shape": [
+      32,
+      28,
+      7,
+      3
+    ],
+    "condition": "trained_counterfactual_on_base_activations",
+    "wall_time_seconds": 15.698810159000004,
+    "peak_job_ram_mb": 1344.94140625,
+    "average_job_ram_mb": 742.0303485576923,
+    "peak_global_gpu_memory_mib": 1884,
+    "peak_vram_allocated_bytes": 1489364992,
+    "peak_vram_reserved_bytes": 1627389952,
+    "cleanup_status": "PASS",
+    "lingering_owned_count": 0,
+    "claim": "The bounded canary activation capture is complete. This is not a confirmed motif, causal result, human-usefulness result, or authorization for full-family capture."
+  },
+  "artifact_index": {
+    "local_root": "C:\\projects\\Pixieology\\Pixieology\\data\\pixie_etale_motif_capture_v0_2\\primelab\\pixie-etale-canary-retry-prime-20260725",
+    "archive": "pixie-etale-canary-retry-artifacts-20260725.tgz",
+    "archive_sha256": "4ae114fea4fac8db8ddb2d87c273f6586a163aa43c36feb052dc7cce4315df3e",
+    "archive_bytes": 30937605,
+    "capture_summary_sha256": "36c24d31f6e4f991f45b905b907c01c102205ceda0dcb5cb9f5d9ca91365dfce",
+    "checkpoint_sha256": {
+      "rows_000_007.npz": "a76e94833a713ad0a8388fde9b63e2a9f0c11f3165747053fd55ef795d5653b0",
+      "rows_008_015.npz": "077d7f8d9d9f10ebc9f0606cbdfafb01a6ef4e6dae6f29b38d901b4687c5ad76",
+      "rows_016_023.npz": "fd2fbd6570793ce74b9cd7c411d5c1b4825b311597675e41e99e0681c7684aa9",
+      "rows_024_031.npz": "54520094ae77307ae5dcce4c529763cf583b74f2f9c8a8af6c95dd47dbe2437f"
+    },
+    "execution_summary_sha256": "524b4019616986d22bc1e49e6dfa07fb942b69d3a3a1aa20698c78f0f2868659",
+    "resource_summary_sha256": "80837990665b2f5862d220439322118c9410d5362b791d49693bf0957e1aab67",
+    "cleanup_summary_sha256": "3baddcff2605a3b769fe6ed2aa645db8be9c5a14a1a0633e48aaee2ed1495106",
+    "validation": "PASS"
+  },
+  "termination": {
+    "duration_seconds": 1372,
+    "provider_history_duration": "22m",
+    "listed_hourly_usd": 0.54,
+    "provider_total_cost_units": 1902,
+    "provider_total_cost_usd": 0.1902,
+    "active_pod_count_after": 0,
+    "status": "PASS"
+  },
+  "estimated_total_cost_usd": 0.1902
+}
