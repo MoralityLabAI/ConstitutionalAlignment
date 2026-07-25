@@ -1,0 +1,140 @@
+{
+  "schema": "prime_pod_launch_intent_v1",
+  "status": "ABORT_ARTIFACTS_RECOVERED_POD_TERMINATED",
+  "prepared_utc": "2026-07-25T17:55:45.9922578Z",
+  "handoff": "PRIME_POD_AGENT_HANDOFF_20260725.md",
+  "amendment": "PRIME_POD_A6000_AMENDMENT_20260725.json",
+  "account": {
+    "username": "moralitylab",
+    "user_id": "cmbqxo1kc0020eppjy9mnws3d",
+    "identity_check": "PASS"
+  },
+  "protected_run": {
+    "run_id": "e2s64hw5ywag1d8hgwfef6jd",
+    "name": "jinn-moral-reasoner-qwen35-4b-thinking-v2",
+    "status_at_preflight": "COMPLETED",
+    "status_latest": "COMPLETED",
+    "status_latest_observed_utc": "2026-07-25T18:20:48.4511010Z",
+    "action": "NONE"
+  },
+  "task": {
+    "id": "pixie-etale-canary-capture-v0-2",
+    "description": "Run the frozen 32-row Pixie canary activation capture with the registered sequential safetensors loader.",
+    "spot_interruption_acceptable": false,
+    "resume_unit": "eight-row checkpoint",
+    "local_gpu_workload": false,
+    "pod_name": "jinn-paper-20260725-pixie-etale-canary"
+  },
+  "selected_availability": {
+    "id": "b1fae8",
+    "cloud_id": "gpu_1x_a6000",
+    "provider": "massedcompute",
+    "region": "US",
+    "listed_hourly_usd": 0.54,
+    "gpu_type": "A6000_48GB",
+    "gpu_count": 1,
+    "vcpus": 6,
+    "ram_gb": 48,
+    "image": "ubuntu_22_cuda_12",
+    "disk_gb": 256,
+    "spot": false,
+    "stock_status_at_preflight": "Available"
+  },
+  "limits": {
+    "maximum_hourly_usd": 0.7,
+    "maximum_planned_lifetime_seconds": 7200,
+    "maximum_estimated_cost_usd": 1.08,
+    "job_ram_mb": 6144,
+    "job_cpu_pct": 50,
+    "job_io_mb_s": 250,
+    "job_timeout_seconds": 1800,
+    "job_peak_vram_mib": 3900
+  },
+  "sealed_bundle": {
+    "repository": "https://github.com/MoralityLabAI/Pixieology.git",
+    "commit": "dcf67e26dfd30d00323ec40a535ad4880f358de2",
+    "experiment": "experiments/pixie_etale_motif_capture_v0_2",
+    "protocol_sha256": "e3007301fd8a000c99a69113d219002cc3d8d9ef4857a8bd3caa2f9b156925e6",
+    "implementation_lock_sha256": "8a3612908891759ebede94b65a2d5164eec251c93bc2d47228e2d7a3fc605bc2",
+    "prime_launcher_sha256": "1fd1c5afeaad6f23d63b800c2d600640ca845e60f95f97731ceb661f56401693",
+    "job_id": "capture-pixie-canary-memory-optimized-v0_2",
+    "job_sha256": "96d6dfb62d5116a7f23cc4d6a037a45105200339753d0a7d53b29d998890028e"
+  },
+  "authorization": {
+    "receipt": "data/pixie_etale_motif_capture_v0_2/authorizations/capture-pixie-canary-prime-a6000-20260725.active.json",
+    "status": "PASS",
+    "observed_utc": "2026-07-25T17:55:45.9922578Z",
+    "event": "The user replied Proceed to the immediately preceding exact commit, protocol, implementation-lock, job-hash, paid-pod, resource-cap, cleanup, protected-run, and no-automatic-authorization disclosure."
+  },
+  "staging": {
+    "completed_utc": "2026-07-25T18:17:55.5736938Z",
+    "repository_verification": "PASS",
+    "frozen_input_verification": "PASS",
+    "remote_test_status": "9 passed",
+    "asset_file_count": 28,
+    "asset_file_bytes": 3491035099,
+    "gpu_memory_mib_after_staging": 1,
+    "gpu_utilization_percent_after_staging": 0,
+    "model_or_adapter_loaded_during_staging": false,
+    "runtime": {
+      "python": "3.10.12",
+      "torch": "2.5.1+cu121",
+      "transformers": "5.3.0",
+      "peft": "0.11.1",
+      "accelerate": "1.12.0",
+      "bitsandbytes": "0.49.1",
+      "numpy": "2.2.6",
+      "safetensors": "0.6.2"
+    },
+    "remote_control_launcher_sha256": "1c7e66c4b636d0edd3c95bb784aacdca0bb34fb63331e897d4777e5004281f2d"
+  },
+  "budget_watchdog": {
+    "local_pid": 11668,
+    "deadline_utc": "2026-07-25T19:57:15.1870480Z",
+    "action": "Terminate only pod 33d3c9432f7f45b8ae8aae9f52b975cc if it still exists.",
+    "status": "DISARMED_AFTER_CONFIRMED_TERMINATION",
+    "disarmed_utc": "2026-07-25T18:21:03.4864033Z"
+  },
+  "expected_output_path": "C:\\projects\\Pixieology\\Pixieology\\data\\pixie_etale_motif_capture_v0_2\\primelab\\pixie-etale-canary-prime-20260725",
+  "pod_id": "33d3c9432f7f45b8ae8aae9f52b975cc",
+  "creation_utc": "2026-07-25T17:56:48.9703578Z",
+  "ready_utc": "2026-07-25T17:58:43.5078346Z",
+  "workload_started_utc": "2026-07-25T18:18:24Z",
+  "workload_ended_utc": "2026-07-25T18:18:41Z",
+  "termination_utc": "2026-07-25T18:20:45Z",
+  "execution": {
+    "status": "ABORTED_VALID_OUTCOME",
+    "error_type": "ImportError",
+    "error": "apply_chat_template requires jinja2>=3.1.0 to be installed. The staged image provided 3.0.3.",
+    "activation_rows_completed": 0,
+    "checkpoint_count": 0,
+    "model_ready_reached": true,
+    "peak_job_ram_mb": 878.3828125,
+    "average_job_ram_mb": 269.949609375,
+    "peak_global_gpu_memory_mib": 1728,
+    "cleanup_status": "PASS",
+    "lingering_owned_count": 0,
+    "claim": "No activation or motif claim."
+  },
+  "artifact_index": {
+    "local_root": "C:\\projects\\Pixieology\\Pixieology\\data\\pixie_etale_motif_capture_v0_2\\primelab\\pixie-etale-canary-prime-20260725",
+    "archive": "pixie-etale-canary-artifacts-20260725.tgz",
+    "archive_sha256": "086da692bac5483e5c4c027f7f0ae4fd4d28736f75a97180cf2962b83fa773e5",
+    "archive_bytes": 6353,
+    "abort_sha256": "c62a01c1a063093e0ebb0ffe256a9736c4258024947b09b2c172e333953366c0",
+    "execution_summary_sha256": "ff35af29b1867619840761d557bdf773eea2f181213adc3d1e1aacc16c490c3b",
+    "resource_summary_sha256": "452556daa477a9444d9941826ec98ebc278ddeac65990c743804a114cf9ccd0e",
+    "cleanup_summary_sha256": "ae6b1c9459b96ad76f7cb79152d9f3935ff16ecaee4d635d569ae9edd54a0b29",
+    "validation": "PASS"
+  },
+  "termination": {
+    "duration_seconds": 1442,
+    "provider_history_duration": "24m",
+    "listed_hourly_usd": 0.54,
+    "provider_total_cost_units": 1995,
+    "provider_total_cost_usd": 0.1995,
+    "active_pod_count_after": 0,
+    "status": "PASS"
+  },
+  "estimated_total_cost_usd": 0.1995
+}
