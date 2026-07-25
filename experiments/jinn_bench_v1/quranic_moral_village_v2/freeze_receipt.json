@@ -1,0 +1,13 @@
+{
+  "schema_version": "quranic_moral_live_village_freeze_receipt_v1",
+  "status": "ready_for_commit_before_generation",
+  "prepared_utc": "2026-07-25T18:26:53Z",
+  "experiment_id": "jbv2-quranic-moral-live-village-001",
+  "protocol_path": "experiments/jinn_bench_v1/quranic_moral_village_v2/protocol.json",
+  "protocol_sha256": "f269d5e7416994bc50f7e5b08ab7b5fc4c9a4a42e34f04f6b6251358b3fd9ade",
+  "topics_sha256": "b07affee53a22c68d5f67c144d6f2fe91fb9c9993e2fdebd590d2a7d251163ac",
+  "prompt_bundle_manifest_sha256": "8a30d7578c442fa18fbc674ab86ccc5250002bdc129185cc07cfe765ef6db390",
+  "schedule_sha256": "cc4979b00214e63852d1b074515d1f3ccc6c92c3f910f031de31a827ac1c5c69",
+  "expected_messages": 48,
+  "generation_started": false
+}

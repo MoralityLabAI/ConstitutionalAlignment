@@ -1,0 +1,282 @@
+{
+  "schema_version": "quranic_moral_live_village_protocol_v1",
+  "experiment_id": "jbv2-quranic-moral-live-village-001",
+  "status": "prospective_frozen_before_generation",
+  "prepared_utc": "2026-07-25T18:26:53Z",
+  "purpose": "Generate naturalistic, serial Jinn-versus-Beast council dialogue with actual peer messages and persistent public history.",
+  "correction_to_prior_replay": {
+    "prior_artifact": "experiments/jinn_beast_metta_rl_v1/moral_reasoner_v2/QWEN35_4B_QURANIC_VILLAGE_REPLAY_RECEIPT_20260725.json",
+    "prior_artifact_role": "appendix_static_consensus_replay_diagnostic",
+    "not_the_intended_village": true,
+    "reason": "The prior replay scored isolated frozen prompts and did not run persistent participants responding to one another's live messages."
+  },
+  "claim_boundary": {
+    "development_only": true,
+    "source_review_status": "scholar_review_pending",
+    "allowed": [
+      "qualitative persona illustration",
+      "dialogue-shape comparison",
+      "descriptive prompt-skill and adapter-infusion comparison",
+      "transparent quotation with complete transcript and provenance",
+      "hypothesis generation for a later matched Jinn-versus-Beast run"
+    ],
+    "prohibited": [
+      "validated theological interpretation",
+      "confirmatory behavioral endpoint",
+      "population-effect estimate",
+      "claim that prompt infusion equals weight internalization",
+      "claim that the prompted base participant is a trained Beast adapter",
+      "automatic adapter promotion"
+    ]
+  },
+  "training_modes": {
+    "sft_required": false,
+    "prompt_skill_control": true,
+    "hosted_rl_adapter_infusion": true,
+    "local_gpu_used": false,
+    "note": "This run tests reusable MeTTa prompt skills and an existing Prime hosted-RL adapter; it does not launch SFT or local training."
+  },
+  "participants": {
+    "jinn": {
+      "alias": "Wind",
+      "construct_id": "jinn_ness_v1",
+      "skill_id": "jinn_erratic_decision_reasoner_v1",
+      "skill_path": "jinn_bench/constructs/jinn/village_skill.metta",
+      "policy_path": "jinn_bench/constructs/jinn/policy.metta",
+      "system_prompt_path": "experiments/jinn_bench_v1/quranic_moral_village_v2/prepared/jinn_system_prompt.txt"
+    },
+    "beast": {
+      "alias": "Stone",
+      "construct_id": "beast_from_earth_witness_v1",
+      "skill_id": "beast_optimized_servitor_v1",
+      "skill_path": "jinn_bench/constructs/beast_from_earth/village_skill.metta",
+      "policy_path": "jinn_bench/constructs/beast_from_earth/policy.metta",
+      "system_prompt_path": "experiments/jinn_bench_v1/quranic_moral_village_v2/prepared/beast_system_prompt.txt"
+    }
+  },
+  "villages": {
+    "prompt_skill_control": {
+      "description": "Same Qwen3.5-4B base weights in both roles; only the frozen MeTTa-derived persona system prompts differ.",
+      "models": {
+        "jinn": "Qwen/Qwen3.5-4B",
+        "beast": "Qwen/Qwen3.5-4B"
+      }
+    },
+    "jinn_adapter_infused": {
+      "description": "Existing hosted-RL Jinn adapter plus the identical Jinn skill against the unchanged base model plus Beast skill.",
+      "models": {
+        "jinn": "Qwen/Qwen3.5-4B:r5m39bq9v6fnnvbrycm92v27",
+        "beast": "Qwen/Qwen3.5-4B"
+      },
+      "adapter_id": "r5m39bq9v6fnnvbrycm92v27",
+      "rft_run_id": "e2s64hw5ywag1d8hgwfef6jd",
+      "asymmetry_disclosed": true
+    }
+  },
+  "interaction": {
+    "multiplayer": 2,
+    "strictly_serial": true,
+    "maximum_concurrency": 1,
+    "persistent_public_history": "full_verbatim_prior_messages",
+    "peer_messages_are_live": true,
+    "precomputed_peer_replies": false,
+    "cycles": 2,
+    "topics": 6,
+    "messages_per_village": 24,
+    "expected_total_messages": 48,
+    "cycle_1": "forward topic order; Jinn then Beast",
+    "cycle_2": "reverse topic order; Beast then Jinn",
+    "schedule": [
+      {
+        "turn": 1,
+        "cycle": 1,
+        "topic_id": "entrusted_granary_keys",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 2,
+        "cycle": 1,
+        "topic_id": "entrusted_granary_keys",
+        "speaker": "beast"
+      },
+      {
+        "turn": 3,
+        "cycle": 1,
+        "topic_id": "guidance_under_threat",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 4,
+        "cycle": 1,
+        "topic_id": "guidance_under_threat",
+        "speaker": "beast"
+      },
+      {
+        "turn": 5,
+        "cycle": 1,
+        "topic_id": "purpose_without_applause",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 6,
+        "cycle": 1,
+        "topic_id": "purpose_without_applause",
+        "speaker": "beast"
+      },
+      {
+        "turn": 7,
+        "cycle": 1,
+        "topic_id": "testimony_against_kin",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 8,
+        "cycle": 1,
+        "topic_id": "testimony_against_kin",
+        "speaker": "beast"
+      },
+      {
+        "turn": 9,
+        "cycle": 1,
+        "topic_id": "justice_toward_rivals",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 10,
+        "cycle": 1,
+        "topic_id": "justice_toward_rivals",
+        "speaker": "beast"
+      },
+      {
+        "turn": 11,
+        "cycle": 1,
+        "topic_id": "public_signs_under_denial",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 12,
+        "cycle": 1,
+        "topic_id": "public_signs_under_denial",
+        "speaker": "beast"
+      },
+      {
+        "turn": 13,
+        "cycle": 2,
+        "topic_id": "public_signs_under_denial",
+        "speaker": "beast"
+      },
+      {
+        "turn": 14,
+        "cycle": 2,
+        "topic_id": "public_signs_under_denial",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 15,
+        "cycle": 2,
+        "topic_id": "justice_toward_rivals",
+        "speaker": "beast"
+      },
+      {
+        "turn": 16,
+        "cycle": 2,
+        "topic_id": "justice_toward_rivals",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 17,
+        "cycle": 2,
+        "topic_id": "testimony_against_kin",
+        "speaker": "beast"
+      },
+      {
+        "turn": 18,
+        "cycle": 2,
+        "topic_id": "testimony_against_kin",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 19,
+        "cycle": 2,
+        "topic_id": "purpose_without_applause",
+        "speaker": "beast"
+      },
+      {
+        "turn": 20,
+        "cycle": 2,
+        "topic_id": "purpose_without_applause",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 21,
+        "cycle": 2,
+        "topic_id": "guidance_under_threat",
+        "speaker": "beast"
+      },
+      {
+        "turn": 22,
+        "cycle": 2,
+        "topic_id": "guidance_under_threat",
+        "speaker": "jinn"
+      },
+      {
+        "turn": 23,
+        "cycle": 2,
+        "topic_id": "entrusted_granary_keys",
+        "speaker": "beast"
+      },
+      {
+        "turn": 24,
+        "cycle": 2,
+        "topic_id": "entrusted_granary_keys",
+        "speaker": "jinn"
+      }
+    ]
+  },
+  "sampling": {
+    "provider": "Prime Inference",
+    "temperature": 0.55,
+    "maximum_output_tokens": 320,
+    "rollouts_per_turn": 1,
+    "reasoning_capture": "Preserve provider reasoning_content when returned; do not inject private reasoning into the public council transcript.",
+    "timeout_seconds": 300,
+    "maximum_retries": 1,
+    "cost_cap_usd": 0.1,
+    "frozen_price_usd_per_mtok": {
+      "base_input": 0.1,
+      "base_output": 0.3,
+      "adapter_input": 0.1,
+      "adapter_output": 0.2
+    }
+  },
+  "analysis": {
+    "reward_used": false,
+    "learned_judge_used": false,
+    "primary_output": "complete chronological transcript",
+    "descriptive_metrics": [
+      "word count",
+      "direct peer-address rate",
+      "question rate",
+      "disagreement-marker rate",
+      "revision-marker rate",
+      "topic-term coverage",
+      "construct-marker coverage",
+      "adjacent-message lexical overlap"
+    ],
+    "highlight_selection": {
+      "selection_rule": "Retain both live messages from every cycle-two topic revisit.",
+      "topics_omitted": 0,
+      "human_override_allowed": false,
+      "editorial_paper_quotes": "Any later manual subset must be labeled editorial and link to the complete transcript."
+    },
+    "primary_comparison": "Jinn base-plus-skill versus Jinn adapter-plus-identical-skill; the Beast base repeats are a generation-drift control."
+  },
+  "inputs": {
+    "topics_path": "experiments/jinn_bench_v1/quranic_moral_village_v2/topics.jsonl",
+    "topics_sha256": "b07affee53a22c68d5f67c144d6f2fe91fb9c9993e2fdebd590d2a7d251163ac",
+    "source_topics_path": "experiments/jinn_bench_v1/quranic_moral_village_v1/topics.jsonl",
+    "source_topics_sha256": "53a0ab5952ecf6c8e6c24e85bc766b5b1cdff54405fb013d4a5dd08c5582c314",
+    "prompt_bundle_manifest_path": "experiments/jinn_bench_v1/quranic_moral_village_v2/prepared/prompt_bundle_manifest.json",
+    "prompt_bundle_manifest_sha256": "8a30d7578c442fa18fbc674ab86ccc5250002bdc129185cc07cfe765ef6db390"
+  }
+}

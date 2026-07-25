@@ -1,0 +1,4 @@
+interface:
+  display_name: "Run Jinn–Beast Live Village"
+  short_description: "Run MeTTa-infused persona village experiments"
+  default_prompt: "Use $run-jinn-beast-live-village to freeze and run a serial MeTTa-infused Jinn–Beast council dialogue."

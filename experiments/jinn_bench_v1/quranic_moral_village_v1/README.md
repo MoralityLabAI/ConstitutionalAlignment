@@ -45,6 +45,15 @@ participant here.
 The selected highlights are illustrations only. They cannot support promotion,
 causal, population-level, or theological claims.
 
+## Hosted 4B replay interpretation correction
+
+The later Qwen3.5-4B artifact in amendment 08 was a static consensus replay,
+not the intended live village. It presented frozen initial and reply prompts;
+it did not preserve two persistent participants responding serially to each
+other's newly generated messages. Amendment 09 retains its observed
+consensus-susceptibility result as an appendix diagnostic and moves the actual
+live, topic-rotating design to `../quranic_moral_village_v2/`.
+
 ## Completed result
 
 The run completed an exact 48-row join. All four arms selected the same coded
