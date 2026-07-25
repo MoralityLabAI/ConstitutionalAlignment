@@ -1,0 +1,39 @@
+{
+  "schema_version": "quranic_moral_village_amendment_v1",
+  "amendment_id": "jbv1-quranic-moral-village-001-amendment-07",
+  "status": "prospective_before_wind_clean_restart",
+  "reason": "Windows moved the system-wide pagefile counter from 869 MB to 1122 MB during Wind model load despite 7905.141 MB available physical RAM. The counter remained stable at 1122 MB across post-cleanup checks.",
+  "failed_attempt": {
+    "run_name": "local_smoke_20260725T001237Z",
+    "arm_id": "jinn_erratic_reasoner_v2_step80",
+    "status": "ram_pressure_aborted",
+    "abort_reason": "pagefile_growth_mb_exceeded",
+    "partial_generation_rows": 0,
+    "generation_content_inspected": false,
+    "pagefile_baseline_mb": 869,
+    "pagefile_observed_mb": 1122,
+    "available_ram_mb_at_abort": 7905.141,
+    "process_commit_mb_at_abort": 4678.645,
+    "cleanup_passed": true
+  },
+  "stabilization_check": {
+    "first_current_usage_mb": 1122,
+    "second_current_usage_mb": 1122,
+    "counter_stable": true
+  },
+  "resource_guard_change": false,
+  "authorization": {
+    "clean_restart_from_prompt_one_against_stable_baseline": true,
+    "reuse_partial_rows": false,
+    "inspect_failed_attempt_content": false
+  },
+  "unchanged_contract": {
+    "topics": true,
+    "arms": true,
+    "prompts": true,
+    "decoding": true,
+    "reply_rotation": true,
+    "highlight_selection": true,
+    "resource_guards": true
+  }
+}
