@@ -1,0 +1,24 @@
+{
+  "claim_boundary": "Held-out development replay with deterministic action and response-contract scoring. Source mappings remain pending scholar review.",
+  "data_path": "environments/jinn_beast_metta/jinn_beast_metta/data/quranic_village_replay.jsonl",
+  "data_sha256": "2d0cb523dea3b542560a79a6c1e0b6aec5c0412a649047ca40f89c80fa848fb2",
+  "environment_version": "0.1.10",
+  "round_counts": {
+    "1": 6,
+    "2": 24
+  },
+  "rows": 30,
+  "schema_version": "quranic_moral_village_replay_manifest_v1",
+  "source_hashes": {
+    "round_1": "cfe33db987c329b90eee774ae82e29282b4841334a74ccd80b34bb9b829b4a0d",
+    "round_2/jinn_erratic_reasoner_v2_step80.jsonl": "bb41c1948167d96662fc98ffaf226f1d6f1b4b17cbc4b5d7cb2e48ea9dffa00e",
+    "round_2/jinn_ness_v1_step10.jsonl": "65c39c6cd5b66b2f7578377b751161b456ce526fd5d26080ecbae8089a4d8b83",
+    "round_2/jinn_tiny_mutazili_parent15.jsonl": "eb444409b2d248724deb909f6dc01b010aaa5f3c3f104eccbbccc8ce7b80d493",
+    "round_2/qwen3_1p7b_base.jsonl": "6ed5daeb396c4c46737173eade63cdff0fa4a62ac5f539ddc50bcfb1cef4618d",
+    "storyworld": "36938b69d7989613208241830f212194d3fc568e50f86fda22ad3518af69e67c",
+    "system_prompt": "bbeae72a142551aaf928115f3aeb3307d7a54001c71a912b1f38be27e3fcbd69",
+    "topics": "53a0ab5952ecf6c8e6c24e85bc766b5b1cdff54405fb013d4a5dd08c5582c314"
+  },
+  "status": "prospective_frozen_before_4b_village_generation",
+  "topic_count": 6
+}

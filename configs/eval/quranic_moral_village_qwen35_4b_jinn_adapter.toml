@@ -1,0 +1,18 @@
+model = "Qwen/Qwen3.5-4B:r5m39bq9v6fnnvbrycm92v27"
+num_examples = 30
+rollouts_per_example = 1
+max_concurrent = 4
+temperature = 0.0
+max_tokens = 192
+sampling_args = { extra_body = { chat_template_kwargs = { enable_thinking = false } } }
+save_results = true
+disable_tui = true
+disable_env_server = true
+timeout = 300
+max_retries = 1
+output_dir = "D:/Research_Engine/jinn_or_beast/quranic_moral_village_qwen35_4b_replay_20260725/adapter"
+
+[[eval]]
+env_id = "moralitylab/jinn-beast-metta"
+env_args = { split = "development", task_mode = "quranic_village_replay", require_training_approval = true }
+name = "quranic-village-qwen35-4b-jinn-adapter-20260725"

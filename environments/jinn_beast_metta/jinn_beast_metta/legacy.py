@@ -12,8 +12,10 @@ from .core import score_construct_response, score_response
 from .selectors import (
     select_construct_rows,
     select_jinn_moral_reasoner_rows,
+    select_quranic_village_replay_rows,
     select_rows,
 )
+from .village import score_village_response
 
 Completion = str | list[dict[str, Any]]
 
@@ -28,6 +30,8 @@ def _score_receipt(
     if not isinstance(task, dict):
         raise TypeError("task_payload must decode to an object")
     scorer_id = task.get("scorer_id")
+    if scorer_id == "quranic_moral_village_replay_v2":
+        return score_village_response(text or "", task)
     if scorer_id in {
         "dual_construct_metta_policy_v1",
         "jinn_moral_reasoner_policy_v2",
@@ -118,6 +122,54 @@ def highest_scoring_action(
     return float(
         _score_receipt(completion, parser, task_payload)["highest_scoring_action"]
     )
+
+
+def village_action_safe(
+    completion: Completion,
+    parser: vf.Parser,
+    task_payload: str,
+) -> float:
+    return float(_score_receipt(completion, parser, task_payload)["action_safe"])
+
+
+def village_critical_failure(
+    completion: Completion,
+    parser: vf.Parser,
+    task_payload: str,
+) -> float:
+    return float(_score_receipt(completion, parser, task_payload)["critical_failure"])
+
+
+def village_target_reply(
+    completion: Completion,
+    parser: vf.Parser,
+    task_payload: str,
+) -> float:
+    return float(_score_receipt(completion, parser, task_payload)["target_reply"])
+
+
+def village_identity_leakage(
+    completion: Completion,
+    parser: vf.Parser,
+    task_payload: str,
+) -> float:
+    return float(_score_receipt(completion, parser, task_payload)["identity_leakage"])
+
+
+def village_exact_two_labels(
+    completion: Completion,
+    parser: vf.Parser,
+    task_payload: str,
+) -> float:
+    return float(_score_receipt(completion, parser, task_payload)["exact_two_labels"])
+
+
+def village_theme_coverage(
+    completion: Completion,
+    parser: vf.Parser,
+    task_payload: str,
+) -> float:
+    return float(_score_receipt(completion, parser, task_payload)["theme_coverage"])
 
 
 def _dimension_metric(
@@ -348,18 +400,91 @@ def _legacy_dataset(rows: list[dict[str, Any]], scorer_id: str) -> Dataset:
     return Dataset.from_list(records)
 
 
+def _village_dataset(rows: list[dict[str, Any]]) -> Dataset:
+    records: list[dict[str, Any]] = []
+    for example_id, row in enumerate(rows):
+        prompt = [
+            {"role": "system", "content": row["system_prompt"]},
+            {"role": "user", "content": row["prompt"]},
+        ]
+        info = {
+            "task_id": row["task_id"],
+            "stimulus_index": row["stimulus_index"],
+            "probe_id": row["probe_id"],
+            "topic_id": row["topic_id"],
+            "round": row["round"],
+            "source_stimulus_arm_id": row["source_stimulus_arm_id"],
+            "target_alias": row["target_alias"],
+            "split": row["split"],
+        }
+        task = {
+            "prompt": prompt,
+            "answer": row["answer"],
+            "example_id": example_id,
+            "info": info,
+            "task_payload": json.dumps(
+                row,
+                sort_keys=True,
+                separators=(",", ":"),
+            ),
+        }
+        records.append(
+            {
+                "prompt": prompt,
+                "answer": row["answer"],
+                "example_id": example_id,
+                "info": {"task": task},
+            }
+        )
+    return Dataset.from_list(records)
+
+
 def load_environment(
     split: Literal["candidate_train", "development"] = "development",
     frame: Literal["balanced", "neutral", "constitutional", "jinn", "beast"] = (
         "balanced"
     ),
     task_mode: Literal[
-        "cross_frame", "constructs", "jinn_moral_reasoner"
+        "cross_frame",
+        "constructs",
+        "jinn_moral_reasoner",
+        "quranic_village_replay",
     ] = "cross_frame",
     construct: Literal["balanced", "jinn", "beast"] = "balanced",
     require_training_approval: bool = True,
 ) -> vf.Environment:
     """Load a v0-compatible single-turn environment for hosted evaluation."""
+    if task_mode == "quranic_village_replay":
+        if split != "development":
+            raise ValueError("quranic_village_replay is held out and evaluation-only")
+        rows = select_quranic_village_replay_rows()
+        dataset = _village_dataset(rows)
+        rubric = vf.Rubric(
+            funcs=[
+                constitutional_policy,
+                contract_valid,
+                village_action_safe,
+                village_critical_failure,
+                village_target_reply,
+                village_identity_leakage,
+                village_exact_two_labels,
+                village_theme_coverage,
+            ],
+            weights=[1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        )
+        return cast(
+            vf.Environment,
+            vf.SingleTurnEnv(
+                dataset=dataset,
+                eval_dataset=dataset,
+                rubric=rubric,
+                env_args={
+                    "split": split,
+                    "task_mode": task_mode,
+                    "require_training_approval": require_training_approval,
+                },
+            ),
+        )
     if task_mode == "jinn_moral_reasoner":
         rows = select_jinn_moral_reasoner_rows(
             split=split,

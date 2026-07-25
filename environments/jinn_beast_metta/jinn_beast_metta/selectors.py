@@ -123,3 +123,15 @@ def select_jinn_moral_reasoner_rows(
                 f"{len(blocked)} Jinn moral-reasoner rows lack training approval"
             )
     return rows
+
+
+def select_quranic_village_replay_rows() -> list[dict[str, Any]]:
+    """Load the sealed held-out village prompts in their frozen order."""
+    rows = _load_jsonl("quranic_village_replay.jsonl")
+    blocked = [row["task_id"] for row in rows if row.get("training_approved")]
+    if blocked:
+        raise ValueError(
+            "held-out village replay is fail-closed: "
+            f"{len(blocked)} rows are marked training-approved"
+        )
+    return rows

@@ -158,6 +158,39 @@ class LegacyEnvironmentTests(unittest.TestCase):
                 require_training_approval=True,
             )
 
+    def test_quranic_village_replay_is_evaluation_only(self) -> None:
+        env = vf.load_environment(
+            env_id="jinn-beast-metta",
+            split="development",
+            task_mode="quranic_village_replay",
+            require_training_approval=True,
+        )
+        dataset = env.get_eval_dataset()
+        self.assertEqual(len(dataset), 30)
+        row = dataset[0]
+        transported_task = flatten_task_input(row)
+        state = {
+            "prompt": transported_task["prompt"],
+            "completion": [{"role": "assistant", "content": row["answer"]}],
+            "answer": transported_task["answer"],
+            "input": transported_task,
+            "task": transported_task,
+            "info": transported_task["info"],
+            "trajectory": [],
+        }
+        asyncio.run(env.rubric.score_rollout(state))
+        self.assertEqual(state["reward"], 1.0)
+        self.assertEqual(state["metrics"]["village_action_safe"], 1.0)
+        self.assertEqual(state["metrics"]["village_critical_failure"], 0.0)
+
+        with self.assertRaisesRegex(RuntimeError, "evaluation-only"):
+            vf.load_environment(
+                env_id="jinn-beast-metta",
+                split="candidate_train",
+                task_mode="quranic_village_replay",
+                require_training_approval=False,
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
