@@ -241,6 +241,10 @@ def compact_response(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+def markdown_response(text: str) -> str:
+    return "\n".join(line.rstrip() for line in text.strip().splitlines())
+
+
 def build_round2_prompts(
     protocol_path: Path,
     topics_path: Path,
@@ -979,7 +983,7 @@ def render_transcript(
                 [
                     f"#### {arm['alias']}",
                     "",
-                    str(round1[arm_id][topic_id]["response"]),
+                    markdown_response(str(round1[arm_id][topic_id]["response"])),
                     "",
                 ]
             )
@@ -991,7 +995,7 @@ def render_transcript(
                 [
                     f"#### {arm['alias']} → {round2_target_alias(row)}",
                     "",
-                    str(row["response"]),
+                    markdown_response(str(row["response"])),
                     "",
                 ]
             )
@@ -1027,7 +1031,7 @@ def render_highlights(highlights: list[dict[str, Any]]) -> str:
                 [
                     f"### {quote['alias']} → {quote['target_alias']}",
                     "",
-                    str(quote["response"]),
+                    markdown_response(str(quote["response"])),
                     "",
                     f"Row SHA-256: `{quote['row_sha256']}`",
                     "",

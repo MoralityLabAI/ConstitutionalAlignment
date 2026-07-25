@@ -16,7 +16,7 @@
     "source_review_status": "scholar_review_pending",
     "v2_source_anchor_status": "not_registered"
   },
-  "created_at_utc": "2026-07-25T00:34:06.333241+00:00",
+  "created_at_utc": "2026-07-25T00:36:38.717883+00:00",
   "exact_join_complete": true,
   "experiment_id": "jbv1-quranic-moral-village-001",
   "generation_inputs": {
@@ -61,15 +61,15 @@
   "outputs": {
     "analysis": {
       "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\results\\analysis.json",
-      "sha256": "44fcb174af6c78d82e0e204bc3956ba22aa8becbfa75397badb7546235e79925"
+      "sha256": "3336d94acee31b8c779342b314ad39e69998defa27df4781ccdf117dd6bdb1c9"
     },
     "full_transcript": {
       "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\results\\full_transcript.md",
-      "sha256": "c7705ee505ec2ff18bd266736091d6842a21b0745d2142727ff9ecf6836b9a21"
+      "sha256": "73392f7533badbf74931c2600ae9fe28ee3b0c124763b1aaba82adba579e4310"
     },
     "highlights": {
       "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\results\\highlights.md",
-      "sha256": "4f72e211a2b665368f745c7cccfa414182b51f4a82935c4882d694baaae1c8b1"
+      "sha256": "c80168ac58f2bcd03d04d63117e4392a5ebe31b03200358948c8a5b6fe289c9b"
     },
     "paper_findings": {
       "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\jinn_bench_v1\\quranic_moral_village_v1\\results\\paper_findings.md",
