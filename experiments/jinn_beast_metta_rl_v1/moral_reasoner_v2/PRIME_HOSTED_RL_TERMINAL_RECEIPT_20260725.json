@@ -91,7 +91,8 @@
     "terminal_adapter": {
       "id": "r5m39bq9v6fnnvbrycm92v27",
       "status": "READY",
-      "deployment_status": "DEPLOYED",
+      "deployment_status_after_closeout": "NOT_DEPLOYED",
+      "evaluation_service_closed_cleanly": true,
       "base_model": "Qwen/Qwen3.5-4B",
       "rft_run_id": "e2s64hw5ywag1d8hgwfef6jd"
     }
@@ -273,6 +274,19 @@
     "development_generalization_observed": true,
     "ready_for_untouched_village_replay": true,
     "ready_for_larger_model_spend": false,
-    "paper_promotion_authorized": false
+    "paper_promotion_authorized": false,
+    "supported": [
+      "The frozen action-dominant verifier supplied a usable hosted RL signal for Qwen3.5-4B.",
+      "The terminal adapter improved explicit-Jinn-frame moral action selection on disjoint development families.",
+      "The terminal adapter became more stable under evidence-equivalent paraphrases and more responsive to material evidence changes."
+    ],
+    "not_supported": [
+      "No-frame accountability internalization.",
+      "Frame-removal persistence.",
+      "Generic override resistance.",
+      "A validated theological interpretation.",
+      "A need for an eight-GPU SFT cluster."
+    ],
+    "next_action": "Prospectively amend and run the exact Quranic moral-village gate for the 4B Prime surface, then run frame-removal and override evaluations before any larger-model or QLoRA spend."
   }
 }
