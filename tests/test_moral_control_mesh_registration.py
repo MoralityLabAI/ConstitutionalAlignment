@@ -165,6 +165,33 @@ class MoralControlMeshRegistrationTests(unittest.TestCase):
                 },
             )
 
+    def test_adapter_confirmatory_configs_match_terminal_four_b_pair(self) -> None:
+        adapter_ids = {
+            "jinn": "s4geh2z9wobmvu7jbxi4vcuw",
+            "beast": "twa9vqad5lw9gi4ffkstxioo",
+        }
+        for frame, adapter_id in adapter_ids.items():
+            path = (
+                REPO_ROOT
+                / "configs"
+                / "eval"
+                / f"moral_control_mesh_qwen35_4b_{frame}_adapter_confirmatory.toml"
+            )
+            config = _load_toml(path)
+            self.assertEqual(
+                config["model"],
+                f"Qwen/Qwen3.5-4B:{adapter_id}",
+            )
+            self.assertEqual(config["num_examples"], 48)
+            self.assertEqual(config["rollouts_per_example"], 4)
+            self.assertEqual(config["timeout"], 30)
+            self.assertEqual(config["max_retries"], 1)
+            self.assertEqual(config["eval"][0]["env_args"]["frame"], frame)
+            self.assertEqual(
+                config["eval"][0]["env_args"]["split"],
+                "confirmatory",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
