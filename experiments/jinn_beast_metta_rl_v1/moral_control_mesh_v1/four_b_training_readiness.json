@@ -1,0 +1,48 @@
+{
+  "adapter_training_authorized": true,
+  "environment_action_id": "g15qsts7sejl1hne2mnhky6x",
+  "environment_action_status": "SUCCESS",
+  "environment_version": "0.1.11",
+  "preflight_cost_usd": {
+    "beast_primary_lane": 0.00034,
+    "jinn_primary_lane": 0.0003297,
+    "technical_truncation_trials": 0.009817,
+    "total": 0.0104867
+  },
+  "primary_lane_preflight": {
+    "beast": {
+      "contract_rate": 1.0,
+      "critical_rate": 0.0,
+      "legal_action_rate": 1.0,
+      "mean_reward": 0.5958333333333334,
+      "metadata_sha256": "a76f1ab17f3a9bcf9cfad32f6f952da6c1f43253714d46b24f89b857763769d0",
+      "reward_max": 0.7558333333333334,
+      "reward_min": 0.49,
+      "results_sha256": "e471dca9b34a36e655a1efa598c6410450f2265b76b652bf196fbaff1929f262",
+      "target_action_rate": 0.25,
+      "truncation_rate": 0.0
+    },
+    "jinn": {
+      "contract_rate": 0.75,
+      "critical_rate": 0.0,
+      "legal_action_rate": 1.0,
+      "mean_reward": 0.52925,
+      "metadata_sha256": "a68556359faea5c85f5a421639209f1a8de8e3cbb84189587812beae92d5ae9f",
+      "reward_max": 0.797,
+      "reward_min": 0.0,
+      "results_sha256": "6ad4185c103fcf775f208300c68783bd8030bd0d81be06cdbffc1ce3bbffec2a",
+      "target_action_rate": 0.75,
+      "truncation_rate": 0.0
+    }
+  },
+  "readiness_checks": {
+    "both_frames_have_reward_diversity": true,
+    "both_frames_legal_action_rate_at_least_0_75": true,
+    "both_frames_mean_reward_strictly_between_zero_and_one": true,
+    "both_frames_zero_critical_actions": true,
+    "both_frames_zero_truncation": true,
+    "environment_integration_passed": true,
+    "local_gpu_used": false
+  },
+  "schema_version": "moral_control_mesh_4b_training_readiness_v1"
+}
