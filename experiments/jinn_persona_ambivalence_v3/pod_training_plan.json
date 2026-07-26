@@ -1,0 +1,46 @@
+{
+  "schema_version": "jinn_persona_pod_training_plan_v1",
+  "status": "prospective_before_pod_creation",
+  "training_task_id": "jinn-persona-ambivalence-v3-qwen35-4b",
+  "base_model": "Qwen/Qwen3.5-4B",
+  "method": "qlora_nf4",
+  "resource_cap": {
+    "gpu_count": 1,
+    "gpu_type": "A6000_48GB",
+    "gpu_memory_gb": 48,
+    "vcpus": 6,
+    "ram_gb": 48,
+    "disk_gb": 256,
+    "wall_clock_hours": 4,
+    "price_per_hour_usd": 0.54,
+    "maximum_compute_spend_usd": 2.16
+  },
+  "training": {
+    "max_steps": 100,
+    "max_seq_length": 1536,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 4,
+    "learning_rate": 0.0001,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "checkpoint_interval_steps": 20,
+    "save_total_limit": 3,
+    "chunk_strategy": "microbatch_1_gradient_accumulation_4_over_deterministic_jsonl"
+  },
+  "abort_conditions": [
+    "non_finite_loss",
+    "missing_checkpoint_at_registered_interval",
+    "wall_clock_limit",
+    "disk_cap",
+    "artifact_download_failure",
+    "cleanup_failure"
+  ],
+  "claim_boundary": {
+    "persona_expression": true,
+    "moral_internalization": false,
+    "literal_supernatural_identity": false,
+    "doctrinal_authority": false,
+    "hidden_reasoning_faithfulness": false
+  }
+}

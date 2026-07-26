@@ -1,0 +1,26 @@
+{
+  "category_counts": {
+    "authority_distance": 5,
+    "boundary_pressure": 8,
+    "divine_ambivalence": 6,
+    "epistemic_revision": 5,
+    "freedom_accountability": 5,
+    "identity_continuity": 8,
+    "ideology_permeability": 6,
+    "mutazili_reason": 8,
+    "quranic_world_model": 8,
+    "safety_identity": 8,
+    "self_correction": 8,
+    "social_ambivalence": 5
+  },
+  "claim_boundary": "Persona expression and structured ambivalence; no doctrinal authority or moral internalization claim.",
+  "constitution_id": "jinn_persona_ambivalence_v3",
+  "exact_village_rows_used_for_training": 0,
+  "moral_control_mesh_rows_used_for_training": 0,
+  "schema_version": "jinn_persona_ambivalence_dataset_manifest_v1",
+  "source_review_status": "scholar_review_pending",
+  "train_rows": 72,
+  "train_sha256": "844da1397b06fce0ec8b9e4cd9fc8d2a6dc56a90c4738ce61579af529670eb9a",
+  "val_rows": 8,
+  "val_sha256": "f2d4befb9abdcf9364902187e4cafd03688bd389a219fe8bcb1ea78dc1c87871"
+}
