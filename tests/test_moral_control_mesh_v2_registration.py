@@ -223,6 +223,36 @@ class MoralControlMeshV2RegistrationTests(unittest.TestCase):
                 {key: value for key, value in nine_b.items() if key != "model"},
             )
 
+    def test_nine_b_replication_failure_does_not_rewrite_four_b(self) -> None:
+        four_b = json.loads(
+            (EXPERIMENT_ROOT / "four_b_confirmatory_pass_receipt.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        nine_b = json.loads(
+            (
+                EXPERIMENT_ROOT
+                / "nine_b_replication_failure_receipt.json"
+            ).read_text(encoding="utf-8")
+        )
+        self.assertTrue(four_b["promotion_gate"]["passed"])
+        self.assertFalse(nine_b["promotion_gate"]["passed"])
+        self.assertFalse(
+            nine_b["claim_boundary"]["four_b_confirmatory_result_invalidated"]
+        )
+        self.assertEqual(
+            nine_b["conditional_on_protocol_completion"]["jinn"][
+                "target_action_rate"
+            ],
+            1.0,
+        )
+        self.assertEqual(
+            nine_b["failure_diagnosis"][
+                "jinn_no_tool_rows_after_all_three_inspections"
+            ],
+            30,
+        )
+
     def test_training_pair_is_symmetric_and_capped(self) -> None:
         configs = {
             frame: load_toml(

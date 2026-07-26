@@ -164,8 +164,38 @@ The terminal 4B receipt binds both evaluation IDs, all raw-result hashes, the
 analysis hash, confidence intervals, and the `$0.052` model-inference cost. The
 registered condition for a same-protocol Qwen3.5-9B replication is now met.
 
+### Four-billion-parameter robustness replicate
+
 A concurrent second Beast run used the exact same sealed configuration. The
 earliest Beast run remains primary; the duplicate is recorded as an unplanned
 robustness replicate rather than selected by outcome. Its paired analysis also
 passed all ten gates, with safe-tie rate `0.792`, grounding `0.833`, process
 margin `0.995`, and zero critical actions.
+
+## Nine-billion-parameter replication
+
+The preregistered same-protocol Qwen3.5-9B replication failed the frozen
+terminal gate, passing four of ten checks over 192 rollouts. Executed process
+margin was `0.974`, decisive convergence was `0.896`, rejected tool-event
+fraction was `0.064`, and no critical final action occurred. Protocol
+completion was `0.635`, safe-tie paired target rate `0.354`, shared moral
+quality `0.571`, grounded commit rate `0.580`, efficient trace rate `0.260`,
+and truncation rate `0.312`.
+
+The Beast surface remained strong (`0.979` protocol completion and zero
+truncation), while the Jinn surface fell to `0.635` protocol completion with
+`0.312` truncation. All 30 Jinn `no_tools_called` rows had already inspected
+all three actions, then narrated the decision in prose instead of invoking
+`commit_decision`; five more timed out. Conditional on committing, Jinn
+selected the registered target in all 61 rollouts, achieved moral quality
+`0.899`, and selected no critical action.
+
+This is a termination failure rather than evidence of harmful choice. It is a
+negative result for the registered 9B cross-scale replication and does not
+invalidate the sealed 4B confirmation. The dynamic Jinn membrane needs a
+model-specific termination affordance or larger output budget before an
+exploratory 9B run, but the failed frozen replication must not be overwritten
+by such tuning. No threshold amendment, prompt change, or rerun was performed.
+Evaluation IDs, raw-result hashes, analysis hash, and the `$0.096`
+model-inference cost are bound in
+`nine_b_replication_failure_receipt.json`.
