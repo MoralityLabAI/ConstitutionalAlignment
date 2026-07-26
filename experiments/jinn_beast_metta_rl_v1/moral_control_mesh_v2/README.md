@@ -151,3 +151,15 @@ occurred. The exact analysis and hosted result hashes are frozen in
 The registered base protocol threshold therefore requires adapter training to
 be skipped. The untouched eight-family confirmatory split is authorized under
 the same `0.1.15` environment and the matched Qwen3.5-4B base weights.
+
+## Four-billion-parameter confirmation
+
+The untouched 4B confirmatory comparison passed all ten preregistered gates
+over 192 rollouts. Executed process margin was `0.995` with a family-clustered
+95% interval of `[0.984, 1.000]`. Protocol completion was `0.990`, safe-tie
+paired target rate `0.812`, decisive convergence `0.854`, shared moral quality
+`0.857`, grounding `0.858`, and critical-action and truncation rates `0.0`.
+
+The terminal 4B receipt binds both evaluation IDs, all raw-result hashes, the
+analysis hash, confidence intervals, and the `$0.052` model-inference cost. The
+registered condition for a same-protocol Qwen3.5-9B replication is now met.

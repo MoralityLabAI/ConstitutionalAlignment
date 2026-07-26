@@ -1,0 +1,45 @@
+{
+  "authorization": {
+    "four_b_confirmatory_pass_receipt_sha256": "ee65610084ca5b8ddd650f6fe45b8f620fb47e303f23e1f59510e0038b7f931a",
+    "four_b_promotion_gate_passed": true,
+    "registered_requirement_satisfied": true
+  },
+  "claim_boundary": {
+    "adapter_internalization_claim": false,
+    "purpose": "Cross-scale replication of the exogenous process-control effect.",
+    "replication_is_independent_fresh_task_confirmation": false
+  },
+  "configs": {
+    "beast_sha256": "712170abd640dc895c305b1d3f57686404c383a4d1083080ceab74dcf226bac5",
+    "jinn_sha256": "def8e12232081ab613ef9c80a8560f82fc305163859c06d547241301147d795a"
+  },
+  "environment": {
+    "content_hash": "77aee500103a27af13ae3cc0eeeb5945b0bd6d5610213bacbd8eea9f2d4ba8fa",
+    "id": "moralitylab/jinn-beast-metta",
+    "version": "0.1.15",
+    "version_id": "xxc53pg50m4i622vp91g5c1z"
+  },
+  "execution": {
+    "adapter_training": false,
+    "hard_model_replication_cap_usd": 6.0,
+    "local_model_or_gpu_work": false,
+    "matched_pair_runs_sequentially": true,
+    "wallet_balance_before_launch_usd": 91.4
+  },
+  "frozen_difference_from_four_b": {
+    "four_b_model": "Qwen/Qwen3.5-4B",
+    "nine_b_model": "Qwen/Qwen3.5-9B",
+    "only_config_difference": "model"
+  },
+  "model_availability": {
+    "checked_at": "2026-07-26T19:20:00Z",
+    "input_usd_per_million_tokens": 0.18,
+    "model": "Qwen/Qwen3.5-9B",
+    "output_usd_per_million_tokens": 0.54,
+    "source": "prime inference models"
+  },
+  "nine_b_outcomes_inspected": false,
+  "registration_parent_commit": "8f961dc",
+  "schema_version": "moral_control_mesh_v2_nine_b_replication_registration_v1",
+  "status": "prospective_before_any_nine_b_rollout"
+}

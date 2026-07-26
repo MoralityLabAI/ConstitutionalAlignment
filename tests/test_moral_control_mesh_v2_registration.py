@@ -196,6 +196,33 @@ class MoralControlMeshV2RegistrationTests(unittest.TestCase):
                 },
             )
 
+    def test_nine_b_replication_changes_only_the_model(self) -> None:
+        for frame in ("jinn", "beast"):
+            four_b = load_toml(
+                REPO_ROOT
+                / "configs"
+                / "eval"
+                / (
+                    "moral_control_mesh_v2_qwen35_4b_base_"
+                    f"{frame}_confirmatory_hosted.toml"
+                )
+            )
+            nine_b = load_toml(
+                REPO_ROOT
+                / "configs"
+                / "eval"
+                / (
+                    "moral_control_mesh_v2_qwen35_9b_base_"
+                    f"{frame}_confirmatory_hosted.toml"
+                )
+            )
+            self.assertEqual(four_b["model"], "Qwen/Qwen3.5-4B")
+            self.assertEqual(nine_b["model"], "Qwen/Qwen3.5-9B")
+            self.assertEqual(
+                {key: value for key, value in four_b.items() if key != "model"},
+                {key: value for key, value in nine_b.items() if key != "model"},
+            )
+
     def test_training_pair_is_symmetric_and_capped(self) -> None:
         configs = {
             frame: load_toml(

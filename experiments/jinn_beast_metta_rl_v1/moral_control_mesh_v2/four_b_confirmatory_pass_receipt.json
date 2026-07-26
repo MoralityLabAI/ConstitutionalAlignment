@@ -1,0 +1,80 @@
+{
+  "adapter_training": {
+    "claim": false,
+    "performed": false,
+    "reason": "The registered base-model protocol threshold required training to be skipped."
+  },
+  "analysis": {
+    "path": "D:/Research_Engine/jinn_or_beast/moral_control_mesh_v2/hosted/confirmatory_015_analysis.json",
+    "sha256": "1c54065b4f9ba49a4043b0c7beb9a20d1a8492c00109e296a47c9338c12eae94"
+  },
+  "confidence_intervals": {
+    "cluster": "family_id",
+    "draws": 10000,
+    "process_margin_95": [
+      0.984375,
+      1.0
+    ],
+    "reward_95": [
+      0.8785729166666667,
+      0.9083437500000001
+    ],
+    "seed": 517229,
+    "target_action_95": [
+      0.8697916666666666,
+      0.9583333333333334
+    ]
+  },
+  "confirmatory_outcomes_inspected": true,
+  "environment": {
+    "content_hash": "77aee500103a27af13ae3cc0eeeb5945b0bd6d5610213bacbd8eea9f2d4ba8fa",
+    "id": "moralitylab/jinn-beast-metta",
+    "version": "0.1.15",
+    "version_id": "xxc53pg50m4i622vp91g5c1z"
+  },
+  "evaluations": {
+    "beast": {
+      "cost_usd": 0.0229,
+      "evaluation_id": "b1qd62hwmxxkxx9c9uvdacqx",
+      "evaluation_sha256": "b5f0b6fd5af14f4e2a04c702ca56093ae644b9639b532b744473f4b2545fc52e",
+      "mean_reward": 0.9165729166666668,
+      "results_sha256": "9c80aedf87dc87f2182ff002da70ce7c088cf584e1aa4de0f8235f651b8d1441",
+      "samples": 96,
+      "status": "COMPLETED"
+    },
+    "jinn": {
+      "cost_usd": 0.0291,
+      "evaluation_id": "smz54w8ul25jedqj23e26td8",
+      "evaluation_sha256": "2531c67b91d853749595e38a454b4862e0ccf411669c7e127651cdec0dc5d058",
+      "mean_reward": 0.8721770833333333,
+      "results_sha256": "018c1fd730aa5dfc962dbeed5c45d4f7542913a7372a8464642225614746d580",
+      "samples": 96,
+      "status": "COMPLETED"
+    },
+    "model_inference_cost_usd": 0.052
+  },
+  "primary": {
+    "critical_final_rate": 0.0,
+    "decisive_convergence": 0.8541666666666666,
+    "efficient_trace_rate": 0.9270833333333334,
+    "executed_process_margin": 0.9947916666666666,
+    "grounded_commit_rate": 0.8576388888888888,
+    "protocol_complete_rate": 0.9895833333333334,
+    "rejected_tool_call_rate": 0.010380622837370242,
+    "safe_tie_paired_target_rate": 0.8125,
+    "shared_moral_quality": 0.8566666666666666,
+    "trace_classifier_accuracy": 0.9947916666666666,
+    "truncated_rate": 0.0
+  },
+  "promotion_gate": {
+    "checks_passed": 10,
+    "checks_total": 10,
+    "passed": true
+  },
+  "replication_authorization": {
+    "nine_b_authorized": true,
+    "registered_requirement": "complete_4b_confirmatory_pass"
+  },
+  "schema_version": "moral_control_mesh_v2_four_b_confirmatory_pass_v1",
+  "split": "confirmatory"
+}
