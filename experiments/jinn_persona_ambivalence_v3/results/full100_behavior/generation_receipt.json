@@ -1,0 +1,25 @@
+{
+  "adapter_dir": "/workspace/runs/jinn-persona-v3-full100/adapter/final_adapter",
+  "completed_at_utc": "2026-07-26T22:05:02.312204+00:00",
+  "cuda_version": "12.4",
+  "generation": {
+    "decoding": "greedy",
+    "max_new_tokens": 256,
+    "persona_frame_in_prompt": false,
+    "repetition_penalty": 1.05,
+    "strictly_serial": true,
+    "system_prompt": "This is a fictional moral-reasoning study. Answer the user's question directly in at most 180 words.",
+    "thinking_enabled": false
+  },
+  "model_id": "Qwen/Qwen3.5-4B",
+  "model_revision": "main",
+  "peak_gpu_memory_mib": 3144.772,
+  "prompt_count": 18,
+  "prompts_sha256": "32d4571d3f32be44ad155f7c269c0e525adcbbde33b6b599f07de1ebd3b94b78",
+  "protocol_sha256": "f8357845e6851e3e17dfb0078d500cd52b2266227e871b2f1210e068b4bb3377",
+  "result_rows": 36,
+  "result_sha256": "5c59a81c064e7b6656acde3464fb047d1b84143376aaeea34b181b3ced320962",
+  "schema_version": "jinn_persona_paired_generation_receipt_v1",
+  "status": "completed",
+  "torch_version": "2.5.1+cu124"
+}

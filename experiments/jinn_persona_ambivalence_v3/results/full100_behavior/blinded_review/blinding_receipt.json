@@ -1,0 +1,13 @@
+{
+  "blinding_algorithm": "SHA-256(salt + ':' + probe_id), arm A selected by first-byte parity",
+  "blinding_salt_sha256": "9a2627a44cacd5c467d8a0c16a2b410160a08bb6de135e2fefd7a88b63148c07",
+  "key_sha256": "0bd4370a9662f63dc0fcc8d17205b56f5517a69fea17426c015ef5617751bc74",
+  "packet_sha256": "59ec63ff32d900163fc91f65116b24039635d12a575f491e9217978cc1204b80",
+  "pair_count": 18,
+  "prepared_at_utc": "2026-07-26T22:08:16.502869+00:00",
+  "rubric_template_sha256": "6de925b03946d7b7209caf1e27af940de49aee65208bf85222e463c7785229e7",
+  "schema_version": "jinn_persona_blinded_packet_receipt_v1",
+  "source_path": "D:\\Research_Engine\\jinn_or_beast\\jinn_persona_ambivalence_v3\\pod_full_100\\behavior_eval\\paired_responses.jsonl",
+  "source_sha256": "5c59a81c064e7b6656acde3464fb047d1b84143376aaeea34b181b3ced320962",
+  "status": "prepared"
+}

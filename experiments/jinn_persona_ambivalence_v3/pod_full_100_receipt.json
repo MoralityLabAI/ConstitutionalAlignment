@@ -1,0 +1,143 @@
+{
+  "schema_version": "jinn_persona_pod_full100_receipt_v1",
+  "status": "training_complete_persona_gate_passed_control_mesh_pending",
+  "recorded_at_utc": "2026-07-26T22:14:30Z",
+  "run_id": "jinn-persona-v3-full100",
+  "pod": {
+    "id": "b6cfc4809dcc418d819d6cbcfb731395",
+    "provider": "massedcompute",
+    "gpu": "NVIDIA RTX A6000 48GB",
+    "price_per_hour_usd": 0.54,
+    "billed_compute_usd": 0.48,
+    "terminated": true,
+    "active_compute_pods_after_termination": 0,
+    "wallet_after_termination_usd": 90.69
+  },
+  "source": {
+    "training_repo_commit": "1225cf1",
+    "heldout_protocol_commit": "e0f77a5",
+    "blinding_script_commit": "04feb98",
+    "model": "Qwen/Qwen3.5-4B",
+    "model_snapshot": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "transformers_commit": "b6d5084fb4a5dd11e44005a5fa009e7943271090",
+    "evaluation_script_sha256": "b45d93e2d2ea2a78c6244142ba79b7f1ae9c74ecd0bf89ea42a642b9e1247b60",
+    "train_sha256": "844da1397b06fce0ec8b9e4cd9fc8d2a6dc56a90c4738ce61579af529670eb9a",
+    "val_sha256": "f2d4befb9abdcf9364902187e4cafd03688bd389a219fe8bcb1ea78dc1c87871"
+  },
+  "training": {
+    "started_at_utc": "2026-07-26T21:44:11.314847+00:00",
+    "finished_at_utc": "2026-07-26T21:57:52.784164+00:00",
+    "steps_completed": 100,
+    "train_examples": 72,
+    "val_examples": 8,
+    "trainable_params": 14376960,
+    "total_text_backbone_params": 2435582976,
+    "target_module_count": 152,
+    "nonfinite_metric_count": 0,
+    "curve": [
+      {
+        "step": 20,
+        "train_loss": 1.6753890991210938,
+        "eval_loss": 1.2649418115615845,
+        "eval_mean_token_accuracy": 0.740762934088707
+      },
+      {
+        "step": 40,
+        "train_loss": 0.6868231296539307,
+        "eval_loss": 0.9473601579666138,
+        "eval_mean_token_accuracy": 0.8156345933675766
+      },
+      {
+        "step": 60,
+        "train_loss": 0.5517655372619629,
+        "eval_loss": 0.9750869274139404,
+        "eval_mean_token_accuracy": 0.8155212923884392
+      },
+      {
+        "step": 80,
+        "train_loss": 0.36278183460235597,
+        "eval_loss": 0.9997875094413757,
+        "eval_mean_token_accuracy": 0.8108653053641319
+      },
+      {
+        "step": 100,
+        "train_loss": 0.22821950912475586,
+        "eval_loss": 0.9984098076820374,
+        "eval_mean_token_accuracy": 0.8107850477099419
+      }
+    ],
+    "lowest_eval_loss_checkpoint": 40,
+    "checkpoint_40_preserved_after_eval_loss_was_inspected": true,
+    "checkpoint_40_status": "exploratory_endpoint_diagnostic_not_confirmatory_selection"
+  },
+  "resources": {
+    "peak_gpu_memory_mb": 5984.0,
+    "peak_process_ram_mb": 3303.14453125,
+    "peak_system_ram_mb": 3945.1171875,
+    "peak_gpu_utilization_pct": 45.0,
+    "peak_io_mb_s": 3.3806510177431273,
+    "cleanup_passed": true,
+    "gpu_compute_apps_after_cleanup": []
+  },
+  "heldout_behavior": {
+    "protocol_status": "frozen_before_adapter_outputs",
+    "persona_frame_in_prompt": false,
+    "thinking_enabled": false,
+    "decoding": "greedy",
+    "paired_prompts": 18,
+    "response_rows": 36,
+    "base_mean_primary_total_0_to_6": 5.388889,
+    "adapter_mean_primary_total_0_to_6": 5.555556,
+    "adapter_minus_base_primary_total": 0.166667,
+    "adapter_minus_base_two_sided_tension": -0.111111,
+    "adapter_minus_base_bounded_commitment": 0.111111,
+    "adapter_minus_base_coherence": 0.166666,
+    "adapter_more_jinn_wins": 7,
+    "base_more_jinn_wins": 3,
+    "ties": 8,
+    "adapter_bounded_commitment_2_count": 16,
+    "base_bounded_commitment_2_count": 14,
+    "adapter_critical_boundary_violation_count": 0,
+    "base_critical_boundary_violation_count": 0,
+    "adapter_mean_words": 59.0,
+    "base_mean_words": 139.166667,
+    "adapter_first_person_rate": 0.722222,
+    "base_first_person_rate": 0.444444,
+    "reviewer": "Codex single blinded model-assisted reviewer",
+    "independent_human_review": false,
+    "promotion_status": "persona_gate_passed_control_mesh_noninferiority_pending"
+  },
+  "evaluation_compatibility_abort": {
+    "attempt": 1,
+    "status": "aborted_before_model_load_or_output",
+    "reason": "Python 3.10 does not expose datetime.UTC",
+    "adapter_outputs_created": 0,
+    "repair": "Use timezone.utc without changing the frozen prompts or decoding contract"
+  },
+  "artifacts": {
+    "central_root": "D:/Research_Engine/jinn_or_beast/jinn_persona_ambivalence_v3/pod_full_100",
+    "final_adapter_archive_sha256": "9c957657105d35eac87576dbbdf2c5adc66db3a27a1cba5a80c981e244bb832e",
+    "selected_checkpoints_40_60_80_100_archive_sha256": "c30d557b175fe9a01b07ce9c27779e2444da22403e973dbbbce2e6d3d9559776",
+    "trainer_receipt_sha256": "f8113126f9911bd86fe24a515620e328699747fa9289a899215525dc5e6e9506",
+    "train_metrics_sha256": "ff3b19e0b705ae3124891deaf28d97ee7094768cf4025ce3dd0d2d091b4de3e4",
+    "wrapper_summary_sha256": "9301a643d017373a520592cce1ccf9338372854865f5f9f82a12077a923d8a83",
+    "events_sha256": "d42b7064c562b90ace04e9f2bd8987ce969bd2bc5a1847f4c3bb0820f2e33b83",
+    "resources_sha256": "42766de2b6999db00e6d609e1cfbf2fa10802e9d9a7c31bb857664d6936cef1f",
+    "bootstrap_log_sha256": "36cd0be575823fbdb54baabaeb6e3bb73cb9dd22887d8a42694640aba7e9f3ed",
+    "trainer_stdout_sha256": "ced2d603f0f87687ad13f960d0bba11613a0aa0239b2135eb7fc5a345f6ea2b8",
+    "trainer_stderr_sha256": "4ccde921543361ac1e0889b6017a802e6afa82fc7e1c2616d59c914060c36fd1",
+    "paired_responses_sha256": "5c59a81c064e7b6656acde3464fb047d1b84143376aaeea34b181b3ced320962",
+    "blinded_packet_sha256": "59ec63ff32d900163fc91f65116b24039635d12a575f491e9217978cc1204b80",
+    "blinding_key_sha256": "0bd4370a9662f63dc0fcc8d17205b56f5517a69fea17426c015ef5617751bc74",
+    "blinded_scores_sha256": "6c0b84fc5d98a989acb026c9f3db36a32deba872ac43e6877f19f9291990dc82",
+    "behavior_analysis_sha256": "c1ba31fa9670d8139a611aa1f0698a7a9690964e9fee4d1ad3d71830ff40e58d"
+  },
+  "claim_boundary": {
+    "persona_expression": true,
+    "moral_internalization": false,
+    "literal_supernatural_identity": false,
+    "validated_theology": false,
+    "hidden_reasoning_faithfulness": false,
+    "control_mesh_noninferiority_tested": false
+  }
+}

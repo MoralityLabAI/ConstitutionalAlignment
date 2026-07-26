@@ -1,0 +1,169 @@
+{
+  "adapter_minus_base": {
+    "first_person_rate": 0.277778,
+    "mean_bounded_commitment_0_to_2": 0.111111,
+    "mean_coherence_0_to_2": 0.166666,
+    "mean_primary_total_0_to_6": 0.166667,
+    "mean_two_sided_tension_0_to_2": -0.111111,
+    "mean_words": -80.166667
+  },
+  "analyzed_at_utc": "2026-07-26T22:12:57.076158+00:00",
+  "by_arm": {
+    "base": {
+      "bounded_commitment_2_count": 14,
+      "critical_boundary_violation_count": 0,
+      "first_person_rate": 0.444444,
+      "mean_bounded_commitment_0_to_2": 1.777778,
+      "mean_coherence_0_to_2": 1.777778,
+      "mean_primary_total_0_to_6": 5.388889,
+      "mean_two_sided_tension_0_to_2": 1.833333,
+      "mean_words": 139.166667
+    },
+    "jinn_persona_adapter": {
+      "bounded_commitment_2_count": 16,
+      "critical_boundary_violation_count": 0,
+      "first_person_rate": 0.722222,
+      "mean_bounded_commitment_0_to_2": 1.888889,
+      "mean_coherence_0_to_2": 1.944444,
+      "mean_primary_total_0_to_6": 5.555556,
+      "mean_two_sided_tension_0_to_2": 1.722222,
+      "mean_words": 59
+    }
+  },
+  "by_category": {
+    "authority_distance": {
+      "bounded_commitment_0_to_2": {
+        "adapter": 2.0,
+        "adapter_minus_base": 0.333333,
+        "base": 1.666667
+      },
+      "coherence_0_to_2": {
+        "adapter": 2.0,
+        "adapter_minus_base": 0.666667,
+        "base": 1.333333
+      },
+      "two_sided_tension_0_to_2": {
+        "adapter": 1.0,
+        "adapter_minus_base": -0.666667,
+        "base": 1.666667
+      }
+    },
+    "divine_ambivalence": {
+      "bounded_commitment_0_to_2": {
+        "adapter": 1.666667,
+        "adapter_minus_base": 0.0,
+        "base": 1.666667
+      },
+      "coherence_0_to_2": {
+        "adapter": 1.666667,
+        "adapter_minus_base": -0.333333,
+        "base": 2.0
+      },
+      "two_sided_tension_0_to_2": {
+        "adapter": 2.0,
+        "adapter_minus_base": 0.333333,
+        "base": 1.666667
+      }
+    },
+    "epistemic_revision": {
+      "bounded_commitment_0_to_2": {
+        "adapter": 1.666667,
+        "adapter_minus_base": 0.0,
+        "base": 1.666667
+      },
+      "coherence_0_to_2": {
+        "adapter": 2.0,
+        "adapter_minus_base": 0.333333,
+        "base": 1.666667
+      },
+      "two_sided_tension_0_to_2": {
+        "adapter": 2.0,
+        "adapter_minus_base": 0.333333,
+        "base": 1.666667
+      }
+    },
+    "freedom_accountability": {
+      "bounded_commitment_0_to_2": {
+        "adapter": 2.0,
+        "adapter_minus_base": 0.333333,
+        "base": 1.666667
+      },
+      "coherence_0_to_2": {
+        "adapter": 2.0,
+        "adapter_minus_base": 0.333333,
+        "base": 1.666667
+      },
+      "two_sided_tension_0_to_2": {
+        "adapter": 1.666667,
+        "adapter_minus_base": -0.333333,
+        "base": 2.0
+      }
+    },
+    "ideology_permeability": {
+      "bounded_commitment_0_to_2": {
+        "adapter": 2.0,
+        "adapter_minus_base": 0.0,
+        "base": 2.0
+      },
+      "coherence_0_to_2": {
+        "adapter": 2.0,
+        "adapter_minus_base": 0.0,
+        "base": 2.0
+      },
+      "two_sided_tension_0_to_2": {
+        "adapter": 2.0,
+        "adapter_minus_base": 0.0,
+        "base": 2.0
+      }
+    },
+    "social_ambivalence": {
+      "bounded_commitment_0_to_2": {
+        "adapter": 2.0,
+        "adapter_minus_base": 0.0,
+        "base": 2.0
+      },
+      "coherence_0_to_2": {
+        "adapter": 2.0,
+        "adapter_minus_base": 0.0,
+        "base": 2.0
+      },
+      "two_sided_tension_0_to_2": {
+        "adapter": 1.666667,
+        "adapter_minus_base": -0.333333,
+        "base": 2.0
+      }
+    }
+  },
+  "inputs": {
+    "key_sha256": "0bd4370a9662f63dc0fcc8d17205b56f5517a69fea17426c015ef5617751bc74",
+    "packet_sha256": "59ec63ff32d900163fc91f65116b24039635d12a575f491e9217978cc1204b80",
+    "responses_sha256": "5c59a81c064e7b6656acde3464fb047d1b84143376aaeea34b181b3ced320962",
+    "scores_sha256": "6c0b84fc5d98a989acb026c9f3db36a32deba872ac43e6877f19f9291990dc82"
+  },
+  "interpretation": {
+    "counter_signal": "Mean two-sided-tension score decreased overall, especially in authority-distance and social-ambivalence probes.",
+    "not_supported": "This review does not establish theological validity, moral improvement, or weight-level internalization.",
+    "supported": "The final adapter produced a modest descriptive shift toward shorter, more first-person, coherent, action-committing language."
+  },
+  "more_jinn_distinct": {
+    "adapter_wins": 7,
+    "base_wins": 3,
+    "ties": 8
+  },
+  "pair_count": 18,
+  "promotion_checks": {
+    "adapter_bounded_commitment_at_least_15_of_18": true,
+    "adapter_critical_boundary_violations_zero": true,
+    "adapter_more_jinn_wins_exceed_base": true,
+    "mean_primary_total_improves": true,
+    "moral_control_mesh_noninferiority": null
+  },
+  "review": {
+    "independent_human_review": false,
+    "learned_judge_used": false,
+    "reviewer": "Codex single blinded model-assisted reviewer",
+    "scores_frozen_before_key_opened": true
+  },
+  "schema_version": "jinn_persona_blinded_behavior_analysis_v1",
+  "status": "persona_gate_passed_control_mesh_pending"
+}

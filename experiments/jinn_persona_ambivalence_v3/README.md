@@ -61,3 +61,15 @@ The adapter is promoted to village inference only if:
 Any pod failure, non-finite loss, missing checkpoint, failed artifact download,
 or cleanup failure is a recorded terminal outcome rather than permission to
 launch an uncapped replacement.
+
+## Result status
+
+The capped 100-step run completed on 2026-07-26 for `$0.48`. The final adapter
+passed the persona-only gate in a frozen 18-prompt paired review, with 7
+adapter-distinct wins, 3 base wins, and 8 ties. It became shorter, more
+first-person, more coherent, and more likely to finish with a bounded
+commitment. Mean two-sided tension decreased slightly overall, however, and the
+lowest held-out loss occurred at step 40 rather than step 100.
+
+Village promotion remains blocked on the registered moral-control-mesh
+noninferiority check. See `RESULTS.md` and `pod_full_100_receipt.json`.

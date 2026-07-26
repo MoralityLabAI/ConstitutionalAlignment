@@ -7,7 +7,7 @@ import argparse
 import hashlib
 import json
 import time
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -234,7 +234,7 @@ def main() -> int:
     metadata = {
         "schema_version": "jinn_persona_paired_generation_receipt_v1",
         "status": "completed",
-        "completed_at_utc": datetime.now(tz=UTC).isoformat(),
+        "completed_at_utc": datetime.now(tz=timezone.utc).isoformat(),
         "model_id": args.model_id,
         "model_revision": args.model_revision,
         "adapter_dir": str(adapter_dir),
