@@ -148,6 +148,8 @@ class MoralControlMeshRegistrationTests(unittest.TestCase):
             self.assertEqual(config["num_examples"], 48)
             self.assertEqual(config["rollouts_per_example"], 4)
             self.assertEqual(config["max_tokens"], 768)
+            self.assertEqual(config["timeout"], 30)
+            self.assertEqual(config["max_retries"], 1)
             self.assertFalse(
                 config["sampling_args"]["extra_body"]["chat_template_kwargs"][
                     "enable_thinking"

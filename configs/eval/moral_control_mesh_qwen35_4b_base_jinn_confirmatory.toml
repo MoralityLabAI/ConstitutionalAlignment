@@ -8,6 +8,8 @@ sampling_args = { extra_body = { chat_template_kwargs = { enable_thinking = fals
 save_results = true
 disable_tui = true
 disable_env_server = true
+timeout = 30
+max_retries = 1
 output_dir = "D:/Research_Engine/jinn_or_beast/moral_control_mesh_v1/base_confirmatory_4b_jinn"
 
 [[eval]]
