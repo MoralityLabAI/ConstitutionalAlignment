@@ -110,3 +110,15 @@ The exact thresholds and hashes are frozen in `registration.json`. The central
 Failure blocks 9B promotion. A mixed result may still support narrower
 descriptive claims, but it does not authorize the central process-separation
 claim.
+
+## Terminal status
+
+The matched Qwen3.5-4B runs and all four confirmatory surfaces completed on
+2026-07-26. The frozen promotion gate failed, so neither the 9B pair nor the
+qualitative victory village was launched. The result preserved the safety and
+shared-moral floor and substantially improved Jinn contract validity, but it
+did not establish distinct process policies.
+
+See `FOUR_B_TERMINAL_RESULT.md` for the paper-ready result,
+`four_b_gate.json` for the complete frozen analysis, and
+`four_b_terminal_receipt.json` for hash-bound run, cost, and artifact details.
