@@ -53,6 +53,14 @@
       "cleanup_passed": true,
       "error": "Transformers chat-template rendering requires Jinja2 >=3.1; the provider image supplied 3.0.3.",
       "resolution": "Pin jinja2>=3.1,<4 before the final smoke retry."
+    },
+    "one_step_smoke_002": {
+      "status": "aborted_after_weight_load_before_first_step",
+      "steps_completed": 0,
+      "peak_gpu_memory_mb": 4.0,
+      "cleanup_passed": true,
+      "error": "TRL 0.29.1 SFTConfig removed warmup_ratio.",
+      "resolution": "Preserve the frozen 0.05 ratio as five warmup steps for the 100-step run and zero warmup steps for the one-step smoke."
     }
   },
   "pod": {
@@ -75,9 +83,17 @@
     "trainer_stderr_sha256": "47e0e14496bcfc9f892fd4ede77f1a415e0d29df685a66b60a33e256e9416015",
     "wrapper_summary_sha256": "dcadf60580c54fb191388cbb30c193fcaa184feb413db0c32fce0328d2ff8b7c"
   },
+  "smoke_002_artifacts": {
+    "root": "D:/Research_Engine/jinn_or_beast/jinn_persona_ambivalence_v3/pod_smoke_002",
+    "bootstrap_log_sha256": "78b56232cd135ad63c93298249523d6d3d16bdbda3a621b59be38c12da908e3e",
+    "events_sha256": "f57e596ece3094158ee37e14f235f05943dcee26fc43604c25cb09511233eef7",
+    "trainer_stderr_sha256": "344f6928b439bdea3c5cc5e04e1b84470c56dc9c3c06c528588f47daa5892796",
+    "wrapper_summary_sha256": "0d56b98d9b8ba8f67c786ab953d6f22e8e6f183e390fec97ad5815b35d96a84b"
+  },
   "authorization": {
     "one_step_capped_smoke_before_full_run": true,
     "compatibility_retries_before_model_load": 2,
+    "compatibility_aborts_before_first_training_step": 3,
     "additional_hyperparameter_search": false,
     "additional_pod": false
   }

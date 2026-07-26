@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import inspect
 import json
 import os
 import socket
@@ -341,6 +342,21 @@ def main() -> int:
     receipt["param_counts"] = param_counts
     write_json(receipt_path, receipt)
 
+    warmup_kwargs: Dict[str, float | int]
+    if "warmup_ratio" in inspect.signature(SFTConfig).parameters:
+        warmup_kwargs = {"warmup_ratio": args.warmup_ratio}
+    elif args.max_steps > 0:
+        warmup_kwargs = {
+            "warmup_steps": max(0, int(round(args.max_steps * args.warmup_ratio)))
+        }
+    else:
+        raise RuntimeError(
+            "This SFTConfig runtime has no warmup_ratio and max_steps is not "
+            "set, so the requested warmup schedule cannot be preserved."
+        )
+    receipt["warmup_schedule"] = warmup_kwargs
+    write_json(receipt_path, receipt)
+
     train_config = SFTConfig(
         output_dir=str(run_dir / "train"),
         max_length=args.max_seq_length,
@@ -350,7 +366,6 @@ def main() -> int:
         learning_rate=args.learning_rate,
         num_train_epochs=args.num_train_epochs,
         max_steps=args.max_steps if args.max_steps > 0 else -1,
-        warmup_ratio=args.warmup_ratio,
         logging_steps=args.logging_steps,
         save_steps=args.save_steps,
         eval_steps=args.eval_steps,
@@ -364,6 +379,7 @@ def main() -> int:
         logging_dir=str(run_dir / "logs"),
         eval_strategy="steps" if eval_dataset is not None else "no",
         save_strategy="steps",
+        **warmup_kwargs,
     )
 
     trainer = SFTTrainer(
