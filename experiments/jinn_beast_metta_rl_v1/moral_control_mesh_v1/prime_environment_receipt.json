@@ -1,0 +1,10 @@
+{
+  "action_id": "g15qsts7sejl1hne2mnhky6x",
+  "action_status": "SUCCESS",
+  "environment_id": "moralitylab/jinn-beast-metta",
+  "environment_version": "0.1.11",
+  "environment_version_hash": "8eb77b8b783f",
+  "integration_completed_before_adapter_training": true,
+  "schema_version": "moral_control_mesh_prime_environment_receipt_v1",
+  "wheel_sha256": "abd1def045d09b14996a3f903bcde2c7ad5a7f0a13df62d86e69225db905d4f2"
+}
