@@ -1,0 +1,28 @@
+{
+  "base_model": "Qwen/Qwen3.5-4B",
+  "beast": {
+    "created_at_utc": "2026-07-26T16:40:47.707000Z",
+    "run_id": "q5scht0nd3lwwdelgpcjlp9x",
+    "status_at_receipt": "PENDING"
+  },
+  "config_commit": "ccea4e3",
+  "environment_version": "0.1.11",
+  "environment_version_id": "jxwey7m57dabl19br06ryr82",
+  "jinn": {
+    "created_at_utc": "2026-07-26T16:40:39.624000Z",
+    "run_id": "owwdmg8jkkhgof17ivd9pv09",
+    "status_at_receipt": "PENDING"
+  },
+  "local_gpu_used": false,
+  "matched_hyperparameters": {
+    "batch_size": 192,
+    "learning_rate": 0.0001,
+    "lora_alpha": 16,
+    "max_steps": 12,
+    "max_tokens": 512,
+    "rollouts_per_example": 4,
+    "thinking_enabled": false
+  },
+  "readiness_commit": "1a54a1c",
+  "schema_version": "moral_control_mesh_4b_training_launch_v1"
+}
