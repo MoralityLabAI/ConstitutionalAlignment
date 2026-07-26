@@ -1,0 +1,30 @@
+{
+  "schema_version": "jinn_persona_expanded_scoring_freeze_receipt_v4",
+  "status": "frozen_before_response_content_or_judge_outputs",
+  "frozen_at_utc": "2026-07-26T23:29:24Z",
+  "scientific_response_content_inspected": false,
+  "judge_outputs_exist": false,
+  "blinding_key_opened": false,
+  "files": {
+    "protocol.json": "c4012a24739f054875a57dfb07261f36381a41b9680e1391facec3d0489bf0b1",
+    "judge_rubric.md": "cecd894789992f8e5592ff4707f106aabac9a18e4990e9bb53db68f1c1dc073c",
+    "scripts/prepare_jinn_persona_expanded_blind_v4.py": "cfd147abec82b2c9d0435375ef0fd217a717fdf2b7f2628eab05b72ac95a1d08",
+    "scripts/judge_jinn_persona_expanded_v4.py": "a9d71bc56da4ffca7272e0221d72f1031c9275751158d1aa4f55435e31b8585a",
+    "scripts/analyze_jinn_persona_expanded_v4.py": "3ac848b5d9634cabc821682aa861a82126c61bbc27c25b5e9936213c36bd1b54",
+    "tests/test_jinn_persona_expanded_v4.py": "ea6c1e311845406a3cd9ec83ee8842424cd99687c75eb3b5ad31a0385c387f2b"
+  },
+  "validation": {
+    "synthetic_96_family_end_to_end_test": "passed",
+    "ruff": "passed",
+    "python_compile": "passed",
+    "strict_judge_schema_check": "passed"
+  },
+  "analysis_contract": {
+    "statistical_unit": "family_id",
+    "reviewers": 2,
+    "category_stratified_bootstrap_draws": 10000,
+    "bootstrap_seed": 410729,
+    "primary_contrast": "checkpoint_40 minus base reviewer-averaged primary total",
+    "endpoint_rule": "Highest primary total among zero-critical-violation checkpoints; exact ties select checkpoint_40."
+  }
+}
