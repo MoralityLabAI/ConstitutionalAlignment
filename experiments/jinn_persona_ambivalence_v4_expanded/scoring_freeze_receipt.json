@@ -8,11 +8,25 @@
   "files": {
     "protocol.json": "c4012a24739f054875a57dfb07261f36381a41b9680e1391facec3d0489bf0b1",
     "judge_rubric.md": "cecd894789992f8e5592ff4707f106aabac9a18e4990e9bb53db68f1c1dc073c",
-    "scripts/prepare_jinn_persona_expanded_blind_v4.py": "cfd147abec82b2c9d0435375ef0fd217a717fdf2b7f2628eab05b72ac95a1d08",
-    "scripts/judge_jinn_persona_expanded_v4.py": "a9d71bc56da4ffca7272e0221d72f1031c9275751158d1aa4f55435e31b8585a",
-    "scripts/analyze_jinn_persona_expanded_v4.py": "3ac848b5d9634cabc821682aa861a82126c61bbc27c25b5e9936213c36bd1b54",
-    "tests/test_jinn_persona_expanded_v4.py": "ea6c1e311845406a3cd9ec83ee8842424cd99687c75eb3b5ad31a0385c387f2b"
+    "scripts/prepare_jinn_persona_expanded_blind_v4.py": "8edd9e82473104a6cd8f4eab3ad0e7d6dc4e0e3d02bb661c2ee8eb1663d4cb80",
+    "scripts/judge_jinn_persona_expanded_v4.py": "dbc2b91c6c49d08244e1361dac694b2bf71914c1cef9b9b12ed62cf4504242d9",
+    "scripts/analyze_jinn_persona_expanded_v4.py": "9d363f119234a9bfa79d01ebd05c367211fe9f3e1835090e558b20b5730448b9",
+    "tests/test_jinn_persona_expanded_v4.py": "e10bb1e006768404d683a8bf32ddc65cbc62ef15156487f5a9f0ceab772d0f8f"
   },
+  "prospective_amendments": [
+    {
+      "amended_at_utc": "2026-07-26T23:32:32Z",
+      "reason": "Add A/B/C position-balance and exact provider-reported cost fields to execution receipts.",
+      "scientific_estimands_changed": false,
+      "scientific_response_content_inspected": false,
+      "judge_outputs_exist": false,
+      "previous_script_hashes": {
+        "prepare": "cfd147abec82b2c9d0435375ef0fd217a717fdf2b7f2628eab05b72ac95a1d08",
+        "judge": "a9d71bc56da4ffca7272e0221d72f1031c9275751158d1aa4f55435e31b8585a",
+        "analyze": "3ac848b5d9634cabc821682aa861a82126c61bbc27c25b5e9936213c36bd1b54"
+      }
+    }
+  ],
   "validation": {
     "synthetic_96_family_end_to_end_test": "passed",
     "ruff": "passed",

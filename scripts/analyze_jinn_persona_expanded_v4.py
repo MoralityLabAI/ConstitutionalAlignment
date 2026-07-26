@@ -558,6 +558,13 @@ def main() -> int:
                 for row in rows
             ),
             "api_attempts": sum(int(row.get("attempts", 1)) for row in rows),
+            "reported_cost_usd": round(
+                sum(
+                    float(row.get("usage", {}).get("cost", 0) or 0)
+                    for row in rows
+                ),
+                6,
+            ),
         }
 
     winner_summary = {

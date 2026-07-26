@@ -65,6 +65,13 @@ def test_expanded_blinding_and_analysis_join(tmp_path: Path) -> None:
     }
     assert len(packet) == 96
     assert all(set(row["responses"]) == {"A", "B", "C"} for row in packet)
+    blinding_receipt = json.loads(
+        (blind_dir / "blinding_receipt.json").read_text(encoding="utf-8")
+    )
+    assert all(
+        sum(blinding_receipt["label_arm_counts"][label].values()) == 96
+        for label in ("A", "B", "C")
+    )
 
     reviewer_ids = ("openai_gpt_5_4", "anthropic_claude_sonnet_5")
     score_paths: dict[str, Path] = {}

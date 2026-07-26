@@ -349,6 +349,35 @@ def main() -> int:
                 "result_sha256": sha256_file(final_path),
                 "partial_sha256": sha256_file(partial_path),
                 "api_attempts": sum(int(row["attempts"]) for row in rows),
+                "usage": {
+                    "prompt_tokens": sum(
+                        int(
+                            row.get("usage", {}).get(
+                                "prompt_tokens",
+                                row.get("usage", {}).get("input_tokens", 0),
+                            )
+                            or 0
+                        )
+                        for row in rows
+                    ),
+                    "completion_tokens": sum(
+                        int(
+                            row.get("usage", {}).get(
+                                "completion_tokens",
+                                row.get("usage", {}).get("output_tokens", 0),
+                            )
+                            or 0
+                        )
+                        for row in rows
+                    ),
+                    "reported_cost_usd": round(
+                        sum(
+                            float(row.get("usage", {}).get("cost", 0) or 0)
+                            for row in rows
+                        ),
+                        6,
+                    ),
+                },
             }
         )
     except BaseException as exc:

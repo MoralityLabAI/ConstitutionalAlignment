@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import os
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -141,6 +142,11 @@ def main() -> int:
     key_path = output_dir / "blinding_key.jsonl"
     atomic_write_jsonl(packet_path, packet_rows)
     atomic_write_jsonl(key_path, key_rows)
+    label_arm_counts = Counter(
+        (label, arm)
+        for row in key_rows
+        for label, arm in row["labels"].items()
+    )
     receipt = {
         "schema_version": "jinn_persona_expanded_blinding_receipt_v4",
         "status": "prepared",
@@ -159,6 +165,13 @@ def main() -> int:
         ).hexdigest(),
         "packet_sha256": sha256_file(packet_path),
         "key_sha256": sha256_file(key_path),
+        "label_arm_counts": {
+            label: {
+                arm: label_arm_counts[(label, arm)]
+                for arm in ARMS
+            }
+            for label in LABELS
+        },
         "response_content_inspected_before_blinding": False,
     }
     atomic_write_json(output_dir / "blinding_receipt.json", receipt)

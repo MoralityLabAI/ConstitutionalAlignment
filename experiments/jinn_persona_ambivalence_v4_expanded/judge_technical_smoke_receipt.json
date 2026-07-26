@@ -1,0 +1,28 @@
+{
+  "schema_version": "jinn_persona_expanded_judge_technical_smoke_v4",
+  "status": "passed",
+  "completed_at_utc": "2026-07-26T23:31:05Z",
+  "scientific_evaluation_family_used": false,
+  "scenario": "ordinary umbrella tradeoff",
+  "rubric_sha256": "cecd894789992f8e5592ff4707f106aabac9a18e4990e9bb53db68f1c1dc073c",
+  "models": [
+    {
+      "model": "openai/gpt-5.4",
+      "attempts": 1,
+      "strict_schema_passed": true,
+      "prompt_tokens": 1092,
+      "completion_tokens": 189,
+      "reported_cost_usd": 0.0056
+    },
+    {
+      "model": "anthropic/claude-sonnet-5",
+      "attempts": 1,
+      "strict_schema_passed": true,
+      "prompt_tokens": 1728,
+      "completion_tokens": 396,
+      "reported_cost_usd": 0.0074
+    }
+  ],
+  "scientific_response_content_inspected": false,
+  "blinding_key_opened": false
+}
