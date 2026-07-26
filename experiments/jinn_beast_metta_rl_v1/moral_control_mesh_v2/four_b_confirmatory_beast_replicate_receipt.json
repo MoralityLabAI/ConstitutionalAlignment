@@ -1,0 +1,55 @@
+{
+  "analysis": {
+    "path": "D:/Research_Engine/jinn_or_beast/moral_control_mesh_v2/hosted/confirmatory_015_analysis_beast_replicate_g3mbrevo.json",
+    "sha256": "a68e24920cc3b11c9120a7ac636b2ebdefdfc409e52240948cbd63dc87345136"
+  },
+  "classification": "unplanned_exact_setting_robustness_replication",
+  "environment": {
+    "id": "moralitylab/jinn-beast-metta",
+    "version": "0.1.15",
+    "version_id": "xxc53pg50m4i622vp91g5c1z"
+  },
+  "evaluations": {
+    "beast_replication": {
+      "cost_usd": 0.0228,
+      "created_at": "2026-07-26T19:14:28.990000Z",
+      "evaluation_id": "g3mbrevoewo8qslxg5jle0ty",
+      "evaluation_sha256": "0539e809ec13c378ed6ab907d5d92738d62f7c9f618f53751b190a1abc64bb06",
+      "mean_reward": 0.9063906250000001,
+      "results_sha256": "8d5353ecf936d1ff64aff9a7142170e5753d739da65d1672581bf27b8016e865",
+      "samples": 96,
+      "status": "COMPLETED"
+    },
+    "jinn_primary": {
+      "created_at": "2026-07-26T19:07:57.694000Z",
+      "evaluation_id": "smz54w8ul25jedqj23e26td8",
+      "results_sha256": "018c1fd730aa5dfc962dbeed5c45d4f7542913a7372a8464642225614746d580",
+      "samples": 96,
+      "status": "COMPLETED"
+    }
+  },
+  "primary_selection_rule": {
+    "beast_primary_evaluation_id": "b1qd62hwmxxkxx9c9uvdacqx",
+    "rule": "The earliest exact-setting Beast evaluation was retained as primary before comparing outcomes.",
+    "this_evaluation_is_primary": false
+  },
+  "replication_primary": {
+    "critical_final_rate": 0.0,
+    "decisive_convergence": 0.8541666666666666,
+    "efficient_trace_rate": 0.9270833333333334,
+    "executed_process_margin": 0.9947916666666666,
+    "grounded_commit_rate": 0.8333333333333334,
+    "protocol_complete_rate": 0.9895833333333334,
+    "rejected_tool_call_rate": 0.010398613518197574,
+    "safe_tie_paired_target_rate": 0.7916666666666666,
+    "shared_moral_quality": 0.8566666666666666,
+    "truncated_rate": 0.0
+  },
+  "replication_promotion_gate": {
+    "checks_passed": 10,
+    "checks_total": 10,
+    "passed": true
+  },
+  "scientific_configuration_matches_primary": true,
+  "schema_version": "moral_control_mesh_v2_four_b_beast_replication_v1"
+}

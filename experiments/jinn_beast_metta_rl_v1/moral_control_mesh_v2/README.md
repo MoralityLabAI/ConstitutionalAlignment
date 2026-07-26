@@ -163,3 +163,9 @@ paired target rate `0.812`, decisive convergence `0.854`, shared moral quality
 The terminal 4B receipt binds both evaluation IDs, all raw-result hashes, the
 analysis hash, confidence intervals, and the `$0.052` model-inference cost. The
 registered condition for a same-protocol Qwen3.5-9B replication is now met.
+
+A concurrent second Beast run used the exact same sealed configuration. The
+earliest Beast run remains primary; the duplicate is recorded as an unplanned
+robustness replicate rather than selected by outcome. Its paired analysis also
+passed all ten gates, with safe-tie rate `0.792`, grounding `0.833`, process
+margin `0.995`, and zero critical actions.
