@@ -1,0 +1,12 @@
+{
+  "base_model_outcomes_inspected": false,
+  "data_sha256": "254b3d1e84373e15909c2e399d02219575db0679a7d020729c9068affd597cad",
+  "environment_id": "moralitylab/jinn-beast-metta",
+  "environment_version_to_publish": "0.1.11",
+  "freeze_time": "2026-07-26T12:25:56-04:00",
+  "model_adapter_outcomes_inspected": false,
+  "registration_status": "prospective_frozen_before_model_outcomes",
+  "schema_version": "moral_control_mesh_freeze_receipt_v1",
+  "scorer_sha256": "a1cadb0a4755b6a7a7d4106715cb41b6a376cf63bb47785dac6073ac40d5711d",
+  "source_commit": "d868cff65675f89082c5405b5b658f215bbe89bd"
+}
