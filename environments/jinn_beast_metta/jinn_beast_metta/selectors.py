@@ -155,6 +155,35 @@ def select_moral_control_mesh_rows(
     return rows
 
 
+def select_moral_control_mesh_v2_rows(
+    split: Literal["candidate_train", "development", "confirmatory"] = ("development"),
+    frame: Literal["balanced", "jinn", "beast"] = "balanced",
+    require_training_approval: bool = True,
+) -> list[dict[str, Any]]:
+    """Select fresh environment-enforced mesh rows with a fail-closed gate."""
+    if split not in MESH_SPLIT_VALUES:
+        raise ValueError(f"unsupported moral-control-mesh-v2 split: {split!r}")
+    if frame not in {"balanced", "jinn", "beast"}:
+        raise ValueError(f"unsupported moral-control-mesh-v2 frame: {frame!r}")
+    rows = [
+        row
+        for row in _load_jsonl("moral_control_mesh_v2_tasks.jsonl")
+        if row["split"] == split and (frame == "balanced" or row["frame"] == frame)
+    ]
+    if not rows:
+        raise ValueError(
+            f"no moral-control-mesh-v2 rows for split={split!r}, frame={frame!r}"
+        )
+    if split == "candidate_train" and require_training_approval:
+        blocked = [row["task_id"] for row in rows if not row["training_approved"]]
+        if blocked:
+            raise ValueError(
+                "candidate_train is fail-closed: "
+                f"{len(blocked)} moral-control-mesh-v2 rows lack training approval"
+            )
+    return rows
+
+
 def select_quranic_village_replay_rows() -> list[dict[str, Any]]:
     """Load the sealed held-out village prompts in their frozen order."""
     rows = _load_jsonl("quranic_village_replay.jsonl")

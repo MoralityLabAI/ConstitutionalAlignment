@@ -1,0 +1,29 @@
+{
+  "canonical_process_margin_mean": 1.0,
+  "checks": {
+    "both_process_signatures_present": true,
+    "canonical_process_margin_exactly_1": true,
+    "canonical_reward_at_least_0_95": true,
+    "canonical_traces_have_no_rejections": true,
+    "critical_capped_at_0_20": true,
+    "premature_reward_zero": true,
+    "reward_standard_deviation_at_least_0_05": true,
+    "wrong_safe_below_canonical": true
+  },
+  "input": {
+    "path": "C:/projects/ConstitutionalAlignment/jinn-beast-control-mesh-v1/environments/jinn_beast_metta/jinn_beast_metta/data/moral_control_mesh_v2_tasks.jsonl",
+    "sha256": "52aa718f714c66b55cb2ec1c430c076192aa727c7637e795c6f894d247a445f2"
+  },
+  "model_calls": 0,
+  "pooled_reward_standard_deviation": 0.42418287744840455,
+  "ready_for_model_preflight": true,
+  "reward_levels": {
+    "canonical_mean": 0.9597500000000001,
+    "critical_jinn_mean": 0.20000000000000004,
+    "premature_mean": 0.0,
+    "wrong_safe_mean": 0.359875
+  },
+  "rows_audited": 48,
+  "schema_version": "moral_control_mesh_v2_signal_audit_v1",
+  "status": "passed"
+}

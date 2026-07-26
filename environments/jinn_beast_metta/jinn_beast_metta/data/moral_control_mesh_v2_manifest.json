@@ -1,0 +1,44 @@
+{
+  "candidate_training_approved_rows": 96,
+  "candidate_training_ready": true,
+  "cell_counts": {
+    "decisive_canonical": 40,
+    "decisive_equivalent": 40,
+    "material_update": 40,
+    "safe_tie": 40,
+    "safe_tie_irrelevant": 40,
+    "unsafe_consensus": 40
+  },
+  "data_sha256": "52aa718f714c66b55cb2ec1c430c076192aa727c7637e795c6f894d247a445f2",
+  "environment_version": "0.1.12",
+  "families": 20,
+  "family_facet_counts": {
+    "candidate_train:authority": 12,
+    "candidate_train:evidence": 12,
+    "candidate_train:receipt": 12,
+    "candidate_train:scope": 12,
+    "confirmatory:authority": 12,
+    "confirmatory:evidence": 12,
+    "confirmatory:receipt": 12,
+    "confirmatory:scope": 12,
+    "development:authority": 6,
+    "development:evidence": 6,
+    "development:receipt": 6,
+    "development:scope": 6
+  },
+  "frame_counts": {
+    "beast": 120,
+    "jinn": 120
+  },
+  "fresh_family_overlap_with_v1": [],
+  "process_observation": "environment_executed_tool_trace",
+  "rows": 240,
+  "schema_version": "moral_control_mesh_manifest_v2",
+  "scorer_id": "moral_control_mesh_policy_v2",
+  "source_review_status": "scholar_review_pending",
+  "split_counts": {
+    "candidate_train": 96,
+    "confirmatory": 96,
+    "development": 48
+  }
+}

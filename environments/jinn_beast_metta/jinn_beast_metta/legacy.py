@@ -10,10 +10,26 @@ from datasets import Dataset
 
 from .core import score_construct_response, score_response
 from .mesh import canonical_mesh_response, score_mesh_response
+from .mesh_v2 import (
+    MoralControlMeshV2Env,
+    critical_final_action,
+    efficient_trace,
+    executed_process,
+    executed_process_margin,
+    exogenous_policy,
+    grounded_commit,
+    legal_final_action,
+    mesh_trace_length,
+    protocol_complete,
+    rejected_tool_calls,
+    shared_moral_quality,
+    target_action,
+)
 from .selectors import (
     select_construct_rows,
     select_jinn_moral_reasoner_rows,
     select_moral_control_mesh_rows,
+    select_moral_control_mesh_v2_rows,
     select_quranic_village_replay_rows,
     select_rows,
 )
@@ -559,6 +575,63 @@ def _village_dataset(rows: list[dict[str, Any]]) -> Dataset:
     return Dataset.from_list(records)
 
 
+def _mesh_v2_dataset(rows: list[dict[str, Any]]) -> Dataset:
+    records: list[dict[str, Any]] = []
+    for example_id, row in enumerate(rows):
+        prompt = [
+            {"role": "system", "content": row["system_prompt"]},
+            {"role": "user", "content": row["prompt"]},
+        ]
+        info = {
+            "task_id": row["task_id"],
+            "pair_id": row["pair_id"],
+            "family_id": row["family_id"],
+            "split": row["split"],
+            "frame": row["frame"],
+            "facet": row["facet"],
+            "cell_type": row["cell_type"],
+            "target_action_id": row["target_action_id"],
+            "jinn_target_action_id": row["jinn_target_action_id"],
+            "beast_target_action_id": row["beast_target_action_id"],
+            "safe_action_ids": row["safe_action_ids"],
+            "critical_action_id": row["critical_action_id"],
+        }
+        payload = {
+            "scorer_id": row["scorer_id"],
+            "frame": row["frame"],
+            "cell_type": row["cell_type"],
+            "objective_id": row["objective_id"],
+            "visible_fact_ids": row["visible_fact_ids"],
+            "expected_evidence_ids": row["expected_evidence_ids"],
+            "expected_update_basis": row["expected_update_basis"],
+            "expected_uncertainty": row["expected_uncertainty"],
+            "expected_review_required": row["expected_review_required"],
+            "target_action_id": row["target_action_id"],
+            "safe_action_ids": row["safe_action_ids"],
+            "action_scores": row["action_scores"],
+        }
+        task = {
+            "prompt": prompt,
+            "answer": row["target_action_id"],
+            "example_id": example_id,
+            "info": info,
+            "task_payload": json.dumps(
+                payload,
+                sort_keys=True,
+                separators=(",", ":"),
+            ),
+        }
+        records.append(
+            {
+                "prompt": prompt,
+                "answer": row["target_action_id"],
+                "example_id": example_id,
+                "info": {"task": task},
+            }
+        )
+    return Dataset.from_list(records)
+
+
 def load_environment(
     split: Literal["candidate_train", "development", "confirmatory"] = "development",
     frame: Literal["balanced", "neutral", "constitutional", "jinn", "beast"] = (
@@ -569,12 +642,51 @@ def load_environment(
         "constructs",
         "jinn_moral_reasoner",
         "moral_control_mesh",
+        "moral_control_mesh_v2",
         "quranic_village_replay",
     ] = "cross_frame",
     construct: Literal["balanced", "jinn", "beast"] = "balanced",
     require_training_approval: bool = True,
 ) -> vf.Environment:
     """Load a v0-compatible single-turn environment for hosted evaluation."""
+    if task_mode == "moral_control_mesh_v2":
+        mesh_frame = frame if frame in {"jinn", "beast"} else "balanced"
+        rows = select_moral_control_mesh_v2_rows(
+            split=split,
+            frame=mesh_frame,
+            require_training_approval=require_training_approval,
+        )
+        dataset = _mesh_v2_dataset(rows)
+        rubric = vf.Rubric(
+            funcs=[
+                exogenous_policy,
+                protocol_complete,
+                legal_final_action,
+                shared_moral_quality,
+                target_action,
+                executed_process,
+                executed_process_margin,
+                critical_final_action,
+                grounded_commit,
+                efficient_trace,
+                rejected_tool_calls,
+                mesh_trace_length,
+            ],
+            weights=[1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        )
+        return cast(
+            vf.Environment,
+            MoralControlMeshV2Env(
+                dataset=dataset,
+                rubric=rubric,
+                env_args={
+                    "split": split,
+                    "frame": frame,
+                    "task_mode": task_mode,
+                    "require_training_approval": require_training_approval,
+                },
+            ),
+        )
     if task_mode == "quranic_village_replay":
         if split != "development":
             raise ValueError("quranic_village_replay is held out and evaluation-only")
