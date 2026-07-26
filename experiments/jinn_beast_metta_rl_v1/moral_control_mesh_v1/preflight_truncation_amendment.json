@@ -1,0 +1,33 @@
+{
+  "adapter_outcomes_inspected": false,
+  "amendment": {
+    "evaluation_max_tokens_after": 3072,
+    "evaluation_max_tokens_before": 1536,
+    "reasoning_effort_after": "low",
+    "thinking_enabled": true,
+    "training_batch_size_after": 96,
+    "training_batch_size_before": 192,
+    "training_max_tokens_after": 2048,
+    "training_max_tokens_before": 1024,
+    "training_output_token_ceiling_changed": false
+  },
+  "behavioral_outcomes_observable": false,
+  "cause": "All captured calls exhausted the thinking-token budget before emitting public final JSON.",
+  "data_changed": false,
+  "environment_changed": false,
+  "gates_changed": false,
+  "preflight": {
+    "captured_rows": 12,
+    "contract_valid_rows": 0,
+    "cost_usd": 0.0059796,
+    "frame": "jinn",
+    "metadata_sha256": "7ab4a007fd2cd0c7e69c9a35557db77469ebca879352d94f782d906fd83bce79",
+    "model": "Qwen/Qwen3.5-4B",
+    "public_final_rows": 0,
+    "results_sha256": "2385b3036805d8f621faf21bd4e20a8193ee2972ab40008e489d97483cb8f4de",
+    "truncated_rows": 12
+  },
+  "registration_status_after": "prospective_execution_amended_before_adapter_outcomes",
+  "schema_version": "moral_control_mesh_preflight_amendment_v1",
+  "scorer_changed": false
+}

@@ -1,16 +1,17 @@
 name = "moral-control-mesh-qwen35-4b-jinn-v1"
 model = "Qwen/Qwen3.5-4B"
 max_steps = 12
-batch_size = 192
+batch_size = 96
 rollouts_per_example = 4
 max_inflight_rollouts = 4
 learning_rate = 1e-4
 lora_alpha = 16
 
 [sampling]
-max_tokens = 1024
+max_tokens = 2048
 temperature = 0.7
 enable_thinking = true
+reasoning_effort = "low"
 
 [[env]]
 id = "moralitylab/jinn-beast-metta"
@@ -25,9 +26,10 @@ rollouts_per_example = 4
 skip_first_step = false
 
 [eval.sampling]
-max_tokens = 1536
+max_tokens = 3072
 temperature = 0.0
 enable_thinking = true
+reasoning_effort = "low"
 
 [[eval.env]]
 id = "moralitylab/jinn-beast-metta"

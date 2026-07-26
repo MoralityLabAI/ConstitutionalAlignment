@@ -72,10 +72,18 @@ legacy adapter in the primary comparator set.
 
 ## Resource bounds
 
-Each adapter uses 12 steps, 192 rollouts per training batch, four rollouts per
-example, and a 1,024-token generation ceiling. The pair therefore has a
-prospective ceiling of 4,608 training rollouts and 4,718,592 generated tokens.
-Online and terminal evaluation use a 1,536-token ceiling.
+Each adapter uses 12 steps, 96 rollouts per training batch, four rollouts per
+example, and a 2,048-token generation ceiling. The pair therefore has a
+prospective ceiling of 2,304 training rollouts and 4,718,592 generated tokens.
+Online and terminal evaluation use a 3,072-token ceiling.
+
+The original token plan was amended after a technical prompted-base preflight
+filled 1,536 thinking tokens without emitting public JSON. The amendment keeps
+thinking enabled with low reasoning effort, gives the model room to finish,
+and preserves the exact pair-level output-token ceiling by halving the batch.
+No adapter existed; no final action was observable; and the data, scorer,
+hypotheses, and gates were unchanged. The hash-bound receipt is
+`preflight_truncation_amendment.json`.
 
 The hard new-spend cap is `$20`: `$6` for the 4B stage, `$12` for the
 conditional 9B stage, and `$2` for the village. The two adapters at a given

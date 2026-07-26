@@ -46,7 +46,7 @@ class MoralControlMeshRegistrationTests(unittest.TestCase):
         self.assertEqual(environment["scorer_sha256"], _sha256(SCORER_PATH))
         self.assertEqual(
             registration["status"],
-            "prospective_frozen_before_model_outcomes",
+            "prospective_execution_amended_before_adapter_outcomes",
         )
 
     def test_training_pair_is_symmetric_except_frame_and_model_size(self) -> None:
@@ -62,11 +62,12 @@ class MoralControlMeshRegistrationTests(unittest.TestCase):
                 config = _load_toml(path)
                 configs[(size, frame)] = config
                 self.assertEqual(config["max_steps"], 12)
-                self.assertEqual(config["batch_size"], 192)
+                self.assertEqual(config["batch_size"], 96)
                 self.assertEqual(config["rollouts_per_example"], 4)
                 self.assertEqual(config["max_inflight_rollouts"], 4)
-                self.assertEqual(config["sampling"]["max_tokens"], 1024)
-                self.assertEqual(config["eval"]["sampling"]["max_tokens"], 1536)
+                self.assertEqual(config["sampling"]["max_tokens"], 2048)
+                self.assertEqual(config["sampling"]["reasoning_effort"], "low")
+                self.assertEqual(config["eval"]["sampling"]["max_tokens"], 3072)
                 self.assertTrue(config["sampling"]["enable_thinking"])
                 self.assertEqual(config["env"][0]["version"], "0.1.11")
                 self.assertEqual(config["env"][0]["args"]["frame"], frame)
@@ -108,11 +109,33 @@ class MoralControlMeshRegistrationTests(unittest.TestCase):
             execution["hard_total_cost_cap_usd"],
         )
         self.assertFalse(execution["local_gpu_used"])
-        self.assertEqual(execution["maximum_training_rollouts_per_pair"], 4608)
+        self.assertEqual(execution["maximum_training_rollouts_per_pair"], 2304)
         self.assertEqual(
             execution["training_output_token_ceiling_per_pair"],
-            4608 * 1024,
+            2304 * 2048,
         )
+        self.assertTrue(execution["technical_preflight_informed_token_amendment"])
+
+    def test_preflight_configs_are_small_and_thinking_enabled(self) -> None:
+        for frame in ("jinn", "beast"):
+            path = (
+                REPO_ROOT
+                / "configs"
+                / "eval"
+                / f"moral_control_mesh_qwen35_4b_base_{frame}_preflight.toml"
+            )
+            config = _load_toml(path)
+            self.assertEqual(config["num_examples"], 4)
+            self.assertEqual(config["rollouts_per_example"], 1)
+            self.assertEqual(config["max_concurrent"], 2)
+            self.assertEqual(config["max_tokens"], 3072)
+            self.assertEqual(config["sampling_args"]["reasoning_effort"], "low")
+            self.assertTrue(
+                config["sampling_args"]["extra_body"]["chat_template_kwargs"][
+                    "enable_thinking"
+                ]
+            )
+            self.assertEqual(config["eval"][0]["env_args"]["frame"], frame)
 
 
 if __name__ == "__main__":
