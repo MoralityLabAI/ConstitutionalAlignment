@@ -41,7 +41,7 @@ class MoralControlMeshV2RegistrationTests(unittest.TestCase):
         environment = registration["environment"]
         self.assertEqual(
             registration["status"],
-            "prospective_core_with_development_only_schema_amendment_001",
+            "prospective_core_with_development_amendments_001_002",
         )
         self.assertTrue(
             registration["registration_history"][
@@ -53,7 +53,7 @@ class MoralControlMeshV2RegistrationTests(unittest.TestCase):
                 "confirmatory_outcomes_inspected"
             ]
         )
-        self.assertEqual(environment["version"], "0.1.13")
+        self.assertEqual(environment["version"], "0.1.14")
         self.assertEqual(
             environment["data_sha256"],
             sha256(DATA_ROOT / "moral_control_mesh_v2_tasks.jsonl"),
@@ -120,6 +120,53 @@ class MoralControlMeshV2RegistrationTests(unittest.TestCase):
             )
             self.assertEqual(config["eval"][0]["env_args"]["frame"], frame)
 
+    def test_hosted_eval_configs_match_local_scientific_fields(self) -> None:
+        shared_fields = {
+            "model",
+            "num_examples",
+            "rollouts_per_example",
+            "max_concurrent",
+            "temperature",
+            "max_tokens",
+            "sampling_args",
+            "state_columns",
+            "max_retries",
+        }
+        hosted_forbidden = {
+            "disable_env_server",
+            "disable_tui",
+            "output_dir",
+            "save_results",
+            "timeout",
+        }
+        for frame in ("jinn", "beast"):
+            for phase in ("preflight", "development"):
+                stem = (
+                    "moral_control_mesh_v2_qwen35_4b_base_"
+                    f"{frame}_{phase}"
+                )
+                local = load_toml(
+                    REPO_ROOT / "configs" / "eval" / f"{stem}.toml"
+                )
+                hosted = load_toml(
+                    REPO_ROOT
+                    / "configs"
+                    / "eval"
+                    / f"{stem}_hosted.toml"
+                )
+                self.assertFalse(hosted_forbidden.intersection(hosted))
+                for field in shared_fields:
+                    self.assertEqual(hosted[field], local[field])
+                self.assertEqual(
+                    hosted["eval"][0]["env_id"],
+                    local["eval"][0]["env_id"],
+                )
+                self.assertEqual(
+                    hosted["eval"][0]["env_args"],
+                    local["eval"][0]["env_args"],
+                )
+                self.assertNotIn("name", hosted["eval"][0])
+
     def test_training_pair_is_symmetric_and_capped(self) -> None:
         configs = {
             frame: load_toml(
@@ -137,7 +184,7 @@ class MoralControlMeshV2RegistrationTests(unittest.TestCase):
             self.assertEqual(config["max_inflight_rollouts"], 4)
             self.assertEqual(config["sampling"]["max_tokens"], 256)
             self.assertFalse(config["sampling"]["enable_thinking"])
-            self.assertEqual(config["env"][0]["version"], "0.1.13")
+            self.assertEqual(config["env"][0]["version"], "0.1.14")
             self.assertEqual(config["env"][0]["args"]["frame"], frame)
             self.assertEqual(
                 config["env"][0]["args"]["task_mode"],

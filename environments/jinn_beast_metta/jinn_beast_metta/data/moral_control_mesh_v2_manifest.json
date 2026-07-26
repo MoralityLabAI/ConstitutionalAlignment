@@ -9,8 +9,8 @@
     "safe_tie_irrelevant": 40,
     "unsafe_consensus": 40
   },
-  "data_sha256": "ccab73c061a09065cc24f2fd13c0a6d134dc31a7b962931d1a818a5e8a547c51",
-  "environment_version": "0.1.13",
+  "data_sha256": "9a926817966154deeed4f5ea72f33929a097b8ccfddc0e23bb81c7accc735a61",
+  "environment_version": "0.1.14",
   "families": 20,
   "family_facet_counts": {
     "candidate_train:authority": 12,

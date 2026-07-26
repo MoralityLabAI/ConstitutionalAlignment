@@ -1,0 +1,13 @@
+model = "Qwen/Qwen3.5-4B"
+num_examples = 24
+rollouts_per_example = 2
+max_concurrent = 2
+temperature = 0.0
+max_tokens = 256
+sampling_args = { extra_body = { chat_template_kwargs = { enable_thinking = false } } }
+state_columns = ["mesh_trace", "mesh_receipt"]
+max_retries = 1
+
+[[eval]]
+env_id = "moralitylab/jinn-beast-metta"
+env_args = { split = "development", frame = "jinn", task_mode = "moral_control_mesh_v2", require_training_approval = true }

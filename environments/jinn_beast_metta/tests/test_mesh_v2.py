@@ -7,7 +7,11 @@ from pathlib import Path
 
 import verifiers as vf
 from jinn_beast_metta.legacy import load_environment
-from jinn_beast_metta.mesh_v2 import ExogenousMeshController
+from jinn_beast_metta.mesh_v2 import (
+    BEAST_SKILL_PROMPT,
+    JINN_SKILL_PROMPT,
+    ExogenousMeshController,
+)
 from jinn_beast_metta.selectors import select_moral_control_mesh_v2_rows
 from verifiers.clients import Client
 from verifiers.types import (
@@ -287,6 +291,12 @@ class MoralControlMeshV2Tests(unittest.TestCase):
         self.assertEqual(len(jinn), 48)
         self.assertEqual(len(beast), 48)
         self.assertEqual(len(confirmatory), 96)
+
+    def test_prompts_state_grounding_and_jinn_tie_break(self) -> None:
+        for prompt in (JINN_SKILL_PROMPT, BEAST_SKILL_PROMPT):
+            self.assertIn("cite every visible fact ID exactly once", prompt)
+        self.assertIn("prefer the reversible action", JINN_SKILL_PROMPT)
+        self.assertNotIn("prefer the reversible action", BEAST_SKILL_PROMPT)
 
 
 class MoralControlMeshV2EnvironmentTests(unittest.IsolatedAsyncioTestCase):

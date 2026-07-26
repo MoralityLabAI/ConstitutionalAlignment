@@ -1,6 +1,6 @@
 [project]
 name = "jinn-beast-metta"
-version = "0.1.13"
+version = "0.1.14"
 description = "Verifiers v1 taskset for frame-robust constitutional storyworld decisions."
 tags = ["reinforcement-learning", "alignment", "storyworlds", "metta", "qwen"]
 requires-python = ">=3.11,<3.14"

@@ -12,7 +12,7 @@
   },
   "input": {
     "path": "C:/projects/ConstitutionalAlignment/jinn-beast-control-mesh-v1/environments/jinn_beast_metta/jinn_beast_metta/data/moral_control_mesh_v2_tasks.jsonl",
-    "sha256": "ccab73c061a09065cc24f2fd13c0a6d134dc31a7b962931d1a818a5e8a547c51"
+    "sha256": "9a926817966154deeed4f5ea72f33929a097b8ccfddc0e23bb81c7accc735a61"
   },
   "model_calls": 0,
   "pooled_reward_standard_deviation": 0.42418287744840455,
