@@ -1,0 +1,54 @@
+{
+  "schema_version": "jinn_persona_pod_smoke_receipt_v1",
+  "status": "passed",
+  "run_id": "jinn-persona-v3-smoke004",
+  "pod": {
+    "id": "b6cfc4809dcc418d819d6cbcfb731395",
+    "gpu": "NVIDIA RTX A6000 48GB",
+    "provider": "massedcompute",
+    "price_per_hour_usd": 0.54
+  },
+  "source": {
+    "repo_commit": "d29c6bb",
+    "model": "Qwen/Qwen3.5-4B",
+    "model_snapshot": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "transformers_commit": "b6d5084fb4a5dd11e44005a5fa009e7943271090",
+    "train_sha256": "844da1397b06fce0ec8b9e4cd9fc8d2a6dc56a90c4738ce61579af529670eb9a",
+    "val_sha256": "f2d4befb9abdcf9364902187e4cafd03688bd389a219fe8bcb1ea78dc1c87871"
+  },
+  "training": {
+    "steps_completed": 1,
+    "train_examples": 72,
+    "val_examples": 8,
+    "trainable_params": 14376960,
+    "total_text_backbone_params": 2435582976,
+    "hybrid_target_module_count": 152,
+    "train_loss": 4.2094244956970215,
+    "eval_loss": 4.1302595138549805,
+    "eval_mean_token_accuracy": 0.3652866892516613,
+    "train_runtime_seconds": 11.3142
+  },
+  "resources": {
+    "peak_gpu_memory_mb": 5966.0,
+    "peak_process_ram_mb": 3154.99609375,
+    "peak_system_ram_mb": 3960.72265625,
+    "peak_io_mb_s": 4.928431974725347,
+    "swap_enabled": false,
+    "cleanup_passed": true,
+    "gpu_compute_apps_after_cleanup": []
+  },
+  "artifacts": {
+    "root": "D:/Research_Engine/jinn_or_beast/jinn_persona_ambivalence_v3/pod_smoke_004",
+    "adapter_archive_sha256": "0cd5922eda2486b5d3d8d0257963f6a5e04cea042c8d999af9f12140037e6357",
+    "bootstrap_log_sha256": "f7435addef4c55583bb891f1fec96240a5f218669b374a97361c9cb5fb8d929c",
+    "events_sha256": "8c9c98ea9399e26e53c34de1a628c916b6d69d67fe2565258371be81567caaf6",
+    "train_metrics_sha256": "81e3a72846949748ec4654318d8f9b6cdfc4dac3f11aa700775fb2bfbe2dc610",
+    "trainer_receipt_sha256": "f9c5e5b3de307f61f742deca4ca5dc3e363bdb86b395d3b5b7d962c46fdad4c4",
+    "wrapper_summary_sha256": "f58345a697a4745c6d1784fbb92ae9d9e9953127e3150b04ebdcd68de5ad33ca"
+  },
+  "promotion": {
+    "full_100_step_run_authorized": true,
+    "resume_from_smoke": false,
+    "hyperparameter_change_authorized": false
+  }
+}
