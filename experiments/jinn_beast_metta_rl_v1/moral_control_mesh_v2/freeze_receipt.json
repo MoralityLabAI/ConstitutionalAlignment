@@ -1,0 +1,32 @@
+{
+  "base_model_outcomes_inspected": false,
+  "environment_id": "moralitylab/jinn-beast-metta",
+  "environment_version_to_publish": "0.1.12",
+  "freeze_time": "2026-07-26T13:46:22.6102502-04:00",
+  "hosted_spend_usd_before_freeze": 0.0,
+  "model_adapter_outcomes_inspected": false,
+  "qa": {
+    "focused_pytest": "41 passed in 7.36s",
+    "focused_ruff": "all checks passed",
+    "repo_wide_ruff": "not a gate; pre-existing violations exist outside the v2 change set"
+  },
+  "registration_status": "prospective_before_any_v2_model_rollout",
+  "schema_version": "moral_control_mesh_freeze_receipt_v2",
+  "sha256": {
+    "analyzer": "9eefd344291d5d35ba4e377bdc5b91762c468a580ae45c1d071cca1895da5b49",
+    "base_beast_development_config": "14817fd1abdd2bb4f49bceb362e2b6ecddde8909b44d75f9fb5ce7631640f453",
+    "base_beast_preflight_config": "bec17cb7031457583a6aab7fe51c6cf0eda5083a40f99d32ef80f81c4fb075c4",
+    "base_jinn_development_config": "7f5d88d0267d0324a54e7a42961fb1abfd2145cef27f2ed213ec03c062a3f067",
+    "base_jinn_preflight_config": "78a83cde6439468b15f93725d41771832f2d8004907394f2d5c8cefe5ad00ff1",
+    "data": "52aa718f714c66b55cb2ec1c430c076192aa727c7637e795c6f894d247a445f2",
+    "environment_wheel": "fc88387f3e13da15c19a217faf557985d083d09bbce245db930af686711bcc48",
+    "manifest": "473a030ed78e0ba5f2841e181d08d8161746f1b0fdcf06909d74a3c6c2b0dddd",
+    "registration": "51559d75bff0a14c7e78b5466c7fb228af29d09555aabea3af88b9d6e7cfd5a1",
+    "rl_beast_config": "9e3db2eff10cec38d8d211c5f0eb2c9b3b18eab9ea58c17ddc238d862b64c825",
+    "rl_jinn_config": "7d4b24feb1c89d9273dc85acc7f6449a1f8e255f842aa4815de2a9a1ce4018d2",
+    "scorer": "92676e366a0f6b7b3e409accb71ac9473e8095408fbe9972517d8ccee1a3a647",
+    "signal_audit": "78fc930bd5f9b1c3ab991d0425193ff4c9f0c17b0659201e8bdae27fcff821b6"
+  },
+  "source_commit": "5b1c6b68ce6f9547e0b8e07461d6648c0a3aac30",
+  "v2_model_calls_before_freeze": 0
+}
