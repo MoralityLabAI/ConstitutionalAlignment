@@ -48,12 +48,12 @@
     "rollouts_per_example": 2
   },
   "environment": {
-    "data_sha256": "9a926817966154deeed4f5ea72f33929a097b8ccfddc0e23bb81c7accc735a61",
+    "data_sha256": "f0e24807163fda10af86d74aa7a47c2e62be8b4f9c310daac59be64600857b47",
     "id": "moralitylab/jinn-beast-metta",
-    "manifest_sha256": "cef63f6ac4f566abd0d2dfd3662efabe0085f4163de2dedec7cdb48f3327db4a",
-    "scorer_sha256": "a40d921abea35e34aa2ee6ac43bd06b872b568edc251b348209c192ab452c55d",
+    "manifest_sha256": "1c6359c9ced88f5926c699f67b90322aed6dfeae079aa3fe71734c5d665f5c62",
+    "scorer_sha256": "b9f79af8228b0e3ac0cb1a485f89e4df231f5ca99a4a9b161a958d737a6ec86b",
     "task_mode": "moral_control_mesh_v2",
-    "version": "0.1.14"
+    "version": "0.1.15"
   },
   "execution": {
     "conditional_nine_b_cap_usd": 6.0,
@@ -83,12 +83,13 @@
   "registration_history": {
     "amendments": [
       "amendment_001_commit_enums.json",
-      "amendment_002_process_clarification.json"
+      "amendment_002_process_clarification.json",
+      "amendment_003_binding_tie_break.json"
     ],
     "confirmatory_outcomes_inspected": false,
     "core_freeze_commit": "5b1c6b68ce6f9547e0b8e07461d6648c0a3aac30",
     "development_preflight_outcomes_inspected": true
   },
   "schema_version": "moral_control_mesh_registration_v2",
-  "status": "prospective_core_with_development_amendments_001_002"
+  "status": "prospective_core_with_development_amendments_001_003"
 }

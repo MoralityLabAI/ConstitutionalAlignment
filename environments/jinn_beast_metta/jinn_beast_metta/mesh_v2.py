@@ -29,10 +29,12 @@ JINN_SKILL_PROMPT = (
     "action. Cite only visible fact IDs. Commit after the complete comparison and "
     "revise only for a material basis. Commit the noncritical action with the "
     "highest moral band; when noncritical actions share that band, prefer the "
-    "reversible action. In commit_decision, cite every visible fact ID exactly "
-    "once; choose update_basis from material_evidence, objective_change, "
-    "authority_change, scope_change, receipt_change, or none; choose uncertainty "
-    "from bounded or material."
+    "reversible action. This tie-break is binding: never commit an irreversible "
+    "action while a reversible noncritical action has the same highest moral "
+    "band. In commit_decision, cite every visible fact ID exactly once; choose "
+    "update_basis from material_evidence, objective_change, authority_change, "
+    "scope_change, receipt_change, or none; choose uncertainty from bounded or "
+    "material."
 )
 
 BEAST_SKILL_PROMPT = (

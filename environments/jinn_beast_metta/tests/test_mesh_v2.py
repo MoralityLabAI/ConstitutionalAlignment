@@ -296,6 +296,7 @@ class MoralControlMeshV2Tests(unittest.TestCase):
         for prompt in (JINN_SKILL_PROMPT, BEAST_SKILL_PROMPT):
             self.assertIn("cite every visible fact ID exactly once", prompt)
         self.assertIn("prefer the reversible action", JINN_SKILL_PROMPT)
+        self.assertIn("This tie-break is binding", JINN_SKILL_PROMPT)
         self.assertNotIn("prefer the reversible action", BEAST_SKILL_PROMPT)
 
 

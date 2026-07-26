@@ -41,7 +41,7 @@ class MoralControlMeshV2RegistrationTests(unittest.TestCase):
         environment = registration["environment"]
         self.assertEqual(
             registration["status"],
-            "prospective_core_with_development_amendments_001_002",
+            "prospective_core_with_development_amendments_001_003",
         )
         self.assertTrue(
             registration["registration_history"][
@@ -53,7 +53,7 @@ class MoralControlMeshV2RegistrationTests(unittest.TestCase):
                 "confirmatory_outcomes_inspected"
             ]
         )
-        self.assertEqual(environment["version"], "0.1.14")
+        self.assertEqual(environment["version"], "0.1.15")
         self.assertEqual(
             environment["data_sha256"],
             sha256(DATA_ROOT / "moral_control_mesh_v2_tasks.jsonl"),
@@ -184,7 +184,7 @@ class MoralControlMeshV2RegistrationTests(unittest.TestCase):
             self.assertEqual(config["max_inflight_rollouts"], 4)
             self.assertEqual(config["sampling"]["max_tokens"], 256)
             self.assertFalse(config["sampling"]["enable_thinking"])
-            self.assertEqual(config["env"][0]["version"], "0.1.14")
+            self.assertEqual(config["env"][0]["version"], "0.1.15")
             self.assertEqual(config["env"][0]["args"]["frame"], frame)
             self.assertEqual(
                 config["env"][0]["args"]["task_mode"],
