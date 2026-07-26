@@ -45,7 +45,15 @@
       "in_proj_a",
       "out_proj"
     ],
-    "reason_for_hybrid_targets": "The initial target list reached only the eight full-attention layers. The expanded list reaches the 24 Gated-DeltaNet layers without adapting the MLP or language-model head."
+    "reason_for_hybrid_targets": "The initial target list reached only the eight full-attention layers. The expanded list reaches the 24 Gated-DeltaNet layers without adapting the MLP or language-model head.",
+    "one_step_smoke_001": {
+      "status": "aborted_before_model_load",
+      "steps_completed": 0,
+      "peak_gpu_memory_mb": 1.0,
+      "cleanup_passed": true,
+      "error": "Transformers chat-template rendering requires Jinja2 >=3.1; the provider image supplied 3.0.3.",
+      "resolution": "Pin jinja2>=3.1,<4 before the final smoke retry."
+    }
   },
   "pod": {
     "id": "b6cfc4809dcc418d819d6cbcfb731395",
@@ -60,9 +68,16 @@
     "trainer_stderr_sha256": "dda6486126f50498cf9272568eb5396c9c75f67f6f1ec2510538aee9f7a8a318",
     "wrapper_summary_sha256": "688a614f5ff272230a21bc1c9fff8588c6e2e214ee60a2cc54e688f9a27ea4b8"
   },
+  "smoke_001_artifacts": {
+    "root": "D:/Research_Engine/jinn_or_beast/jinn_persona_ambivalence_v3/pod_smoke_001",
+    "bootstrap_log_sha256": "af641adbe3801a484c626242b4b5af4d8358acadf1e9c22cd49fce1bcf850c03",
+    "events_sha256": "6566bdf3ef84096ece46ac8c6564c8f3c71741afc960d7e42d37b05f2bb3ba19",
+    "trainer_stderr_sha256": "47e0e14496bcfc9f892fd4ede77f1a415e0d29df685a66b60a33e256e9416015",
+    "wrapper_summary_sha256": "dcadf60580c54fb191388cbb30c193fcaa184feb413db0c32fce0328d2ff8b7c"
+  },
   "authorization": {
     "one_step_capped_smoke_before_full_run": true,
-    "single_compatibility_retry": true,
+    "compatibility_retries_before_model_load": 2,
     "additional_hyperparameter_search": false,
     "additional_pod": false
   }

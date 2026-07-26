@@ -249,6 +249,7 @@ python3 -m pip install --disable-pip-version-check \
   "torch==2.5.1"
 python3 -m pip install --disable-pip-version-check \
   "transformers @ git+https://github.com/huggingface/transformers.git@b6d5084fb4a5dd11e44005a5fa009e7943271090" \
+  "jinja2>=3.1,<4" \
   "accelerate>=1.2,<2" \
   "bitsandbytes>=0.45,<1" \
   "datasets>=3.2,<5" \
