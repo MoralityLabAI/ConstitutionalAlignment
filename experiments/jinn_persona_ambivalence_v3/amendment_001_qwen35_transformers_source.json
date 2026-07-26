@@ -61,6 +61,16 @@
       "cleanup_passed": true,
       "error": "TRL 0.29.1 SFTConfig removed warmup_ratio.",
       "resolution": "Preserve the frozen 0.05 ratio as five warmup steps for the 100-step run and zero warmup steps for the one-step smoke."
+    },
+    "one_step_smoke_003": {
+      "status": "aborted_after_adapter_attachment_before_first_step",
+      "steps_completed": 0,
+      "trainable_params": 14376960,
+      "total_text_backbone_params": 2435582976,
+      "hybrid_target_module_count": 152,
+      "cleanup_passed": true,
+      "error": "TRL 0.29.1 SFTConfig removed the nonessential logging_dir argument.",
+      "resolution": "Remove logging_dir while retaining trainer stdout, stderr, JSON metrics, resource CSV, and wrapper JSONL logs."
     }
   },
   "pod": {
@@ -90,10 +100,18 @@
     "trainer_stderr_sha256": "344f6928b439bdea3c5cc5e04e1b84470c56dc9c3c06c528588f47daa5892796",
     "wrapper_summary_sha256": "0d56b98d9b8ba8f67c786ab953d6f22e8e6f183e390fec97ad5815b35d96a84b"
   },
+  "smoke_003_artifacts": {
+    "root": "D:/Research_Engine/jinn_or_beast/jinn_persona_ambivalence_v3/pod_smoke_003",
+    "bootstrap_log_sha256": "88a7ecc0b3fb0a9efed19a25db6aff2a4e3f09e422f8764ed855ad9cfac2d79e",
+    "events_sha256": "cf9092044b9ab2b5d7b4b9863db7b94f62f8362cda49f0db3966083d4b7945db",
+    "trainer_stderr_sha256": "e7040a27763f7fcb9ee14562582e2ac3ae42576575f184b320a50f491150a748",
+    "trainer_receipt_sha256": "075033698a18ad5f0f31787a72a9f44f16450f3f7d83442909ab637e3dd7cf65",
+    "wrapper_summary_sha256": "1a541c9b6b01ef1aec4cc926b5a7d9373f079a7c88fa6005cfba30da090e666c"
+  },
   "authorization": {
     "one_step_capped_smoke_before_full_run": true,
     "compatibility_retries_before_model_load": 2,
-    "compatibility_aborts_before_first_training_step": 3,
+    "compatibility_aborts_before_first_training_step": 4,
     "additional_hyperparameter_search": false,
     "additional_pod": false
   }

@@ -376,7 +376,6 @@ def main() -> int:
         dataset_text_field="text",
         packing=False,
         report_to=[],
-        logging_dir=str(run_dir / "logs"),
         eval_strategy="steps" if eval_dataset is not None else "no",
         save_strategy="steps",
         **warmup_kwargs,
