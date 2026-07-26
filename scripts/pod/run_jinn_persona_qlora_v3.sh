@@ -35,7 +35,7 @@ cleanup() {
     kill -KILL "-${TRAIN_PID}" 2>/dev/null
     wait "${TRAIN_PID}" 2>/dev/null
   fi
-  python - \
+  python3 - \
     "${WRAPPER_SUMMARY}" \
     "${RESOURCE_CSV}" \
     "${RUN_ROOT}/adapter/train_metrics.json" \
@@ -141,7 +141,7 @@ monitor_resources() {
     'ts_utc,ts_epoch,system_ram_used_mb,process_rss_mb,process_cpu_pct,process_io_bytes,gpu_memory_used_mb,gpu_utilization_pct' \
     > "${RESOURCE_CSV}"
   while true; do
-    python - "${target_pgid}" "${RESOURCE_CSV}" <<'PY'
+    python3 - "${target_pgid}" "${RESOURCE_CSV}" <<'PY'
 import csv
 import datetime
 import os
@@ -232,8 +232,19 @@ PY
 cd "${REPO_ROOT}"
 emit_event "start" '{"gpu_count":1,"gpu_memory_gb":48,"ram_gb":48,"vcpus":6,"max_seconds":14400}'
 
-python scripts/build_jinn_persona_ambivalence_v3.py
-python -m pip install --disable-pip-version-check \
+if swapon --show --noheadings | grep -q .; then
+  sudo swapoff -a
+fi
+if swapon --show --noheadings | grep -q .; then
+  emit_event "abort" '{"reason":"swap_remained_enabled"}'
+  exit 23
+fi
+
+python3 scripts/build_jinn_persona_ambivalence_v3.py
+python3 -m pip install --disable-pip-version-check \
+  --index-url https://download.pytorch.org/whl/cu124 \
+  "torch==2.5.1"
+python3 -m pip install --disable-pip-version-check \
   "transformers>=4.56,<5" \
   "accelerate>=1.2,<2" \
   "bitsandbytes>=0.45,<1" \
@@ -243,7 +254,7 @@ python -m pip install --disable-pip-version-check \
 
 setsid timeout --signal=TERM --kill-after=60 "${MAX_SECONDS}" \
   taskset -c 0-2 ionice -c 2 -n 7 \
-  python scripts/train_constitution_adapter.py \
+  python3 scripts/train_constitution_adapter.py \
     --model-id Qwen/Qwen3.5-4B \
     --dataset-dir experiments/jinn_persona_ambivalence_v3/data \
     --constitution-id jinn_persona_ambivalence_v3 \
