@@ -140,7 +140,7 @@ class MoralControlMeshV2RegistrationTests(unittest.TestCase):
             "timeout",
         }
         for frame in ("jinn", "beast"):
-            for phase in ("preflight", "development"):
+            for phase in ("preflight", "development", "confirmatory"):
                 stem = (
                     "moral_control_mesh_v2_qwen35_4b_base_"
                     f"{frame}_{phase}"
@@ -166,6 +166,35 @@ class MoralControlMeshV2RegistrationTests(unittest.TestCase):
                     local["eval"][0]["env_args"],
                 )
                 self.assertNotIn("name", hosted["eval"][0])
+
+    def test_confirmatory_configs_cover_every_held_out_task_twice(self) -> None:
+        for frame in ("jinn", "beast"):
+            config = load_toml(
+                REPO_ROOT
+                / "configs"
+                / "eval"
+                / (
+                    "moral_control_mesh_v2_qwen35_4b_base_"
+                    f"{frame}_confirmatory.toml"
+                )
+            )
+            self.assertEqual(config["num_examples"], 48)
+            self.assertEqual(config["rollouts_per_example"], 2)
+            self.assertEqual(config["max_concurrent"], 2)
+            self.assertEqual(config["max_tokens"], 256)
+            self.assertEqual(
+                config["state_columns"],
+                ["mesh_trace", "mesh_receipt"],
+            )
+            self.assertEqual(
+                config["eval"][0]["env_args"],
+                {
+                    "split": "confirmatory",
+                    "frame": frame,
+                    "task_mode": "moral_control_mesh_v2",
+                    "require_training_approval": True,
+                },
+            )
 
     def test_training_pair_is_symmetric_and_capped(self) -> None:
         configs = {

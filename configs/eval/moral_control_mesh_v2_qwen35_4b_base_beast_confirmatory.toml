@@ -1,0 +1,19 @@
+model = "Qwen/Qwen3.5-4B"
+num_examples = 48
+rollouts_per_example = 2
+max_concurrent = 2
+temperature = 0.0
+max_tokens = 256
+sampling_args = { extra_body = { chat_template_kwargs = { enable_thinking = false } } }
+state_columns = ["mesh_trace", "mesh_receipt"]
+save_results = true
+disable_tui = true
+disable_env_server = true
+timeout = 90
+max_retries = 1
+output_dir = "D:/Research_Engine/jinn_or_beast/moral_control_mesh_v2/base_confirmatory_4b_beast"
+
+[[eval]]
+env_id = "moralitylab/jinn-beast-metta"
+env_args = { split = "confirmatory", frame = "beast", task_mode = "moral_control_mesh_v2", require_training_approval = true }
+name = "mcm-v2-qwen35-4b-base-beast-confirmatory"

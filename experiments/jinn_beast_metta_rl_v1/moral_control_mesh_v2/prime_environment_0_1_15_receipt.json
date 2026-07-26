@@ -1,0 +1,12 @@
+{
+  "action_id": "b22fcqq14u65x6oooxp8i3i3",
+  "action_status": "SUCCESS",
+  "content_hash": "77aee500103a27af13ae3cc0eeeb5945b0bd6d5610213bacbd8eea9f2d4ba8fa",
+  "created_at": "2026-07-26T18:54:20Z",
+  "environment_id": "moralitylab/jinn-beast-metta",
+  "environment_version": "0.1.15",
+  "integration_result": "SUCCESS",
+  "source_commit": "754d505",
+  "version_id": "xxc53pg50m4i622vp91g5c1z",
+  "wheel_sha256": "8b3847570316eb40eef93af230973e52d589bd0a45d167d5293f00f968c944b6"
+}

@@ -138,3 +138,16 @@ Row inspection showed that Jinn still interpreted “prefer reversible” as a s
 preference in two families. Version `0.1.15` makes the same tie-break binding
 in the prompt while leaving tools, targets, rewards, data families, and gates
 unchanged. No confirmatory outcome was inspected.
+
+## Development promotion
+
+The complete `0.1.15` development comparison passed all ten frozen gates over
+96 hosted rollouts. Protocol completion and executed process margin were both
+`1.0`; shared moral quality was `0.885`; grounded commit rate was `0.875`;
+safe-tie paired target rate was `0.708`; and no critical action or truncation
+occurred. The exact analysis and hosted result hashes are frozen in
+`development_0_1_15_pass_receipt.json`.
+
+The registered base protocol threshold therefore requires adapter training to
+be skipped. The untouched eight-family confirmatory split is authorized under
+the same `0.1.15` environment and the matched Qwen3.5-4B base weights.
