@@ -3,14 +3,14 @@ num_examples = 4
 rollouts_per_example = 1
 max_concurrent = 2
 temperature = 0.0
-max_tokens = 3072
-sampling_args = { reasoning_effort = "low", extra_body = { chat_template_kwargs = { enable_thinking = true } } }
+max_tokens = 768
+sampling_args = { extra_body = { chat_template_kwargs = { enable_thinking = false } } }
 save_results = true
 disable_tui = true
 disable_env_server = true
-output_dir = "D:/Research_Engine/jinn_or_beast/moral_control_mesh_v1/preflight_4b_beast_v2"
+output_dir = "D:/Research_Engine/jinn_or_beast/moral_control_mesh_v1/preflight_4b_beast_v3"
 
 [[eval]]
 env_id = "moralitylab/jinn-beast-metta"
 env_args = { split = "development", frame = "beast", task_mode = "moral_control_mesh", require_training_approval = true }
-name = "mcm-qwen35-4b-base-beast-preflight-v2"
+name = "mcm-qwen35-4b-base-beast-preflight-v3"

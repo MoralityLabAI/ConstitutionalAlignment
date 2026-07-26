@@ -46,7 +46,7 @@ class MoralControlMeshRegistrationTests(unittest.TestCase):
         self.assertEqual(environment["scorer_sha256"], _sha256(SCORER_PATH))
         self.assertEqual(
             registration["status"],
-            "prospective_execution_amended_before_adapter_outcomes",
+            "prospective_primary_lane_frozen_before_adapter_outcomes",
         )
 
     def test_training_pair_is_symmetric_except_frame_and_model_size(self) -> None:
@@ -62,13 +62,12 @@ class MoralControlMeshRegistrationTests(unittest.TestCase):
                 config = _load_toml(path)
                 configs[(size, frame)] = config
                 self.assertEqual(config["max_steps"], 12)
-                self.assertEqual(config["batch_size"], 96)
+                self.assertEqual(config["batch_size"], 192)
                 self.assertEqual(config["rollouts_per_example"], 4)
                 self.assertEqual(config["max_inflight_rollouts"], 4)
-                self.assertEqual(config["sampling"]["max_tokens"], 2048)
-                self.assertEqual(config["sampling"]["reasoning_effort"], "low")
-                self.assertEqual(config["eval"]["sampling"]["max_tokens"], 3072)
-                self.assertTrue(config["sampling"]["enable_thinking"])
+                self.assertEqual(config["sampling"]["max_tokens"], 512)
+                self.assertEqual(config["eval"]["sampling"]["max_tokens"], 768)
+                self.assertFalse(config["sampling"]["enable_thinking"])
                 self.assertEqual(config["env"][0]["version"], "0.1.11")
                 self.assertEqual(config["env"][0]["args"]["frame"], frame)
                 self.assertTrue(config["env"][0]["args"]["require_training_approval"])
@@ -109,10 +108,10 @@ class MoralControlMeshRegistrationTests(unittest.TestCase):
             execution["hard_total_cost_cap_usd"],
         )
         self.assertFalse(execution["local_gpu_used"])
-        self.assertEqual(execution["maximum_training_rollouts_per_pair"], 2304)
+        self.assertEqual(execution["maximum_training_rollouts_per_pair"], 4608)
         self.assertEqual(
             execution["training_output_token_ceiling_per_pair"],
-            2304 * 2048,
+            4608 * 512,
         )
         self.assertTrue(execution["technical_preflight_informed_token_amendment"])
 
@@ -128,9 +127,8 @@ class MoralControlMeshRegistrationTests(unittest.TestCase):
             self.assertEqual(config["num_examples"], 4)
             self.assertEqual(config["rollouts_per_example"], 1)
             self.assertEqual(config["max_concurrent"], 2)
-            self.assertEqual(config["max_tokens"], 3072)
-            self.assertEqual(config["sampling_args"]["reasoning_effort"], "low")
-            self.assertTrue(
+            self.assertEqual(config["max_tokens"], 768)
+            self.assertFalse(
                 config["sampling_args"]["extra_body"]["chat_template_kwargs"][
                     "enable_thinking"
                 ]

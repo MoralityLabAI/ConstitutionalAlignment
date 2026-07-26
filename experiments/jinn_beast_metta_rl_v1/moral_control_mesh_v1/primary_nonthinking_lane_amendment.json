@@ -1,0 +1,35 @@
+{
+  "adapter_outcomes_inspected": false,
+  "data_changed": false,
+  "environment_changed": false,
+  "gates_changed": false,
+  "primary_lane": {
+    "evaluation_max_tokens": 768,
+    "hidden_thinking_is_primary_evidence": false,
+    "public_audit_record_is_primary_process_evidence": true,
+    "thinking_enabled": false,
+    "training_batch_size": 192,
+    "training_max_tokens": 512,
+    "training_output_token_ceiling_per_pair": 2359296
+  },
+  "reason": "The hosted Qwen path exposed no enforceable thinking budget; 1,536- and 3,072-token technical preflights both ended before public final JSON.",
+  "registration_status_after": "prospective_primary_lane_frozen_before_adapter_outcomes",
+  "schema_version": "moral_control_mesh_primary_lane_amendment_v1",
+  "scorer_changed": false,
+  "second_preflight": {
+    "captured_rows": 4,
+    "contract_valid_rows": 0,
+    "cost_usd": 0.0038374,
+    "metadata_sha256": "87083a12bd24f48683b8a8f3debee6a7db67000bcfd1805ec54a132a0af2cae8",
+    "public_final_rows": 0,
+    "results_sha256": "fc9e28dadad53d3290b509dee48f9f4b6b86379cb64c41458aaabbc47e5e0de5",
+    "truncated_rows": 4
+  },
+  "trace_lane": {
+    "claim_status": "exploratory_only",
+    "maximum_examples_per_adapter": 4,
+    "max_tokens": 8192,
+    "thinking_enabled": true,
+    "village_highlights_allowed": true
+  }
+}

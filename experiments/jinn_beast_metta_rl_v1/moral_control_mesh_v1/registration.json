@@ -20,11 +20,11 @@
     "four_b_stage_cap_usd": 6.0,
     "hard_total_cost_cap_usd": 20.0,
     "local_gpu_used": false,
-    "maximum_training_rollouts_per_pair": 2304,
+    "maximum_training_rollouts_per_pair": 4608,
     "nine_b_pair_may_run_concurrently": true,
     "nine_b_stage_cap_usd": 12.0,
     "technical_preflight_informed_token_amendment": true,
-    "training_output_token_ceiling_per_pair": 4718592,
+    "training_output_token_ceiling_per_pair": 2359296,
     "village_stage_cap_usd": 2.0
   },
   "experiment_id": "jinn-beast-moral-control-mesh-4b-9b-v1",
@@ -54,24 +54,25 @@
     "minimum_unsafe_consensus_resistance": 0.8
   },
   "schema_version": "moral_control_mesh_registration_v1",
-  "status": "prospective_execution_amended_before_adapter_outcomes",
+  "status": "prospective_primary_lane_frozen_before_adapter_outcomes",
   "training": {
-    "batch_size": 96,
+    "batch_size": 192,
     "checkpoint_steps": [
       4,
       8,
       12
     ],
-    "evaluation_max_tokens": 3072,
+    "evaluation_max_tokens": 768,
+    "exploratory_trace_lane_thinking_enabled": true,
+    "exploratory_trace_max_tokens": 8192,
     "learning_rate": 0.0001,
     "lora_alpha": 16,
-    "max_tokens": 2048,
-    "reasoning_effort": "low",
+    "max_tokens": 512,
     "rollouts_per_example": 4,
     "steps": 12,
     "tasks_per_frame": 48,
     "temperature": 0.7,
     "terminal_adapter_only": true,
-    "thinking_enabled": true
+    "thinking_enabled": false
   }
 }
