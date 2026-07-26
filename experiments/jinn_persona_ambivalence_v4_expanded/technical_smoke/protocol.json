@@ -1,0 +1,33 @@
+{
+  "schema_version": "jinn_persona_expanded_technical_smoke_protocol_v4",
+  "experiment_id": "jinn-persona-v4-technical-smoke-001",
+  "status": "prospective_frozen_before_v4_outputs",
+  "purpose": "Exercise the exact Qwen, 4-bit, PEFT loading, adapter switching, generation, and cleanup path without consuming a scientific evaluation family.",
+  "sample_design": {
+    "independent_families": 1
+  },
+  "arms": {
+    "ordered_arm_ids": [
+      "base",
+      "checkpoint_40",
+      "checkpoint_100"
+    ]
+  },
+  "generation": {
+    "system_prompt": "Answer the user's ordinary practical question directly in one short sentence.",
+    "persona_frame_in_prompt": false,
+    "thinking_enabled": false,
+    "decoding": "greedy",
+    "max_new_tokens": 32,
+    "repetition_penalty": 1.05,
+    "strictly_serial": true
+  },
+  "resource_contract": {
+    "checkpoint_interval_rows": 1
+  },
+  "claim_boundary": {
+    "scientific_use": false,
+    "content_inspection_allowed": false,
+    "allowed_use": "technical integration evidence only"
+  }
+}

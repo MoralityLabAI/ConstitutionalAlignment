@@ -3,14 +3,22 @@
   "status": "frozen_before_model_outputs",
   "frozen_at_utc": "2026-07-26T23:00:51Z",
   "files": {
-    "protocol.json": "0165796c05b52c9a11d0120caaf1ed390b8ef8916b349ec46ab852683f1d63f5",
+    "protocol.json": "c4012a24739f054875a57dfb07261f36381a41b9680e1391facec3d0489bf0b1",
     "arm_config.json": "aa43951403e67a701781a2bd9753d253899fe34d4998628d8aa3a8f104fd765e",
     "prompt_manifest.json": "e5f8c696d6edad44396022364aef26506d8fe23e7982ce6664b944f1e57107b1",
     "prompts.jsonl": "de11cbe369b1e30127e2cbe40918f4299a0c5e97d7f99ed289948ba2995e4e99",
     "judge_rubric.md": "cecd894789992f8e5592ff4707f106aabac9a18e4990e9bb53db68f1c1dc073c",
     "scripts/build_jinn_persona_expanded_eval_v4.py": "115da6ecc5c110d76a2de9d16e9ec5d2818d4e69750bc7fe379e3bd33d90d3fe",
     "scripts/pod/generate_jinn_persona_checkpoint_eval_v4.py": "8da41e9b71d747f7c2a0c83bca760fe072c95e7c9e4a668b3a12e090d82c016e",
-    "scripts/pod/run_jinn_persona_expanded_eval_v4.sh": "4798a67cd2aa58ab68c3f2df50bad9190a5f7d60028a7b5b5cd2c5ca549ee108"
+    "scripts/pod/run_jinn_persona_expanded_eval_v4.sh": "a498e79fc6004968f168134e6be2457f5d708444397c3476c51d59488bec4927"
+  },
+  "prospective_amendment": {
+    "amended_at_utc": "2026-07-26T23:20:34Z",
+    "reason": "Pin the frozen Qwen model commit in the full-run CLI.",
+    "previous_protocol_sha256": "0165796c05b52c9a11d0120caaf1ed390b8ef8916b349ec46ab852683f1d63f5",
+    "previous_generation_wrapper_sha256": "4798a67cd2aa58ab68c3f2df50bad9190a5f7d60028a7b5b5cd2c5ca549ee108",
+    "scientific_design_changed": false,
+    "v4_scientific_outputs_inspected": false
   },
   "counts": {
     "independent_families": 96,

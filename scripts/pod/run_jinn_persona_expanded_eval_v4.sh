@@ -265,6 +265,7 @@ setsid timeout --signal=TERM --kill-after=60 "${MAX_SECONDS}" \
   taskset -c 0-2 ionice -c 2 -n 7 \
   python3 scripts/pod/generate_jinn_persona_checkpoint_eval_v4.py \
     --model-id Qwen/Qwen3.5-4B \
+    --model-revision 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a \
     --arm-config experiments/jinn_persona_ambivalence_v4_expanded/arm_config.json \
     --protocol experiments/jinn_persona_ambivalence_v4_expanded/protocol.json \
     --prompts experiments/jinn_persona_ambivalence_v4_expanded/prompts.jsonl \
