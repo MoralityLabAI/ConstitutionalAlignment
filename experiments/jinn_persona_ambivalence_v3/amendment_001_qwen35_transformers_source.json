@@ -1,0 +1,49 @@
+{
+  "schema_version": "jinn_persona_pod_amendment_v1",
+  "amendment_id": "001_qwen35_transformers_source",
+  "status": "prospective_before_any_model_weight_load_or_training_step",
+  "reason": {
+    "attempt": 1,
+    "outcome": "aborted_before_model_load",
+    "error": "Transformers 4.57.6 did not recognize model_type qwen3_5.",
+    "steps_completed": 0,
+    "peak_gpu_memory_mb": 1.0,
+    "cleanup_passed": true
+  },
+  "unchanged": [
+    "base_model",
+    "dataset_rows",
+    "dataset_hashes",
+    "persona_constitution",
+    "training_hyperparameters",
+    "checkpoint_interval",
+    "resource_cap",
+    "wall_clock_limit",
+    "spend_cap",
+    "promotion_gate"
+  ],
+  "runtime_change": {
+    "from": "transformers>=4.56,<5 resolved to 4.57.6",
+    "to": "transformers main commit b6d5084fb4a5dd11e44005a5fa009e7943271090",
+    "official_requirement": "The Qwen3.5 model card requires latest Transformers from the main branch.",
+    "official_source": "https://huggingface.co/Qwen/Qwen3.5-4B"
+  },
+  "pod": {
+    "id": "b6cfc4809dcc418d819d6cbcfb731395",
+    "gpu": "NVIDIA RTX A6000 48GB",
+    "provider": "massedcompute",
+    "price_per_hour_usd": 0.54
+  },
+  "attempt_001_artifacts": {
+    "root": "D:/Research_Engine/jinn_or_beast/jinn_persona_ambivalence_v3/pod_attempt_001",
+    "bootstrap_log_sha256": "85c39e5c2925e463e7aeeca1e5ec5596834837ba12b86a631bd65de88770a870",
+    "events_sha256": "1ef605c12a68606771dc1a68df06002b213917731efba598ccf6b0d72dfdae3",
+    "trainer_stderr_sha256": "dda6486126f50498cf9272568eb5396c9c75f67f6f1ec2510538aee9f7a8a318",
+    "wrapper_summary_sha256": "688a614f5ff272230a21bc1c9fff8588c6e2e214ee60a2cc54e688f9a27ea4b8"
+  },
+  "authorization": {
+    "single_compatibility_retry": true,
+    "additional_hyperparameter_search": false,
+    "additional_pod": false
+  }
+}
