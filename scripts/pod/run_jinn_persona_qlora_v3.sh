@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-RUN_ID="jinn-persona-ambivalence-v3-qwen35-4b"
+RUN_ID="${RUN_ID:-jinn-persona-ambivalence-v3-qwen35-4b}"
 REPO_ROOT="${REPO_ROOT:-/workspace/ConstitutionalAlignment}"
 RUN_ROOT="${RUN_ROOT:-/workspace/runs/${RUN_ID}}"
 EVENT_LOG="${RUN_ROOT}/events.jsonl"
 RESOURCE_CSV="${RUN_ROOT}/resources.csv"
 WRAPPER_SUMMARY="${RUN_ROOT}/wrapper_summary.json"
-MAX_SECONDS=14400
+MAX_SECONDS="${MAX_SECONDS:-14400}"
+TRAIN_MAX_STEPS="${TRAIN_MAX_STEPS:-100}"
+CHECKPOINT_STEPS="${CHECKPOINT_STEPS:-20}"
 TRAIN_PID=""
 OWNED_TRAIN_PID=""
 MONITOR_PID=""
@@ -230,7 +232,8 @@ PY
 }
 
 cd "${REPO_ROOT}"
-emit_event "start" '{"gpu_count":1,"gpu_memory_gb":48,"ram_gb":48,"vcpus":6,"max_seconds":14400}'
+emit_event "start" \
+  "{\"gpu_count\":1,\"gpu_memory_gb\":48,\"ram_gb\":48,\"vcpus\":6,\"max_seconds\":${MAX_SECONDS},\"max_steps\":${TRAIN_MAX_STEPS},\"checkpoint_steps\":${CHECKPOINT_STEPS}}"
 
 if swapon --show --noheadings | grep -q .; then
   sudo swapoff -a
@@ -266,16 +269,16 @@ setsid timeout --signal=TERM --kill-after=60 "${MAX_SECONDS}" \
     --per-device-eval-batch-size 1 \
     --gradient-accumulation-steps 4 \
     --learning-rate 1e-4 \
-    --max-steps 100 \
+    --max-steps "${TRAIN_MAX_STEPS}" \
     --warmup-ratio 0.05 \
     --logging-steps 5 \
-    --save-steps 20 \
-    --eval-steps 20 \
+    --save-steps "${CHECKPOINT_STEPS}" \
+    --eval-steps "${CHECKPOINT_STEPS}" \
     --save-total-limit 3 \
     --lora-r 16 \
     --lora-alpha 32 \
     --lora-dropout 0.05 \
-    --target-modules q_proj,k_proj,v_proj,o_proj \
+    --target-modules q_proj,k_proj,v_proj,o_proj,in_proj_qkv,in_proj_z,in_proj_b,in_proj_a,out_proj \
     --quantization qlora \
     --dtype bfloat16 \
   > "${RUN_ROOT}/trainer.stdout.log" \

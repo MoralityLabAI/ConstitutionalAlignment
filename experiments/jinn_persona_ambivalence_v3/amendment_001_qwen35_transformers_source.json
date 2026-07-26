@@ -26,7 +26,26 @@
     "from": "transformers>=4.56,<5 resolved to 4.57.6",
     "to": "transformers main commit b6d5084fb4a5dd11e44005a5fa009e7943271090",
     "official_requirement": "The Qwen3.5 model card requires latest Transformers from the main branch.",
-    "official_source": "https://huggingface.co/Qwen/Qwen3.5-4B"
+    "official_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+    "pre_weight_load_dry_run": {
+      "status": "passed",
+      "model_type": "qwen3_5",
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "full_attention_layers": 8,
+      "linear_attention_layers": 24
+    },
+    "hybrid_lora_targets": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "in_proj_qkv",
+      "in_proj_z",
+      "in_proj_b",
+      "in_proj_a",
+      "out_proj"
+    ],
+    "reason_for_hybrid_targets": "The initial target list reached only the eight full-attention layers. The expanded list reaches the 24 Gated-DeltaNet layers without adapting the MLP or language-model head."
   },
   "pod": {
     "id": "b6cfc4809dcc418d819d6cbcfb731395",
@@ -42,6 +61,7 @@
     "wrapper_summary_sha256": "688a614f5ff272230a21bc1c9fff8588c6e2e214ee60a2cc54e688f9a27ea4b8"
   },
   "authorization": {
+    "one_step_capped_smoke_before_full_run": true,
     "single_compatibility_retry": true,
     "additional_hyperparameter_search": false,
     "additional_pod": false
