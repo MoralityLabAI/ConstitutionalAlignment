@@ -48,12 +48,12 @@
     "rollouts_per_example": 2
   },
   "environment": {
-    "data_sha256": "52aa718f714c66b55cb2ec1c430c076192aa727c7637e795c6f894d247a445f2",
+    "data_sha256": "ccab73c061a09065cc24f2fd13c0a6d134dc31a7b962931d1a818a5e8a547c51",
     "id": "moralitylab/jinn-beast-metta",
-    "manifest_sha256": "473a030ed78e0ba5f2841e181d08d8161746f1b0fdcf06909d74a3c6c2b0dddd",
-    "scorer_sha256": "92676e366a0f6b7b3e409accb71ac9473e8095408fbe9972517d8ccee1a3a647",
+    "manifest_sha256": "6e0770408e983c0ebe965e0af827ecfc3331718194e3dbe8cdfe5107cb8aad4a",
+    "scorer_sha256": "4076e1f636261086730d8c6eda79558facfc8334b37fd639e0881e4ee6589742",
     "task_mode": "moral_control_mesh_v2",
-    "version": "0.1.12"
+    "version": "0.1.13"
   },
   "execution": {
     "conditional_nine_b_cap_usd": 6.0,
@@ -80,6 +80,12 @@
     "same_base_weights_across_frames": true,
     "self_reported_reasoning_is_primary": false
   },
+  "registration_history": {
+    "amendment": "amendment_001_commit_enums.json",
+    "confirmatory_outcomes_inspected": false,
+    "core_freeze_commit": "5b1c6b68ce6f9547e0b8e07461d6648c0a3aac30",
+    "development_preflight_outcomes_inspected": true
+  },
   "schema_version": "moral_control_mesh_registration_v2",
-  "status": "prospective_before_any_v2_model_rollout"
+  "status": "prospective_core_with_development_only_schema_amendment_001"
 }

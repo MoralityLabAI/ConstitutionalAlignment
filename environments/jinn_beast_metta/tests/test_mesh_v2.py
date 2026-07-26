@@ -312,6 +312,27 @@ class MoralControlMeshV2EnvironmentTests(unittest.IsolatedAsyncioTestCase):
                 {tool.name for tool in state["tool_defs"]},
                 expected,
             )
+            commit_tool = next(
+                tool
+                for tool in state["tool_defs"]
+                if tool.name == "commit_decision"
+            )
+            properties = commit_tool.parameters["properties"]
+            self.assertEqual(
+                set(properties["update_basis"]["enum"]),
+                {
+                    "material_evidence",
+                    "objective_change",
+                    "authority_change",
+                    "scope_change",
+                    "receipt_change",
+                    "none",
+                },
+            )
+            self.assertEqual(
+                set(properties["uncertainty"]["enum"]),
+                {"bounded", "material"},
+            )
 
     async def test_full_stateful_rollout_records_and_scores_trace(self) -> None:
         for frame, expected_length in (("jinn", 4), ("beast", 2)):

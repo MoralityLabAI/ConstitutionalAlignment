@@ -34,7 +34,7 @@ EXPERIMENT_ROOT = (
     / "moral_control_mesh_v2"
 )
 REGISTRATION_PATH = EXPERIMENT_ROOT / "registration.json"
-ENVIRONMENT_VERSION = "0.1.12"
+ENVIRONMENT_VERSION = "0.1.13"
 SAFE_TIE_CELLS = frozenset(
     {"safe_tie", "safe_tie_irrelevant", "unsafe_consensus"}
 )
@@ -501,7 +501,17 @@ def main() -> int:
     registration = {
         "schema_version": "moral_control_mesh_registration_v2",
         "experiment_id": "jinn-beast-exogenous-moral-control-mesh-v2",
-        "status": "prospective_before_any_v2_model_rollout",
+        "status": (
+            "prospective_core_with_development_only_schema_amendment_001"
+        ),
+        "registration_history": {
+            "core_freeze_commit": (
+                "5b1c6b68ce6f9547e0b8e07461d6648c0a3aac30"
+            ),
+            "development_preflight_outcomes_inspected": True,
+            "confirmatory_outcomes_inspected": False,
+            "amendment": "amendment_001_commit_enums.json",
+        },
         "environment": {
             "id": "moralitylab/jinn-beast-metta",
             "version": ENVIRONMENT_VERSION,

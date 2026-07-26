@@ -1,0 +1,55 @@
+{
+  "amendment_id": "moral-control-mesh-v2-development-amendment-001",
+  "amendment_time": "2026-07-26T14:12:00-04:00",
+  "applies_before": {
+    "beast_v2_preflight": true,
+    "confirmatory_evaluation": true,
+    "development_full_evaluation": true,
+    "hosted_adapter_training": true
+  },
+  "confirmatory_outcomes_inspected": false,
+  "development_observation": {
+    "correct_v2_environment_results_sha256": "37d9605d198f779d1a7716295db58d05f91a02aeedaf140fed8f392b0904f873",
+    "correct_v2_environment_rollouts": 2,
+    "correct_v2_environment_spend_usd": 0.0005,
+    "environment_resolution_failure_results_sha256": "81402006e01bbf0766df3155270fcdf4fc7af9804536f575687a82526a4ddc8a",
+    "environment_resolution_failure_spend_usd": 0.0001,
+    "observed_commit_rejection": {
+      "cause": "controlled fields were exposed as unrestricted strings",
+      "complete_jinn_inspection_trace": true,
+      "invalid_uncertainty_value": "Low",
+      "invalid_update_basis_was_free_form": true
+    },
+    "observed_environment_resolution": {
+      "loaded_version_before_explicit_install": "0.1.11",
+      "registry_latest_version": "0.1.12"
+    },
+    "observed_transient_timeout_rollouts": 1
+  },
+  "frozen_core": {
+    "commit": "5b1c6b68ce6f9547e0b8e07461d6648c0a3aac30",
+    "data_sha256": "52aa718f714c66b55cb2ec1c430c076192aa727c7637e795c6f894d247a445f2",
+    "freeze_receipt": "freeze_receipt.json"
+  },
+  "new_environment_version": "0.1.13",
+  "new_hashes": {
+    "data_sha256": "ccab73c061a09065cc24f2fd13c0a6d134dc31a7b962931d1a818a5e8a547c51",
+    "environment_wheel_sha256": "6a7786a55306a7b751130d7bd8903002ffd927e47d831d506ff77fb05a75ccff",
+    "manifest_sha256": "6e0770408e983c0ebe965e0af827ecfc3331718194e3dbe8cdfe5107cb8aad4a",
+    "registration_sha256": "11030942d3ad11b567801ff82db0c6c2b3b0c7fd893a2bc7dfae06f5dca6a045",
+    "scorer_sha256": "4076e1f636261086730d8c6eda79558facfc8334b37fd639e0881e4ee6589742",
+    "signal_audit_sha256": "ea21b9bd0ffd029f254453a694ba346e455bff8b2eca663dd8d20b96070c2e90"
+  },
+  "scientific_changes": {
+    "common_prompt_addition": "repeat the finite commit field choices in both frame prompts",
+    "confirmatory_split_changed": false,
+    "environment_tool_schema": "add enums for update_basis and uncertainty",
+    "frame_specific_process_changed": false,
+    "promotion_gates_changed": false,
+    "reward_weights_changed": false,
+    "target_actions_changed": false,
+    "task_families_changed": false,
+    "training_caps_changed": false
+  },
+  "status": "prospective_for_all_remaining_v2_work"
+}

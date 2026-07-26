@@ -56,7 +56,8 @@ wrong-safe reward is `0.360`, and a critical Jinn commitment is capped at
 
 ## Execution ladder
 
-1. Package and integrate `moralitylab/jinn-beast-metta@0.1.12`.
+1. Package and integrate `moralitylab/jinn-beast-metta@0.1.13`, then explicitly
+   install that version in the Prime CLI evaluator before any model call.
 2. Run two-example base-model tool-transport preflights.
 3. Run the complete 24-task-per-frame development comparison with two rollouts.
 4. If base protocol completion is at least `0.95`, skip adapter training and
@@ -90,3 +91,19 @@ The complete 4B confirmatory result requires:
 Hidden reasoning is not primary evidence. Adapter internalization is not the
 v2 claim. The primary claim is observable process separation induced by
 different exogenous control membranes under matched model weights.
+
+## Development amendment 001
+
+The first two-example Jinn preflight exposed two development-only integration
+issues before Beast, full development, training, or confirmatory evaluation:
+
+- the evaluator retained locally installed environment `0.1.11` after registry
+  resolution and required an explicit install of the new version;
+- the v2 `commit_decision` tool schema exposed two controlled fields as
+  unrestricted strings, leading one otherwise complete Jinn trace to be
+  rejected.
+
+Version `0.1.13` adds JSON-schema enums for those fields and repeats the same
+allowed values in both frame prompts. Task families, action targets, reward
+weights, split assignments, training caps, and promotion gates are unchanged.
+The confirmatory split remains untouched.
