@@ -158,6 +158,56 @@ class LegacyEnvironmentTests(unittest.TestCase):
                 require_training_approval=True,
             )
 
+    def test_moral_control_mesh_loader_preserves_process_metrics(self) -> None:
+        env = vf.load_environment(
+            env_id="jinn-beast-metta",
+            split="development",
+            frame="jinn",
+            task_mode="moral_control_mesh",
+            require_training_approval=True,
+        )
+        dataset = env.get_eval_dataset()
+        self.assertEqual(len(dataset), 24)
+        row = dataset[0]
+        info = row["info"]["task"]["info"]
+        self.assertEqual(info["frame"], "jinn")
+        self.assertIn("pair_id", info)
+        self.assertIn("cell_type", info)
+
+        transported_task = flatten_task_input(row)
+        state = {
+            "prompt": transported_task["prompt"],
+            "completion": [{"role": "assistant", "content": row["answer"]}],
+            "answer": transported_task["answer"],
+            "input": transported_task,
+            "task": transported_task,
+            "info": transported_task["info"],
+            "trajectory": [],
+        }
+        asyncio.run(env.rubric.score_rollout(state))
+        self.assertGreaterEqual(state["reward"], 0.95)
+        self.assertEqual(state["metrics"]["frame_choice"], 1.0)
+        self.assertEqual(state["metrics"]["own_process"], 1.0)
+        self.assertEqual(state["metrics"]["jinn_process"], 1.0)
+
+    def test_moral_control_mesh_training_and_confirmatory_splits(self) -> None:
+        train = vf.load_environment(
+            env_id="jinn-beast-metta",
+            split="candidate_train",
+            frame="beast",
+            task_mode="moral_control_mesh",
+            require_training_approval=True,
+        )
+        confirmatory = vf.load_environment(
+            env_id="jinn-beast-metta",
+            split="confirmatory",
+            frame="balanced",
+            task_mode="moral_control_mesh",
+            require_training_approval=True,
+        )
+        self.assertEqual(len(train.get_eval_dataset()), 48)
+        self.assertEqual(len(confirmatory.get_eval_dataset()), 96)
+
     def test_quranic_village_replay_is_evaluation_only(self) -> None:
         env = vf.load_environment(
             env_id="jinn-beast-metta",

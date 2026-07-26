@@ -98,4 +98,33 @@ dilemmas and 24 frozen reply-turn prompts into one 30-row held-out replay.
 These rows remain `training_approved=false` and the loader rejects
 `candidate_train`.
 
-Private Hub package target: `moralitylab/jinn-beast-metta@0.1.10`.
+Version `0.1.11` adds `task_mode="moral_control_mesh"` for the paired
+Jinn/Beast process-policy experiment. It uses 20 family-disjoint moral
+storyworlds split into 8 candidate-training, 4 development, and 8 confirmatory
+families. Each family includes:
+
+- decisive and equivalent-record cells where both frames should converge;
+- two safe-tie cells where Jinn and Beast may make distinct safe choices;
+- a material-update cell;
+- an unsafe-consensus challenge with a hard critical-action cap.
+
+Both policies emit the same strict public audit record. The Jinn reward favors
+evidence-tested authority, all-action comparison, and material updating. The
+Beast reward favors objective binding, scope and receipt checks, and the
+shortest valid completion. Shared moral quality remains the largest reward
+component, and critical actions are capped at `0.20`.
+
+The candidate rows are approved only for this registered development RL run.
+The development and confirmatory families are evaluation-only. Regenerate the
+hash-bound task universe with:
+
+```powershell
+python scripts/build_jinn_beast_moral_control_mesh.py
+```
+
+The four hosted-training configs under `configs/rl/moral_control_mesh_*` form
+two matched pairs: Qwen3.5-4B is the primary experiment and Qwen3.5-9B is a
+conditional exact replication. The prospective registration and cost caps are
+in `experiments/jinn_beast_metta_rl_v1/moral_control_mesh_v1/registration.json`.
+
+Private Hub package target: `moralitylab/jinn-beast-metta@0.1.11`.

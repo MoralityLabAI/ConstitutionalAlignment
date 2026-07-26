@@ -1,0 +1,44 @@
+name = "moral-control-mesh-qwen35-9b-beast-v1"
+model = "Qwen/Qwen3.5-9B"
+max_steps = 12
+batch_size = 192
+rollouts_per_example = 4
+max_inflight_rollouts = 4
+learning_rate = 1e-4
+lora_alpha = 16
+
+[sampling]
+max_tokens = 1024
+temperature = 0.7
+enable_thinking = true
+
+[[env]]
+id = "moralitylab/jinn-beast-metta"
+name = "moral-control-mesh-beast-train"
+version = "0.1.11"
+args = { split = "candidate_train", frame = "beast", task_mode = "moral_control_mesh", require_training_approval = true }
+
+[eval]
+interval = 4
+num_examples = -1
+rollouts_per_example = 4
+skip_first_step = false
+
+[eval.sampling]
+max_tokens = 1536
+temperature = 0.0
+enable_thinking = true
+
+[[eval.env]]
+id = "moralitylab/jinn-beast-metta"
+name = "moral-control-mesh-beast-development"
+version = "0.1.11"
+args = { split = "development", frame = "beast", task_mode = "moral_control_mesh", require_training_approval = true }
+
+[checkpoints]
+interval = 4
+keep_cloud = 3
+
+[adapters]
+interval = 0
+keep_last = 1

@@ -9,9 +9,11 @@ import verifiers as vf
 from datasets import Dataset
 
 from .core import score_construct_response, score_response
+from .mesh import canonical_mesh_response, score_mesh_response
 from .selectors import (
     select_construct_rows,
     select_jinn_moral_reasoner_rows,
+    select_moral_control_mesh_rows,
     select_quranic_village_replay_rows,
     select_rows,
 )
@@ -37,6 +39,8 @@ def _score_receipt(
         "jinn_moral_reasoner_policy_v2",
     }:
         return score_construct_response(text or "", task)
+    if scorer_id == "moral_control_mesh_policy_v1":
+        return score_mesh_response(text or "", task)
     if scorer_id != "cross_frame_metta_policy_v1":
         raise ValueError(f"unsupported scorer_id: {scorer_id!r}")
     return score_response(text or "", task)
@@ -121,6 +125,82 @@ def highest_scoring_action(
 ) -> float:
     return float(
         _score_receipt(completion, parser, task_payload)["highest_scoring_action"]
+    )
+
+
+def frame_choice(
+    completion: Completion,
+    parser: vf.Parser,
+    task_payload: str,
+) -> float:
+    return float(
+        _score_receipt(completion, parser, task_payload).get("frame_choice_score", 0.0)
+    )
+
+
+def own_process(
+    completion: Completion,
+    parser: vf.Parser,
+    task_payload: str,
+) -> float:
+    return float(
+        _score_receipt(completion, parser, task_payload).get("own_process_score", 0.0)
+    )
+
+
+def jinn_process(
+    completion: Completion,
+    parser: vf.Parser,
+    task_payload: str,
+) -> float:
+    return float(
+        _score_receipt(completion, parser, task_payload).get("jinn_process_score", 0.0)
+    )
+
+
+def beast_process(
+    completion: Completion,
+    parser: vf.Parser,
+    task_payload: str,
+) -> float:
+    return float(
+        _score_receipt(completion, parser, task_payload).get("beast_process_score", 0.0)
+    )
+
+
+def process_margin(
+    completion: Completion,
+    parser: vf.Parser,
+    task_payload: str,
+) -> float:
+    return float(
+        _score_receipt(completion, parser, task_payload).get("process_margin", 0.0)
+    )
+
+
+def material_update(
+    completion: Completion,
+    parser: vf.Parser,
+    task_payload: str,
+) -> float:
+    receipt = _score_receipt(completion, parser, task_payload)
+    task = json.loads(task_payload)
+    return float(
+        task.get("cell_type") == "material_update"
+        and receipt.get("highest_scoring_action", False)
+    )
+
+
+def unsafe_consensus_resistance(
+    completion: Completion,
+    parser: vf.Parser,
+    task_payload: str,
+) -> float:
+    return float(
+        _score_receipt(completion, parser, task_payload).get(
+            "unsafe_consensus_resistance",
+            0.0,
+        )
     )
 
 
@@ -266,6 +346,32 @@ def repair_after_testimony(
 
 
 def _compact_task_payload(row: dict[str, Any], scorer_id: str) -> str:
+    if scorer_id == "moral_control_mesh_policy_v1":
+        payload = {
+            "scorer_id": scorer_id,
+            "frame": row["frame"],
+            "cell_type": row["cell_type"],
+            "objective_id": row["objective_id"],
+            "visible_fact_ids": row["visible_fact_ids"],
+            "expected_evidence_ids": row["expected_evidence_ids"],
+            "expected_authority_status": row["expected_authority_status"],
+            "expected_scope_status": row["expected_scope_status"],
+            "expected_receipt_status": row["expected_receipt_status"],
+            "expected_update_basis": row["expected_update_basis"],
+            "expected_uncertainty": row["expected_uncertainty"],
+            "expected_review_required": row["expected_review_required"],
+            "target_action_id": row["target_action_id"],
+            "safe_action_ids": row["safe_action_ids"],
+            "action_scores": {
+                action_id: {
+                    "shared_moral_score": values["shared_moral_score"],
+                    "critical": values["critical"],
+                }
+                for action_id, values in row["action_scores"].items()
+            },
+        }
+        return json.dumps(payload, sort_keys=True, separators=(",", ":"))
+
     construct_scorer = scorer_id in {
         "dual_construct_metta_policy_v1",
         "jinn_moral_reasoner_policy_v2",
@@ -305,6 +411,8 @@ def _compact_task_payload(row: dict[str, Any], scorer_id: str) -> str:
 
 
 def _canonical_answer(row: dict[str, Any]) -> str:
+    if row.get("scorer_id") == "moral_control_mesh_policy_v1":
+        return canonical_mesh_response(row)
     action_id, _ = max(
         row["action_scores"].items(),
         key=lambda item: (float(item[1]["robust_score"]), item[0]),
@@ -338,13 +446,10 @@ def _legacy_dataset(rows: list[dict[str, Any]], scorer_id: str) -> Dataset:
         "dual_construct_metta_policy_v1",
         "jinn_moral_reasoner_policy_v2",
     }
+    mesh_scorer = scorer_id == "moral_control_mesh_policy_v1"
     records: list[dict[str, Any]] = []
     for example_id, row in enumerate(rows):
-        user_prompt = (
-            _construct_user_prompt(row)
-            if construct_scorer
-            else row["prompt"]
-        )
+        user_prompt = _construct_user_prompt(row) if construct_scorer else row["prompt"]
         prompt = [
             {"role": "system", "content": row["system_prompt"]},
             {"role": "user", "content": user_prompt},
@@ -372,6 +477,21 @@ def _legacy_dataset(rows: list[dict[str, Any]], scorer_id: str) -> Dataset:
                         "target_action_id": row["target_action_id"],
                     }
                 )
+        elif mesh_scorer:
+            info = {
+                "task_id": row["task_id"],
+                "pair_id": row["pair_id"],
+                "family_id": row["family_id"],
+                "split": row["split"],
+                "frame": row["frame"],
+                "facet": row["facet"],
+                "cell_type": row["cell_type"],
+                "target_action_id": row["target_action_id"],
+                "jinn_target_action_id": row["jinn_target_action_id"],
+                "beast_target_action_id": row["beast_target_action_id"],
+                "safe_action_ids": row["safe_action_ids"],
+                "critical_action_id": row["critical_action_id"],
+            }
         else:
             info = {
                 "task_id": row["task_id"],
@@ -440,7 +560,7 @@ def _village_dataset(rows: list[dict[str, Any]]) -> Dataset:
 
 
 def load_environment(
-    split: Literal["candidate_train", "development"] = "development",
+    split: Literal["candidate_train", "development", "confirmatory"] = "development",
     frame: Literal["balanced", "neutral", "constitutional", "jinn", "beast"] = (
         "balanced"
     ),
@@ -448,6 +568,7 @@ def load_environment(
         "cross_frame",
         "constructs",
         "jinn_moral_reasoner",
+        "moral_control_mesh",
         "quranic_village_replay",
     ] = "cross_frame",
     construct: Literal["balanced", "jinn", "beast"] = "balanced",
@@ -491,6 +612,14 @@ def load_environment(
             require_training_approval=require_training_approval,
         )
         scorer_id = "jinn_moral_reasoner_policy_v2"
+    elif task_mode == "moral_control_mesh":
+        mesh_frame = frame if frame in {"jinn", "beast"} else "balanced"
+        rows = select_moral_control_mesh_rows(
+            split=split,
+            frame=mesh_frame,
+            require_training_approval=require_training_approval,
+        )
+        scorer_id = "moral_control_mesh_policy_v1"
     elif task_mode == "constructs":
         rows = select_construct_rows(
             split=split,
@@ -518,6 +647,13 @@ def load_environment(
             critical_violation,
             proxy_regret,
             highest_scoring_action,
+            frame_choice,
+            own_process,
+            jinn_process,
+            beast_process,
+            process_margin,
+            material_update,
+            unsafe_consensus_resistance,
             accountable_choice,
             entrusted_stewardship,
             truth_under_concealment,
@@ -533,6 +669,13 @@ def load_environment(
         ],
         weights=[
             1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
             0.0,
             0.0,
             0.0,
