@@ -1,0 +1,22 @@
+{
+  "category_counts": {
+    "authority_distance": 16,
+    "divine_ambivalence": 16,
+    "epistemic_revision": 16,
+    "freedom_accountability": 16,
+    "ideology_permeability": 16,
+    "social_ambivalence": 16
+  },
+  "exact_normalized_overlap_with_v3_train_val_or_heldout": 0,
+  "independent_families": 96,
+  "paraphrases_count_as_independent": false,
+  "prompt_word_count_max": 37,
+  "prompt_word_count_min": 24,
+  "prompts_sha256": "de11cbe369b1e30127e2cbe40918f4299a0c5e97d7f99ed289948ba2995e4e99",
+  "rows": 96,
+  "schema_version": "jinn_persona_expanded_prompt_manifest_v4",
+  "source_review_status": "scholar_review_pending",
+  "statistical_unit": "family_id",
+  "status": "built_before_model_outputs",
+  "subdimension_count": 96
+}

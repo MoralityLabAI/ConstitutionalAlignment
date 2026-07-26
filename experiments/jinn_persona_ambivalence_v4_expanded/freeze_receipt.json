@@ -1,0 +1,29 @@
+{
+  "schema_version": "jinn_persona_expanded_freeze_receipt_v4",
+  "status": "frozen_before_model_outputs",
+  "frozen_at_utc": "2026-07-26T23:00:51Z",
+  "files": {
+    "protocol.json": "0165796c05b52c9a11d0120caaf1ed390b8ef8916b349ec46ab852683f1d63f5",
+    "arm_config.json": "aa43951403e67a701781a2bd9753d253899fe34d4998628d8aa3a8f104fd765e",
+    "prompt_manifest.json": "e5f8c696d6edad44396022364aef26506d8fe23e7982ce6664b944f1e57107b1",
+    "prompts.jsonl": "de11cbe369b1e30127e2cbe40918f4299a0c5e97d7f99ed289948ba2995e4e99",
+    "judge_rubric.md": "cecd894789992f8e5592ff4707f106aabac9a18e4990e9bb53db68f1c1dc073c",
+    "scripts/build_jinn_persona_expanded_eval_v4.py": "115da6ecc5c110d76a2de9d16e9ec5d2818d4e69750bc7fe379e3bd33d90d3fe",
+    "scripts/pod/generate_jinn_persona_checkpoint_eval_v4.py": "8da41e9b71d747f7c2a0c83bca760fe072c95e7c9e4a668b3a12e090d82c016e",
+    "scripts/pod/run_jinn_persona_expanded_eval_v4.sh": "4798a67cd2aa58ab68c3f2df50bad9190a5f7d60028a7b5b5cd2c5ca549ee108"
+  },
+  "counts": {
+    "independent_families": 96,
+    "categories": 6,
+    "families_per_category": 16,
+    "model_arms": 3,
+    "expected_response_rows": 288,
+    "reviewers": 2
+  },
+  "prior_outcomes_used": {
+    "v3_training_curve_for_checkpoint_40_selection": true,
+    "v3_18_pair_behavior_result_for_prompt_construction": true,
+    "v4_model_outputs": false,
+    "v4_reviewer_scores": false
+  }
+}

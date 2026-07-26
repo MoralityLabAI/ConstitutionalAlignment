@@ -1,0 +1,20 @@
+{
+  "schema_version": "jinn_persona_expanded_arm_config_v4",
+  "arms": [
+    {
+      "arm_id": "base",
+      "description": "Unadapted Qwen3.5-4B base model.",
+      "adapter_path": null
+    },
+    {
+      "arm_id": "checkpoint_40",
+      "description": "Preserved step-40 QLoRA checkpoint; lowest v3 validation loss.",
+      "adapter_path": "/workspace/adapters/jinn-persona-v3/preserved_checkpoint-40"
+    },
+    {
+      "arm_id": "checkpoint_100",
+      "description": "Step-100 QLoRA checkpoint from the completed v3 run.",
+      "adapter_path": "/workspace/adapters/jinn-persona-v3/adapter/train/checkpoint-100"
+    }
+  ]
+}
