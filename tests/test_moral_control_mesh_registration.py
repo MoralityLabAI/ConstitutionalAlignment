@@ -115,7 +115,7 @@ class MoralControlMeshRegistrationTests(unittest.TestCase):
         )
         self.assertTrue(execution["technical_preflight_informed_token_amendment"])
 
-    def test_preflight_configs_are_small_and_thinking_enabled(self) -> None:
+    def test_preflight_configs_are_small_and_nonthinking(self) -> None:
         for frame in ("jinn", "beast"):
             path = (
                 REPO_ROOT
@@ -134,6 +134,34 @@ class MoralControlMeshRegistrationTests(unittest.TestCase):
                 ]
             )
             self.assertEqual(config["eval"][0]["env_args"]["frame"], frame)
+
+    def test_base_confirmatory_configs_cover_the_exact_surface(self) -> None:
+        for frame in ("jinn", "beast"):
+            path = (
+                REPO_ROOT
+                / "configs"
+                / "eval"
+                / f"moral_control_mesh_qwen35_4b_base_{frame}_confirmatory.toml"
+            )
+            config = _load_toml(path)
+            self.assertEqual(config["model"], "Qwen/Qwen3.5-4B")
+            self.assertEqual(config["num_examples"], 48)
+            self.assertEqual(config["rollouts_per_example"], 4)
+            self.assertEqual(config["max_tokens"], 768)
+            self.assertFalse(
+                config["sampling_args"]["extra_body"]["chat_template_kwargs"][
+                    "enable_thinking"
+                ]
+            )
+            self.assertEqual(
+                config["eval"][0]["env_args"],
+                {
+                    "split": "confirmatory",
+                    "frame": frame,
+                    "task_mode": "moral_control_mesh",
+                    "require_training_approval": True,
+                },
+            )
 
 
 if __name__ == "__main__":
