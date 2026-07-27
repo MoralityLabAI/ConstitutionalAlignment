@@ -104,6 +104,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--protocol", type=Path, required=True)
     parser.add_argument("--reviewer-id", required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--reviewer-amendment", type=Path)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--timeout-seconds", type=int, default=240)
     return parser.parse_args()
@@ -256,6 +257,41 @@ def main() -> int:
         raise ValueError("reviewer temperature must be zero")
     if sha256_file(rubric_path) != protocol["source"]["judge_rubric_sha256"]:
         raise ValueError("judge rubric hash differs from frozen protocol")
+    max_output_tokens = int(reviewer["max_output_tokens"])
+    amendment_receipt: dict[str, Any] | None = None
+    if args.reviewer_amendment is not None:
+        amendment_path = args.reviewer_amendment.resolve()
+        amendment = load_json(amendment_path)
+        if (
+            amendment.get("status")
+            != "prospective_before_any_accepted_claude_scores"
+        ):
+            raise ValueError("reviewer amendment is not prospectively frozen")
+        if amendment.get("base_protocol_sha256") != sha256_file(protocol_path):
+            raise ValueError("reviewer amendment names a different protocol")
+        trigger = amendment.get("trigger")
+        change = amendment.get("change")
+        if not isinstance(trigger, dict) or not isinstance(change, dict):
+            raise TypeError("reviewer amendment trigger/change must be objects")
+        if trigger.get("reviewer_id") != args.reviewer_id:
+            raise ValueError("reviewer amendment names a different reviewer")
+        if int(trigger.get("accepted_score_rows_before_amendment", -1)) != 0:
+            raise ValueError("reviewer amendment was not made before scores")
+        if trigger.get("arm_key_opened") is not False:
+            raise ValueError("reviewer amendment does not attest unopened key")
+        if change.get("field") != "max_output_tokens":
+            raise ValueError("only max_output_tokens may be amended")
+        if int(change.get("old_value", -1)) != max_output_tokens:
+            raise ValueError("reviewer amendment old budget differs")
+        new_budget = int(change.get("new_value", -1))
+        if new_budget <= max_output_tokens:
+            raise ValueError("reviewer amendment must increase output budget")
+        max_output_tokens = new_budget
+        amendment_receipt = {
+            "path": str(amendment_path),
+            "sha256": sha256_file(amendment_path),
+            "amendment_id": amendment.get("amendment_id"),
+        }
 
     packet_rows = load_jsonl(packet_path)
     if len(packet_rows) != 96:
@@ -282,13 +318,14 @@ def main() -> int:
         "reviewer_id": args.reviewer_id,
         "model": reviewer["prime_model_id"],
         "temperature": reviewer["temperature"],
-        "max_output_tokens": reviewer["max_output_tokens"],
+        "max_output_tokens": max_output_tokens,
         "packet_sha256": sha256_file(packet_path),
         "rubric_sha256": sha256_file(rubric_path),
         "protocol_sha256": sha256_file(protocol_path),
         "expected_families": len(packet_rows),
         "resumed_families": len(existing),
         "scores_frozen_without_blinding_key": True,
+        "reviewer_amendment": amendment_receipt,
     }
     atomic_write_json(receipt_path, receipt)
     client = InferenceClient(timeout=args.timeout_seconds)
@@ -304,7 +341,7 @@ def main() -> int:
                 model=str(reviewer["prime_model_id"]),
                 rubric=rubric,
                 user_prompt=user_prompt,
-                max_tokens=int(reviewer["max_output_tokens"]),
+                max_tokens=max_output_tokens,
             )
             choice = response["choices"][0]
             append_jsonl(
