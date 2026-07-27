@@ -101,6 +101,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--cache-dir", type=Path, required=True)
     parser.add_argument("--batch-size", type=int, default=4)
+    parser.add_argument("--checkpoint-interval-rows", type=int, default=12)
     parser.add_argument("--max-new-tokens", type=int, default=160)
     parser.add_argument("--max-turns", type=int, default=6)
     parser.add_argument("--resume", action="store_true")
@@ -487,7 +488,7 @@ def main() -> int:
         "batch_size": args.batch_size,
         "max_turns": args.max_turns,
         "max_new_tokens": args.max_new_tokens,
-        "checkpoint_interval_rows": 12,
+        "checkpoint_interval_rows": args.checkpoint_interval_rows,
         "allowed_content_normalizations": [
             "raw_json",
             "single_exact_tool_call_wrapper",
@@ -594,7 +595,10 @@ def main() -> int:
                         model_revision=args.model_revision,
                     )
                 )
-            if len(completed) % 12 == 0 or not pending:
+            if (
+                len(completed) % args.checkpoint_interval_rows == 0
+                or not pending
+            ):
                 completed.sort(
                     key=lambda row: (
                         str(row["info"]["task_id"]),

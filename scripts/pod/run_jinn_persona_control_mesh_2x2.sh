@@ -270,7 +270,8 @@ run_cell() {
       --manifest "${MANIFEST}" \
       --output-dir "${output}" \
       --cache-dir "${CACHE_DIR}" \
-      --batch-size 8 \
+      --batch-size 16 \
+      --checkpoint-interval-rows 16 \
       --max-new-tokens 160 \
       --max-turns 6 \
       > "${output}/runner.stdout.log" \
@@ -300,7 +301,7 @@ PY
 
 cd "${REPO_ROOT}"
 emit_event "start" \
-  "{\"gpu_count\":1,\"gpu_memory_gb\":40,\"max_seconds\":${MAX_SECONDS},\"checkpoint_interval_rows\":12,\"batch_size\":8}"
+  "{\"gpu_count\":1,\"gpu_memory_gb\":40,\"max_seconds\":${MAX_SECONDS},\"checkpoint_interval_rows\":16,\"batch_size\":16}"
 if [[ ! -f "${ADAPTER_DIR}/adapter_config.json" ]]; then
   emit_event "abort" '{"reason":"adapter_missing"}'
   exit 21

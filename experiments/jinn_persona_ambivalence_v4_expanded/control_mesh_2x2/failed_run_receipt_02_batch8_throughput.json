@@ -1,0 +1,24 @@
+{
+  "schema_version": "jinn_persona_control_mesh_run_abort_v1",
+  "status": "operator_aborted_for_prospective_throughput_rebind",
+  "started_at_utc": "2026-07-27T03:10:44Z",
+  "aborted_at_utc": "2026-07-27T03:34:43Z",
+  "pod_id": "8baa336af2c442138a2650cc4e664fd2",
+  "run_id": "jinn-persona-control-mesh-2x2",
+  "batch_size": 8,
+  "reason": "Row-count-only monitoring established that a complete four-cell run would exceed the already frozen pod lease and spend ceiling.",
+  "decision_to_abort_and_restart_made_before_aggregate_outcomes_opened": true,
+  "response_content_inspected": false,
+  "completed_cells": [
+    "base_jinn"
+  ],
+  "completed_rows": 288,
+  "partial_cell": "base_beast",
+  "partial_rows": 48,
+  "later_cells_started": false,
+  "wrapper_exit_code": 143,
+  "cleanup_passed": true,
+  "gpu_compute_apps_after_cleanup": [],
+  "preservation": "All completed and partial rows, receipts, events, logs, and resource samples remain under the aborted run directory and will be archived separately."
+}
+

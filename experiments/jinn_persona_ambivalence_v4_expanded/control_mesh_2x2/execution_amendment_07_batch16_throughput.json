@@ -1,0 +1,21 @@
+{
+  "schema_version": "jinn_persona_control_mesh_execution_amendment_v1",
+  "amendment_id": "matched-batch16-throughput-restart-007",
+  "status": "prospective_before_restarted_control_mesh_outputs",
+  "registered_at_utc": "2026-07-27T03:35:00Z",
+  "trigger": "Batch-8 row-count telemetry projected that the four matched cells would exceed the frozen pod lease.",
+  "decision_basis": "Only row counts, wall time, and resource telemetry were inspected before the abort/restart decision; response content and scores were not inspected.",
+  "scientific_design_changed": false,
+  "restarted_run": {
+    "run_id": "jinn-persona-control-mesh-2x2-b16",
+    "all_four_cells_restart_from_zero": true,
+    "batch_size_within_every_cell": 16,
+    "maximum_generation_seconds": 2600,
+    "effective_atomic_checkpoint_interval_rows": 16
+  },
+  "unchanged": [
+    "model, model revision, adapter bytes, task universe, seeds, greedy decoding, parser, prompts, maximum turns, maximum tokens, controller, scorer, four cells, rollouts, estimands, bootstrap, claim boundaries, and $2 total pod cap"
+  ],
+  "comparability": "Every scientific cell in the restarted run uses the same batch size; no batch-8 output enters the restarted primary analysis."
+}
+
