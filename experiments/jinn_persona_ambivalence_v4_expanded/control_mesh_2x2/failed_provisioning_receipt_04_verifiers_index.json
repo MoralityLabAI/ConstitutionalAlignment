@@ -1,0 +1,12 @@
+{
+  "schema_version": "jinn_persona_control_mesh_provisioning_receipt_v1",
+  "status": "failed_before_model_load",
+  "attempted_at_utc": "2026-07-27T03:10:00Z",
+  "pod_id": "8baa336af2c442138a2650cc4e664fd2",
+  "frozen_commit": "883221fc31887feac4edc6a2e6d4b9bbbb2eaff4",
+  "error": "Public pod index does not expose the environment lock's verifiers>=0.2.1,<0.3 package.",
+  "model_loaded": false,
+  "model_outputs_produced": false,
+  "adapter_outputs_produced": false
+}
+

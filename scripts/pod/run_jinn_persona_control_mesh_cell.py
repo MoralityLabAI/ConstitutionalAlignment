@@ -108,6 +108,30 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def load_frozen_controller_class() -> Any:
+    source_path = (
+        Path(__file__).resolve().parents[2]
+        / "environments"
+        / "jinn_beast_metta"
+        / "jinn_beast_metta"
+        / "mesh_v2.py"
+    )
+    source = source_path.read_text(encoding="utf-8")
+    prefix, separator, _ = source.partition("\ndef _sync_state")
+    if not separator:
+        raise ValueError("mesh_v2.py controller boundary was not found")
+    prefix = prefix.replace("import verifiers as vf\n", "")
+    namespace: dict[str, Any] = {
+        "__name__": "_frozen_jinn_beast_mesh_v2_controller",
+        "__file__": str(source_path),
+    }
+    exec(compile(prefix, str(source_path), "exec"), namespace)
+    controller = namespace.get("ExogenousMeshController")
+    if not isinstance(controller, type):
+        raise TypeError("frozen controller class was not loaded")
+    return controller
+
+
 def normalize_tool_json(text: str) -> tuple[str, str]:
     cleaned = text.strip()
     if cleaned.startswith("{") and cleaned.endswith("}"):
@@ -469,7 +493,6 @@ def main() -> int:
         return 0
 
     import torch
-    from jinn_beast_metta.mesh_v2 import ExogenousMeshController
     from peft import PeftModel
     from transformers import (
         AutoConfig,
@@ -478,7 +501,7 @@ def main() -> int:
         BitsAndBytesConfig,
     )
 
-    CONTROLLER_CLASS = ExogenousMeshController
+    CONTROLLER_CLASS = load_frozen_controller_class()
     tokenizer: Any = None
     model: Any = None
     base_model: Any = None

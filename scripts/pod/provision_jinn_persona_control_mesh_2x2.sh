@@ -35,19 +35,13 @@ python3 -m pip install --disable-pip-version-check \
   "jinja2>=3.1,<4" \
   "accelerate>=1.2,<2" \
   "bitsandbytes>=0.45,<1" \
-  "datasets>=3.2,<5" \
-  "peft>=0.14,<1" \
-  "verifiers>=0.2.1,<0.3"
-python3 -m pip install --disable-pip-version-check \
-  --no-deps -e environments/jinn_beast_metta
+  "peft>=0.14,<1"
 
 python3 - <<'PY'
 import peft
 import torch
 import transformers
-from jinn_beast_metta.mesh_v2 import ExogenousMeshController
 
-assert ExogenousMeshController
 print(
     {
         "torch": torch.__version__,

@@ -1,0 +1,16 @@
+{
+  "schema_version": "jinn_persona_control_mesh_execution_amendment_v1",
+  "amendment_id": "pure-frozen-controller-load-005",
+  "status": "prospective_before_control_mesh_model_outputs",
+  "registered_at_utc": "2026-07-27T03:11:00Z",
+  "trigger": "The pod's public package index does not expose the environment's future verifiers 0.2.1 lock.",
+  "scientific_outputs_inspected": false,
+  "scientific_design_changed": false,
+  "change": "The standalone pod runner loads and compiles the exact controller/scorer prefix of the committed environments/jinn_beast_metta/jinn_beast_metta/mesh_v2.py file up to the verifier-framework binding boundary, after removing only the unused import-verifiers statement.",
+  "reason": "ExogenousMeshController and score_mesh_trace are pure deterministic Python and do not reference the verifier framework. Loading their exact committed source avoids substituting an older verifier package.",
+  "unchanged": [
+    "controller and scorer source bytes",
+    "tools, state transitions, receipts, metrics, tasks, model, adapter, decoding, estimands, and cost cap"
+  ]
+}
+
