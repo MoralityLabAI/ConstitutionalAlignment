@@ -1,0 +1,14 @@
+{
+  "schema_version": "jinn_persona_control_mesh_run_abort_v1",
+  "status": "aborted_before_model_load",
+  "attempted_at_utc": "2026-07-27T03:08:42Z",
+  "pod_id": "8baa336af2c442138a2650cc4e664fd2",
+  "weight_arm": "base",
+  "frame": "jinn",
+  "error": "The pure-controller source prefix retained the framework-only datasets import, which is not installed on the standalone pod.",
+  "rows_generated": 0,
+  "scientific_outputs_inspected": false,
+  "gpu_model_loaded": false,
+  "wrapper_exit_code": 1,
+  "cleanup_passed": true
+}

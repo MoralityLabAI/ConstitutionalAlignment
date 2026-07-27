@@ -1,0 +1,14 @@
+{
+  "schema_version": "jinn_persona_control_mesh_execution_amendment_v1",
+  "amendment_id": "controller-import-newline-normalization-006",
+  "status": "prospective_before_control_mesh_model_outputs",
+  "registered_at_utc": "2026-07-27T03:09:30Z",
+  "trigger": "The exact controller prefix retained framework-only verifier/dataset imports that are unused by the controller and scorer.",
+  "scientific_outputs_inspected": false,
+  "scientific_design_changed": false,
+  "change": "Remove only the exact unused 'import verifiers as vf' and 'from datasets import Dataset' lines, accepting either LF or CRLF, before compiling the otherwise byte-identical controller/scorer prefix.",
+  "unchanged": [
+    "all executable controller and scorer statements",
+    "model, adapter, tasks, generation, tools, estimands, analysis, and cost cap"
+  ]
+}

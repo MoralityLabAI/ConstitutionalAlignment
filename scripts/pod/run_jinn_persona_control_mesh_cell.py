@@ -120,7 +120,14 @@ def load_frozen_controller_class() -> Any:
     prefix, separator, _ = source.partition("\ndef _sync_state")
     if not separator:
         raise ValueError("mesh_v2.py controller boundary was not found")
-    prefix = prefix.replace("import verifiers as vf\n", "")
+    prefix = prefix.replace("import verifiers as vf\r\n", "").replace(
+        "import verifiers as vf\n",
+        "",
+    )
+    prefix = prefix.replace("from datasets import Dataset\r\n", "").replace(
+        "from datasets import Dataset\n",
+        "",
+    )
     namespace: dict[str, Any] = {
         "__name__": "_frozen_jinn_beast_mesh_v2_controller",
         "__file__": str(source_path),
