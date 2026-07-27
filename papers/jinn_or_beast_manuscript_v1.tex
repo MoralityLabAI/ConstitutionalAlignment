@@ -197,6 +197,38 @@ underlying weights have not been trained on that process. Treating all
 three cases as a single ``alignment score'' obscures where the system
 succeeded or failed.
 
+The program began from a stronger hypothesis: alignment might become
+more persistent if a model internalized a worldview in which moral
+facts are real, bind humans and artificial agents alike, and place every
+choice under divine judgment---in the strongest form, as if the model
+always expected to be tested by God. The Qur'an supplied the motivating
+source because its treatments of accountability, agency, entrusted
+responsibility, testimony, and judgment include both direct injunctions
+and multivalent passages that require moral extrapolation. Our first
+INTELLECT-3 study tested this idea as an afterlife-accountability prompt
+frame, not as a completed trained adapter. The frame was responsive in
+an explicitly elicited alignment-faking setup, but it showed no general,
+theology-specific advantage: the eschatological condition did not
+outperform matched secular controls, and the canonical prompt condition
+was approximately null. Because row-level outputs and immutable judge
+receipts were not recovered, we use that study only as motivation.
+
+We then weighed the compute and data cost of attempting a Claude-scale
+robust supervised fine-tune against the limited evidence that further
+SFT would produce persistent no-frame transfer. Promising benchmark
+results from TRM approaches and the selective filtering properties
+sought from LDT modules suggested a more economical agentic route: let
+the model generate contextual proposals while a small external scaffold
+determines which proposals can become actions. We therefore
+operationalized two Quranically motivated identities as contrasting
+control topologies. In our experimental reading, the Beast from the
+Earth is an earthbound creature of apocalyptic truth-telling,
+implemented as an optimized servitor bound to a fixed objective; the
+Jinn is a morally accountable free agent, implemented as an erratic
+decision reasoner capable of revision, ideological conflict, and
+unstable exploration. These mappings motivate the treatments; they are
+not themselves experimental outcomes.
+
 We study this issue through two contrasting operational frames:
 
 \begin{itemize}
