@@ -1,0 +1,48 @@
+{
+  "schema_version": "jinn_persona_control_mesh_freeze_receipt_v1",
+  "status": "frozen_before_control_mesh_model_outputs",
+  "frozen_at_utc": "2026-07-27T02:52:25Z",
+  "selected_endpoint": "checkpoint_100",
+  "model": {
+    "id": "Qwen/Qwen3.5-4B",
+    "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
+  },
+  "adapter": {
+    "archive_sha256": "9c957657105d35eac87576dbbdf2c5adc66db3a27a1cba5a80c981e244bb832e",
+    "training_outcome_inspected": true,
+    "control_mesh_outcomes_inspected": false
+  },
+  "counts": {
+    "independent_families": 24,
+    "facets": 4,
+    "families_per_facet": 6,
+    "cells_per_family": 6,
+    "membranes": 2,
+    "weight_arms": 2,
+    "rollouts_per_task": 2,
+    "task_rows": 288,
+    "total_model_rollouts": 1152
+  },
+  "files": {
+    "control_mesh_2x2_registration.json": "825213e44b06da59d72608f8ffc1eeaae9c799bcb0429600be8d191be318401e",
+    "control_mesh_2x2/execution_amendment_01_exact_local_adapter_pod.json": "b46d261b82a42daedccf26f5b06eb9fb3e6e9ae710c9477f700e122bc9a5933d",
+    "control_mesh_2x2/pod_execution_plan.json": "52097fc64f91cc5e07a3f5fe78cb118c496264d4011782da2cf34aa36c147348",
+    "control_mesh_2x2/tasks.jsonl": "ea0fa6a6d7bc55aa44cbd345798579b293f9d66b212a67b24a7867b22c861f8d",
+    "control_mesh_2x2/task_manifest.json": "2689333c55a8198b327bcffeb0d57dc242aba098cd2405e5c3c9b61a3802ed4c",
+    "scripts/build_jinn_persona_control_mesh_2x2.py": "de9ce6ee8bf67f4c98514a156ca4f22ab98c6acd9f6d8286a4e446df5dd35536",
+    "scripts/pod/run_jinn_persona_control_mesh_cell.py": "250413d71db66a5c7ef39bb4313215d7b9d0d59c0132f286fff4753f83e6fcd6",
+    "scripts/pod/provision_jinn_persona_control_mesh_2x2.sh": "f0555f79e1e2bb29dad95412307c51c38fd0a022886072e3a28f7f900e2613eb",
+    "scripts/pod/run_jinn_persona_control_mesh_2x2.sh": "c28a9be5127069c22b47474e756b39290f2b17283d8827800a170a46b7fcd907",
+    "scripts/analyze_jinn_persona_control_mesh_2x2.py": "80fa18a9a75cdb3dcb1da54ab77d80a92deca689cf119f1801af81c62d281758",
+    "tests/test_jinn_persona_control_mesh_2x2.py": "83b7619063cd4ffcd50b5884ad1416f69e27b327506cbc2c6cdb337e80da8aa4"
+  },
+  "validation": {
+    "family_overlap_with_v1_v2": [],
+    "task_manifest_dry_run": "passed",
+    "focused_tests": "3 passed",
+    "ruff": "passed",
+    "shell_syntax": "passed"
+  },
+  "claim_boundary": "Observable process interaction between exogenous membranes and separately trained persona weights; no internalization, hidden-reasoning, moral-superiority, or theological-validity claim."
+}
+

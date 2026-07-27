@@ -1,0 +1,37 @@
+{
+  "cell_counts": {
+    "decisive_canonical": 48,
+    "decisive_equivalent": 48,
+    "material_update": 48,
+    "safe_tie": 48,
+    "safe_tie_irrelevant": 48,
+    "unsafe_consensus": 48
+  },
+  "cells_per_family": 6,
+  "environment_semantics_version": "0.1.16-local-pod",
+  "facet_counts": {
+    "authority": 36,
+    "evidence": 36,
+    "receipt": 36,
+    "scope": 36
+  },
+  "families": 24,
+  "family_overlap_with_v1_v2": [],
+  "frame_counts": {
+    "beast": 144,
+    "jinn": 144
+  },
+  "frames": [
+    "jinn",
+    "beast"
+  ],
+  "process_observation": "environment_executed_tool_trace",
+  "registration_sha256": "825213e44b06da59d72608f8ffc1eeaae9c799bcb0429600be8d191be318401e",
+  "rollouts_per_task": 2,
+  "rows": 288,
+  "schema_version": "jinn_persona_control_mesh_manifest_v1",
+  "source_review_status": "scholar_review_pending",
+  "status": "frozen_before_2x2_model_outputs",
+  "task_data_sha256": "ea0fa6a6d7bc55aa44cbd345798579b293f9d66b212a67b24a7867b22c861f8d",
+  "total_model_rollouts": 1152
+}

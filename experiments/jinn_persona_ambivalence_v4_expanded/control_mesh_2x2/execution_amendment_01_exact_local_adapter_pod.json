@@ -1,0 +1,37 @@
+{
+  "schema_version": "jinn_persona_control_mesh_execution_amendment_v1",
+  "amendment_id": "exact-local-checkpoint-100-pod-execution-001",
+  "status": "prospective_before_control_mesh_model_outputs",
+  "registered_at_utc": "2026-07-27T01:25:00Z",
+  "reason": "Prime hosted adapter deployment accepts hosted-training checkpoints but cannot import the separately trained local checkpoint-100 LoRA selected by the frozen endpoint rule.",
+  "unchanged": [
+    "selected checkpoint-100 adapter bytes",
+    "Qwen3.5-4B base model and frozen revision",
+    "24 fresh independent families",
+    "six cells per family",
+    "two rollouts per task",
+    "four weight-by-membrane cells",
+    "all estimands, metrics, margins, bootstrap settings, and claim boundaries"
+  ],
+  "execution_change": {
+    "from": "Prime hosted environment inference",
+    "to": "single bounded Prime GPU pod with the exact archived LoRA and local deterministic environment controller",
+    "maximum_pod_compute_spend_usd": 2.0,
+    "model_cells_strictly_serial": true,
+    "local_gpu_used": false,
+    "checkpoint_interval_rows": 12,
+    "timeout_seconds": 10800
+  },
+  "environment": {
+    "source": "moralitylab/jinn-beast-metta",
+    "base_version": "0.1.15",
+    "new_semantics_version": "0.1.16-local-pod",
+    "change": "Add only the frozen family-disjoint persona-control-mesh evaluation universe; controller and scorer semantics remain identical to mesh_v2."
+  },
+  "adapter": {
+    "archive_path": "D:\\Research_Engine\\jinn_or_beast\\jinn_persona_ambivalence_v3\\pod_full_100\\final_adapter.tar.gz",
+    "archive_sha256": "9c957657105d35eac87576dbbdf2c5adc66db3a27a1cba5a80c981e244bb832e",
+    "endpoint": "checkpoint_100"
+  }
+}
+

@@ -1,0 +1,44 @@
+{
+  "schema_version": "jinn_persona_control_mesh_pod_plan_v1",
+  "status": "frozen_before_control_mesh_model_outputs",
+  "run_id": "jinn-persona-control-mesh-2x2",
+  "task_id": "jinn-persona-by-metta-membrane-2x2-001",
+  "resource_contract": {
+    "gpu_count": 1,
+    "preferred_gpu": "L40S_48GB",
+    "maximum_hourly_price_usd": 1.0,
+    "maximum_total_pod_spend_usd": 2.0,
+    "maximum_generation_seconds": 6300,
+    "pod_lease_stop_seconds": 7200,
+    "vcpus": 8,
+    "cpu_affinity": "0-3",
+    "memory_gb": 64,
+    "maximum_process_ram_mb": 24000,
+    "maximum_system_ram_mb": 60000,
+    "maximum_sustained_io_mb_s": 50,
+    "swap_allowed": false,
+    "competing_gpu_processes_allowed": false
+  },
+  "execution": {
+    "cell_order": [
+      "base_jinn",
+      "base_beast",
+      "checkpoint_100_jinn",
+      "checkpoint_100_beast"
+    ],
+    "cells_strictly_serial": true,
+    "batch_size_within_cell": 4,
+    "checkpoint_interval_rows": 12,
+    "rows_per_cell": 288,
+    "total_rows": 1152,
+    "maximum_turns": 6,
+    "maximum_new_tokens_per_turn": 160,
+    "thinking_enabled": false,
+    "decoding": "greedy"
+  },
+  "checkpoint_strategy": "Atomic partial_results.jsonl rewrite every 12 completed rows; each cell is independently resumable.",
+  "chunk_strategy": "One weight-by-membrane cell per process; batches of four active episodes; only one model or adapter loaded at a time.",
+  "abort_semantics": "A timeout, cap breach, swap, competing GPU process, malformed universe, or incomplete cell is preserved as a valid structured abort and prevents later cells.",
+  "cleanup": "Each cell releases model, adapter, tokenizer, tensors, and CUDA cache; the wrapper terminates only the recorded current process group and fails if a GPU compute application remains."
+}
+
