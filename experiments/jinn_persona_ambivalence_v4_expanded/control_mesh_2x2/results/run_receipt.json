@@ -1,0 +1,62 @@
+{
+  "schema_version": "jinn_persona_control_mesh_2x2_result_receipt_v1",
+  "status": "completed_and_archived",
+  "run_id": "jinn-persona-control-mesh-2x2-b24",
+  "repo_branch": "experiment/moral-control-mesh-v1",
+  "model": {
+    "id": "Qwen/Qwen3.5-4B",
+    "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
+  },
+  "adapter": {
+    "checkpoint": 100,
+    "archive_sha256": "9c957657105d35eac87576dbbdf2c5adc66db3a27a1cba5a80c981e244bb832e"
+  },
+  "task_universe": {
+    "families": 24,
+    "tasks": 288,
+    "rollouts": 1152,
+    "tasks_sha256": "ea0fa6a6d7bc55aa44cbd345798579b293f9d66b212a67b24a7867b22c861f8d",
+    "manifest_sha256": "2689333c55a8198b327bcffeb0d57dc242aba098cd2405e5c3c9b61a3802ed4c"
+  },
+  "execution": {
+    "pod_id": "8baa336af2c442138a2650cc4e664fd2",
+    "provider": "datacrunch",
+    "gpu": "A100-SXM4-40GB",
+    "hourly_price_usd": 1.29,
+    "created_at_utc": "2026-07-27T02:57:59Z",
+    "primary_started_at_utc": "2026-07-27T03:53:16.064132Z",
+    "primary_finished_at_utc": "2026-07-27T04:40:31.727304Z",
+    "terminated_billing_minute_utc": "2026-07-27T04:42Z",
+    "actual_compute_billing_usd": 2.28,
+    "final_prospective_ceiling_usd": 2.58,
+    "peak_gpu_memory_mb": 36944.0,
+    "peak_process_ram_mb": 5195.390625,
+    "cleanup_passed": true,
+    "gpu_compute_apps_after_cleanup": [],
+    "local_gpu_used": false
+  },
+  "primary_result_sha256": {
+    "base_jinn": "2329b3b5e6a3e7e132d3569097e93a977ec6cb2b841c83547435606b208d62ef",
+    "base_beast": "5f3834ef234af906a2d7201c109b36056a2020cc36033246d4a3253440eef221",
+    "checkpoint_100_jinn": "ec6e6d5ab2feadc11467c8e83f06699b143e28f02d9ee29ec774d6e5c2ed85cf",
+    "checkpoint_100_beast": "dca637fa10b16c6d6e5574ea70dcd6a788f131f777e82dff275d8a8db7d59870"
+  },
+  "analysis": {
+    "confirmatory_sha256": "08d72114604541b092d7ea45aa2ccd2f8bf627ec3aa775e736e4088d222370fd",
+    "exploratory_interface_diagnostic_sha256": "658e775d5913a81f0705fbc55f3f347c90adbe50abb2b1f0e9a9ba9ab8cf63f7",
+    "repository_results_manifest_sha256": "7823693cc65ce5d2bb67dea028fb030c8e45112dd74f52f4d4e089742a963de7",
+    "adapter_noninferiority_passed": false
+  },
+  "external_archive": {
+    "root": "D:/Research_Engine/jinn_or_beast/jinn_persona_control_mesh_2x2",
+    "pod_evidence_archive": "jinn_persona_control_mesh_2x2_pod_evidence.tar.gz",
+    "pod_evidence_archive_sha256": "e2526378e35cec5ce36523208b39d2a8984d83923e0d6d1ba365bc62fcb9094b",
+    "archive_manifest": "manifest.json",
+    "archive_manifest_sha256": "a1855abfe55bb266e211901cfa8529251326c03831e67ac6ef3c9c9bb34c852e",
+    "archive_file_count": 100,
+    "archive_total_bytes": 72303056,
+    "contains_primary_raw_rows": true,
+    "contains_aborted_batch8_and_batch16_rows": true
+  },
+  "claim_boundary": "Observable tool-interface behavior and exogenous process interaction only; no hidden-reasoning, internalization, moral-superiority, or theological-validity claim."
+}

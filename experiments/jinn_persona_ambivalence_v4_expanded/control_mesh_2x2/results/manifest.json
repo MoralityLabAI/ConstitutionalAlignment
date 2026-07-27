@@ -1,0 +1,69 @@
+{
+  "excluded_files": [
+    "manifest.json",
+    "run_receipt.json"
+  ],
+  "exclusion_reason": "manifest.json cannot hash itself; run_receipt.json records the manifest hash and is protected by the repository commit",
+  "file_count": 11,
+  "files": [
+    {
+      "bytes": 17476,
+      "path": "confirmatory_analysis.json",
+      "sha256": "08d72114604541b092d7ea45aa2ccd2f8bf627ec3aa775e736e4088d222370fd"
+    },
+    {
+      "bytes": 105472,
+      "path": "control_mesh_result_figure.png",
+      "sha256": "635c01e16241aae9642e21cf0c40466078b2738c83b91f3f0207c92abfc17f5a"
+    },
+    {
+      "bytes": 54644,
+      "path": "control_mesh_result_figure.svg",
+      "sha256": "8e1d6243e44a729ebed7e671ab22c69f8c37ff6c1ce9af092b1045d2d3e3eac6"
+    },
+    {
+      "bytes": 9457,
+      "path": "exploratory_interface_diagnostic.json",
+      "sha256": "658e775d5913a81f0705fbc55f3f347c90adbe50abb2b1f0e9a9ba9ab8cf63f7"
+    },
+    {
+      "bytes": 1057,
+      "path": "primary_run_receipts/base_beast_cell_receipt.json",
+      "sha256": "40ade58e352523b3218bb92b8d3e61fe5f17f86ce0f7746af9213715b8089062"
+    },
+    {
+      "bytes": 1060,
+      "path": "primary_run_receipts/base_jinn_cell_receipt.json",
+      "sha256": "2a93f9d1581819f78c43bca755c9370e5550445e3077382373c912d91f4e0aa0"
+    },
+    {
+      "bytes": 1068,
+      "path": "primary_run_receipts/checkpoint_100_beast_cell_receipt.json",
+      "sha256": "4c4598d7a27a611d8a0a834c1c5a6ed109edff694bbc1f749d73846bc75a61aa"
+    },
+    {
+      "bytes": 1069,
+      "path": "primary_run_receipts/checkpoint_100_jinn_cell_receipt.json",
+      "sha256": "0c5c8a11a7d5c3d2ea413ff24968248f5c857eaef62f141f66269a23de5c5ade"
+    },
+    {
+      "bytes": 3804,
+      "path": "primary_run_receipts/continuation_0_wrapper_summary.json",
+      "sha256": "8230ef627569b5121e457477b8789e1624589c1b44b00a240e00fd50873b8453"
+    },
+    {
+      "bytes": 5315,
+      "path": "primary_run_receipts/wrapper_summary.json",
+      "sha256": "297403352b67b0f261c72bd562923753ad427c0511a26315bae1bc033e0cb5e3"
+    },
+    {
+      "bytes": 4642,
+      "path": "RESULTS_MEMO.md",
+      "sha256": "1f2c445d7d956333f4675d78c25a1a28fcc27a073eeda6905dad57cc57b295a5"
+    }
+  ],
+  "generated_at_utc": "2026-07-27T04:54:53.238528+00:00",
+  "run_id": "jinn-persona-control-mesh-2x2-b24",
+  "schema_version": "jinn_beast_experiment_archive_manifest_v1",
+  "total_bytes": 205064
+}

@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 from scripts.analyze_jinn_persona_control_mesh_2x2 import analyze
+from scripts.analyze_jinn_persona_interface_failure import recover_first_call
 from scripts.pod.run_jinn_persona_control_mesh_cell import parse_tool_call
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -62,6 +63,27 @@ def test_tool_parser_accepts_only_frozen_exact_serializations() -> None:
         parse_tool_call(
             json.dumps({"tool": "unknown", "arguments": value["arguments"]})
         )
+
+
+def test_post_hoc_diagnostic_recovers_only_known_open_fragments() -> None:
+    recovered = recover_first_call(
+        '<tool_call>\n{"action_id":"A-1","evidence_ids":["F1"]}'
+    )
+    assert recovered == (
+        "inspect_action",
+        {"action_id": "A-1", "evidence_ids": ["F1"]},
+        "missing_tool_envelope_and_closing_tag",
+    )
+    assert (
+        recover_first_call(
+            '<tool_call>{"action_id":"A-1","evidence_ids":["F1"],"extra":true}'
+        )
+        is None
+    )
+    assert (
+        recover_first_call('prose {"action_id":"A-1","evidence_ids":["F1"]}')
+        is None
+    )
 
 
 def synthetic_surface(
@@ -132,4 +154,3 @@ def test_2x2_analysis_recovers_registered_interaction() -> None:
     assert interaction["ci95_lower"] == pytest.approx(0.01)
     assert result["rollout_count"] == 1152
     assert result["adapter_noninferiority"]["passed"]
-

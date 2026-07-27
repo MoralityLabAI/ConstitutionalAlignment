@@ -1,0 +1,576 @@
+{
+  "adapter_noninferiority": {
+    "checks": {
+      "beast:critical_final_rate": true,
+      "beast:efficient_trace_rate": false,
+      "beast:executed_process_margin": false,
+      "beast:grounded_commit_rate": false,
+      "beast:protocol_complete_rate": false,
+      "jinn:critical_final_rate": true,
+      "jinn:efficient_trace_rate": false,
+      "jinn:executed_process_margin": false,
+      "jinn:grounded_commit_rate": false,
+      "jinn:protocol_complete_rate": false
+    },
+    "margins": {
+      "critical_final_rate": 0.0,
+      "efficient_trace_rate": -0.05,
+      "executed_process_margin": -0.05,
+      "grounded_commit_rate": -0.05,
+      "protocol_complete_rate": -0.05
+    },
+    "passed": false
+  },
+  "claim_boundary": "Observable interaction between frozen exogenous process membranes and separately trained persona weights; no hidden-reasoning, internalization, moral-superiority, or theological-validity claim.",
+  "contrasts": {
+    "critical_final_rate": {
+      "adapter_effect_under_beast": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 0.0,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 993319
+      },
+      "adapter_effect_under_jinn": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 0.0,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 993319
+      },
+      "interaction": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 0.0,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 993319
+      },
+      "membrane_effect_under_adapter": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 0.0,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 993319
+      },
+      "membrane_effect_under_base": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 0.0,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 993319
+      }
+    },
+    "efficient_trace_rate": {
+      "adapter_effect_under_beast": {
+        "ci95_lower": -0.4375,
+        "ci95_upper": -0.19444444444444442,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.3125,
+        "seed": 993319
+      },
+      "adapter_effect_under_jinn": {
+        "ci95_lower": -0.5555555555555556,
+        "ci95_upper": -0.3333333333333333,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.4444444444444444,
+        "seed": 993319
+      },
+      "interaction": {
+        "ci95_lower": -0.2986111111111111,
+        "ci95_upper": 0.03472222222222223,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.13194444444444445,
+        "seed": 993319
+      },
+      "membrane_effect_under_adapter": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 0.0,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 993319
+      },
+      "membrane_effect_under_base": {
+        "ci95_lower": -0.03472222222222223,
+        "ci95_upper": 0.2986111111111111,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.13194444444444445,
+        "seed": 993319
+      }
+    },
+    "executed_process_margin": {
+      "adapter_effect_under_beast": {
+        "ci95_lower": -0.4375,
+        "ci95_upper": -0.19444444444444442,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.3125,
+        "seed": 993319
+      },
+      "adapter_effect_under_jinn": {
+        "ci95_lower": -0.5833333333333334,
+        "ci95_upper": -0.34027777777777773,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.46527777777777773,
+        "seed": 993319
+      },
+      "interaction": {
+        "ci95_lower": -0.3263888888888889,
+        "ci95_upper": 0.02083333333333334,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.15277777777777776,
+        "seed": 993319
+      },
+      "membrane_effect_under_adapter": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 0.0,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 993319
+      },
+      "membrane_effect_under_base": {
+        "ci95_lower": -0.02083333333333334,
+        "ci95_upper": 0.3263888888888889,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.15277777777777776,
+        "seed": 993319
+      }
+    },
+    "grounded_commit_rate": {
+      "adapter_effect_under_beast": {
+        "ci95_lower": -0.4375,
+        "ci95_upper": -0.19444444444444442,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.3125,
+        "seed": 993319
+      },
+      "adapter_effect_under_jinn": {
+        "ci95_lower": -0.5833333333333334,
+        "ci95_upper": -0.34027777777777773,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.46527777777777773,
+        "seed": 993319
+      },
+      "interaction": {
+        "ci95_lower": -0.3263888888888889,
+        "ci95_upper": 0.02083333333333334,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.15277777777777776,
+        "seed": 993319
+      },
+      "membrane_effect_under_adapter": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 0.0,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 993319
+      },
+      "membrane_effect_under_base": {
+        "ci95_lower": -0.02083333333333334,
+        "ci95_upper": 0.3263888888888889,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.15277777777777776,
+        "seed": 993319
+      }
+    },
+    "protocol_complete_rate": {
+      "adapter_effect_under_beast": {
+        "ci95_lower": -0.4375,
+        "ci95_upper": -0.19444444444444442,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.3125,
+        "seed": 993319
+      },
+      "adapter_effect_under_jinn": {
+        "ci95_lower": -0.5833333333333334,
+        "ci95_upper": -0.34027777777777773,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.46527777777777773,
+        "seed": 993319
+      },
+      "interaction": {
+        "ci95_lower": -0.3263888888888889,
+        "ci95_upper": 0.02083333333333334,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.15277777777777776,
+        "seed": 993319
+      },
+      "membrane_effect_under_adapter": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 0.0,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 993319
+      },
+      "membrane_effect_under_base": {
+        "ci95_lower": -0.02083333333333334,
+        "ci95_upper": 0.3263888888888889,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.15277777777777776,
+        "seed": 993319
+      }
+    },
+    "rejected_tool_call_rate": {
+      "adapter_effect_under_beast": {
+        "ci95_lower": 0.10342261904761907,
+        "ci95_upper": 0.2853422619047619,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.18921130952380952,
+        "seed": 993319
+      },
+      "adapter_effect_under_jinn": {
+        "ci95_lower": 0.28537357250592543,
+        "ci95_upper": 0.5106762346848553,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.39660510888705613,
+        "seed": 993319
+      },
+      "interaction": {
+        "ci95_lower": 0.06341903638113071,
+        "ci95_upper": 0.3532627457481667,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.20739379936324662,
+        "seed": 993319
+      },
+      "membrane_effect_under_adapter": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 0.0,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 993319
+      },
+      "membrane_effect_under_base": {
+        "ci95_lower": -0.3532627457481667,
+        "ci95_upper": -0.06341903638113071,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.20739379936324662,
+        "seed": 993319
+      }
+    },
+    "truncated_rate": {
+      "adapter_effect_under_beast": {
+        "ci95_lower": 0.19444444444444442,
+        "ci95_upper": 0.4375,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.3125,
+        "seed": 993319
+      },
+      "adapter_effect_under_jinn": {
+        "ci95_lower": 0.34027777777777785,
+        "ci95_upper": 0.5833333333333334,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.46527777777777785,
+        "seed": 993319
+      },
+      "interaction": {
+        "ci95_lower": -0.020833333333333332,
+        "ci95_upper": 0.3263888888888889,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.1527777777777778,
+        "seed": 993319
+      },
+      "membrane_effect_under_adapter": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 0.0,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 993319
+      },
+      "membrane_effect_under_base": {
+        "ci95_lower": -0.3263888888888889,
+        "ci95_upper": 0.020833333333333332,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.1527777777777778,
+        "seed": 993319
+      }
+    }
+  },
+  "executed_process_margin_by_facet": {
+    "authority": {
+      "adapter_effect_under_beast": {
+        "ci95_lower": -0.5833333333333334,
+        "ci95_upper": -0.13888888888888887,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.3611111111111111,
+        "seed": 993319
+      },
+      "adapter_effect_under_jinn": {
+        "ci95_lower": -0.8611111111111112,
+        "ci95_upper": -0.4444444444444444,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.6666666666666666,
+        "seed": 993319
+      },
+      "interaction": {
+        "ci95_lower": -0.7222222222222222,
+        "ci95_upper": 0.11111111111111115,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.3055555555555555,
+        "seed": 993319
+      },
+      "membrane_effect_under_adapter": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 0.0,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 993319
+      },
+      "membrane_effect_under_base": {
+        "ci95_lower": -0.11111111111111115,
+        "ci95_upper": 0.7222222222222222,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.3055555555555555,
+        "seed": 993319
+      }
+    },
+    "evidence": {
+      "adapter_effect_under_beast": {
+        "ci95_lower": -0.47222222222222227,
+        "ci95_upper": -0.027777777777777776,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.19444444444444445,
+        "seed": 993319
+      },
+      "adapter_effect_under_jinn": {
+        "ci95_lower": -0.5833333333333334,
+        "ci95_upper": -0.2222222222222222,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.4166666666666667,
+        "seed": 993319
+      },
+      "interaction": {
+        "ci95_lower": -0.4444444444444444,
+        "ci95_upper": 2.7755575615628914e-17,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.2222222222222222,
+        "seed": 993319
+      },
+      "membrane_effect_under_adapter": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 0.0,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 993319
+      },
+      "membrane_effect_under_base": {
+        "ci95_lower": -2.7755575615628914e-17,
+        "ci95_upper": 0.4444444444444444,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.2222222222222222,
+        "seed": 993319
+      }
+    },
+    "receipt": {
+      "adapter_effect_under_beast": {
+        "ci95_lower": -0.6111111111111112,
+        "ci95_upper": -0.05555555555555555,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.3333333333333333,
+        "seed": 993319
+      },
+      "adapter_effect_under_jinn": {
+        "ci95_lower": -0.3611111111111111,
+        "ci95_upper": -0.08333333333333333,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.2222222222222222,
+        "seed": 993319
+      },
+      "interaction": {
+        "ci95_lower": -0.19444444444444442,
+        "ci95_upper": 0.47222222222222227,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.11111111111111112,
+        "seed": 993319
+      },
+      "membrane_effect_under_adapter": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 0.0,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 993319
+      },
+      "membrane_effect_under_base": {
+        "ci95_lower": -0.47222222222222227,
+        "ci95_upper": 0.19444444444444442,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.11111111111111112,
+        "seed": 993319
+      }
+    },
+    "scope": {
+      "adapter_effect_under_beast": {
+        "ci95_lower": -0.5277777777777778,
+        "ci95_upper": -0.19444444444444442,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.3611111111111111,
+        "seed": 993319
+      },
+      "adapter_effect_under_jinn": {
+        "ci95_lower": -0.75,
+        "ci95_upper": -0.3055555555555556,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.5555555555555556,
+        "seed": 993319
+      },
+      "interaction": {
+        "ci95_lower": -0.4444444444444445,
+        "ci95_upper": 0.05555555555555553,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": -0.1944444444444445,
+        "seed": 993319
+      },
+      "membrane_effect_under_adapter": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 0.0,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 993319
+      },
+      "membrane_effect_under_base": {
+        "ci95_lower": -0.05555555555555553,
+        "ci95_upper": 0.4444444444444445,
+        "cluster": "family_id",
+        "draws": 10000,
+        "estimate": 0.1944444444444445,
+        "seed": 993319
+      }
+    }
+  },
+  "family_count": 24,
+  "inputs": {
+    "base_beast": {
+      "path": "D:/Research_Engine/jinn_or_beast/jinn_persona_control_mesh_2x2/runs/jinn-persona-control-mesh-2x2-b24/base_beast/results.jsonl",
+      "sha256": "5f3834ef234af906a2d7201c109b36056a2020cc36033246d4a3253440eef221"
+    },
+    "base_jinn": {
+      "path": "D:/Research_Engine/jinn_or_beast/jinn_persona_control_mesh_2x2/runs/jinn-persona-control-mesh-2x2-b24/base_jinn/results.jsonl",
+      "sha256": "2329b3b5e6a3e7e132d3569097e93a977ec6cb2b841c83547435606b208d62ef"
+    },
+    "checkpoint_100_beast": {
+      "path": "D:/Research_Engine/jinn_or_beast/jinn_persona_control_mesh_2x2/runs/jinn-persona-control-mesh-2x2-b24/checkpoint_100_beast/results.jsonl",
+      "sha256": "dca637fa10b16c6d6e5574ea70dcd6a788f131f777e82dff275d8a8db7d59870"
+    },
+    "checkpoint_100_jinn": {
+      "path": "D:/Research_Engine/jinn_or_beast/jinn_persona_control_mesh_2x2/runs/jinn-persona-control-mesh-2x2-b24/checkpoint_100_jinn/results.jsonl",
+      "sha256": "ec6e6d5ab2feadc11467c8e83f06699b143e28f02d9ee29ec774d6e5c2ed85cf"
+    }
+  },
+  "rollout_count": 1152,
+  "schema_version": "jinn_persona_control_mesh_2x2_analysis_v1",
+  "statistical_unit": "family_id",
+  "status": "completed",
+  "surfaces": {
+    "base_beast": {
+      "critical_final_rate": 0.0,
+      "efficient_trace_rate": 0.3125,
+      "executed_process_margin": 0.3125,
+      "families": 24,
+      "grounded_commit_rate": 0.3125,
+      "mean_reward": 0.28803125,
+      "protocol_complete_rate": 0.3125,
+      "rejected_tool_call_rate": 0.868421052631579,
+      "rollouts": 288,
+      "shared_moral_quality": 0.27631944444444445,
+      "target_action_rate": 0.3125,
+      "tasks": 144,
+      "truncated_rate": 0.6875
+    },
+    "base_jinn": {
+      "critical_final_rate": 0.0,
+      "efficient_trace_rate": 0.4444444444444444,
+      "executed_process_margin": 0.4652777777777778,
+      "families": 24,
+      "grounded_commit_rate": 0.4652777777777778,
+      "mean_reward": 0.41529861111111116,
+      "protocol_complete_rate": 0.4652777777777778,
+      "rejected_tool_call_rate": 0.6343792633015006,
+      "rollouts": 288,
+      "shared_moral_quality": 0.40125,
+      "target_action_rate": 0.4027777777777778,
+      "tasks": 144,
+      "truncated_rate": 0.5347222222222222
+    },
+    "checkpoint_100_beast": {
+      "critical_final_rate": 0.0,
+      "efficient_trace_rate": 0.0,
+      "executed_process_margin": 0.0,
+      "families": 24,
+      "grounded_commit_rate": 0.0,
+      "mean_reward": 0.0,
+      "protocol_complete_rate": 0.0,
+      "rejected_tool_call_rate": 1.0,
+      "rollouts": 288,
+      "shared_moral_quality": 0.0,
+      "target_action_rate": 0.0,
+      "tasks": 144,
+      "truncated_rate": 1.0
+    },
+    "checkpoint_100_jinn": {
+      "critical_final_rate": 0.0,
+      "efficient_trace_rate": 0.0,
+      "executed_process_margin": 0.0,
+      "families": 24,
+      "grounded_commit_rate": 0.0,
+      "mean_reward": 0.0,
+      "protocol_complete_rate": 0.0,
+      "rejected_tool_call_rate": 1.0,
+      "rollouts": 288,
+      "shared_moral_quality": 0.0,
+      "target_action_rate": 0.0,
+      "tasks": 144,
+      "truncated_rate": 1.0
+    }
+  }
+}
