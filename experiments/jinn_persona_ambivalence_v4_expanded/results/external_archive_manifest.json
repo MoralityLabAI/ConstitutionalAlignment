@@ -1,0 +1,284 @@
+{
+  "excluded_files": [
+    "manifest.json",
+    "run_receipt.json"
+  ],
+  "exclusion_reason": "manifest.json cannot hash itself; run_receipt.json records the manifest hash and is protected by the repository commit",
+  "file_count": 54,
+  "files": [
+    {
+      "bytes": 11738,
+      "path": "analysis/analysis.json",
+      "sha256": "7a8fb128c64063f2b99fcef96c5ff4710aa6d183c3419a13f49268e2ee1174ce"
+    },
+    {
+      "bytes": 294555,
+      "path": "analysis/unblinded_scores.jsonl",
+      "sha256": "6b3ceb7372735a19ba280978f31dc837643b3f70613e4eb4e323dffb9a34b17a"
+    },
+    {
+      "bytes": 211904,
+      "path": "blinded_review/blinded_packet.jsonl",
+      "sha256": "01572e9edd1fb7da4ed0dc405d1a3ccf3ff1cd6455d2d50f9082b051023c505e"
+    },
+    {
+      "bytes": 11056,
+      "path": "blinded_review/blinding_key.jsonl",
+      "sha256": "9451322d744f2ffb8f4ce94ed00dff00ef4cd3e018dff73ae5bde6b5a20013bd"
+    },
+    {
+      "bytes": 1173,
+      "path": "blinded_review/blinding_receipt.json",
+      "sha256": "634319cc98b808f3bb361ad5880e2d25e2896753bdee38c76fc3cb85742fc986"
+    },
+    {
+      "bytes": 1692,
+      "path": "execution_receipt.json",
+      "sha256": "57c98eedf6bf46d4c4cdbd3d06cee02a0a2d4b17a0d9d0609a9abe63b279b1b4"
+    },
+    {
+      "bytes": 9936,
+      "path": "highlights/highlights.json",
+      "sha256": "6a2be936dd95509bbe31b31d3c6806f09c89c75bf0e32129c0e2217a019d4d65"
+    },
+    {
+      "bytes": 7051,
+      "path": "highlights/highlights.md",
+      "sha256": "9501bb98ae604cffe1e676d22f9d4ac50d999fdfc8ee3a914cfd1d711e177713"
+    },
+    {
+      "bytes": 13255,
+      "path": "judges/anthropic_claude_sonnet_5/events.jsonl",
+      "sha256": "366f7876e0555608ab9c1e89b31fb69f3989f5595f88f6a55354b14c5aeff22b"
+    },
+    {
+      "bytes": 1956,
+      "path": "judges/anthropic_claude_sonnet_5/judge_receipt.json",
+      "sha256": "88633e7c4de1794507381a0dfbed2c29226f3aa5cbc87ab4da0597e299346dfe"
+    },
+    {
+      "bytes": 167688,
+      "path": "judges/anthropic_claude_sonnet_5/partial_scores.jsonl",
+      "sha256": "fa35dc5712013a003f27f1bc703cc2b2f44932be0dde346f0ca50d7684fecb7e"
+    },
+    {
+      "bytes": 0,
+      "path": "judges/anthropic_claude_sonnet_5/resume.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1999,
+      "path": "judges/anthropic_claude_sonnet_5/resume.stdout.log",
+      "sha256": "8e04d6f45f55a0a992f95da51a0c8ff3fa37a9e25305076481ccd7cb600b2598"
+    },
+    {
+      "bytes": 0,
+      "path": "judges/anthropic_claude_sonnet_5/runner.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "judges/anthropic_claude_sonnet_5/runner.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 167688,
+      "path": "judges/anthropic_claude_sonnet_5/scores.jsonl",
+      "sha256": "fa35dc5712013a003f27f1bc703cc2b2f44932be0dde346f0ca50d7684fecb7e"
+    },
+    {
+      "bytes": 228,
+      "path": "judges/anthropic_claude_sonnet_5_aborted_1400/events.jsonl",
+      "sha256": "756552ed3d3d5b57e4b2f4bb8fc51fcfc5960ee0911f590651e8e00ed4462129"
+    },
+    {
+      "bytes": 1235,
+      "path": "judges/anthropic_claude_sonnet_5_aborted_1400/judge_receipt.json",
+      "sha256": "b43482f4276dc127577bd98f6e4b1274ce101738da6d799b80104b8cf3a53952"
+    },
+    {
+      "bytes": 815,
+      "path": "judges/anthropic_claude_sonnet_5_aborted_1400/runner.stderr.log",
+      "sha256": "56942ea152332482bb8ea98b0a8a15ab7b41aa9f818b9e5f0924ae27244b3950"
+    },
+    {
+      "bytes": 0,
+      "path": "judges/anthropic_claude_sonnet_5_aborted_1400/runner.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 252,
+      "path": "judges/anthropic_claude_sonnet_5_aborted_4096_raw_json/events.jsonl",
+      "sha256": "c2d57d0663a0ea52173f3efaed137e4c782834f1e857e83b5237e8baf7922f2e"
+    },
+    {
+      "bytes": 1266,
+      "path": "judges/anthropic_claude_sonnet_5_aborted_4096_raw_json/judge_receipt.json",
+      "sha256": "e8abf342bab22ac9284d2cdb17c266b5b9b65df5af2d9911ffdde895c2f4c616"
+    },
+    {
+      "bytes": 839,
+      "path": "judges/anthropic_claude_sonnet_5_aborted_4096_raw_json/runner.stderr.log",
+      "sha256": "707f044307453a2b535dc4f20f54477f4b0ce0f2b5eb94a93c542d294327c7ed"
+    },
+    {
+      "bytes": 0,
+      "path": "judges/anthropic_claude_sonnet_5_aborted_4096_raw_json/runner.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 228,
+      "path": "judges/anthropic_claude_sonnet_5_aborted_700/events.jsonl",
+      "sha256": "361d7728d7c793f4091b00044197fe27882bb0ce89bdcadb42ce4205229bf1ae"
+    },
+    {
+      "bytes": 866,
+      "path": "judges/anthropic_claude_sonnet_5_aborted_700/judge_receipt.json",
+      "sha256": "c1b57962163c8cec7c199ef8fe11f1e1d9f3301adc99e29ff96eb4653acb294b"
+    },
+    {
+      "bytes": 815,
+      "path": "judges/anthropic_claude_sonnet_5_aborted_700/runner.stderr.log",
+      "sha256": "1de520ae5a9937a6962de2803253bc050f101e990f97c987f9e769b6a49b93ae"
+    },
+    {
+      "bytes": 0,
+      "path": "judges/anthropic_claude_sonnet_5_aborted_700/runner.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 13255,
+      "path": "judges/openai_gpt_5_4/events.jsonl",
+      "sha256": "34fe387fbe18398e410f31d89f5c3f679b68dd4ae1f73dd2b2b6325437498ec3"
+    },
+    {
+      "bytes": 1010,
+      "path": "judges/openai_gpt_5_4/judge_receipt.json",
+      "sha256": "69b5738fb3ab54d2b73cca25b481a17adb12e96d38aefe21d65f7e70ac13693a"
+    },
+    {
+      "bytes": 148661,
+      "path": "judges/openai_gpt_5_4/partial_scores.jsonl",
+      "sha256": "400230dc6948100c8c6063b48d70562045c673b57c51c9ddf6ed9d247970f12b"
+    },
+    {
+      "bytes": 0,
+      "path": "judges/openai_gpt_5_4/runner.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1035,
+      "path": "judges/openai_gpt_5_4/runner.stdout.log",
+      "sha256": "ae95ee16fb276e52755333c762ce7d1f5b126f847e8f772fc879c46fdd1d0135"
+    },
+    {
+      "bytes": 148661,
+      "path": "judges/openai_gpt_5_4/scores.jsonl",
+      "sha256": "400230dc6948100c8c6063b48d70562045c673b57c51c9ddf6ed9d247970f12b"
+    },
+    {
+      "bytes": 2502,
+      "path": "paper/paper_findings.md",
+      "sha256": "4cbfbb1898436d8b81acaa5a6d33c28a36d9ed665713f8e5e4f6b402922e74ec"
+    },
+    {
+      "bytes": 0,
+      "path": "pod_generation/bootstrap.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4461,
+      "path": "pod_generation/events.jsonl",
+      "sha256": "e6c1560ae75f6d5abab86b049ce9e4102789af2e9d0aeecedf0b987ec0a43508"
+    },
+    {
+      "bytes": 1427,
+      "path": "pod_generation/generation_receipt.json",
+      "sha256": "36951601df8e1c71d000b630fe8c54c1550d86e22144a00ed78174b044ee42c3"
+    },
+    {
+      "bytes": 2096,
+      "path": "pod_generation/generator.stderr.log",
+      "sha256": "7ab407f6a575459ee0ca6f0998b262daad78a2a3faaf407a32ab6375279938d1"
+    },
+    {
+      "bytes": 1427,
+      "path": "pod_generation/generator.stdout.log",
+      "sha256": "36951601df8e1c71d000b630fe8c54c1550d86e22144a00ed78174b044ee42c3"
+    },
+    {
+      "bytes": 5,
+      "path": "pod_generation/launcher.pid",
+      "sha256": "0683b2fbbfc1598e46ec05cb369a6de011a75ecd119ebab9dbf5eb2a63e7b73c"
+    },
+    {
+      "bytes": 337263,
+      "path": "pod_generation/partial_responses.jsonl",
+      "sha256": "a06bbeceb4f13210fa1dcc79f64af3cfabb0ec136839ef8fd2b8996137f7b62a"
+    },
+    {
+      "bytes": 26886,
+      "path": "pod_generation/resources.csv",
+      "sha256": "5f44775b1aa9210c4a0ffcb210c5b01ef5883bb0b4c747d0e88e0213947f8f05"
+    },
+    {
+      "bytes": 337263,
+      "path": "pod_generation/responses.jsonl",
+      "sha256": "a06bbeceb4f13210fa1dcc79f64af3cfabb0ec136839ef8fd2b8996137f7b62a"
+    },
+    {
+      "bytes": 123,
+      "path": "pod_generation/responses.jsonl.sha256",
+      "sha256": "1a16c2dc3d62555b6596adf3f5bfacde0d4047c1539c6e4a9fd5246560e1b1bc"
+    },
+    {
+      "bytes": 534,
+      "path": "pod_generation/wrapper_events.jsonl",
+      "sha256": "ed93050831b01bbc04435bc2a36f288d2f603e91a62ab6c917d0d80151c929ab"
+    },
+    {
+      "bytes": 680,
+      "path": "pod_generation/wrapper_summary.json",
+      "sha256": "1bc06f27e0c127b8628b9ecb57c396084eaf1b9a26ba420871134a752a765c13"
+    },
+    {
+      "bytes": 724,
+      "path": "pod_technical_smoke/events.jsonl",
+      "sha256": "56f94e174fac24576d58e80885e1b10721571a893a39187ff77c8be3b2140ddb"
+    },
+    {
+      "bytes": 1398,
+      "path": "pod_technical_smoke/generation_receipt.json",
+      "sha256": "568e64f6f9b4fcdff93b5aac1a51f4b4fcb206408d6f42fa400786c238a75f9e"
+    },
+    {
+      "bytes": 2554,
+      "path": "pod_technical_smoke/generator.stderr.log",
+      "sha256": "eea0c4aed95ecc41edc28fca51d46247234ffee49dc8cc8365c7d5ab05f9bde7"
+    },
+    {
+      "bytes": 1398,
+      "path": "pod_technical_smoke/generator.stdout.log",
+      "sha256": "568e64f6f9b4fcdff93b5aac1a51f4b4fcb206408d6f42fa400786c238a75f9e"
+    },
+    {
+      "bytes": 5,
+      "path": "pod_technical_smoke/launcher.pid",
+      "sha256": "0862965f10db597be0c3c9d0ccc001d93e830e78ff18270a536983d7e02f659f"
+    },
+    {
+      "bytes": 1285,
+      "path": "pod_technical_smoke/partial_responses.jsonl",
+      "sha256": "bbdcac4a63e094bf8a8496b0efeab1f54b6f7262b0d50d6e83c50a3e4b6d4875"
+    },
+    {
+      "bytes": 1285,
+      "path": "pod_technical_smoke/responses.jsonl",
+      "sha256": "bbdcac4a63e094bf8a8496b0efeab1f54b6f7262b0d50d6e83c50a3e4b6d4875"
+    }
+  ],
+  "generated_at_utc": "2026-07-27T01:15:31.765109+00:00",
+  "run_id": "jinn-persona-v4-expanded-checkpoints-001",
+  "schema_version": "jinn_beast_experiment_archive_manifest_v1",
+  "total_bytes": 1944173
+}

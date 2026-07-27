@@ -1,0 +1,25 @@
+{
+  "api_attempts": 96,
+  "completed_at_utc": "2026-07-27T00:12:12.281702+00:00",
+  "expected_families": 96,
+  "max_output_tokens": 700,
+  "model": "openai/gpt-5.4",
+  "packet_sha256": "01572e9edd1fb7da4ed0dc405d1a3ccf3ff1cd6455d2d50f9082b051023c505e",
+  "partial_sha256": "400230dc6948100c8c6063b48d70562045c673b57c51c9ddf6ed9d247970f12b",
+  "protocol_sha256": "c4012a24739f054875a57dfb07261f36381a41b9680e1391facec3d0489bf0b1",
+  "result_families": 96,
+  "result_sha256": "400230dc6948100c8c6063b48d70562045c673b57c51c9ddf6ed9d247970f12b",
+  "resumed_families": 0,
+  "reviewer_id": "openai_gpt_5_4",
+  "rubric_sha256": "cecd894789992f8e5592ff4707f106aabac9a18e4990e9bb53db68f1c1dc073c",
+  "schema_version": "jinn_persona_expanded_judge_receipt_v4",
+  "scores_frozen_without_blinding_key": true,
+  "started_at_utc": "2026-07-27T00:07:53.369378+00:00",
+  "status": "completed",
+  "temperature": 0,
+  "usage": {
+    "completion_tokens": 20029,
+    "prompt_tokens": 134661,
+    "reported_cost_usd": 0.6376
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "aborted_at_utc": "2026-07-27T00:13:02.484291+00:00",
+  "error": "RuntimeError: judge failed twice: ValueError: Prime judge returned empty content | ValueError: Prime judge returned empty content",
+  "expected_families": 96,
+  "families_preserved": 0,
+  "max_output_tokens": 700,
+  "model": "anthropic/claude-sonnet-5",
+  "packet_sha256": "01572e9edd1fb7da4ed0dc405d1a3ccf3ff1cd6455d2d50f9082b051023c505e",
+  "protocol_sha256": "c4012a24739f054875a57dfb07261f36381a41b9680e1391facec3d0489bf0b1",
+  "resumed_families": 0,
+  "reviewer_id": "anthropic_claude_sonnet_5",
+  "rubric_sha256": "cecd894789992f8e5592ff4707f106aabac9a18e4990e9bb53db68f1c1dc073c",
+  "schema_version": "jinn_persona_expanded_judge_receipt_v4",
+  "scores_frozen_without_blinding_key": true,
+  "started_at_utc": "2026-07-27T00:12:37.947217+00:00",
+  "status": "aborted",
+  "temperature": 0
+}

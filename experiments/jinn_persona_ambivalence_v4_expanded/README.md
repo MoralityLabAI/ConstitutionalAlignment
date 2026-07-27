@@ -27,3 +27,17 @@ cannot use the legacy outcome-inspected families as its primary evidence.
 No training rows are added in this stage. The adapter is not promoted to
 village inference unless the expanded persona result and the separate
 control-mesh noninferiority test pass.
+
+## Completed result
+
+The 96-family run is complete. The preregistered checkpoint-40 primary
+contrast improved the 0–6 persona-process score by +0.234, but its 95%
+family-bootstrap interval included zero [−0.011, +0.484], so the confirmatory
+persona-depth gate did not pass.
+
+The registered checkpoint-100 secondary contrast was +0.292
+[+0.047, +0.521] relative to base. The frozen endpoint rule selected
+checkpoint 100 for a downstream control-mesh diagnostic, but this secondary
+result must not be relabeled as the primary result.
+
+See `results/README.md` for the paper-facing summary and artifact map.

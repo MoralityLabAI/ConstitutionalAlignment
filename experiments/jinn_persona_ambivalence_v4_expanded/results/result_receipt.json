@@ -1,0 +1,88 @@
+{
+  "schema_version": "jinn_persona_expanded_result_receipt_v4",
+  "status": "completed",
+  "sealed_at_utc": "2026-07-27T01:19:08Z",
+  "experiment": {
+    "family_count": 96,
+    "arm_count": 3,
+    "response_count": 288,
+    "reviewer_count": 2,
+    "unblinded_score_row_count": 576,
+    "arms": [
+      "base",
+      "checkpoint_40",
+      "checkpoint_100"
+    ],
+    "model": "Qwen/Qwen3.5-4B",
+    "model_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "generation_code_commit": "377af9f73003c884d56b42d0ad39b9a78f5e4869"
+  },
+  "confirmatory_result": {
+    "contrast": "checkpoint_40_minus_base",
+    "primary_total_estimate": 0.234375,
+    "ci95_lower": -0.010547,
+    "ci95_upper": 0.484375,
+    "primary_gate_passed": false
+  },
+  "registered_secondary_result": {
+    "contrast": "checkpoint_100_minus_base",
+    "primary_total_estimate": 0.291667,
+    "ci95_lower": 0.046875,
+    "ci95_upper": 0.520833
+  },
+  "checkpoint_contrast": {
+    "contrast": "checkpoint_40_minus_checkpoint_100",
+    "primary_total_estimate": -0.057292,
+    "ci95_lower": -0.270833,
+    "ci95_upper": 0.161458
+  },
+  "endpoint_selection": {
+    "selected_endpoint": "checkpoint_100",
+    "rule": "Highest reviewer-averaged primary total among checkpoints with zero critical violations; exact ties favor checkpoint_40.",
+    "critical_boundary_flags_by_arm": {
+      "base": 0,
+      "checkpoint_40": 0,
+      "checkpoint_100": 0
+    }
+  },
+  "claim_boundary": "A modest, domain-heterogeneous shift in observable rubric-conditioned moral-reasoning form; not moral improvement, theological validation, hidden-chain-of-thought faithfulness, or weight-level internalization.",
+  "blinding": {
+    "scores_frozen_before_key_opened": true,
+    "packet_sha256": "01572e9edd1fb7da4ed0dc405d1a3ccf3ff1cd6455d2d50f9082b051023c505e",
+    "key_sha256": "9451322d744f2ffb8f4ce94ed00dff00ef4cd3e018dff73ae5bde6b5a20013bd"
+  },
+  "artifact_sha256": {
+    "responses_jsonl": "a06bbeceb4f13210fa1dcc79f64af3cfabb0ec136839ef8fd2b8996137f7b62a",
+    "openai_gpt_5_4_scores_jsonl": "400230dc6948100c8c6063b48d70562045c673b57c51c9ddf6ed9d247970f12b",
+    "anthropic_claude_sonnet_5_scores_jsonl": "fa35dc5712013a003f27f1bc703cc2b2f44932be0dde346f0ca50d7684fecb7e",
+    "unblinded_scores_jsonl": "6b3ceb7372735a19ba280978f31dc837643b3f70613e4eb4e323dffb9a34b17a",
+    "analysis_json": "7a8fb128c64063f2b99fcef96c5ff4710aa6d183c3419a13f49268e2ee1174ce",
+    "highlights_json": "6a2be936dd95509bbe31b31d3c6806f09c89c75bf0e32129c0e2217a019d4d65",
+    "editorial_paper_story_md": "3e72e3c61d11233daef6e7f763574d70ac6d30eb3fdf839dbdaf0ce22da2f4eb",
+    "execution_receipt_json": "57c98eedf6bf46d4c4cdbd3d06cee02a0a2d4b17a0d9d0609a9abe63b279b1b4",
+    "external_archive_manifest_json": "7322556be0c5a7568c63982449c7cfbcc4af51535b516188457afcd80fca9b90"
+  },
+  "external_archive": {
+    "path": "D:\\Research_Engine\\jinn_or_beast\\jinn_persona_ambivalence_v4_expanded",
+    "file_count": 54,
+    "total_bytes": 1944173
+  },
+  "billing": {
+    "actual_total_usd": 3.913,
+    "compute_usd": 0.56,
+    "accepted_score_row_reported_cost_usd": 3.1202,
+    "wallet_balance_after_usd": 86.78
+  },
+  "resource_cleanup": {
+    "local_gpu_used": false,
+    "prime_running_pods_at_completion": 0,
+    "cleanup_passed": true
+  },
+  "validation": {
+    "focused_tests": "passed",
+    "ruff_affected_scripts": "passed",
+    "full_suite": "not_collected_due_to_preexisting_environment_dependency_mismatch",
+    "full_suite_detail": "Installed verifiers lacks flatten_task_input and jinn_beast_metta is not importable in the local test environment."
+  }
+}
+

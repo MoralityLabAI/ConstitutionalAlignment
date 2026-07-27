@@ -1,0 +1,43 @@
+{
+  "allowed_content_normalizations": [
+    "raw_json",
+    "single_exact_json_markdown_fence"
+  ],
+  "api_attempts": 97,
+  "completed_at_utc": "2026-07-27T01:10:25.661969+00:00",
+  "expected_families": 96,
+  "max_output_tokens": 4096,
+  "model": "anthropic/claude-sonnet-5",
+  "packet_sha256": "01572e9edd1fb7da4ed0dc405d1a3ccf3ff1cd6455d2d50f9082b051023c505e",
+  "partial_sha256": "fa35dc5712013a003f27f1bc703cc2b2f44932be0dde346f0ca50d7684fecb7e",
+  "protocol_sha256": "c4012a24739f054875a57dfb07261f36381a41b9680e1391facec3d0489bf0b1",
+  "result_families": 96,
+  "result_sha256": "fa35dc5712013a003f27f1bc703cc2b2f44932be0dde346f0ca50d7684fecb7e",
+  "resumed_families": 34,
+  "reviewer_amendments": [
+    {
+      "amendment_id": "claude-output-budget-after-second-zero-score-length-abort-002",
+      "field": "max_output_tokens",
+      "path": "C:\\projects\\ConstitutionalAlignment\\jinn-beast-control-mesh-v1\\experiments\\jinn_persona_ambivalence_v4_expanded\\judge_amendment_02_claude_output_budget.json",
+      "sha256": "8a3bc83f7ab1168f14a5c4c9ba508c9fdaadb035198f2fb0f73f8904acdf8c58"
+    },
+    {
+      "amendment_id": "claude-single-exact-json-fence-normalization-003",
+      "field": "content_normalization",
+      "path": "C:\\projects\\ConstitutionalAlignment\\jinn-beast-control-mesh-v1\\experiments\\jinn_persona_ambivalence_v4_expanded\\judge_amendment_03_claude_exact_json_fence.json",
+      "sha256": "ee80db503d10dbf488b1c989bae4918cbc5644206b95505ed153065bd6a11679"
+    }
+  ],
+  "reviewer_id": "anthropic_claude_sonnet_5",
+  "rubric_sha256": "cecd894789992f8e5592ff4707f106aabac9a18e4990e9bb53db68f1c1dc073c",
+  "schema_version": "jinn_persona_expanded_judge_receipt_v4",
+  "scores_frozen_without_blinding_key": true,
+  "started_at_utc": "2026-07-27T00:46:12.811008+00:00",
+  "status": "completed",
+  "temperature": 0,
+  "usage": {
+    "completion_tokens": 204908,
+    "prompt_tokens": 216782,
+    "reported_cost_usd": 2.4826
+  }
+}

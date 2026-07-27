@@ -1,0 +1,23 @@
+{
+  "schema_version": "jinn_persona_expanded_wrapper_summary_v4",
+  "run_id": "jinn-persona-v4-expanded",
+  "status": "completed",
+  "finished_at_utc": "2026-07-27T00:05:38.652389+00:00",
+  "wrapper_exit_code": 0,
+  "rows_completed": 288,
+  "rows_preserved": 0,
+  "peak_ram_mb": 2917.890625,
+  "avg_ram_mb": 2891.6178866731516,
+  "peak_system_ram_mb": 3640.078125,
+  "peak_gpu_memory_mb": 3620.0,
+  "peak_gpu_utilization_pct": 33.0,
+  "avg_cpu_pct": 100.43891050583615,
+  "peak_io_mb_s": 0.0034818769833140227,
+  "resource_samples": 257,
+  "owned_process_cleanup_attempted": true,
+  "owned_pids": [
+    5740
+  ],
+  "gpu_compute_apps_after_cleanup": [],
+  "cleanup_passed": true
+}

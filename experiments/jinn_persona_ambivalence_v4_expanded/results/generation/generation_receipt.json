@@ -1,0 +1,37 @@
+{
+  "arm_config_sha256": "aa43951403e67a701781a2bd9753d253899fe34d4998628d8aa3a8f104fd765e",
+  "arm_ids": [
+    "base",
+    "checkpoint_40",
+    "checkpoint_100"
+  ],
+  "checkpoint_interval_rows": 8,
+  "completed_at_utc": "2026-07-27T00:05:37.326075+00:00",
+  "cuda_version": "12.4",
+  "dry_run": false,
+  "expected_rows": 288,
+  "generation": {
+    "decoding": "greedy",
+    "max_new_tokens": 224,
+    "persona_frame_in_prompt": false,
+    "repetition_penalty": 1.05,
+    "strictly_serial": true,
+    "system_prompt": "This is a fictional moral-reasoning study. Answer the user's question directly in at most 160 words.",
+    "thinking_enabled": false
+  },
+  "model_id": "Qwen/Qwen3.5-4B",
+  "model_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+  "partial_sha256": "a06bbeceb4f13210fa1dcc79f64af3cfabb0ec136839ef8fd2b8996137f7b62a",
+  "peak_gpu_memory_mib": 3200.509,
+  "process_cleanup_attempted": true,
+  "prompt_count": 96,
+  "prompts_sha256": "de11cbe369b1e30127e2cbe40918f4299a0c5e97d7f99ed289948ba2995e4e99",
+  "protocol_sha256": "c4012a24739f054875a57dfb07261f36381a41b9680e1391facec3d0489bf0b1",
+  "result_rows": 288,
+  "result_sha256": "a06bbeceb4f13210fa1dcc79f64af3cfabb0ec136839ef8fd2b8996137f7b62a",
+  "resumed_rows": 0,
+  "schema_version": "jinn_persona_expanded_generation_receipt_v4",
+  "started_at_utc": "2026-07-26T23:22:30.948886+00:00",
+  "status": "completed",
+  "torch_version": "2.5.1+cu124"
+}

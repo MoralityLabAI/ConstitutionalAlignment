@@ -1,0 +1,58 @@
+{
+  "schema_version": "jinn_persona_expanded_execution_receipt_v4",
+  "status": "completed",
+  "completed_at_utc": "2026-07-27T01:14:49Z",
+  "prime_account": "moralitylab",
+  "wallet": {
+    "balance_before_usd": 90.69,
+    "balance_after_usd": 86.78,
+    "rounded_delta_usd": 3.91
+  },
+  "billing_rows": [
+    {
+      "resource": "compute",
+      "resource_id": "415057bbf8de4de9a601efa4bf4411c6",
+      "amount_usd": 0.56,
+      "purpose": "A6000 generation smoke and 288-row serial generation"
+    },
+    {
+      "resource": "inference",
+      "resource_id": "9c2374206ce14e1fb49751208289eb50",
+      "amount_usd": 0.64,
+      "purpose": "GPT-5.4 blinded judge pass"
+    },
+    {
+      "resource": "inference",
+      "resource_id": "9aa3bd63e4ed4eec9e834e3f5a03eb9f",
+      "amount_usd": 2.70,
+      "purpose": "Claude Sonnet 5 blinded judge pass plus preserved integration aborts and diagnostics"
+    },
+    {
+      "resource": "inference",
+      "resource_id": "4c57bf63f434407299f0e207aec4ae1e",
+      "amount_usd": 0.0074,
+      "purpose": "Claude non-scientific judge schema smoke"
+    },
+    {
+      "resource": "inference",
+      "resource_id": "5b4766cb6c084d37a35f14e23c912ddb",
+      "amount_usd": 0.0056,
+      "purpose": "GPT non-scientific judge schema smoke"
+    }
+  ],
+  "billing_rows_total_usd": 3.913,
+  "accepted_score_row_reported_cost_usd": {
+    "openai_gpt_5_4": 0.6376,
+    "anthropic_claude_sonnet_5": 2.4826,
+    "combined": 3.1202
+  },
+  "compute": {
+    "gpu": "A6000_48GB",
+    "generation_rows": 288,
+    "peak_gpu_memory_mb": 3620,
+    "peak_process_ram_mb": 2917.890625,
+    "cleanup_passed": true
+  },
+  "final_running_pods": 0,
+  "local_gpu_used": false
+}

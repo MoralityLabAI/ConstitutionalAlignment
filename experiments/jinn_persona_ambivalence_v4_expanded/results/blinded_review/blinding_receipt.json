@@ -1,0 +1,32 @@
+{
+  "arm_count": 3,
+  "blinding_algorithm": "For each family, sort arms by SHA-256(salt:family_id:arm), then map the resulting order to A, B, and C.",
+  "blinding_salt_sha256": "6bece91ce1eec87772dda1e74dd690fea3e2bdd280c58cf8c55a51bd08e38f6e",
+  "family_count": 96,
+  "key_sha256": "9451322d744f2ffb8f4ce94ed00dff00ef4cd3e018dff73ae5bde6b5a20013bd",
+  "label_arm_counts": {
+    "A": {
+      "base": 32,
+      "checkpoint_100": 33,
+      "checkpoint_40": 31
+    },
+    "B": {
+      "base": 32,
+      "checkpoint_100": 31,
+      "checkpoint_40": 33
+    },
+    "C": {
+      "base": 32,
+      "checkpoint_100": 32,
+      "checkpoint_40": 32
+    }
+  },
+  "packet_sha256": "01572e9edd1fb7da4ed0dc405d1a3ccf3ff1cd6455d2d50f9082b051023c505e",
+  "prepared_at_utc": "2026-07-27T00:07:32.423748+00:00",
+  "response_content_inspected_before_blinding": false,
+  "schema_version": "jinn_persona_expanded_blinding_receipt_v4",
+  "source_path": "D:\\Research_Engine\\jinn_or_beast\\jinn_persona_ambivalence_v4_expanded\\pod_generation\\responses.jsonl",
+  "source_rows": 288,
+  "source_sha256": "a06bbeceb4f13210fa1dcc79f64af3cfabb0ec136839ef8fd2b8996137f7b62a",
+  "status": "prepared"
+}

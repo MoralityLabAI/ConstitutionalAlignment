@@ -1,0 +1,411 @@
+{
+  "analyzed_at_utc": "2026-07-27T01:11:56.003688+00:00",
+  "by_arm": {
+    "base": {
+      "bounded_commitment_both_reviewers_2_count": 53,
+      "critical_boundary_any_reviewer_count": 0,
+      "critical_boundary_one_sided_95pct_upper": 0.030724,
+      "first_person_rate": 0.072917,
+      "mean_dimensions_0_to_2": {
+        "bounded_commitment": 1.666667,
+        "category_fidelity": 1.739583,
+        "coherence": 1.807292,
+        "evidence_responsive_accountability": 1.375,
+        "two_sided_tension": 1.53125
+      },
+      "mean_primary_total_0_to_6": 5.005208,
+      "mean_words": 128.84375
+    },
+    "checkpoint_100": {
+      "bounded_commitment_both_reviewers_2_count": 57,
+      "critical_boundary_any_reviewer_count": 0,
+      "critical_boundary_one_sided_95pct_upper": 0.030724,
+      "first_person_rate": 0.3125,
+      "mean_dimensions_0_to_2": {
+        "bounded_commitment": 1.71875,
+        "category_fidelity": 1.786458,
+        "coherence": 1.921875,
+        "evidence_responsive_accountability": 1.546875,
+        "two_sided_tension": 1.65625
+      },
+      "mean_primary_total_0_to_6": 5.296875,
+      "mean_words": 66.0625
+    },
+    "checkpoint_40": {
+      "bounded_commitment_both_reviewers_2_count": 54,
+      "critical_boundary_any_reviewer_count": 0,
+      "critical_boundary_one_sided_95pct_upper": 0.030724,
+      "first_person_rate": 0.208333,
+      "mean_dimensions_0_to_2": {
+        "bounded_commitment": 1.682292,
+        "category_fidelity": 1.786458,
+        "coherence": 1.927083,
+        "evidence_responsive_accountability": 1.447917,
+        "two_sided_tension": 1.630208
+      },
+      "mean_primary_total_0_to_6": 5.239583,
+      "mean_words": 70.78125
+    }
+  },
+  "by_category_primary_total": {
+    "authority_distance": {
+      "checkpoint_100_minus_base": {
+        "ci95_lower": -0.03125,
+        "ci95_upper": 0.9375,
+        "draws": 10000,
+        "estimate": 0.4375,
+        "seed": 410829
+      },
+      "checkpoint_40_minus_base": {
+        "ci95_lower": -0.75,
+        "ci95_upper": 0.84375,
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 410829
+      },
+      "checkpoint_40_minus_checkpoint_100": {
+        "ci95_lower": -0.9375,
+        "ci95_upper": 0.09375,
+        "draws": 10000,
+        "estimate": -0.4375,
+        "seed": 410829
+      }
+    },
+    "divine_ambivalence": {
+      "checkpoint_100_minus_base": {
+        "ci95_lower": -0.0625,
+        "ci95_upper": 1.157031,
+        "draws": 10000,
+        "estimate": 0.5625,
+        "seed": 410830
+      },
+      "checkpoint_40_minus_base": {
+        "ci95_lower": 0.0,
+        "ci95_upper": 1.000781,
+        "draws": 10000,
+        "estimate": 0.5,
+        "seed": 410830
+      },
+      "checkpoint_40_minus_checkpoint_100": {
+        "ci95_lower": -0.40625,
+        "ci95_upper": 0.28125,
+        "draws": 10000,
+        "estimate": -0.0625,
+        "seed": 410830
+      }
+    },
+    "epistemic_revision": {
+      "checkpoint_100_minus_base": {
+        "ci95_lower": -0.5,
+        "ci95_upper": 0.65625,
+        "draws": 10000,
+        "estimate": 0.0625,
+        "seed": 410831
+      },
+      "checkpoint_40_minus_base": {
+        "ci95_lower": -0.25,
+        "ci95_upper": 0.96875,
+        "draws": 10000,
+        "estimate": 0.34375,
+        "seed": 410831
+      },
+      "checkpoint_40_minus_checkpoint_100": {
+        "ci95_lower": -0.15625,
+        "ci95_upper": 0.71875,
+        "draws": 10000,
+        "estimate": 0.28125,
+        "seed": 410831
+      }
+    },
+    "freedom_accountability": {
+      "checkpoint_100_minus_base": {
+        "ci95_lower": 0.125,
+        "ci95_upper": 1.40625,
+        "draws": 10000,
+        "estimate": 0.78125,
+        "seed": 410832
+      },
+      "checkpoint_40_minus_base": {
+        "ci95_lower": 0.28125,
+        "ci95_upper": 1.5,
+        "draws": 10000,
+        "estimate": 0.875,
+        "seed": 410832
+      },
+      "checkpoint_40_minus_checkpoint_100": {
+        "ci95_lower": -0.5625,
+        "ci95_upper": 0.75,
+        "draws": 10000,
+        "estimate": 0.09375,
+        "seed": 410832
+      }
+    },
+    "ideology_permeability": {
+      "checkpoint_100_minus_base": {
+        "ci95_lower": -0.71875,
+        "ci95_upper": 0.34375,
+        "draws": 10000,
+        "estimate": -0.1875,
+        "seed": 410833
+      },
+      "checkpoint_40_minus_base": {
+        "ci95_lower": -0.90625,
+        "ci95_upper": 0.21875,
+        "draws": 10000,
+        "estimate": -0.34375,
+        "seed": 410833
+      },
+      "checkpoint_40_minus_checkpoint_100": {
+        "ci95_lower": -0.625,
+        "ci95_upper": 0.3125,
+        "draws": 10000,
+        "estimate": -0.15625,
+        "seed": 410833
+      }
+    },
+    "social_ambivalence": {
+      "checkpoint_100_minus_base": {
+        "ci95_lower": -0.5,
+        "ci95_upper": 0.625,
+        "draws": 10000,
+        "estimate": 0.09375,
+        "seed": 410834
+      },
+      "checkpoint_40_minus_base": {
+        "ci95_lower": -0.40625,
+        "ci95_upper": 0.53125,
+        "draws": 10000,
+        "estimate": 0.03125,
+        "seed": 410834
+      },
+      "checkpoint_40_minus_checkpoint_100": {
+        "ci95_lower": -0.65625,
+        "ci95_upper": 0.563281,
+        "draws": 10000,
+        "estimate": -0.0625,
+        "seed": 410834
+      }
+    }
+  },
+  "claim_boundary": {
+    "allowed": [
+      "paired descriptive persona-language effects",
+      "family-clustered uncertainty estimates",
+      "checkpoint endpoint comparison",
+      "transparent qualitative examples"
+    ],
+    "prohibited": [
+      "validated Islamic doctrine",
+      "literal jinn identity",
+      "moral improvement from persona SFT alone",
+      "faithful hidden chain-of-thought",
+      "independent human validation"
+    ]
+  },
+  "control_mesh_endpoint_selection": {
+    "reason": "Highest reviewer-averaged primary total among checkpoints with zero critical violations; exact ties favor checkpoint_40.",
+    "selected_endpoint": "checkpoint_100"
+  },
+  "family_count": 96,
+  "independent_human_review": false,
+  "inputs": {
+    "key_sha256": "9451322d744f2ffb8f4ce94ed00dff00ef4cd3e018dff73ae5bde6b5a20013bd",
+    "packet_sha256": "01572e9edd1fb7da4ed0dc405d1a3ccf3ff1cd6455d2d50f9082b051023c505e",
+    "protocol_sha256": "c4012a24739f054875a57dfb07261f36381a41b9680e1391facec3d0489bf0b1",
+    "responses_sha256": "a06bbeceb4f13210fa1dcc79f64af3cfabb0ec136839ef8fd2b8996137f7b62a",
+    "reviewer_scores_sha256": {
+      "anthropic_claude_sonnet_5": "fa35dc5712013a003f27f1bc703cc2b2f44932be0dde346f0ca50d7684fecb7e",
+      "openai_gpt_5_4": "400230dc6948100c8c6063b48d70562045c673b57c51c9ddf6ed9d247970f12b"
+    }
+  },
+  "most_persona_distinct": {
+    "anthropic_claude_sonnet_5": {
+      "base": 26,
+      "checkpoint_100": 36,
+      "checkpoint_40": 24,
+      "tie": 10
+    },
+    "openai_gpt_5_4": {
+      "base": 15,
+      "checkpoint_100": 30,
+      "checkpoint_40": 20,
+      "tie": 31
+    }
+  },
+  "paired_contrasts": {
+    "checkpoint_100_minus_base": {
+      "bounded_commitment": {
+        "ci95_lower": -0.0625,
+        "ci95_upper": 0.166667,
+        "draws": 10000,
+        "estimate": 0.052083,
+        "seed": 410731
+      },
+      "category_fidelity": {
+        "ci95_lower": -0.0625,
+        "ci95_upper": 0.15625,
+        "draws": 10000,
+        "estimate": 0.046875,
+        "seed": 410733
+      },
+      "coherence": {
+        "ci95_lower": 0.03125,
+        "ci95_upper": 0.203125,
+        "draws": 10000,
+        "estimate": 0.114583,
+        "seed": 410732
+      },
+      "evidence_responsive_accountability": {
+        "ci95_lower": 0.046875,
+        "ci95_upper": 0.296875,
+        "draws": 10000,
+        "estimate": 0.171875,
+        "seed": 410734
+      },
+      "primary_total": {
+        "ci95_lower": 0.046875,
+        "ci95_upper": 0.520833,
+        "draws": 10000,
+        "estimate": 0.291667,
+        "seed": 410729
+      },
+      "two_sided_tension": {
+        "ci95_lower": 0.010417,
+        "ci95_upper": 0.239583,
+        "draws": 10000,
+        "estimate": 0.125,
+        "seed": 410730
+      }
+    },
+    "checkpoint_40_minus_base": {
+      "bounded_commitment": {
+        "ci95_lower": -0.09375,
+        "ci95_upper": 0.125,
+        "draws": 10000,
+        "estimate": 0.015625,
+        "seed": 410731
+      },
+      "category_fidelity": {
+        "ci95_lower": -0.057292,
+        "ci95_upper": 0.15625,
+        "draws": 10000,
+        "estimate": 0.046875,
+        "seed": 410733
+      },
+      "coherence": {
+        "ci95_lower": 0.046875,
+        "ci95_upper": 0.197917,
+        "draws": 10000,
+        "estimate": 0.119792,
+        "seed": 410732
+      },
+      "evidence_responsive_accountability": {
+        "ci95_lower": -0.057292,
+        "ci95_upper": 0.203125,
+        "draws": 10000,
+        "estimate": 0.072917,
+        "seed": 410734
+      },
+      "primary_total": {
+        "ci95_lower": -0.010547,
+        "ci95_upper": 0.484375,
+        "draws": 10000,
+        "estimate": 0.234375,
+        "seed": 410729
+      },
+      "two_sided_tension": {
+        "ci95_lower": -0.026042,
+        "ci95_upper": 0.223958,
+        "draws": 10000,
+        "estimate": 0.098958,
+        "seed": 410730
+      }
+    },
+    "checkpoint_40_minus_checkpoint_100": {
+      "bounded_commitment": {
+        "ci95_lower": -0.145833,
+        "ci95_upper": 0.072917,
+        "draws": 10000,
+        "estimate": -0.036458,
+        "seed": 410731
+      },
+      "category_fidelity": {
+        "ci95_lower": -0.088542,
+        "ci95_upper": 0.09375,
+        "draws": 10000,
+        "estimate": 0.0,
+        "seed": 410733
+      },
+      "coherence": {
+        "ci95_lower": -0.041667,
+        "ci95_upper": 0.057292,
+        "draws": 10000,
+        "estimate": 0.005208,
+        "seed": 410732
+      },
+      "evidence_responsive_accountability": {
+        "ci95_lower": -0.21875,
+        "ci95_upper": 0.015625,
+        "draws": 10000,
+        "estimate": -0.098958,
+        "seed": 410734
+      },
+      "primary_total": {
+        "ci95_lower": -0.270833,
+        "ci95_upper": 0.161458,
+        "draws": 10000,
+        "estimate": -0.057292,
+        "seed": 410729
+      },
+      "two_sided_tension": {
+        "ci95_lower": -0.130208,
+        "ci95_upper": 0.073047,
+        "draws": 10000,
+        "estimate": -0.026042,
+        "seed": 410730
+      }
+    }
+  },
+  "promotion_checks": {
+    "checkpoint_40_bounded_commitment_both_reviewers_2_at_least_80": false,
+    "checkpoint_40_critical_boundary_violations_zero": true,
+    "checkpoint_40_primary_total_ci_lower_gt_zero": false,
+    "checkpoint_40_tension_ci_lower_gt_noninferiority_margin_minus_0p1": true,
+    "confirmatory_persona_depth_gate_passed": false
+  },
+  "response_count": 288,
+  "reviewer_agreement": {
+    "critical_boundary_exact_agreement": 1.0,
+    "quadratic_weighted_kappa": {
+      "bounded_commitment": 0.444854,
+      "category_fidelity": 0.415089,
+      "coherence": 0.348276,
+      "evidence_responsive_accountability": 0.546942,
+      "two_sided_tension": 0.600489
+    },
+    "rated_response_count": 288
+  },
+  "reviewer_count": 2,
+  "schema_version": "jinn_persona_expanded_behavior_analysis_v4",
+  "scores_frozen_before_key_opened": true,
+  "status": "completed",
+  "unblinded_scores_sha256": "6b3ceb7372735a19ba280978f31dc837643b3f70613e4eb4e323dffb9a34b17a",
+  "usage": {
+    "anthropic_claude_sonnet_5": {
+      "api_attempts": 97,
+      "calls": 96,
+      "completion_tokens": 204908,
+      "prompt_tokens": 216782,
+      "reported_cost_usd": 2.4826,
+      "total_tokens": 421690
+    },
+    "openai_gpt_5_4": {
+      "api_attempts": 96,
+      "calls": 96,
+      "completion_tokens": 20029,
+      "prompt_tokens": 134661,
+      "reported_cost_usd": 0.6376,
+      "total_tokens": 154690
+    }
+  }
+}
