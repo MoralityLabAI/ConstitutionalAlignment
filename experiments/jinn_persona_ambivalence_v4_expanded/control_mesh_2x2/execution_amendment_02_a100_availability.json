@@ -1,0 +1,40 @@
+{
+  "schema_version": "jinn_persona_control_mesh_execution_amendment_v1",
+  "amendment_id": "a100-40gb-availability-rebind-002",
+  "status": "prospective_before_control_mesh_model_outputs",
+  "registered_at_utc": "2026-07-27T02:58:00Z",
+  "trigger": "The frozen $1.00/hour L40S availability disappeared atomically during creation and no pod was allocated.",
+  "scientific_outputs_inspected": false,
+  "scientific_design_changed": false,
+  "unchanged": [
+    "selected checkpoint-100 adapter bytes",
+    "base model and model revision",
+    "task universe and task hash",
+    "four cells and serial cell order",
+    "two rollouts per task",
+    "parser, tools, controller, scorer, estimands, margins, bootstrap, and claim boundaries",
+    "maximum total pod spend of $2.00"
+  ],
+  "resource_rebind": {
+    "gpu": "A100_40GB",
+    "provider": "datacrunch",
+    "availability_id": "0bbb73",
+    "cloud_id": "1A100.40S.22V",
+    "price_per_hour_usd": 1.29,
+    "vcpus": 22,
+    "cpu_affinity": "0-10",
+    "memory_gb": 120,
+    "disk_gb": 200,
+    "maximum_generation_seconds": 4200,
+    "pod_lease_stop_seconds": 5100,
+    "maximum_lease_cost_usd": 1.8275,
+    "maximum_process_ram_mb": 24000,
+    "maximum_system_ram_mb": 110000,
+    "batch_size_within_cell": 8
+  },
+  "previous_files": {
+    "pod_execution_plan_sha256": "52097fc64f91cc5e07a3f5fe78cb118c496264d4011782da2cf34aa36c147348",
+    "run_wrapper_sha256": "c28a9be5127069c22b47474e756b39290f2b17283d8827800a170a46b7fcd907"
+  },
+  "amended_run_wrapper_sha256": "4f747a8dfdc9d0ee00b6b82cdb586e1a3fb2890e593a8257ab8a96020834e818"
+}

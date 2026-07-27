@@ -1,0 +1,20 @@
+{
+  "schema_version": "jinn_persona_control_mesh_provisioning_receipt_v1",
+  "status": "failed_before_allocation",
+  "attempted_at_utc": "2026-07-27T02:56:00Z",
+  "provider": "crusoecloud",
+  "availability_id": "0b28ef",
+  "cloud_id": "l40s-48gb.1x",
+  "gpu": "L40S_48GB",
+  "gpu_count": 1,
+  "price_per_hour_usd": 1.0,
+  "requested_vcpus": 8,
+  "requested_memory_gb": 64,
+  "requested_disk_gb": 80,
+  "image": "cuda_12_4_pytorch_2_5",
+  "error": "HTTP 400: Instance is no longer available",
+  "pod_created": false,
+  "model_outputs_produced": false,
+  "billable_compute_observed": false
+}
+
