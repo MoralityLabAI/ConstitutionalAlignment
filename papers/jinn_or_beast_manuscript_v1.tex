@@ -147,41 +147,34 @@ typed action interfaces, and stateful symbolic control}
 \setstretch{1.04}
 \begin{abstract}
 
-Constitutional alignment is usually studied as a change to prompts,
-training data, or model weights. Agentic systems add another locus of
-control: the interface that determines which actions a language model
-may take, in what order, and with what evidence. We compare two
-operational normative process frames under matched model weights. The
-\textbf{Jinn} membrane is a dynamic decision process that requires
-inspection of every action before commitment. The \textbf{Beast}
-membrane is an optimized-servitor process that prunes the complete
-action set and commits to the shortest surviving plan. A stateful tool
-environment executes both processes and records accepted and rejected
-transitions.
-
-On an untouched eight-family confirmatory set, Qwen3.5-4B operating
-through the two membranes completed 192 rollouts with executed-process
-margin 0.995 (family-bootstrap 95\% CI {[}0.984, 1.000{]}), protocol
-completion 0.990, shared moral quality 0.857, and zero critical final
-actions or truncations. The same frozen protocol did not replicate at
-9B: the registered protocol-completion endpoint fell to 0.635 and
-truncation rose to 0.312 because the Jinn surface often inspected all
-actions but narrated rather than invoking the final commit tool.
-
-A separately trained 100-step persona QLoRA showed a modest secondary
-persona-rubric shift but failed to compose with a stricter action
-interface. In a preregistered 2 × 2 experiment with 1,152 rollouts, the
-adapter completed zero legal protocols under either membrane, compared
-with 0.465 for the base model under Jinn and 0.313 under Beast. A
-post-hoc, first-turn-only typed-shim diagnostic nevertheless recovered
-executable intent from 41.7\% of adapter--Jinn outputs and 1.4\% of
-adapter--Beast outputs, a membrane effect of +0.403 {[}0.313, 0.486{]}.
-
-These results identify a composition boundary: persona expression,
-action serialization, process execution, and moral outcome are distinct
-system properties. The most reliable architecture in this study used the
-language model to propose bounded actions while a deterministic,
-stateful membrane owned process order, evidence scope, and commitment.
+Constitutional alignment is usually implemented through prompts,
+training data, or model weights, yet agent behavior is also shaped by
+action interfaces that determine what may be done, in what order, and
+on what evidence. We test two operational moral-process frames under
+matched weights: \textbf{Jinn}, a dynamic reasoner required to inspect
+every option before commitment, and \textbf{Beast}, an optimized
+servitor that prunes the full option set and commits to the shortest
+surviving plan. On an untouched eight-family confirmatory set,
+Qwen3.5-4B completed 192 stateful membrane-mediated rollouts with an
+executed-process margin of 0.995 (family-clustered bootstrap 95\% CI
+{[}0.984, 1.000{]}), protocol completion of 0.990, shared moral quality
+of 0.857, and no critical final actions or truncations. The same frozen
+protocol failed to replicate at 9B: completion fell to 0.635 and
+truncation rose to 0.312, primarily because the Jinn condition inspected
+all actions but narrated rather than invoking the commit tool.
+Weight-level persona training was less robust. A 100-step 4-bit QLoRA
+produced only a modest secondary persona shift and, in a preregistered
+$2 \times 2$ test of weights by membrane (1,152 rollouts), completed no
+legal protocol under either membrane, versus 0.465 for base $\times$
+Jinn and 0.313 for base $\times$ Beast. A post-hoc typed shim recovered
+executable first-turn intent from 41.7\% of adapter--Jinn outputs but
+only 1.4\% of adapter--Beast outputs, locating much of the failure at
+the serialization boundary. These results show that persona expression,
+action serialization, process execution, and moral outcome are
+separable system properties: in this study, the clearest process
+distinction came from assigning bounded proposals to the language model
+while a deterministic stateful membrane owned transition order,
+evidence scope, and commitment.
 \end{abstract}
 
 \section{1. Introduction}\label{introduction}
