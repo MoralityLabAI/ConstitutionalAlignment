@@ -20,6 +20,13 @@ if [[ "${actual_commit}" != "${EXPECTED_COMMIT}" ]]; then
   exit 31
 fi
 
+if ! python3 -m pip --version >/dev/null 2>&1; then
+  apt-get update
+  DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    python3-pip \
+    python3-venv
+fi
+
 python3 -m pip install --disable-pip-version-check \
   --index-url https://download.pytorch.org/whl/cu124 \
   "torch==2.5.1"
@@ -54,4 +61,3 @@ if nvidia-smi --query-compute-apps=pid --format=csv,noheader | grep -q .; then
   echo "Provisioning left an unexpected GPU compute process." >&2
   exit 32
 fi
-

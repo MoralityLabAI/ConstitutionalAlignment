@@ -1,0 +1,13 @@
+{
+  "schema_version": "jinn_persona_control_mesh_provisioning_receipt_v1",
+  "status": "failed_before_model_load",
+  "attempted_at_utc": "2026-07-27T03:04:00Z",
+  "pod_id": "8baa336af2c442138a2650cc4e664fd2",
+  "frozen_commit": "c3f2ea56bdff1d175059ecec8da892f97da9404a",
+  "image": "ubuntu_22_cuda_12",
+  "error": "/usr/bin/python3: No module named pip",
+  "model_loaded": false,
+  "model_outputs_produced": false,
+  "adapter_outputs_produced": false
+}
+

@@ -1,0 +1,14 @@
+{
+  "schema_version": "jinn_persona_control_mesh_execution_amendment_v1",
+  "amendment_id": "ubuntu-python-bootstrap-004",
+  "status": "prospective_before_control_mesh_model_outputs",
+  "registered_at_utc": "2026-07-27T03:05:00Z",
+  "trigger": "The supported minimal Ubuntu CUDA image does not include pip.",
+  "scientific_outputs_inspected": false,
+  "scientific_design_changed": false,
+  "change": "If python3 -m pip is unavailable, install python3-pip and python3-venv from the image's signed Ubuntu package repositories before running the already pinned Python dependency installation.",
+  "unchanged": [
+    "all model, adapter, task, generation, process, scoring, analysis, and cost-cap fields"
+  ]
+}
+
