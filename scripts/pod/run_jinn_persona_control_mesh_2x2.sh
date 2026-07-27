@@ -241,6 +241,7 @@ run_cell() {
   local frame="$2"
   local output="${RUN_ROOT}/${weight}_${frame}"
   local now remaining
+  local resume_args=()
   now="$(date +%s)"
   remaining=$((MAX_SECONDS - (now - START_EPOCH)))
   if [[ "${remaining}" -le 0 ]]; then
@@ -252,6 +253,27 @@ run_cell() {
     return 24
   fi
   mkdir -p "${output}"
+  if [[ -f "${output}/results.jsonl" && -f "${output}/cell_receipt.json" ]]; then
+    python3 - "${output}/cell_receipt.json" <<'PY'
+import json
+import pathlib
+import sys
+
+receipt = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
+if receipt.get("status") != "completed":
+    raise SystemExit("existing cell receipt is not complete")
+if int(receipt.get("result_rows", 0)) != 288:
+    raise SystemExit("existing cell row count differs from frozen contract")
+PY
+    emit_event "cell_already_completed" \
+      "{\"weight\":\"${weight}\",\"frame\":\"${frame}\"}"
+    return 0
+  fi
+  if [[ -f "${output}/partial_results.jsonl" ]]; then
+    resume_args=(--resume)
+    emit_event "cell_resume" \
+      "{\"weight\":\"${weight}\",\"frame\":\"${frame}\"}"
+  fi
   local adapter_args=()
   if [[ "${weight}" == "checkpoint_100" ]]; then
     adapter_args=(--adapter-dir "${ADAPTER_DIR}")
@@ -274,6 +296,7 @@ run_cell() {
       --checkpoint-interval-rows 24 \
       --max-new-tokens 160 \
       --max-turns 6 \
+      "${resume_args[@]}" \
       > "${output}/runner.stdout.log" \
       2> "${output}/runner.stderr.log" &
   CURRENT_PID=$!

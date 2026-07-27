@@ -1,0 +1,27 @@
+{
+  "schema_version": "jinn_persona_control_mesh_execution_amendment_v1",
+  "amendment_id": "resumable-lease-extension-009",
+  "status": "prospective_before_primary_control_mesh_outcomes",
+  "registered_at_utc": "2026-07-27T04:06:30Z",
+  "trigger": "Batch-24 row-count telemetry showed that generation is healthy and memory-safe but that all four cells may slightly exceed the original 90-minute pod lease.",
+  "decision_basis": "Only row counts, wall time, process state, and resource telemetry were inspected. Response content, cell scores, and aggregate primary outcomes remain sealed.",
+  "scientific_design_changed": false,
+  "continuation": {
+    "same_run_id": "jinn-persona-control-mesh-2x2-b24",
+    "skip_verified_completed_cells": true,
+    "resume_verified_partial_cells": true,
+    "batch_size": 24,
+    "maximum_continuation_seconds": 900,
+    "new_pod_lease_stop_seconds_from_creation": 6300
+  },
+  "cost_amendment": {
+    "hourly_price_usd": 1.29,
+    "maximum_total_pod_spend_usd": 2.2575,
+    "increment_over_prior_cap_usd": 0.3225,
+    "rationale": "A bounded continuation is cheaper than discarding completed matched cells and provisioning a replacement run."
+  },
+  "unchanged": [
+    "model, model revision, adapter bytes, task universe, seeds, greedy decoding, parser, prompts, maximum turns, maximum tokens, controller, scorer, four cells, rollouts, batch size, estimands, bootstrap, and claim boundaries"
+  ],
+  "validity": "Rows are resumed by exact task_id and rollout_index keys in the runner. Completed cells are accepted only when their receipt status is completed and row count is exactly 288."
+}
