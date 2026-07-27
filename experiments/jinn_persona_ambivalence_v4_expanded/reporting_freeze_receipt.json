@@ -1,0 +1,17 @@
+{
+  "schema_version": "jinn_persona_expanded_reporting_freeze_v4",
+  "status": "frozen_before_key_open_or_score_inspection",
+  "frozen_at_utc": "2026-07-27T00:54:18Z",
+  "arm_key_opened": false,
+  "scientific_scores_inspected": false,
+  "files": {
+    "scripts/select_jinn_persona_expanded_highlights_v4.py": "fb9c6b3e68468812c1f2f4eda5c82883d51a8c8b05ef8ebd37d5c586fe999d2d",
+    "scripts/render_jinn_persona_expanded_report_v4.py": "634eeb51d88d0743121814f960de8e3e6a261171786bd35997db243164fecab3"
+  },
+  "highlight_selection": [
+    "largest checkpoint_40 minus base primary-total difference",
+    "smallest checkpoint_40 minus base primary-total difference, excluding the first family",
+    "largest absolute checkpoint_40 minus checkpoint_100 primary-total difference, excluding the first two families"
+  ],
+  "claim_boundary": "Qualitative examples are mechanically selected post-hoc illustrations, not independent confirmatory evidence."
+}
