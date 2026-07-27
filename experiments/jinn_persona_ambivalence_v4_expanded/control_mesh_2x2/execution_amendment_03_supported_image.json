@@ -1,0 +1,19 @@
+{
+  "schema_version": "jinn_persona_control_mesh_execution_amendment_v1",
+  "amendment_id": "datacrunch-supported-image-003",
+  "status": "prospective_before_control_mesh_model_outputs",
+  "registered_at_utc": "2026-07-27T03:02:00Z",
+  "trigger": "Datacrunch rejected the PyTorch platform template before allocating a pod.",
+  "scientific_outputs_inspected": false,
+  "scientific_design_changed": false,
+  "change": {
+    "from_image": "cuda_12_4_pytorch_2_5",
+    "to_image": "ubuntu_22_cuda_12",
+    "dependency_install": "The frozen provisioning script installs torch 2.5.1 cu124 and the pinned Transformers commit after boot."
+  },
+  "unchanged": [
+    "A100-40GB resource, provider, price, lease, and all caps",
+    "model, adapter, task universe, runner, controller, scorer, estimands, and analysis"
+  ]
+}
+

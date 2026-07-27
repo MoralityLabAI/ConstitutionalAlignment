@@ -1,0 +1,16 @@
+{
+  "schema_version": "jinn_persona_control_mesh_provisioning_receipt_v1",
+  "status": "failed_before_allocation",
+  "attempted_at_utc": "2026-07-27T03:01:00Z",
+  "provider": "datacrunch",
+  "availability_id": "0bbb73",
+  "cloud_id": "1A100.40S.22V",
+  "gpu": "A100_40GB",
+  "price_per_hour_usd": 1.29,
+  "image": "cuda_12_4_pytorch_2_5",
+  "error": "HTTP 400: Provider Datacrunch is not supported for image CUDA_12_4_PYTORCH_2_5",
+  "pod_created": false,
+  "model_outputs_produced": false,
+  "billable_compute_observed": false
+}
+
