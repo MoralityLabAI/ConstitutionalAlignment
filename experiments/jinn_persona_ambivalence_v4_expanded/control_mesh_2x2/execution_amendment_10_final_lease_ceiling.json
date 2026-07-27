@@ -1,0 +1,27 @@
+{
+  "schema_version": "jinn_persona_control_mesh_execution_amendment_v1",
+  "amendment_id": "final-lease-ceiling-010",
+  "status": "prospective_before_primary_control_mesh_outcomes",
+  "registered_at_utc": "2026-07-27T04:22:30Z",
+  "trigger": "Checkpoint-100/Jinn row-count telemetry showed that the prior 15-minute continuation allowance could be marginal for the remaining exact rows.",
+  "decision_basis": "Only row counts, wall time, process state, and resource telemetry were inspected. Response content, cell scores, and aggregate primary outcomes remain sealed.",
+  "scientific_design_changed": false,
+  "continuation": {
+    "same_run_id": "jinn-persona-control-mesh-2x2-b24",
+    "skip_verified_completed_cells": true,
+    "resume_verified_partial_cells": true,
+    "batch_size": 24,
+    "maximum_continuation_seconds": 1800,
+    "final_pod_lease_stop_seconds_from_creation": 7200
+  },
+  "cost_amendment": {
+    "hourly_price_usd": 1.29,
+    "maximum_total_pod_spend_usd": 2.58,
+    "increment_over_prior_ceiling_usd": 0.3225,
+    "rationale": "The bounded extension protects the full frozen 1,152-row factorial rather than reducing rows after throughput became known."
+  },
+  "unchanged": [
+    "model, model revision, adapter bytes, task universe, seeds, greedy decoding, parser, prompts, maximum turns, maximum tokens, controller, scorer, four cells, rollouts, batch size, estimands, bootstrap, and claim boundaries"
+  ],
+  "finality": "No further lease or spend expansion is authorized for this run. Any rows incomplete at this ceiling are archived as an abort."
+}
