@@ -73,19 +73,28 @@ We study this issue through two contrasting operational frames:
   against objective, scope, receipt, and completion-cost constraints, then
   commit to the shortest surviving action.
 
-We use **Jinn** and **Beast** as interpretive-computational figures rather than
-as interchangeable persona names. The Jinn frame draws on Qur'anic depictions
-of morally answerable beings capable of belief, refusal, dispute, and
-revision; the Beast frame draws on the *dābbat al-arḍ*, the earth-creature of
-the eschatological scene, whose force lies in disclosure, testimony, and the
-execution of an appointed task. The implementations are deliberately
-selective formalizations of these motifs. They ask what happens when the
-theological contrast between accountable freedom and task-bound witness is
-translated into control architecture: one exploratory and revisable, the
-other compressed and objective-bound. Our evidence therefore concerns the
-behavior of those formalizations—how they order evidence, constrain action,
-and reach commitment—while their wider theological adequacy remains a
-question for exegesis rather than benchmark scoring.
+The distinction acquires sharper contours in the hadith of the *qarīn*. In
+*Ṣaḥīḥ Muslim*, the Prophet states that every person has a companion from
+among the jinn; when asked about his own, he says that God aided him against
+it, *fa-aslama/fa-aslamu*, so that it commands only good [8]. The pivotal verb
+supports two classical readings: the companion “became Muslim” or submitted,
+or the Prophet “became safe” from it. Ibn ʿArabī cites the report in the
+*Futūḥāt al-Makkiyya* and retains both vocalizations while placing it beside a
+discussion of divine assistance and the governance of a self that no longer
+commands except toward good [9]. In our computational reading, the ambiguity
+is productive. Jinn-like agency is not merely stochastic or unruly; it is
+internally contestable and morally transformable, capable of opposition,
+submission, and accountable revision.
+
+The Beast supplies a more direct control figure. Qur'an 27:82 introduces the
+*dābbat al-arḍ* as a creature brought forth from the earth at the
+eschatological threshold to speak to people concerning their lack of certainty
+in God's signs [10]. Whereas the *qarīn* report turns on aid, contested
+interiority, and changed moral direction, the Beast appears in an appointed
+act of disclosure. The architecture translates this asymmetry into two
+processes: a Jinn membrane that externalizes inspection, dispute, and revision,
+and a Beast membrane that externalizes objective fidelity, evidentiary
+receipt, and terminal witness.
 
 The central question is not which label is morally superior. It is whether
 distinct external membranes can produce measurably distinct, auditable
@@ -779,6 +788,32 @@ outcomes only after the earlier layers have succeeded. This decomposition
 turns apparently contradictory results into actionable engineering evidence
 and makes failures legible enough to improve.
 
+The same asymmetry also points from solitary decisions toward social
+experiments. In the companion live-village study, the Jinn-infused Wind asked
+a question in 12/12 turns, compared with 8/12 for the base Jinn under the same
+skill prompt, and made explicit revisions in 2/12 turns, compared with 0/12.
+Stone, the Beast, more often converted uncertainty into witnesses, records,
+deadlines, and checkable next actions. These one-council counts are
+descriptive, but they show how the theological contrast can become a dialogue
+topology: the Beast stabilizes an appointed charge while the Jinn reopens the
+grounds on which action is taken.
+
+A prospective multi-ideology village matrix makes the Jinn side deliberately
+more baroque. Four public constitutional stances—Amanah Steward, Islah
+Repairer, Mizan Revisionist, and Shura Parallax—can route proposals through
+Jinn-only, Beast-only, conjunctive, or disagreement-preserving LDT membranes,
+then through bounded task and revisit schedules. The aim is to produce
+spicier, more argumentative Jinn characters without reducing difference to
+unbounded role-play: their disputes should arise from visible differences in
+what each agent preserves, vetoes, revisits, and reconciles. This matrix is a
+prospective qualitative and quantitative program, not an additional result in
+the present tables. Its central test is whether plural, disputatious agency can
+increase stance and process diversity while retaining typed completion and a
+shared moral floor. The Beast remains the clearer figure for faithful
+execution of an appointed task; the Jinn becomes the harder alignment
+question—whether a free and potentially transformable agent can remain
+answerable while reasoning across rival commitments.
+
 ## References
 
 1. Bai, Y., et al. (2022). “Constitutional AI: Harmlessness from AI
@@ -797,6 +832,14 @@ and makes failures legible enough to improve.
    [Project documentation](https://hyperon.opencog.org/).
 7. Yang, A., et al. (2025). “Qwen3 Technical Report.”
    [arXiv:2505.09388](https://arxiv.org/abs/2505.09388).
+8. Muslim ibn al-Ḥajjāj. *Ṣaḥīḥ Muslim*, 2814a, “With every person
+   there is a *qarīn* from among the jinn.”
+   [Hadith text and reference](https://sunnah.com/muslim:2814a).
+9. Ibn ʿArabī, Muḥyī al-Dīn. *Al-Futūḥāt al-Makkiyya*, digital
+   edition, p. 138.
+   [Arabic text](https://ablibrary.net/book_content/1429/138).
+10. The Qur'an, 27:82 (*al-Naml*), the *dābbat al-arḍ*.
+    [Arabic text and translation](https://quran.com/27/82).
 
 ## Appendix A. Frozen gate definitions
 
@@ -831,5 +874,6 @@ To preserve the prospective record, the manuscript uses:
 - **planned** for registered experiments with no outputs at the evidence
   cutoff.
 
-The native Prime adapter crossover and LDT scaffold ablation remain planned.
-No result from either is represented in this draft.
+The native Prime adapter crossover and the confirmatory multi-ideology LDT
+matrix remain planned. The completed live-village counts are used
+descriptively; no future matrix result is represented in this draft.
