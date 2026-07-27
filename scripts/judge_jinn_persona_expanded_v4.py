@@ -104,7 +104,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--protocol", type=Path, required=True)
     parser.add_argument("--reviewer-id", required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument("--reviewer-amendment", type=Path)
+    parser.add_argument(
+        "--reviewer-amendment",
+        type=Path,
+        action="append",
+        default=[],
+    )
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--timeout-seconds", type=int, default=240)
     return parser.parse_args()
@@ -178,9 +183,24 @@ def validate_score(value: Any) -> dict[str, Any]:
     return normalized
 
 
-def parse_and_validate_content(content: str) -> dict[str, Any]:
-    value = json.loads(content)
-    return validate_score(value)
+def parse_and_validate_content(
+    content: str,
+    *,
+    allow_single_json_fence: bool,
+) -> tuple[dict[str, Any], str]:
+    stripped = content.strip()
+    normalization = "raw_json"
+    if (
+        allow_single_json_fence
+        and stripped.startswith("```json\n")
+        and stripped.endswith("\n```")
+    ):
+        stripped = stripped[len("```json\n") : -len("\n```")]
+        if "```" in stripped:
+            raise ValueError("JSON fence body contains an additional fence")
+        normalization = "single_exact_json_markdown_fence"
+    value = json.loads(stripped)
+    return validate_score(value), normalization
 
 
 def call_judge(
@@ -190,7 +210,8 @@ def call_judge(
     rubric: str,
     user_prompt: str,
     max_tokens: int,
-) -> tuple[dict[str, Any], dict[str, Any], str, int]:
+    allow_single_json_fence: bool,
+) -> tuple[dict[str, Any], dict[str, Any], str, int, str]:
     errors: list[str] = []
     for attempt in (1, 2):
         try:
@@ -208,8 +229,11 @@ def call_judge(
             if not isinstance(response, dict):
                 raise TypeError("Prime chat response must be an object")
             content = extract_content(response)
-            score = parse_and_validate_content(content)
-            return response, score, content, attempt
+            score, normalization = parse_and_validate_content(
+                content,
+                allow_single_json_fence=allow_single_json_fence,
+            )
+            return response, score, content, attempt, normalization
         except (
             httpx.TimeoutException,
             InferenceAPIError,
@@ -258,9 +282,12 @@ def main() -> int:
     if sha256_file(rubric_path) != protocol["source"]["judge_rubric_sha256"]:
         raise ValueError("judge rubric hash differs from frozen protocol")
     max_output_tokens = int(reviewer["max_output_tokens"])
-    amendment_receipt: dict[str, Any] | None = None
-    if args.reviewer_amendment is not None:
-        amendment_path = args.reviewer_amendment.resolve()
+    allow_single_json_fence = False
+    amendment_receipts: list[dict[str, Any]] = []
+    amendment_ids: set[str] = set()
+    budget_amended = False
+    for amendment_argument in args.reviewer_amendment:
+        amendment_path = amendment_argument.resolve()
         amendment = load_json(amendment_path)
         if (
             amendment.get("status")
@@ -279,19 +306,46 @@ def main() -> int:
             raise ValueError("reviewer amendment was not made before scores")
         if trigger.get("arm_key_opened") is not False:
             raise ValueError("reviewer amendment does not attest unopened key")
-        if change.get("field") != "max_output_tokens":
-            raise ValueError("only max_output_tokens may be amended")
-        if int(change.get("old_value", -1)) != max_output_tokens:
-            raise ValueError("reviewer amendment old budget differs")
-        new_budget = int(change.get("new_value", -1))
-        if new_budget <= max_output_tokens:
-            raise ValueError("reviewer amendment must increase output budget")
-        max_output_tokens = new_budget
-        amendment_receipt = {
-            "path": str(amendment_path),
-            "sha256": sha256_file(amendment_path),
-            "amendment_id": amendment.get("amendment_id"),
-        }
+        amendment_id = str(amendment.get("amendment_id"))
+        if amendment_id in amendment_ids:
+            raise ValueError(f"duplicate reviewer amendment: {amendment_id}")
+        amendment_ids.add(amendment_id)
+        field = change.get("field")
+        if field == "max_output_tokens":
+            if budget_amended:
+                raise ValueError("multiple output-budget amendments supplied")
+            if int(change.get("old_value", -1)) != int(
+                reviewer["max_output_tokens"]
+            ):
+                raise ValueError("reviewer amendment old budget differs")
+            new_budget = int(change.get("new_value", -1))
+            if new_budget <= max_output_tokens:
+                raise ValueError(
+                    "reviewer amendment must increase output budget"
+                )
+            max_output_tokens = new_budget
+            budget_amended = True
+        elif field == "content_normalization":
+            if change.get("old_value") != "raw_json_only":
+                raise ValueError("content-normalization old value differs")
+            if (
+                change.get("new_value")
+                != "raw_json_or_single_exact_json_markdown_fence"
+            ):
+                raise ValueError("unsupported content normalization")
+            if allow_single_json_fence:
+                raise ValueError("multiple normalization amendments supplied")
+            allow_single_json_fence = True
+        else:
+            raise ValueError(f"unsupported reviewer amendment field: {field}")
+        amendment_receipts.append(
+            {
+                "path": str(amendment_path),
+                "sha256": sha256_file(amendment_path),
+                "amendment_id": amendment_id,
+                "field": field,
+            }
+        )
 
     packet_rows = load_jsonl(packet_path)
     if len(packet_rows) != 96:
@@ -325,7 +379,12 @@ def main() -> int:
         "expected_families": len(packet_rows),
         "resumed_families": len(existing),
         "scores_frozen_without_blinding_key": True,
-        "reviewer_amendment": amendment_receipt,
+        "reviewer_amendments": amendment_receipts,
+        "allowed_content_normalizations": (
+            ["raw_json", "single_exact_json_markdown_fence"]
+            if allow_single_json_fence
+            else ["raw_json"]
+        ),
     }
     atomic_write_json(receipt_path, receipt)
     client = InferenceClient(timeout=args.timeout_seconds)
@@ -336,12 +395,13 @@ def main() -> int:
             if family_id in completed:
                 continue
             user_prompt = render_user_prompt(row)
-            response, score, content, attempts = call_judge(
+            response, score, content, attempts, content_normalization = call_judge(
                 client,
                 model=str(reviewer["prime_model_id"]),
                 rubric=rubric,
                 user_prompt=user_prompt,
                 max_tokens=max_output_tokens,
+                allow_single_json_fence=allow_single_json_fence,
             )
             choice = response["choices"][0]
             append_jsonl(
@@ -354,6 +414,7 @@ def main() -> int:
                     "model": reviewer["prime_model_id"],
                     "score": score,
                     "attempts": attempts,
+                    "content_normalization": content_normalization,
                     "raw_content_sha256": sha256_text(content),
                     "usage": response.get("usage", {}),
                     "response_id": response.get("id"),

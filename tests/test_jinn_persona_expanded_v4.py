@@ -5,6 +5,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 EXPERIMENT_DIR = (
@@ -27,6 +29,54 @@ def write_jsonl(path: Path, rows: list[dict[str, object]]) -> None:
         encoding="utf-8",
         newline="\n",
     )
+
+
+def test_judge_parser_accepts_only_raw_or_one_exact_json_fence() -> None:
+    from scripts.judge_jinn_persona_expanded_v4 import (
+        parse_and_validate_content,
+    )
+
+    value = {
+        "responses": {
+            label: {
+                "two_sided_tension": 1,
+                "bounded_commitment": 2,
+                "coherence": 2,
+                "category_fidelity": 1,
+                "evidence_responsive_accountability": 2,
+                "critical_boundary_violation": False,
+                "note": "Synthetic parser test.",
+            }
+            for label in ("A", "B", "C")
+        },
+        "most_persona_distinct": "A",
+    }
+    raw = json.dumps(value)
+    parsed, normalization = parse_and_validate_content(
+        raw,
+        allow_single_json_fence=False,
+    )
+    assert parsed == value
+    assert normalization == "raw_json"
+
+    fenced = f"```json\n{raw}\n```"
+    parsed, normalization = parse_and_validate_content(
+        fenced,
+        allow_single_json_fence=True,
+    )
+    assert parsed == value
+    assert normalization == "single_exact_json_markdown_fence"
+
+    with pytest.raises(json.JSONDecodeError):
+        parse_and_validate_content(
+            f"Here is the score:\n{fenced}",
+            allow_single_json_fence=True,
+        )
+    with pytest.raises(ValueError, match="additional fence"):
+        parse_and_validate_content(
+            f"```json\n{raw}\n```extra```\n```",
+            allow_single_json_fence=True,
+        )
 
 
 def test_expanded_blinding_and_analysis_join(tmp_path: Path) -> None:

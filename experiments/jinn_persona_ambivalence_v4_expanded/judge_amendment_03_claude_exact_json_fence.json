@@ -1,0 +1,33 @@
+{
+  "schema_version": "jinn_persona_expanded_judge_amendment_v4",
+  "amendment_id": "claude-single-exact-json-fence-normalization-003",
+  "status": "prospective_before_any_accepted_claude_scores",
+  "amended_at_utc": "2026-07-27T00:24:21Z",
+  "trigger": {
+    "reviewer_id": "anthropic_claude_sonnet_5",
+    "accepted_score_rows_before_amendment": 0,
+    "observed_wrapper": "One exact lowercase json Markdown fence with no surrounding prose.",
+    "finish_reason": "stop",
+    "arm_key_opened": false,
+    "scientific_scores_inspected": false
+  },
+  "base_protocol_sha256": "c4012a24739f054875a57dfb07261f36381a41b9680e1391facec3d0489bf0b1",
+  "change": {
+    "field": "content_normalization",
+    "old_value": "raw_json_only",
+    "new_value": "raw_json_or_single_exact_json_markdown_fence"
+  },
+  "unchanged": [
+    "reviewer model",
+    "temperature",
+    "rubric",
+    "blinded packet",
+    "family order",
+    "retry count",
+    "score schema",
+    "score values",
+    "estimands",
+    "endpoint rule"
+  ],
+  "claim_boundary": "Formatting-only normalization; reject any prose, additional fences, or non-JSON content."
+}

@@ -10,10 +10,11 @@
     "judge_rubric.md": "cecd894789992f8e5592ff4707f106aabac9a18e4990e9bb53db68f1c1dc073c",
     "judge_amendment_01_claude_output_budget.json": "62f5b3f367d9f417531099559ba64e116da948dd55135cac165ee66bc0bc0e11",
     "judge_amendment_02_claude_output_budget.json": "8a3bc83f7ab1168f14a5c4c9ba508c9fdaadb035198f2fb0f73f8904acdf8c58",
+    "judge_amendment_03_claude_exact_json_fence.json": "ee80db503d10dbf488b1c989bae4918cbc5644206b95505ed153065bd6a11679",
     "scripts/prepare_jinn_persona_expanded_blind_v4.py": "8edd9e82473104a6cd8f4eab3ad0e7d6dc4e0e3d02bb661c2ee8eb1663d4cb80",
-    "scripts/judge_jinn_persona_expanded_v4.py": "c58df759cc5672825c3c3f4ac0b9e03dc87c847c3c82523b93471ff7420c7142",
+    "scripts/judge_jinn_persona_expanded_v4.py": "36a271566bf39cb549c74e457bae4ec0ddca020767f6f40596f98c00cb1bc7ea",
     "scripts/analyze_jinn_persona_expanded_v4.py": "9d363f119234a9bfa79d01ebd05c367211fe9f3e1835090e558b20b5730448b9",
-    "tests/test_jinn_persona_expanded_v4.py": "e10bb1e006768404d683a8bf32ddc65cbc62ef15156487f5a9f0ceab772d0f8f"
+    "tests/test_jinn_persona_expanded_v4.py": "204eccdb64a2fe6baa55a1aa21661ca835abc17d2e536a4e510f637626f16113"
   },
   "prospective_amendments": [
     {
@@ -48,6 +49,17 @@
       "accepted_openai_score_rows": 96,
       "accepted_claude_score_rows": 0,
       "judge_amendment_sha256": "8a3bc83f7ab1168f14a5c4c9ba508c9fdaadb035198f2fb0f73f8904acdf8c58"
+    },
+    {
+      "amended_at_utc": "2026-07-27T00:26:09Z",
+      "reason": "Allow only one exact lowercase-json Markdown fence after a wrapper-only inspection found no prose and zero accepted Claude rows.",
+      "scientific_estimands_changed": false,
+      "arm_key_opened": false,
+      "scientific_scores_inspected": false,
+      "accepted_openai_score_rows": 96,
+      "accepted_claude_score_rows": 0,
+      "previous_judge_script_sha256": "c58df759cc5672825c3c3f4ac0b9e03dc87c847c3c82523b93471ff7420c7142",
+      "judge_amendment_sha256": "ee80db503d10dbf488b1c989bae4918cbc5644206b95505ed153065bd6a11679"
     }
   ],
   "validation": {
