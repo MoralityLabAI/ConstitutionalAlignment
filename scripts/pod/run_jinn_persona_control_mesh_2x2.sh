@@ -11,7 +11,7 @@ MANIFEST="${REPO_ROOT}/experiments/jinn_persona_ambivalence_v4_expanded/control_
 EVENT_LOG="${RUN_ROOT}/wrapper_events.jsonl"
 RESOURCE_CSV="${RUN_ROOT}/resources.csv"
 SUMMARY="${RUN_ROOT}/wrapper_summary.json"
-MAX_SECONDS="${MAX_SECONDS:-4200}"
+MAX_SECONDS="${MAX_SECONDS:-2100}"
 MAX_PROCESS_RAM_MB="${MAX_PROCESS_RAM_MB:-24000}"
 MAX_SYSTEM_RAM_MB="${MAX_SYSTEM_RAM_MB:-110000}"
 MAX_IO_MB_S="${MAX_IO_MB_S:-50}"
@@ -270,8 +270,8 @@ run_cell() {
       --manifest "${MANIFEST}" \
       --output-dir "${output}" \
       --cache-dir "${CACHE_DIR}" \
-      --batch-size 16 \
-      --checkpoint-interval-rows 16 \
+      --batch-size 24 \
+      --checkpoint-interval-rows 24 \
       --max-new-tokens 160 \
       --max-turns 6 \
       > "${output}/runner.stdout.log" \
@@ -301,7 +301,7 @@ PY
 
 cd "${REPO_ROOT}"
 emit_event "start" \
-  "{\"gpu_count\":1,\"gpu_memory_gb\":40,\"max_seconds\":${MAX_SECONDS},\"checkpoint_interval_rows\":16,\"batch_size\":16}"
+  "{\"gpu_count\":1,\"gpu_memory_gb\":40,\"max_seconds\":${MAX_SECONDS},\"checkpoint_interval_rows\":24,\"batch_size\":24}"
 if [[ ! -f "${ADAPTER_DIR}/adapter_config.json" ]]; then
   emit_event "abort" '{"reason":"adapter_missing"}'
   exit 21

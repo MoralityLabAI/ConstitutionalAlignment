@@ -1,0 +1,26 @@
+{
+  "schema_version": "jinn_persona_control_mesh_execution_amendment_v1",
+  "amendment_id": "matched-batch24-final-throughput-restart-008",
+  "status": "prospective_before_restarted_control_mesh_outputs",
+  "registered_at_utc": "2026-07-27T03:52:00Z",
+  "trigger": "Batch-16 row-count telemetry projected that the four matched cells would exceed the remaining frozen pod lease.",
+  "decision_basis": "Only row counts, wall time, and resource telemetry were inspected before the abort/restart decision; no batch-16 response content, scores, or aggregate outcomes were inspected. The batch-8 aggregate was opened only after its restart decision had already been made.",
+  "scientific_design_changed": false,
+  "restarted_run": {
+    "run_id": "jinn-persona-control-mesh-2x2-b24",
+    "all_four_cells_restart_from_zero": true,
+    "batch_size_within_every_cell": 24,
+    "maximum_generation_seconds": 2100,
+    "effective_atomic_checkpoint_interval_rows": 24
+  },
+  "lease_amendment": {
+    "pod_lease_stop_seconds_from_creation": 5400,
+    "hourly_price_usd": 1.29,
+    "maximum_total_pod_spend_usd": 1.935,
+    "remains_below_registered_total_pod_cap_usd": 2.0
+  },
+  "unchanged": [
+    "model, model revision, adapter bytes, task universe, seeds, greedy decoding, parser, prompts, maximum turns, maximum tokens, controller, scorer, four cells, rollouts, estimands, bootstrap, and claim boundaries"
+  ],
+  "comparability": "Every scientific cell in the restarted run uses the same batch size; no batch-8 or batch-16 output enters the restarted primary analysis."
+}
