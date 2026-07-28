@@ -7,7 +7,9 @@ param(
     [int]$IoLimitMbPerSec = 20,
     [int]$TimeoutSeconds = 1800,
     [int]$PollSeconds = 1,
-    [int]$BatchSize = 32
+    [int]$BatchSize = 32,
+    [string]$PythonScript = ".\scripts\evaluate_constitutional_hrm_matrix.py",
+    [string[]]$PythonArguments = @()
 )
 
 $ErrorActionPreference = "Stop"
@@ -229,6 +231,10 @@ $plan = [ordered]@{
         maximum_batch_size = 128
         progress_receipts = "suite boundaries plus resource samples"
     }
+    command = @{
+        python_script = $PythonScript
+        explicit_arguments = $PythonArguments
+    }
     recursion = @{
         max_cycles = 2
         max_nested_depth = 1
@@ -286,18 +292,22 @@ Append-Jsonl -Path $eventsPath -Payload @{
     caps = $plan.caps
 }
 
-$arguments = @(
-    ".\scripts\evaluate_constitutional_hrm_matrix.py",
-    "--training-task-id", $EvaluationTaskId,
-    "--output-dir", $OutputDir,
-    "--batch-size", "$BatchSize",
-    "--torch-threads", "2",
-    "--max-cycles", "2",
-    "--max-nested-depth", "1",
-    "--max-nodes", "120",
-    "--max-choices-per-node", "4",
-    "--max-trajectories", "500"
-)
+$arguments = @($PythonScript)
+if ($PythonArguments.Count -gt 0) {
+    $arguments += $PythonArguments
+} else {
+    $arguments += @(
+        "--training-task-id", $EvaluationTaskId,
+        "--output-dir", $OutputDir,
+        "--batch-size", "$BatchSize",
+        "--torch-threads", "2",
+        "--max-cycles", "2",
+        "--max-nested-depth", "1",
+        "--max-nodes", "120",
+        "--max-choices-per-node", "4",
+        "--max-trajectories", "500"
+    )
+}
 
 $process = $null
 $abortReason = ""

@@ -1,0 +1,72 @@
+{
+  "schema_version": "constitutional_hrm_local_evidence_index_v2",
+  "generated_at_utc": "2026-07-28T19:00:17.5530318+00:00",
+  "scope": "Local pre-spend evidence only. F08B, F09A, F09B, checkpoint retrieval, and checkpoint evaluation remain pending.",
+  "gates": {
+    "F06_TOKENIZER_FREEZE": {
+      "status": "passed",
+      "receipt": {
+        "path": "artifacts/constitutional_hrm_200m_v2/tokenizer/freeze_receipt.json",
+        "sha256": "cfbed7f877cea5abb5c54e14c5939ee1520561dc2e316dfd38103ce058ba7657"
+      },
+      "tokenizer": {
+        "path": "artifacts/constitutional_hrm_200m_v2/tokenizer/tokenizer.json",
+        "sha256": "8f0aa573bacc9be0595bf82a056e31150cd8081123f488ee831f4f97d6ee85fc",
+        "vocab_size": 32768,
+        "full_prompt_tokens": 69,
+        "hash_only_prompt_tokens": 23,
+        "removed_prompt_tokens": 16
+      },
+      "resource_summary_sha256": "88b25b3635570d38f0effcc74c35aa5964890ce96cdb9d9dd42ff4767be4bf2b"
+    },
+    "F07_OFFICIAL_CODE_ADAPTER": {
+      "status": "passed",
+      "receipt": {
+        "path": "artifacts/constitutional_hrm_200m_v2/official_adapter/adapter_receipt.json",
+        "sha256": "a54ccdf1d94be58c430ba396e57ca647c16e897e44b39169af1670a13f81e925"
+      },
+      "official_commit": "ac15626f8db096a63c775b84c9dc868776a6feda",
+      "proof_slots": 22,
+      "ignore_label_id": -100,
+      "checks_passed": 11,
+      "resource_summary_sha256": "a85e5c8c5f6a8627889fefb59fd941d0d348c3388890c7f39e7ed4ac12213430"
+    },
+    "PRODUCTION_CURRICULUM": {
+      "status": "passed",
+      "manifest": {
+        "path": "artifacts/constitutional_hrm_200m_v2/curriculum_production/manifest.json",
+        "sha256": "98dfb6c5317c924bac7078609e841da93ed3e015a7a01b98864eeaebf4f0cc33"
+      },
+      "train_examples": 96000,
+      "validation_examples": 12000,
+      "sealed_test_examples": 12000,
+      "train_prompt_condition_examples_each": 32000,
+      "resource_summary_sha256": "68aaf6e57b01166273322c337228e303856cfcb9735ad6acc4698d48d98db234"
+    },
+    "F08A_OFFLINE_CLUSTER_PACKAGE": {
+      "status": "passed",
+      "receipt": {
+        "path": "artifacts/constitutional_hrm_200m_v2/cluster_package_production/f08a_offline_package_receipt.json",
+        "sha256": "2a4ada76418afe3f537f3d1d8001fe9ab9be5b13fabe19280b8fadc375304b57"
+      },
+      "checks_passed": 21,
+      "optimizer_launch_authorized": false,
+      "live_cluster_drill_status": "pending",
+      "resource_summary_sha256": "5aca0d8aad79013f27801e3820601eb13445a7b0c51c58f8d073b35b77c2e589"
+    }
+  },
+  "availability_snapshot": {
+    "queried_at_date": "2026-07-28",
+    "gpu_resource_id": "04d7bb",
+    "cloud_id": "vbm-112c-2048gb-8-a100-gpu",
+    "gpu_type": "A100 80GB",
+    "gpu_count": 8,
+    "socket": "SXM4",
+    "provider": "vultr",
+    "location": "DE",
+    "stock_status": "Available",
+    "price_per_hour_usd": 22.40,
+    "two_hour_ceiling_usd": 44.80,
+    "pod_created": false
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "constitutional_hrm_factored_gate_contract_v3",
+  "experiment_id": "constitutional_hrm_200m_v2",
+  "reason": "Separate offline launch readiness, spend authority, live cap verification, and optimizer fielding so no offline receipt implies paid compute or live enforcement.",
+  "gates": [
+    {
+      "id": "F06_TOKENIZER_FREEZE",
+      "requires": ["F03_PROMPT_FREEZE", "F05_CURRICULUM_AUDIT"],
+      "status": "passed"
+    },
+    {
+      "id": "F07_OFFICIAL_CODE_ADAPTER",
+      "requires": ["F04_PARAMETER_AUDIT", "F06_TOKENIZER_FREEZE"],
+      "status": "passed"
+    },
+    {
+      "id": "F08A_OFFLINE_CLUSTER_PACKAGE",
+      "requires": ["F07_OFFICIAL_CODE_ADAPTER"],
+      "status": "passed"
+    },
+    {
+      "id": "F09A_TWO_HOUR_SPEND_AUTHORIZATION",
+      "requires": ["F08A_OFFLINE_CLUSTER_PACKAGE"],
+      "status": "pending",
+      "effect": "May create a capped pod up to the recorded dollar and time ceilings; does not bypass F08B."
+    },
+    {
+      "id": "F08B_LIVE_CLUSTER_DRILL_AND_RUNTIME",
+      "requires": ["F08A_OFFLINE_CLUSTER_PACKAGE", "F09A_TWO_HOUR_SPEND_AUTHORIZATION"],
+      "status": "pending",
+      "effect": "One optimizer step per arm/seed verifies live cgroups, allocator caps, checkpoints, aborts, and owned-process cleanup."
+    },
+    {
+      "id": "F09B_TWO_HOUR_OPTIMIZER_PILOT",
+      "requires": ["F08B_LIVE_CLUSTER_DRILL_AND_RUNTIME", "F09A_TWO_HOUR_SPEND_AUTHORIZATION"],
+      "status": "pending"
+    },
+    {
+      "id": "F10_CHECKPOINT_RETRIEVAL_AND_HASH",
+      "requires": ["F09B_TWO_HOUR_OPTIMIZER_PILOT"],
+      "status": "pending"
+    },
+    {
+      "id": "F11_EVALUATION_MATRIX",
+      "requires": ["F10_CHECKPOINT_RETRIEVAL_AND_HASH"],
+      "status": "pending",
+      "suites": [
+        "constitutional",
+        "moral_reasoner",
+        "storyworld",
+        "prime_hub",
+        "arc"
+      ]
+    }
+  ]
+}
