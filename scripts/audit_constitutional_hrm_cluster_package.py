@@ -91,6 +91,7 @@ def main() -> int:
         / "adapter_receipt.json"
     )
     trainer_path = root / "scripts" / "train_constitutional_hrm_200m_v2.py"
+    trainer_source = trainer_path.read_text(encoding="utf-8")
     runner_path = (
         root
         / "scripts"
@@ -162,15 +163,14 @@ def main() -> int:
         "hard_cpu_cap": "CPUQuota=1200%" in runner_source,
         "io_caps": "IOReadBandwidthMax" in runner_source
         and "IOWriteBandwidthMax" in runner_source,
-        "gpu_allocator_cap": "set_per_process_memory_fraction" in trainer_path.read_text(
-            encoding="utf-8"
-        ),
-        "checkpoint_dual_trigger": "checkpoint_steps" in trainer_path.read_text(
-            encoding="utf-8"
-        )
-        and "checkpoint_seconds" in trainer_path.read_text(encoding="utf-8"),
+        "gpu_allocator_cap": "set_per_process_memory_fraction" in trainer_source,
+        "checkpoint_dual_trigger": "checkpoint_steps" in trainer_source
+        and "checkpoint_seconds" in trainer_source,
+        "model_only_export": "constitutional_hrm_model_export_v2" in trainer_source
+        and "save_model_export(" in trainer_source
+        and '"model_export"' in trainer_source,
         "cleanup_contract": "remaining_compute_pids" in runner_source
-        and "cuda.ipc_collect" in trainer_path.read_text(encoding="utf-8"),
+        and "cuda.ipc_collect" in trainer_source,
         "architecture_195m_band": model_config["architecture"][
             "target_min_parameters"
         ]
@@ -233,6 +233,7 @@ def main() -> int:
             ]
             result = subprocess.run(
                 command,
+                check=False,
                 capture_output=True,
                 text=True,
                 timeout=90,

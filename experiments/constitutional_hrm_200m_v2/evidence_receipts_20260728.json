@@ -1,7 +1,7 @@
 {
   "schema_version": "constitutional_hrm_local_evidence_index_v2",
-  "generated_at_utc": "2026-07-28T19:00:17.5530318+00:00",
-  "scope": "Local pre-spend evidence only. F08B, F09A, F09B, checkpoint retrieval, and checkpoint evaluation remain pending.",
+  "generated_at_utc": "2026-07-28T19:36:35.439330+00:00",
+  "scope": "Local pre-spend evidence only. Frozen evaluation suites and runners use no checkpoint. F08B, F09A, F09B, checkpoint retrieval, and checkpoint evaluation remain pending.",
   "gates": {
     "F06_TOKENIZER_FREEZE": {
       "status": "passed",
@@ -47,12 +47,50 @@
       "status": "passed",
       "receipt": {
         "path": "artifacts/constitutional_hrm_200m_v2/cluster_package_production/f08a_offline_package_receipt.json",
-        "sha256": "2a4ada76418afe3f537f3d1d8001fe9ab9be5b13fabe19280b8fadc375304b57"
+        "sha256": "99bbb6bb19e9376f0a5af8c7b44f604a26f31e0e342ecb5d936fa43c1df8e94c"
       },
-      "checks_passed": 21,
+      "checks_passed": 22,
       "optimizer_launch_authorized": false,
       "live_cluster_drill_status": "pending",
       "resource_summary_sha256": "5aca0d8aad79013f27801e3820601eb13445a7b0c51c58f8d073b35b77c2e589"
+    },
+    "F11A_FROZEN_LOCAL_SUITES": {
+      "status": "passed",
+      "receipt": {
+        "path": "artifacts/constitutional_hrm_200m_v2/eval_suites_v2/manifest.json",
+        "sha256": "b978b20aed70ac7e223dc32267f039d61d73d9cda56a443c6701d499474e2cbc"
+      },
+      "checkpoint_used": false,
+      "sealed_test_opened": false,
+      "suite_examples": {
+        "arc_zero_shot": 275,
+        "moral_reasoner_raw": 48,
+        "moral_reasoner_structured": 192,
+        "prime_hub_mesh_v2_raw": 432,
+        "prime_hub_quranic_village_replay": 90,
+        "storyworld_full_text": 10488,
+        "storyworld_raw": 846,
+        "storyworld_structured": 2088
+      },
+      "resource_summary_sha256": "928f3396a37969505f9203e426b526d919b531efa8dbf234cfe3ddcc28df1aba"
+    },
+    "F11_IMPLEMENTATION_SMOKES": {
+      "status": "passed",
+      "actual_195m_checkpoint_used": false,
+      "direct_runtime": {
+        "measurement": "synthetic tiny official-HRM export load, two-example inference, and cleanup",
+        "receipt": "artifacts/constitutional_hrm_200m_v2/runtime_smoke/runtime_smoke_receipt.json",
+        "receipt_sha256": "b73c549aed788a8483cd3b49acec7b5a464a5ecfdadabbb6b4912610884853f2"
+      },
+      "prime_hub": {
+        "measurement": "synthetic checkpoint end-to-end stateful tool protocol",
+        "environment_version": "0.1.15",
+        "examples": 1,
+        "rollout_errors": 0,
+        "tool_calls": 4,
+        "receipt": "artifacts/chv2_prime_tool_smoke/matrix_receipt.json",
+        "receipt_sha256": "a258fd93afbbbaf8fcea246bc61436cbb2949bfe04935fd78cb31fbdf68b050b"
+      }
     }
   },
   "availability_snapshot": {

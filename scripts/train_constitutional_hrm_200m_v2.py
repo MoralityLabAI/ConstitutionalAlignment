@@ -280,6 +280,37 @@ def save_checkpoint(
     return path
 
 
+def save_model_export(
+    *,
+    output_dir: Path,
+    model: torch.nn.Module,
+    optimizer_step: int,
+    config: dict[str, Any],
+) -> Path:
+    export_path = output_dir / f"model_step_{optimizer_step:07d}.pt"
+    temporary = export_path.with_suffix(".pt.tmp")
+    torch.save(
+        {
+            "schema_version": "constitutional_hrm_model_export_v2",
+            "optimizer_step": optimizer_step,
+            "model_config": config,
+            "model": model.state_dict(),
+        },
+        temporary,
+    )
+    os.replace(temporary, export_path)
+    atomic_json(
+        output_dir / "model_export.json",
+        {
+            "path": str(export_path),
+            "sha256": sha256_file(export_path),
+            "optimizer_step": optimizer_step,
+            "generated_at_utc": utc_now(),
+        },
+    )
+    return export_path
+
+
 def main() -> int:
     args = parse_args()
     for signum in (signal.SIGINT, signal.SIGTERM):
@@ -292,6 +323,7 @@ def main() -> int:
     status = "preparing"
     abort_reason = ""
     checkpoint_path: Path | None = None
+    model_export_path: Path | None = None
     optimizer_step = 0
     micro_step = 0
     peak_gpu_memory_mb = 0.0
@@ -509,11 +541,18 @@ def main() -> int:
                 elapsed_seconds=time.monotonic() - started,
                 config=config,
             )
+        if optimizer_step > 0:
+            model_export_path = save_model_export(
+                output_dir=output_dir,
+                model=model,
+                optimizer_step=optimizer_step,
+                config=config,
+            )
         if abort_reason:
             status = "aborted"
         elif status == "running":
             status = "completed_step_cap"
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001
         status = "failed"
         abort_reason = f"{type(exc).__name__}: {exc}"
         append_jsonl(
@@ -530,6 +569,9 @@ def main() -> int:
                 "elapsed_seconds": time.monotonic() - started,
                 "peak_process_gpu_memory_mb": peak_gpu_memory_mb,
                 "latest_checkpoint": str(checkpoint_path) if checkpoint_path else None,
+                "model_export": (
+                    str(model_export_path) if model_export_path else None
+                ),
                 "finished_at_utc": utc_now(),
             }
         )

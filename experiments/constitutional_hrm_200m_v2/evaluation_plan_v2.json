@@ -1,0 +1,96 @@
+{
+  "schema_version": "constitutional_hrm_evaluation_plan_v2",
+  "experiment_id": "constitutional_hrm_200m_v2",
+  "checkpoint_schema": "constitutional_hrm_model_export_v2",
+  "selection_rule": "Select checkpoints on unsealed validation evidence only; open the sealed constitutional split once after selection is frozen.",
+  "factored_gates": [
+    {
+      "id": "F11A_FROZEN_LOCAL_SUITES",
+      "requires": ["F08A_OFFLINE_CLUSTER_PACKAGE"],
+      "status": "passed",
+      "receipt": "artifacts/constitutional_hrm_200m_v2/eval_suites_v2/manifest.json",
+      "checkpoint_used": false,
+      "sealed_test_opened": false
+    },
+    {
+      "id": "F11B_DIRECT_CHECKPOINT_RUNTIME",
+      "requires": ["F10_CHECKPOINT_RETRIEVAL_AND_HASH", "F11A_FROZEN_LOCAL_SUITES"],
+      "status": "pending_checkpoint",
+      "implementation": "scripts/evaluate_constitutional_hrm_195m_v2.py",
+      "implementation_smoke": {
+        "status": "passed",
+        "measurement": "synthetic tiny official-HRM export load, inference, and cleanup",
+        "actual_195m_checkpoint_used": false
+      }
+    },
+    {
+      "id": "F11C_UNSEALED_VALIDATION_MATRIX",
+      "requires": ["F11B_DIRECT_CHECKPOINT_RUNTIME"],
+      "status": "pending_checkpoint",
+      "includes": [
+        "constitutional_validation",
+        "moral_reasoner_raw",
+        "moral_reasoner_structured",
+        "storyworld_raw",
+        "storyworld_structured",
+        "storyworld_full_text",
+        "prime_hub_mesh_v2_raw",
+        "prime_hub_quranic_village_replay",
+        "arc_zero_shot"
+      ]
+    },
+    {
+      "id": "F11D_PRIME_HUB_EXACT_PACKAGE",
+      "requires": ["F11B_DIRECT_CHECKPOINT_RUNTIME"],
+      "status": "pending_checkpoint",
+      "environment": "moralitylab/jinn-beast-metta",
+      "version": "0.1.15",
+      "version_id": "xxc53pg50m4i622vp91g5c1z",
+      "raw_measurement": "non-autoregressive checkpoint decode or direct action token",
+      "mesh_measurement": "adapter-enforced tool process with model-selected action",
+      "implementation": "scripts/run_constitutional_hrm_prime_matrix_v2.py",
+      "implementation_smoke": {
+        "status": "passed",
+        "environment_version": "0.1.15",
+        "examples": 1,
+        "rollout_errors": 0,
+        "tool_sequence": [
+          "inspect_action",
+          "inspect_action",
+          "inspect_action",
+          "commit_decision"
+        ],
+        "synthetic_checkpoint_used": true
+      }
+    },
+    {
+      "id": "F11E_SEALED_TEST_SINGLE_OPEN",
+      "requires": ["F11C_UNSEALED_VALIDATION_MATRIX", "checkpoint_selection_frozen"],
+      "status": "pending_checkpoint_selection",
+      "unseal_receipt_required": true,
+      "reruns_forbidden": true
+    },
+    {
+      "id": "F11F_AGGREGATE_AND_ARCHIVE",
+      "requires": ["F11D_PRIME_HUB_EXACT_PACKAGE", "F11E_SEALED_TEST_SINGLE_OPEN"],
+      "status": "pending",
+      "required_outputs": [
+        "per_arm_seed_metrics",
+        "condition_deltas",
+        "control_deltas",
+        "position_equivariance",
+        "prompt_condition_consistency",
+        "Prime Hub adapter attribution",
+        "ARC zero-shot scope label",
+        "checkpoint and suite hashes"
+      ]
+    }
+  ],
+  "resource_contract": {
+    "gpu_memory_fraction": 0.8,
+    "batch_size_default": 1,
+    "Prime_max_concurrent": 1,
+    "request_cache": "one HRM inference per Prime trajectory",
+    "cleanup": "PID-scoped server shutdown and CUDA cache release"
+  }
+}

@@ -44,6 +44,14 @@
       "id": "F11_EVALUATION_MATRIX",
       "requires": ["F10_CHECKPOINT_RETRIEVAL_AND_HASH"],
       "status": "pending",
+      "factored_gates": [
+        "F11A_FROZEN_LOCAL_SUITES",
+        "F11B_DIRECT_CHECKPOINT_RUNTIME",
+        "F11C_UNSEALED_VALIDATION_MATRIX",
+        "F11D_PRIME_HUB_EXACT_PACKAGE",
+        "F11E_SEALED_TEST_SINGLE_OPEN",
+        "F11F_AGGREGATE_AND_ARCHIVE"
+      ],
       "suites": [
         "constitutional",
         "moral_reasoner",
