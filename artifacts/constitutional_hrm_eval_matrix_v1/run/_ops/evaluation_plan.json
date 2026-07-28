@@ -1,0 +1,26 @@
+{
+    "schema_version":  "constitutional_hrm_eval_resource_plan_v1",
+    "evaluation_task_id":  "constitutional_hrm_eval_matrix_v1",
+    "device":  "cpu",
+    "caps":  {
+                 "io_enforcement":  "pid_scoped_monitor_abort_after_three_consecutive_samples",
+                 "io_mb_s":  20,
+                 "ram_mb":  2048,
+                 "timeout_seconds":  1800,
+                 "ram_enforcement":  "windows_job_object_hard_process_and_job_commit",
+                 "cpu_percent":  25,
+                 "cpu_enforcement":  "windows_job_object_hard_rate"
+             },
+    "chunking":  {
+                     "batch_size":  32,
+                     "maximum_batch_size":  128,
+                     "progress_receipts":  "suite boundaries plus resource samples"
+                 },
+    "recursion":  {
+                      "max_trajectories":  500,
+                      "max_choices_per_node":  4,
+                      "max_nodes":  120,
+                      "max_cycles":  2,
+                      "max_nested_depth":  1
+                  }
+}

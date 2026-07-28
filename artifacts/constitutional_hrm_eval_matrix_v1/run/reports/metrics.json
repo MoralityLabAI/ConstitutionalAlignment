@@ -1,0 +1,186 @@
+{
+  "checkpoint": {
+    "architecture": {
+      "expansion": 2,
+      "hidden_size": 64,
+      "high_cycles": 2,
+      "high_layers": 1,
+      "low_cycles": 2,
+      "low_layers": 1,
+      "num_heads": 4
+    },
+    "parameters": 72194,
+    "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitutional_hrm_v1\\runs\\constitutional_hrm_smoke_v1\\constitutional\\checkpoints\\step_00100.pt",
+    "sha256": "403cafe415decca4101f5cfbe6aec6e523a630dac1da3369f1f2bd4379bbc068",
+    "step": 100
+  },
+  "compatibility": {
+    "arc": {
+      "arc_json_files": 0,
+      "blocking_reasons": [
+        "ARC raw-data submodules contain no JSON tasks",
+        "micro-HRM output head selects between two decisions rather than predicting ARC grids",
+        "195M text-transduction checkpoint is absent"
+      ],
+      "checkpoint_output_classes": 2,
+      "checkpoint_sequence_length": 23,
+      "checkpoint_sha256": "403cafe415decca4101f5cfbe6aec6e523a630dac1da3369f1f2bd4379bbc068",
+      "official_hrm_commit": "ac15626f8db096a63c775b84c9dc868776a6feda",
+      "official_hrm_root": "C:\\projects\\ConstitutionalAlignment\\.codex-cache\\HRM-ac15626",
+      "status": "not_runnable"
+    },
+    "constitutional_hrm_195m_v2": {
+      "architecture_id": "constitutional_hrm_195m_v2",
+      "blocking_reasons": [
+        "no trained 195M checkpoint",
+        "tokenizer freeze artifact absent",
+        "optimizer launch remains unauthorized"
+      ],
+      "checkpoint_files": [],
+      "config_sha256": "cba09fc2aab19cc42965216413474af7ad1a17e53851f42f7467b58f3230ab5a",
+      "estimated_parameters": 195563522,
+      "gates": {
+        "F01_CONSTITUTION_COMPILE": "passed",
+        "F02_HYPERON_LOAD": "passed",
+        "F03_PROMPT_FREEZE": "passed",
+        "F04_PARAMETER_AUDIT": "passed",
+        "F05_CURRICULUM_AUDIT": "passed",
+        "F06_TOKENIZER_FREEZE": "pending",
+        "F07_OFFICIAL_CODE_ADAPTER": "pending",
+        "F08_CLUSTER_CAPS_AND_CLEANUP": "pending",
+        "F09_TWO_HOUR_AUTHORIZATION": "pending"
+      },
+      "optimizer_launch_authorized": false,
+      "readiness_sha256": "7928d0439d068e7e95e4d1134915b5a44087566779540afb1ab12eea30d13327",
+      "status": "not_runnable",
+      "tokenizer_files": []
+    },
+    "prime_hub": {
+      "blocking_reasons": [
+        "portable micro-HRM is not exposed as an autoregressive Prime inference model",
+        "195M checkpoint and Prime model adapter are absent"
+      ],
+      "cli_found": true,
+      "cli_path": "C:\\Users\\patri\\.local\\bin\\prime.EXE",
+      "environment_query_succeeded": true,
+      "matching_environments": [
+        {
+          "description": "Verifiers v1 taskset for frame-robust constitutional storyworld decisions.",
+          "environment": "moralitylab/jinn-beast-metta",
+          "stars": 0,
+          "tags": [
+            "reinforcement-learning",
+            "alignment",
+            "storyworlds",
+            "metta",
+            "qwen"
+          ],
+          "updated_at": "2026-07-26T18:54:22.041000",
+          "version": "0.1.15",
+          "visibility": "PRIVATE"
+        }
+      ],
+      "model_adapter_status": "not_implemented",
+      "paid_evaluation_launched": false,
+      "query_error": null,
+      "status": "compatibility_only"
+    }
+  },
+  "elapsed_seconds": 5.219,
+  "model_lane": "portable_micro_hrm_72k_trained_checkpoint",
+  "moral_reasoner_v2": {
+    "duels": 128,
+    "excluded": {},
+    "measurement": "structured projection of six Moral Reasoner decision dimensions and explicit forbidden hits; not text comprehension",
+    "metrics": {
+      "accuracy": 0.703125,
+      "by_split": {
+        "candidate_train": {
+          "accuracy": 0.71875,
+          "correct": 46,
+          "count": 64
+        },
+        "development": {
+          "accuracy": 0.6875,
+          "correct": 44,
+          "count": 64
+        }
+      },
+      "correct": 90,
+      "count": 128,
+      "orientation": {
+        "winner_a": {
+          "accuracy": 0.90625,
+          "correct": 58,
+          "count": 64
+        },
+        "winner_b": {
+          "accuracy": 0.5,
+          "correct": 32,
+          "count": 64
+        }
+      },
+      "position_equivariance": {
+        "equivariant_pairs": 26,
+        "pairs": 64,
+        "rate": 0.40625
+      }
+    },
+    "source_tasks": 32,
+    "status": "completed"
+  },
+  "native_constitutional": {
+    "measurement": "direct native structured evaluation",
+    "metrics": {
+      "contrast": {
+        "accuracy": 0.6451612903225806,
+        "correct": 40,
+        "count": 62
+      },
+      "id": {
+        "accuracy": 0.8333333333333334,
+        "correct": 40,
+        "count": 48
+      },
+      "ood": {
+        "accuracy": 0.5625,
+        "correct": 27,
+        "count": 48
+      }
+    },
+    "status": "completed"
+  },
+  "schema_version": "constitutional_hrm_eval_metrics_v1",
+  "storyworld": {
+    "duels": 696,
+    "excluded": {
+      "no_strict_acceptable_vs_unacceptable_pair": 6
+    },
+    "measurement": "structured projection of frozen frame-satisfaction proofs; not natural-language storyworld performance",
+    "metrics": {
+      "accuracy": 0.8620689655172413,
+      "correct": 600,
+      "count": 696,
+      "orientation": {
+        "winner_a": {
+          "accuracy": 0.8448275862068966,
+          "correct": 294,
+          "count": 348
+        },
+        "winner_b": {
+          "accuracy": 0.8793103448275862,
+          "correct": 306,
+          "count": 348
+        }
+      },
+      "position_equivariance": {
+        "equivariant_pairs": 336,
+        "pairs": 348,
+        "rate": 0.9655172413793104
+      }
+    },
+    "source_items": 282,
+    "status": "completed"
+  },
+  "training_task_id": "constitutional_hrm_eval_matrix_v1"
+}

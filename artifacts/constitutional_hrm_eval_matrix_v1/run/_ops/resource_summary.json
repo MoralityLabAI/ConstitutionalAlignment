@@ -1,0 +1,31 @@
+{
+    "schema_version":  "constitutional_hrm_eval_resource_summary_v1",
+    "evaluation_task_id":  "constitutional_hrm_eval_matrix_v1",
+    "status":  "completed",
+    "plan_path":  "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitutional_hrm_eval_matrix_v1\\run\\_ops\\evaluation_plan.json",
+    "started_at_utc":  "2026-07-28T18:28:01.6341460+00:00",
+    "finished_at_utc":  "2026-07-28T18:28:16.7084815+00:00",
+    "caps":  {
+                 "io_enforcement":  "pid_scoped_monitor_abort_after_three_consecutive_samples",
+                 "io_mb_s":  20,
+                 "ram_mb":  2048,
+                 "timeout_seconds":  1800,
+                 "ram_enforcement":  "windows_job_object_hard_process_and_job_commit",
+                 "cpu_percent":  25,
+                 "cpu_enforcement":  "windows_job_object_hard_rate"
+             },
+    "root_pid":  27168,
+    "process_exit_code":  0,
+    "abort_reason":  "",
+    "peak_ram_mb":  416,
+    "avg_ram_mb":  355.058,
+    "peak_io_mb_s":  357.766,
+    "avg_cpu_percent_total_capacity":  5.077,
+    "samples":  13,
+    "cleanup":  {
+                    "gpu_memory_after_mb":  0,
+                    "scoped_tree_stopped":  false,
+                    "unrelated_processes_touched":  0,
+                    "gpu_memory_before_mb":  0
+                }
+}

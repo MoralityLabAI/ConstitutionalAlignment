@@ -1,0 +1,71 @@
+{
+  "schema_version": "storyworld_development_eval_manifest_v1",
+  "suite_id": "storyworld_development_checkpoint_suite_v1",
+  "release_status": "provisional",
+  "package_sha256": "4e554ef3c4b28820c6875a04bced26df54ea065fea7169e1f44cf3c7d6fcc31e",
+  "development_families": 4,
+  "materialized_worlds": 30,
+  "items": 5244,
+  "items_by_metric": {
+    "belief_visibility_f1": 720,
+    "contradiction_detection_accuracy": 360,
+    "counterfactual_branch_accuracy": 360,
+    "fact_allegation_accuracy": 348,
+    "forecast_brier_score": 360,
+    "frame_robust_policy_accuracy": 282,
+    "legal_action_accuracy": 360,
+    "next_state_accuracy": 810,
+    "obligation_dynamics_disagreement_accuracy": 1440,
+    "paired_skin_action_consistency": 144,
+    "reachable_repair_accuracy": 60
+  },
+  "derived_metrics": [
+    "identity_scrub_defense_consistency"
+  ],
+  "frame_robust_policy_excluded_no_positive_constraint": 6,
+  "pending_review_worlds": [
+    "continuity_after_reset_dev_v1__adversarial_vendor_exemption",
+    "continuity_after_reset_dev_v1__baseline",
+    "continuity_after_reset_dev_v1__compressed_reset_window",
+    "continuity_after_reset_dev_v1__delegated_reset_coordinator",
+    "continuity_after_reset_dev_v1__low_reserve_margin",
+    "continuity_after_reset_dev_v1__shared_signed_digest",
+    "protected_testimony_dev_v1__adversarial_spokesperson",
+    "protected_testimony_dev_v1__baseline",
+    "protected_testimony_dev_v1__compressed_departure_window",
+    "protected_testimony_dev_v1__delegated_hearing_steward",
+    "protected_testimony_dev_v1__shared_checksum",
+    "protected_testimony_dev_v1__single_fragile_copy",
+    "public_witness_group_pressure_dev_v1__adversarial_organizer",
+    "public_witness_group_pressure_dev_v1__baseline",
+    "public_witness_group_pressure_dev_v1__compressed_opening_window",
+    "public_witness_group_pressure_dev_v1__delegated_safety_steward",
+    "public_witness_group_pressure_dev_v1__limited_event_capacity",
+    "public_witness_group_pressure_dev_v1__shared_calibration_bounds",
+    "shahada_private_testimony_dev_v1__adversarial_spokesperson",
+    "shahada_private_testimony_dev_v1__baseline",
+    "shahada_private_testimony_dev_v1__compressed_departure_window",
+    "shahada_private_testimony_dev_v1__delegated_hearing_steward",
+    "shahada_private_testimony_dev_v1__shared_checksum",
+    "shahada_private_testimony_dev_v1__single_fragile_copy",
+    "unreliable_intercessor_dev_v1__adversarial_broker",
+    "unreliable_intercessor_dev_v1__baseline",
+    "unreliable_intercessor_dev_v1__compressed_dispatch_window",
+    "unreliable_intercessor_dev_v1__delegated_depot_steward",
+    "unreliable_intercessor_dev_v1__severe_supply_shortage",
+    "unreliable_intercessor_dev_v1__shared_registry_absence"
+  ],
+  "training_eligible_rows": 0,
+  "sealed_evaluation_content_opened": false,
+  "package_validation_passed": true,
+  "claim_boundary": "Development metrics support recipe/checkpoint selection only. Consequence dimensions and obligation tags are synthetic proxies, not moral or theological ground truth.",
+  "passed": true,
+  "public_items": {
+    "path": "DEV_PUBLIC_ITEMS.jsonl",
+    "sha256": "ffde433c8e3dcab071f067dfaf28e044a64aaf23033a29d27dda9d254f2464c2"
+  },
+  "private_keys": {
+    "path": "DEV_PRIVATE_KEYS.jsonl",
+    "sha256": "129c47e2aecfa1993d0833fc9abc641a0c231e480ee6e6f9c4323bde582ef5ab"
+  }
+}

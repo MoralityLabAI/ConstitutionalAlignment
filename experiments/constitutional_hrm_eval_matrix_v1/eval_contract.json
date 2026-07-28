@@ -1,0 +1,63 @@
+{
+  "schema_version": "constitutional_hrm_eval_contract_v1",
+  "experiment_id": "constitutional_hrm_eval_matrix_v1",
+  "model_lanes": {
+    "scored": "portable_micro_hrm_72k_trained_checkpoint",
+    "readiness_only": "constitutional_hrm_195m_v2"
+  },
+  "resource_caps": {
+    "device": "cpu",
+    "ram_mb": 2048,
+    "cpu_percent": 25,
+    "io_mb_s": 20,
+    "timeout_seconds": 1800,
+    "batch_size": 32,
+    "maximum_batch_size": 128
+  },
+  "storyworld_recursion_caps": {
+    "max_cycles": 2,
+    "max_nested_depth": 1,
+    "max_nodes": 120,
+    "max_choices_per_node": 4,
+    "max_trajectories": 500
+  },
+  "evaluation_lanes": [
+    {
+      "id": "native_constitutional",
+      "measurement": "direct",
+      "metrics": ["id_accuracy", "ood_accuracy", "contrast_accuracy"]
+    },
+    {
+      "id": "moral_reasoner_v2",
+      "measurement": "structured_projection",
+      "orientation_balanced": true,
+      "primary_metric": "pairwise_accuracy",
+      "diagnostic_metric": "position_equivariance"
+    },
+    {
+      "id": "storyworld_frame_robust_policy",
+      "measurement": "structured_projection",
+      "orientation_balanced": true,
+      "primary_metric": "pairwise_accuracy",
+      "diagnostic_metric": "position_equivariance"
+    },
+    {
+      "id": "prime_hub",
+      "measurement": "interface_compatibility",
+      "paid_launch_authorized": false
+    },
+    {
+      "id": "arc",
+      "measurement": "interface_and_data_compatibility"
+    }
+  ],
+  "sealed_evaluation_content_opened": false,
+  "abort_rules": [
+    "hard RAM or CPU cap termination",
+    "three consecutive I/O samples above the cap",
+    "timeout",
+    "missing checkpoint or required gym artifact",
+    "malformed or incomplete source rows",
+    "cleanup failure"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "compatibility_summary": {
+    "arc": "not_runnable",
+    "constitutional_hrm_195m_v2": "not_runnable",
+    "prime_hub": "compatibility_only"
+  },
+  "finished_at_utc": "2026-07-28T18:28:13.642196+00:00",
+  "gym_artifacts": {
+    "datasets/player_eval.jsonl": {
+      "bytes": 16435992,
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitutional_hrm_eval_matrix_v1\\run\\datasets\\player_eval.jsonl",
+      "sha256": "4396d7bcacea91572f80071ff186e83acc421d5c87e9addeec2e31de3383b46d",
+      "source": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\storyworld_curriculum_v1\\generated\\provisional_local_500_v1\\datasets\\player_eval.jsonl"
+    },
+    "datasets/player_train.jsonl": {
+      "bytes": 65071184,
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitutional_hrm_eval_matrix_v1\\run\\datasets\\player_train.jsonl",
+      "sha256": "84942d900b715b53f8a09b0caab01669028dfff5afd40f5f33ff7f6b8c9f209a",
+      "source": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\storyworld_curriculum_v1\\generated\\provisional_local_500_v1\\datasets\\player_train.jsonl"
+    },
+    "models/player_hrm.pt": {
+      "bytes": 876208,
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitutional_hrm_eval_matrix_v1\\run\\models\\player_hrm.pt",
+      "sha256": "403cafe415decca4101f5cfbe6aec6e523a630dac1da3369f1f2bd4379bbc068",
+      "source": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitutional_hrm_v1\\runs\\constitutional_hrm_smoke_v1\\constitutional\\checkpoints\\step_00100.pt"
+    },
+    "storyworld/encounters.jsonl": {
+      "bytes": 44398949,
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitutional_hrm_eval_matrix_v1\\run\\storyworld\\encounters.jsonl",
+      "sha256": "88dbb9b55ca8c291ea5904eb10b740ff4ae9f2478c363b5f635060e1bc259505",
+      "source": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\storyworld_curriculum_v1\\generated\\provisional_local_500_v1\\encounters.jsonl"
+    },
+    "storyworld/world.json": {
+      "bytes": 1845,
+      "path": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\artifacts\\constitutional_hrm_eval_matrix_v1\\run\\storyworld\\world.json",
+      "sha256": "2f927129bcc1eca1cc44a5a57d65bcc8aa49cbd17347b6778d740e3892a8243b",
+      "source": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\storyworld_curriculum_v1\\generated\\provisional_local_500_v1\\storyworld\\world.json"
+    }
+  },
+  "mode": "evaluation_of_existing_checkpoint",
+  "pipeline": [
+    {
+      "source": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\storyworld_curriculum_v1\\generated\\provisional_local_500_v1",
+      "stage": "storyworld",
+      "status": "reused_hash_bound_provisional_artifact"
+    },
+    {
+      "source": "C:\\projects\\ConstitutionalAlignment\\ConstitutionalAlignment\\experiments\\storyworld_curriculum_v1\\generated\\provisional_local_500_v1\\datasets",
+      "stage": "dataset",
+      "status": "reused_hash_bound_player_train_and_eval"
+    },
+    {
+      "checkpoint_sha256": "403cafe415decca4101f5cfbe6aec6e523a630dac1da3369f1f2bd4379bbc068",
+      "stage": "train",
+      "status": "reused_existing_trained_micro_hrm_checkpoint"
+    },
+    {
+      "stage": "eval",
+      "status": "completed"
+    }
+  ],
+  "recursion_contract": {
+    "max_choices_per_node": 4,
+    "max_cycles": 2,
+    "max_nested_depth": 1,
+    "max_nodes": 120,
+    "max_trajectories": 500
+  },
+  "reports": {
+    "metrics": "reports/metrics.json",
+    "summary": "reports/summary.md"
+  },
+  "resource_contract": {
+    "batch_size_max": 128,
+    "batch_size_used": 32,
+    "device": "cpu",
+    "external_wrapper_required": true,
+    "torch_threads": 2
+  },
+  "schema_version": "storyworld_hrm_gym_eval_run_manifest_v1",
+  "sealed_evaluation_content_opened": false,
+  "started_at_utc": "2026-07-28T18:28:08.541462+00:00",
+  "training_task_id": "constitutional_hrm_eval_matrix_v1"
+}
