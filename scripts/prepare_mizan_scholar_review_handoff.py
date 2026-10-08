@@ -5,7 +5,9 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import hmac
 import json
+import os
 import shutil
 import subprocess
 from datetime import datetime
@@ -14,7 +16,7 @@ from typing import Any, Iterable
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-NAMESPACE = "mizan-scholar-review-v1"
+NAMESPACE = "mizan-scholar-review-v2"
 PLACEHOLDER = "REPLACE_ME"
 PLACEHOLDER_TIME = "REPLACE_WITH_ISO_8601_TIMEZONE_TIMESTAMP"
 ATTESTATION = (
@@ -89,8 +91,28 @@ def write_jsonl(path: Path, rows: Iterable[dict[str, Any]]) -> None:
     )
 
 
+def blinding_key() -> bytes:
+    """Secret HMAC key for opaque IDs, read from a file outside the repository.
+
+    v1 IDs were a plain SHA-256 of public identifiers, so anyone holding the
+    public condition files could recompute them. v2 keys the hash with a secret.
+    """
+    key_file = os.environ.get("MIZAN_BLINDING_KEY_FILE")
+    if not key_file:
+        raise SystemExit("set MIZAN_BLINDING_KEY_FILE to a secret key file kept outside the repository")
+    key = Path(key_file).read_bytes().strip()
+    if len(key) < 32:
+        raise SystemExit("blinding key must be at least 32 bytes")
+    return key
+
+
+def blinding_key_commitment() -> str:
+    return hashlib.sha256(b"mizan-blinding-key-commitment\x1f" + blinding_key()).hexdigest()
+
+
 def opaque_id(kind: str, *parts: str) -> str:
-    digest = hashlib.sha256("\x1f".join((NAMESPACE, kind, *parts)).encode("utf-8")).hexdigest()
+    message = "\x1f".join((NAMESPACE, kind, *parts)).encode("utf-8")
+    digest = hmac.new(blinding_key(), message, hashlib.sha256).hexdigest()
     return f"MZS-{kind.upper()}-{digest[:12]}"
 
 
@@ -455,6 +477,8 @@ def prepare_handoff(
         "public_files": public_files,
         "private_condition_map": {
             "tracked_in_git": False,
+            "opaque_ids": "HMAC-SHA256 under a secret key held outside the repository",
+            "key_commitment_sha256": blinding_key_commitment(),
             "path": str(private_map_path),
             "rows": len(private_rows),
             "sha256": sha256_file(private_map_path),
