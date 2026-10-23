@@ -7,8 +7,12 @@ import argparse
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from frame_sft_data import tokenize_messages  # noqa: E402
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -148,8 +152,8 @@ def main() -> int:
         try:
             for record in records:
                 messages = render_messages(record, style)
-                tokens = tokenizer.apply_chat_template(messages, tokenize=True)
-                token_count = len(tokens)
+                # transformers 5.x returns a BatchEncoding here; len() of it is 2.
+                token_count = len(tokenize_messages(tokenizer, messages))
                 maximum_tokens = max(maximum_tokens, token_count)
                 over_length_count += int(token_count > args.sequence_length)
                 split = record["split"]
