@@ -149,6 +149,10 @@ if [[ ! -x "$venv_dir/bin/python" ]]; then
   fi
   "$venv_dir/bin/python" -m pip install --disable-pip-version-check "vllm==$vllm_version" "transformers==4.57.1"
 fi
+# Triton compiles a CUDA helper at start-up and needs the Python headers.
+if [[ ! -f /usr/include/python3.10/Python.h ]]; then
+  apt-get update -q && DEBIAN_FRONTEND=noninteractive apt-get install -y -q python3.10-dev build-essential
+fi
 LC_ALL=C "$venv_dir/bin/python" -m pip freeze --all | LC_ALL=C sort >"$output_root/environment_lock_vllm.txt"
 grep -qi "^vllm==$vllm_version\$" "$output_root/environment_lock_vllm.txt"
 
