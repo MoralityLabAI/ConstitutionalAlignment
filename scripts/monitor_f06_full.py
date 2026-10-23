@@ -23,7 +23,7 @@ REGISTERED_TRANSCRIPTS = 22400
 PLAN_TOKENS_PER_TRANSCRIPT = 34651 / 16  # measured in the batch-8 smoke
 GATE_WINDOW_SECONDS = 900
 MAX_HOURS = 60.0
-MAX_USD = 75.0
+MAX_USD = 130.0  # amendment frame_internalization_generation_budget_v2
 
 
 def parse_utc(value: str) -> float:
