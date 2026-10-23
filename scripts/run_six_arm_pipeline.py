@@ -53,6 +53,7 @@ class Config:
     gpu_temp: Callable[[], int | None] = field(default=lambda: None)
     exclusion_amendment: Path | None = None
     parity_amendment: Path | None = None
+    dose_matching_amendment: Path | None = None
     poll_seconds: float = 5.0
 
     @property
@@ -84,17 +85,30 @@ def stage_hours(stage: str, state: dict[str, Any], cfg: Config) -> float:
     return max(0.0, min(remaining, own))
 
 
-def forecast_training_hours(smoke_receipts: dict[str, dict[str, Any]], load_overhead_seconds: float = 180.0) -> float:
+MATCHED_ARM = "F3_concrete_reflection"
+REFERENCE_ARM = "F3_reflection"
+
+
+def full_steps(arm: str, smoke_receipts: dict[str, dict[str, Any]], dose_matching: bool) -> int:
+    """Planned full-run optimizer steps; under the dose-matching amendment the matched arm takes the reference's."""
+    if dose_matching and arm == MATCHED_ARM:
+        return min(int(smoke_receipts[arm]["planned_full_steps"]), int(smoke_receipts[REFERENCE_ARM]["planned_full_steps"]))
+    return int(smoke_receipts[arm]["planned_full_steps"])
+
+
+def forecast_training_hours(smoke_receipts: dict[str, dict[str, Any]], load_overhead_seconds: float = 180.0,
+                            dose_matching: bool = False) -> float:
     total = 0.0
     for arm, receipt in smoke_receipts.items():
         steps = max(1, int(receipt["training"]["steps_completed"]))
         per_step = float(receipt["training"]["elapsed_seconds"]) / steps
-        total += per_step * int(receipt["planned_full_steps"]) + load_overhead_seconds
+        total += per_step * full_steps(arm, smoke_receipts, dose_matching) + load_overhead_seconds
     return total / 3600
 
 
 # ---------------------------------------------------------------- gates
-def curriculum_gate_failures(manifest: dict[str, Any], exclusion: dict[str, Any] | None = None) -> list[str]:
+def curriculum_gate_failures(manifest: dict[str, Any], exclusion: dict[str, Any] | None = None,
+                             dose: dict[str, Any] | None = None) -> list[str]:
     failures = []
     counts = {"train": 5320, "val": 280}
     recorded = manifest.get("exclusion")
@@ -111,11 +125,20 @@ def curriculum_gate_failures(manifest: dict[str, Any], exclusion: dict[str, Any]
         failures.append("manifest schema")
     if manifest.get("passed") is not True:
         failures.append("curriculum completeness/parity (renderer passed=false)")
-    if float(manifest.get("f3_pair_total_token_spread", 1.0)) > 0.02:
-        failures.append(f"F3 vs F3-concrete token spread {manifest.get('f3_pair_total_token_spread')} > 0.02")
     parity = manifest.get("parity_balance")
     if parity is not None and parity.get("status") != "balanced":
         failures.append(f"parity rule outcome {parity.get('status')}: nothing can be dropped to reach the gate")
+    measured = manifest.get("parity_measurement")
+    spread_gate_waived = False
+    if dose is not None:
+        if (measured or {}).get("amendment_id") != dose["amendment_id"] or measured.get("matches_recorded_measurement") is not True:
+            failures.append("parity measurement does not match the dose-matching amendment")
+        else:
+            spread_gate_waived = True  # recorded, not enforced, under the pinned amendment only
+    elif measured is not None:
+        failures.append("manifest carries a parity measurement that no verified amendment authorizes")
+    if float(manifest.get("f3_pair_total_token_spread", 1.0)) > 0.02 and not spread_gate_waived:
+        failures.append(f"F3 vs F3-concrete token spread {manifest.get('f3_pair_total_token_spread')} > 0.02")
     arms = manifest.get("arms", {})
     if sorted(arms) != sorted(ARMS):
         failures.append("arm set")
@@ -262,14 +285,16 @@ def stage_render(cfg: Config, state: dict[str, Any], path: Path) -> None:
                  "--tokenizer", str(cfg.model_dir), "--output-dir", str(cfg.work / "rendered"),
                  "--manifest", str(cfg.work / "curriculum_manifest_v1.json"),
                  *(["--exclusion-amendment", str(cfg.exclusion_amendment)] if cfg.exclusion_amendment else []),
-                 *(["--parity-amendment", str(cfg.parity_amendment)] if cfg.parity_amendment else [])),
+                 *(["--parity-amendment", str(cfg.parity_amendment)] if cfg.parity_amendment else []),
+                 *(["--dose-matching-amendment", str(cfg.dose_matching_amendment)] if cfg.dose_matching_amendment else [])),
               cfg=cfg, state=state, state_path=path, stage="render", log_path=cfg.work / "logs/render.log", seconds_cap=cap)
 
 
 def stage_gates(cfg: Config, state: dict[str, Any], path: Path) -> None:
     manifest = json.loads((cfg.work / "curriculum_manifest_v1.json").read_text(encoding="utf-8"))
     exclusion = fx.load_exclusion(cfg.exclusion_amendment) if cfg.exclusion_amendment else None
-    failures = curriculum_gate_failures(manifest, exclusion)
+    dose = fx.load_dose_matching(cfg.dose_matching_amendment) if cfg.dose_matching_amendment else None
+    failures = curriculum_gate_failures(manifest, exclusion, dose)
     if failures:
         raise StageFailure("curriculum gate failed: " + "; ".join(failures))
     evals = [PKG + f"/rerun_freeze/evaluation_universes_v2/{n}_queries.jsonl" for n in ("harmful", "benign", "override")]
@@ -287,6 +312,10 @@ def train_cmd(cfg: Config, arm: str, out: Path, max_steps: int | None) -> list[s
             "--model-dir", str(cfg.model_dir), "--output-dir", str(out)]
     if max_steps:
         args += ["--max-steps", str(max_steps)]
+    elif cfg.dose_matching_amendment and arm == MATCHED_ARM:
+        # Full run only: the F3-concrete arm trains the F3 arm's optimizer-step count.
+        args += ["--dose-matching-amendment", str(cfg.dose_matching_amendment),
+                 "--match-steps-from", str(out / REFERENCE_ARM / "arm_receipt.json")]
     return py(cfg, "train_frame_internalization_qlora.py", *args)
 
 
@@ -313,7 +342,7 @@ def stage_smoke(cfg: Config, state: dict[str, Any], path: Path) -> None:
     receipt = json.loads((cfg.work / "training_smoke_receipt_v2.json").read_text(encoding="utf-8"))
     if receipt.get("passed") is not True:
         raise StageFailure(f"smoke receipt failed: {receipt}")
-    forecast = forecast_training_hours(receipts)
+    forecast = forecast_training_hours(receipts, dose_matching=cfg.dose_matching_amendment is not None)
     train_cap = min(48.0, cfg.global_cap_hours - state["cumulative_seconds"] / 3600 - EVAL_RESERVE_HOURS)
     (cfg.work / "training_forecast.json").write_text(json.dumps(
         {"forecast_hours": forecast, "cap_hours": train_cap, "price_per_hour_usd": cfg.price_per_hour,
@@ -431,6 +460,8 @@ def main() -> int:
     parser.add_argument("--vllm-python", type=Path, required=True)
     parser.add_argument("--price-per-hour", type=float, required=True)
     parser.add_argument("--total-usd", type=float, default=60.0)
+    parser.add_argument("--dose-matching-amendment", type=Path, default=None,
+                        help="hash-pinned dose-matching amendment (supersedes parity balancing)")
     parser.add_argument("--parity-amendment", type=Path, default=None,
                         help="hash-pinned parity-balance amendment; its rule is re-derived by the renderer")
     parser.add_argument("--exclusion-amendment", type=Path, default=None,
@@ -449,7 +480,7 @@ def main() -> int:
 
     cfg = Config(args.repo_root, args.f06_dir, args.work, args.model_dir, args.train_python, args.vllm_python,
                  args.price_per_hour, args.total_usd, gpu_temp=temp, exclusion_amendment=args.exclusion_amendment,
-                 parity_amendment=args.parity_amendment)
+                 parity_amendment=args.parity_amendment, dose_matching_amendment=args.dose_matching_amendment)
     return run_pipeline(cfg)
 
 

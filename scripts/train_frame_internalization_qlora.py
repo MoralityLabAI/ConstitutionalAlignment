@@ -32,6 +32,7 @@ from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import frame_sft_data as fsd  # noqa: E402
+import frame_exclusions as fx  # noqa: E402
 
 SEQUENCE_LENGTH = 4096
 MICRO_BATCHES_PER_STEP = 64
@@ -48,6 +49,22 @@ SMOKE_STEPS = 50
 
 class StopGate(RuntimeError):
     """A registered abort rule fired; the run stops and is reported."""
+
+
+def resolve_matched_steps(arm: str, amendment: dict[str, Any], reference_receipt: dict[str, Any]) -> int:
+    """Step count for the dose-matched arm: the reference arm's executed optimizer steps.
+
+    Only the pair named in the pinned amendment may be matched, only from a completed full run."""
+    pair = amendment["matched_pairs"][0]
+    if arm != pair["matched_arm"]:
+        raise StopGate(f"dose matching applies only to {pair['matched_arm']}, not {arm}")
+    if (reference_receipt.get("arm") != pair["reference_arm"] or reference_receipt.get("complete") is not True
+            or reference_receipt.get("max_steps") is not None):
+        raise StopGate("the reference receipt must be a completed full run of " + pair["reference_arm"])
+    steps = int(reference_receipt["training"]["steps_completed"])
+    if steps <= 0:
+        raise StopGate("reference step count is not positive")
+    return steps
 
 
 def sha256_file(path: Path) -> str:
@@ -241,6 +258,8 @@ def run_training(model: Any, tokenizer: Any, examples: list[fsd.Example], *, dev
             after_step(done)
     return {
         "steps_completed": len(steps),
+        "padded_tokens_total": len(steps) * micro_batches * sequence_length,
+        "loss_tokens_total": sum(sum(1 for token in pack.labels[1:] if token != fsd.IGNORE_INDEX) for step in steps for pack in step),
         "resumed_from_step": start_step,
         "losses": losses,
         "grad_norms": grad_norms,
@@ -320,6 +339,21 @@ def train_main(args: argparse.Namespace) -> int:
     tokenizer = AutoTokenizer.from_pretrained(str(args.model_dir), local_files_only=True)
     rows = load_rows(Path(args.train_jsonl))
     examples, rejected = fsd.build_examples(tokenizer, rows, SEQUENCE_LENGTH)
+    smoke = args.max_steps is not None
+    step_cap = args.max_steps
+    dose_matching = None
+    pad_for_plan = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id
+    native_steps = len(fsd.plan_steps(examples, SEQUENCE_LENGTH, pad_for_plan, MICRO_BATCHES_PER_STEP, SEED, EPOCHS, None))
+    if args.match_steps_from is not None:
+        if smoke:
+            raise SystemExit("step matching applies to the full run, not the smoke")
+        amendment = fx.load_dose_matching(args.dose_matching_amendment)
+        step_cap = resolve_matched_steps(args.arm, amendment, json.loads(Path(args.match_steps_from).read_text(encoding="utf-8")))
+        if step_cap > native_steps:
+            raise StopGate(f"matched step count {step_cap} exceeds the arm's native {native_steps}")
+        dose_matching = {"amendment_id": amendment["amendment_id"], "matched_steps": step_cap,
+                         "native_steps": native_steps, "share_of_native": step_cap / native_steps,
+                         "reference_receipt": str(args.match_steps_from)}
     model = prepare_model_for_kbit_training(load_quantized_base(args.model_dir), use_gradient_checkpointing=True)
     model = get_peft_model(model, LoraConfig(task_type="CAUSAL_LM", **LORA))
     census = lora_names_and_counts(model)
@@ -327,12 +361,12 @@ def train_main(args: argparse.Namespace) -> int:
         raise StopGate(f"unexpected trainable parameters: {census}")
     result = run_training(
         model, tokenizer, examples, device="cuda", sequence_length=SEQUENCE_LENGTH,
-        micro_batches=MICRO_BATCHES_PER_STEP, epochs=EPOCHS, max_steps=args.max_steps, seed=SEED,
+        micro_batches=MICRO_BATCHES_PER_STEP, epochs=EPOCHS, max_steps=step_cap, seed=SEED,
         learning_rate=LEARNING_RATE, optimizer_factory=lambda p, lr: bnb.optim.PagedAdamW8bit(p, lr=lr),
         use_scaler=True,
         # Smoke runs keep no resumable state; the full run checkpoints and saves 25%/50% dose adapters.
-        checkpoint_dir=(out_dir / "ckpt") if args.max_steps is None else None,
-        dose_fractions=(0.25, 0.5) if args.max_steps is None else (),
+        checkpoint_dir=(out_dir / "ckpt") if not smoke else None,
+        dose_fractions=(0.25, 0.5) if not smoke else (),
         dose_save=lambda name: (model.save_pretrained(str(out_dir / name))
                                 if not (out_dir / name).exists() else None))
     pad_id = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id
@@ -357,9 +391,10 @@ def train_main(args: argparse.Namespace) -> int:
         "round_trip": trip,
         "adapter_sha256": adapter_hashes,
         "wraps_into_extra_epochs": bool(args.max_steps and args.max_steps > 0),
-        "complete": args.max_steps is None,
-        "planned_full_steps": len(fsd.plan_steps(examples, SEQUENCE_LENGTH, pad_id, MICRO_BATCHES_PER_STEP,
-                                                 SEED, EPOCHS, None)),
+        "complete": not smoke,
+        "planned_full_steps": step_cap if dose_matching else native_steps,
+        "native_full_steps": native_steps,
+        "dose_matching": dose_matching,
         "dose_adapters": sorted(p.name for p in out_dir.glob("dose_*")),
     }
     (out_dir / "arm_receipt.json").write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
@@ -404,6 +439,9 @@ def main() -> int:
     t.add_argument("--model-dir", type=Path, required=True)
     t.add_argument("--output-dir", required=True)
     t.add_argument("--max-steps", type=int, default=None)
+    t.add_argument("--match-steps-from", type=Path, default=None,
+                   help="completed reference-arm receipt; only with the pinned dose-matching amendment")
+    t.add_argument("--dose-matching-amendment", type=Path, default=None)
     a = sub.add_parser("aggregate")
     a.add_argument("--arm-receipt", action="append", required=True)
     a.add_argument("--cleanup-passed", action="store_true")

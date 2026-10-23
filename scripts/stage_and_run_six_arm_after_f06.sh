@@ -50,6 +50,12 @@ log() { echo "$(date -u +%FT%TZ) $*"; }
 # The pipeline and renderer verify this file by SHA-256 and accept no other missing transcript.
 exclusion_amendment="$repo_root/$pkg/protocol_amendment_failed_scenario_v1.json"
 exclusion_sha256=76034cc8c69128f85181e710dd3e2ce7ba8fcfe6892c9611201b522c6c46a2c2
+# Dose matching (amendment frame_internalization_dose_matching_v1): the F3 versus F3-concrete token
+# parity gate is recorded, not enforced, and the F3-concrete arm trains the F3 arm's step count.
+dose_amendment="$repo_root/$pkg/protocol_amendment_dose_matching_v1.json"
+dose_sha256=d6ccfa965b2ca0d2247f499e85dfee1420a2caf69aa4393c8abde01f2a301dc2
+[[ "$(git -C "$repo_root" cat-file blob "$source_commit:$pkg/protocol_amendment_dose_matching_v1.json" | sha256sum | cut -d' ' -f1)" == "$dose_sha256" ]] \
+  || { log "dose-matching amendment hash mismatch"; exit 65; }
 [[ "$(git -C "$repo_root" cat-file blob "$source_commit:$pkg/protocol_amendment_failed_scenario_v1.json" | sha256sum | cut -d' ' -f1)" == "$exclusion_sha256" ]]   || { log "exclusion amendment hash mismatch"; exit 65; }
 
 [[ "$(id -u)" -eq 0 ]]
@@ -90,6 +96,7 @@ set +e
   --repo-root "$repo_root" --f06-dir "$f06_dir" --work "$work_root" --model-dir "$model_dir" \
   --train-python "$train_venv/bin/python" --vllm-python "$vllm_venv/bin/python" \
   --price-per-hour "$PRICE_PER_HOUR" --total-usd "$total_usd"   --exclusion-amendment "$exclusion_amendment" \
+  --dose-matching-amendment "$dose_amendment" \
   >>"$work_root/pipeline.stdout.log" 2>>"$work_root/pipeline.stderr.log"
 rc=$?
 set -e

@@ -13,7 +13,7 @@ from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from frame_sft_data import tokenize_messages  # noqa: E402
-from frame_exclusions import excluded_scenarios, expected_split_counts, load_exclusion, load_parity  # noqa: E402
+from frame_exclusions import excluded_scenarios, expected_split_counts, load_dose_matching, load_exclusion, load_parity  # noqa: E402
 import parity_balance  # noqa: E402
 
 
@@ -43,6 +43,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--sequence-length", type=int, default=4096)
+    parser.add_argument("--dose-matching-amendment", type=Path, default=None,
+                        help="hash-pinned dose-matching amendment: the parity spread is recorded, not enforced")
     parser.add_argument("--parity-amendment", type=Path, default=None,
                         help="the hash-pinned parity-balance amendment; its rule is re-derived and must match")
     parser.add_argument("--exclusion-amendment", type=Path, default=None,
@@ -227,13 +229,27 @@ def main() -> int:
         arms["F3_concrete_reflection"]["total_train_tokens"],
     ]
     pair_spread = (max(pair_counts) - min(pair_counts)) / min(pair_counts)
+    dose = load_dose_matching(args.dose_matching_amendment) if args.dose_matching_amendment else None
+    parity_measurement = None
+    spread_ok = pair_spread <= 0.02
+    if dose is not None:
+        recorded = dose["measurement_recorded_not_enforced"]
+        # The measurement is accepted only if it is exactly the one the amendment was decided on.
+        matches = (pair_counts[0] == recorded["f3_reflection_train_tokens"]
+                   and pair_counts[1] == recorded["f3_concrete_reflection_train_tokens"]
+                   and abs(pair_spread - recorded["spread"]) < 1e-9)
+        spread_ok = matches or spread_ok
+        parity_measurement = {"amendment_id": dose["amendment_id"], "enforced": False, "spread": pair_spread,
+                              "f3_reflection_train_tokens": pair_counts[0],
+                              "f3_concrete_reflection_train_tokens": pair_counts[1], "gate": 0.02,
+                              "matches_recorded_measurement": matches}
     passed = bool(
         set(arms) == set(ARM_SPECS)
         and all(arm["scenario_count"] == expected_counts["scenarios"] for arm in arms.values())
         and all(arm["train_count"] == expected_counts["train"] for arm in arms.values())
         and all(arm["validation_count"] == expected_counts["val"] for arm in arms.values())
         and all(arm["scenario_ids_sha256"] == expected_id_hash for arm in arms.values())
-        and pair_spread <= 0.02
+        and spread_ok
     )
     manifest = {
         "schema_version": "frame_internalization_curriculum_manifest.v1",
@@ -249,6 +265,7 @@ def main() -> int:
             "amendment_id": exclusion["amendment_id"], "excluded_scenario_ids": sorted(excluded),
             "expected_counts": expected_counts},
         "parity_balance": parity_report,
+        "parity_measurement": parity_measurement,
         "f3_pair_total_token_spread": pair_spread,
         "failure_reasons": [] if passed else ["completeness, scenario identity, or 2 percent token parity failed"],
     }

@@ -72,3 +72,19 @@ def load_parity(path: Path | None = None, expected_sha256: str = PARITY_AMENDMEN
     if hashlib.sha256(code).hexdigest() != data["rule"]["code_sha256_lf"]:
         raise ExclusionError("parity rule code differs from the hash recorded in the amendment")
     return data
+
+
+DOSE_MATCHING_AMENDMENT = REPO / "experiments/frame_internalization_sft_v1/protocol_amendment_dose_matching_v1.json"
+DOSE_MATCHING_AMENDMENT_SHA256 = "d6ccfa965b2ca0d2247f499e85dfee1420a2caf69aa4393c8abde01f2a301dc2"
+
+
+def load_dose_matching(path: Path | None = None, expected_sha256: str = DOSE_MATCHING_AMENDMENT_SHA256) -> dict[str, Any]:
+    """The verified dose-matching amendment; any change to the file is refused."""
+    path = path or DOSE_MATCHING_AMENDMENT
+    raw = _lf(path.read_bytes())
+    if hashlib.sha256(raw).hexdigest() != expected_sha256:
+        raise ExclusionError(f"dose-matching amendment hash mismatch: {path}")
+    data = json.loads(raw.decode("utf-8"))
+    if data.get("amendment_id") != "frame_internalization_dose_matching_v1":
+        raise ExclusionError("unexpected dose-matching amendment id")
+    return data

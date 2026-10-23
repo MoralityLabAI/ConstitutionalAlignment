@@ -1,0 +1,76 @@
+{
+  "schema_version": "frame_internalization_protocol_amendment.v3",
+  "amendment_id": "frame_internalization_dose_matching_v1",
+  "frozen_at": "2026-10-24",
+  "status": "frozen_before_any_training_adapter_evaluation_or_judge_call",
+  "human_readable": "experiments/frame_internalization_sft_v1/PROTOCOL_AMENDMENT_DOSE_MATCHING_V1.md",
+  "human_readable_sha256_lf": "52aa1ac2aa2a5aedad34c093bae6c01046355b045cddabd9218733320039b1d3",
+  "supersedes": "frame_internalization_parity_balance_v1",
+  "amends": "F3 versus F3-concrete 2% curriculum token-parity gate",
+  "matched_pairs": [
+    {
+      "reference_arm": "F3_reflection",
+      "matched_arm": "F3_concrete_reflection",
+      "rule": "matched arm trains exactly the reference arm's optimizer-step count, taking the first N steps of its own registered two-epoch schedule",
+      "reference_receipt_required": "complete arm_receipt.json with planned_full_steps"
+    }
+  ],
+  "other_arms": "registered two-epoch schedules unchanged; no demonstration pair is matched because the design has no concrete-demonstration arm",
+  "packing": {
+    "sequence_length": 4096,
+    "microbatch": 1,
+    "gradient_accumulation": 64,
+    "padded_tokens_per_step": 262144
+  },
+  "measurement_recorded_not_enforced": {
+    "gate": "F3/F3-concrete total training-token spread at most 2%",
+    "enforced": false,
+    "f3_reflection_train_tokens": 6248126,
+    "f3_concrete_reflection_train_tokens": 6845141,
+    "spread": 0.09555105002684004,
+    "must_equal_recorded_values_or_the_run_stops": true
+  },
+  "matched_schedule_on_real_rendered_data": {
+    "train_rows_each": 5319,
+    "f3_reflection": {
+      "steps_per_epoch": [
+        26,
+        26
+      ],
+      "steps": 52,
+      "loss_tokens": 10176589
+    },
+    "f3_concrete_native": {
+      "steps_per_epoch": [
+        27,
+        27
+      ],
+      "steps": 54
+    },
+    "f3_concrete_matched": {
+      "steps": 52,
+      "epoch_one_steps": 27,
+      "epoch_two_steps": 25,
+      "share_of_native_dose": 0.963,
+      "loss_tokens": 10877893
+    },
+    "padded_tokens_each": 13631488,
+    "loss_token_ratio_matched_f3c_over_f3": 1.069
+  },
+  "remaining_gap_reported_as_limitation": [
+    "curriculum token gap 9.555%",
+    "matched F3-concrete trains on 6.9% more loss tokens than F3"
+  ],
+  "binding": {
+    "amendment_sha256_pinned_in": "scripts/frame_exclusions.py",
+    "trainer_accepts_only_for": "F3_concrete_reflection",
+    "other_gate_failures_still_stop": true
+  },
+  "timing_attestation": {
+    "training_started": false,
+    "adapters_exist": false,
+    "evaluation_rows_exist": false,
+    "judge_calls_made": false,
+    "chosen_after_seeing_a_result": false
+  }
+}
