@@ -140,6 +140,9 @@ if [[ ! -x "$venv_dir/bin/python" ]]; then
   fi
   "$venv_dir/bin/python" -m pip install --disable-pip-version-check -r "$requirements"
 fi
+# requirements_f04.txt leaves transitive packages unpinned; install the exact
+# 2026-07-23 F04 lock so the frozen environment is reproduced byte for byte.
+"$venv_dir/bin/python" -m pip install --disable-pip-version-check --no-deps   --extra-index-url https://download.pytorch.org/whl/cu121 -r "$expected_lock"
 LC_ALL=C "$venv_dir/bin/python" -m pip freeze --all | LC_ALL=C sort >"$output_root/environment_lock.txt"
 cmp --silent "$expected_lock" "$output_root/environment_lock.txt"
 
