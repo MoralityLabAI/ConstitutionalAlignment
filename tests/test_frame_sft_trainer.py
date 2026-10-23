@@ -211,3 +211,63 @@ def test_stop_gate_on_wrong_first_batch_shape() -> None:
                              max_steps=None, seed=42, learning_rate=1e-3,
                              optimizer_factory=lambda p, lr: torch.optim.AdamW(p, lr=lr), use_scaler=False,
                              log=lambda *_: None)
+
+
+class _Stop(Exception):
+    pass
+
+
+def _toy_examples():
+    return [fsd.Example(f"r{i}", [10 + ((j + i) % 40) for j in range(30)], [10 + ((j + i) % 40) for j in range(30)])
+            for i in range(24)]
+
+
+def _train(model, trainer, torch, tmp_path, *, after_step=None, doses=None):
+    class Tok:
+        pad_token_id = 0
+        eos_token_id = 1
+
+    return trainer.run_training(
+        model, Tok(), _toy_examples(), device="cpu", sequence_length=64, micro_batches=2, epochs=2, max_steps=None,
+        seed=42, learning_rate=1e-2, optimizer_factory=lambda p, lr: torch.optim.AdamW(p, lr=lr),
+        use_scaler=False, log=lambda *_: None, checkpoint_dir=tmp_path / "ckpt", checkpoint_every_steps=3,
+        dose_fractions=(0.25, 0.5), dose_save=(doses.append if doses is not None else None), after_step=after_step)
+
+
+def test_checkpoint_resume_reproduces_an_uninterrupted_run(tmp_path) -> None:
+    torch = pytest.importorskip("torch")
+    trainer, model_a, _ = tiny_model()
+    straight = _train(model_a, trainer, torch, tmp_path / "a")
+    params_a = {n: p.detach().clone() for n, p in model_a.named_parameters() if p.requires_grad}
+
+    trainer, model_b, _ = tiny_model()
+
+    def interrupt(done):
+        if done == 5:
+            raise _Stop()
+
+    with pytest.raises(_Stop):
+        _train(model_b, trainer, torch, tmp_path / "b", after_step=interrupt)
+    assert sorted(p.name for p in (tmp_path / "b" / "ckpt").glob("ckpt_*.pt")) == ["ckpt_000003.pt"]
+    trainer, model_c, _ = tiny_model()  # a fresh process: same init, state comes from the checkpoint
+    resumed = _train(model_c, trainer, torch, tmp_path / "b")
+    assert resumed["resumed_from_step"] == 3 and resumed["steps_completed"] == straight["steps_completed"]
+    assert len(resumed["losses"]) == len(straight["losses"])
+    for name, value in params_a.items():
+        assert torch.allclose(dict(model_c.named_parameters())[name], value, atol=1e-5)
+    assert resumed["losses"] == pytest.approx(straight["losses"], rel=1e-4)
+
+
+def test_dose_adapters_are_saved_at_25_and_50_percent(tmp_path) -> None:
+    torch = pytest.importorskip("torch")
+    trainer, model, _ = tiny_model()
+    doses: list[str] = []
+    result = _train(model, trainer, torch, tmp_path, doses=doses)
+    assert doses == ["dose_25", "dose_50"] and result["steps_completed"] >= 4
+
+
+def test_old_checkpoints_are_pruned_to_two(tmp_path) -> None:
+    torch = pytest.importorskip("torch")
+    trainer, model, _ = tiny_model()
+    _train(model, trainer, torch, tmp_path)
+    assert len(list((tmp_path / "ckpt").glob("ckpt_*.pt"))) <= 2

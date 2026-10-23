@@ -23,6 +23,7 @@ import argparse
 import hashlib
 import json
 import math
+import os
 import statistics
 import sys
 import time
@@ -106,10 +107,51 @@ def lora_names_and_counts(model: Any) -> dict[str, Any]:
     }
 
 
+def save_checkpoint(path: Path, *, model: Any, optimizer: Any, scheduler: Any, scaler: Any,
+                    step: int, losses: list[float], grad_norms: list[float], state: dict[str, Any]) -> None:
+    """Write a resumable checkpoint atomically and keep only the last two."""
+    import torch
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    lora = {n: p.detach().cpu() for n, p in model.named_parameters() if p.requires_grad}
+    blob = {"step": step, "lora": lora, "optimizer": optimizer.state_dict(),
+            "scheduler": scheduler.state_dict(), "scaler": scaler.state_dict() if scaler else None,
+            "losses": losses, "grad_norms": grad_norms, "state": state}
+    tmp = path.with_suffix(".tmp")
+    torch.save(blob, tmp)
+    os.replace(tmp, path)
+    olds = sorted(path.parent.glob("ckpt_*.pt"))
+    for old in olds[:-2]:
+        old.unlink()
+
+
+def load_latest_checkpoint(directory: Path | None, *, model: Any, optimizer: Any, scheduler: Any,
+                           scaler: Any, device: str) -> dict[str, Any] | None:
+    import torch
+
+    if directory is None or not directory.is_dir():
+        return None
+    found = sorted(directory.glob("ckpt_*.pt"))
+    if not found:
+        return None
+    blob = torch.load(found[-1], map_location=device, weights_only=False)
+    named = dict(model.named_parameters())
+    for name, tensor in blob["lora"].items():
+        named[name].data.copy_(tensor.to(named[name].device))
+    optimizer.load_state_dict(blob["optimizer"])
+    scheduler.load_state_dict(blob["scheduler"])
+    if scaler and blob["scaler"]:
+        scaler.load_state_dict(blob["scaler"])
+    return blob
+
+
 def run_training(model: Any, tokenizer: Any, examples: list[fsd.Example], *, device: str,
                  sequence_length: int, micro_batches: int, epochs: int, max_steps: int | None,
                  seed: int, learning_rate: float, optimizer_factory: Any, use_scaler: bool,
-                 log: Any = print) -> dict[str, Any]:
+                 log: Any = print, checkpoint_dir: Path | None = None,
+                 checkpoint_every_steps: int = 200, checkpoint_every_seconds: float = 1200.0,
+                 dose_fractions: tuple[float, ...] = (), dose_save: Any = None,
+                 after_step: Any = None) -> dict[str, Any]:
     import torch
     from transformers import get_cosine_schedule_with_warmup
 
@@ -130,10 +172,20 @@ def run_training(model: Any, tokenizer: Any, examples: list[fsd.Example], *, dev
     model.train()
     losses: list[float] = []
     grad_norms: list[float] = []
-    consecutive_high = 0
+    state = {"consecutive_high": 0, "consecutive_skipped": 0, "skipped_total": 0}
+    resumed = load_latest_checkpoint(checkpoint_dir, model=model, optimizer=optimizer,
+                                     scheduler=scheduler, scaler=scaler, device=device)
+    start_step = 0
+    if resumed:
+        start_step, losses, grad_norms = int(resumed["step"]), list(resumed["losses"]), list(resumed["grad_norms"])
+        state.update(resumed["state"])
+        log(f"resumed from step {start_step}")
     started = time.time()
+    last_checkpoint = time.time()
     warmup = math.ceil(WARMUP_RATIO * len(steps))
-    for step_index, step in enumerate(steps):
+    dose_steps = {max(1, round(f * len(steps))): f"dose_{int(round(f * 100))}" for f in dose_fractions}
+    for step_index in range(start_step, len(steps)):
+        step = steps[step_index]
         optimizer.zero_grad(set_to_none=True)
         label_tokens = sum(sum(1 for t in pack.labels[1:] if t != fsd.IGNORE_INDEX) for pack in step)
         if label_tokens == 0:
@@ -151,8 +203,17 @@ def run_training(model: Any, tokenizer: Any, examples: list[fsd.Example], *, dev
             scaler.unscale_(optimizer)
         norm = float(torch.nn.utils.clip_grad_norm_(params, 1.0))
         mean_loss = total / label_tokens
-        if not math.isfinite(mean_loss) or not math.isfinite(norm):
-            raise StopGate(f"non-finite loss or gradient at step {step_index}")
+        if not math.isfinite(mean_loss):
+            raise StopGate(f"non-finite loss at step {step_index}")
+        if not math.isfinite(norm):
+            # fp16 loss-scale overflow: GradScaler skips the update and lowers the scale.
+            # Without a scaler, or after 5 skips in a row, a non-finite gradient is a stop gate.
+            state["consecutive_skipped"] += 1
+            state["skipped_total"] += 1
+            if scaler is None or state["consecutive_skipped"] >= 5:
+                raise StopGate(f"non-finite gradient at step {step_index}")
+        else:
+            state["consecutive_skipped"] = 0
         if scaler:
             scaler.step(optimizer)
             scaler.update()
@@ -163,14 +224,27 @@ def run_training(model: Any, tokenizer: Any, examples: list[fsd.Example], *, dev
         grad_norms.append(norm)
         if len(losses) >= 10 and step_index >= warmup:
             baseline = statistics.median(losses[:10])
-            consecutive_high = consecutive_high + 1 if mean_loss > 2 * baseline else 0
-            if consecutive_high >= 3:
+            state["consecutive_high"] = state["consecutive_high"] + 1 if mean_loss > 2 * baseline else 0
+            if state["consecutive_high"] >= 3:
                 raise StopGate("loss above twice the first ten-step median for three consecutive steps")
         log(f"step {step_index + 1}/{len(steps)} loss {mean_loss:.4f} gradnorm {norm:.3f}")
+        done = step_index + 1
+        if dose_save is not None and done in dose_steps and done < len(steps):
+            dose_save(dose_steps[done])
+        if checkpoint_dir is not None and done < len(steps) and (
+                done % checkpoint_every_steps == 0 or time.time() - last_checkpoint >= checkpoint_every_seconds):
+            save_checkpoint(checkpoint_dir / f"ckpt_{done:06d}.pt", model=model, optimizer=optimizer,
+                            scheduler=scheduler, scaler=scaler, step=done, losses=losses,
+                            grad_norms=grad_norms, state=state)
+            last_checkpoint = time.time()
+        if after_step is not None:
+            after_step(done)
     return {
         "steps_completed": len(steps),
+        "resumed_from_step": start_step,
         "losses": losses,
         "grad_norms": grad_norms,
+        "scaler_skipped_steps": state["skipped_total"],
         "first_batch_shape": [1, sequence_length],
         "elapsed_seconds": time.time() - started,
         "tokens_per_step_padded": micro_batches * sequence_length,
@@ -255,7 +329,12 @@ def train_main(args: argparse.Namespace) -> int:
         model, tokenizer, examples, device="cuda", sequence_length=SEQUENCE_LENGTH,
         micro_batches=MICRO_BATCHES_PER_STEP, epochs=EPOCHS, max_steps=args.max_steps, seed=SEED,
         learning_rate=LEARNING_RATE, optimizer_factory=lambda p, lr: bnb.optim.PagedAdamW8bit(p, lr=lr),
-        use_scaler=True)
+        use_scaler=True,
+        # Smoke runs keep no resumable state; the full run checkpoints and saves 25%/50% dose adapters.
+        checkpoint_dir=(out_dir / "ckpt") if args.max_steps is None else None,
+        dose_fractions=(0.25, 0.5) if args.max_steps is None else (),
+        dose_save=lambda name: (model.save_pretrained(str(out_dir / name))
+                                if not (out_dir / name).exists() else None))
     pad_id = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id
     probe_pack = fsd.pack_examples(examples, [0], SEQUENCE_LENGTH, pad_id)[0]
     prompts = [[{"role": "user", "content": rows[i]["messages"][0]["content"]}] for i in range(10)]
@@ -278,6 +357,10 @@ def train_main(args: argparse.Namespace) -> int:
         "round_trip": trip,
         "adapter_sha256": adapter_hashes,
         "wraps_into_extra_epochs": bool(args.max_steps and args.max_steps > 0),
+        "complete": args.max_steps is None,
+        "planned_full_steps": len(fsd.plan_steps(examples, SEQUENCE_LENGTH, pad_id, MICRO_BATCHES_PER_STEP,
+                                                 SEED, EPOCHS, None)),
+        "dose_adapters": sorted(p.name for p in out_dir.glob("dose_*")),
     }
     (out_dir / "arm_receipt.json").write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"arm": args.arm, "steps": result["steps_completed"], "round_trip": trip}))
