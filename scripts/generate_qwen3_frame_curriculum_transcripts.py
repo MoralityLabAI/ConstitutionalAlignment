@@ -8,7 +8,10 @@ import gc
 import hashlib
 import json
 import math
+import os
 import re
+import signal
+import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -223,6 +226,53 @@ def validate_inputs(
 def append_jsonl(path: Path, value: dict[str, Any]) -> None:
     with path.open("a", encoding="utf-8", newline="\n") as handle:
         handle.write(json.dumps(value, ensure_ascii=False, sort_keys=True) + "\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+
+
+def repair_torn_tail(path: Path) -> int:
+    """Drop a final line a crash left unterminated or unparsable; return bytes dropped.
+
+    Complete lines are never touched, so a relaunch resumes from exactly the
+    transcripts that were fully checkpointed.
+    """
+    if not path.is_file():
+        return 0
+    data = path.read_bytes()
+    if not data:
+        return 0
+    keep = len(data)
+    if not data.endswith(b"\n"):
+        keep = data.rfind(b"\n") + 1
+    else:
+        previous = data[:-1].rfind(b"\n") + 1
+        try:
+            json.loads(data[previous:-1])
+        except json.JSONDecodeError:
+            keep = previous
+    if keep < len(data):
+        with path.open("r+b") as handle:
+            handle.truncate(keep)
+    return len(data) - keep
+
+
+def pending_jobs(
+    requests_by_frame: dict[str, list[dict[str, Any]]],
+    frames: list[str],
+    done: dict[str, set[str]],
+) -> list[dict[str, Any]]:
+    """Interleaved frame order, skipping completed request IDs; never duplicates."""
+    jobs: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for row_index in range(max(len(rows) for rows in requests_by_frame.values())):
+        for frame in frames:
+            request = requests_by_frame[frame][row_index]
+            request_id = str(request["request_id"])
+            if request_id in done[frame] or request_id in seen:
+                continue
+            seen.add(request_id)
+            jobs.append(request)
+    return jobs
 
 
 def load_done(path: Path) -> set[str]:
@@ -355,13 +405,9 @@ def main() -> int:
     output_dir.mkdir(parents=True, exist_ok=True)
     raw_paths = {frame: output_dir / f"{frame}.jsonl" for frame in args.source_frames}
     event_path = output_dir / "generation.events.jsonl"
+    torn_bytes_dropped = {frame: repair_torn_tail(path) for frame, path in raw_paths.items()}
     done = {frame: load_done(path) for frame, path in raw_paths.items()}
-    jobs: list[dict[str, Any]] = []
-    for row_index in range(max(len(rows) for rows in requests_by_frame.values())):
-        for frame in args.source_frames:
-            request = requests_by_frame[frame][row_index]
-            if request["request_id"] not in done[frame]:
-                jobs.append(request)
+    jobs = pending_jobs(requests_by_frame, list(args.source_frames), done)
 
     append_jsonl(
         event_path,
@@ -372,12 +418,15 @@ def main() -> int:
             "limit_per_frame": args.limit_per_frame,
             "batch_size": args.batch_size,
             "pending_requests": len(jobs),
+            "torn_tail_bytes_dropped": torn_bytes_dropped,
         },
     )
 
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
+    # Clean shutdown: SIGTERM unwinds through the finally block below.
+    signal.signal(signal.SIGTERM, lambda *_: sys.exit(143))
     tokenizer: Any = None
     model: Any = None
     started = time.monotonic()
