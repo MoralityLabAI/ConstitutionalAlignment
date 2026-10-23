@@ -1,0 +1,82 @@
+{
+  "schema_version": "frame_internalization_run_status.v1",
+  "as_of_date": "2026-10-24",
+  "amendment": "experiments/frame_internalization_sft_v1/protocol_amendment_no_human_validation_v1.json",
+  "pilot_ready": false,
+  "compute_started": false,
+  "pods_created_by_this_session": 0,
+  "money_spent_usd": 0,
+  "why_no_pod": [
+    "The registered pilot is the F18 six-arm 50-step 4,096-token smoke. Its inputs (F07 rendered curricula, F08 token parity, F10 generated-text nonleakage) do not exist, because F06 (22,400 Qwen transcripts) has not been generated.",
+    "The measured F06 smoke projects the full curriculum at about 185 generator hours and about US$228 (exact NF4 batch-8 path, A100 at US$1.23/h). The prepared batch-32 optimization targets at most 60 hours / US$75 and is itself unmeasured. Both exceed the US$3 / 2-hour cap recorded in the amendment.",
+    "No six-arm QLoRA trainer exists in the repository (no script implements the frozen recipe or emits frame_internalization_training_smoke_receipt.v2). The F18 receipt therefore cannot be produced yet whatever the budget.",
+    "The stage plan forbids self-waiving a missing gate at launch and forbids reduced sequence length or substitute data as a scientific replacement. A pilot on synthetic or truncated data would be a workaround, not the registered pilot."
+  ],
+  "gate_status": {
+    "F03_local_model_tokenizer_freeze": "passed (receipt only; the frozen model directory lives on a D: drive absent from this PC, so it cannot be re-run here)",
+    "F04_locked_cloud_environment": "passed 2026-07-23; note the F06 smoke found the F04 receipt hash was frozen from CRLF bytes, so any new launch must bind canonical git-blob hashes (F06_SMOKE_BINDING_AMENDMENT_V1)",
+    "F06_curricula_generation": "not met; needs GPU inference, projected US$75-228",
+    "F07_render_six_arms": "not met; needs F06",
+    "F08_token_parity_F3_vs_F3_concrete": "not met; needs F07 (the only existing parity evidence is card-level: 64 vs 65 cl100k tokens, 1.5625%)",
+    "F09_source_prompt_nonleakage": "passed (source prompts only)",
+    "F10_generated_text_nonleakage_split_leak": "not met; needs F07",
+    "F13_qwen_base_rows_1600": "not met; needs GPU inference",
+    "F14_judge_predictions": "not met; needs F13 and hosted-model API spend",
+    "F15_human_validation": "dropped by amendment; replaced by F15b descriptive second-judge kappa (not met yet, needs F14)",
+    "F16_layer27_probe": "not met; needs F13 activations",
+    "F17_base_analysis": "not met",
+    "F18_50_step_save_reload_smoke": "not met; needs F07, F08, F10 and a trainer",
+    "F19_authorization": "satisfied in principle by the amendment (author instructions 2026-10-23/24) for the pilot-stage caps only"
+  },
+  "refreshed_factorization": {
+    "factors": 20,
+    "passed": 9,
+    "pending": 11,
+    "parent_gates_passed": 3,
+    "parent_gates_blocking": 7,
+    "frontier": ["F06", "F13"],
+    "note": "Regenerated 2026-10-24 with scripts/factor_frame_internalization_gates.py; unchanged from 2026-07-23. The script still lists F15 as required; the amendment retires it, and the script has not yet been edited."
+  },
+  "full_run_projection": {
+    "basis": "measured: primelab_f06 smoke (72.8 generated tokens/s at batch 8, 2.17k generated tokens per transcript on average); unmeasured: training and evaluation throughput, no training smoke has ever run",
+    "gpu_type": "A100 80GB SXM4 at US$1.23/h (the type used in F04/F06; the cheapest listed 24 GiB-or-more type was not re-priced)",
+    "curriculum_generation_F06": {
+      "gpu_hours": "185 at batch 8 (measured projection); at most 60 if the batch-32 plan hits its 240 tokens/s promotion bar (not yet measured)",
+      "usd": "228 at batch 8; at most 75 for the batch-32 plan"
+    },
+    "adapter_training_two_epochs_six_arms": {
+      "gpu_hours": "rough estimate 4-10, unmeasured (about 140M training tokens at an assumed 4-10k tokens/s for NF4 QLoRA with checkpointing)",
+      "usd": "about 5-12"
+    },
+    "evaluation_and_base_generation": {
+      "gpu_hours": "unmeasured; thinking-mode generation at the measured 72.8 tokens/s is the dominant risk, tens of hours at batch 8",
+      "usd": "unmeasured"
+    },
+    "judge_api_spend": "separate from GPU cost and not estimated here",
+    "protocol_caps": {
+      "full_run_maximum_gpu_hours": 48,
+      "note": "Curriculum generation at batch 8 alone is about 4x that cap if it is counted against it; the plan text applies the 48-hour cap to the sequential training run, so this should be settled by amendment before any spend."
+    },
+    "total_rough_usd_range": "about 100-300 at current measured throughput; about 90-130 if batch 32 reaches its bar. Treat as order of magnitude only."
+  },
+  "relayed_budget_message": {
+    "content": "A coordinator message relayed that the author said \"I loaded Prime to spend so shoot\" and raised the caps to the protocol's 48 GPU-hours and US$75, with an instruction to continue into the full run.",
+    "treated_as_authorization": false,
+    "reason": "It arrived from another agent, not from the author in this session's chat. Spending authority beyond the original US$3 / 2 hours is therefore not recorded as granted. The author can confirm in chat and it will then be recorded in a further amendment."
+  },
+  "unrelated_pods_observed": [
+    {
+      "id": "68c2f427f7584a00aba1e8c6ca55043c",
+      "name": "seeds-20261024",
+      "gpu": "A6000_48GB x1",
+      "note": "Not created by this session; left untouched."
+    }
+  ],
+  "next_steps_in_order": [
+    "Author confirms a budget in chat (the F06 generation is the cost driver; US$75 is the number to confirm).",
+    "Edit scripts/factor_frame_internalization_gates.py so F15 is retired and F15b is reported, then regenerate the factorization.",
+    "Write and CPU-test the six-arm QLoRA trainer and the F18 receipt emitter (packing, assistant-only masks, 4,096 shape assertion, reject-oversize).",
+    "Run the F06 batch-32 optimization comparison (about 32 transcripts, a few GPU-minutes) to learn the real generation cost.",
+    "Then F06, F07, F08, F10, F13, F16, and only then the F18 pilot."
+  ]
+}
