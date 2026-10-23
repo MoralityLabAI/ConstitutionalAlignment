@@ -1,0 +1,46 @@
+{
+  "schema_version": "frame_internalization_protocol_amendment.v3",
+  "amendment_id": "frame_internalization_generation_batch32_v1",
+  "frozen_at": "2026-10-24",
+  "status": "frozen_before_any_registered_curriculum_transcript; spend_conditional_on_direct_author_confirmation",
+  "human_readable": "experiments/frame_internalization_sft_v1/PROTOCOL_AMENDMENT_GENERATION_BATCH32_V1.md",
+  "change": {
+    "stage": "F06 curriculum generation",
+    "inference_batch_size": {"from": 8, "to": 32},
+    "plan": "experiments/frame_internalization_sft_v1/primelab_f06/f06_throughput_optimization_plan_v1.json",
+    "other_generation_inputs_changed": false,
+    "generation_stage_caps": {"maximum_generator_hours": 60, "maximum_usd": 75},
+    "training_cap_unchanged": {"full_run_maximum_gpu_hours": 48},
+    "evaluation_caps_unchanged": true
+  },
+  "reason": {
+    "measured_batch8_tokens_per_second": 72.79,
+    "projected_batch8_generator_hours": 185.12,
+    "projected_batch8_usd": 227.70,
+    "registered_cap_hours": 48
+  },
+  "stop_rules": {
+    "projection_check_window_minutes": 15,
+    "stop_if_projected_hours_above": 60,
+    "stop_if_projected_usd_above": 75,
+    "minimum_tokens_per_second": 240,
+    "no_further_batch_or_cap_escalation": true,
+    "watchdog_before_pod": true,
+    "touch_only_pods_created_by_this_session": true,
+    "canonical_git_blob_hashes_only": true
+  },
+  "budget_authorization": {
+    "relayed_text": "yeah I loaded Prime to spend so shoot",
+    "ceiling_usd": 75,
+    "source": "relayed by the coordinating session; not directly observed by the executing session",
+    "in_force": false,
+    "cap_in_force_until_confirmed_usd": 3,
+    "becomes_in_force_when": "the author confirms in a chat message visible to the executing session, or the launching session's permission system grants it"
+  },
+  "implementation_notes": {
+    "renderer_token_count_bug": "len(apply_chat_template(tokenize=True)) is 2 under transformers 5.3.0; fixed in scripts/render_frame_curricula.py via scripts/frame_sft_data.py before any curriculum was rendered",
+    "trainer": "scripts/train_frame_internalization_qlora.py, CPU-tested only",
+    "demonstration_arm_smoke_wraps_epochs": true,
+    "six_arm_smoke_gpu_hours_unmeasured_may_exceed_2": true
+  }
+}
