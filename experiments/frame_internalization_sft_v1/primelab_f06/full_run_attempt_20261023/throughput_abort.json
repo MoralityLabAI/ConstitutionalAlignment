@@ -1,0 +1,14 @@
+{
+  "completed_transcripts_in_window": 32,
+  "generated_tokens": 104201,
+  "generated_tokens_per_second": 114.22700362363932,
+  "maximum_hours": 60.0,
+  "maximum_usd": 130.0,
+  "measured_tokens_per_transcript": 2245.90625,
+  "passed": false,
+  "price_per_hour_usd": 2.128,
+  "projected_generator_hours": 122.33996633424555,
+  "projected_usd": 260.3394483592745,
+  "tokens_per_transcript_used": 2245.90625,
+  "window_seconds": 912.2273778915405
+}

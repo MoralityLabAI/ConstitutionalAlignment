@@ -1,0 +1,28 @@
+{
+  "amendment": "frame_internalization_generation_batch32_v1",
+  "batch_size": 32,
+  "cleanup_passed": true,
+  "compute_apps_after": 0,
+  "cumulative_seconds": 930.9880197048187,
+  "cumulative_usd_at_price": 0.5503173627588485,
+  "finished_at_utc": "2026-10-23T17:11:14+00:00",
+  "frame_receipts_complete": {
+    "F1": false,
+    "F3": false,
+    "F3_concrete": false,
+    "neutral": false
+  },
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "launches": 1,
+  "maximum_output_bytes": 2147483648,
+  "maximum_wall_clock_seconds": 216000,
+  "passed": false,
+  "price_per_hour_usd": 2.128,
+  "runtime_exit_code": 143,
+  "schema_version": "frame_internalization_primelab_f06_full_wrapper.v1",
+  "source_commit": "8dc6020b8341c460ebcd1b5baa3bc1a5631e2be6",
+  "started_at_utc": "2026-10-23T16:55:42+00:00",
+  "status": "stopped_throughput_gate",
+  "stop_reason": "throughput_gate",
+  "this_launch_seconds": 932
+}
