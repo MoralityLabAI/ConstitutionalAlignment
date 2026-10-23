@@ -54,6 +54,11 @@ exclusion_sha256=76034cc8c69128f85181e710dd3e2ce7ba8fcfe6892c9611201b522c6c46a2c
 # parity gate is recorded, not enforced, and the F3-concrete arm trains the F3 arm's step count.
 dose_amendment="$repo_root/$pkg/protocol_amendment_dose_matching_v1.json"
 dose_sha256=d6ccfa965b2ca0d2247f499e85dfee1420a2caf69aa4393c8abde01f2a301dc2
+# Reduced F18 smoke (infrastructure amendment frame_internalization_smoke_reduction_v1).
+smoke_amendment="$repo_root/$pkg/protocol_amendment_smoke_reduction_v1.json"
+smoke_sha256=8baff4a52ec4b4e2dde1bbd94c67886c150d2230f83c8ff443956eb66ef7f2cf
+[[ "$(git -C "$repo_root" cat-file blob "$source_commit:$pkg/protocol_amendment_smoke_reduction_v1.json" | sha256sum | cut -d' ' -f1)" == "$smoke_sha256" ]] \
+  || { log "smoke-reduction amendment hash mismatch"; exit 65; }
 [[ "$(git -C "$repo_root" cat-file blob "$source_commit:$pkg/protocol_amendment_dose_matching_v1.json" | sha256sum | cut -d' ' -f1)" == "$dose_sha256" ]] \
   || { log "dose-matching amendment hash mismatch"; exit 65; }
 [[ "$(git -C "$repo_root" cat-file blob "$source_commit:$pkg/protocol_amendment_failed_scenario_v1.json" | sha256sum | cut -d' ' -f1)" == "$exclusion_sha256" ]]   || { log "exclusion amendment hash mismatch"; exit 65; }
@@ -97,6 +102,7 @@ set +e
   --train-python "$train_venv/bin/python" --vllm-python "$vllm_venv/bin/python" \
   --price-per-hour "$PRICE_PER_HOUR" --total-usd "$total_usd"   --exclusion-amendment "$exclusion_amendment" \
   --dose-matching-amendment "$dose_amendment" \
+  --smoke-reduction-amendment "$smoke_amendment" \
   >>"$work_root/pipeline.stdout.log" 2>>"$work_root/pipeline.stderr.log"
 rc=$?
 set -e

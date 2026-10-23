@@ -315,6 +315,15 @@ def load_rows(path: Path) -> list[dict[str, Any]]:
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
+def load_prepared_base(model_dir: Path, gradient_checkpointing: bool = True):
+    """The quantized base exactly as training builds it. prepare_model_for_kbit_training upcasts the
+    non-quantized parameters (norms, embeddings, output head) to float32; any base used to check or
+    reproduce trained logits must be prepared the same way or the comparison is unlike for like."""
+    from peft import prepare_model_for_kbit_training
+
+    return prepare_model_for_kbit_training(load_quantized_base(model_dir), use_gradient_checkpointing=gradient_checkpointing)
+
+
 def load_quantized_base(model_dir: Path):
     import torch
     from transformers import AutoModelForCausalLM, BitsAndBytesConfig
@@ -354,7 +363,7 @@ def train_main(args: argparse.Namespace) -> int:
         dose_matching = {"amendment_id": amendment["amendment_id"], "matched_steps": step_cap,
                          "native_steps": native_steps, "share_of_native": step_cap / native_steps,
                          "reference_receipt": str(args.match_steps_from)}
-    model = prepare_model_for_kbit_training(load_quantized_base(args.model_dir), use_gradient_checkpointing=True)
+    model = load_prepared_base(args.model_dir, gradient_checkpointing=True)
     model = get_peft_model(model, LoraConfig(task_type="CAUSAL_LM", **LORA))
     census = lora_names_and_counts(model)
     if census["non_lora_trainable"] or census["router_trainable"]:
@@ -372,7 +381,7 @@ def train_main(args: argparse.Namespace) -> int:
     pad_id = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id
     probe_pack = fsd.pack_examples(examples, [0], SEQUENCE_LENGTH, pad_id)[0]
     prompts = [[{"role": "user", "content": rows[i]["messages"][0]["content"]}] for i in range(10)]
-    trip = adapter_round_trip(model, lambda: load_quantized_base(args.model_dir), tokenizer,
+    trip = adapter_round_trip(model, lambda: load_prepared_base(args.model_dir, gradient_checkpointing=False), tokenizer,
                               out_dir / "adapter", pack_to_tensors(probe_pack, "cuda"), "cuda", prompts, 48)
     adapter_hashes = {p.name: sha256_file(p) for p in sorted((out_dir / "adapter").glob("*.safetensors"))}
     receipt = {
@@ -406,8 +415,10 @@ def aggregate_main(args: argparse.Namespace) -> int:
     receipts = [json.loads(Path(p).read_text(encoding="utf-8")) for p in args.arm_receipt]
     by_arm = {r["arm"]: r for r in receipts}
     arms_ok = sorted(by_arm) == sorted(ARMS)
+    reduction = fx.load_smoke_reduction(args.smoke_reduction_amendment) if args.smoke_reduction_amendment else None
+    expected_steps = {arm: fx.smoke_steps_for(arm, reduction, SMOKE_STEPS) for arm in ARMS}
     all_ok = arms_ok and all(
-        r["training"]["steps_completed"] == SMOKE_STEPS
+        r["training"]["steps_completed"] == expected_steps[r["arm"]]
         and r["sequence_length"] == SEQUENCE_LENGTH
         and r["round_trip"]["logits_match"]
         and r["round_trip"]["generations_nonempty"] >= 10
@@ -418,7 +429,9 @@ def aggregate_main(args: argparse.Namespace) -> int:
         "gpu_count": 1,
         "sequence_length": SEQUENCE_LENGTH,
         "arms_completed": len(by_arm),
-        "steps_per_arm": SMOKE_STEPS,
+        "steps_per_arm": SMOKE_STEPS if reduction is None else None,
+        "steps_by_arm": {arm: r["training"]["steps_completed"] for arm, r in by_arm.items()},
+        "reduced_by_amendment": reduction["amendment_id"] if reduction else None,
         "checkpoint_round_trip_all_arms": bool(arms_ok and all(r["round_trip"]["logits_match"] for r in by_arm.values())),
         "cleanup_passed": bool(args.cleanup_passed),
         "gpu_hours": float(args.gpu_hours),
@@ -446,6 +459,7 @@ def main() -> int:
     a.add_argument("--arm-receipt", action="append", required=True)
     a.add_argument("--cleanup-passed", action="store_true")
     a.add_argument("--gpu-hours", type=float, required=True)
+    a.add_argument("--smoke-reduction-amendment", type=Path, default=None)
     a.add_argument("--output", required=True)
     args = parser.parse_args()
     try:

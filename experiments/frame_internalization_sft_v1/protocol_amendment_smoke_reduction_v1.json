@@ -1,0 +1,71 @@
+{
+  "schema_version": "frame_internalization_protocol_amendment.v3",
+  "amendment_id": "frame_internalization_smoke_reduction_v1",
+  "frozen_at": "2026-10-24",
+  "status": "frozen_before_any_registered_training_adapter_outcome_or_evaluation_row",
+  "classification": "infrastructure",
+  "human_readable": "experiments/frame_internalization_sft_v1/PROTOCOL_AMENDMENT_SMOKE_REDUCTION_V1.md",
+  "human_readable_sha256_lf": "2332e8cc23e8775034044135e1bdd36e7b06912d4e4b19465e69c039f408f2fe",
+  "amends": "F18 smoke: 50 steps for each of six arms within 7,200 s and 2 GPU-hours",
+  "measured": {
+    "arm": "neutral_reflection",
+    "steps": 50,
+    "elapsed_seconds": 2532.926,
+    "seconds_per_step": 50.66,
+    "padded_tokens_per_step": 262144,
+    "peak_cuda_allocated_bytes": 11776826368,
+    "loss_first_last": [
+      0.836,
+      0.512
+    ],
+    "scaler_skipped_steps": 0,
+    "registered_smoke_training_seconds": 15198,
+    "registered_cap_seconds": 7200
+  },
+  "reduced_smoke": {
+    "full_arm": "neutral_reflection",
+    "full_arm_steps": 50,
+    "other_arms_steps": 10,
+    "checks_every_arm": [
+      "finite loss and gradients",
+      "no out-of-memory",
+      "adapter save and reload reproduces trained logits",
+      "10 non-empty generations from the reloaded adapter"
+    ],
+    "unchanged": [
+      "block shape 4096",
+      "microbatch 1",
+      "accumulation 64",
+      "optimizer",
+      "precision",
+      "data rendering",
+      "7,200 s and 2 GPU-hour caps",
+      "stop rules"
+    ],
+    "expected_hours": 1.6
+  },
+  "not_checked": "steps 11 to 50 of five arms; the full run's stop rules stay active",
+  "reload_check_defect": {
+    "symptom": {
+      "logits_match": false,
+      "max_abs_logit_diff": 1.4119749069213867,
+      "logit_scale": 52.9
+    },
+    "cause": "the fresh base for the reload check was built without prepare_model_for_kbit_training, so norms, embeddings and the output head were bfloat16 while the trained model held float32 copies",
+    "evidence": {
+      "adapter_effect_on_logits": 24.52,
+      "two_fresh_constructions_difference": 0.0,
+      "training_construction_vs_fresh_unprepared": 1.939,
+      "training_construction_vs_fresh_prepared_plain": 0.0,
+      "training_construction_vs_fresh_prepared_fp16_autocast": 0.0
+    },
+    "fix": "build the fresh base with prepare_model_for_kbit_training exactly as training does",
+    "tolerance_changed": false
+  },
+  "receipt": "frame_internalization_training_smoke_receipt.v2 records steps_by_arm and this amendment id; it does not claim steps_per_arm 50",
+  "timing_attestation": {
+    "registered_training_run": false,
+    "adapter_outcomes_seen": false,
+    "evaluation_rows_exist": false
+  }
+}

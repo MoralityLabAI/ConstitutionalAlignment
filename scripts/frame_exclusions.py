@@ -88,3 +88,27 @@ def load_dose_matching(path: Path | None = None, expected_sha256: str = DOSE_MAT
     if data.get("amendment_id") != "frame_internalization_dose_matching_v1":
         raise ExclusionError("unexpected dose-matching amendment id")
     return data
+
+
+SMOKE_REDUCTION_AMENDMENT = REPO / "experiments/frame_internalization_sft_v1/protocol_amendment_smoke_reduction_v1.json"
+SMOKE_REDUCTION_AMENDMENT_SHA256 = "8baff4a52ec4b4e2dde1bbd94c67886c150d2230f83c8ff443956eb66ef7f2cf"
+
+
+def load_smoke_reduction(path: Path | None = None, expected_sha256: str = SMOKE_REDUCTION_AMENDMENT_SHA256) -> dict[str, Any]:
+    """The verified reduced-smoke amendment; any change to the file is refused."""
+    path = path or SMOKE_REDUCTION_AMENDMENT
+    raw = _lf(path.read_bytes())
+    if hashlib.sha256(raw).hexdigest() != expected_sha256:
+        raise ExclusionError(f"smoke-reduction amendment hash mismatch: {path}")
+    data = json.loads(raw.decode("utf-8"))
+    if data.get("amendment_id") != "frame_internalization_smoke_reduction_v1":
+        raise ExclusionError("unexpected smoke-reduction amendment id")
+    return data
+
+
+def smoke_steps_for(arm: str, amendment: dict[str, Any] | None, registered: int = 50) -> int:
+    """Steps the F18 smoke runs for an arm: the registered 50, or the amendment's reduced schedule."""
+    if amendment is None:
+        return registered
+    reduced = amendment["reduced_smoke"]
+    return int(reduced["full_arm_steps"] if arm == reduced["full_arm"] else reduced["other_arms_steps"])

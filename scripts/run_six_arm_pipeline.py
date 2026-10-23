@@ -54,6 +54,7 @@ class Config:
     exclusion_amendment: Path | None = None
     parity_amendment: Path | None = None
     dose_matching_amendment: Path | None = None
+    smoke_reduction_amendment: Path | None = None
     poll_seconds: float = 5.0
 
     @property
@@ -327,7 +328,8 @@ def stage_smoke(cfg: Config, state: dict[str, Any], path: Path) -> None:
         remaining = min(SMOKE_WALL_SECONDS - (time.time() - started), stage_hours("smoke", state, cfg) * 3600)
         if remaining <= 0:
             raise StageFailure("smoke: the 2 hour cap was reached before all six arms finished")
-        run_child(train_cmd(cfg, arm, out, 50), cfg=cfg, state=state, state_path=path, stage="smoke",
+        reduction = fx.load_smoke_reduction(cfg.smoke_reduction_amendment) if cfg.smoke_reduction_amendment else None
+        run_child(train_cmd(cfg, arm, out, fx.smoke_steps_for(arm, reduction)), cfg=cfg, state=state, state_path=path, stage="smoke",
                   log_path=cfg.work / f"logs/smoke_{arm}.log", seconds_cap=remaining)
         receipts[arm] = json.loads((out / arm / "arm_receipt.json").read_text(encoding="utf-8"))
     apps = gpu_compute_apps()
@@ -336,6 +338,8 @@ def stage_smoke(cfg: Config, state: dict[str, Any], path: Path) -> None:
              "--output", str(cfg.work / "training_smoke_receipt_v2.json"))
     for arm in ARMS:
         cmd += ["--arm-receipt", str(out / arm / "arm_receipt.json")]
+    if cfg.smoke_reduction_amendment:
+        cmd += ["--smoke-reduction-amendment", str(cfg.smoke_reduction_amendment)]
     if apps == 0:
         cmd.append("--cleanup-passed")
     subprocess.run(cmd, check=False, capture_output=True)
@@ -460,6 +464,8 @@ def main() -> int:
     parser.add_argument("--vllm-python", type=Path, required=True)
     parser.add_argument("--price-per-hour", type=float, required=True)
     parser.add_argument("--total-usd", type=float, default=60.0)
+    parser.add_argument("--smoke-reduction-amendment", type=Path, default=None,
+                        help="hash-pinned reduced-smoke amendment (infrastructure)")
     parser.add_argument("--dose-matching-amendment", type=Path, default=None,
                         help="hash-pinned dose-matching amendment (supersedes parity balancing)")
     parser.add_argument("--parity-amendment", type=Path, default=None,
@@ -480,7 +486,8 @@ def main() -> int:
 
     cfg = Config(args.repo_root, args.f06_dir, args.work, args.model_dir, args.train_python, args.vllm_python,
                  args.price_per_hour, args.total_usd, gpu_temp=temp, exclusion_amendment=args.exclusion_amendment,
-                 parity_amendment=args.parity_amendment, dose_matching_amendment=args.dose_matching_amendment)
+                 parity_amendment=args.parity_amendment, dose_matching_amendment=args.dose_matching_amendment,
+                 smoke_reduction_amendment=args.smoke_reduction_amendment)
     return run_pipeline(cfg)
 
 
