@@ -1,0 +1,93 @@
+{
+  "schema_version": "frame_internalization_protocol_amendment.v3",
+  "amendment_id": "frame_internalization_no_human_validation_v1",
+  "frozen_at": "2026-10-24",
+  "status": "frozen_before_any_registered_qwen_outcome",
+  "human_readable": "experiments/frame_internalization_sft_v1/PROTOCOL_AMENDMENT_NO_HUMAN_VALIDATION_V1.md",
+  "timing_attestation": {
+    "qwen_base_rows_existed": false,
+    "judge_predictions_existed": false,
+    "human_labels_existed": false,
+    "curriculum_transcripts_registered_run_existed": false,
+    "adapter_outcomes_seen": false,
+    "changed_in_response_to_model_behavior": false
+  },
+  "human_validation": {
+    "dropped": true,
+    "instruction": "author, 2026-10-24: \"forget about the human raters\"",
+    "removed_requirement": "blinded human validation of the 1,600 base rows, 200 compliance and 200 strict-AF units, Cohen's kappa >= 0.70 per task",
+    "removed_factor": "F15",
+    "replacement": {
+      "primary_instrument": {
+        "compliance_judge": "claude-opus-4-8",
+        "strict_af_judge": "claude-sonnet-5",
+        "configuration": "experiments/frame_internalization_sft_v1/readiness/judge_configuration_freeze_v1.json",
+        "any_change_to_prompts_schemas_decoding_retries_or_missingness": false
+      },
+      "second_automated_judge": {
+        "purpose": "descriptive agreement only",
+        "queue": "experiments/frame_internalization_sft_v1/rerun_freeze/predecessor_judge_validation_queue_v2.jsonl",
+        "units": {
+          "compliance": 200,
+          "strict_af": 200
+        },
+        "same_rubric_and_schema_as_primary": true,
+        "model_snapshot_must_differ_from_primary": true,
+        "model_id_bound_in_receipt_before_first_call": true,
+        "statistic": "Cohen's kappa per task with interval, reported",
+        "pass_fail_threshold": null,
+        "may_replace_tune_or_select_primary_outputs": false
+      }
+    },
+    "new_factor": {
+      "factor_id": "F15b",
+      "label": "second-judge descriptive agreement reported",
+      "blocks_f17": false,
+      "blocks_f19": false
+    },
+    "weakens_study": true,
+    "required_disclosure": [
+      "the registered human validation gate was dropped before outcomes at the author's instruction and was not passed",
+      "agreement between two automated judges is not evidence that either matches human reading",
+      "human-validity claims about the compliance and strict-AF scores are not supported by this study"
+    ],
+    "base_analysis_receipt_human_gate_value": "dropped"
+  },
+  "authorization": {
+    "gate": "F19 / G10 (compute_authorization.v2)",
+    "satisfied_by": "author instructions of 2026-10-23 and 2026-10-24 to run the study",
+    "separate_signature_artifact_required": false,
+    "binds_exact_command": true,
+    "budget_recorded_as_authorized": {
+      "stage": "pilot",
+      "maximum_usd": 3.0,
+      "maximum_billable_hours": 2.0,
+      "pods": 1,
+      "minimum_gpu_memory_gib": 24,
+      "watchdog_started_before_pod": true,
+      "zero_pods_remaining_required_at_end": true
+    },
+    "full_run_budget_recorded_as_authorized": false,
+    "full_run_requires": "a further author instruction in chat, recorded in a later amendment"
+  },
+  "other_gates_changed": [],
+  "inherited_without_change": [
+    "six arms, 5,600 dilemmas, 5,320/280 split",
+    "4,096-token sequences, two epochs, QLoRA recipe",
+    "licensed HarmBench v2 evaluation universe and seal",
+    "direct prompt-versus-SFT contract",
+    "three-endpoint internalization gate and benign over-refusal guard",
+    "layer-27 probe and controls",
+    "F3 versus F3-concrete token parity <= 0.02",
+    "generated-text nonleakage",
+    "50-step per-arm full-topology smoke",
+    "stop and abort rules",
+    "scholar review pending and non-blocking (PROTOCOL_AMENDMENT_V2)"
+  ],
+  "cost_facts_not_waivers": {
+    "source": "experiments/frame_internalization_sft_v1/primelab_f06/f06_throughput_smoke_result_v1.json",
+    "projected_generator_hours_batch8": 185.12,
+    "projected_cost_usd_batch8": 227.70,
+    "no_gate_waived_for_cost": true
+  }
+}
