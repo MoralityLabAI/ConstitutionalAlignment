@@ -27,9 +27,9 @@ PKG = "experiments/frame_internalization_sft_v1"
 ARMS = ("neutral_reflection", "F1_reflection", "F1_demonstration", "F3_reflection",
         "F3_demonstration", "F3_concrete_reflection")
 FRAMES = ("neutral", "F1", "F3", "F3_concrete")
-STAGES = ("render", "gates", "smoke", "train", "eval", "analysis")
-STAGE_CAP_HOURS = {"render": 0.5, "gates": 0.5, "smoke": 2.0, "train": 48.0, "eval": 12.0, "analysis": 0.25}
-EVAL_RESERVE_HOURS = 4.0
+STAGES = ("render", "gates", "smoke", "train", "eval", "probe", "analysis")
+STAGE_CAP_HOURS = {"render": 0.5, "gates": 0.5, "smoke": 2.0, "train": 48.0, "eval": 12.0, "probe": 1.0, "analysis": 0.25}
+EVAL_RESERVE_HOURS = 5.0  # evaluation generation plus the probe stage
 SMOKE_WALL_SECONDS = 7200
 TEMP_LIMIT_C = 90
 
@@ -314,6 +314,30 @@ def stage_eval(cfg: Config, state: dict[str, Any], path: Path) -> None:
         raise StageFailure("eval: generation receipt missing")
 
 
+def stage_probe(cfg: Config, state: dict[str, Any], path: Path) -> None:
+    """Layer-27 probe: fit on the base with F0 only (and freeze), then harvest the adapters."""
+    for arm in ARMS:
+        if not (cfg.work / "train" / arm / "adapter").is_dir():
+            raise StageFailure(f"probe: adapter missing for {arm}")
+    out = cfg.work / "probe"
+    out.mkdir(parents=True, exist_ok=True)
+    if not (out / "probe_freeze.json").is_file():
+        cap = stage_hours("probe", state, cfg) * 3600
+        if cap <= 0:
+            raise StageFailure("probe: hour or dollar cap reached")
+        run_child(py(cfg, "probe_layer27.py", "fit", "--model-dir", str(cfg.model_dir), "--out-dir", str(out)),
+                  cfg=cfg, state=state, state_path=path, stage="probe", log_path=cfg.work / "logs/probe_fit.log",
+                  seconds_cap=cap)
+    if not (out / "probe_results.json").is_file():
+        cap = stage_hours("probe", state, cfg) * 3600
+        if cap <= 0:
+            raise StageFailure("probe: hour or dollar cap reached")
+        run_child(py(cfg, "probe_layer27.py", "adapters", "--model-dir", str(cfg.model_dir), "--out-dir", str(out),
+                     "--train-root", str(cfg.work / "train")),
+                  cfg=cfg, state=state, state_path=path, stage="probe", log_path=cfg.work / "logs/probe_adapters.log",
+                  seconds_cap=cap)
+
+
 def stage_analysis(cfg: Config, state: dict[str, Any], path: Path) -> None:
     judged = cfg.work / "judged_rows.jsonl"
     if not judged.is_file():
@@ -331,7 +355,7 @@ def stage_analysis(cfg: Config, state: dict[str, Any], path: Path) -> None:
 
 STAGE_FUNCS: dict[str, Callable[[Config, dict[str, Any], Path], None]] = {
     "render": stage_render, "gates": stage_gates, "smoke": stage_smoke, "train": stage_train,
-    "eval": stage_eval, "analysis": stage_analysis,
+    "eval": stage_eval, "probe": stage_probe, "analysis": stage_analysis,
 }
 
 
@@ -340,6 +364,7 @@ def run_pipeline(cfg: Config, funcs: dict[str, Callable[[Config, dict[str, Any],
     path = cfg.work / "pipeline_state.json"
     state = load_state(path)
     for stage in STAGES:
+        state["stages"].setdefault(stage, {"status": "pending", "seconds": 0.0})
         entry = state["stages"][stage]
         if entry["status"] == "done":
             continue

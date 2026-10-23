@@ -125,7 +125,7 @@ def test_state_machine_resumes_running_and_never_retries_failed(tmp_path: Path) 
     state["stages"]["gates"]["status"] = "running"  # an interrupted stage resumes
     pl.save_state(cfg2.work / "pipeline_state.json", state)
     assert pl.run_pipeline(cfg2, {n: ok(n) for n in pl.STAGES}) == 0
-    assert calls == ["gates", "smoke", "train", "eval", "analysis"]
+    assert calls == ["gates", "smoke", "train", "eval", "probe", "analysis"]
 
 
 def test_analysis_waits_for_judging_without_credentials(tmp_path: Path) -> None:
@@ -197,3 +197,30 @@ def test_launcher_contract() -> None:
         result = subprocess.run(["bash", "-n", str(ROOT / "scripts/stage_and_run_six_arm_after_f06.sh")],
                                 capture_output=True, text=True)
         assert result.returncode == 0, result.stderr
+
+
+def test_probe_stage_fits_before_adapters_and_requires_adapters(tmp_path: Path, monkeypatch) -> None:
+    cfg = make_cfg(tmp_path)
+    cfg.work.mkdir(parents=True)
+    with pytest.raises(pl.StageFailure):
+        pl.stage_probe(cfg, fresh_state(), cfg.work / "s.json")
+    for arm in pl.ARMS:
+        (cfg.work / "train" / arm / "adapter").mkdir(parents=True)
+    seen = []
+
+    def fake(cmd, **kwargs):
+        seen.append(cmd[2])
+        if cmd[2] == "fit":
+            (cfg.work / "probe").mkdir(exist_ok=True)
+            (cfg.work / "probe" / "probe_freeze.json").write_text("{}")
+        else:
+            (cfg.work / "probe" / "probe_results.json").write_text("{}")
+        return 0.0
+
+    monkeypatch.setattr(pl, "run_child", fake)
+    pl.stage_probe(cfg, fresh_state(), cfg.work / "s.json")
+    assert seen == ["fit", "adapters"]
+    seen.clear()
+    pl.stage_probe(cfg, fresh_state(), cfg.work / "s.json")  # finished work is not repeated
+    assert seen == []
+    assert pl.STAGES.index("probe") > pl.STAGES.index("eval") and pl.STAGE_CAP_HOURS["probe"] == 1.0

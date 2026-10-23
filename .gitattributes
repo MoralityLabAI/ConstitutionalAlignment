@@ -61,3 +61,5 @@
 /scripts/run_six_arm_pipeline.py text eol=lf
 /scripts/generate_six_arm_eval_vllm.py text eol=lf
 /scripts/analyze_six_arm.py text eol=lf
+/scripts/judge_six_arm.py text eol=lf
+/scripts/probe_layer27.py text eol=lf

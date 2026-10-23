@@ -1,0 +1,21 @@
+{
+  "schema_version": "frame_internalization_protocol_amendment.v3",
+  "amendment_id": "frame_internalization_probe_v1",
+  "frozen_at": "2026-10-24",
+  "status": "frozen_before_any_adapter_or_qwen_activation_harvest",
+  "human_readable": "experiments/frame_internalization_sft_v1/PROTOCOL_AMENDMENT_PROBE_V1.md",
+  "registered": "experiments/frame_internalization_sft_v1/rerun_freeze/qwen3_1p7b_v1/base_reanchor_plan_v1.json#representation_probe",
+  "layer_zero_based": 27,
+  "layer_count": 28,
+  "activation": "output of model.layers[27] before the final norm, bf16 forward, adapters unmerged",
+  "positions": ["last prefill token", "content-token mean"],
+  "primary_pool": "last",
+  "fit": {"model": "logistic regression", "C": 0.5, "penalty": "l2", "intercept_penalized": false, "solver": "torch L-BFGS on the scikit-learn objective", "split": {"train_fraction": 0.7, "seed": 42, "prompt_disjoint": true}},
+  "controls": {"random_label": "permuted training labels, seed 42", "random_projection": {"directions": 1000, "seed": 43, "unit_norm_in_standardized_space": true}},
+  "displacement": {"statistics": ["mean projection shift", "free-minus-paid projection gap shift"], "beats_control_when": "absolute value exceeds the 95th percentile of absolute shifts along the random directions"},
+  "association_with_behavior": {"definition": "Pearson r between per-prompt probe-gap shift and per-prompt compliance-gap shift, arm minus neutral adapter", "prompts": "frozen 30% held-out split", "arms": "five non-neutral", "bootstrap": {"draws": 10000, "seed": 42, "unit": "held-out prompt"}, "runs": "off the pod, needs judged rows"},
+  "freeze_order": "probe_freeze.json/.npz and hash written by `fit` before any adapter is loaded; `adapters` refuses without a verifying hash",
+  "not_compared_with": "predecessor layer 27 of 46",
+  "stage": {"command": "scripts/probe_layer27.py fit|adapters|associate", "pod_stage_cap_hours": 1.0},
+  "timing_attestation": {"adapters_exist": false, "qwen_activations_harvested": false}
+}
