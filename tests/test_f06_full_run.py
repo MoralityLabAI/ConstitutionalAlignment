@@ -76,7 +76,7 @@ def test_gate_passes_at_registered_throughput() -> None:
     now = mon.parse_utc("2026-10-24T10:21:00Z")
     decision = mon.evaluate_gate(calls, 160, 160 * 2166, 1.2, now)
     assert decision and decision["passed"] and decision["projected_generator_hours"] < 60
-    assert decision["projected_usd"] < 75
+    assert decision["projected_usd"] < mon.MAX_USD
 
 
 def test_gate_aborts_below_threshold_or_over_price() -> None:
@@ -85,8 +85,8 @@ def test_gate_aborts_below_threshold_or_over_price() -> None:
     decision = mon.evaluate_gate(slow, 64, 64 * 2166, 1.2, now)
     assert decision and not decision["passed"] and decision["projected_generator_hours"] > 60
     fast = [call("2026-10-24T10:10:00Z", 600, 192_000), call("2026-10-24T10:20:00Z", 600, 192_000)]
-    expensive = mon.evaluate_gate(fast, 160, 160 * 2166, 2.0, now)  # about 42 h but US$84
-    assert expensive and not expensive["passed"] and expensive["projected_usd"] > 75
+    expensive = mon.evaluate_gate(fast, 160, 160 * 2166, 3.5, now)  # about 42 h but about US$147
+    assert expensive and not expensive["passed"] and expensive["projected_usd"] > mon.MAX_USD
 
 
 def test_gate_uses_measured_tokens_when_longer_than_smoke() -> None:
