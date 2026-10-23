@@ -66,3 +66,5 @@
 /scripts/frame_exclusions.py text eol=lf
 /scripts/render_frame_curricula.py text eol=lf
 /experiments/frame_internalization_sft_v1/PROTOCOL_AMENDMENT_FAILED_SCENARIO_V1.md text eol=lf
+/scripts/parity_balance.py text eol=lf
+/experiments/frame_internalization_sft_v1/PROTOCOL_AMENDMENT_PARITY_BALANCE_V1.md text eol=lf

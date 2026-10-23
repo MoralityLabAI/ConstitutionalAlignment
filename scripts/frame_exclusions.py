@@ -46,3 +46,29 @@ def expected_split_counts(dilemmas: dict[str, dict[str, Any]], excluded: set[str
     kept = [d for sid, d in dilemmas.items() if sid not in excluded]
     return {"scenarios": len(kept), "train": sum(d["split"] == "train" for d in kept),
             "val": sum(d["split"] == "val" for d in kept)}
+
+
+def _lf(data: bytes) -> bytes:
+    """Normalise CRLF to LF so hashes are the same on a Windows checkout and on the pod."""
+    return data.replace(bytes([13, 10]), bytes([10]))
+
+
+PARITY_AMENDMENT = REPO /"experiments/frame_internalization_sft_v1/protocol_amendment_parity_balance_v1.json"
+PARITY_AMENDMENT_SHA256 = "19d454a66cdf250d1282a3d1dbda4b0d51af70cab6e0cd26d794952b9dacb87a"
+PARITY_CODE = REPO / "scripts/parity_balance.py"
+
+
+def load_parity(path: Path | None = None, expected_sha256: str = PARITY_AMENDMENT_SHA256,
+                code_path: Path | None = None) -> dict[str, Any]:
+    """Verified parity amendment: the file by SHA-256 and the rule's code by the hash it records."""
+    path = path or PARITY_AMENDMENT
+    raw = _lf(path.read_bytes())
+    if hashlib.sha256(raw).hexdigest() != expected_sha256:
+        raise ExclusionError(f"parity amendment hash mismatch: {path}")
+    data = json.loads(raw.decode("utf-8"))
+    if data.get("amendment_id") != "frame_internalization_parity_balance_v1":
+        raise ExclusionError("unexpected parity amendment id")
+    code = _lf((code_path or PARITY_CODE).read_bytes())
+    if hashlib.sha256(code).hexdigest() != data["rule"]["code_sha256_lf"]:
+        raise ExclusionError("parity rule code differs from the hash recorded in the amendment")
+    return data

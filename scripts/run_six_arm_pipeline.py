@@ -52,6 +52,7 @@ class Config:
     total_usd: float = 60.0
     gpu_temp: Callable[[], int | None] = field(default=lambda: None)
     exclusion_amendment: Path | None = None
+    parity_amendment: Path | None = None
     poll_seconds: float = 5.0
 
     @property
@@ -112,6 +113,9 @@ def curriculum_gate_failures(manifest: dict[str, Any], exclusion: dict[str, Any]
         failures.append("curriculum completeness/parity (renderer passed=false)")
     if float(manifest.get("f3_pair_total_token_spread", 1.0)) > 0.02:
         failures.append(f"F3 vs F3-concrete token spread {manifest.get('f3_pair_total_token_spread')} > 0.02")
+    parity = manifest.get("parity_balance")
+    if parity is not None and parity.get("status") != "balanced":
+        failures.append(f"parity rule outcome {parity.get('status')}: nothing can be dropped to reach the gate")
     arms = manifest.get("arms", {})
     if sorted(arms) != sorted(ARMS):
         failures.append("arm set")
@@ -257,7 +261,8 @@ def stage_render(cfg: Config, state: dict[str, Any], path: Path) -> None:
                  "--base-freeze-receipt", str(cfg.work / "base_freeze_pod.json"), "--raw-dir", str(cfg.f06_dir),
                  "--tokenizer", str(cfg.model_dir), "--output-dir", str(cfg.work / "rendered"),
                  "--manifest", str(cfg.work / "curriculum_manifest_v1.json"),
-                 *(["--exclusion-amendment", str(cfg.exclusion_amendment)] if cfg.exclusion_amendment else [])),
+                 *(["--exclusion-amendment", str(cfg.exclusion_amendment)] if cfg.exclusion_amendment else []),
+                 *(["--parity-amendment", str(cfg.parity_amendment)] if cfg.parity_amendment else [])),
               cfg=cfg, state=state, state_path=path, stage="render", log_path=cfg.work / "logs/render.log", seconds_cap=cap)
 
 
@@ -426,6 +431,8 @@ def main() -> int:
     parser.add_argument("--vllm-python", type=Path, required=True)
     parser.add_argument("--price-per-hour", type=float, required=True)
     parser.add_argument("--total-usd", type=float, default=60.0)
+    parser.add_argument("--parity-amendment", type=Path, default=None,
+                        help="hash-pinned parity-balance amendment; its rule is re-derived by the renderer")
     parser.add_argument("--exclusion-amendment", type=Path, default=None,
                         help="hash-pinned failed-scenario amendment; the only accepted exclusion")
     args = parser.parse_args()
@@ -441,7 +448,8 @@ def main() -> int:
             return None
 
     cfg = Config(args.repo_root, args.f06_dir, args.work, args.model_dir, args.train_python, args.vllm_python,
-                 args.price_per_hour, args.total_usd, gpu_temp=temp, exclusion_amendment=args.exclusion_amendment)
+                 args.price_per_hour, args.total_usd, gpu_temp=temp, exclusion_amendment=args.exclusion_amendment,
+                 parity_amendment=args.parity_amendment)
     return run_pipeline(cfg)
 
 

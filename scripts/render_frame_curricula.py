@@ -13,7 +13,8 @@ from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from frame_sft_data import tokenize_messages  # noqa: E402
-from frame_exclusions import excluded_scenarios, expected_split_counts, load_exclusion  # noqa: E402
+from frame_exclusions import excluded_scenarios, expected_split_counts, load_exclusion, load_parity  # noqa: E402
+import parity_balance  # noqa: E402
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -42,6 +43,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--sequence-length", type=int, default=4096)
+    parser.add_argument("--parity-amendment", type=Path, default=None,
+                        help="the hash-pinned parity-balance amendment; its rule is re-derived and must match")
     parser.add_argument("--exclusion-amendment", type=Path, default=None,
                         help="the hash-pinned failed-scenario amendment; the only exclusion accepted")
     return parser.parse_args()
@@ -144,6 +147,27 @@ def main() -> int:
         source_records[source_frame] = ordered
         source_hashes[source_frame] = sha256_file(raw_path)
 
+    parity = load_parity(args.parity_amendment) if args.parity_amendment else None
+    parity_drops: set[str] = set()
+    parity_report = None
+    if parity is not None:
+        def train_tokens(frame: str, style: str) -> dict[str, int]:
+            return {r["scenario_id"]: len(tokenize_messages(tokenizer, render_messages(r, style)))
+                    for r in source_records[frame] if r["split"] == "train"}
+
+        result = parity_balance.verify_against_amendment(
+            train_tokens("F3", "reflection"), train_tokens("F3_concrete", "reflection"), parity)
+        parity_drops = parity_balance.scenarios_to_drop(result)
+        parity_report = {"amendment_id": parity["amendment_id"], "status": result["status"], "applied": bool(parity_drops),
+                         "dropped_scenarios": len(parity_drops), "final_spread": result["final_spread"]}
+        if parity_drops:
+            dropped_train = sum(dilemmas[s]["split"] == "train" for s in parity_drops)
+            expected_counts = {"scenarios": expected_counts["scenarios"] - len(parity_drops),
+                               "train": expected_counts["train"] - dropped_train, "val": expected_counts["val"]}
+            expected_id_hash = sha256_text(chr(10).join(sorted(set(expected_ids) - parity_drops)) + chr(10))
+            for frame in list(source_records):
+                source_records[frame] = [r for r in source_records[frame] if r["scenario_id"] not in parity_drops]
+
     args.output_dir.mkdir(parents=True, exist_ok=True)
     arms: dict[str, dict[str, Any]] = {}
     for arm_id, (source_frame, style) in ARM_SPECS.items():
@@ -224,6 +248,7 @@ def main() -> int:
         "exclusion": None if exclusion is None else {
             "amendment_id": exclusion["amendment_id"], "excluded_scenario_ids": sorted(excluded),
             "expected_counts": expected_counts},
+        "parity_balance": parity_report,
         "f3_pair_total_token_spread": pair_spread,
         "failure_reasons": [] if passed else ["completeness, scenario identity, or 2 percent token parity failed"],
     }
