@@ -48,7 +48,8 @@ def read_events(path: Path, offset: int) -> tuple[list[dict[str, Any]], int]:
 
 
 def evaluate_gate(calls: list[dict[str, Any]], completed_in_window: int, tokens_completed: int,
-                  price_per_hour: float, now: float) -> dict[str, Any] | None:
+                  price_per_hour: float, now: float, max_hours: float | None = None,
+                  max_usd: float | None = None) -> dict[str, Any] | None:
     """Return None until the window is long enough, else the gate decision.
 
     ``calls`` are generation_call events seen in this launch. Tokens per second
@@ -56,6 +57,8 @@ def evaluate_gate(calls: list[dict[str, Any]], completed_in_window: int, tokens_
     the last completed call's end. The projection uses the larger of the
     measured tokens per transcript and the batch-8 smoke figure.
     """
+    max_hours = MAX_HOURS if max_hours is None else max_hours
+    max_usd = MAX_USD if max_usd is None else max_usd
     if not calls:
         return None
     first_start = parse_utc(calls[0]["timestamp_utc"]) - float(calls[0]["elapsed_seconds"])
@@ -80,9 +83,9 @@ def evaluate_gate(calls: list[dict[str, Any]], completed_in_window: int, tokens_
         "projected_generator_hours": hours,
         "price_per_hour_usd": price_per_hour,
         "projected_usd": usd,
-        "maximum_hours": MAX_HOURS,
-        "maximum_usd": MAX_USD,
-        "passed": bool(tps > 0 and hours <= MAX_HOURS and usd <= MAX_USD),
+        "maximum_hours": max_hours,
+        "maximum_usd": max_usd,
+        "passed": bool(tps > 0 and hours <= max_hours and usd <= max_usd),
     }
 
 
@@ -114,6 +117,8 @@ def main() -> int:
     parser.add_argument("--price-per-hour", type=float, required=True)
     parser.add_argument("--maximum-output-bytes", type=int, required=True)
     parser.add_argument("--interval", type=float, default=30.0)
+    parser.add_argument("--max-hours", type=float, default=MAX_HOURS)
+    parser.add_argument("--max-usd", type=float, default=MAX_USD)
     args = parser.parse_args()
     if args.price_per_hour <= 0:
         raise SystemExit("price per hour must be positive")
@@ -169,16 +174,17 @@ def main() -> int:
                           f"hours={hours:.3f} tps={last_tps if last_tps is None else round(last_tps, 1)}\n")
         if (root / "STOP").exists():
             stop_reason = "manual_stop"
-        elif hours >= MAX_HOURS:
+        elif hours >= args.max_hours:
             stop_reason = "wall_clock_cap"
-        elif hours * args.price_per_hour >= MAX_USD:
+        elif hours * args.price_per_hour >= args.max_usd:
             stop_reason = "dollar_cap"
         elif output_bytes > args.maximum_output_bytes:
             stop_reason = "output_cap"
         elif not gate_passed.exists():
             done = sum(counts[f][0] - baseline[f][0] for f in FRAMES)
             toks = sum(counts[f][1] - baseline[f][1] for f in FRAMES)
-            decision = evaluate_gate(calls, done, toks, args.price_per_hour, now)
+            decision = evaluate_gate(calls, done, toks, args.price_per_hour, now,
+                                     args.max_hours, args.max_usd)
             if decision is not None:
                 if decision["passed"]:
                     atomic_write(gate_passed, decision)

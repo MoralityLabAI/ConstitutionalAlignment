@@ -53,3 +53,7 @@
 /scripts/stage_and_run_primelab_f06_full.sh text eol=lf
 /scripts/monitor_f06_full.py text eol=lf
 /scripts/generate_qwen3_frame_curriculum_transcripts.py text eol=lf
+/scripts/stage_and_run_primelab_f06_vllm.sh text eol=lf
+/scripts/generate_frame_curriculum_vllm.py text eol=lf
+/scripts/check_f06_vllm_equivalence.py text eol=lf
+/experiments/frame_internalization_sft_v1/primelab_f06/full_run_attempt_20261023/reference_batch32_nf4/*.jsonl text eol=lf
