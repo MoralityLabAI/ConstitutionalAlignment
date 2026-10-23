@@ -13,6 +13,7 @@ from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from frame_sft_data import tokenize_messages  # noqa: E402
+from frame_exclusions import excluded_scenarios, expected_split_counts, load_exclusion  # noqa: E402
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -41,6 +42,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--sequence-length", type=int, default=4096)
+    parser.add_argument("--exclusion-amendment", type=Path, default=None,
+                        help="the hash-pinned failed-scenario amendment; the only exclusion accepted")
     return parser.parse_args()
 
 
@@ -101,7 +104,12 @@ def main() -> int:
             json.loads(line) for line in dilemma_path.read_text(encoding="utf-8").splitlines()
         )
     }
-    expected_ids = sorted(dilemmas)
+    exclusion = load_exclusion(args.exclusion_amendment) if args.exclusion_amendment else None
+    excluded = excluded_scenarios(exclusion)
+    if not excluded <= set(dilemmas):
+        raise RuntimeError("excluded scenario is not in the dilemma pool")
+    expected_counts = expected_split_counts(dilemmas, excluded)
+    expected_ids = sorted(set(dilemmas) - excluded)
     expected_id_hash = sha256_text("\n".join(expected_ids) + "\n")
 
     from transformers import AutoTokenizer
@@ -117,6 +125,7 @@ def main() -> int:
         by_id = {record["scenario_id"]: record for record in records}
         if len(by_id) != len(records):
             raise RuntimeError(f"duplicate scenario ID in {raw_path}")
+        by_id = {sid: record for sid, record in by_id.items() if sid not in excluded}  # the one recorded exclusion
         if sorted(by_id) != expected_ids:
             missing = sorted(set(expected_ids) - set(by_id))[:10]
             extra = sorted(set(by_id) - set(expected_ids))[:10]
@@ -184,8 +193,8 @@ def main() -> int:
             "over_4096_count": over_length_count,
             "training_path": str(paths["train"].resolve()),
             "training_sha256": sha256_file(paths["train"]),
-            "validation_path": str(paths["validation"].resolve()),
-            "validation_sha256": sha256_file(paths["validation"]),
+            "validation_path": str(paths["val"].resolve()),
+            "validation_sha256": sha256_file(paths["val"]),
             "raw_sha256": source_hashes[source_frame],
         }
 
@@ -196,9 +205,9 @@ def main() -> int:
     pair_spread = (max(pair_counts) - min(pair_counts)) / min(pair_counts)
     passed = bool(
         set(arms) == set(ARM_SPECS)
-        and all(arm["scenario_count"] == 5600 for arm in arms.values())
-        and all(arm["train_count"] == 5320 for arm in arms.values())
-        and all(arm["validation_count"] == 280 for arm in arms.values())
+        and all(arm["scenario_count"] == expected_counts["scenarios"] for arm in arms.values())
+        and all(arm["train_count"] == expected_counts["train"] for arm in arms.values())
+        and all(arm["validation_count"] == expected_counts["val"] for arm in arms.values())
         and all(arm["scenario_ids_sha256"] == expected_id_hash for arm in arms.values())
         and pair_spread <= 0.02
     )
@@ -212,6 +221,9 @@ def main() -> int:
         "tokenizer_path": str(args.tokenizer.resolve()),
         "sequence_length": args.sequence_length,
         "arms": arms,
+        "exclusion": None if exclusion is None else {
+            "amendment_id": exclusion["amendment_id"], "excluded_scenario_ids": sorted(excluded),
+            "expected_counts": expected_counts},
         "f3_pair_total_token_spread": pair_spread,
         "failure_reasons": [] if passed else ["completeness, scenario identity, or 2 percent token parity failed"],
     }

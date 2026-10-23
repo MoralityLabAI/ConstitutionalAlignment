@@ -46,6 +46,12 @@ expected_lock="$repo_root/$pkg/primelab_f04/environment_lock_20260723.txt"
 
 log() { echo "$(date -u +%FT%TZ) $*"; }
 
+# The one recorded exclusion (scenario d03508, amendment frame_internalization_failed_scenario_v1).
+# The pipeline and renderer verify this file by SHA-256 and accept no other missing transcript.
+exclusion_amendment="$repo_root/$pkg/protocol_amendment_failed_scenario_v1.json"
+exclusion_sha256=76034cc8c69128f85181e710dd3e2ce7ba8fcfe6892c9611201b522c6c46a2c2
+[[ "$(git -C "$repo_root" cat-file blob "$source_commit:$pkg/protocol_amendment_failed_scenario_v1.json" | sha256sum | cut -d' ' -f1)" == "$exclusion_sha256" ]]   || { log "exclusion amendment hash mismatch"; exit 65; }
+
 [[ "$(id -u)" -eq 0 ]]
 [[ "$(git -C "$repo_root" rev-parse HEAD)" == "$source_commit" ]]
 [[ -z "$(git -C "$repo_root" status --porcelain --untracked-files=no)" ]]
@@ -83,7 +89,7 @@ set +e
 "$train_venv/bin/python" "$repo_root/scripts/run_six_arm_pipeline.py" \
   --repo-root "$repo_root" --f06-dir "$f06_dir" --work "$work_root" --model-dir "$model_dir" \
   --train-python "$train_venv/bin/python" --vllm-python "$vllm_venv/bin/python" \
-  --price-per-hour "$PRICE_PER_HOUR" --total-usd "$total_usd" \
+  --price-per-hour "$PRICE_PER_HOUR" --total-usd "$total_usd"   --exclusion-amendment "$exclusion_amendment" \
   >>"$work_root/pipeline.stdout.log" 2>>"$work_root/pipeline.stderr.log"
 rc=$?
 set -e

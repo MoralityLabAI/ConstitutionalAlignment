@@ -23,6 +23,8 @@ from pathlib import Path
 from typing import Any, Callable
 
 REPO = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import frame_exclusions as fx  # noqa: E402
 PKG = "experiments/frame_internalization_sft_v1"
 ARMS = ("neutral_reflection", "F1_reflection", "F1_demonstration", "F3_reflection",
         "F3_demonstration", "F3_concrete_reflection")
@@ -49,6 +51,7 @@ class Config:
     price_per_hour: float
     total_usd: float = 60.0
     gpu_temp: Callable[[], int | None] = field(default=lambda: None)
+    exclusion_amendment: Path | None = None
     poll_seconds: float = 5.0
 
     @property
@@ -90,8 +93,19 @@ def forecast_training_hours(smoke_receipts: dict[str, dict[str, Any]], load_over
 
 
 # ---------------------------------------------------------------- gates
-def curriculum_gate_failures(manifest: dict[str, Any]) -> list[str]:
+def curriculum_gate_failures(manifest: dict[str, Any], exclusion: dict[str, Any] | None = None) -> list[str]:
     failures = []
+    counts = {"train": 5320, "val": 280}
+    recorded = manifest.get("exclusion")
+    if exclusion is None:
+        if recorded is not None:
+            failures.append("manifest records an exclusion that no verified amendment authorizes")
+    else:
+        expected = exclusion["expected_counts_per_arm"]
+        counts = {"train": expected["train"], "val": expected["validation"]}
+        if (recorded or {}).get("amendment_id") != exclusion["amendment_id"] or sorted(
+                (recorded or {}).get("excluded_scenario_ids", [])) != sorted(exclusion["decision"]["excluded_scenario_ids"]):
+            failures.append("manifest exclusion does not match the verified amendment")
     if manifest.get("schema_version") != "frame_internalization_curriculum_manifest.v1":
         failures.append("manifest schema")
     if manifest.get("passed") is not True:
@@ -104,17 +118,30 @@ def curriculum_gate_failures(manifest: dict[str, Any]) -> list[str]:
     for name, arm in arms.items():
         if int(arm.get("over_4096_count", 1)) != 0:
             failures.append(f"{name}: {arm.get('over_4096_count')} rows over 4,096 tokens (rows are never truncated)")
-        if (arm.get("train_count"), arm.get("validation_count")) != (5320, 280):
-            failures.append(f"{name}: split counts")
+        if (arm.get("train_count"), arm.get("validation_count")) != (counts["train"], counts["val"]):
+            failures.append(f"{name}: split counts {arm.get('train_count')}/{arm.get('validation_count')} != {counts['train']}/{counts['val']}")
     return failures
 
 
-def f06_gate_failures(f06_dir: Path) -> list[str]:
+def f06_gate_failures(f06_dir: Path, exclusion: dict[str, Any] | None = None) -> list[str]:
+    """Every frame must be complete. The only exception is a failed request named by the verified
+    exclusion amendment: it may be the sole failure and nothing else may be missing."""
+    permitted = fx.permitted_failed_requests(exclusion)
     failures = []
     for frame in FRAMES:
         path = f06_dir / f"{frame}.receipt.json"
-        if not path.is_file() or json.loads(path.read_text(encoding="utf-8")).get("complete") is not True:
-            failures.append(f"F06 receipt for {frame} is not complete")
+        if not path.is_file():
+            failures.append(f"F06 receipt for {frame} is missing")
+            continue
+        receipt = json.loads(path.read_text(encoding="utf-8"))
+        if receipt.get("complete") is True:
+            continue
+        failed = set(receipt.get("failed", []))
+        requested, completed = receipt.get("requested"), receipt.get("completed")
+        if (failed and failed <= permitted and requested == 5600 and completed == requested - len(failed)
+                and receipt.get("scope") == "full"):
+            continue
+        failures.append(f"F06 receipt for {frame} is not complete (failed={sorted(failed)[:5]})")
     return failures
 
 
@@ -218,7 +245,8 @@ def py(cfg: Config, script: str, *args: str, vllm: bool = False) -> list[str]:
 
 
 def stage_render(cfg: Config, state: dict[str, Any], path: Path) -> None:
-    problems = f06_gate_failures(cfg.f06_dir)
+    exclusion = fx.load_exclusion(cfg.exclusion_amendment) if cfg.exclusion_amendment else None
+    problems = f06_gate_failures(cfg.f06_dir, exclusion)
     if problems:
         raise StageFailure("; ".join(problems))
     inventory = cfg.repo / PKG / "rerun_freeze/qwen3_1p7b_v1/model_tokenizer_remote_inventory_v1.json"
@@ -228,13 +256,15 @@ def stage_render(cfg: Config, state: dict[str, Any], path: Path) -> None:
                  str(cfg.repo / PKG / "rerun_freeze/qwen3_1p7b_v1/curriculum_generation_v1/request_manifest.json"),
                  "--base-freeze-receipt", str(cfg.work / "base_freeze_pod.json"), "--raw-dir", str(cfg.f06_dir),
                  "--tokenizer", str(cfg.model_dir), "--output-dir", str(cfg.work / "rendered"),
-                 "--manifest", str(cfg.work / "curriculum_manifest_v1.json")),
+                 "--manifest", str(cfg.work / "curriculum_manifest_v1.json"),
+                 *(["--exclusion-amendment", str(cfg.exclusion_amendment)] if cfg.exclusion_amendment else [])),
               cfg=cfg, state=state, state_path=path, stage="render", log_path=cfg.work / "logs/render.log", seconds_cap=cap)
 
 
 def stage_gates(cfg: Config, state: dict[str, Any], path: Path) -> None:
     manifest = json.loads((cfg.work / "curriculum_manifest_v1.json").read_text(encoding="utf-8"))
-    failures = curriculum_gate_failures(manifest)
+    exclusion = fx.load_exclusion(cfg.exclusion_amendment) if cfg.exclusion_amendment else None
+    failures = curriculum_gate_failures(manifest, exclusion)
     if failures:
         raise StageFailure("curriculum gate failed: " + "; ".join(failures))
     evals = [PKG + f"/rerun_freeze/evaluation_universes_v2/{n}_queries.jsonl" for n in ("harmful", "benign", "override")]
@@ -396,6 +426,8 @@ def main() -> int:
     parser.add_argument("--vllm-python", type=Path, required=True)
     parser.add_argument("--price-per-hour", type=float, required=True)
     parser.add_argument("--total-usd", type=float, default=60.0)
+    parser.add_argument("--exclusion-amendment", type=Path, default=None,
+                        help="hash-pinned failed-scenario amendment; the only accepted exclusion")
     args = parser.parse_args()
     if args.price_per_hour <= 0:
         raise SystemExit("price per hour must be positive")
@@ -409,7 +441,7 @@ def main() -> int:
             return None
 
     cfg = Config(args.repo_root, args.f06_dir, args.work, args.model_dir, args.train_python, args.vllm_python,
-                 args.price_per_hour, args.total_usd, gpu_temp=temp)
+                 args.price_per_hour, args.total_usd, gpu_temp=temp, exclusion_amendment=args.exclusion_amendment)
     return run_pipeline(cfg)
 
 

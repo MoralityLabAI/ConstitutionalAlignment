@@ -1,0 +1,40 @@
+{
+  "schema_version": "frame_internalization_protocol_amendment.v3",
+  "amendment_id": "frame_internalization_failed_scenario_v1",
+  "frozen_at": "2026-10-24",
+  "status": "frozen_before_any_training_adapter_evaluation_or_judge_call",
+  "human_readable": "experiments/frame_internalization_sft_v1/PROTOCOL_AMENDMENT_FAILED_SCENARIO_V1.md",
+  "human_readable_sha256_lf": "692952578ef7ce03cb0a26a029600842de48b8bca78790239dc62530d05ae2d4",
+  "amends": ["frame_internalization_generation_batch32_v1 section 3", "5,600-scenario curriculum count"],
+  "stop_rule_fired": {
+    "quoted": "Any failed transcript after the four frozen retries, any OOM, any output-cap or wall-clock breach, any frozen-hash mismatch, or a cleanup failure stops the run.",
+    "source": "experiments/frame_internalization_sft_v1/PROTOCOL_AMENDMENT_GENERATION_BATCH32_V1.md section 3",
+    "also_in": "primelab_f06/f06_throughput_optimization_plan_v1.json abort_without_escalation_on",
+    "worked_around": false
+  },
+  "failure": {
+    "completed": {"neutral": 5599, "F1": 5600, "F3": 5600, "F3_concrete": 5600},
+    "failed_request_ids": ["neutral:d03508"],
+    "attempts": 4,
+    "wrapper_status": "incomplete_or_crashed",
+    "wrapper_exit_code": 2
+  },
+  "decision": {
+    "excluded_scenario_ids": ["d03508"],
+    "dropped_from_frames": ["neutral", "F1", "F3", "F3_concrete"],
+    "completed_transcripts_of_the_scenario": "discarded unused",
+    "permitted_failed_request_ids": ["neutral:d03508"],
+    "anything_else_missing_failed_duplicated_or_extra": "still stops the run",
+    "keeps_paired_design": true
+  },
+  "scenario_record": {"scenario_id": "d03508", "split": "train", "cluster_id": "d4c907392f"},
+  "expected_counts_per_arm": {"scenarios": 5599, "train": 5319, "validation": 280},
+  "registered_counts_before": {"scenarios": 5600, "train": 5320, "validation": 280},
+  "token_parity": {"gate": 0.02, "gate_loosened": false, "bound_on_change": "one paired row, under 0.05% of the arm total"},
+  "unchanged": ["dilemma pool and split freeze files", "sequence length", "dose", "evaluation universes", "all caps"],
+  "timing_attestation": {
+    "training_started": false, "adapters_exist": false, "evaluation_rows_exist": false, "judge_calls_made": false,
+    "lost_transcript_examined": false, "chosen_after_seeing_a_result": false
+  },
+  "limit": "a generation failure is a model-behavior event; the paper must report 5,599 of 5,600 scenarios used"
+}
