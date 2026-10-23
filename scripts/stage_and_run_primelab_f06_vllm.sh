@@ -147,7 +147,7 @@ if [[ ! -x "$venv_dir/bin/python" ]]; then
     DEBIAN_FRONTEND=noninteractive apt-get install -y python3.10-venv
     python3 -m venv "$venv_dir"
   fi
-  "$venv_dir/bin/python" -m pip install --disable-pip-version-check "vllm==$vllm_version"
+  "$venv_dir/bin/python" -m pip install --disable-pip-version-check "vllm==$vllm_version" "transformers==4.57.1"
 fi
 LC_ALL=C "$venv_dir/bin/python" -m pip freeze --all | LC_ALL=C sort >"$output_root/environment_lock_vllm.txt"
 grep -qi "^vllm==$vllm_version\$" "$output_root/environment_lock_vllm.txt"
