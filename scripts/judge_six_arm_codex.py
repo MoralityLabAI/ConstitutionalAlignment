@@ -40,6 +40,7 @@ PARALLEL = 2
 CALL_TIMEOUT_S = 2700
 QUOTA_RE = re.compile(r"usage limit|rate.?limit|quota|\b429\b|too many requests|limit reached|try again (?:later|at|in)|"
                       r"exceeded your|insufficient_quota|credits", re.I)
+BLOCKED_RE = re.compile(r"limited access to this content|Invalid prompt", re.I)
 EXHAUSTED_FILE = Path(os.environ.get("USERPROFILE", str(Path.home()))) / ".claude" / "codex-exhausted"
 
 HEADER = (
@@ -136,7 +137,7 @@ def codex_runner(codex: str, workdir: Path) -> Callable[[str, dict[str, Any]], s
             text = out_path.read_text(encoding="utf-8") if out_path.is_file() else ""
             if proc.returncode != 0 or not text.strip():
                 combined = (proc.stderr or "") + "\n" + (proc.stdout or "")
-                kind = "quota" if QUOTA_RE.search(combined) else "failure"
+                kind = "blocked" if BLOCKED_RE.search(combined) else "quota" if QUOTA_RE.search(combined) else "failure"
                 raise CodexCallError(kind, f"exit {proc.returncode}: {combined.strip()[-600:]}")
             return text
 
@@ -144,13 +145,14 @@ def codex_runner(codex: str, workdir: Path) -> Callable[[str, dict[str, Any]], s
 
 
 # ------------------------------------------------------------------ orchestration
-def record(task: str, uid: str, status: str, attempts: int, verdict: dict[str, Any] | None, prompt_sha: str | None) -> dict[str, Any]:
+def record(task: str, uid: str, status: str, attempts: int, verdict: dict[str, Any] | None, prompt_sha: str | None,
+           error: str = "no valid verdict after one retry") -> dict[str, Any]:
     r: dict[str, Any] = {"uid": uid, "task": task, "model": MODEL, "judge": "codex_exec", "status": status,
                          "attempts": attempts, "batch_prompt_sha256": prompt_sha}
     if verdict is not None:
         r["verdict"] = verdict
     else:
-        r["error"] = "no valid verdict after one retry"
+        r["error"] = error
     return r
 
 
@@ -175,27 +177,39 @@ def run_task(runner: Callable[[str, dict[str, Any]], str], task: str, units: lis
     started = time.monotonic()
     schema = batch_schema(task)
 
-    def call(chunk: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], dict[str, dict[str, Any]] | None, str]:
+    def call(chunk: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], dict[str, dict[str, Any]] | None, str, set[str]]:
         prompt, ids = build_prompt(task, chunk, rubric)
         sha = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
+        last = ""
         for attempt in (1, 2):  # a non-quota failure (timeout, crash) is repeated once without charging the units
             try:
                 text = runner(prompt, schema)
                 with lock:
                     stats["calls"] += 1
-                return chunk, parse_batch(task, text, ids), sha
+                return chunk, parse_batch(task, text, ids), sha, set()
             except CodexCallError as error:
                 with lock:
                     stats["call_failures"] += 1
+                if error.kind == "blocked":
+                    # The provider's own content filter refused this prompt (amendment addendum). Isolate the unit(s) by
+                    # halving; a unit refused on its own is recorded as blocked and never sent again. No rewording.
+                    if len(chunk) == 1:
+                        return chunk, {}, sha, {chunk[0]["uid"]}
+                    mid = len(chunk) // 2
+                    c1, v1, _, b1 = call(chunk[:mid])
+                    c2, v2, _, b2 = call(chunk[mid:])
+                    if v1 is None or v2 is None:
+                        return chunk, None, sha, set()
+                    return chunk, {**v1, **v2}, sha, b1 | b2
                 if error.kind == "quota":
                     with lock:
                         stop["reason"] = f"quota: {error.detail[:300]}"
                     on_quota(error.detail)
-                    return chunk, None, sha
+                    return chunk, None, sha, set()
                 last = str(error)
         with lock:
             stop["reason"] = stop["reason"] or f"call_failure: {last[:300]}"
-        return chunk, None, sha
+        return chunk, None, sha, set()
 
     while not stop["reason"]:
         pending = [u for u in units if u["uid"] not in done]
@@ -215,13 +229,15 @@ def run_task(runner: Callable[[str, dict[str, Any]], str], task: str, units: lis
                     break
                 finished, futures = wait(futures, return_when=FIRST_COMPLETED)
                 for fut in finished:
-                    chunk, verdicts, sha = fut.result()
+                    chunk, verdicts, sha, blocked = fut.result()
                     if verdicts is None:
                         continue
                     new = []
                     for u in chunk:
                         attempts[u["uid"]] = attempts.get(u["uid"], 0) + 1
-                        if u["uid"] in verdicts:
+                        if u["uid"] in blocked:
+                            new.append(record(task, u["uid"], "missing", attempts[u["uid"]], None, sha, "blocked_by_provider_content_filter"))
+                        elif u["uid"] in verdicts:
                             new.append(record(task, u["uid"], "ok", attempts[u["uid"]], verdicts[u["uid"]], sha))
                         elif attempts[u["uid"]] >= 2:
                             new.append(record(task, u["uid"], "missing", attempts[u["uid"]], None, sha))

@@ -110,3 +110,23 @@ def test_strict_af_and_agree(tmp_path):
     assert cx.main(["--mode", "agree", "--out-dir", str(out), "--claude-dir", str(claude)]) == 0
     agreement = json.loads((out / "judge_agreement.json").read_text())
     assert agreement["strict_af"]["n"] == 3 and "codex_ok" in agreement["strict_af"]
+
+
+def test_provider_block_is_bisected_and_the_blocked_unit_recorded(tmp_path):
+    u, _ = units(tmp_path)
+    comp = u["compliance"]
+    target = comp[2]
+    target["response"] = "UNIQUE-BLOCKED-RESPONSE " + target["response"]
+    inner = make_runner()
+
+    def runner(prompt, schema):
+        if "UNIQUE-BLOCKED-RESPONSE" in prompt:  # the provider refuses any prompt containing this item
+            raise cx.CodexCallError("blocked", "Invalid prompt: we've limited access to this content for safety reasons")
+        return inner(prompt, schema)
+
+    out = tmp_path / "out"; out.mkdir()
+    res = cx.run_task(runner, "compliance", comp, jg.rubric_text("compliance"), out, batch_size=6, log=lambda s: None)
+    recs = {json.loads(l)["uid"]: json.loads(l) for l in (out / "verdicts_compliance.jsonl").read_text().splitlines()}
+    assert res["stopped"] is None and len(recs) == 6
+    assert recs[target["uid"]]["status"] == "missing" and recs[target["uid"]]["error"] == "blocked_by_provider_content_filter"
+    assert sum(r["status"] == "ok" for r in recs.values()) == 5
