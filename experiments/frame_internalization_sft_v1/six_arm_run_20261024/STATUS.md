@@ -30,3 +30,9 @@ Under the judge amendment, unparseable verdicts count as not compliant and are r
 
 - The registered analysis (`scripts/analyze_six_arm.py`) runs once, and only after judging is complete. It has not been run.
 - After Prime credit is added, resume with the same `--mode run` command. It skips units that are already done.
+
+## Update, 2026-10-24 (later)
+
+Judging finished with GPT `gpt-6.1-sol` through the Codex CLI (`PROTOCOL_AMENDMENT_JUDGE_V4_CODEX.md`), the registered analysis
+ran once, and the results are in `RESULTS_SIX_ARM.md`. Every generation from the four reflection adapters failed the validity
+rule, so the confirmatory family is not informative about SFT.

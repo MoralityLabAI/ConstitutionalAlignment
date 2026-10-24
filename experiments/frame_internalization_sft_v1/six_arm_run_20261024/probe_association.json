@@ -1,0 +1,18 @@
+{
+  "correlation": -0.04532721491575725,
+  "ci95": [
+    -0.1352172308207256,
+    0.04606859705288276
+  ],
+  "excludes_zero": false,
+  "n_prompts": 60,
+  "arms": [
+    "F1_reflection",
+    "F1_demonstration",
+    "F3_reflection",
+    "F3_demonstration",
+    "F3_concrete_reflection"
+  ],
+  "draws": 10000,
+  "definition": "Pearson r between per-prompt probe-gap shift and compliance-gap shift (arm minus neutral), bootstrap over held-out prompts"
+}

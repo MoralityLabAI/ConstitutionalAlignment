@@ -1,0 +1,20 @@
+{
+  "compliance": {
+    "requested": 1956,
+    "judged_total": 1956,
+    "stopped": null,
+    "ok": 1314,
+    "missing": 2,
+    "calls": 74,
+    "call_failures": 45
+  },
+  "strict_af": {
+    "requested": 1196,
+    "judged_total": 1196,
+    "stopped": null,
+    "ok": 1196,
+    "missing": 0,
+    "calls": 38,
+    "call_failures": 8
+  }
+}
