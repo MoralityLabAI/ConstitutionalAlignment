@@ -53,3 +53,15 @@ If the local judge cannot be run, the kappa is reported as not available.
 The analysis contract (`prompt_sft_contrast_v3_qwen3_1p7b.json`), the single exclusive run of the
 analysis script, and the missing-is-not-compliant rule. The analysis runs only after the primary
 Claude judging is complete.
+
+## 5. Addendum (2026-10-24): second judge is Qwen3-4B-Instruct-2507
+
+Qwen3-8B turned out not to be cached (the cache entry held no weights) and nothing is downloaded.
+The descriptive second judge in section 3 is therefore the cached `Qwen/Qwen3-4B-Instruct-2507`
+(revision `cdbee75f17c01a7cc42f958dc650907174af0554`, the current `main` of its Hugging Face
+repository; non-thinking instruct model), in 4-bit NF4, greedy decoding, the same prompts, parser,
+`max_new_tokens` (1,024 compliance, 64 strict alignment faking) and single retry as in section 3.
+It scores every unit and is descriptive only. A 4B second judge is weaker than the 8B one that was
+planned, so the agreement check is weaker evidence: a low kappa would be ambiguous between a
+disagreement about the construct and a limitation of the small model, and a high kappa says less
+about the Claude verdicts. No threshold is registered and no estimand uses the local verdicts.

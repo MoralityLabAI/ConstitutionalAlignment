@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Local Qwen3-8B judge for Study 3 (amendment frame_internalization_judge_v2_local).
+"""Local Qwen3-4B-Instruct-2507 descriptive second judge for Study 3 (amendment frame_internalization_judge_v3, addendum).
 
-Replaces the Prime Inference judges of scripts/judge_six_arm.py. Units, rubrics, message text and
+Descriptive second judge; the registered Claude judges are primary (scripts/judge_six_arm_claude.py). Units, rubrics, message text and
 verdict parsing are imported from that script unchanged; only the model call differs. One local
 judge scores every unit. The earlier Claude verdicts are used only by `--mode agree` (Cohen's kappa).
 
@@ -26,9 +26,9 @@ from typing import Any, Callable, Protocol
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import judge_six_arm as jg  # noqa: E402
 
-MODEL_ID = "Qwen/Qwen3-8B"
-REVISION = "b968826d9c46dd6066d109eabc6255188de91218"
-CACHE_DIR = Path.home() / ".cache/huggingface/hub/models--Qwen--Qwen3-8B"
+MODEL_ID = "Qwen/Qwen3-4B-Instruct-2507"
+REVISION = "cdbee75f17c01a7cc42f958dc650907174af0554"
+CACHE_DIR = Path.home() / ".cache/huggingface/hub/models--Qwen--Qwen3-4B-Instruct-2507"
 MAX_NEW_TOKENS = {"compliance": 1024, "strict_af": 64}
 RETRY_LINE = "\n\nReply with the JSON object only."
 MAX_BATCH_SEQS = 16
