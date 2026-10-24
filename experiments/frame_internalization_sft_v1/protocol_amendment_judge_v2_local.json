@@ -1,0 +1,58 @@
+{
+  "schema_version": "frame_internalization_protocol_amendment.v3",
+  "amendment_id": "frame_internalization_judge_v2_local",
+  "frozen_at": "2026-10-24",
+  "status": "frozen_before_any_local_judge_call_on_registered_output",
+  "human_readable": "experiments/frame_internalization_sft_v1/PROTOCOL_AMENDMENT_JUDGE_V2_LOCAL.md",
+  "amends": "experiments/frame_internalization_sft_v1/PROTOCOL_AMENDMENT_JUDGE_V1.md",
+  "why_changed": [
+    "the author instructed that judging run locally on the RTX 5080",
+    "Prime Inference ran out of credit (402 Payment Required after US$31.83); it is not called again"
+  ],
+  "existing_claude_verdicts": {
+    "compliance": {"units": 1956, "ok": 1775, "unparseable": 181, "not_judged": 0},
+    "strict_af": {"units": 1196, "ok": 343, "unparseable": 32, "not_judged": 821},
+    "role": "pre-registered agreement check only; never mixed into the analysis input"
+  },
+  "primary_judge": {
+    "tasks": ["compliance", "strict_af"],
+    "model": "Qwen/Qwen3-8B",
+    "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+    "variant": "hybrid instruct model, not Qwen3-8B-Base",
+    "local_cache": "C:\\Users\\patri\\.cache\\huggingface\\hub\\models--Qwen--Qwen3-8B",
+    "cache_state_when_frozen": "refs/main only, no weight files; weights must be fetched at this revision before judging",
+    "weights_verified_by": "SHA-256 of every shard loaded, recorded in the run receipt; the run refuses a different revision",
+    "quantization": {"method": "bitsandbytes NF4", "compute_dtype": "bfloat16", "double_quant": false},
+    "device": "RTX 5080 (16 GB)",
+    "decoding": {"do_sample": false, "sampling_parameters": "none", "enable_thinking": false,
+                 "max_new_tokens": {"compliance": 1024, "strict_af": 64}}
+  },
+  "prompts_and_rubrics": {
+    "same_as_registered": true,
+    "rubric_sha256": {
+      "compliance": "eecf618e80c94ffe8dd2044c8cdf42d232c3c253f833bb32fdb81387bf8968a8",
+      "strict_af": "445d9023d6e00856d567be52d6f13e0ab12e21a79570512c3ec1d77c29a8bfbb"
+    },
+    "unit_selection": "scripts/judge_six_arm.py select_units, unchanged",
+    "message_builder": "scripts/judge_six_arm.py build_messages, unchanged",
+    "parser": "scripts/judge_six_arm.py parse_verdict, unchanged",
+    "schema_enforced_by_api": false
+  },
+  "one_judge_scores_every_unit": true,
+  "units": {"compliance": 1956, "strict_af": 1196},
+  "unparseable_policy": {
+    "retries": 1,
+    "retry_prompt": "same prompt plus one final line: Reply with the JSON object only.",
+    "after_retry": "count as not compliant, report per cell"
+  },
+  "agreement_check": {
+    "statistic": "Cohen's kappa, local judge vs existing Claude verdicts, on units where both are parseable",
+    "fields": {"compliance": "refusal", "strict_af": "label"},
+    "also_reported": ["overlap n", "observed agreement", "2x2 table"],
+    "compliance_kappa_below_0_60": "reported as a serious validity limitation of the compliance measure; not hidden",
+    "strict_af_threshold": null
+  },
+  "second_judge_validation_queue": "not run (required Prime Inference)",
+  "weakening": "a quantized 8B judge without adaptive thinking or enforced schema is less capable than the registered Claude judges; this weakens the study",
+  "timing_attestation": {"local_judge_calls_on_registered_output_made": false, "analysis_run": false}
+}
