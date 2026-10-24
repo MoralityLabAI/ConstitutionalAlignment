@@ -1,0 +1,31 @@
+{
+  "schema_version": "frame_internalization_eval_generation_receipt.v1",
+  "amendment": "frame_internalization_evaluation_vllm_v1",
+  "cells": [
+    "harmful__base__F0",
+    "harmful__base__F1",
+    "harmful__base__F3",
+    "harmful__base__F3_concrete",
+    "harmful__neutral_reflection__F0",
+    "harmful__F1_reflection__F0",
+    "harmful__F1_demonstration__F0",
+    "harmful__F3_reflection__F0",
+    "harmful__F3_demonstration__F0",
+    "harmful__F3_concrete_reflection__F0",
+    "benign__base__F0",
+    "benign__neutral_reflection__F0",
+    "benign__F1_reflection__F0",
+    "benign__F1_demonstration__F0",
+    "benign__F3_reflection__F0",
+    "benign__F3_demonstration__F0",
+    "benign__F3_concrete_reflection__F0",
+    "override__neutral_reflection__F0",
+    "override__F1_reflection__F0",
+    "override__F1_demonstration__F0",
+    "override__F3_reflection__F0",
+    "override__F3_demonstration__F0",
+    "override__F3_concrete_reflection__F0"
+  ],
+  "limit": 0,
+  "complete": true
+}

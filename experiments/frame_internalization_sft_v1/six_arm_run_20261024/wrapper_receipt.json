@@ -1,0 +1,20 @@
+{
+  "cleanup_passed": true,
+  "compute_apps_after": 0,
+  "cumulative_hours": 7.179494620826509,
+  "cumulative_usd_at_price": 15.277964553118812,
+  "finished_at_utc": "2026-10-24T05:49:52.434519+00:00",
+  "pipeline_exit_code": 0,
+  "price_per_hour_usd": 2.128,
+  "schema_version": "frame_internalization_six_arm_wrapper.v1",
+  "source_commit": "ac7ed5fbc190129cee5294441d94e1394772b30d",
+  "stages": {
+    "analysis": "done",
+    "eval": "done",
+    "gates": "done",
+    "probe": "done",
+    "render": "done",
+    "smoke": "done",
+    "train": "done"
+  }
+}

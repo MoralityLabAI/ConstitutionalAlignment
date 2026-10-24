@@ -1,0 +1,20 @@
+{
+  "compliance": {
+    "requested": 1956,
+    "already_done": 0,
+    "judged_now": 1775,
+    "missing_now": 181,
+    "usd_spent_now": 30.3931,
+    "stopped": null,
+    "remaining": 0
+  },
+  "strict_af": {
+    "requested": 1196,
+    "already_done": 0,
+    "judged_now": 343,
+    "missing_now": 32,
+    "usd_spent_now": 1.44,
+    "stopped": "payment_required",
+    "remaining": 821
+  }
+}

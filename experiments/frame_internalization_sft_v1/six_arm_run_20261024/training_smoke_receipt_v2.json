@@ -1,0 +1,29 @@
+{
+  "schema_version": "frame_internalization_training_smoke_receipt.v2",
+  "passed": true,
+  "gpu_count": 1,
+  "sequence_length": 4096,
+  "arms_completed": 6,
+  "steps_per_arm": null,
+  "steps_by_arm": {
+    "neutral_reflection": 50,
+    "F1_reflection": 10,
+    "F1_demonstration": 10,
+    "F3_reflection": 10,
+    "F3_demonstration": 10,
+    "F3_concrete_reflection": 10
+  },
+  "reduced_by_amendment": "frame_internalization_smoke_reduction_v1",
+  "checkpoint_round_trip_all_arms": true,
+  "cleanup_passed": true,
+  "gpu_hours": 1.518,
+  "note": "cleanup_passed and gpu_hours must be copied from the capped wrapper receipt, not asserted by hand",
+  "arm_receipts": {
+    "neutral_reflection": "8355ff3f0f014e1834f9a404ac48ae24d93f02e0044078ab61472c7cfaeea41a",
+    "F1_reflection": "ccb415b7875ed6593f3726444effe9cc662953b2add88e91f845c7ae52168abe",
+    "F1_demonstration": "933faa04c3d3d6e74993547139be54571f38d7d65bb7d3a937b8ad8f9e4c6405",
+    "F3_reflection": "bf07e8aff746672158c75d97b4fdf55223fbb35b57026195a53dfecdbafc429e",
+    "F3_demonstration": "35a0ee234ac333408ca6a4fbc830ba6b8ee683cc65dfcb43e6f187e2425b923c",
+    "F3_concrete_reflection": "d9ed8fbdcd386382e6364beb545873e63076cc5b59df65c252a8bbab8888977e"
+  }
+}

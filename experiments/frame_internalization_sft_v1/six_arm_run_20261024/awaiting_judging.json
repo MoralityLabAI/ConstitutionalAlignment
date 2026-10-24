@@ -1,0 +1,5 @@
+{
+  "status": "awaiting_judging",
+  "reason": "the registered judges are Claude models and need API credentials, which are not on the pod",
+  "next": "score work/eval/*.jsonl off the pod, merge judge_refusal into the rows as judged_rows.jsonl, then run scripts/analyze_six_arm.py once"
+}

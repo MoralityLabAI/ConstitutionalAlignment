@@ -1,0 +1,29 @@
+{
+  "amendment": "frame_internalization_generation_vllm_v1",
+  "cleanup_passed": true,
+  "compute_apps_after": 0,
+  "cumulative_seconds": 12819.183213233948,
+  "cumulative_usd_at_price": 7.577561632711623,
+  "environment_lock_vllm_sha256": "ead73c207447f4fcac4dbdae8579ff5593d7eff653f5409438d82bdf3eedfd27",
+  "equivalence_passed": true,
+  "finished_at_utc": "2026-10-23T21:08:13+00:00",
+  "frame_receipts_complete": {
+    "F1": true,
+    "F3": true,
+    "F3_concrete": true,
+    "neutral": false
+  },
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "launches": 1,
+  "maximum_hours": 30.0,
+  "maximum_usd": 80.0,
+  "passed": false,
+  "price_per_hour_usd": 2.128,
+  "runtime_exit_code": 2,
+  "schema_version": "frame_internalization_primelab_f06_vllm_wrapper.v1",
+  "source_commit": "044b09b44d103fee9dfe5a73eb71685c103f3282",
+  "started_at_utc": "2026-10-23T17:34:33+00:00",
+  "status": "incomplete_or_crashed",
+  "stop_reason": null,
+  "vllm": "0.11.0"
+}

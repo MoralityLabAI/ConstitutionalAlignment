@@ -1,0 +1,33 @@
+{
+  "cumulative_seconds": 25846.180634975433,
+  "stages": {
+    "analysis": {
+      "seconds": 0.0,
+      "status": "done"
+    },
+    "eval": {
+      "seconds": 4663.118046998978,
+      "status": "done"
+    },
+    "gates": {
+      "seconds": 40.07922387123108,
+      "status": "done"
+    },
+    "probe": {
+      "seconds": 240.48942065238953,
+      "status": "done"
+    },
+    "render": {
+      "seconds": 90.14618802070618,
+      "status": "done"
+    },
+    "smoke": {
+      "seconds": 5464.823695659637,
+      "status": "done"
+    },
+    "train": {
+      "seconds": 15347.524059772491,
+      "status": "done"
+    }
+  }
+}

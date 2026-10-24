@@ -1,0 +1,92 @@
+{
+  "schema_version": "frame_internalization_nonleakage_audit.v1",
+  "scope": "complete_six_arm_curricula",
+  "status": "passed",
+  "passed": true,
+  "gate_satisfying": true,
+  "auditor_sha256": "0a4bcbe331fa72d92871dd4ad3aa5b87d44ed9f9f44a943c0c7415db39429739",
+  "ngram_size": 8,
+  "source_unit_count": 156772,
+  "evaluation_unit_count": 510,
+  "source_bindings": [
+    {
+      "path": "/root/six_arm_c/curriculum_manifest_v1.json",
+      "sha256": "de666f8b8796080851534933f8bc6a072de02e9cb2d96d57917346937a2f7197"
+    },
+    {
+      "path": "/root/six_arm_c/rendered/F1_demonstration/training.jsonl",
+      "sha256": "76ef86a033be8ac95fdda9c5cb4126c54af054412daa5b8f722dec773e2b4378"
+    },
+    {
+      "path": "/root/six_arm_c/rendered/F1_demonstration/validation.jsonl",
+      "sha256": "824bbb573c0746ac0b7172138d0bb322b09cc47fccab86e431fc41f83729bc12"
+    },
+    {
+      "path": "/root/six_arm_c/rendered/F1_reflection/training.jsonl",
+      "sha256": "1312806c13e0c4e92e3b382e8cabcd416a4f8a29d6ff722cc052c3f450178da0"
+    },
+    {
+      "path": "/root/six_arm_c/rendered/F1_reflection/validation.jsonl",
+      "sha256": "869249d39fa39f3586054eacc400b6ab745b555c9866e37e38421f529eb028e7"
+    },
+    {
+      "path": "/root/six_arm_c/rendered/F3_concrete_reflection/training.jsonl",
+      "sha256": "435bd4294ba26e1fbef57f3789fe78f8d8e6de03de6eb769802d006526e123f3"
+    },
+    {
+      "path": "/root/six_arm_c/rendered/F3_concrete_reflection/validation.jsonl",
+      "sha256": "d070a3c41725df2d4b6c1efd2b97611ca798ceb9de2dc911589fcbf33d8d819f"
+    },
+    {
+      "path": "/root/six_arm_c/rendered/F3_demonstration/training.jsonl",
+      "sha256": "b1adf7b0917719db5d96dde3c0d0f72505f1fa5234eeca9b9c29c00808b27d51"
+    },
+    {
+      "path": "/root/six_arm_c/rendered/F3_demonstration/validation.jsonl",
+      "sha256": "375168d5c9d1c16c6ff3a9c7ca8996f2e5bebd85d2303416fe0e940470c612ed"
+    },
+    {
+      "path": "/root/six_arm_c/rendered/F3_reflection/training.jsonl",
+      "sha256": "0eb75748efe05d7318b7d837c6d43f37f96fbaa0120417fa473835826bc1c819"
+    },
+    {
+      "path": "/root/six_arm_c/rendered/F3_reflection/validation.jsonl",
+      "sha256": "2bcb2f65a25776387128793e049109e6f647ad66b3caef291c48f2c53c858d98"
+    },
+    {
+      "path": "/root/six_arm_c/rendered/neutral_reflection/training.jsonl",
+      "sha256": "40440836f4c28756e4b93b6ca9ab40175fdcf3448690503c9d8bf2431e276cc5"
+    },
+    {
+      "path": "/root/six_arm_c/rendered/neutral_reflection/validation.jsonl",
+      "sha256": "b51048e8b2490cf55b0d9d77d53a1630021c49e255057879154a436658f1281b"
+    }
+  ],
+  "evaluation_bindings": [
+    {
+      "path": "/root/ConstitutionalAlignment/experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/harmful_queries.jsonl",
+      "sha256": "0ce37e5af63cd280926440246dd44a69fae30e9846851e090139cd5abc860a21"
+    },
+    {
+      "path": "/root/ConstitutionalAlignment/experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/benign_queries.jsonl",
+      "sha256": "841e21fce209d7607b911320288de47e9daa1a2e0a1d60214138200cc4537c01"
+    },
+    {
+      "path": "/root/ConstitutionalAlignment/experiments/frame_internalization_sft_v1/rerun_freeze/evaluation_universes_v2/override_queries.jsonl",
+      "sha256": "c0b6e54817fdf7fbbfaf154196222efa0d14d4243f5b4dde3210a8ab4f813a30"
+    },
+    {
+      "path": "/root/ConstitutionalAlignment/data/storyworld_sources/constitutional_alignment_20260715_v1/evaluation/mihna_ca_eval_v2.encounter_prompts.jsonl",
+      "sha256": "e6d8aafd33f2d01626f114768ea075a125bfcf5e70a7f60689cd1b2be4090331"
+    }
+  ],
+  "exact_overlap_count": 0,
+  "normalized_overlap_count": 0,
+  "ngram_overlap_count": 0,
+  "examples": {
+    "exact": [],
+    "normalized": [],
+    "ngram": []
+  },
+  "completion_requirement": null
+}

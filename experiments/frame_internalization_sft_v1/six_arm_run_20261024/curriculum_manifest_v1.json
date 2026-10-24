@@ -1,0 +1,131 @@
+{
+  "schema_version": "frame_internalization_curriculum_manifest.v1",
+  "passed": true,
+  "request_freeze_path": "/root/ConstitutionalAlignment/experiments/frame_internalization_sft_v1/rerun_freeze/qwen3_1p7b_v1/curriculum_generation_v1/request_manifest.json",
+  "request_freeze_sha256": "e768b50ecd72ec9cf3f7caafe2a731013d6475f5b2e55c51e71562a7b5d98226",
+  "base_freeze_receipt_sha256": "1cc001b9c7ae8e1136909f24ba3981a11a524464961a7d07056708d9562c59b8",
+  "renderer_sha256": "ce7c5841bf2cc224bb355adc7740a54fe99add4a49c8355a984c7e4fdbfad456",
+  "tokenizer_path": "/opt/jinn-f06-vllm/model/Qwen3-1.7B-70d244c",
+  "sequence_length": 4096,
+  "arms": {
+    "neutral_reflection": {
+      "source_frame": "neutral",
+      "style": "reflection",
+      "scenario_count": 5599,
+      "scenario_ids_sha256": "33874a5cd4238a9f397ed825d43e184635b034decaffe2932351e626cbf5ec56",
+      "train_count": 5319,
+      "validation_count": 280,
+      "total_train_tokens": 10828325,
+      "maximum_sequence_tokens": 3125,
+      "over_4096_count": 0,
+      "training_path": "/root/six_arm_c/rendered/neutral_reflection/training.jsonl",
+      "training_sha256": "40440836f4c28756e4b93b6ca9ab40175fdcf3448690503c9d8bf2431e276cc5",
+      "validation_path": "/root/six_arm_c/rendered/neutral_reflection/validation.jsonl",
+      "validation_sha256": "b51048e8b2490cf55b0d9d77d53a1630021c49e255057879154a436658f1281b",
+      "raw_sha256": "596c3d6d40712943b664e9a1710fb50480383017789530c391d29aabf06e2e73"
+    },
+    "F1_reflection": {
+      "source_frame": "F1",
+      "style": "reflection",
+      "scenario_count": 5599,
+      "scenario_ids_sha256": "33874a5cd4238a9f397ed825d43e184635b034decaffe2932351e626cbf5ec56",
+      "train_count": 5319,
+      "validation_count": 280,
+      "total_train_tokens": 8602991,
+      "maximum_sequence_tokens": 2459,
+      "over_4096_count": 0,
+      "training_path": "/root/six_arm_c/rendered/F1_reflection/training.jsonl",
+      "training_sha256": "1312806c13e0c4e92e3b382e8cabcd416a4f8a29d6ff722cc052c3f450178da0",
+      "validation_path": "/root/six_arm_c/rendered/F1_reflection/validation.jsonl",
+      "validation_sha256": "869249d39fa39f3586054eacc400b6ab745b555c9866e37e38421f529eb028e7",
+      "raw_sha256": "f50b5c914b479ec96466250ea217585ee670e50aa0ffa36e827fb5eb6c0d5fb5"
+    },
+    "F1_demonstration": {
+      "source_frame": "F1",
+      "style": "demonstration",
+      "scenario_count": 5599,
+      "scenario_ids_sha256": "33874a5cd4238a9f397ed825d43e184635b034decaffe2932351e626cbf5ec56",
+      "train_count": 5319,
+      "validation_count": 280,
+      "total_train_tokens": 2269136,
+      "maximum_sequence_tokens": 819,
+      "over_4096_count": 0,
+      "training_path": "/root/six_arm_c/rendered/F1_demonstration/training.jsonl",
+      "training_sha256": "76ef86a033be8ac95fdda9c5cb4126c54af054412daa5b8f722dec773e2b4378",
+      "validation_path": "/root/six_arm_c/rendered/F1_demonstration/validation.jsonl",
+      "validation_sha256": "824bbb573c0746ac0b7172138d0bb322b09cc47fccab86e431fc41f83729bc12",
+      "raw_sha256": "f50b5c914b479ec96466250ea217585ee670e50aa0ffa36e827fb5eb6c0d5fb5"
+    },
+    "F3_reflection": {
+      "source_frame": "F3",
+      "style": "reflection",
+      "scenario_count": 5599,
+      "scenario_ids_sha256": "33874a5cd4238a9f397ed825d43e184635b034decaffe2932351e626cbf5ec56",
+      "train_count": 5319,
+      "validation_count": 280,
+      "total_train_tokens": 6248126,
+      "maximum_sequence_tokens": 1937,
+      "over_4096_count": 0,
+      "training_path": "/root/six_arm_c/rendered/F3_reflection/training.jsonl",
+      "training_sha256": "0eb75748efe05d7318b7d837c6d43f37f96fbaa0120417fa473835826bc1c819",
+      "validation_path": "/root/six_arm_c/rendered/F3_reflection/validation.jsonl",
+      "validation_sha256": "2bcb2f65a25776387128793e049109e6f647ad66b3caef291c48f2c53c858d98",
+      "raw_sha256": "e13359dcbb85e8923679a5241bc044173df447eff01b9a2c10861dd4043c5398"
+    },
+    "F3_demonstration": {
+      "source_frame": "F3",
+      "style": "demonstration",
+      "scenario_count": 5599,
+      "scenario_ids_sha256": "33874a5cd4238a9f397ed825d43e184635b034decaffe2932351e626cbf5ec56",
+      "train_count": 5319,
+      "validation_count": 280,
+      "total_train_tokens": 1904420,
+      "maximum_sequence_tokens": 603,
+      "over_4096_count": 0,
+      "training_path": "/root/six_arm_c/rendered/F3_demonstration/training.jsonl",
+      "training_sha256": "b1adf7b0917719db5d96dde3c0d0f72505f1fa5234eeca9b9c29c00808b27d51",
+      "validation_path": "/root/six_arm_c/rendered/F3_demonstration/validation.jsonl",
+      "validation_sha256": "375168d5c9d1c16c6ff3a9c7ca8996f2e5bebd85d2303416fe0e940470c612ed",
+      "raw_sha256": "e13359dcbb85e8923679a5241bc044173df447eff01b9a2c10861dd4043c5398"
+    },
+    "F3_concrete_reflection": {
+      "source_frame": "F3_concrete",
+      "style": "reflection",
+      "scenario_count": 5599,
+      "scenario_ids_sha256": "33874a5cd4238a9f397ed825d43e184635b034decaffe2932351e626cbf5ec56",
+      "train_count": 5319,
+      "validation_count": 280,
+      "total_train_tokens": 6845141,
+      "maximum_sequence_tokens": 2355,
+      "over_4096_count": 0,
+      "training_path": "/root/six_arm_c/rendered/F3_concrete_reflection/training.jsonl",
+      "training_sha256": "435bd4294ba26e1fbef57f3789fe78f8d8e6de03de6eb769802d006526e123f3",
+      "validation_path": "/root/six_arm_c/rendered/F3_concrete_reflection/validation.jsonl",
+      "validation_sha256": "d070a3c41725df2d4b6c1efd2b97611ca798ceb9de2dc911589fcbf33d8d819f",
+      "raw_sha256": "2c6d88b7afe3b11c06e52ec9faec19bcef88818626dff3d83b66f975f286eecf"
+    }
+  },
+  "exclusion": {
+    "amendment_id": "frame_internalization_failed_scenario_v1",
+    "excluded_scenario_ids": [
+      "d03508"
+    ],
+    "expected_counts": {
+      "scenarios": 5599,
+      "train": 5319,
+      "val": 280
+    }
+  },
+  "parity_balance": null,
+  "parity_measurement": {
+    "amendment_id": "frame_internalization_dose_matching_v1",
+    "enforced": false,
+    "spread": 0.09555105002684004,
+    "f3_reflection_train_tokens": 6248126,
+    "f3_concrete_reflection_train_tokens": 6845141,
+    "gate": 0.02,
+    "matches_recorded_measurement": true
+  },
+  "f3_pair_total_token_spread": 0.09555105002684004,
+  "failure_reasons": []
+}
