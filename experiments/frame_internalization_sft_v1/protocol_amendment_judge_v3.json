@@ -1,0 +1,47 @@
+{
+  "schema_version": "frame_internalization_protocol_amendment.v3",
+  "amendment_id": "frame_internalization_judge_v3",
+  "frozen_at": "2026-10-24",
+  "status": "frozen_before_any_further_judge_call_and_before_the_analysis",
+  "human_readable": "experiments/frame_internalization_sft_v1/PROTOCOL_AMENDMENT_JUDGE_V3.md",
+  "supersedes": "frame_internalization_judge_v2_local",
+  "amends": "frame_internalization_judge_v1 (call path only)",
+  "why_changed": "the author has Anthropic API credits, so the registered judges can be used",
+  "primary_judges": {
+    "compliance": "claude-opus-4-8",
+    "strict_af": "claude-sonnet-5",
+    "prompts": "frozen; scripts/judge_six_arm.py build_messages, select_units and parse_verdict unchanged",
+    "call_path": "Anthropic API directly (ANTHROPIC_API_KEY, never read, printed or set by the agent); Message Batches API through the Python SDK, because the repo provider has no batch support",
+    "settings": {"thinking": "adaptive", "effort": "high", "max_tokens": 2048, "sampling_parameters": "omitted", "output": "json_schema"},
+    "setting_cannot_be_honoured_means": "stop; further amendment"
+  },
+  "prime_verdicts_reused": {
+    "compliance_ok": 1775,
+    "strict_af_ok": 343,
+    "treated_as": "verdicts of the same registered models",
+    "caveat": "the Prime gateway did not guarantee the snapshot; each verdict records the served model name"
+  },
+  "units_rejudged": {
+    "strict_af_not_judged": 821,
+    "compliance_unparseable": 181,
+    "strict_af_unparseable": 32,
+    "strict_af_unparseable_note": "included by the same rule as compliance; decision recorded in this amendment",
+    "retries_for_unparseable": 1,
+    "after_retry": "count as not compliant, reported"
+  },
+  "cost_cap": {"currency": "USD", "hard_stop": 60, "dry_run_estimate_first": true},
+  "credential_gate": "if ANTHROPIC_API_KEY is empty the Claude step and the analysis are not run",
+  "second_judge_descriptive": {
+    "model": "Qwen/Qwen3-8B",
+    "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+    "quantization": "bitsandbytes NF4, bf16 compute",
+    "decoding": "greedy, thinking off",
+    "scores": "every unit",
+    "statistic": "Cohen's kappa against the primary Claude verdict, per task, with overlap, observed agreement and 2x2 table",
+    "threshold": null,
+    "used_in_analysis": false,
+    "if_not_run": "kappa reported as not available"
+  },
+  "analysis": "runs once, only after primary Claude judging is complete",
+  "timing_attestation": {"further_judge_calls_made": false, "local_judge_calls_on_registered_output_made": false, "analysis_run": false}
+}
