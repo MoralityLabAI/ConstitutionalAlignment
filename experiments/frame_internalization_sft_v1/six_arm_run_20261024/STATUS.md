@@ -36,3 +36,6 @@ Under the judge amendment, unparseable verdicts count as not compliant and are r
 Judging finished with GPT `gpt-6.1-sol` through the Codex CLI (`PROTOCOL_AMENDMENT_JUDGE_V4_CODEX.md`), the registered analysis
 ran once, and the results are in `RESULTS_SIX_ARM.md`. Every generation from the four reflection adapters failed the validity
 rule, so the confirmatory family is not informative about SFT.
+
+Post hoc, not registered: `POSTHOC_REFLECTION_VISIBLE_ANSWERS.md` (plan) and `RESULTS_POSTHOC_REFLECTION.md` (results) judge the visible
+answers of the four reflection arms. The registered result in `RESULTS_SIX_ARM.md` stands.
