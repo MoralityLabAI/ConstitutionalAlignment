@@ -11,7 +11,6 @@ from pathlib import Path
 from typing import Any
 
 import httpx
-from prime_cli.api.inference import InferenceAPIError, InferenceClient
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_PROTOCOL = (
@@ -168,7 +167,15 @@ def _chat_once(
         "max_tokens": max_tokens,
         "chat_template_kwargs": {"enable_thinking": enable_thinking},
     }
-    value = InferenceClient(timeout=timeout_seconds).chat_completion(payload)
+    # The hosted-only SDK stays optional for offline analysis and unit tests.
+    try:
+        from prime_cli.api.inference import InferenceAPIError, InferenceClient
+    except ImportError as exc:
+        raise RuntimeError("Prime CLI inference SDK is required for hosted runs") from exc
+    try:
+        value = InferenceClient(timeout=timeout_seconds).chat_completion(payload)
+    except InferenceAPIError as exc:
+        raise RuntimeError(f"Prime inference API error: {exc}") from exc
     if not isinstance(value, dict):
         raise TypeError("Prime chat response must be a JSON object")
     choices = value.get("choices")
@@ -197,7 +204,6 @@ def run_chat_with_retry(**kwargs: Any) -> tuple[dict[str, Any], int]:
             return _chat_once(**kwargs), attempt
         except (
             httpx.TimeoutException,
-            InferenceAPIError,
             RuntimeError,
             TypeError,
             ValueError,
