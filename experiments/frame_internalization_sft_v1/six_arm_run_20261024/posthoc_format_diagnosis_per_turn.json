@@ -1,0 +1,31 @@
+{
+  "sample_rows_per_arm": 500,
+  "per_turn": {
+    "neutral_reflection": {
+      "turn1/3:no_think": 500,
+      "turn2/3:no_think": 500,
+      "turn3/3:empty_think": 500
+    },
+    "F1_reflection": {
+      "turn1/3:no_think": 500,
+      "turn2/3:no_think": 500,
+      "turn3/3:empty_think": 500
+    },
+    "F3_reflection": {
+      "turn1/3:no_think": 500,
+      "turn2/3:no_think": 500,
+      "turn3/3:empty_think": 500
+    },
+    "F3_concrete_reflection": {
+      "turn1/3:no_think": 500,
+      "turn2/3:no_think": 500,
+      "turn3/3:empty_think": 500
+    },
+    "F1_demonstration": {
+      "turn1/1:empty_think": 500
+    },
+    "F3_demonstration": {
+      "turn1/1:empty_think": 500
+    }
+  }
+}

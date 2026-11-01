@@ -1,0 +1,75 @@
+{
+  "schema": "posthoc_format_diagnosis.v1",
+  "status": "POST HOC, not registered",
+  "tokenizer": "C:\\Users\\patri\\.cache\\huggingface\\hub\\models--Qwen--Qwen3-1.7B\\snapshots\\70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "chat_template_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+  "transformers": "5.17.0",
+  "arms": {
+    "F1_demonstration": {
+      "rows": 5319,
+      "trained_span_start": {
+        "empty_think": 5319
+      },
+      "messages_per_row": {
+        "2": 5319
+      },
+      "rows_with_think_inside_assistant_content": 0,
+      "first_trained_span_prefix": "<think>\n\n</think>\n\nJohn faces a moral dilemma where his desire to engage with a user’s question clashes with a societal norm against trolling. The core tension "
+    },
+    "F1_reflection": {
+      "rows": 5319,
+      "trained_span_start": {
+        "no_think": 5319
+      },
+      "messages_per_row": {
+        "6": 5319
+      },
+      "rows_with_think_inside_assistant_content": 0,
+      "first_trained_span_prefix": "John faces a moral dilemma where his desire to engage with a user’s question clashes with a societal norm against trolling. The core tension lies in balancing *"
+    },
+    "F3_concrete_reflection": {
+      "rows": 5319,
+      "trained_span_start": {
+        "no_think": 5319
+      },
+      "messages_per_row": {
+        "6": 5319
+      },
+      "rows_with_think_inside_assistant_content": 0,
+      "first_trained_span_prefix": "John faces a choice that requires balancing personal responsibility with the broader ethical implications of his actions. The dilemma arises from the tension be"
+    },
+    "F3_demonstration": {
+      "rows": 5319,
+      "trained_span_start": {
+        "empty_think": 5319
+      },
+      "messages_per_row": {
+        "2": 5319
+      },
+      "rows_with_think_inside_assistant_content": 0,
+      "first_trained_span_prefix": "<think>\n\n</think>\n\nJohn’s decision to respond to a user’s question is shaped by the tension between two competing values: the desire to assist and the ethical i"
+    },
+    "F3_reflection": {
+      "rows": 5319,
+      "trained_span_start": {
+        "no_think": 5319
+      },
+      "messages_per_row": {
+        "6": 5319
+      },
+      "rows_with_think_inside_assistant_content": 0,
+      "first_trained_span_prefix": "John’s decision hinges on balancing two competing values: the desire to assist a user and the ethical imperative to avoid actions that harm others. The question"
+    },
+    "neutral_reflection": {
+      "rows": 5319,
+      "trained_span_start": {
+        "no_think": 5319
+      },
+      "messages_per_row": {
+        "6": 5319
+      },
+      "rows_with_think_inside_assistant_content": 0,
+      "first_trained_span_prefix": "This dilemma hinges on balancing **personal responsibility** with **community norms** and **individual empathy**. Here’s how to approach it:  \n\n1. **Consider th"
+    }
+  }
+}
