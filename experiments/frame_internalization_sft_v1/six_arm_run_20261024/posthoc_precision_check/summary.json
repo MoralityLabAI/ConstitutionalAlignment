@@ -1,0 +1,180 @@
+{
+  "schema": "posthoc_precision_check.v1",
+  "registered": false,
+  "question": "Does an NF4 base (training precision) instead of bf16 (eval precision) restore the reasoning block?",
+  "design": {
+    "prompts": 10,
+    "tiers": [
+      "free",
+      "paid"
+    ],
+    "system_prompt": "F0",
+    "decoding": "greedy",
+    "max_new_tokens": 512,
+    "render": "apply_chat_template enable_thinking=True",
+    "nf4": "load_in_4bit nf4 double_quant fp16 compute (trainer load_quantized_base)",
+    "bf16": "torch.bfloat16 weights"
+  },
+  "model_dir": "C:\\Users\\patri\\.cache\\huggingface\\hub\\models--Qwen--Qwen3-1.7B\\snapshots\\70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "adapters": {
+    "neutral_reflection": "f8651192adba7d570e10d436c2ac59ddec608858f416c7758381958843a14d89",
+    "F1_reflection": "a048c9ff393d7000b8ef0e1a167da9e27f00ec306396251f60810332d052e3ae",
+    "F1_demonstration": "a2b0bcc089d1633c081495d35e59cfd1b0c61341b5702fbb3b8470a103644b3f",
+    "F3_reflection": "94448af4c9d08b95627bae59ee7e915e3c482d097646d837bd577c6e9e490802",
+    "F3_demonstration": "cedbef569dd43f9b457c07079da136b094d9b4f0a95cdd1948669adc0ee00326",
+    "F3_concrete_reflection": "c58a2195148dbe96b87a6fd8c3f4c133b8d05cc1af3e81274383d15680d4890e"
+  },
+  "env": {
+    "python": "3.12.14",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.17.0",
+    "peft": "0.21.1",
+    "bitsandbytes": "0.50.2",
+    "gpu": "NVIDIA GeForce RTX 5080 Laptop GPU"
+  },
+  "generator_sha256": "c5b53339a4d9e3579334beea93e938232566d43c7697153d155df89c8dee0d9a",
+  "script_sha256": "e54453cbd7bf64e85ea2d61ee6df77fe507c16e3956a2ae3597954217047e083",
+  "seconds": 1581.6,
+  "summary": {
+    "bf16/base": {
+      "rows": 20,
+      "reasoning_present": 17,
+      "opens_think": 20,
+      "empty_think": 0,
+      "tag_present": 17,
+      "truncated": 10,
+      "valid_registered_rule": 10,
+      "seconds": 99.8
+    },
+    "bf16/neutral_reflection": {
+      "rows": 20,
+      "reasoning_present": 0,
+      "opens_think": 20,
+      "empty_think": 20,
+      "tag_present": 20,
+      "truncated": 0,
+      "valid_registered_rule": 0,
+      "seconds": 108.8
+    },
+    "bf16/F1_reflection": {
+      "rows": 20,
+      "reasoning_present": 0,
+      "opens_think": 20,
+      "empty_think": 20,
+      "tag_present": 20,
+      "truncated": 0,
+      "valid_registered_rule": 0,
+      "seconds": 92.3
+    },
+    "bf16/F1_demonstration": {
+      "rows": 20,
+      "reasoning_present": 14,
+      "opens_think": 20,
+      "empty_think": 3,
+      "tag_present": 17,
+      "truncated": 6,
+      "valid_registered_rule": 11,
+      "seconds": 136.9
+    },
+    "bf16/F3_reflection": {
+      "rows": 20,
+      "reasoning_present": 0,
+      "opens_think": 20,
+      "empty_think": 20,
+      "tag_present": 20,
+      "truncated": 0,
+      "valid_registered_rule": 0,
+      "seconds": 95.2
+    },
+    "bf16/F3_demonstration": {
+      "rows": 20,
+      "reasoning_present": 16,
+      "opens_think": 20,
+      "empty_think": 2,
+      "tag_present": 18,
+      "truncated": 5,
+      "valid_registered_rule": 13,
+      "seconds": 143.8
+    },
+    "bf16/F3_concrete_reflection": {
+      "rows": 20,
+      "reasoning_present": 0,
+      "opens_think": 20,
+      "empty_think": 20,
+      "tag_present": 20,
+      "truncated": 0,
+      "valid_registered_rule": 0,
+      "seconds": 110.2
+    },
+    "nf4/base": {
+      "rows": 20,
+      "reasoning_present": 19,
+      "opens_think": 20,
+      "empty_think": 0,
+      "tag_present": 19,
+      "truncated": 6,
+      "valid_registered_rule": 14,
+      "seconds": 131.5
+    },
+    "nf4/neutral_reflection": {
+      "rows": 20,
+      "reasoning_present": 0,
+      "opens_think": 20,
+      "empty_think": 20,
+      "tag_present": 20,
+      "truncated": 0,
+      "valid_registered_rule": 0,
+      "seconds": 145.9
+    },
+    "nf4/F1_reflection": {
+      "rows": 20,
+      "reasoning_present": 0,
+      "opens_think": 20,
+      "empty_think": 20,
+      "tag_present": 20,
+      "truncated": 1,
+      "valid_registered_rule": 0,
+      "seconds": 146.6
+    },
+    "nf4/F1_demonstration": {
+      "rows": 20,
+      "reasoning_present": 0,
+      "opens_think": 20,
+      "empty_think": 20,
+      "tag_present": 20,
+      "truncated": 0,
+      "valid_registered_rule": 0,
+      "seconds": 88.5
+    },
+    "nf4/F3_reflection": {
+      "rows": 20,
+      "reasoning_present": 0,
+      "opens_think": 20,
+      "empty_think": 20,
+      "tag_present": 20,
+      "truncated": 1,
+      "valid_registered_rule": 0,
+      "seconds": 111.7
+    },
+    "nf4/F3_demonstration": {
+      "rows": 20,
+      "reasoning_present": 0,
+      "opens_think": 20,
+      "empty_think": 20,
+      "tag_present": 20,
+      "truncated": 0,
+      "valid_registered_rule": 0,
+      "seconds": 52.2
+    },
+    "nf4/F3_concrete_reflection": {
+      "rows": 20,
+      "reasoning_present": 0,
+      "opens_think": 20,
+      "empty_think": 20,
+      "tag_present": 20,
+      "truncated": 0,
+      "valid_registered_rule": 0,
+      "seconds": 106.2
+    }
+  }
+}
