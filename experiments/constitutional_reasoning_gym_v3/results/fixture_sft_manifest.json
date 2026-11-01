@@ -1,0 +1,20 @@
+{
+  "accepted_semantic_motifs": 32,
+  "arms": {
+    "jinn_masked": {"groups": 32, "rows": 80, "sha256": "4b3eedb79fb6191e6ed4f410d0b813ec06cd59f8be14f05f81376104a5ce01c2"},
+    "jinn_supervised": {"groups": 32, "rows": 80, "sha256": "dfce11030832fa806d8e554fce2c62f2a8a00fc73f8b70ed1a497b5e38960a2e"},
+    "secular_masked": {"groups": 32, "rows": 80, "sha256": "72b57648729828f408ba0f044de61420735684251a19677d8b6db491cfa4ea44"},
+    "secular_supervised": {"groups": 32, "rows": 80, "sha256": "f2890141243bc3be49e038e0ffc8ff2698fb544516228db053e809c6f1fdc11e"}
+  },
+  "assigned_cases": 64,
+  "claim": "reason-supervision contrast conditional on identical teacher-forced rationale context",
+  "common_schema_warmup_every_n_cases": 4,
+  "duplicate_semantic_motifs_removed": 0,
+  "final_test_access": false,
+  "fixture_only": true,
+  "matched_context_for_loss_ablation": true,
+  "natural_eos_targets": 1,
+  "paired_cases": 64,
+  "status": "SFT_EXPORT_READY",
+  "teacher_selection_applies_only_to_train": true
+}

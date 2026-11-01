@@ -1,0 +1,30 @@
+{
+  "arms": {
+    "O1": {
+      "J_minus_bounds": ["0", "0"],
+      "J_minus_observed_lower": "0",
+      "accurate_reporting_all_assigned": "1",
+      "accurate_reporting_bounds": ["1", "1"],
+      "assigned": 256,
+      "correct_action_bounds": ["1/2", "1/2"],
+      "coverage": "1",
+      "unknown": 0
+    },
+    "S1": {
+      "J_minus_bounds": ["1", "1"],
+      "J_minus_observed_lower": "1",
+      "accurate_reporting_all_assigned": "1",
+      "accurate_reporting_bounds": ["1", "1"],
+      "assigned": 256,
+      "correct_action_bounds": ["1", "1"],
+      "coverage": "1",
+      "unknown": 0
+    }
+  },
+  "blocks": 16,
+  "calibration_only": true,
+  "final_test_access": false,
+  "plan_sha256": "a2331ab5485dafea40b5b887164fc8f6c4495d399c6c8d3c55155d124617f124",
+  "records": 512,
+  "status": "SYNTHETIC_FUNCTION_CHECK"
+}

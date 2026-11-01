@@ -1,0 +1,111 @@
+{
+  "SFT_model_training": false,
+  "evaluation": {
+    "arms": {
+      "O1": {
+        "J_minus_bounds": ["0", "0"],
+        "J_minus_observed_lower": "0",
+        "accurate_reporting_all_assigned": "1",
+        "accurate_reporting_bounds": ["1", "1"],
+        "assigned": 256,
+        "correct_action_bounds": ["1/2", "1/2"],
+        "coverage": "1",
+        "unknown": 0
+      },
+      "S1": {
+        "J_minus_bounds": ["1", "1"],
+        "J_minus_observed_lower": "1",
+        "accurate_reporting_all_assigned": "1",
+        "accurate_reporting_bounds": ["1", "1"],
+        "assigned": 256,
+        "correct_action_bounds": ["1", "1"],
+        "coverage": "1",
+        "unknown": 0
+      }
+    },
+    "blocks": 16,
+    "calibration_only": true,
+    "final_test_access": false,
+    "plan_sha256": "a2331ab5485dafea40b5b887164fc8f6c4495d399c6c8d3c55155d124617f124",
+    "records": 512,
+    "status": "SYNTHETIC_FUNCTION_CHECK"
+  },
+  "evidence_class": "SYNTHETIC_FIXTURES_AND_TORCH_OPERATOR_TESTS",
+  "final_test_access": false,
+  "generation": {
+    "accepted_reason_words": 8192,
+    "accepted_rewrites": 128,
+    "actual_output_tokens": 0,
+    "calls_total": 640,
+    "checkpoint_downloads": 0,
+    "completed_records": 128,
+    "contract_sha256": "6474d76e9d33334f819cbce2281db04a33fbc99ce574eac9a13faf64a63506d3",
+    "elapsed_seconds": 0.714,
+    "final_test_access": false,
+    "new_calls": 640,
+    "per_track": {
+      "confidentiality": {"accepted": 16, "generated": 16},
+      "correction": {"accepted": 16, "generated": 16},
+      "delegation": {"accepted": 16, "generated": 16},
+      "guidance": {"accepted": 16, "generated": 16},
+      "handoff": {"accepted": 16, "generated": 16},
+      "premise": {"accepted": 16, "generated": 16},
+      "reporting": {"accepted": 16, "generated": 16},
+      "reward_integrity": {"accepted": 16, "generated": 16}
+    },
+    "planned_records": 128,
+    "reason": null,
+    "rewrite_improvements": 0,
+    "rewrite_regressions": 0,
+    "shards": [
+      {"path": "raw-00000.jsonl.gz", "rows": 128, "sha256": "387b55cd4819bed2afc93f1f13c1163e4ddc0af309b4b079d77b794abf343b29"}
+    ],
+    "status": "COMPLETE",
+    "teacher": {"evidence_class": "SYNTHETIC_FIXTURE", "name": "deterministic_cpu_fixture", "weights_loaded": false}
+  },
+  "gymnasium_check": "NOT_RUN_IN_SANDBOX",
+  "huggingface_upload": false,
+  "paid_compute_jobs": 0,
+  "pretrained_teacher_run": false,
+  "python": "3.13.5",
+  "real_model_activations": false,
+  "sft_export": {
+    "accepted_semantic_motifs": 32,
+    "arms": {
+      "jinn_masked": {"groups": 32, "rows": 80, "sha256": "4b3eedb79fb6191e6ed4f410d0b813ec06cd59f8be14f05f81376104a5ce01c2"},
+      "jinn_supervised": {"groups": 32, "rows": 80, "sha256": "dfce11030832fa806d8e554fce2c62f2a8a00fc73f8b70ed1a497b5e38960a2e"},
+      "secular_masked": {"groups": 32, "rows": 80, "sha256": "72b57648729828f408ba0f044de61420735684251a19677d8b6db491cfa4ea44"},
+      "secular_supervised": {"groups": 32, "rows": 80, "sha256": "f2890141243bc3be49e038e0ffc8ff2698fb544516228db053e809c6f1fdc11e"}
+    },
+    "assigned_cases": 64,
+    "claim": "reason-supervision contrast conditional on identical teacher-forced rationale context",
+    "common_schema_warmup_every_n_cases": 4,
+    "duplicate_semantic_motifs_removed": 0,
+    "final_test_access": false,
+    "fixture_only": true,
+    "matched_context_for_loss_ablation": true,
+    "natural_eos_targets": 1,
+    "paired_cases": 64,
+    "status": "SFT_EXPORT_READY",
+    "teacher_selection_applies_only_to_train": true
+  },
+  "skipped_tests": 0,
+  "source_sha256": {
+    "__init__.py": "44c474cdaf2bc034f6ac7638404ea230fb50202c52c798038fc5d15d17fe13a5",
+    "__main__.py": "6b3e6d86f7ca40b03b7839c2f1d8be95a88682c217bfd2809133464915fea249",
+    "core.py": "c43832f6ec8e0696e6b89ca0c3e4f86d78c15c2f1bac8c757752a7f7a06bf012",
+    "data.py": "fed88e179167876aabd6151eebec48ff3f35ce5eb8c380416996473d4bdb2b52",
+    "env.py": "7acc62db8fbb7c25f52da3c99f49e043cbb6d9a36542b7e012396a4f1b138e7b",
+    "evaluate.py": "b3f1d230cc5b052f5d4be7041bbc9e5f38d75e4638724a216d85433180b42184",
+    "mechinterp.py": "e29d40e6f38a5d70f637522d9055f4bfd5ad8e57f92e240a45374611b32ad154",
+    "publishing.py": "a4a7e02c39f19b452532cc17c98a94d886ea9b6886b4d5c20c23af5c236c39f8",
+    "runtime.py": "0e113ab5e03e11bffa3fdcc7e2630fb731fd583f6097a9a41dec8113730edc36",
+    "tests/test_v3.py": "69984b64f162fef02c870a93aa2cd4ef033bf16df9746888a272b870279789ae",
+    "verify.py": "65a2a76169074d0b8984e034c4cfe120ef88993a935496ffea5187add7189f75"
+  },
+  "status": "CPU_VERIFIED",
+  "test_exit_code": 0,
+  "test_log_sha256": "10ea27ddf23b1508e76ef44cba6dc4b1d58c0c4b69cc48e14ccb98dba5cdd577",
+  "tests_run": 65,
+  "torch": "2.10.0+cpu"
+}

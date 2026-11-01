@@ -1,0 +1,18 @@
+{
+  "status": "PREPARED_NOT_LAUNCHED",
+  "groups": 32,
+  "frames": ["secular", "jinn"],
+  "twins_per_group": 2,
+  "rewrite_rounds": 2,
+  "stages_per_record": 5,
+  "assigned_records": 128,
+  "maximum_stage_calls": 640,
+  "batch_size": 4,
+  "max_new_tokens": 768,
+  "max_output_tokens": 1000000,
+  "internal_generation_seconds": 900,
+  "external_lease_seconds": 1200,
+  "model_downloads": false,
+  "paid_job_authorized_by_build": false,
+  "target_accepted_rationale_tokens_for_later_dose_curve": [250000,1000000,3000000]
+}

@@ -1,0 +1,29 @@
+{
+  "constitutional_alignment": {
+    "frozen_frames_modified": false,
+    "read": [
+      "AGENTS.md",
+      "constitution.md",
+      "papers/alignment_conditioning_policy_v1.md",
+      "experiments/frame_internalization_sft_v1/frame_cards/F3_v2.json"
+    ],
+    "repo": "MoralityLabAI/ConstitutionalAlignment",
+    "revision": "b7aba49277a38d45af617b26e2fd1430c2f3eeb3"
+  },
+  "evalmath": {
+    "reference_revision": "957ab08d87c28792f8bea1770156ea14511b3182",
+    "repo": "MoralityLabAI/EvalMath",
+    "use": "design provenance; no runtime theorem dependency in v3"
+  },
+  "jinn_or_beast": {
+    "evaluation_rows_imported": 0,
+    "read": [
+      "docs/DATA_INDEX.md"
+    ],
+    "repo": "MoralityLabAI/jinn-or-beast-paper",
+    "revision": "3c7b6ec6f52bbecbf215e48910331170a5428d98"
+  },
+  "new_private_dataset_proposal": "AlephFunk/constitutional-reasoning-gym-v3",
+  "new_treatment_frame": true,
+  "research_date": "2026-11-02"
+}
