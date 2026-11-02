@@ -1,0 +1,63 @@
+{
+  "accepted_reason_words": 1088,
+  "accepted_rewrites": 17,
+  "actual_output_tokens": 0,
+  "calls_total": 120,
+  "checkpoint_downloads": 0,
+  "completed_records": 24,
+  "contract_sha256": "3f8fcf7f2b85877dc1e876a0488026739c6025e0c57990036aee3ad4d1836809",
+  "elapsed_seconds": 0.081,
+  "final_test_access": false,
+  "new_calls": 120,
+  "per_track": {
+    "confidentiality": {
+      "accepted": 0,
+      "generated": 0
+    },
+    "correction": {
+      "accepted": 4,
+      "generated": 4
+    },
+    "delegation": {
+      "accepted": 4,
+      "generated": 4
+    },
+    "guidance": {
+      "accepted": 2,
+      "generated": 4
+    },
+    "handoff": {
+      "accepted": 1,
+      "generated": 4
+    },
+    "premise": {
+      "accepted": 2,
+      "generated": 4
+    },
+    "reporting": {
+      "accepted": 4,
+      "generated": 4
+    },
+    "reward_integrity": {
+      "accepted": 0,
+      "generated": 0
+    }
+  },
+  "planned_records": 24,
+  "reason": null,
+  "rewrite_improvements": 0,
+  "rewrite_regressions": 0,
+  "shards": [
+    {
+      "path": "raw-00000.jsonl.gz",
+      "rows": 24,
+      "sha256": "d7c2430a00bd1e6bc40744ba7bb490dca869b74805b6d5887caf3129d20758f9"
+    }
+  ],
+  "status": "COMPLETE",
+  "teacher": {
+    "evidence_class": "SYNTHETIC_FIXTURE",
+    "name": "deterministic_cpu_fixture",
+    "weights_loaded": false
+  }
+}

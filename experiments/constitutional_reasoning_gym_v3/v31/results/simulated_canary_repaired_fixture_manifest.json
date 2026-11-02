@@ -1,0 +1,117 @@
+{
+  "accepted_rewrites": 24,
+  "actual_billed_gpu_minutes": null,
+  "actual_output_tokens": 0,
+  "by_frame": {
+    "jinn": {
+      "accepted": 12,
+      "complete": 12
+    },
+    "secular": {
+      "accepted": 12,
+      "complete": 12
+    }
+  },
+  "by_track": {
+    "confidentiality": {
+      "accepted": 0,
+      "complete": 0
+    },
+    "correction": {
+      "accepted": 4,
+      "complete": 4
+    },
+    "delegation": {
+      "accepted": 4,
+      "complete": 4
+    },
+    "guidance": {
+      "accepted": 4,
+      "complete": 4
+    },
+    "handoff": {
+      "accepted": 4,
+      "complete": 4
+    },
+    "premise": {
+      "accepted": 4,
+      "complete": 4
+    },
+    "reporting": {
+      "accepted": 4,
+      "complete": 4
+    },
+    "reward_integrity": {
+      "accepted": 0,
+      "complete": 0
+    }
+  },
+  "calls_total": 7,
+  "completed_records": 24,
+  "contract_sha256": "8595c6884076f24b84b4c1a51caa7eeb957b56f9f8d1fd94317d54c63a184e91",
+  "distinct_accepted_reason_texts": 3,
+  "distinct_accepted_reason_words": 192,
+  "draft_accepted": 17,
+  "elapsed_seconds": 0.025,
+  "end_group_exclusive": 6,
+  "evidence_class": "SYNTHETIC_FIXTURE",
+  "final_test_access": false,
+  "free_text_semantics_verified": false,
+  "human_semantic_review_required": true,
+  "legacy_source": {
+    "contract_sha256": "1b9db17321f7b2fdc289268ac2c0bad1cbadf59d007247ae29e4197840e91a16",
+    "imported_original_source_revision": "b7aba49277a38d45af617b26e2fd1430c2f3eeb3",
+    "journal_sha256": "21919c3ec2ae9b43613f1c440defeea91e30ece0c91a8e8d6a3aa3392cd23f04",
+    "manifest_sha256": "7c78cdb960cb4a325254c2c28137e5a831a784f5abfb5ab93c147dc1b941708d",
+    "original_generation_schema": "ca-gym-v3-generation-v1",
+    "source_assigned_groups": 6,
+    "source_completed_records": 24,
+    "source_final_test_access": false,
+    "source_seed": 41,
+    "source_shards": {
+      "raw-00000.jsonl.gz": "d7c2430a00bd1e6bc40744ba7bb490dca869b74805b6d5887caf3129d20758f9"
+    },
+    "source_teacher": {
+      "evidence_class": "SYNTHETIC_FIXTURE",
+      "name": "deterministic_cpu_fixture",
+      "weights_loaded": false
+    }
+  },
+  "new_calls": 7,
+  "new_targeted_repair_successes": 7,
+  "origin_counts": {
+    "LEGACY_COMPLETED_ROW": 24
+  },
+  "paid_gpu_jobs_launched_by_this_code": 0,
+  "paired_accepted_motifs": 6,
+  "paired_motif_ids": [
+    "037250b57bb580ec5377fc9b",
+    "7ee6a27fbd4b55c48b6f36df",
+    "a096cbddb6cdc4ff372fa219",
+    "c5a5bfc7135237cccb7819aa",
+    "cc5c05fb8be57e742fa768f9",
+    "ee5abcb922316d22e6122ffd"
+  ],
+  "planned_records": 24,
+  "reason": null,
+  "repair_regressions": 0,
+  "repair_successes": 7,
+  "repaired_records": 7,
+  "shards": [
+    {
+      "path": "raw-00000.jsonl.gz",
+      "rows": 24,
+      "sha256": "038ac1888a67d1e5c4511d3de72f9acce26dab4d3ea95e85bea50224fc255133"
+    }
+  ],
+  "start_group": 0,
+  "status": "COMPLETE",
+  "teacher": {
+    "evidence_class": "SYNTHETIC_FIXTURE",
+    "name": "deterministic_cpu_fixture",
+    "weights_loaded": false
+  },
+  "tokenizer_counted_accepted_tokens": null,
+  "unresolved_error_codes": {},
+  "v31_version": "ca-gym-v3.1.0"
+}

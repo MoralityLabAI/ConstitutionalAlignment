@@ -1,0 +1,48 @@
+test_ambiguous_record_unauthenticated (test_v31.AuditTests.test_ambiguous_record_unauthenticated) ... ok
+test_bad_cf_rejected (test_v31.AuditTests.test_bad_cf_rejected) ... ok
+test_eval_rejected (test_v31.AuditTests.test_eval_rejected) ... ok
+test_false_is_auth_negative (test_v31.AuditTests.test_false_is_auth_negative) ... ok
+test_false_record_not_verified (test_v31.AuditTests.test_false_record_not_verified) ... ok
+test_false_vs_unauthenticated (test_v31.AuditTests.test_false_vs_unauthenticated) ... ok
+test_initial_request_no_answer_key (test_v31.AuditTests.test_initial_request_no_answer_key) ... ok
+test_invalid_json (test_v31.AuditTests.test_invalid_json) ... ok
+test_repair_request_contains_feedback (test_v31.AuditTests.test_repair_request_contains_feedback) ... ok
+test_semantic_scope (test_v31.AuditTests.test_semantic_scope) ... ok
+test_targeted_feedback_truth (test_v31.AuditTests.test_targeted_feedback_truth) ... ok
+test_untrusted_hint_exception (test_v31.AuditTests.test_untrusted_hint_exception) ... ok
+test_valid_draft (test_v31.AuditTests.test_valid_draft) ... ok
+test_wrong_pivot_missing (test_v31.AuditTests.test_wrong_pivot_missing) ... ok
+test_17_of_24_original_repair_7_with_7_calls (test_v31.CanaryShapeTests.test_17_of_24_original_repair_7_with_7_calls) ... ok
+test_budget_stops_before_calls (test_v31.GenerationTests.test_budget_stops_before_calls) ... ok
+test_contract_drift (test_v31.GenerationTests.test_contract_drift) ... ok
+test_disjoint_generation_windows (test_v31.GenerationTests.test_disjoint_generation_windows) ... ok
+test_ending_at_failed_repair (test_v31.GenerationTests.test_ending_at_failed_repair) ... ok
+test_exact_feedback_repair (test_v31.GenerationTests.test_exact_feedback_repair) ... ok
+test_failing_export_reaudit (test_v31.GenerationTests.test_failing_export_reaudit) ... ok
+test_five_to_one_fixture_calls (test_v31.GenerationTests.test_five_to_one_fixture_calls) ... ok
+test_fixture_export_blocked (test_v31.GenerationTests.test_fixture_export_blocked) ... ok
+test_invalid_window_rejected (test_v31.GenerationTests.test_invalid_window_rejected) ... ok
+test_no_legacy_overwrite (test_v31.GenerationTests.test_no_legacy_overwrite) ... ok
+test_no_repair_budget (test_v31.GenerationTests.test_no_repair_budget) ... ok
+test_one_call_when_valid (test_v31.GenerationTests.test_one_call_when_valid) ... ok
+test_polarity_regeneration (test_v31.GenerationTests.test_polarity_regeneration) ... ok
+test_resume_no_new_calls (test_v31.GenerationTests.test_resume_no_new_calls) ... ok
+test_resume_repair_idempotent (test_v31.GenerationTests.test_resume_repair_idempotent) ... ok
+test_semantic_motif_coverage (test_v31.GenerationTests.test_semantic_motif_coverage) ... ok
+test_source_manifest_rejects_eval (test_v31.GenerationTests.test_source_manifest_rejects_eval) ... ok
+test_source_shard_tamper_detected (test_v31.GenerationTests.test_source_shard_tamper_detected) ... ok
+test_strict_output_tokens (test_v31.GenerationTests.test_strict_output_tokens) ... ok
+test_archive_stays_unchanged (test_v31.LegacyTests.test_archive_stays_unchanged) ... ok
+test_bad_case_assignment (test_v31.LegacyTests.test_bad_case_assignment) ... ok
+test_earlier_good_revision_beats_failed_final (test_v31.LegacyTests.test_earlier_good_revision_beats_failed_final) ... ok
+test_import_all_completed_records (test_v31.LegacyTests.test_import_all_completed_records) ... ok
+test_mismatch_teacher_class (test_v31.LegacyTests.test_mismatch_teacher_class) ... ok
+test_polarity_failed_source_repaired_only_where_needed (test_v31.LegacyTests.test_polarity_failed_source_repaired_only_where_needed) ... ok
+test_recovery_of_partial_journal_drafts (test_v31.LegacyTests.test_recovery_of_partial_journal_drafts) ... ok
+test_model_token_ids_are_verified (test_v31.ModelCallIntegrityTests.test_model_token_ids_are_verified) ... ok
+test_runtime_abort_preserves_journal_and_manifest (test_v31.ModelCallIntegrityTests.test_runtime_abort_preserves_journal_and_manifest) ... ok
+
+----------------------------------------------------------------------
+Ran 43 tests in 0.618s
+
+OK

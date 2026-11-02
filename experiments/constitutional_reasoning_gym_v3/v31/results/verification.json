@@ -1,0 +1,111 @@
+{
+  "GPU_leases_started": 0,
+  "HuggingFace_upload": false,
+  "actual_Silico_canary_access": false,
+  "artifacts": {
+    "SFT_manifest": {
+      "path": "v31_sft/manifest.json",
+      "sha256": "9d653e6ce3381e74d1cde2e89d91bc94278d0ec655b0088d078d013753651ea3"
+    },
+    "adaptive_fixture_manifest": {
+      "path": "v31_adaptive/manifest.json",
+      "sha256": "ca753363bfa6ecc13df6291916921823486f20ab2a9bbcecc5d40e56cec3c293"
+    },
+    "adaptive_vs_five_stage": {
+      "path": "adaptive_vs_five_stage.json",
+      "sha256": "67eeecec2276def07f9cf46e1acfdd482bd260fed1c30be31e0713ee51a17877"
+    },
+    "old_fixture_manifest": {
+      "path": "v30_five_stage/manifest.json",
+      "sha256": "7773a6cf00237ac09592789c2fefc58b154f7d80aa7229bee7dfe1abdc42d18f"
+    },
+    "repaired_SFT_manifest": {
+      "path": "simulated_new_sft/manifest.json",
+      "sha256": "01edad6ab5ef8e48e1d5772fa7d85afbf07502eb0c3e39fd0e5c3707bd0f2ea7"
+    },
+    "simulated_canary_comparison": {
+      "path": "simulated_canary_comparison.json",
+      "sha256": "9c410c605cfa507d5cf572d92853cdb51ddca4cb8b86b9d033d4d203bca7613d"
+    },
+    "simulated_legacy_manifest": {
+      "path": "simulated_canary_v30/manifest.json",
+      "sha256": "7c78cdb960cb4a325254c2c28137e5a831a784f5abfb5ab93c147dc1b941708d"
+    },
+    "simulated_repair_manifest": {
+      "path": "simulated_canary_v31/manifest.json",
+      "sha256": "9dcc7f8661699ac0d085b3d58cdecf91f7f37de847eb3f0d59e42994b8512173"
+    }
+  },
+  "evidence_class": "SYNTHETIC_FIXTURE_ONLY",
+  "final_test_access": false,
+  "human_semantic_review_required": true,
+  "measured_GPU_cost": null,
+  "model_training": false,
+  "ordinary_fixture": {
+    "complete_motifs": 8,
+    "matched_rows": 32,
+    "stage_calls_ratio_old_to_new": 5.0,
+    "v30_teacher_stage_calls": 160,
+    "v31_SFT_rows_per_arm": {
+      "jinn_masked": 20,
+      "jinn_supervised": 20,
+      "secular_masked": 20,
+      "secular_supervised": 20
+    },
+    "v31_teacher_stage_calls": 32
+  },
+  "python": "3.13.5",
+  "result_claim": "Deterministic CPU pipeline and fault-injected analogue only; no real-model data improvement demonstrated",
+  "simulated_canary_shape": {
+    "new_SFT_rows_per_arm": {
+      "jinn_masked": 15,
+      "jinn_supervised": 15,
+      "secular_masked": 15,
+      "secular_supervised": 15
+    },
+    "new_accepted": 24,
+    "new_complete_motifs": 6,
+    "new_repair_calls": 7,
+    "old_accepted_final": 17,
+    "old_complete_motifs": 3,
+    "old_completed": 24
+  },
+  "source_sha256": {
+    "experiments/constitutional_reasoning_gym_v3/core.py": "c43832f6ec8e0696e6b89ca0c3e4f86d78c15c2f1bac8c757752a7f7a06bf012",
+    "experiments/constitutional_reasoning_gym_v3/data.py": "fed88e179167876aabd6151eebec48ff3f35ce5eb8c380416996473d4bdb2b52",
+    "experiments/constitutional_reasoning_gym_v3/runtime.py": "0e113ab5e03e11bffa3fdcc7e2630fb731fd583f6097a9a41dec8113730edc36",
+    "experiments/constitutional_reasoning_gym_v3/v31/README.md": "4c9200778f918b83aa2a47b7e16b7bf357c4645368d0e370ef43f3ebcc26c89a",
+    "experiments/constitutional_reasoning_gym_v3/v31/__init__.py": "8be1a3ba448962a018fb6fb1973836b7875a2972231fa1f8808fe699e0f54101",
+    "experiments/constitutional_reasoning_gym_v3/v31/__main__.py": "c901d0592e5b2c9617434e9f636caa0b613de601312d254326edbb72d7befe9c",
+    "experiments/constitutional_reasoning_gym_v3/v31/audit.py": "f7d006faba9a19c3280f11641ac91d133b305960690966f06634e1f53506fc2c",
+    "experiments/constitutional_reasoning_gym_v3/v31/compare.py": "eaf8b2f56186553ae03815bf7be908c0740c6060330c456d2951dfc712e674ef",
+    "experiments/constitutional_reasoning_gym_v3/v31/generator.py": "fff648e3bf84171269e5120c91f17a39223569031a289442c34bb63a25d8ab0d",
+    "experiments/constitutional_reasoning_gym_v3/v31/scripts/silico_v31_repair.sh": "7d4fdae1b6d772589ed44453f1ef9286b0b5ca7b6f884d9264eda34769240050",
+    "experiments/constitutional_reasoning_gym_v3/v31/tests/test_v31.py": "2bdbc6b84ccaa709a147757e2f3e46a8acdde69ea4f34e3757836e9a6f0dcdf2",
+    "experiments/constitutional_reasoning_gym_v3/v31/verify.py": "ecbac45a41928a069c040657b2047519ad44b7ef62fd6a9387a71ab119182bef"
+  },
+  "status": "CPU_VERIFIED",
+  "tests": [
+    {
+      "command": "/opt/pyvenv/bin/python -m unittest discover -s experiments/constitutional_reasoning_gym_v3/tests -v",
+      "count": 65,
+      "log_sha256": "a2ef8e8d897e849e3c781c550ce52f269a4d041de0a074a7203b086e0ef5b5ca",
+      "skipped": 0,
+      "status": "PASS",
+      "suite": "v3-legacy"
+    },
+    {
+      "command": "/opt/pyvenv/bin/python -m unittest discover -s experiments/constitutional_reasoning_gym_v3/v31/tests -v",
+      "count": 43,
+      "log_sha256": "72104077c056d72f8b424b30bab7174684cf71b989fd6fb636160e95e3fefe3e",
+      "skipped": 0,
+      "status": "PASS",
+      "suite": "v31-adaptive"
+    }
+  ],
+  "tests_skipped": 0,
+  "tests_total": 108,
+  "tokenizer_measured_accepted_tokens": null,
+  "trained_teacher_calls": 0,
+  "version": "ca-gym-v3.1.0"
+}

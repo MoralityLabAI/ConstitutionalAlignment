@@ -1,0 +1,28 @@
+{
+  "claim": "Observed acceptance, failure codes and generation calls. No causal training or mechanistic effect.",
+  "matched_case_frame_records": 32,
+  "new": {
+    "error_codes": {},
+    "legacy_oracle_accepted": 32,
+    "rationale_words": 2048,
+    "v31_polarity_screen_accepted": 32
+  },
+  "new_calls_to_teacher": 32,
+  "new_candidate_stages_in_matched_rows": 32,
+  "new_complete_records": 32,
+  "new_fully_paired_motifs": 8,
+  "new_status": "COMPLETE",
+  "observed_billed_GPU_time": null,
+  "old": {
+    "error_codes": {},
+    "legacy_oracle_accepted": 32,
+    "rationale_words": 2048,
+    "v31_polarity_screen_accepted": 32
+  },
+  "old_candidate_stages_in_matched_rows": 160,
+  "old_complete_records": 32,
+  "old_status": "COMPLETE",
+  "real_model_result": false,
+  "source_legacy_calls_total": 160,
+  "status": "DESCRIPTIVE_MATCHED_CPU_COMPARISON"
+}

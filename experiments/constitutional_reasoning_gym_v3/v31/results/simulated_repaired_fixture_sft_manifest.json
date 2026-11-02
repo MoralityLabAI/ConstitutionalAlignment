@@ -1,0 +1,40 @@
+{
+  "accepted_polarity_screened": true,
+  "accepted_semantic_motifs": 6,
+  "arms": {
+    "jinn_masked": {
+      "groups": 6,
+      "rows": 15,
+      "sha256": "5f00f284aa9dd5cefeebc0cbd2e257146a5edd2f2e6f7da4fcbbb7e93f8b40e5"
+    },
+    "jinn_supervised": {
+      "groups": 6,
+      "rows": 15,
+      "sha256": "883ba3b3c82fdb08fc02f3ba2fa78d24e55c64cee2ec33a9109c11bd14fccaf9"
+    },
+    "secular_masked": {
+      "groups": 6,
+      "rows": 15,
+      "sha256": "900329587294a76157b055579542339d768a217162c8800b69e619706bf40fb7"
+    },
+    "secular_supervised": {
+      "groups": 6,
+      "rows": 15,
+      "sha256": "62d17b101829c8145208b01e29e889c55aad624710357904847c11132fed808a"
+    }
+  },
+  "assigned_cases": 12,
+  "claim": "reason-supervision contrast conditional on identical teacher-forced rationale context",
+  "common_schema_warmup_every_n_cases": 4,
+  "duplicate_semantic_motifs_removed": 0,
+  "final_test_access": false,
+  "fixture_only": true,
+  "free_text_semantics_verified": false,
+  "human_semantic_review_required": true,
+  "matched_context_for_loss_ablation": true,
+  "natural_eos_targets": 1,
+  "paired_cases": 12,
+  "source_v31": "ca-gym-v3.1.0",
+  "status": "SFT_EXPORT_READY",
+  "teacher_selection_applies_only_to_train": true
+}

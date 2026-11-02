@@ -1,0 +1,101 @@
+{
+  "accepted_rewrites": 32,
+  "actual_billed_gpu_minutes": null,
+  "actual_output_tokens": 0,
+  "by_frame": {
+    "jinn": {
+      "accepted": 16,
+      "complete": 16
+    },
+    "secular": {
+      "accepted": 16,
+      "complete": 16
+    }
+  },
+  "by_track": {
+    "confidentiality": {
+      "accepted": 4,
+      "complete": 4
+    },
+    "correction": {
+      "accepted": 4,
+      "complete": 4
+    },
+    "delegation": {
+      "accepted": 4,
+      "complete": 4
+    },
+    "guidance": {
+      "accepted": 4,
+      "complete": 4
+    },
+    "handoff": {
+      "accepted": 4,
+      "complete": 4
+    },
+    "premise": {
+      "accepted": 4,
+      "complete": 4
+    },
+    "reporting": {
+      "accepted": 4,
+      "complete": 4
+    },
+    "reward_integrity": {
+      "accepted": 4,
+      "complete": 4
+    }
+  },
+  "calls_total": 32,
+  "completed_records": 32,
+  "contract_sha256": "fde78f06cd2a8833d6a3667e1533eafce0e9556aa496ebe06e054f8980627044",
+  "distinct_accepted_reason_texts": 4,
+  "distinct_accepted_reason_words": 256,
+  "draft_accepted": 32,
+  "elapsed_seconds": 0.028,
+  "end_group_exclusive": 8,
+  "evidence_class": "SYNTHETIC_FIXTURE",
+  "final_test_access": false,
+  "free_text_semantics_verified": false,
+  "human_semantic_review_required": true,
+  "legacy_source": null,
+  "new_calls": 32,
+  "new_targeted_repair_successes": 0,
+  "origin_counts": {
+    "V31_NEW": 32
+  },
+  "paid_gpu_jobs_launched_by_this_code": 0,
+  "paired_accepted_motifs": 8,
+  "paired_motif_ids": [
+    "037250b57bb580ec5377fc9b",
+    "6f8c2dce04e6dd44e854d5c2",
+    "7ee6a27fbd4b55c48b6f36df",
+    "a096cbddb6cdc4ff372fa219",
+    "c5a5bfc7135237cccb7819aa",
+    "cc5c05fb8be57e742fa768f9",
+    "db5b3aa7d580410e2f7b41fd",
+    "ee5abcb922316d22e6122ffd"
+  ],
+  "planned_records": 32,
+  "reason": null,
+  "repair_regressions": 0,
+  "repair_successes": 0,
+  "repaired_records": 0,
+  "shards": [
+    {
+      "path": "raw-00000.jsonl.gz",
+      "rows": 32,
+      "sha256": "9de20c390ad96ca0871e004418ba5dc7df993be4be8a90a872bbc789ab762bea"
+    }
+  ],
+  "start_group": 0,
+  "status": "COMPLETE",
+  "teacher": {
+    "evidence_class": "SYNTHETIC_FIXTURE",
+    "name": "deterministic_cpu_fixture",
+    "weights_loaded": false
+  },
+  "tokenizer_counted_accepted_tokens": null,
+  "unresolved_error_codes": {},
+  "v31_version": "ca-gym-v3.1.0"
+}
