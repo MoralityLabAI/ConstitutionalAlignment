@@ -1,9 +1,11 @@
-# Executed CPU evidence
+# Sandbox verification
 
-The committed receipt binds 281 successful CPU tests, comprising 49 new integration tests and 232 prior regressions, with zero skips. The frozen v4 corpus was independently rebuilt and all 320 rows were admitted only after certificate and text regeneration. The old regression run was reproduced separately and its source hashes rechecked when composing this receipt.
+286 tests passed with zero skips: 232 upstream tests and 54 new integration tests.
+The tiny Torch fixture completed 36 updates per adapter (72 total), saving half
+and final checkpoints. The scripted evaluation preserved all 384 assignments.
 
-A character-offset tokenizer double exercised input boundaries and supervision masks. Its counts are synthetic software fixtures. The retained Qwen tokenizer was unavailable, so `student_tokenizer_measurement` is `NOT_RUN_TOKENIZER_NOT_MOUNTED`. The worker's tokenizer-only command supplies the missing production measurements without allocating a GPU.
-
-Tiny Torch tests performed real optimizer/backward operations on random local modules. They did not load Qwen, exercise PEFT on a pretrained model or run a GPU. Transfer-policy controls are deterministic function checks. No new student training, model inference, Hugging Face upload or sealed-test access happened here.
-
-The downloadable archive includes logs, regenerated corpus, synthetic preflight and control rollouts. CI regenerates equivalent evidence and checks Python source hashes; platform timings and log hashes may differ.
+`cpu_receipt.json` binds the tested sources. `fixture_tokenizer.json` measures an
+explicit deterministic test tokenizer, never Qwen. `tiny_training_receipt.json`
+records optimization of a small newly initialized Torch model, not a pretrained
+student. Native Qwen tokenization, CUDA/PEFT loading and model evaluation remain
+for the worker. No GPU, Hub upload or remote GitHub write occurred in this run.

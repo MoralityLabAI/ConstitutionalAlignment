@@ -1,67 +1,61 @@
-# Ontology v4 source-aware training integration
+# Ontological Constitution v4: source-aware training integration
 
-This sibling package admits the existing certificate-rendered ontology curriculum into a dedicated trainer. The v3/v3.1 trainer, v4 curriculum, source proofs and their old receipts are unchanged.
+Base: `MoralityLabAI/ConstitutionalAlignment@af65c17d2f85fc2049c50a4074e518bcf903dbf7`.
+This sibling package leaves every v4 certificate, old trainer and earlier receipt unchanged.
 
-## Admission
+## Executable first comparison
 
-The input is the default v4 build: 320 rows, twenty semantic groups, four interpretations and two views, with two shared option permutations. Admission rebuilds every row, verifies every certificate and compares all source text and source labels. Changed prose, a rehashed false explanation, test rows, missing files, extra files in the manifest and reclassification as `MODEL_GENERATED` fail admission. The training source remains `CERTIFICATE_RENDERED_PUBLIC_EXPLANATION`.
+The bounded pilot trains **formal-control derivation** and **Platonic-grounding derivation** adapters from the same retained base. Each receives one source-checked example from every one of the 20 semantic groups, followed in a common shuffled schedule by 16 identical practical exercises. This is 36 optimizer updates per adapter, interleaved in 36 paired blocks. The within-block adapter order alternates.
 
-## Encoding and CPU preflight
+Practical exercises use v4's explicit normative premises and independently recomputed applications, with a separate declared training seed. The familiar numeric JSON schema is shared. These exercises and the evaluation use known scenario templates. New option mappings do not constitute structural holdout evidence.
 
-Preflight loads only the already-local fast student tokenizer with its native chat template. It never loads model weights or requests CUDA. The full prompt/response sequence is tokenized once; offsets determine masked prompt tokens, rationale targets and action targets. Tokenization across the prompt boundary is checked explicitly. One supervised natural EOS terminates each response. There is no padding or truncation in the microbatch-one pilot.
+Both rank-16 LoRA adapters begin with identical weights. They have independent AdamW state, equal learning rates and no dropout. The base is frozen. Every update activates only the intended adapter. Snapshots are saved at half and final dose. No historical S1/O1 adapter or rejected v3 prose enters this training run.
 
-The continuation is `Rationale:` plus the certified explanation followed by `Action:` and numeric JSON, matching the existing v4-to-SFT mapping. `enable_thinking=False` is passed to the native template; the exact rendered prefix and its hash are recorded. The production preflight refuses a missing native template, a slow tokenizer, context overflow or inconsistent EOS behavior.
+The pilot has equal example counts and updates. Its input and target-token counts differ naturally between interpretations and are reported. Segment-normalized rationale/action weights are 0.25/1. This is an integration and exploratory curriculum-package comparison; it does not identify an equal-token or proof-versus-exposition interaction.
 
-The CPU receipt uses a clearly identified character-offset test double. It is **not** a measurement of the Qwen tokenizer. Real counts are produced on the worker, where the retained tokenizer exists.
+## Admission and native-tokenizer check
+
+`contracts.load_corpus` checks the pinned upstream source receipt, all eight export file hashes and the entire regenerated 320-row roster. Each certificate and rendered target is checked again before encoding. Arbitrary teacher prose, edited proof conclusions, duplicated or omitted records, and different source evidence classes fail admission.
+
+The explicit source type remains `CERTIFICATE_RENDERED_PUBLIC_EXPLANATION`. The original production trainer still rejects this class. A new verified practice type is scoped to the built-in constructive exercises; arbitrary records cannot request that type.
+
+Native preflight reads an already-mounted local tokenizer, its config and template. It loads no model weights and uses no network. It records all eight curricula's token counts, the selected pair's actual token exposure, length maxima, and 36 natural EOS targets per arm. Overflow fails before GPU provisioning. Prompt labels are masked; target EOS tokens are never manufactured to equalize lengths.
+
+A test tokenizer supports CPU regressions. Its counts are labeled `DETERMINISTIC_TEST_TOKENIZER_NOT_QWEN` and the production pilot refuses that receipt. The immutable revision string is a declaration until the worker compares the tokenizer hashes with the retained snapshot receipt.
+
+## Commands
+
+Run from a fresh checkout of the base plus the supplied integration patch:
 
 ```bash
-python -m experiments.ontological_constitution_v4 build --out "$RUN/corpus"
+python -m experiments.ontological_constitution_v4_training verify --out /tmp/v4-training-check
+python -m experiments.ontological_constitution_v4_training prepare --out /durable/v4-prepared
 python -m experiments.ontological_constitution_v4_training preflight \
-  --corpus "$RUN/corpus" --tokenizer "$BASE" --revision "$REVISION" \
-  --out "$RUN/preflight.json" --steps-per-arm 20 --seed 11
+  --corpus /durable/v4-prepared/corpus --tokenizer "$BASE" \
+  --revision 1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0 \
+  --out /durable/v4-native-preflight
 ```
 
-All eight curriculum files are token-audited. The receipt additionally records the exact scheduled exposure of the selected pair. The worker must match tokenizer/config hashes and the retained checkpoint receipt to the declared revision; a supplied revision string alone provides no attestation of weight origin.
-
-## First pilot
-
-Default pair: `formal_control` versus `platonic_grounding`, both using the derivation view. A frozen twenty-update schedule visits every semantic group once per arm. Option permutations rotate and arm execution order is balanced. Both receive the same proof structure, choice target, update count and per-example segment weights. Raw input and rationale-token differences are measured and remain part of the interpretation contrast. The run does not claim equal raw token exposure or a proof-versus-prose factorial result.
-
-Load the retained base once, attach two fresh rank-16 LoRA adapters with alpha 32 and dropout zero, and verify that their initial state hashes match. Optimizers must have disjoint trainable parameters. The base stays frozen. Each loss is 0.25 times the example's mean rationale CE plus its mean action CE. The code reuses the tested segmented loss from v3.
-
-Training alternates arms within rounds. A high loss does not skip the other arm; infrastructure failures preserve the per-arm status and produce a partial run. Final adapters, tokenized exposure, gradient/loss records, CUDA allocated/reserved peaks and package versions are saved. The small pilot has final checkpoints only; larger learning-curve studies can add matched intermediate checkpoints separately.
-
-## Behavioral calibration
-
-After saving adapters, evaluate a separately versioned two-arm projection of the existing v4 transfer cases. The default worker launcher uses four motifs, sixteen cells each, two arms: 128 assigned responses covering care, restitution, testimony and unjust-order tasks. It does not cover the full eight-family suite. Both arms see the same practical charter with the training frame removed. Metaphysical-premise availability is crossed with the relevant fact, oversight and reward.
-
-Numeric JSON, verbatim output, token IDs, native prompts and assignment order are retained. Malformed responses count as observed failures. Timeouts preserve the partial raw generation and widen the unknown-outcome bounds. Deadline-censored units remain in the assigned denominator. The independent scorer requires the exact complete roster and rebuilt prompts.
-
-This is a one-seed training/transfer integration pilot on a twenty-group curriculum seed. It supplies no confirmatory effect estimate, learned-ontology claim, or baseline-improvement claim. No base-model behavioral baseline is included in this first run. All selected examples are development material. Existing sealed tests remain inaccessible.
-
-## Reproduce CPU evidence
+After an explicitly approved single-H100 allocation:
 
 ```bash
-python -m experiments.ontological_constitution_v4_training verify --out /tmp/ontology-training-check
+bash experiments/ontological_constitution_v4_training/scripts/silico_pilot.sh \
+  "$BASE" 1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0 \
+  /durable/v4-prepared /durable/v4-native-preflight /durable/v4-pilot
 ```
 
-The verifier combines the 232 existing v4/v3/semantic-review regressions with 49 new tests. New tests cover certificate and manifest tampering, natural EOS, masking, paired updates, isolated tiny Torch adapters, complete transfer rosters and timeouts. The native Transformers/PEFT GPU path is prepared but was not executed in this CPU build.
+The provider must cap the whole allocation at 20 GPU-minutes. The script has a separate 1,190-second TERM plus 10-second KILL watchdog. The internal pilot reserves 300 seconds for evaluation. Deadlines preserve the completed training logs and produce unknown outcomes for the remaining evaluation roster. A hard external kill may leave only the streamed files and checkpoint; the worker must preserve them rather than claim a complete run.
 
-The new workflow regenerates the receipt and compares its source hashes with the committed receipt. Generated CPU artifacts remain labeled fixtures. The dependency-light tests use NumPy and CPU Torch; production reuses the worker's known compatible Transformers/PEFT environment and records actual versions.
+## Evaluation and receipts
 
-## Bounded worker command
+The base with adapters disabled and both new adapters are evaluated on the same 128 development cases each, for **384 assigned records**. Each arm gets the practical charter and case facts with the treatment frame removed. There are eight motifs with sixteen fact/pressure conditions. Treatment-pair order is balanced; the baseline's position rotates.
 
-After the tokenizer-only gate passes, execute the one approved H100 lease:
+The independent scorer checks case regeneration, complete assignment, prompt equality and parses each raw output again. It reports correct constructive action, abandonment, schema errors, unknown bounds and per-motif paired differences. Actual timeouts retain partial generated text and token IDs when available. No performance threshold for one arm decides whether the other is evaluated.
 
-```bash
-bash experiments/ontological_constitution_v4_training/scripts/silico_pair.sh \
-  "$BASE" "$REVISION" "$RUN/corpus" "$RUN/preflight.json" "$NEW_GPU_RUN"
-```
+Successful CUDA execution leaves `run.json`, the native preflight, source hashes, schedule, every update, half/final adapters, a complete raw evaluation roster and score. PEFT saves named adapters into their own subdirectories under the checkpoint directory. Reuse the recorded paths rather than infer a root adapter path.
 
-The wrapper kills the process by 1,200 seconds, covering the in-process checks and base load. Its inner runtime reserves 240 seconds for evaluation within 1,080 seconds after the tokenizer check. Provider startup, upload and teardown require their own allocation cap. An incomplete run is retained, with no automatic retry. Hub upload and teacher generation are absent.
+## What was checked here
 
-## Technical sources
+CPU tests exercise full certificate admission, fake-data rejection, all loss masks, two independent optimizers on an explicitly tiny Torch model, inactive-adapter isolation, unchanged base parameters, checkpoint saving, deadlines and complete evaluation accounting. The actual Qwen tokenizer, CUDA loading, PEFT integration on Qwen and behavioral outcomes require the approved worker. No pretrained weights were loaded in the sandbox.
 
-The data and theorem anchors are those pinned in `ontological_constitution_v4/sources.py` at `af65c17d2f85fc2049c50a4074e518bcf903dbf7`. The admission path preserves their conditional status.
-
-Native-template and special-token handling follows the official Transformers chat-template documentation: https://huggingface.co/docs/transformers/main/chat_templating . Adapter attachment and selection follow the official PEFT interface: https://huggingface.co/docs/peft/en/package_reference/peft_model . The final worker receipt records the installed library versions; no compatibility claim is inferred from a model name.
+API references used for integration: Hugging Face [PEFT models](https://huggingface.co/docs/peft/main/package_reference/peft_model) and [chat templates](https://huggingface.co/docs/transformers/chat_templating). Use the retained worker's Qwen-compatible library versions and record them; do not replace them with the CPU fixture versions.

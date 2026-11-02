@@ -1,4 +1,4 @@
-name: Ontological v4 source-aware trainer CPU
+name: Ontological v4 source-aware training CPU
 on:
   push:
     paths: ['experiments/ontological_constitution_v4_training/**', '.github/workflows/ontological-v4-training-cpu.yml']
@@ -20,22 +20,22 @@ jobs:
           python-version: '3.11'
       - run: python -m pip install numpy
       - run: python -m pip install 'torch==2.5.1' --index-url https://download.pytorch.org/whl/cpu
-      - run: bash -n experiments/ontological_constitution_v4_training/scripts/silico_pair.sh
-      - run: python -m experiments.ontological_constitution_v4_training verify --out /tmp/ontology-training-check
-      - name: Verify source-bound receipt and CPU-only execution
+      - run: python -m experiments.ontological_constitution_v4_training verify --out /tmp/v4-training-check
+      - name: Check verification
         run: |
           python - <<'PY'
           import json
-          from pathlib import Path
-          from experiments.ontological_constitution_v4_training.admission import implementation_hashes
-          expected=json.loads(Path('experiments/ontological_constitution_v4_training/results/cpu_receipt.json').read_text())
-          actual=json.loads(Path('/tmp/ontology-training-check/cpu_receipt.json').read_text())
-          assert actual['source_sha256']==expected['source_sha256']==implementation_hashes()
-          assert actual['tests_total']==expected['tests_total']
-          assert actual['skipped_total']==0 and actual['gpu_jobs']==0
-          assert actual['student_tokenizer_measurement']=='NOT_RUN_TOKENIZER_NOT_MOUNTED'
+          r=json.load(open('/tmp/v4-training-check/cpu_receipt.json'))
+          assert r['status']=='CPU_VERIFIED' and r['skipped_total']==0
+          assert r['new_tests']>=54 and r['existing_tests']==232
+          assert r['admitted_lesson_rows']==320
+          assert set(r['tiny_steps_per_arm'].values())=={36}
+          assert r['synthetic_assigned_evaluation_records']==384
+          assert r['GPU_jobs']==0 and not r['final_test_access']
+          committed=json.load(open('experiments/ontological_constitution_v4_training/results/cpu_receipt.json'))
+          assert r['source_sha256']==committed['source_sha256']
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: ontology-v4-training-cpu-evidence
-          path: /tmp/ontology-training-check/
+          name: ontological-v4-training-cpu
+          path: /tmp/v4-training-check/

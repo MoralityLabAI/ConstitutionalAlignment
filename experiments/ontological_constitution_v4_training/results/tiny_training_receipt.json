@@ -1,0 +1,27 @@
+{
+  "action_weight": 1.0,
+  "adapters_saved": true,
+  "equal_completed_updates": true,
+  "equal_token_counts_claimed": false,
+  "error": null,
+  "final_adapter_sha256": {
+    "formal_control": "3f865eb41f9bf2507e4a482e576ca0eead644946e0d9f9e88feb85f6fca76e16",
+    "platonic_grounding": "3fbb0496fccccebf40e64b1768d2812e5731b0ad64e0e407e01d33cd0c60f091"
+  },
+  "final_test_access": false,
+  "initial_adapter_sha256": {
+    "formal_control": "236c3e3c14ece5a594d4b6c11549eb2a17bc6a8afc692cb52d5e8b2877642d05",
+    "platonic_grounding": "236c3e3c14ece5a594d4b6c11549eb2a17bc6a8afc692cb52d5e8b2877642d05"
+  },
+  "learning_rate": 0.0001,
+  "planned_steps_per_arm": 36,
+  "rationale_weight": 0.25,
+  "schedule_sha256": "209603a3b3eda1d5586b3f0a19fb723d394bec6c5526ea55c2060e18570b120a",
+  "source_evidence_class": "CERTIFICATE_RENDERED_PUBLIC_EXPLANATION_AND_CHECKED_PRACTICE",
+  "status": "COMPLETE",
+  "steps": {
+    "formal_control": 36,
+    "platonic_grounding": 36
+  },
+  "updates": 72
+}
