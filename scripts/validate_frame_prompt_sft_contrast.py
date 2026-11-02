@@ -8,7 +8,13 @@ import hashlib
 import json
 from pathlib import Path
 from typing import Any
-from scripts.frozen_line_endings import matches_frozen_sha256
+try:
+    from scripts.frozen_line_endings import matches_frozen_sha256
+except ModuleNotFoundError as exc:
+    if exc.name != "scripts":
+        raise
+    # Direct execution of scripts/*.py places that directory on sys.path.
+    from frozen_line_endings import matches_frozen_sha256
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent

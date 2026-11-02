@@ -11,7 +11,14 @@ from pathlib import Path
 from typing import Any
 
 import httpx
-from prime_cli.api.inference import InferenceAPIError, InferenceClient
+try:
+    from prime_cli.api.inference import InferenceAPIError
+except ModuleNotFoundError as exc:
+    if exc.name not in {"prime_cli", "prime_cli.api", "prime_cli.api.inference"}:
+        raise
+
+    class InferenceAPIError(Exception):
+        """Offline import placeholder; actual inference always requires Prime CLI."""
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_PROTOCOL = (
@@ -168,6 +175,9 @@ def _chat_once(
         "max_tokens": max_tokens,
         "chat_template_kwargs": {"enable_thinking": enable_thinking},
     }
+    # Import live-cloud dependency only when a live inference is requested.
+    from prime_cli.api.inference import InferenceClient
+
     value = InferenceClient(timeout=timeout_seconds).chat_completion(payload)
     if not isinstance(value, dict):
         raise TypeError("Prime chat response must be a JSON object")
