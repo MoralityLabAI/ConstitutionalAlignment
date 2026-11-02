@@ -2,6 +2,9 @@ from __future__ import annotations
 import copy
 import json
 import os
+import sys
+import types
+from contextlib import nullcontext
 import tempfile
 import unittest
 from fractions import Fraction
@@ -10,7 +13,7 @@ from unittest.mock import patch
 from experiments.ontological_transfer_bench_v1.cases import FAMILIES, make_case, verify_case, prompt, parse, scripted, canon
 from experiments.ontological_transfer_bench_v1.plan import make_plan,verify_plan,assignments,spread_assignments,public_cases,cells
 from experiments.ontological_transfer_bench_v1.score import score,record_for
-from experiments.ontological_transfer_bench_v1.run import run_fixture,run_endpoint,run_hf,run_hf_group,_safe_endpoint,read_records,_check_resumption,extract_final,adapter_files,_chat
+from experiments.ontological_transfer_bench_v1.run import run_fixture,run_endpoint,run_hf,run_hf_group,_safe_endpoint,read_records,_check_resumption,extract_final,adapter_files,_chat,_prepare_generation_inputs,preflight_hf_tokenizer
 
 
 class CaseTests(unittest.TestCase):
@@ -289,6 +292,167 @@ class GatewayTests(unittest.TestCase):
         with self.assertRaises(ValueError):run_endpoint(self.plan,Path('/tmp/unused'),'intellect3',model_id='X',base_url='https://example.org/v1/chat/completions',approval=True,max_requests=1000,total_output_cap=2048)
     def test_nonpositive_token_budget_is_rejected(self):
         with self.assertRaises(ValueError):run_endpoint(self.plan,Path('/tmp/unused'),'intellect3',model_id='X',base_url='https://example.org/v1/chat/completions',approval=True,max_requests=1,total_output_cap=0)
+
+
+class GenerationInterfaceRegressionTests(unittest.TestCase):
+    """Reproduce the BatchEncoding positional-generate failure without a GPU."""
+    class FakeTensor:
+        def __init__(self, seq):
+            self.data=list(seq)
+            self.shape=(1,len(seq))
+        def to(self, device):
+            self.device=device
+            return self
+
+    class FakeOutput:
+        def __init__(self, tokens):
+            self.tokens=list(tokens)
+        def __getitem__(self, key):
+            if not isinstance(key,tuple) or key[0]!=0 or not isinstance(key[1],slice):
+                raise AssertionError('expected [0, prompt_length:] tensor slice')
+            return GenerationInterfaceRegressionTests.FakeTokens(self.tokens[key[1]])
+
+    class FakeTokens:
+        def __init__(self, vals):self.vals=list(vals)
+        def __len__(self):return len(self.vals)
+        def detach(self):return self
+        def cpu(self):return self
+        def tolist(self):return list(self.vals)
+
+    class FakeBatchEncoding(dict):
+        def to(self, device):
+            for v in self.values():v.to(device)
+            return self
+
+    class FakeTokenizer:
+        is_fast=True
+        chat_template='qwen-native-template'
+        eos_token_id=99
+        def __init__(self):self.calls=[]
+        def apply_chat_template(self,messages,**kwargs):
+            self.calls.append(kwargs)
+            if kwargs.get('return_dict') is not True:
+                raise AssertionError('tokenizer must return named tensors')
+            return GenerationInterfaceRegressionTests.FakeBatchEncoding({
+                'input_ids':GenerationInterfaceRegressionTests.FakeTensor([4,5,6]),
+                'attention_mask':GenerationInterfaceRegressionTests.FakeTensor([1,1,1]),
+            })
+        def decode(self,tokens,skip_special_tokens=False):
+            return '{"choice":0,"reason_code":0}'
+
+    class FakeModel:
+        device='cpu'
+        def __init__(self):self.calls=[]
+        def eval(self):return self
+        def disable_adapter(self):return nullcontext()
+        def set_adapter(self,name):self.current_adapter=name
+        def load_adapter(self,*args,**kwargs):return None
+        def generate(self,*args,**kwargs):
+            if args:raise AssertionError('BatchEncoding was supplied positionally')
+            if not {'input_ids','attention_mask','max_new_tokens','do_sample'}<=kwargs.keys():
+                raise AssertionError('missing named inputs')
+            ids=kwargs['input_ids']
+            mask=kwargs['attention_mask']
+            if ids.shape!=(1,3) or mask.shape!=(1,3):
+                raise AssertionError('bad named tensor shape')
+            self.calls.append(kwargs)
+            return GenerationInterfaceRegressionTests.FakeOutput(ids.data+[7,8])
+
+    def test_normalization_accepts_tensor_and_batch_encoding(self):
+        ids=self.FakeTensor([1,2,3])
+        inputs,length=_prepare_generation_inputs(ids,'cpu')
+        self.assertEqual((set(inputs),length),({'input_ids'},3))
+        encoded=self.FakeBatchEncoding({'input_ids':self.FakeTensor([1,2,3]),
+                                        'attention_mask':self.FakeTensor([1,1,1])})
+        result,length=_prepare_generation_inputs(encoded,'cuda:0')
+        self.assertEqual(set(result),{'input_ids','attention_mask'})
+        self.assertEqual(result['input_ids'].device,'cuda:0')
+        self.assertEqual(length,3)
+
+    def test_normalization_rejects_missing_invalid_and_mismatched_tensors(self):
+        cases=[{},[],{'input_ids':[1,2,3]},
+               {'input_ids':self.FakeTensor([])},
+               {'input_ids':self.FakeTensor([1,2]),
+                'attention_mask':self.FakeTensor([1])},
+               {'input_ids':self.FakeTensor([1,2]),'unexpected':[1]}]
+        for case in cases:
+            with self.subTest(case=str(case)),self.assertRaises((TypeError,ValueError)):
+                _prepare_generation_inputs(case,'cpu')
+
+    def fake_backend(self):
+        tokenizer=self.FakeTokenizer()
+        model=self.FakeModel()
+        hf=types.ModuleType('transformers')
+        hf.AutoTokenizer=types.SimpleNamespace(from_pretrained=lambda *a,**kw:tokenizer)
+        hf.AutoModelForCausalLM=types.SimpleNamespace(from_pretrained=lambda *a,**kw:model)
+        peft=types.ModuleType('peft')
+        peft.PeftModel=types.SimpleNamespace(from_pretrained=lambda m,*a,**kw:m)
+        torch=types.ModuleType('torch')
+        torch.bfloat16='bf16'
+        torch.inference_mode=nullcontext
+        torch.cuda=types.SimpleNamespace(is_available=lambda:False)
+        return tokenizer,model,{'transformers':hf,'peft':peft,'torch':torch}
+
+    def test_real_tokenizer_preflight_uses_batch_encoding_without_weights(self):
+        plan=make_plan('smoke')
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            tokenizer,model,modules=self.fake_backend()
+            def do_not_load_model(*args,**kwargs):
+                raise AssertionError('preflight attempted to load weights')
+            modules['transformers'].AutoModelForCausalLM.from_pretrained=do_not_load_model
+            with patch.dict(sys.modules,modules):
+                receipt=preflight_hf_tokenizer(plan,base_model=root/'retained',
+                   model_revision='a'*40,out=root/'preflight.json',thinking=False)
+            self.assertEqual(receipt['status'],'TOKENIZER_ONLY_PRE_GPU_PASS')
+            self.assertFalse(receipt['model_weights_loaded'])
+            self.assertFalse(receipt['GPU_allocated'])
+            self.assertEqual(receipt['prompt_tokens'],3)
+            self.assertEqual(receipt['input_tensor_names'],['attention_mask','input_ids'])
+            self.assertEqual(json.loads((root/'preflight.json').read_text()),receipt)
+            self.assertEqual(len(model.calls),0)
+            self.assertTrue(tokenizer.calls[0]['return_dict'])
+            with patch.dict(sys.modules,modules):
+                with self.assertRaises(FileExistsError):
+                    preflight_hf_tokenizer(plan,base_model=root/'retained',
+                       model_revision='a'*40,out=root/'preflight.json')
+
+    def test_grouped_hf_generation_receives_keyword_tensors_and_persists_rows(self):
+        plan=make_plan('smoke')
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td);paths=[]
+            for name in ('formal','platonic'):
+                d=root/name;d.mkdir()
+                (d/'adapter_config.json').write_text('{}')
+                (d/'adapter_model.safetensors').write_bytes(b'dummy')
+                paths.append(d)
+            tokenizer,model,modules=self.fake_backend()
+            with patch.dict(sys.modules,modules):
+                result=run_hf_group(plan,root/'qwen.jsonl',base_model=root/'base',
+                   model_revision='a'*40,formal_adapter=paths[0],platonic_adapter=paths[1],
+                   approval=True,max_assignments=3,max_new_tokens=16,max_wall_seconds=300)
+            rows=read_records(root/'qwen.jsonl')
+            self.assertEqual(len(rows),3)
+            self.assertEqual(len(model.calls),3)
+            self.assertTrue(all(x['status']!='unknown' for x in rows))
+            self.assertTrue(all(x['metadata']['input_tokens']==3 for x in rows))
+            self.assertTrue(all(x['metadata']['output_tokens']==2 for x in rows))
+            self.assertTrue(all(x['metadata']['raw_generated_token_ids']==[7,8] for x in rows))
+            self.assertEqual(result['reported_model_revision'],'a'*40)
+            self.assertTrue(all(c['return_dict'] for c in tokenizer.calls))
+
+    def test_single_hf_generation_uses_same_keyword_input_contract(self):
+        plan=make_plan('smoke')
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td);tokenizer,model,modules=self.fake_backend()
+            with patch.dict(sys.modules,modules):
+                run_hf(plan,root/'base.jsonl',arm='base',base_model=root/'base',
+                       model_revision='a'*40,approval=True,max_requests=1,max_new_tokens=16)
+            rows=read_records(root/'base.jsonl')
+            self.assertEqual(len(rows),1)
+            self.assertEqual(len(model.calls),1)
+            self.assertEqual(rows[0]['metadata']['raw_generated_token_ids'],[7,8])
+            self.assertTrue(tokenizer.calls[0]['return_dict'])
 
 
 if __name__=='__main__':unittest.main()

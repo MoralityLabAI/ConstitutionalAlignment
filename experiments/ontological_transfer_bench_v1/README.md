@@ -48,9 +48,36 @@ The output directory contains `plan.json` (private scoring keys included), `publ
 
 Model inference interleaves semantic families and model arms deterministically so a capped or interrupted smoke run samples across the full suite before expanding within a family. Partial runs leave their missing assignments as `unknown`, preserving the full denominator and uncertainty interval. All raw final JSON, malformed outputs, original model text, timing, token usage and adapter safetensors **file** hashes are retained when provided. No unobserved response is filled from the oracle.
 
+## BatchEncoding fix and pre-GPU tokenizer probe
+
+The first Silico evaluation at `exp_01m6eg5c75e59v1d3zwamcqgq6` stopped
+before the first response: `transformers.generate()` received the tokenizer's
+`BatchEncoding` as a **positional** input. This revision requests named
+chat-tokenizer tensors, checks their shapes, and passes
+`model.generate(**model_inputs, ...)` in **both** local HF inference paths.
+CPU tests exercise a `BatchEncoding` stand-in through mocked `.generate()`,
+including the actual call-site paths. They are regression tests rather than
+claims that pretrained Qwen inference succeeded.
+
+Before any new inference allocation, run this **CPU-only** tokenizer check using
+the retained checkpoint and the exact smoke roster:
+
+```bash
+python -m experiments.ontological_transfer_bench_v1 tokenizer-preflight \
+  --plan "$PLAN" --base "$BASE" --revision "$MODEL_REVISION" \
+  --out "$CHECK/tokenizer_batch_encoding.json"
+```
+
+The receipt records tensor field names and lengths, template fingerprint,
+thinking mode and `model_weights_loaded=false`. A tokenizer-only preflight
+cannot prove the GPU kernel or actual model output will succeed; the mocked
+CPU generation fixture checks the positional-vs-keyword contract. Keep the
+previously failed 192 assignments marked unknown, with INTELLECT-3 unrun. Any
+further GPU allocation needs its own explicit authorization.
+
 ## Existing Qwen adapters, single weight load
 
-The paired runner loads the retained base once and attaches both trained adapters. It uses the pinned Qwen tokenizer's native chat template and explicit final-only parsing. Point it at **mounted paths** on the worker, not the `artifact://` locator itself:
+The paired runner loads the retained base once and attaches both trained adapters. It uses the pinned Qwen tokenizer's native chat template, named `input_ids`/`attention_mask` generation inputs, and explicit final-only parsing. Point it at **mounted paths** on the worker, not the `artifact://` locator itself:
 
 ```bash
 python -m experiments.ontological_transfer_bench_v1 hf-group \

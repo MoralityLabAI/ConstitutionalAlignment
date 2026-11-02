@@ -156,6 +156,80 @@ def run_endpoint(plan, out, arm, *, model_id, base_url, approval, max_requests, 
     return report
 
 
+def _prepare_generation_inputs(tokenized, device):
+    """Normalize either tensor or BatchEncoding before Transformers.generate.
+
+    Recent Transformers chat tokenizers default to a BatchEncoding when
+    return_dict=True. Passing that object positionally to generate() breaks
+    generation, which expects a tensor or named input_ids/attention_mask.
+    Keep the attention mask and validate one nonempty, unpadded chat prompt.
+    This helper imports neither Torch nor Transformers, so CPU tests can
+    exercise the exact interface with lightweight stand-ins.
+    """
+    if hasattr(tokenized, 'items'):
+        if not hasattr(tokenized, '__getitem__'):
+            raise TypeError('tokenizer mapping cannot be indexed')
+        inputs = dict(tokenized.items())
+        if not set(inputs).issubset({'input_ids', 'attention_mask'}):
+            raise ValueError('unexpected text-only chat tokenizer fields')
+    elif hasattr(tokenized, 'shape') and hasattr(tokenized, 'to'):
+        inputs = {'input_ids': tokenized}
+    else:
+        raise TypeError('chat tokenizer must return a tensor or mapping of tensors')
+    if 'input_ids' not in inputs:
+        raise ValueError('missing input_ids in chat tokenizer output')
+    result = {}
+    for name, value in inputs.items():
+        if not hasattr(value, 'to') or not hasattr(value, 'shape'):
+            raise TypeError('chat tokenizer %s must be a tensor' % name)
+        moved = value.to(device)
+        if not hasattr(moved, 'shape'):
+            raise TypeError('moved chat tokenizer %s must be a tensor' % name)
+        result[name] = moved
+    ids = result['input_ids']
+    if len(ids.shape) != 2 or ids.shape[0] != 1 or ids.shape[1] < 1:
+        raise ValueError('expected one nonempty batched chat prompt')
+    if 'attention_mask' in result and result['attention_mask'].shape != ids.shape:
+        raise ValueError('chat attention_mask shape mismatch')
+    return result, int(ids.shape[1])
+
+
+def preflight_hf_tokenizer(plan, *, base_model, model_revision, out, thinking=False):
+    """Check the actual locally retained chat tokenizer without loading model weights.
+
+    This gate exercises the BatchEncoding path that caused the earlier crash.
+    It validates a real assigned prompt, named tensor inputs and a nonempty
+    sequence before a provider can allocate an inference GPU.
+    """
+    verify_plan(plan)
+    if len(model_revision)!=40 or any(c not in '0123456789abcdef' for c in model_revision):
+        raise ValueError('40-hex revision required')
+    out=Path(out)
+    if out.exists():raise FileExistsError('fresh tokenizer preflight receipt required')
+    from transformers import AutoTokenizer
+    tokenizer=AutoTokenizer.from_pretrained(base_model,local_files_only=True,use_fast=True)
+    if not tokenizer.is_fast or not tokenizer.chat_template:
+        raise ValueError('native chat tokenizer required')
+    sample=next(iter(spread_assignments(plan,['base','formal_control','platonic_grounding'])))
+    messages=[{'role':'system','content':'Provide a final JSON answer using the case menu IDs.'},
+              {'role':'user','content':sample['prompt']}]
+    encoded=tokenizer.apply_chat_template(messages,add_generation_prompt=True,
+              tokenize=True,return_dict=True,return_tensors='pt',enable_thinking=thinking)
+    inputs,prompt_length=_prepare_generation_inputs(encoded,'cpu')
+    template=tokenizer.chat_template
+    if not isinstance(template,(str,dict)):
+        raise ValueError('unexpected chat template type')
+    receipt={'status':'TOKENIZER_ONLY_PRE_GPU_PASS','model_revision_claim':model_revision,
+             'model_weights_loaded':False,'GPU_allocated':False,
+             'sample_assignment_id':sample['assignment_id'],
+             'plan_sha256':plan['sha256'],'thinking_enabled':bool(thinking),
+             'tokenizer_output_type':type(encoded).__name__,
+             'input_tensor_names':sorted(inputs),'prompt_tokens':prompt_length,
+             'chat_template_sha256':hashlib.sha256(canon(template).encode('utf-8')).hexdigest()}
+    write_json(out,receipt)
+    return receipt
+
+
 def run_hf(plan,out,*,arm,base_model,model_revision,adapter_path=None,approval=False,max_requests=64,
            max_new_tokens=2048,thinking=True):
     """Existing Qwen base or saved PEFT adapter on a managed GPU worker.
@@ -187,18 +261,18 @@ def run_hf(plan,out,*,arm,base_model,model_revision,adapter_path=None,approval=F
             err=None;raw=None;meta={}
             try:
                 chat=[{'role':'system','content':'Give a final answer in strict JSON.'},{'role':'user','content':a['prompt']}]
-                ids=tokenizer.apply_chat_template(chat,add_generation_prompt=True,tokenize=True,
-                                                   return_tensors='pt',enable_thinking=thinking)
-                ids=ids.to(model.device)
+                encoded=tokenizer.apply_chat_template(chat,add_generation_prompt=True,tokenize=True,
+                      return_dict=True,return_tensors='pt',enable_thinking=thinking)
+                model_inputs,prompt_length=_prepare_generation_inputs(encoded,model.device)
                 with torch.inference_mode():
-                    res=model.generate(ids,max_new_tokens=max_new_tokens,do_sample=False,
+                    res=model.generate(**model_inputs,max_new_tokens=max_new_tokens,do_sample=False,
                                        pad_token_id=tokenizer.eos_token_id)
-                tokens=res[0,ids.shape[-1]:]
+                tokens=res[0,prompt_length:]
                 generated_text=tokenizer.decode(tokens,skip_special_tokens=False)
                 raw=extract_final(generated_text)
-                meta={'raw_model_text':generated_text,'input_tokens':int(ids.shape[-1]),'generated_tokens':int(len(tokens)),
+                meta={'raw_model_text':generated_text,'input_tokens':prompt_length,'generated_tokens':int(len(tokens)),
                       'raw_generated_token_ids':tokens.detach().cpu().tolist()}
-            except (RuntimeError,ValueError,OSError) as exc:
+            except (RuntimeError,ValueError,OSError,TypeError,AttributeError) as exc:
                 err=type(exc).__name__+': '+str(exc)
             f.write(canon(record_for(plan,a,raw,error=err,metadata=meta,model_id=model_revision+':'+arm))+'\n');f.flush()
             if err:break
@@ -239,21 +313,22 @@ def run_hf_group(plan,out,*,base_model,model_revision,formal_adapter,platonic_ad
             try:
                 messages=[{'role':'system','content':'Provide a final JSON answer using the case menu IDs.'},
                           {'role':'user','content':a['prompt']}]
-                ids=tokenizer.apply_chat_template(messages,add_generation_prompt=True,
-                         tokenize=True,return_tensors='pt',enable_thinking=thinking).to(model.device)
+                encoded=tokenizer.apply_chat_template(messages,add_generation_prompt=True,
+                         tokenize=True,return_dict=True,return_tensors='pt',enable_thinking=thinking)
+                model_inputs,prompt_length=_prepare_generation_inputs(encoded,model.device)
                 if a['arm']=='base':
                     ctx=model.disable_adapter()
                 else:
                     model.set_adapter(a['arm']);ctx=nullcontext()
                 with ctx,torch.inference_mode():
-                    generated=model.generate(ids,max_new_tokens=max_new_tokens,do_sample=False,
+                    generated=model.generate(**model_inputs,max_new_tokens=max_new_tokens,do_sample=False,
                                              pad_token_id=tokenizer.eos_token_id)
-                out_ids=generated[0,ids.shape[-1]:]
+                out_ids=generated[0,prompt_length:]
                 full=tokenizer.decode(out_ids,skip_special_tokens=False)
                 raw=extract_final(full)
-                metadata.update(raw_model_text=full,input_tokens=int(ids.shape[-1]),
+                metadata.update(raw_model_text=full,input_tokens=prompt_length,
                                 output_tokens=int(len(out_ids)),raw_generated_token_ids=out_ids.detach().cpu().tolist())
-            except (RuntimeError,ValueError,OSError) as exc:
+            except (RuntimeError,ValueError,OSError,TypeError,AttributeError) as exc:
                 err=type(exc).__name__+': '+str(exc)
             row=record_for(plan,a,raw,error=err,metadata=metadata,model_id=model_revision+':'+a['arm'])
             f.write(canon(row)+'\n');f.flush()

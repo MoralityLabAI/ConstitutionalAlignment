@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from .plan import make_plan,verify_plan,public_cases
 from .cases import canon
-from .run import write_json,read_records,run_fixture,run_endpoint,run_hf,run_hf_group
+from .run import write_json,read_records,run_fixture,run_endpoint,run_hf,run_hf_group,preflight_hf_tokenizer
 from .score import score
 
 
@@ -19,6 +19,8 @@ def main(argv=None):
     e=sub.add_parser('score');e.add_argument('--plan',type=Path,required=True);e.add_argument('--records',type=Path,nargs='+',required=True);e.add_argument('--out',type=Path,required=True)
     f=sub.add_parser('fixture');f.add_argument('--plan',type=Path,required=True);f.add_argument('--out',type=Path,required=True)
     f.add_argument('--arm',default='platonic_grounding');f.add_argument('--policy',default='oracle')
+    pre=sub.add_parser('tokenizer-preflight');pre.add_argument('--plan',type=Path,required=True);pre.add_argument('--out',type=Path,required=True)
+    pre.add_argument('--base',required=True);pre.add_argument('--revision',required=True);pre.add_argument('--thinking',action='store_true')
     h=sub.add_parser('hf');h.add_argument('--plan',type=Path,required=True);h.add_argument('--out',type=Path,required=True)
     h.add_argument('--arm',required=True);h.add_argument('--base',required=True);h.add_argument('--revision',required=True)
     h.add_argument('--adapter');h.add_argument('--approved',action='store_true');h.add_argument('--max-requests',type=int,default=64)
@@ -51,7 +53,8 @@ def main(argv=None):
         result=verify(args.out)
     else:
         plan=json.loads(args.plan.read_text(encoding='utf-8'));verify_plan(plan)
-        if args.cmd=='score':
+        if args.cmd=='tokenizer-preflight':result=preflight_hf_tokenizer(plan,base_model=args.base,model_revision=args.revision,out=args.out,thinking=args.thinking)
+        elif args.cmd=='score':
             rows=[r for src in args.records for r in read_records(src)]
             result=score(plan,rows)
             write_json(args.out,result)
