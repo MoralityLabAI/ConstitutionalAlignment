@@ -195,6 +195,19 @@ class ScoringTests(unittest.TestCase):
     def test_other_plan_fails_closed(self):
         p=make_plan(seed=5);rows=self.records()
         with self.assertRaises(ValueError):score(p,rows,['platonic_grounding'])
+    def test_unrun_arms_are_not_incorrect_baselines(self):
+        r=score(self.plan,self.records())
+        self.assertEqual(list(r['arms']),['platonic_grounding'])
+        self.assertIn('intellect3',r['unrun_arms'])
+        self.assertEqual(r['paired_motif_comparisons'],[])
+    def test_no_model_records_does_not_create_fake_scores(self):
+        with self.assertRaises(ValueError):score(self.plan,[])
+    def test_unknown_model_comparison_suppresses_bootstrap(self):
+        a=self.records('platonic_grounding')
+        b=self.records('intellect3')[:-1]
+        r=score(self.plan,a+b)
+        cmp=r['paired_motif_comparisons']
+        self.assertEqual(cmp[0]['status'],'INSUFFICIENT_COMPARABLE_RESPONSES')
     def test_all_arms_perfect_matched_delta_zero(self):
         rows=[]
         for arm in self.plan['arms']:rows.extend(self.records(arm))

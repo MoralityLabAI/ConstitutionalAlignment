@@ -16,7 +16,7 @@
   "full_plan_file_sha256": "1a833562d5d4be2ab89ed9d8436ae0193539bb2391c6568b13747d8b55d4650d",
   "full_plan_sha256": "af963e5df6db7459870b660168ff454242f14c15dada9691b4668e07bf8c2843",
   "full_records_per_arm": 512,
-  "new_tests": 52,
+  "new_tests": 55,
   "paid_compute": false,
   "seal_status": "PROSPECTIVE_DEVELOPMENT_UNSEALED",
   "skipped": 0,
@@ -31,8 +31,8 @@
     "experiments/ontological_transfer_bench_v1/cases.py": "3f2814aa0bd8a05c892ffa0ab30a44e4fabd1a3b8d69a040133193916b8a7a8c",
     "experiments/ontological_transfer_bench_v1/plan.py": "5da303b59cc0e28ece3ebe6de163a5378d162d989222fdbe5a15e59fb8495089",
     "experiments/ontological_transfer_bench_v1/run.py": "5f978ae696faff10af64819577cd3bbdefc044c875a307779c073dbad065dcac",
-    "experiments/ontological_transfer_bench_v1/score.py": "2cf7621d046d96c789cdb8daabfe20ba9db2ea5e40e0b2b85b1aa6ce9593cfd3",
-    "experiments/ontological_transfer_bench_v1/tests/test_bench.py": "80bf025ba4c1daa69000ad26aeb1828be0e85e3ba036f9d18ef89bc80f6efa64",
+    "experiments/ontological_transfer_bench_v1/score.py": "697ab249fee2ff3bb333f27db6e14e9848246e399c71190abf8839bbe3cba017",
+    "experiments/ontological_transfer_bench_v1/tests/test_bench.py": "bddd0a6b2b1c710d213aa432570e1767a1efe99d6e7e05e73d5a7269e4567ed0",
     "experiments/ontological_transfer_bench_v1/verify.py": "44f6e7442f592d45adfdcaf585def1dfb993fb76d3fa9e207b5107cf64e424b7"
   },
   "status": "CPU_VERIFIED_NO_MODEL_CALLED",
@@ -79,6 +79,6 @@
     "intellect3": 64,
     "platonic_grounding": 64
   },
-  "test_log_sha256": "7ab53453cafc06bfec02540c6e28b227bca4dba1fb47d620764740edd9b6e8ea",
+  "test_log_sha256": "11b36f70dfbd205120b8bf0a0d2741f9dee294029ff84b3ca15311096849d69a",
   "trained_checkpoint_loaded": false
 }

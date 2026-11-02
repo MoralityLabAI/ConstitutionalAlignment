@@ -10,7 +10,7 @@ The retained source revision is `1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0`, but 
 ## CPU-only preflight
 
 1. Check out pinned GitHub commit and run `python -m experiments.ontological_transfer_bench_v1 verify --out "$CHECK"`.
-2. Compare generated CPU receipt to the committed source-bound receipt. Verify all 52 tests and plan SHA-256 IDs.
+2. Compare generated CPU receipt to the committed source-bound receipt. Verify all 55 tests and plan SHA-256 IDs.
 3. Generate the eight-motif `smoke` plan in a fresh durable directory; record its manifest and training-exclusion flag.
 4. Mount/check the Qwen base and both existing adapters **read-only**. Report exact `adapter_model.safetensors` and `adapter_config.json` hashes; check tokenizer, chat template, native thinking mode and GPU fit without spending on an unnecessary model download.
 5. Establish whether the requested PrimeIntellect/INTELLECT-3 **exact model** can be served. A current Prime endpoint advertising a newer INTELLECT model is not a substitute. Report a proposed endpoint/model identity and independent budget. Do not use someone else's credentials or infer the API model ID.
