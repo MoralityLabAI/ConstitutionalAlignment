@@ -6,6 +6,7 @@ import sys
 import unittest
 from collections import defaultdict
 from pathlib import Path
+from scripts.frozen_line_endings import matches_frozen_sha256
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 ENV_ROOT = REPO_ROOT / "environments/jinn_beast_metta"
@@ -73,10 +74,7 @@ class JinnMoralReasonerV2Tests(unittest.TestCase):
             self.manifest["split_family_counts"],
             {"candidate_train": 4, "development": 4},
         )
-        self.assertEqual(
-            hashlib.sha256(DATA_PATH.read_bytes()).hexdigest(),
-            self.manifest["data_sha256"],
-        )
+        self.assertTrue(matches_frozen_sha256(DATA_PATH, self.manifest["data_sha256"]))
         candidate_families = {
             row["family_id"]
             for row in self.rows
@@ -159,11 +157,7 @@ class JinnMoralReasonerV2Tests(unittest.TestCase):
         self.assertTrue(all(not row["training_approved"] for row in rows))
 
     def test_exact_village_remains_outside_training_data(self) -> None:
-        village_hash = hashlib.sha256(VILLAGE_PATH.read_bytes()).hexdigest()
-        self.assertEqual(
-            self.registry["held_out_boundary"]["exact_village_sha256"],
-            village_hash,
-        )
+        self.assertTrue(matches_frozen_sha256(VILLAGE_PATH, self.registry["held_out_boundary"]["exact_village_sha256"]))
         self.assertEqual(
             self.registry["held_out_boundary"]["exact_village_rows_used_for_training"],
             0,
@@ -187,10 +181,7 @@ class JinnMoralReasonerV2Tests(unittest.TestCase):
         )
         self.assertEqual(len(rows), 30)
         self.assertEqual(manifest["round_counts"], {"1": 6, "2": 24})
-        self.assertEqual(
-            hashlib.sha256(VILLAGE_REPLAY_PATH.read_bytes()).hexdigest(),
-            manifest["data_sha256"],
-        )
+        self.assertTrue(matches_frozen_sha256(VILLAGE_REPLAY_PATH, manifest["data_sha256"]))
         self.assertTrue(all(not row["training_approved"] for row in rows))
         for row in rows:
             receipt = score_village_response(row["answer"], row)

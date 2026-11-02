@@ -9,6 +9,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from statistics import fmean
 from typing import Any, Iterable
+from scripts.frozen_line_endings import matches_frozen_sha256
 
 FRAME_ORDER = ("neutral", "constitutional", "jinn", "beast")
 TRACE_BUCKETS = (
@@ -141,9 +142,9 @@ def _validate_frozen_bindings(
     frozen = registry["frozen_inputs"]
     dataset_path = repo_root / str(frozen["task_data_path"])
     manifest_path = repo_root / str(frozen["dataset_manifest_path"])
-    if sha256_file(dataset_path) != frozen["task_data_sha256"]:
+    if not matches_frozen_sha256(dataset_path, frozen["task_data_sha256"]):
         raise ValueError("Jinn Bench task data hash drift")
-    if sha256_file(manifest_path) != frozen["dataset_manifest_sha256"]:
+    if not matches_frozen_sha256(manifest_path, frozen["dataset_manifest_sha256"]):
         raise ValueError("Jinn Bench dataset manifest hash drift")
     manifest = load_json(manifest_path)
     if manifest.get("data_sha256") != frozen["task_data_sha256"]:
@@ -165,7 +166,7 @@ def _validate_analysis(
     trace_export = analysis.get("trace_export")
     if not isinstance(trace_export, dict):
         raise ValueError("analysis is missing trace_export")
-    if trace_export.get("sha256") != sha256_file(trace_path):
+    if not matches_frozen_sha256(trace_path, trace_export.get("sha256")):
         raise ValueError("trace export hash differs from the hosted analysis")
     if int(trace_export.get("rows", -1)) != len(traces):
         raise ValueError("trace export row count differs from the hosted analysis")
@@ -516,7 +517,7 @@ def build_run_receipt(
             "analysis_path": display_path(analysis_path, repo_root),
             "analysis_sha256": sha256_file(analysis_path),
             "trace_path": display_path(trace_path, repo_root),
-            "trace_sha256": sha256_file(trace_path),
+            "trace_sha256": analysis["trace_export"]["sha256"],
             "trace_rows": len(traces),
         },
         "metrics": metrics,

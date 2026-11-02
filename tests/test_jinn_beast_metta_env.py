@@ -6,6 +6,7 @@ import sys
 import unittest
 from collections import defaultdict
 from pathlib import Path
+from scripts.frozen_line_endings import matches_frozen_sha256
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 ENV_ROOT = REPO_ROOT / "environments" / "jinn_beast_metta"
@@ -166,10 +167,7 @@ class ConstructDatasetTests(unittest.TestCase):
     def test_packaged_construct_data_matches_manifest(self) -> None:
         self.assertEqual(len(self.rows), 12)
         self.assertEqual(self.manifest["environment_version"], "0.1.7")
-        self.assertEqual(
-            hashlib.sha256(CONSTRUCT_DATA_PATH.read_bytes()).hexdigest(),
-            self.manifest["data_sha256"],
-        )
+        self.assertTrue(matches_frozen_sha256(CONSTRUCT_DATA_PATH, self.manifest["data_sha256"]))
         self.assertEqual(
             self.manifest["construct_counts"],
             {

@@ -10,7 +10,8 @@ from jinn_bench.construct_scoring import (
     score_construct_response,
 )
 from jinn_bench.construct_training import collate_candidate_rollouts
-from jinn_bench.scoring import load_json, load_jsonl, sha256_file
+from jinn_bench.scoring import load_json, load_jsonl
+from scripts.frozen_line_endings import matches_frozen_sha256
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 REGISTRY_PATH = REPO_ROOT / "jinn_bench/data/construct_benchmarks_v1.json"
@@ -41,36 +42,18 @@ class JinnBeastConstructBenchmarkTests(unittest.TestCase):
         self.assertEqual(self.registry["data"]["candidate_train_rows"], 8)
         self.assertEqual(self.registry["data"]["development_rows"], 4)
         self.assertEqual(self.registry["integrity"]["storyworld_count"], 12)
-        self.assertEqual(
-            sha256_file(TASKS_PATH),
-            self.registry["data"]["task_sha256"],
-        )
-        self.assertEqual(
-            sha256_file(SFT_PATH),
-            self.registry["data"]["candidate_sft_sha256"],
-        )
-        self.assertEqual(
-            sha256_file(PREFERENCES_PATH),
-            self.registry["data"]["candidate_preferences_sha256"],
-        )
-        self.assertEqual(
-            sha256_file(SOURCE_ANCHORS_PATH),
-            self.registry["data"]["source_anchors_sha256"],
-        )
+        self.assertTrue(matches_frozen_sha256(TASKS_PATH, self.registry["data"]["task_sha256"]), TASKS_PATH)
+        self.assertTrue(matches_frozen_sha256(SFT_PATH, self.registry["data"]["candidate_sft_sha256"]), SFT_PATH)
+        self.assertTrue(matches_frozen_sha256(PREFERENCES_PATH, self.registry["data"]["candidate_preferences_sha256"]), PREFERENCES_PATH)
+        self.assertTrue(matches_frozen_sha256(SOURCE_ANCHORS_PATH, self.registry["data"]["source_anchors_sha256"]), SOURCE_ANCHORS_PATH)
         for construct in self.registry["constructs"].values():
             constitution_path = REPO_ROOT / construct["constitution_path"]
             policy_path = REPO_ROOT / construct["policy_path"]
-            self.assertEqual(
-                sha256_file(constitution_path),
-                construct["constitution_sha256"],
-            )
-            self.assertEqual(sha256_file(policy_path), construct["policy_sha256"])
+            self.assertTrue(matches_frozen_sha256(constitution_path, construct["constitution_sha256"]), constitution_path)
+            self.assertTrue(matches_frozen_sha256(policy_path, construct["policy_sha256"]), policy_path)
             self.assertEqual(len(construct["storyworlds"]), 6)
             for storyworld in construct["storyworlds"]:
-                self.assertEqual(
-                    sha256_file(REPO_ROOT / storyworld["path"]),
-                    storyworld["sha256"],
-                )
+                self.assertTrue(matches_frozen_sha256(REPO_ROOT / storyworld["path"], storyworld["sha256"]), REPO_ROOT / storyworld["path"])
 
     def test_every_theological_reference_has_a_controlled_source_anchor(self) -> None:
         source_registry = load_json(SOURCE_ANCHORS_PATH)

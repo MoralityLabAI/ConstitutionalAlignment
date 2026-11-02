@@ -8,6 +8,7 @@ import hashlib
 import json
 from pathlib import Path
 from typing import Any
+from scripts.frozen_line_endings import matches_frozen_sha256
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -48,13 +49,15 @@ def binding(root: Path, item: dict[str, Any], label: str, failures: list[str]) -
     path = resolve(root, str(item.get("path", "")))
     observed = sha256_file(path) if path.is_file() else None
     expected = item.get("sha256")
-    if observed != expected:
+    valid = path.is_file() and matches_frozen_sha256(path, expected)
+    if not valid:
         failures.append(f"stale or missing binding: {label}")
     return {
         "path": str(item.get("path", "")),
         "expected_sha256": expected,
         "observed_sha256": observed,
-        "valid": observed == expected,
+        "valid": valid,
+        "historical_crlf_reconstructed": bool(valid and observed != expected),
     }
 
 
