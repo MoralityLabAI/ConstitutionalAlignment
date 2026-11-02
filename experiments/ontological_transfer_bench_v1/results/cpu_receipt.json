@@ -1,0 +1,84 @@
+{
+  "INTELLECT_3_called": false,
+  "data_for_training": false,
+  "eight_worked_cases_sha256": "9ccc90692f9afbf4c7d00ae5d4a9afade9b45d082dbf71cc7cff0d66e2c413cf",
+  "families": [
+    "confluence",
+    "modal_identity",
+    "value_bridge",
+    "victim_claim",
+    "authenticated_guidance",
+    "signed_correction",
+    "unjust_command",
+    "knowledge_action"
+  ],
+  "full_motifs": 16,
+  "full_plan_file_sha256": "1a833562d5d4be2ab89ed9d8436ae0193539bb2391c6568b13747d8b55d4650d",
+  "full_plan_sha256": "af963e5df6db7459870b660168ff454242f14c15dada9691b4668e07bf8c2843",
+  "full_records_per_arm": 512,
+  "new_tests": 52,
+  "paid_compute": false,
+  "seal_status": "PROSPECTIVE_DEVELOPMENT_UNSEALED",
+  "skipped": 0,
+  "smoke_motifs": 8,
+  "smoke_plan_file_sha256": "2945e47eb47cb78711202446eb4ca0b0b02e7062c6e9a4d3f2c5e14b272147b0",
+  "smoke_plan_sha256": "8eb8ca0ad7dd3d48675a26693509a7b35c29dc645dc722687d43072635f964b0",
+  "smoke_records_per_arm": 64,
+  "source_sha256": {
+    "experiments/ontological_constitution_v4/semantics.py": "fe3b1bb241bf614d12dfd8af34bd70579cf2012ecc667fdc920344f1df87b175",
+    "experiments/ontological_transfer_bench_v1/__init__.py": "0faa981c6a4996aa3251e3261b40f639d57ea079420846f9c24c3e9f713eb573",
+    "experiments/ontological_transfer_bench_v1/__main__.py": "f5b08d9b226f4105f6ecf19dbb1f4a9afb2a2b7684efa8f1f1110001747ccf90",
+    "experiments/ontological_transfer_bench_v1/cases.py": "3f2814aa0bd8a05c892ffa0ab30a44e4fabd1a3b8d69a040133193916b8a7a8c",
+    "experiments/ontological_transfer_bench_v1/plan.py": "5da303b59cc0e28ece3ebe6de163a5378d162d989222fdbe5a15e59fb8495089",
+    "experiments/ontological_transfer_bench_v1/run.py": "5f978ae696faff10af64819577cd3bbdefc044c875a307779c073dbad065dcac",
+    "experiments/ontological_transfer_bench_v1/score.py": "2cf7621d046d96c789cdb8daabfe20ba9db2ea5e40e0b2b85b1aa6ce9593cfd3",
+    "experiments/ontological_transfer_bench_v1/tests/test_bench.py": "80bf025ba4c1daa69000ad26aeb1828be0e85e3ba036f9d18ef89bc80f6efa64",
+    "experiments/ontological_transfer_bench_v1/verify.py": "44f6e7442f592d45adfdcaf585def1dfb993fb76d3fa9e207b5107cf64e424b7"
+  },
+  "status": "CPU_VERIFIED_NO_MODEL_CALLED",
+  "synthetic_failure_controls": {
+    "always_first": {
+      "joint_correct": 0,
+      "malformed": 0,
+      "unknown": 0
+    },
+    "bonus_sensitive": {
+      "joint_correct": 32,
+      "malformed": 0,
+      "unknown": 0
+    },
+    "malformed": {
+      "joint_correct": 0,
+      "malformed": 64,
+      "unknown": 0
+    },
+    "ontology_sensitive": {
+      "joint_correct": 40,
+      "malformed": 0,
+      "unknown": 0
+    },
+    "reason_bypass": {
+      "joint_correct": 0,
+      "malformed": 0,
+      "unknown": 0
+    },
+    "timeout": {
+      "joint_correct": 0,
+      "malformed": 0,
+      "unknown": 64
+    },
+    "training_sensitive": {
+      "joint_correct": 32,
+      "malformed": 0,
+      "unknown": 0
+    }
+  },
+  "synthetic_oracle": {
+    "base": 64,
+    "formal_control": 64,
+    "intellect3": 64,
+    "platonic_grounding": 64
+  },
+  "test_log_sha256": "7ab53453cafc06bfec02540c6e28b227bca4dba1fb47d620764740edd9b6e8ea",
+  "trained_checkpoint_loaded": false
+}

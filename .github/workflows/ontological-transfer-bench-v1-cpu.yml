@@ -1,0 +1,47 @@
+name: Ontological transfer benchmark v1 CPU
+on:
+  push:
+    paths:
+      - 'experiments/ontological_transfer_bench_v1/**'
+      - '.github/workflows/ontological-transfer-bench-v1-cpu.yml'
+  pull_request:
+    paths:
+      - 'experiments/ontological_transfer_bench_v1/**'
+      - '.github/workflows/ontological-transfer-bench-v1-cpu.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.11'
+      - name: Recompute CPU evidence and full plan
+        run: python -m experiments.ontological_transfer_bench_v1 verify --out /tmp/ontology-transfer-v1
+      - name: Verify source manifest against committed evidence
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          old=json.loads(Path('experiments/ontological_transfer_bench_v1/results/cpu_receipt.json').read_text())
+          new=json.loads(Path('/tmp/ontology-transfer-v1/cpu_receipt.json').read_text())
+          assert new['status']=='CPU_VERIFIED_NO_MODEL_CALLED'
+          assert new['new_tests']==old['new_tests'] and new['skipped']==0
+          assert new['source_sha256']==old['source_sha256']
+          assert new['smoke_plan_sha256']==old['smoke_plan_sha256']
+          assert new['full_plan_sha256']==old['full_plan_sha256']
+          assert new['eight_worked_cases_sha256']==old['eight_worked_cases_sha256']
+          assert new['trained_checkpoint_loaded'] is False
+          assert new['INTELLECT_3_called'] is False
+          assert new['full_records_per_arm']==512 and new['smoke_records_per_arm']==64
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ontology-transfer-bench-v1-cpu
+          path: /tmp/ontology-transfer-v1/
