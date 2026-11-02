@@ -1,0 +1,349 @@
+{
+  "GPU_jobs": 0,
+  "HF_uploads": 0,
+  "base_repository_revision": "5e2488e3b801901d61ac6d1f7c8511e8cac728e9",
+  "curriculum_records": 320,
+  "development_motifs": 8,
+  "evidence": "CPU_CERTIFICATES_AND_SYNTHETIC_CONTROLS",
+  "final_test_access": false,
+  "finite_audit": {
+    "anderson_singleton_two_worlds": {
+      "axioms": {
+        "A1_weak": true,
+        "A2": true,
+        "A3": true,
+        "A4": true,
+        "A5": true
+      },
+      "contingent_property": [
+        true,
+        false
+      ],
+      "evidence": "EXACT_FINITE_INSTANCE_OF_PINNED_MODEL",
+      "frame": "S5_total",
+      "individuals": 1,
+      "modal_collapse": false,
+      "necessary_godlike_existence": true,
+      "properties_enumerated": 4,
+      "worlds": 2
+    },
+    "evidence_class": "EXACT_FINITE_AUDIT",
+    "grounding_relations_checked": 530,
+    "modal_differential_checks": 1792,
+    "rational_guidance_updates": 72,
+    "root_theorem_failures": 0,
+    "satisfying_grounding_relations": 15,
+    "scott_grounding_with_A6": {
+      "A6_root_positive": true,
+      "coincides_with_first_principle": true,
+      "godlike_bearers": [
+        0
+      ],
+      "grounding": {
+        "common_effect": true,
+        "local_coherence": true,
+        "nonempty": true,
+        "reach": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "roots": [
+          0
+        ],
+        "theorem_applicable": true,
+        "unique_first_principle": true,
+        "universal_roots": [
+          0
+        ],
+        "well_founded": true
+      },
+      "individuals": 2,
+      "properties_enumerated": 4,
+      "scott_axioms": {
+        "A1": true,
+        "A2": true,
+        "A3": true,
+        "A4": true,
+        "A5": true
+      },
+      "worlds": 1
+    },
+    "scott_grounding_without_A6": {
+      "A6_root_positive": false,
+      "coincides_with_first_principle": false,
+      "godlike_bearers": [
+        1
+      ],
+      "grounding": {
+        "common_effect": true,
+        "local_coherence": true,
+        "nonempty": true,
+        "reach": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "roots": [
+          0
+        ],
+        "theorem_applicable": true,
+        "unique_first_principle": true,
+        "universal_roots": [
+          0
+        ],
+        "well_founded": true
+      },
+      "individuals": 2,
+      "properties_enumerated": 4,
+      "scott_axioms": {
+        "A1": true,
+        "A2": true,
+        "A3": true,
+        "A4": true,
+        "A5": true
+      },
+      "worlds": 1
+    },
+    "unbounded_lean_proof_rebuilt": false
+  },
+  "lean_rebuilt": false,
+  "new_tests": 99,
+  "old_rationales_imported": 0,
+  "pretrained_model_calls": 0,
+  "proof_sources": {
+    "anderson": {
+      "blob": "7799962e7d7b75cdd18c3896bd4fb63916fe5739",
+      "declarations": [
+        "godlikeA_necessary",
+        "anderson_no_collapse",
+        "andersonTwoWorlds"
+      ],
+      "path": "Neoplatonic/GodelAnderson.lean",
+      "premises": [
+        "Anderson A1* through A5",
+        "S5 for the existence theorem"
+      ],
+      "projection": "all four intensional properties of the singleton two-world model",
+      "revision": "37361b10aa720df6bb4b577dff88b9a867b6d7af",
+      "source_status": "SOURCE_INSPECTED_LEAN_NOT_REBUILT_IN_THIS_RUN",
+      "upstream_branch_status": "MAIN_AT_PIN",
+      "url": "https://github.com/patrickdugan/OntologicalProofs/blob/37361b10aa720df6bb4b577dff88b9a867b6d7af/Neoplatonic/GodelAnderson.lean"
+    },
+    "authentication": {
+      "blob": "63a655de0ec709759b0c7dcc92125d34b8f6a1e5",
+      "declarations": [
+        "authenticated_guidance",
+        "report_does_not_authenticate",
+        "empty_evidence_vacuous"
+      ],
+      "path": "MoralRealism/Kernel.lean",
+      "premises": [
+        "nonempty admissible evidence",
+        "authentication",
+        "reliability"
+      ],
+      "projection": "finite evidence and separately declared source authority",
+      "revision": "81731cca741bdc24c559cfd68e0bef796200f787",
+      "source_status": "SOURCE_INSPECTED_LEAN_NOT_REBUILT_IN_THIS_RUN",
+      "upstream_branch_status": "OPEN_DRAFT_PR_3",
+      "url": "https://github.com/patrickdugan/OntologicalProofs/blob/81731cca741bdc24c559cfd68e0bef796200f787/MoralRealism/Kernel.lean"
+    },
+    "grounding": {
+      "blob": "2cad5c6efd84b1eb07a9148870361cdebdebe004",
+      "declarations": [
+        "confluent_unique_first_principle",
+        "local_coherence_unique_root"
+      ],
+      "path": "Neoplatonic/LocalConfluence.lean",
+      "premises": [
+        "nonempty domain",
+        "well-founded grounding",
+        "common effects",
+        "local ancestral coherence"
+      ],
+      "projection": "finite directed grounding graphs",
+      "revision": "37361b10aa720df6bb4b577dff88b9a867b6d7af",
+      "source_status": "SOURCE_INSPECTED_LEAN_NOT_REBUILT_IN_THIS_RUN",
+      "upstream_branch_status": "MAIN_AT_PIN",
+      "url": "https://github.com/patrickdugan/OntologicalProofs/blob/37361b10aa720df6bb4b577dff88b9a867b6d7af/Neoplatonic/LocalConfluence.lean"
+    },
+    "guidance": {
+      "blob": "750defd549fc46744af3610f56dcaa918f1b762e",
+      "declarations": [
+        "guidance_update_increases"
+      ],
+      "path": "MoralRealism/GroundingBridge.lean",
+      "premises": [
+        "interior prior",
+        "nonnegative likelihoods",
+        "positive evidence probability"
+      ],
+      "projection": "exact rational Bayes updates; provenance handling is a new extension",
+      "revision": "81731cca741bdc24c559cfd68e0bef796200f787",
+      "source_status": "SOURCE_INSPECTED_LEAN_NOT_REBUILT_IN_THIS_RUN",
+      "upstream_branch_status": "OPEN_DRAFT_PR_3",
+      "url": "https://github.com/patrickdugan/OntologicalProofs/blob/81731cca741bdc24c559cfd68e0bef796200f787/MoralRealism/GroundingBridge.lean"
+    },
+    "identity": {
+      "blob": "4fb77154dc809cc7682bd98d617db85d269017c6",
+      "declarations": [
+        "godlike_ne_firstPrinciple",
+        "godlike_firstPrinciple"
+      ],
+      "path": "Neoplatonic/GodelGrounding.lean",
+      "premises": [
+        "Scott axioms",
+        "grounding theory",
+        "A6 needed for the identification route"
+      ],
+      "projection": "one world, two beings, all four properties",
+      "revision": "37361b10aa720df6bb4b577dff88b9a867b6d7af",
+      "source_status": "SOURCE_INSPECTED_LEAN_NOT_REBUILT_IN_THIS_RUN",
+      "upstream_branch_status": "MAIN_AT_PIN",
+      "url": "https://github.com/patrickdugan/OntologicalProofs/blob/37361b10aa720df6bb4b577dff88b9a867b6d7af/Neoplatonic/GodelGrounding.lean"
+    },
+    "knowledge": {
+      "blob": "63a655de0ec709759b0c7dcc92125d34b8f6a1e5",
+      "declarations": [
+        "knowledge_action_countermodel",
+        "zero_gap_countermodel",
+        "no_concealed_violation"
+      ],
+      "path": "MoralRealism/Kernel.lean",
+      "premises": [
+        "execution theorem additionally needs initialization, preservation, mediation and soundness"
+      ],
+      "projection": "explicit policy countermodel, with no execution gate in the training target",
+      "revision": "81731cca741bdc24c559cfd68e0bef796200f787",
+      "source_status": "SOURCE_INSPECTED_LEAN_NOT_REBUILT_IN_THIS_RUN",
+      "upstream_branch_status": "OPEN_DRAFT_PR_3",
+      "url": "https://github.com/patrickdugan/OntologicalProofs/blob/81731cca741bdc24c559cfd68e0bef796200f787/MoralRealism/Kernel.lean"
+    },
+    "motivation": {
+      "blob": "750defd549fc46744af3610f56dcaa918f1b762e",
+      "declarations": [
+        "maximizer_lawful"
+      ],
+      "path": "MoralRealism/GroundingBridge.lean",
+      "premises": [
+        "feasible lawful action",
+        "strict priority of every lawful action",
+        "global maximization"
+      ],
+      "projection": "finite action utilities",
+      "revision": "81731cca741bdc24c559cfd68e0bef796200f787",
+      "source_status": "SOURCE_INSPECTED_LEAN_NOT_REBUILT_IN_THIS_RUN",
+      "upstream_branch_status": "OPEN_DRAFT_PR_3",
+      "url": "https://github.com/patrickdugan/OntologicalProofs/blob/81731cca741bdc24c559cfd68e0bef796200f787/MoralRealism/GroundingBridge.lean"
+    },
+    "necessity": {
+      "blob": "5f252c10e619a8445886c451a97c3c7b3d9a35e8",
+      "declarations": [
+        "modal_necessity_does_not_imply_ungrounded"
+      ],
+      "path": "Neoplatonic/Modal.lean",
+      "premises": [
+        "two worlds",
+        "two beings",
+        "existence everywhere",
+        "one grounding edge"
+      ],
+      "projection": "the explicit finite countermodel",
+      "revision": "37361b10aa720df6bb4b577dff88b9a867b6d7af",
+      "source_status": "SOURCE_INSPECTED_LEAN_NOT_REBUILT_IN_THIS_RUN",
+      "upstream_branch_status": "MAIN_AT_PIN",
+      "url": "https://github.com/patrickdugan/OntologicalProofs/blob/37361b10aa720df6bb4b577dff88b9a867b6d7af/Neoplatonic/Modal.lean"
+    },
+    "value": {
+      "blob": "750defd549fc46744af3610f56dcaa918f1b762e",
+      "declarations": [
+        "ValueBridge",
+        "grounded_value",
+        "ground_with_empty_value"
+      ],
+      "path": "MoralRealism/GroundingBridge.lean",
+      "premises": [
+        "confluent grounding theory",
+        "explicit normative ValueBridge"
+      ],
+      "projection": "singleton grounding model with both valuations",
+      "revision": "81731cca741bdc24c559cfd68e0bef796200f787",
+      "source_status": "SOURCE_INSPECTED_LEAN_NOT_REBUILT_IN_THIS_RUN",
+      "upstream_branch_status": "OPEN_DRAFT_PR_3",
+      "url": "https://github.com/patrickdugan/OntologicalProofs/blob/81731cca741bdc24c559cfd68e0bef796200f787/MoralRealism/GroundingBridge.lean"
+    }
+  },
+  "python": "3.13.5",
+  "records_per_synthetic_control": 512,
+  "semantic_groups": 20,
+  "skipped_total": 0,
+  "source_sha256": {
+    "__init__.py": "2ef0a66d67004795e5421869fcfb527b5939a97dd49f58a59c62587827c3226d",
+    "__main__.py": "0bdacb35246236dd98db55917adadc6822b7de77378ebd6b3c270f9cc762956f",
+    "certificates.py": "9a098db0eab81fcd005455faae529cae60d8a83482410a813606ea5e1f6f7ba8",
+    "curriculum.py": "bbe2bd30a704cd5d8990baf7fe29a921d1777bfc2254a95aacb6dcb2f412158f",
+    "dilemmas.py": "71a5fa761776c836524902c71a824dfa0f2cf2e9e05353591777536dc7f9f31a",
+    "logic.py": "4cc157f4d6fb88df03b7e8a9272753d54581a797a467c12545457f453eabbe94",
+    "semantics.py": "fe3b1bb241bf614d12dfd8af34bd70579cf2012ecc667fdc920344f1df87b175",
+    "sources.py": "55541fb6d8863210467e550a5900cf361f2f4e7ff474ec32529f6a902074a475",
+    "tests/test_v4.py": "780f000ed5cab8130b2e281ac860b03e9e95923cbe6339ea41d0dff2dfa435c2",
+    "training.py": "177922a4074eb1b5bc1aa2c7bd49f339ab7831249d59fbecc25569dca09d1a5f",
+    "verify.py": "a1e5e17e6eacbabaccd3094ead8f9d051e89d2c65c23148fb45cb4a9d000dc2f"
+  },
+  "status": "CPU_VERIFIED",
+  "tests": [
+    {
+      "command": "-m unittest discover -s /mnt/data/ontology_v4_work/experiments/ontological_constitution_v4/tests -v",
+      "exit_code": 0,
+      "log_sha256": "d939802532524fc25db8790f0abe9e4fa4f64343e07c5d8c74ff1a22e751ca58",
+      "skipped": 0,
+      "suite": 0,
+      "tests": 99
+    },
+    {
+      "command": "-m unittest discover -s experiments/constitutional_reasoning_gym_v3/tests -v",
+      "exit_code": 0,
+      "log_sha256": "fcb58b2d0318f9adfb89f0436f2eeb7534bfae22babc7fcb44f07b4412a3cebd",
+      "skipped": 0,
+      "suite": 1,
+      "tests": 65
+    },
+    {
+      "command": "-m unittest discover -s experiments/constitutional_reasoning_gym_v3/v31/tests -v",
+      "exit_code": 0,
+      "log_sha256": "3a218881721ffa05152e72b09afff50a7420da1ac5362ee701e4b9db86299304",
+      "skipped": 0,
+      "suite": 2,
+      "tests": 43
+    },
+    {
+      "command": "-m unittest discover -s experiments/constitutional_reasoning_gym_v3/semantic_review_v1/tests -v",
+      "exit_code": 0,
+      "log_sha256": "17eaf5df2032eb95d98457bd6260f50a7cce5a7e92b21e6aa95b6cdf2b8f1163",
+      "skipped": 0,
+      "suite": 3,
+      "tests": 25
+    }
+  ],
+  "tests_total": 232,
+  "version": "ontology-constitution-v4.0.0"
+}
