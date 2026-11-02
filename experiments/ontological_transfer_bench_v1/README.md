@@ -46,7 +46,7 @@ python -m experiments.ontological_transfer_bench_v1 score \
 
 The output directory contains `plan.json` (private scoring keys included), `public_cases.jsonl` (safe prompt view, no answer fields), and `manifest.json`. Keep `plan.json` separate from API requests and model training. Full manifest hashes and a limited source-derived worked set are committed under `results/`. A new seed produces a different contract and must be frozen before any real model queries.
 
-Partial runs leave their missing assignments as `unknown`, preserving the full denominator and uncertainty interval. All raw final JSON, malformed outputs, original model text, timing, token usage and adapter safetensors **file** hashes are retained when provided. No unobserved response is filled from the oracle.
+Model inference interleaves semantic families and model arms deterministically so a capped or interrupted smoke run samples across the full suite before expanding within a family. Partial runs leave their missing assignments as `unknown`, preserving the full denominator and uncertainty interval. All raw final JSON, malformed outputs, original model text, timing, token usage and adapter safetensors **file** hashes are retained when provided. No unobserved response is filled from the oracle.
 
 ## Existing Qwen adapters, single weight load
 

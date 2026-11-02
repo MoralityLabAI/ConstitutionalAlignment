@@ -1,6 +1,6 @@
 # CPU baseline and provenance
 
-`cpu_receipt.json`: source-bound 55-test verification, full and smoke plan hashes, seven adversarial scripted-control outcomes, and explicit zero model calls.
+`cpu_receipt.json`: source-bound 56-test verification, full and smoke plan hashes, seven adversarial scripted-control outcomes, and explicit zero model calls.
 
 `eight_worked_cases.json`: eight representative **development** input/answer cards from the full plan, for inspection. These public worked examples must be excluded from model training and are distinct from raw experimental responses. They are not a blinded test.
 

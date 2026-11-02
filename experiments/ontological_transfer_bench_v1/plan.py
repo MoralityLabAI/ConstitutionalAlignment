@@ -68,3 +68,22 @@ def public_cases(plan):
     return [{'case_id':c['case_id'],'motif_id':c['motif_id'],'family':c['family'],
              'public':c['public'],'public_sha256':digest(c['public'])}
             for b in plan['blocks'] for c in b['cells']]
+
+
+def spread_assignments(plan, arms=None):
+    """Interleave model arms and families under a bounded run budget.
+
+    A truncated inference budget then covers every semantic family early,
+    avoiding first-family-only partial receipts. Exact roster identity and
+    scoring are unchanged.
+    """
+    chosen=plan['arms'] if arms is None else list(arms)
+    grouped={(family,arm):[] for family in FAMILIES for arm in chosen}
+    for a in assignments(plan,chosen):grouped[(a['family'],a['arm'])].append(a)
+    mx=max(map(len,grouped.values()))
+    for index in range(mx):
+        for fi,family in enumerate(FAMILIES):
+            rotated=chosen[fi%len(chosen):]+chosen[:fi%len(chosen)]
+            for arm in rotated:
+                rows=grouped[(family,arm)]
+                if index<len(rows):yield rows[index]

@@ -8,7 +8,7 @@ from fractions import Fraction
 from pathlib import Path
 from unittest.mock import patch
 from experiments.ontological_transfer_bench_v1.cases import FAMILIES, make_case, verify_case, prompt, parse, scripted, canon
-from experiments.ontological_transfer_bench_v1.plan import make_plan,verify_plan,assignments,public_cases,cells
+from experiments.ontological_transfer_bench_v1.plan import make_plan,verify_plan,assignments,spread_assignments,public_cases,cells
 from experiments.ontological_transfer_bench_v1.score import score,record_for
 from experiments.ontological_transfer_bench_v1.run import run_fixture,run_endpoint,run_hf,run_hf_group,_safe_endpoint,read_records,_check_resumption,extract_final,adapter_files,_chat
 
@@ -62,6 +62,14 @@ class CaseTests(unittest.TestCase):
         self.assertNotIn('"expected_choice":',s)
         self.assertIn('"choice"',s)
         self.assertIn('"reason_code"',s)
+    def test_budgeted_schedule_spreads_all_families_and_three_qwen_arms(self):
+        arms=['base','formal_control','platonic_grounding']
+        spread=list(spread_assignments(self.smoke,arms))
+        ordinary=list(assignments(self.smoke,arms))
+        self.assertEqual({a['assignment_id'] for a in spread},{a['assignment_id'] for a in ordinary})
+        self.assertEqual(len(spread),192)
+        self.assertEqual({a['family'] for a in spread[:24]},set(FAMILIES))
+        self.assertEqual({a['arm'] for a in spread[:24]},set(arms))
     def test_public_export_excludes_answers(self):
         data=public_cases(self.smoke)
         self.assertEqual(len(data),64)

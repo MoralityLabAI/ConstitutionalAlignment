@@ -16,7 +16,7 @@
   "full_plan_file_sha256": "1a833562d5d4be2ab89ed9d8436ae0193539bb2391c6568b13747d8b55d4650d",
   "full_plan_sha256": "af963e5df6db7459870b660168ff454242f14c15dada9691b4668e07bf8c2843",
   "full_records_per_arm": 512,
-  "new_tests": 55,
+  "new_tests": 56,
   "paid_compute": false,
   "seal_status": "PROSPECTIVE_DEVELOPMENT_UNSEALED",
   "skipped": 0,
@@ -29,10 +29,10 @@
     "experiments/ontological_transfer_bench_v1/__init__.py": "0faa981c6a4996aa3251e3261b40f639d57ea079420846f9c24c3e9f713eb573",
     "experiments/ontological_transfer_bench_v1/__main__.py": "f5b08d9b226f4105f6ecf19dbb1f4a9afb2a2b7684efa8f1f1110001747ccf90",
     "experiments/ontological_transfer_bench_v1/cases.py": "3f2814aa0bd8a05c892ffa0ab30a44e4fabd1a3b8d69a040133193916b8a7a8c",
-    "experiments/ontological_transfer_bench_v1/plan.py": "5da303b59cc0e28ece3ebe6de163a5378d162d989222fdbe5a15e59fb8495089",
-    "experiments/ontological_transfer_bench_v1/run.py": "5f978ae696faff10af64819577cd3bbdefc044c875a307779c073dbad065dcac",
+    "experiments/ontological_transfer_bench_v1/plan.py": "6091d5193460cd21671f958484b81c6b9bacdb9b6aae70b800c5e2c95d5e1736",
+    "experiments/ontological_transfer_bench_v1/run.py": "ff64ac7d85de1591e8b196134dee7a33a4cd238cd6817ef69fa5c7e68174105d",
     "experiments/ontological_transfer_bench_v1/score.py": "697ab249fee2ff3bb333f27db6e14e9848246e399c71190abf8839bbe3cba017",
-    "experiments/ontological_transfer_bench_v1/tests/test_bench.py": "bddd0a6b2b1c710d213aa432570e1767a1efe99d6e7e05e73d5a7269e4567ed0",
+    "experiments/ontological_transfer_bench_v1/tests/test_bench.py": "10599bb07f1fa80d23ba78e4f6f4ef1a828bf34f353f8427433443157fbeb75a",
     "experiments/ontological_transfer_bench_v1/verify.py": "44f6e7442f592d45adfdcaf585def1dfb993fb76d3fa9e207b5107cf64e424b7"
   },
   "status": "CPU_VERIFIED_NO_MODEL_CALLED",
@@ -79,6 +79,6 @@
     "intellect3": 64,
     "platonic_grounding": 64
   },
-  "test_log_sha256": "11b36f70dfbd205120b8bf0a0d2741f9dee294029ff84b3ca15311096849d69a",
+  "test_log_sha256": "eaf08855c495aeb5097f10cd783075fdc8b16ac01146a8d2fcfa8795793b5772",
   "trained_checkpoint_loaded": false
 }

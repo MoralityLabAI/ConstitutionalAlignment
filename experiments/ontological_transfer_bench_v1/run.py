@@ -7,7 +7,7 @@ import hashlib
 import time
 from urllib import request, error, parse as urlparse
 from .cases import canon, scripted
-from .plan import assignments, verify_plan
+from .plan import assignments, spread_assignments, verify_plan
 from .score import record_for, score
 
 
@@ -130,7 +130,7 @@ def run_endpoint(plan, out, arm, *, model_id, base_url, approval, max_requests, 
     if not key:raise ValueError('missing credential environment variable; never persist keys')
     out=Path(out);out.parent.mkdir(parents=True,exist_ok=True)
     if out.exists() and out.stat().st_size:raise ValueError('external endpoint runs require a fresh output file to avoid ambiguous billing')
-    target=list(assignments(plan,[arm]))
+    target=list(spread_assignments(plan,[arm]))
     if max_requests>len(target):raise ValueError('request cap exceeds assigned plan; select a smaller value')
     max_possible=min(max_requests,total_output_cap//output_tokens_per_request)
     if max_possible<1:raise ValueError('budget insufficient for one assigned response')
@@ -183,7 +183,7 @@ def run_hf(plan,out,*,arm,base_model,model_revision,adapter_path=None,approval=F
         model=PeftModel.from_pretrained(model,adapter_path,is_trainable=False,local_files_only=True)
     model.eval()
     with out.open('x',encoding='utf-8') as f:
-        for a in list(assignments(plan,[arm]))[:max_requests]:
+        for a in list(spread_assignments(plan,[arm]))[:max_requests]:
             err=None;raw=None;meta={}
             try:
                 chat=[{'role':'system','content':'Give a final answer in strict JSON.'},{'role':'user','content':a['prompt']}]
@@ -233,7 +233,7 @@ def run_hf_group(plan,out,*,base_model,model_revision,formal_adapter,platonic_ad
     model.load_adapter(platonic_adapter,adapter_name='platonic_grounding',is_trainable=False)
     model.eval()
     with out.open('x',encoding='utf-8') as f:
-        for a in list(assignments(plan,['base','formal_control','platonic_grounding']))[:max_assignments]:
+        for a in list(spread_assignments(plan,['base','formal_control','platonic_grounding']))[:max_assignments]:
             if time.monotonic()-start>=max_wall_seconds:break
             raw=None;err=None;metadata={'checkpoint_safetensors_sha256':attest}
             try:
