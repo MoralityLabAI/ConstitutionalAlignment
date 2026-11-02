@@ -4,6 +4,7 @@ import copy
 from pathlib import Path
 import json
 import tempfile
+import shutil
 import unittest
 from experiments.constitutional_reasoning_gym_v3.core import canon,make_twins,case_from
 from experiments.constitutional_reasoning_gym_v3.data import FixtureTeacher
@@ -149,6 +150,14 @@ class ReviewCompilation(unittest.TestCase):
         a=self.write('la.jsonl',arows);b=self.write('lb.jsonl',brows)
         m=compile_reviews(self.base/'audit',a,b,self.base/'result3')
         self.assertFalse(m['two_human_reviewers']);self.assertFalse(m['public_release_approved'])
+    def test_modified_audit_queue_rejected(self):
+        copied=self.base/'audit_tampered'
+        shutil.copytree(self.base/'audit',copied)
+        q=copied/'review_queue.jsonl'
+        q.write_text(q.read_text(encoding='utf-8')+'\n',encoding='utf-8')
+        a=self.write('tamper_a.jsonl',self.full_ratings('A'))
+        b=self.write('tamper_b.jsonl',self.full_ratings('B'))
+        with self.assertRaises(ValueError):compile_reviews(copied,a,b,self.base/'result_tampered')
     def test_kappa_math(self):
         self.assertEqual(kappa([0,1,2],[0,1,2])['kappa'],'1')
         self.assertEqual(kappa([0,0],[0,0])['kappa'],None)

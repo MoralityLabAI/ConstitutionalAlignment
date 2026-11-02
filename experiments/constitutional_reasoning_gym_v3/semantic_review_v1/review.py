@@ -207,6 +207,7 @@ def validate_reviews(queue,reviews):
     if len(ids)!=len(queue) or len(reviews)!=len(queue):raise ValueError('incomplete review roster')
     if {r.get('item_id') for r in reviews}!=ids:raise ValueError('missing, unexpected or duplicate review ID')
     seen=set()
+    by_id={q['item_id']:q for q in queue}
     for r in reviews:
         if r['item_id'] in seen:raise ValueError('duplicate review ID')
         seen.add(r['item_id'])
@@ -219,8 +220,10 @@ def validate_reviews(queue,reviews):
         quotes=r.get('evidence_quotes',{})
         if not isinstance(quotes,dict) or any(not isinstance(quotes.get(d),str) or not quotes[d].strip() for d in bad):
             raise ValueError('nonpassing ratings require evidence quotes')
-        item=next(x for x in queue if x['item_id']==r['item_id'])
-        source=canon(item)
+        item=by_id[r['item_id']]
+        source='\n'.join([item['context'],item['review_instruction'],
+             *(str(v) for v in item['candidate'].values()),
+             *(str(v) for v in item['counterfactual_operation'].values())])
         if any(quotes[d].strip() not in source for d in bad):
             raise ValueError('evidence quotes must appear verbatim in the review card')
     if len({r['reviewer_id'] for r in reviews})!=1 or len({r['reviewer_kind'] for r in reviews})!=1:
@@ -239,7 +242,15 @@ def kappa(x,y):
 
 def compile_reviews(audit_dir,review_a,review_b,out):
     if Path(out).exists():raise FileExistsError('fresh review report directory required')
-    audit=Path(audit_dir);q=_load_jsonl(audit/'review_queue.jsonl')
+    audit=Path(audit_dir)
+    manifest=json.loads((audit/'audit.json').read_text(encoding='utf-8'))
+    if manifest.get('status')!='REVIEW_QUEUE_PREPARED':raise ValueError('review queue not certified')
+    for filename,expected in manifest.get('outputs_sha256',{}).items():
+        if Path(filename).name!=filename or file_sha(audit/filename)!=expected:
+            raise ValueError('review source integrity mismatch: '+filename)
+    if not manifest.get('outputs_sha256'):raise ValueError('missing source-hashed review roster')
+    q=_load_jsonl(audit/'review_queue.jsonl')
+    if len(q)!=manifest['review_queue_rows']:raise ValueError('audit roster cardinality mismatch')
     ra=_load_jsonl(review_a);rb=_load_jsonl(review_b)
     validate_reviews(q,ra);validate_reviews(q,rb)
     aa={r['item_id']:r for r in ra};bb={r['item_id']:r for r in rb}

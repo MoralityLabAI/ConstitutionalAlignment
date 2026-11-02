@@ -1,6 +1,6 @@
 {
   "artifact_sha256": {
-    "audit.json": "1db8c6f4619fdbc2d9a78a8a04ed77aa7782fe269ed3e0ae496500be8835f669",
+    "audit.json": "5826323ad8fbf3c0a3a7460c27ebfea797f1c74a7ac99288baeace682ccd72a8",
     "blind_key.jsonl": "3c1ee4099b736256784e8cbcf124e62eed7bf7c30d027d6e77720bf48fdde532",
     "mechanical_audit.jsonl": "ab7739b62c0ad7f91da4a9e2f742e3ca0005fab1e214ad0b998bec9048178367",
     "review_queue.jsonl": "c244f30becd783664653dc1a78710164284bfe604cc7eac54a9c963d251cff22"
@@ -20,29 +20,29 @@
     "__init__.py": "e1906db60a057b4879f05fb611b50930dd0a59f58ff6e0942e394f4b26d199c2",
     "__main__.py": "23c78d7fc394d9e583271b98b734ec1c7d657255e47ac6a9cbad7b5b075dc056",
     "checks.py": "88e433e6ef615bc1b51058dbd86f86a6578b1d14a46204981136255d4aa913bd",
-    "review.py": "c811385ed95c2e9096baae5275cb29f83c6e3bdbcaf9f7523e792efad37fb429",
-    "tests/test_semantic_review.py": "d815f261fe9b2cc6501d5a8917c64f48681b36b0d5d34cb2663622f3decba0a9",
+    "review.py": "4acd4550bb08ee0b54ccbf3f2faf871d5ad3e6fb713da6470ca1db191383f852",
+    "tests/test_semantic_review.py": "71796c544cab9263a22262282dd5923d1c31eea131cd7366c9603df51e720b72",
     "verify.py": "e3c75f5c1125e5387b45c816777fec70a9d13b7f7d1a312197fb52596d3bd3e8"
   },
   "status": "CPU_VERIFIED",
   "tests": [
     {
-      "log_sha256": "2ba5fa3c49f2124f8b1a05d7c804bb7f7132132ab729be75f3ecc6c1e507239b",
+      "log_sha256": "e70004073251dde1a57a24d6cc1fdd3fcde3feac73592342f92651147aa9f928",
       "result": "PASS",
       "test_suite": "experiments/constitutional_reasoning_gym_v3/tests",
       "tests": 65
     },
     {
-      "log_sha256": "8909d38e2dd088c4df1cadcfb27209c13ee2226ba58cb9b17b9534121c36917f",
+      "log_sha256": "3f32538552850a2437a23a64223baaa3970db4ff5b6d29680b8c8b187eef7233",
       "result": "PASS",
       "test_suite": "experiments/constitutional_reasoning_gym_v3/v31/tests",
       "tests": 43
     },
     {
-      "log_sha256": "4669d8f1edf07671925f7d23c8345b87edd1f33c15eed01da4c12a157f047659",
+      "log_sha256": "81ef52f0eafec4871a0fe6670c33ffd9647eb3965c7197bde7bbe8d870a8e424",
       "result": "PASS",
       "test_suite": "experiments/constitutional_reasoning_gym_v3/semantic_review_v1/tests",
-      "tests": 24
+      "tests": 25
     }
   ],
   "text_negation_control": [
@@ -52,5 +52,5 @@
       "severity": "review"
     }
   ],
-  "total_tests": 132
+  "total_tests": 133
 }
