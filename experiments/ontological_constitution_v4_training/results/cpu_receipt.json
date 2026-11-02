@@ -32,9 +32,13 @@
     "experiments/ontological_constitution_v4/verify.py": "a1e5e17e6eacbabaccd3094ead8f9d051e89d2c65c23148fb45cb4a9d000dc2f",
     "experiments/ontological_constitution_v4_training/__init__.py": "af1b50999055dab32d21d35e0e74f5bf91c4dfecda221b0223b56f5834a5776e",
     "experiments/ontological_constitution_v4_training/__main__.py": "64b6cabcaa8f73c1272410f6c96ebf86ea4766896d8bd9b86580dd3fa0c88571",
+    "experiments/ontological_constitution_v4_training/admission.py": "8f8b6d94d5f7404749d4d395b644ff1ac03aaaf5debbd8791266136a523fb715",
     "experiments/ontological_constitution_v4_training/contracts.py": "19a4e6b500c32509dd0832ab3c1df84256c3390c21b9cddb0a9b1143cba0600c",
     "experiments/ontological_constitution_v4_training/engine.py": "c594c33da63e1438fa1ea1493e786cfe78b1a60bcf55f30f027fc3e7f7318f24",
     "experiments/ontological_constitution_v4_training/evaluation.py": "d26e97bd34b83521f7b9a83a7cc89012820f350d34ff70943dea23227a2e8a59",
+    "experiments/ontological_constitution_v4_training/pilot.py": "c3ce02ae8dfb837d1b172d77c11fb99ae4fd68b27aa2d1ddc8641070ea84d558",
+    "experiments/ontological_constitution_v4_training/preflight.py": "817849c12a50d300a6214cd51975d8287852cf09b72d56b82a42926dc262b7a2",
+    "experiments/ontological_constitution_v4_training/scripts/silico_pair.sh": "5bda2148438e08a95d5006f991140a2accbb4e50ae75587459f7c9c49c3ab761",
     "experiments/ontological_constitution_v4_training/scripts/silico_pilot.sh": "c4f56a4b83d208259ea072d8bf0ef193b9ca3fc45c2bf9603dfedf2848f2ba7e",
     "experiments/ontological_constitution_v4_training/tests/test_training.py": "cb626215aa44c9159dbd71dacfa60636b249ee7a0b93bf917e8a4eab96d457cb",
     "experiments/ontological_constitution_v4_training/verify.py": "3bc87fb2e45fecaa71d2c6cc7fb9c93ee9c6c457de86dc4f1ce4fd3096585164"
