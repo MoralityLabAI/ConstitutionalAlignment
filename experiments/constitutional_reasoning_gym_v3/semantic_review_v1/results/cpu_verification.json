@@ -1,0 +1,56 @@
+{
+  "artifact_sha256": {
+    "audit.json": "1db8c6f4619fdbc2d9a78a8a04ed77aa7782fe269ed3e0ae496500be8835f669",
+    "blind_key.jsonl": "3c1ee4099b736256784e8cbcf124e62eed7bf7c30d027d6e77720bf48fdde532",
+    "mechanical_audit.jsonl": "ab7739b62c0ad7f91da4a9e2f742e3ca0005fab1e214ad0b998bec9048178367",
+    "review_queue.jsonl": "c244f30becd783664653dc1a78710164284bfe604cc7eac54a9c963d251cff22"
+  },
+  "evidence_class": "SYNTHETIC_FIXTURE_ONLY",
+  "exported_cases": 24,
+  "generation_records": 48,
+  "huggingface_uploads": 0,
+  "matched_motifs": 12,
+  "paid_gpu_jobs": 0,
+  "python": "3.13.5",
+  "real_corpus_in_sandbox": false,
+  "real_corpus_reviewed": false,
+  "review_queue_rows": 48,
+  "source_integrity_check_pass": true,
+  "source_sha256": {
+    "__init__.py": "e1906db60a057b4879f05fb611b50930dd0a59f58ff6e0942e394f4b26d199c2",
+    "__main__.py": "23c78d7fc394d9e583271b98b734ec1c7d657255e47ac6a9cbad7b5b075dc056",
+    "checks.py": "88e433e6ef615bc1b51058dbd86f86a6578b1d14a46204981136255d4aa913bd",
+    "review.py": "c811385ed95c2e9096baae5275cb29f83c6e3bdbcaf9f7523e792efad37fb429",
+    "tests/test_semantic_review.py": "d815f261fe9b2cc6501d5a8917c64f48681b36b0d5d34cb2663622f3decba0a9",
+    "verify.py": "e3c75f5c1125e5387b45c816777fec70a9d13b7f7d1a312197fb52596d3bd3e8"
+  },
+  "status": "CPU_VERIFIED",
+  "tests": [
+    {
+      "log_sha256": "2ba5fa3c49f2124f8b1a05d7c804bb7f7132132ab729be75f3ecc6c1e507239b",
+      "result": "PASS",
+      "test_suite": "experiments/constitutional_reasoning_gym_v3/tests",
+      "tests": 65
+    },
+    {
+      "log_sha256": "8909d38e2dd088c4df1cadcfb27209c13ee2226ba58cb9b17b9534121c36917f",
+      "result": "PASS",
+      "test_suite": "experiments/constitutional_reasoning_gym_v3/v31/tests",
+      "tests": 43
+    },
+    {
+      "log_sha256": "4669d8f1edf07671925f7d23c8345b87edd1f33c15eed01da4c12a157f047659",
+      "result": "PASS",
+      "test_suite": "experiments/constitutional_reasoning_gym_v3/semantic_review_v1/tests",
+      "tests": 24
+    }
+  ],
+  "text_negation_control": [
+    {
+      "code": "contradictory_fact_polarity",
+      "excerpt": "e2 is true;",
+      "severity": "review"
+    }
+  ],
+  "total_tests": 132
+}

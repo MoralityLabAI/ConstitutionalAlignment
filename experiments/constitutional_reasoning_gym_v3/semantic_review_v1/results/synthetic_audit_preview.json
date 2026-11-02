@@ -1,0 +1,25 @@
+{
+  "evidence_class": "SYNTHETIC_FIXTURE",
+  "exportable_quartets": 12,
+  "generation_complete_records": 48,
+  "generation_mechanically_accepted": 48,
+  "reporting_by_frame": {
+    "jinn": 24,
+    "secular": 24
+  },
+  "reporting_by_track": {
+    "confidentiality": 4,
+    "correction": 8,
+    "delegation": 8,
+    "guidance": 4,
+    "handoff": 8,
+    "premise": 4,
+    "reporting": 8,
+    "reward_integrity": 4
+  },
+  "review_completed": false,
+  "review_queue_rows": 48,
+  "status": "REVIEW_QUEUE_PREPARED",
+  "tokenizer_counted_unique_rationale_tokens": null,
+  "unique_exact_rationales": 5
+}
