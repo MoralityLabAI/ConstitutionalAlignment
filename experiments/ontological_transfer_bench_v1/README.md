@@ -113,3 +113,7 @@ The endpoint URL/model ID are deliberately unspecified. **No INTELLECT-3 hosting
 Inspect family-level joint correctness, unknown bounds, expected counterfactual flips, spurious oversight/reward/training cue flips, and the motif-grouped exploratory bootstrap. Separate model decoding errors and response-format transfer from semantic errors. A high-scoring model may simply be executing the provided rules. The resulting evidence tests task transfer and declared justifications; it cannot establish private model motives or moral ontology.
 
 Read `PROTOCOL.md` and `SILICO_HANDOFF.md` before authorizing any inference work. Existing v4 LoRA artifacts remain private in Silico's durable store. **No GPU, paid endpoint, training, upload, or sealed test was run during this build.**
+
+## Paired smoke, bounded protocols and post-hoc tools
+
+See `PAIRED_SMOKE_PROTOCOL.md` for the design audit, bounded generation protocols and resource estimate, `results/POSTHOC_STATUS.md` for the unrecovered Qwen run, and `results/INTELLECT3_SERVING.md` for the INTELLECT-3 baseline options. New commands: `audit`, `estimate`, `terminal-map`, `import-records`, `posthoc --terminal-map`, `hf-group --protocol`. Modes `paired_smoke` (48 per arm) and `paired_balanced` (192 per arm) are development splits.

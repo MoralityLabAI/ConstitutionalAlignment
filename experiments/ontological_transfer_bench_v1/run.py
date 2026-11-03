@@ -66,7 +66,10 @@ def adapter_files(path):
 
 def write_json(path, value):
     p=Path(path);p.parent.mkdir(parents=True,exist_ok=True)
-    tmp=p.with_name(p.name+'.tmp');tmp.write_text(json.dumps(value,sort_keys=True,indent=2,ensure_ascii=False)+'\n',encoding='utf-8');tmp.replace(p)
+    # newline='\n' keeps file bytes, and so receipt hashes, identical on every platform.
+    tmp=p.with_name(p.name+'.tmp')
+    with tmp.open('w',encoding='utf-8',newline='\n') as f:f.write(json.dumps(value,sort_keys=True,indent=2,ensure_ascii=False)+'\n')
+    tmp.replace(p)
 
 
 def read_records(path):
@@ -135,7 +138,7 @@ def _chat(url,key,model,prompt,max_output_tokens,timeout,reasoning_effort=None):
     # No private reasoning text is exported as proof evidence. Store counts only.
     return content,{'usage':safe_usage,'finish_reason':finish,'provider_response_id':out.get('id'),
                     'raw_assistant_content':raw_content,
-                    'raw_reasoning_content':msg.get('reasoning_content') if isinstance(msg.get('reasoning_content'),str) else None,
+                    'raw_reasoning_content':next((msg[k] for k in ('reasoning_content','reasoning') if isinstance(msg.get(k),str)),None),
                     'reasoning_tokens':(usage.get('completion_tokens_details') or {}).get('reasoning_tokens')}
 
 
@@ -305,11 +308,13 @@ def run_hf(plan,out,*,arm,base_model,model_revision,adapter_path=None,approval=F
 
 def run_hf_group(plan,out,*,base_model,model_revision,formal_adapter,platonic_adapter,
                  approval=False,max_assignments=192,max_new_tokens=1024,max_wall_seconds=900,
-                 thinking=False):
+                 thinking=False,protocol=None):
     """Evaluate three Qwen arms with one weight load and two mounted adapters.
 
     The inference lease/provider cap must be enforced outside this worker too.
     Every assigned record beyond the cap remains unknown during scoring.
+    With ``protocol`` set (see generation.py) the thinking mode and token budgets
+    come from the pinned protocol and ``max_new_tokens``/``thinking`` are unused.
     """
     verify_plan(plan)
     if not approval:raise PermissionError('explicit model-inference approval required')
@@ -330,6 +335,13 @@ def run_hf_group(plan,out,*,base_model,model_revision,formal_adapter,platonic_ad
     model=PeftModel.from_pretrained(m,formal_adapter,adapter_name='formal_control',is_trainable=False,local_files_only=True)
     model.load_adapter(platonic_adapter,adapter_name='platonic_grounding',is_trainable=False)
     model.eval()
+    if protocol is not None:
+        from . import generation
+        pinned=generation.protocol(protocol);thinking=pinned['thinking']
+        tmap=generation.terminal_map(tokenizer)
+        proto_meta={'generation_protocol':pinned,'terminal_token_map':{str(k):v for k,v in tmap.items()}}
+    else:
+        proto_meta={}
     with out.open('x',encoding='utf-8') as f:
         for a in list(spread_assignments(plan,['base','formal_control','platonic_grounding']))[:max_assignments]:
             if time.monotonic()-start>=max_wall_seconds:break
@@ -344,13 +356,28 @@ def run_hf_group(plan,out,*,base_model,model_revision,formal_adapter,platonic_ad
                     ctx=model.disable_adapter()
                 else:
                     model.set_adapter(a['arm']);ctx=nullcontext()
-                with ctx,torch.inference_mode():
-                    generated=model.generate(**model_inputs,max_new_tokens=max_new_tokens,do_sample=False,
-                                             pad_token_id=tokenizer.eos_token_id)
-                out_ids=generated[0,prompt_length:]
-                raw,full,stripped_terminal_tokens=decode_hf_final(tokenizer,out_ids)
-                metadata.update(raw_model_text=full,stripped_terminal_token_ids=stripped_terminal_tokens,input_tokens=prompt_length,
-                                output_tokens=int(len(out_ids)),raw_generated_token_ids=out_ids.detach().cpu().tolist())
+                if protocol is not None:
+                    prompt_ids=model_inputs['input_ids'][0].detach().cpu().tolist()
+                    with ctx:
+                        res=generation.bounded_generate(generation.hf_generate(model,torch,model.device),
+                                                        tokenizer,prompt_ids,protocol,tmap)
+                    raw,full,stripped_terminal_tokens=decode_hf_final(tokenizer,res['final_token_ids'])
+                    # The audit text carries the model's reasoning, any inserted closer and the answer.
+                    audit_ids=generation.stitched_ids(res)
+                    metadata.update(raw_model_text=tokenizer.decode(audit_ids,skip_special_tokens=False),
+                                    stripped_terminal_token_ids=stripped_terminal_tokens,input_tokens=prompt_length,
+                                    output_tokens=res['total_model_tokens'],raw_generated_token_ids=res['generated_token_ids'],
+                                    forced_token_ids=res['forced_token_ids'],stop_reason=res['stop_reason'],
+                                    reasoning_force_closed=res['reasoning_force_closed'],phases=res['phases'],
+                                    protocol_sha256=res['protocol_sha256'])
+                else:
+                    with ctx,torch.inference_mode():
+                        generated=model.generate(**model_inputs,max_new_tokens=max_new_tokens,do_sample=False,
+                                                 pad_token_id=tokenizer.eos_token_id)
+                    out_ids=generated[0,prompt_length:]
+                    raw,full,stripped_terminal_tokens=decode_hf_final(tokenizer,out_ids)
+                    metadata.update(raw_model_text=full,stripped_terminal_token_ids=stripped_terminal_tokens,input_tokens=prompt_length,
+                                    output_tokens=int(len(out_ids)),raw_generated_token_ids=out_ids.detach().cpu().tolist())
             except (RuntimeError,ValueError,OSError,TypeError,AttributeError) as exc:
                 err=type(exc).__name__+': '+str(exc)
             row=record_for(plan,a,raw,error=err,metadata=metadata,model_id=model_revision+':'+a['arm'])
@@ -358,6 +385,7 @@ def run_hf_group(plan,out,*,base_model,model_revision,formal_adapter,platonic_ad
             if err:break
     summary=score(plan,read_records(out),['base','formal_control','platonic_grounding'])
     summary['run_adapter_file_sha256']=attest
+    summary.update(proto_meta)
     summary['reported_model_revision']=model_revision
     summary['GPU_peak_allocated_bytes']=int(torch.cuda.max_memory_allocated()) if torch.cuda.is_available() else None
     summary['elapsed_seconds']=time.monotonic()-start

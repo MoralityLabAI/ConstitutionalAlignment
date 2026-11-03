@@ -87,6 +87,8 @@ def score(plan, records, requested_arms=None):
         by_arm[arm]={'assigned':n,'records_submitted':submitted,'status':'UNRUN' if submitted==0 else 'PARTIAL' if unknown else 'COMPLETE',
                      'choice_correct':choice,'reason_correct':reason,'joint_correct':exact,
                      'joint_accuracy_bounds':[str(Fraction(exact,n)),str(Fraction(exact+unknown,n))],
+                     'choice_accuracy_bounds':[str(Fraction(choice,n)),str(Fraction(choice+unknown,n))],
+                     'reason_accuracy_bounds':[str(Fraction(reason,n)),str(Fraction(reason+unknown,n))],
                      'malformed':malformed,'unknown':unknown,
                      'by_family':{f:dict(v) for f,v in sorted(family_counts.items())},
                      'paired_cue_diagnostics':invariance,

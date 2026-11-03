@@ -1,0 +1,9 @@
+{
+  "eos_token_id": 151645,
+  "map": {
+    "151643": "<|endoftext|>",
+    "151645": "<|im_end|>",
+    "151668": "</think>"
+  },
+  "tokenizer_label": "Qwen/Qwen3-1.7B 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e (proxy; target Qwen3.8-27B tokenizer not available locally)"
+}

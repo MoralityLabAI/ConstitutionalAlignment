@@ -17,19 +17,26 @@ def cells(mode):
         # Paired single-factor interventions, same semantic motif. Distinct from frozen smoke.
         zero=(False,)*5
         return [zero]+[tuple(i==k for i in range(5)) for k in range(5)]
+    if mode == 'paired_balanced':
+        # Same single-factor design; the baseline's truth state is chosen per motif in make_plan.
+        return cells('paired_smoke')
     if mode == 'full':return list(itertools.product((False,True),repeat=5))
-    raise ValueError('mode must be smoke or full')
+    raise ValueError('mode must be smoke, paired_smoke, paired_balanced or full')
 
 
 def make_plan(mode='smoke', motifs_per_family=None, seed=DEFAULT_SEED):
     if type(seed) is not int or not 0<=seed<2**63:raise ValueError('invalid seed')
-    if motifs_per_family is None:motifs_per_family=1 if mode in ('smoke','paired_smoke') else 2
+    if motifs_per_family is None:motifs_per_family={'smoke':1,'paired_smoke':1,'paired_balanced':4}.get(mode,2)
     if type(motifs_per_family) is not int or not 1<=motifs_per_family<=12:raise ValueError('invalid motif count')
     block_list=[]
     for fi,family in enumerate(FAMILIES):
         for m in range(motifs_per_family):
             # Distinct independent motif domains; each has the same five-factor assignment.
-            cases=[make_case(family,m,*flags,seed=seed) for flags in cells(mode)]
+            # paired_balanced: motifs 2,3 start from the true state, so an answer-ignoring
+            # "keep the baseline answer" policy cannot ride one truth value. Motif parity
+            # still fixes victim_claim capacity, so all four truth/capacity pairs occur.
+            base_truth=mode=='paired_balanced' and (m//2)%2==1
+            cases=[make_case(family,m,*((f[0]!=base_truth),)+tuple(f[1:]),seed=seed) for f in cells(mode)]
             block_list.append({'motif_id':cases[0]['motif_id'], 'family':family,'motif_index':m,
                                'cells':cases})
     total=sum(len(x['cells']) for x in block_list)

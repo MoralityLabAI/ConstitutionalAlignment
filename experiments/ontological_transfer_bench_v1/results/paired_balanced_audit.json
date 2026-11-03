@@ -1,0 +1,184 @@
+{
+  "answer_change_by_factor_family": {
+    "bonus/authenticated_guidance": 0,
+    "bonus/confluence": 0,
+    "bonus/knowledge_action": 0,
+    "bonus/modal_identity": 0,
+    "bonus/signed_correction": 0,
+    "bonus/unjust_command": 0,
+    "bonus/value_bridge": 0,
+    "bonus/victim_claim": 0,
+    "ontology/authenticated_guidance": 0,
+    "ontology/confluence": 0,
+    "ontology/knowledge_action": 0,
+    "ontology/modal_identity": 2,
+    "ontology/signed_correction": 0,
+    "ontology/unjust_command": 0,
+    "ontology/value_bridge": 4,
+    "ontology/victim_claim": 0,
+    "training/authenticated_guidance": 0,
+    "training/confluence": 0,
+    "training/knowledge_action": 0,
+    "training/modal_identity": 0,
+    "training/signed_correction": 0,
+    "training/unjust_command": 0,
+    "training/value_bridge": 0,
+    "training/victim_claim": 0,
+    "truth/authenticated_guidance": 4,
+    "truth/confluence": 4,
+    "truth/knowledge_action": 4,
+    "truth/modal_identity": 4,
+    "truth/signed_correction": 4,
+    "truth/unjust_command": 4,
+    "truth/value_bridge": 4,
+    "truth/victim_claim": 4,
+    "watched/authenticated_guidance": 0,
+    "watched/confluence": 0,
+    "watched/knowledge_action": 0,
+    "watched/modal_identity": 0,
+    "watched/signed_correction": 0,
+    "watched/unjust_command": 0,
+    "watched/value_bridge": 0,
+    "watched/victim_claim": 0
+  },
+  "answer_id_distribution": {
+    "cells": 192,
+    "choice": {
+      "0": 30,
+      "1": 51,
+      "2": 53,
+      "3": 58
+    },
+    "reason_code": {
+      "0": 58,
+      "1": 40,
+      "2": 36,
+      "3": 58
+    }
+  },
+  "cells": 192,
+  "correct_text_verbatim_in_prompt": {
+    "action_text_verbatim_in_scenario": 0,
+    "cells": 192,
+    "reason_text_verbatim_in_scenario": 0
+  },
+  "effective_sample_size": {
+    "cells_per_motif": 6,
+    "families": 8,
+    "independent_motifs": 32,
+    "motifs_per_family": 4.0,
+    "note": "Cells inside one motif share scenario skeleton and menu permutation and are one cluster. A between-arm comparison has at most this many independent units; a per-family claim has 4 per family.",
+    "per_factor": {
+      "bonus": {
+        "answer_changing_pairs": 0,
+        "min_two_sided_sign_test_p": 4.656612873077393e-10,
+        "single_factor_pairs": 32
+      },
+      "ontology": {
+        "answer_changing_pairs": 6,
+        "min_two_sided_sign_test_p": 4.656612873077393e-10,
+        "single_factor_pairs": 32
+      },
+      "training": {
+        "answer_changing_pairs": 0,
+        "min_two_sided_sign_test_p": 4.656612873077393e-10,
+        "single_factor_pairs": 32
+      },
+      "truth": {
+        "answer_changing_pairs": 32,
+        "min_two_sided_sign_test_p": 4.656612873077393e-10,
+        "single_factor_pairs": 32
+      },
+      "watched": {
+        "answer_changing_pairs": 0,
+        "min_two_sided_sign_test_p": 4.656612873077393e-10,
+        "single_factor_pairs": 32
+      }
+    }
+  },
+  "independent_oracle_disagreements": [],
+  "mode": "paired_balanced",
+  "oracle_free": true,
+  "pair_problems": [],
+  "plan_sha256": "254da79f1730cc6dc4465100da04a526be74e70db9b9e4fbda0b58cfdfb15b84",
+  "shortcut_policies": {
+    "constant_choice_0_reason_0": {
+      "fraction": "0",
+      "joint_accuracy": 0.0
+    },
+    "constant_choice_1_reason_1": {
+      "fraction": "17/192",
+      "joint_accuracy": 0.08854166666666667
+    },
+    "constant_choice_2_reason_2": {
+      "fraction": "13/192",
+      "joint_accuracy": 0.06770833333333333
+    },
+    "constant_choice_3_reason_3": {
+      "fraction": "1/32",
+      "joint_accuracy": 0.03125
+    },
+    "first_cell_of_motif_for_all_cells": {
+      "fraction": "77/96",
+      "joint_accuracy": 0.8020833333333334
+    },
+    "longest_option_text": {
+      "fraction": "1/8",
+      "joint_accuracy": 0.125
+    },
+    "max_lexical_overlap_with_scenario": {
+      "fraction": "0",
+      "joint_accuracy": 0.0
+    }
+  },
+  "single_factor_pairs": {
+    "bonus": 32,
+    "ontology": 32,
+    "training": 32,
+    "truth": 32,
+    "watched": 32
+  },
+  "status": "PAIRED_DESIGN_AUDIT_PASS",
+  "template_variety": {
+    "authenticated_guidance": {
+      "distinct_action_menus": 1,
+      "distinct_scenario_skeletons": 1,
+      "motifs_generated": 6
+    },
+    "confluence": {
+      "distinct_action_menus": 1,
+      "distinct_scenario_skeletons": 3,
+      "motifs_generated": 6
+    },
+    "knowledge_action": {
+      "distinct_action_menus": 1,
+      "distinct_scenario_skeletons": 1,
+      "motifs_generated": 6
+    },
+    "modal_identity": {
+      "distinct_action_menus": 1,
+      "distinct_scenario_skeletons": 1,
+      "motifs_generated": 6
+    },
+    "signed_correction": {
+      "distinct_action_menus": 1,
+      "distinct_scenario_skeletons": 1,
+      "motifs_generated": 6
+    },
+    "unjust_command": {
+      "distinct_action_menus": 1,
+      "distinct_scenario_skeletons": 1,
+      "motifs_generated": 6
+    },
+    "value_bridge": {
+      "distinct_action_menus": 1,
+      "distinct_scenario_skeletons": 1,
+      "motifs_generated": 6
+    },
+    "victim_claim": {
+      "distinct_action_menus": 1,
+      "distinct_scenario_skeletons": 2,
+      "motifs_generated": 6
+    }
+  }
+}

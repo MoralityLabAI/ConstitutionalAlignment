@@ -1,0 +1,90 @@
+{
+  "cases": {
+    "answer_phase_overlong": {
+      "force_closed": false,
+      "forced_tokens": 0,
+      "model_tokens": 68,
+      "stop_reason": "length_in_final",
+      "strict_valid": false,
+      "stripped_terminal_ids": []
+    },
+    "direct_clean": {
+      "force_closed": false,
+      "forced_tokens": 0,
+      "model_tokens": 14,
+      "stop_reason": "eos_im_end",
+      "strict_valid": true,
+      "stripped_terminal_ids": [
+        151645
+      ]
+    },
+    "direct_verbose_hits_answer_budget": {
+      "force_closed": false,
+      "forced_tokens": 0,
+      "model_tokens": 64,
+      "stop_reason": "length_in_final",
+      "strict_valid": false,
+      "stripped_terminal_ids": []
+    },
+    "eos_without_think": {
+      "force_closed": false,
+      "forced_tokens": 0,
+      "model_tokens": 14,
+      "stop_reason": "eos_im_end",
+      "strict_valid": true,
+      "stripped_terminal_ids": [
+        151645
+      ]
+    },
+    "think_closes_then_answers": {
+      "force_closed": false,
+      "forced_tokens": 0,
+      "model_tokens": 19,
+      "stop_reason": "eos_im_end",
+      "strict_valid": true,
+      "stripped_terminal_ids": [
+        151645
+      ]
+    },
+    "think_overlong_forced_close": {
+      "force_closed": true,
+      "forced_tokens": 21,
+      "model_tokens": 782,
+      "stop_reason": "eos_im_end",
+      "strict_valid": true,
+      "stripped_terminal_ids": [
+        151645
+      ]
+    }
+  },
+  "eos_token_id": 151645,
+  "forced_close_token_count": 21,
+  "protocols": {
+    "bounded_think_v1": {
+      "answer_budget": 64,
+      "forced_close_text": "\n\nConsidering the limited time, I have to give the solution based on the thinking directly now.\n</think>\n\n",
+      "name": "bounded_think_v1",
+      "reasoning_budget": 768,
+      "sha256": "76a93d5d97ece9c2928536427ce22bac70ea411cc28eba1f726014baf41dd504",
+      "thinking": true
+    },
+    "direct_v1": {
+      "answer_budget": 64,
+      "name": "direct_v1",
+      "reasoning_budget": 0,
+      "sha256": "2bf32ed8ece16f834c13570195d17090a929264fe196d4d5729e3d3184471a0e",
+      "thinking": false
+    }
+  },
+  "status": "TOKENIZER_STOP_PROBE_NO_MODEL",
+  "template_tail_by_enable_thinking": {
+    "False": "_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+    "True": "m_start|>user\nx<|im_end|>\n<|im_start|>assistant\n"
+  },
+  "terminal_map": {
+    "151643": "<|endoftext|>",
+    "151645": "<|im_end|>",
+    "151668": "</think>"
+  },
+  "tokenizer_label": "Qwen/Qwen3-1.7B snapshot 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e (proxy for the Qwen3.8-27B tokenizer, which is not available locally)"
+}

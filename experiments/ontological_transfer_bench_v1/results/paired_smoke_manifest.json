@@ -1,0 +1,688 @@
+{
+  "audit_file": "paired_smoke_audit.json",
+  "cells": [
+    {
+      "case_id": "6b737339a2056ed05a9ff60b",
+      "case_sha256": "9f7ab29431105752f6f65a29924b907c7a6a42af4ea9be0788aacc0d7fa85324",
+      "family": "confluence",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "a57ba13f1959e0e70729",
+      "motif_index": 0
+    },
+    {
+      "case_id": "c0cd05be9c9ce3edaeb61240",
+      "case_sha256": "6fe030d314e1e2975cc6941a2f5642324ef7704beb602af51ae8c551a8707f3a",
+      "family": "confluence",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": true,
+        "watched": false
+      },
+      "motif_id": "a57ba13f1959e0e70729",
+      "motif_index": 0
+    },
+    {
+      "case_id": "4488cfa3f8561d58daf64ea2",
+      "case_sha256": "d7441a00a193acef371c56fb731e3ff7d36b7c21e2408fb5cc4a9d8dceb49042",
+      "family": "confluence",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": true
+      },
+      "motif_id": "a57ba13f1959e0e70729",
+      "motif_index": 0
+    },
+    {
+      "case_id": "fdaf160a113ceb2447320303",
+      "case_sha256": "655c48869b59f89bd226c1134650efc27441c33584521c016578a07aaf75f678",
+      "family": "confluence",
+      "flags": {
+        "bonus": true,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "a57ba13f1959e0e70729",
+      "motif_index": 0
+    },
+    {
+      "case_id": "964d851042815f46e8e78162",
+      "case_sha256": "d6303ee0714883099a77f511c73f3b40c300567765cc2dcef89c0668d407b763",
+      "family": "confluence",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": true,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "a57ba13f1959e0e70729",
+      "motif_index": 0
+    },
+    {
+      "case_id": "d0d6c405d4538959db8ec8c0",
+      "case_sha256": "c02784330b44d6c9cb9f8c6f9221b51d388fbd59cae6a61bad646c3352ebf1ec",
+      "family": "confluence",
+      "flags": {
+        "bonus": false,
+        "ontology": true,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "a57ba13f1959e0e70729",
+      "motif_index": 0
+    },
+    {
+      "case_id": "2cb0dd5d034bcb2cfca9e29f",
+      "case_sha256": "9869e36aa7e3d93f301ffc49a477485a31b4152b1fd7ce090d8ef3671b3163ae",
+      "family": "modal_identity",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "d4868033469806cc9ade",
+      "motif_index": 0
+    },
+    {
+      "case_id": "9d3464d6a02cde47680c9ff6",
+      "case_sha256": "227f8e330cc83788213426ba3324ee279ae7193f8d3cf911d056d683ade5c652",
+      "family": "modal_identity",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": true,
+        "watched": false
+      },
+      "motif_id": "d4868033469806cc9ade",
+      "motif_index": 0
+    },
+    {
+      "case_id": "442611b983dcd3daacf479ec",
+      "case_sha256": "a349d9aa7ec2292c657b1d3f6d65a473e9bd20ffa074559f04510ca2ae505452",
+      "family": "modal_identity",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": true
+      },
+      "motif_id": "d4868033469806cc9ade",
+      "motif_index": 0
+    },
+    {
+      "case_id": "1ca36f7c6b6b745d11a91d19",
+      "case_sha256": "ff056699e81b601d481349a02d9953d7b659b8535877d6e5d0a0e2d8565cee0d",
+      "family": "modal_identity",
+      "flags": {
+        "bonus": true,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "d4868033469806cc9ade",
+      "motif_index": 0
+    },
+    {
+      "case_id": "53ba7a0cb1ae36b93315c548",
+      "case_sha256": "13f7104a1bf3a171a8c3e1b055e52ce54850e8ef61fbb85a6606927816843f38",
+      "family": "modal_identity",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": true,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "d4868033469806cc9ade",
+      "motif_index": 0
+    },
+    {
+      "case_id": "c0250ca0447de6c725154f1b",
+      "case_sha256": "4674659f3b8c6ca1a7a5a17876ff08c7efdddaf324910c7e58f5a1fdad1bdb06",
+      "family": "modal_identity",
+      "flags": {
+        "bonus": false,
+        "ontology": true,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "d4868033469806cc9ade",
+      "motif_index": 0
+    },
+    {
+      "case_id": "7fa8b8bf938889f0e87e953e",
+      "case_sha256": "7910d44ac717e66efa162b74883105d58ee7b5fa4146219d107ddd5eb3a9be05",
+      "family": "value_bridge",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "75bcd1490c5be97ec1ee",
+      "motif_index": 0
+    },
+    {
+      "case_id": "dffd5e4f48086d7ec00db922",
+      "case_sha256": "99b96c8dfe99862b792647a3fd14341ceacadec3beaec890a20efe963227e49b",
+      "family": "value_bridge",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": true,
+        "watched": false
+      },
+      "motif_id": "75bcd1490c5be97ec1ee",
+      "motif_index": 0
+    },
+    {
+      "case_id": "3469d75403c8c0a65d8c2259",
+      "case_sha256": "2c76b4fd02d198eb26078292ca3f994ea410b68d2389f6ef60de6ceb8d6009ce",
+      "family": "value_bridge",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": true
+      },
+      "motif_id": "75bcd1490c5be97ec1ee",
+      "motif_index": 0
+    },
+    {
+      "case_id": "2ff68dbfe20197be9d8a9fc4",
+      "case_sha256": "0388202a71b3f9309c8cdb31d799df783ea51043144e1b43d056ab6dfe143dd8",
+      "family": "value_bridge",
+      "flags": {
+        "bonus": true,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "75bcd1490c5be97ec1ee",
+      "motif_index": 0
+    },
+    {
+      "case_id": "ae3c290d4fa3d88d5198ede3",
+      "case_sha256": "66372ca890f95809d87459edff4ea55e28e6238e7a0ebfbd183624506a201894",
+      "family": "value_bridge",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": true,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "75bcd1490c5be97ec1ee",
+      "motif_index": 0
+    },
+    {
+      "case_id": "5261d8f8c10305a9c215372b",
+      "case_sha256": "d13ade8dee0e9cf1b306b86f051349af43882decda70e4aab1bd60c1edaba715",
+      "family": "value_bridge",
+      "flags": {
+        "bonus": false,
+        "ontology": true,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "75bcd1490c5be97ec1ee",
+      "motif_index": 0
+    },
+    {
+      "case_id": "b3829c83024307339551a553",
+      "case_sha256": "182d8b7574b557dccbb5beaebdf60504ed59afeaa211ca5671085d78d115d44f",
+      "family": "victim_claim",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "18f40fc7a5cff402af91",
+      "motif_index": 0
+    },
+    {
+      "case_id": "ed025ce37e96cb660db7ce5b",
+      "case_sha256": "ce77552cd332eea97e20cf980f0792de18f6407f7c6091aa7ba2d2486a45a138",
+      "family": "victim_claim",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": true,
+        "watched": false
+      },
+      "motif_id": "18f40fc7a5cff402af91",
+      "motif_index": 0
+    },
+    {
+      "case_id": "8684e96d5b4936d4ae9d023b",
+      "case_sha256": "611a79069123f532bd4488b37184d8ab296dae0751e8a25c2e39062ac2e3ce42",
+      "family": "victim_claim",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": true
+      },
+      "motif_id": "18f40fc7a5cff402af91",
+      "motif_index": 0
+    },
+    {
+      "case_id": "0cc2ad5e8df0191a496f263f",
+      "case_sha256": "d3d4a469330ddb1872b1d5fdfe18c0548b3656dc5e1131aa2bd806361bb9df1c",
+      "family": "victim_claim",
+      "flags": {
+        "bonus": true,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "18f40fc7a5cff402af91",
+      "motif_index": 0
+    },
+    {
+      "case_id": "49846ebd02cef51c2ef79712",
+      "case_sha256": "faf49d8e06aa644e9fa5326a92d523505e0a50b2d46a13af9a221a2b030afeae",
+      "family": "victim_claim",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": true,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "18f40fc7a5cff402af91",
+      "motif_index": 0
+    },
+    {
+      "case_id": "015c74dc5e91690226fb83c7",
+      "case_sha256": "a85ea9de90068433448d392436363b2681ca40c1859c30165b314f7e49dda14c",
+      "family": "victim_claim",
+      "flags": {
+        "bonus": false,
+        "ontology": true,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "18f40fc7a5cff402af91",
+      "motif_index": 0
+    },
+    {
+      "case_id": "ff1e7f4c775ffe8151fd7440",
+      "case_sha256": "87cb1e19df971de9b501689043d98e6a4fb18f53c14ec39dc56017c2737ae554",
+      "family": "authenticated_guidance",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "da13ccdaf0a98c06b2ed",
+      "motif_index": 0
+    },
+    {
+      "case_id": "3d1863bdb948978df9004fab",
+      "case_sha256": "b921d743edab8d1bbb28dab3167d05d045b70027e5a311a84ffff2785716e024",
+      "family": "authenticated_guidance",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": true,
+        "watched": false
+      },
+      "motif_id": "da13ccdaf0a98c06b2ed",
+      "motif_index": 0
+    },
+    {
+      "case_id": "091fad09ecc31e95b90b159d",
+      "case_sha256": "5229b75258388b020dfa90cd7c87d4cdcf64d0c109ae39d6645e1a391ddd54d4",
+      "family": "authenticated_guidance",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": true
+      },
+      "motif_id": "da13ccdaf0a98c06b2ed",
+      "motif_index": 0
+    },
+    {
+      "case_id": "fbc90bbcbcf487030bb1e554",
+      "case_sha256": "fa4d6c99c6536bcfdd53d8787270d3879e68dc99420a40b585943b54f3a380e0",
+      "family": "authenticated_guidance",
+      "flags": {
+        "bonus": true,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "da13ccdaf0a98c06b2ed",
+      "motif_index": 0
+    },
+    {
+      "case_id": "05975b59fe7b63906a2da600",
+      "case_sha256": "909d293d004125711604b0ce3c2bdb98bb6045bf6a50b4bf898b1d32e216298a",
+      "family": "authenticated_guidance",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": true,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "da13ccdaf0a98c06b2ed",
+      "motif_index": 0
+    },
+    {
+      "case_id": "f0db3677c3c5380ff3bc2266",
+      "case_sha256": "78c2ca6fe734db9b82f52dc2bb554b7aa0d7ad931f3ffca0a5335b690140b6cf",
+      "family": "authenticated_guidance",
+      "flags": {
+        "bonus": false,
+        "ontology": true,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "da13ccdaf0a98c06b2ed",
+      "motif_index": 0
+    },
+    {
+      "case_id": "fd455367f83376f90ee879d9",
+      "case_sha256": "b84c52b2447b3fe4e0025c869a59c26e997c1e3b4c0e365cc9715c7821bcfe11",
+      "family": "signed_correction",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "451017a3ce9387c9aea9",
+      "motif_index": 0
+    },
+    {
+      "case_id": "6d94c4a9f8664936766069ea",
+      "case_sha256": "8390a31000dc0766cc0d21e724944b3488f5d3e6fe68ffa66e89f66dfd61aec7",
+      "family": "signed_correction",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": true,
+        "watched": false
+      },
+      "motif_id": "451017a3ce9387c9aea9",
+      "motif_index": 0
+    },
+    {
+      "case_id": "3bc860f809c1f667aabb4078",
+      "case_sha256": "ca6155ecbcb5ad53aab0c371a09229f408207a287a17e497cbf1cdd5a17dfaf4",
+      "family": "signed_correction",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": true
+      },
+      "motif_id": "451017a3ce9387c9aea9",
+      "motif_index": 0
+    },
+    {
+      "case_id": "0a6ed47fd88f7201053956c8",
+      "case_sha256": "1e05b16c8f57d35ae80e38f367c3ffecef7a71b737c63b412c6b5892da2ac80f",
+      "family": "signed_correction",
+      "flags": {
+        "bonus": true,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "451017a3ce9387c9aea9",
+      "motif_index": 0
+    },
+    {
+      "case_id": "a59b6e4c1d6702000ec77085",
+      "case_sha256": "902f472f08e6c445e5d15edc785227a833c1586e5cb7ebeb701c83d2ff49c15e",
+      "family": "signed_correction",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": true,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "451017a3ce9387c9aea9",
+      "motif_index": 0
+    },
+    {
+      "case_id": "0ae9b821b5ecb0ddae7e17e1",
+      "case_sha256": "4ae873162fb2d370435ceeb09581a04b0cafa302a9d12a31df57a3810315ad2f",
+      "family": "signed_correction",
+      "flags": {
+        "bonus": false,
+        "ontology": true,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "451017a3ce9387c9aea9",
+      "motif_index": 0
+    },
+    {
+      "case_id": "69a1c934c186821685f79d15",
+      "case_sha256": "d2e8e4feae2bd50859e6b98e5b64e2d955e3e1de69cc24e5229f9a0fe665b817",
+      "family": "unjust_command",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "07d019e081f9789f0414",
+      "motif_index": 0
+    },
+    {
+      "case_id": "b1e15ca09cae0fe1ae607f0f",
+      "case_sha256": "234d28ef1c7d9d85e082ba96834c35e280e2828ae7683ea96f47b9c27420a998",
+      "family": "unjust_command",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": true,
+        "watched": false
+      },
+      "motif_id": "07d019e081f9789f0414",
+      "motif_index": 0
+    },
+    {
+      "case_id": "0042169f3a1f025adb18a033",
+      "case_sha256": "af635fd74eae8cd29a348ba094e2bb2292448de0f6e6675a0117b83048bfb15c",
+      "family": "unjust_command",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": true
+      },
+      "motif_id": "07d019e081f9789f0414",
+      "motif_index": 0
+    },
+    {
+      "case_id": "f5fbae0d0fbef9b07a9e9a7e",
+      "case_sha256": "ea6753b19e356ed5f9e6af411d13a3d6c367f3c936676776913d39bd41c5af2d",
+      "family": "unjust_command",
+      "flags": {
+        "bonus": true,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "07d019e081f9789f0414",
+      "motif_index": 0
+    },
+    {
+      "case_id": "d948dd7d66db13c1428a6a2c",
+      "case_sha256": "0291d9e463309ba24623934ad635b91a0eba8784fff43daf4fe9c4b8e91d0c07",
+      "family": "unjust_command",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": true,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "07d019e081f9789f0414",
+      "motif_index": 0
+    },
+    {
+      "case_id": "f4f572248f6353356199f003",
+      "case_sha256": "681bc24204921ac199686128064d1c0f0b35fed86efc6555bd6e4ee10baeba4c",
+      "family": "unjust_command",
+      "flags": {
+        "bonus": false,
+        "ontology": true,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "07d019e081f9789f0414",
+      "motif_index": 0
+    },
+    {
+      "case_id": "b4cf33fba0b56d2cd7876ad8",
+      "case_sha256": "b464ddcf0c1c724e6776cf7bf5480144f5077f8455b52215ccf43d536d20306b",
+      "family": "knowledge_action",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "fd4d10fab020287422d0",
+      "motif_index": 0
+    },
+    {
+      "case_id": "5cdb983214c7b8548fb92074",
+      "case_sha256": "1088b19abac133ba84f5ac166a9938e2237ec05e2d3586acd02c5e2a972c4f05",
+      "family": "knowledge_action",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": true,
+        "watched": false
+      },
+      "motif_id": "fd4d10fab020287422d0",
+      "motif_index": 0
+    },
+    {
+      "case_id": "5f5dc26fb8f849f4ebbd7cad",
+      "case_sha256": "7dc3c5aa71f3f592fc25abef6ec212d877d76fc758a0f573d88d152a2a0026c9",
+      "family": "knowledge_action",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": true
+      },
+      "motif_id": "fd4d10fab020287422d0",
+      "motif_index": 0
+    },
+    {
+      "case_id": "32c91cd8f9dd0601301f7c90",
+      "case_sha256": "fe91bb1ec0cb995d33423d1a3f2d48a928257c144710990241449fbb24c10b02",
+      "family": "knowledge_action",
+      "flags": {
+        "bonus": true,
+        "ontology": false,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "fd4d10fab020287422d0",
+      "motif_index": 0
+    },
+    {
+      "case_id": "b1863298db3287a29cafff7d",
+      "case_sha256": "e85e187e1e3d5b18661e164e277d4a3372a30d182b11fbf21c855ca82a4d84a1",
+      "family": "knowledge_action",
+      "flags": {
+        "bonus": false,
+        "ontology": false,
+        "training": true,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "fd4d10fab020287422d0",
+      "motif_index": 0
+    },
+    {
+      "case_id": "243fc94acd5490c0b9fb255b",
+      "case_sha256": "ebc26291848bbf280dc5847c681e8b619556576436623abec5aedb694dd74620",
+      "family": "knowledge_action",
+      "flags": {
+        "bonus": false,
+        "ontology": true,
+        "training": false,
+        "truth": false,
+        "watched": false
+      },
+      "motif_id": "fd4d10fab020287422d0",
+      "motif_index": 0
+    }
+  ],
+  "mode": "paired_smoke",
+  "motifs": 8,
+  "plan_file_sha256": "e62bd416a88318bbb07d6e0c225d98c27f541853915847c43b2730acd019b209",
+  "plan_sha256": "e6452dd420794efe2f5c3483d9a694b5db1a68d967db5f152aca1da6c4765cfe",
+  "public_cases_file_sha256": "0ef09acac7d8408c81be44b4f425b9cf9294c65eb78afc727f6716b380dbfeb8",
+  "qwen_assignments": 144,
+  "records_per_arm": 48,
+  "seed": 20261102,
+  "status": "VERIFIED_PAIRED_DESIGN",
+  "training_exclusion": "This split and every derived response must be excluded from later training.",
+  "version": "ontology-transfer-bench-v1"
+}
