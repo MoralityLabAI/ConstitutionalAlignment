@@ -38,7 +38,7 @@ def main(argv=None):
     all_hf.add_argument('--formal-adapter',required=True);all_hf.add_argument('--platonic-adapter',required=True)
     all_hf.add_argument('--approved',action='store_true');all_hf.add_argument('--max-assignments',type=int,required=True)
     all_hf.add_argument('--max-new-tokens',type=int,default=1024);all_hf.add_argument('--max-wall-seconds',type=int,default=900)
-    all_hf.add_argument('--thinking',action='store_true');all_hf.add_argument('--protocol')
+    all_hf.add_argument('--thinking',action='store_true');all_hf.add_argument('--protocol');all_hf.add_argument('--arms',nargs='+')
     m=sub.add_parser('endpoint');m.add_argument('--plan',type=Path,required=True);m.add_argument('--out',type=Path,required=True)
     m.add_argument('--arm',required=True);m.add_argument('--model-id',required=True);m.add_argument('--url',required=True)
     m.add_argument('--api-key-env',default='BENCH_API_KEY');m.add_argument('--approved',action='store_true')
@@ -106,7 +106,7 @@ def main(argv=None):
         elif args.cmd=='hf-group':result=run_hf_group(plan,args.out,base_model=args.base,
                   model_revision=args.revision,formal_adapter=args.formal_adapter,platonic_adapter=args.platonic_adapter,
                   approval=args.approved,max_assignments=args.max_assignments,max_new_tokens=args.max_new_tokens,
-                  max_wall_seconds=args.max_wall_seconds,thinking=args.thinking,protocol=args.protocol)
+                  max_wall_seconds=args.max_wall_seconds,thinking=args.thinking,protocol=args.protocol,arms=args.arms)
         elif args.cmd=='endpoint':result=run_endpoint(plan,args.out,args.arm,model_id=args.model_id,base_url=args.url,
                       approval=args.approved,max_requests=args.max_requests,total_output_cap=args.total_output_cap,
                       output_tokens_per_request=args.max_new_tokens,per_request_timeout=args.timeout,

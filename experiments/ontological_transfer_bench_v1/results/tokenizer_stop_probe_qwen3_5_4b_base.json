@@ -1,0 +1,97 @@
+{
+  "cases": {
+    "answer_phase_overlong": {
+      "force_closed": false,
+      "forced_tokens": 0,
+      "model_tokens": 68,
+      "stop_reason": "length_in_final",
+      "strict_valid": false,
+      "stripped_terminal_ids": []
+    },
+    "direct_clean": {
+      "force_closed": false,
+      "forced_tokens": 0,
+      "model_tokens": 14,
+      "stop_reason": "eos_im_end",
+      "strict_valid": true,
+      "stripped_terminal_ids": [
+        248046
+      ]
+    },
+    "direct_verbose_hits_answer_budget": {
+      "force_closed": false,
+      "forced_tokens": 0,
+      "model_tokens": 64,
+      "stop_reason": "length_in_final",
+      "strict_valid": false,
+      "stripped_terminal_ids": []
+    },
+    "eos_without_think": {
+      "force_closed": false,
+      "forced_tokens": 0,
+      "model_tokens": 14,
+      "stop_reason": "eos_im_end",
+      "strict_valid": true,
+      "stripped_terminal_ids": [
+        248046
+      ]
+    },
+    "think_closes_then_answers": {
+      "force_closed": false,
+      "forced_tokens": 0,
+      "model_tokens": 19,
+      "stop_reason": "eos_im_end",
+      "strict_valid": true,
+      "stripped_terminal_ids": [
+        248046
+      ]
+    },
+    "think_overlong_forced_close": {
+      "force_closed": true,
+      "forced_tokens": 22,
+      "model_tokens": 782,
+      "stop_reason": "eos_im_end",
+      "strict_valid": true,
+      "stripped_terminal_ids": [
+        248046
+      ]
+    }
+  },
+  "eos_token_id": 248044,
+  "forced_close_token_count": 22,
+  "protocols": {
+    "bounded_think_v1": {
+      "answer_budget": 64,
+      "forced_close_text": "\n\nConsidering the limited time, I have to give the solution based on the thinking directly now.\n</think>\n\n",
+      "name": "bounded_think_v1",
+      "reasoning_budget": 768,
+      "sha256": "76a93d5d97ece9c2928536427ce22bac70ea411cc28eba1f726014baf41dd504",
+      "thinking": true
+    },
+    "cot_cap_v1": {
+      "answer_budget": 1024,
+      "name": "cot_cap_v1",
+      "reasoning_budget": 0,
+      "sha256": "839fe43dd3c31ecdfc547e59d4c3485a24928a69997955c9e8e23a43080321fe",
+      "thinking": false
+    },
+    "direct_v1": {
+      "answer_budget": 64,
+      "name": "direct_v1",
+      "reasoning_budget": 0,
+      "sha256": "2bf32ed8ece16f834c13570195d17090a929264fe196d4d5729e3d3184471a0e",
+      "thinking": false
+    }
+  },
+  "status": "TOKENIZER_STOP_PROBE_NO_MODEL",
+  "template_tail_by_enable_thinking": {
+    "False": "_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+    "True": ">user\nx<|im_end|>\n<|im_start|>assistant\n<think>\n"
+  },
+  "terminal_map": {
+    "248044": "<|endoftext|>",
+    "248046": "<|im_end|>",
+    "248069": "</think>"
+  },
+  "tokenizer_label": "Qwen/Qwen3.5-4B-Base 1001bb4d (same 248k vocabulary family as the evaluated base)"
+}

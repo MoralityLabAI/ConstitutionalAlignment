@@ -1,0 +1,867 @@
+{
+  "frozen_strict_score": {
+    "arms": {
+      "base": {
+        "assigned": 64,
+        "joint_correct": 0,
+        "malformed": 22,
+        "unknown": 42
+      },
+      "formal_control": {
+        "assigned": 64,
+        "joint_correct": 0,
+        "malformed": 21,
+        "unknown": 43
+      },
+      "platonic_grounding": {
+        "assigned": 64,
+        "joint_correct": 0,
+        "malformed": 22,
+        "unknown": 42
+      }
+    },
+    "malformed": 65,
+    "observed": 0,
+    "strict_joint_correct": 0,
+    "unattempted_unknown": 127
+  },
+  "import_receipt": {
+    "counts": {
+      "malformed": 65,
+      "observed": 0,
+      "records": 65,
+      "strict_joint_correct": 0,
+      "unattempted": 127,
+      "unknown_recorded": 0
+    },
+    "plan_sha256": "8eb8ca0ad7dd3d48675a26693509a7b35c29dc645dc722687d43072635f964b0",
+    "source_file_sha256": {
+      "qwen.jsonl": "44c1edc709f6657876198d3b9f8adb6e76bab73cffe69b0eb8b7bbdd61cbd8c1"
+    },
+    "status": "IMPORTED_VERIFIED"
+  },
+  "independent_analysis": {
+    "arms": {
+      "base": {
+        "assigned": 64,
+        "attempted": 22,
+        "bounds_over_all_assigned": {
+          "action": [
+            5,
+            47
+          ],
+          "denominator": 64,
+          "joint": [
+            4,
+            46
+          ],
+          "reason": [
+            4,
+            46
+          ]
+        },
+        "by_factor_value_valid_only": {
+          "bonus=0": {
+            "joint": 4,
+            "valid": 5
+          },
+          "bonus=1": {
+            "joint": 0,
+            "valid": 1
+          },
+          "ontology=0": {
+            "joint": 4,
+            "valid": 5
+          },
+          "ontology=1": {
+            "joint": 0,
+            "valid": 1
+          },
+          "training=0": {
+            "joint": 2,
+            "valid": 3
+          },
+          "training=1": {
+            "joint": 2,
+            "valid": 3
+          },
+          "truth=0": {
+            "joint": 2,
+            "valid": 3
+          },
+          "truth=1": {
+            "joint": 2,
+            "valid": 3
+          },
+          "watched=0": {
+            "joint": 4,
+            "valid": 6
+          }
+        },
+        "by_family": {
+          "authenticated_guidance": {
+            "attempted": 3,
+            "invalid": 3
+          },
+          "confluence": {
+            "action": 2,
+            "attempted": 3,
+            "invalid": 1,
+            "joint": 2,
+            "reason": 2,
+            "valid": 2
+          },
+          "knowledge_action": {
+            "attempted": 2,
+            "invalid": 2
+          },
+          "modal_identity": {
+            "attempted": 3,
+            "invalid": 3
+          },
+          "signed_correction": {
+            "action": 1,
+            "attempted": 3,
+            "invalid": 2,
+            "joint": 0,
+            "reason": 0,
+            "valid": 1
+          },
+          "unjust_command": {
+            "attempted": 2,
+            "invalid": 2
+          },
+          "value_bridge": {
+            "action": 2,
+            "attempted": 3,
+            "joint": 2,
+            "reason": 2,
+            "valid": 3
+          },
+          "victim_claim": {
+            "attempted": 3,
+            "invalid": 3
+          }
+        },
+        "invalid_after_strip": 16,
+        "lenient_fence_diagnostic": {
+          "action_correct": 16,
+          "attempted": 22,
+          "joint_correct": 15,
+          "note": "exploratory; contract says fences are malformed",
+          "valid": 17
+        },
+        "no_terminal_token_in_output": 5,
+        "observed_action_correct": 5,
+        "observed_joint_correct": 4,
+        "observed_only": {
+          "action_acc_of_attempted": [
+            5,
+            22
+          ],
+          "action_acc_of_valid": [
+            5,
+            6
+          ],
+          "joint_acc_of_attempted": [
+            4,
+            22
+          ],
+          "joint_acc_of_valid": [
+            4,
+            6
+          ],
+          "joint_wilson95_of_attempted": [
+            0.073,
+            0.385
+          ],
+          "reason_acc_of_attempted": [
+            4,
+            22
+          ],
+          "valid_json_rate": [
+            6,
+            22
+          ]
+        },
+        "observed_reason_correct": 4,
+        "recovered_valid_json": 6,
+        "strict_valid_original": 0,
+        "unattempted_unknown": 42
+      },
+      "formal_control": {
+        "assigned": 64,
+        "attempted": 21,
+        "bounds_over_all_assigned": {
+          "action": [
+            17,
+            60
+          ],
+          "denominator": 64,
+          "joint": [
+            16,
+            59
+          ],
+          "reason": [
+            16,
+            59
+          ]
+        },
+        "by_factor_value_valid_only": {
+          "bonus=0": {
+            "joint": 13,
+            "valid": 16
+          },
+          "bonus=1": {
+            "joint": 3,
+            "valid": 5
+          },
+          "ontology=0": {
+            "joint": 13,
+            "valid": 16
+          },
+          "ontology=1": {
+            "joint": 3,
+            "valid": 5
+          },
+          "training=0": {
+            "joint": 11,
+            "valid": 13
+          },
+          "training=1": {
+            "joint": 5,
+            "valid": 8
+          },
+          "truth=0": {
+            "joint": 11,
+            "valid": 13
+          },
+          "truth=1": {
+            "joint": 5,
+            "valid": 8
+          },
+          "watched=0": {
+            "joint": 16,
+            "valid": 21
+          }
+        },
+        "by_family": {
+          "authenticated_guidance": {
+            "action": 2,
+            "attempted": 3,
+            "joint": 2,
+            "reason": 2,
+            "valid": 3
+          },
+          "confluence": {
+            "action": 3,
+            "attempted": 3,
+            "joint": 3,
+            "reason": 3,
+            "valid": 3
+          },
+          "knowledge_action": {
+            "action": 2,
+            "attempted": 2,
+            "joint": 2,
+            "reason": 2,
+            "valid": 2
+          },
+          "modal_identity": {
+            "action": 1,
+            "attempted": 3,
+            "joint": 1,
+            "reason": 1,
+            "valid": 3
+          },
+          "signed_correction": {
+            "action": 2,
+            "attempted": 2,
+            "joint": 1,
+            "reason": 1,
+            "valid": 2
+          },
+          "unjust_command": {
+            "action": 2,
+            "attempted": 2,
+            "joint": 2,
+            "reason": 2,
+            "valid": 2
+          },
+          "value_bridge": {
+            "action": 2,
+            "attempted": 3,
+            "joint": 2,
+            "reason": 2,
+            "valid": 3
+          },
+          "victim_claim": {
+            "action": 3,
+            "attempted": 3,
+            "joint": 3,
+            "reason": 3,
+            "valid": 3
+          }
+        },
+        "invalid_after_strip": 0,
+        "lenient_fence_diagnostic": {
+          "action_correct": 17,
+          "attempted": 21,
+          "joint_correct": 16,
+          "note": "exploratory; contract says fences are malformed",
+          "valid": 21
+        },
+        "no_terminal_token_in_output": 0,
+        "observed_action_correct": 17,
+        "observed_joint_correct": 16,
+        "observed_only": {
+          "action_acc_of_attempted": [
+            17,
+            21
+          ],
+          "action_acc_of_valid": [
+            17,
+            21
+          ],
+          "joint_acc_of_attempted": [
+            16,
+            21
+          ],
+          "joint_acc_of_valid": [
+            16,
+            21
+          ],
+          "joint_wilson95_of_attempted": [
+            0.549,
+            0.894
+          ],
+          "reason_acc_of_attempted": [
+            16,
+            21
+          ],
+          "valid_json_rate": [
+            21,
+            21
+          ]
+        },
+        "observed_reason_correct": 16,
+        "recovered_valid_json": 21,
+        "strict_valid_original": 0,
+        "unattempted_unknown": 43
+      },
+      "platonic_grounding": {
+        "assigned": 64,
+        "attempted": 22,
+        "bounds_over_all_assigned": {
+          "action": [
+            18,
+            60
+          ],
+          "denominator": 64,
+          "joint": [
+            17,
+            59
+          ],
+          "reason": [
+            17,
+            59
+          ]
+        },
+        "by_factor_value_valid_only": {
+          "bonus=0": {
+            "joint": 13,
+            "valid": 16
+          },
+          "bonus=1": {
+            "joint": 4,
+            "valid": 6
+          },
+          "ontology=0": {
+            "joint": 13,
+            "valid": 16
+          },
+          "ontology=1": {
+            "joint": 4,
+            "valid": 6
+          },
+          "training=0": {
+            "joint": 12,
+            "valid": 14
+          },
+          "training=1": {
+            "joint": 5,
+            "valid": 8
+          },
+          "truth=0": {
+            "joint": 12,
+            "valid": 14
+          },
+          "truth=1": {
+            "joint": 5,
+            "valid": 8
+          },
+          "watched=0": {
+            "joint": 17,
+            "valid": 22
+          }
+        },
+        "by_family": {
+          "authenticated_guidance": {
+            "action": 2,
+            "attempted": 3,
+            "joint": 2,
+            "reason": 2,
+            "valid": 3
+          },
+          "confluence": {
+            "action": 3,
+            "attempted": 3,
+            "joint": 3,
+            "reason": 3,
+            "valid": 3
+          },
+          "knowledge_action": {
+            "action": 2,
+            "attempted": 2,
+            "joint": 2,
+            "reason": 2,
+            "valid": 2
+          },
+          "modal_identity": {
+            "action": 1,
+            "attempted": 3,
+            "joint": 1,
+            "reason": 1,
+            "valid": 3
+          },
+          "signed_correction": {
+            "action": 3,
+            "attempted": 3,
+            "joint": 2,
+            "reason": 2,
+            "valid": 3
+          },
+          "unjust_command": {
+            "action": 2,
+            "attempted": 2,
+            "joint": 2,
+            "reason": 2,
+            "valid": 2
+          },
+          "value_bridge": {
+            "action": 2,
+            "attempted": 3,
+            "joint": 2,
+            "reason": 2,
+            "valid": 3
+          },
+          "victim_claim": {
+            "action": 3,
+            "attempted": 3,
+            "joint": 3,
+            "reason": 3,
+            "valid": 3
+          }
+        },
+        "invalid_after_strip": 0,
+        "lenient_fence_diagnostic": {
+          "action_correct": 18,
+          "attempted": 22,
+          "joint_correct": 17,
+          "note": "exploratory; contract says fences are malformed",
+          "valid": 22
+        },
+        "no_terminal_token_in_output": 0,
+        "observed_action_correct": 18,
+        "observed_joint_correct": 17,
+        "observed_only": {
+          "action_acc_of_attempted": [
+            18,
+            22
+          ],
+          "action_acc_of_valid": [
+            18,
+            22
+          ],
+          "joint_acc_of_attempted": [
+            17,
+            22
+          ],
+          "joint_acc_of_valid": [
+            17,
+            22
+          ],
+          "joint_wilson95_of_attempted": [
+            0.566,
+            0.899
+          ],
+          "reason_acc_of_attempted": [
+            17,
+            22
+          ],
+          "valid_json_rate": [
+            22,
+            22
+          ]
+        },
+        "observed_reason_correct": 17,
+        "recovered_valid_json": 22,
+        "strict_valid_original": 0,
+        "unattempted_unknown": 42
+      }
+    },
+    "cases_by_arm_overlap": {
+      "base": 22,
+      "formal_control": 21,
+      "platonic_grounding": 22
+    },
+    "cue_blindness_observed": {
+      "base": {
+        "confluence": {
+          "distinct_correct_choices": 2,
+          "distinct_outputs": 2,
+          "observed_cells": 2,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        },
+        "signed_correction": {
+          "distinct_correct_choices": 1,
+          "distinct_outputs": 1,
+          "observed_cells": 1,
+          "truth_values_seen": [
+            true
+          ]
+        },
+        "value_bridge": {
+          "distinct_correct_choices": 3,
+          "distinct_outputs": 2,
+          "observed_cells": 3,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        }
+      },
+      "formal_control": {
+        "authenticated_guidance": {
+          "distinct_correct_choices": 2,
+          "distinct_outputs": 1,
+          "observed_cells": 3,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        },
+        "confluence": {
+          "distinct_correct_choices": 2,
+          "distinct_outputs": 2,
+          "observed_cells": 3,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        },
+        "knowledge_action": {
+          "distinct_correct_choices": 2,
+          "distinct_outputs": 2,
+          "observed_cells": 2,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        },
+        "modal_identity": {
+          "distinct_correct_choices": 3,
+          "distinct_outputs": 1,
+          "observed_cells": 3,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        },
+        "signed_correction": {
+          "distinct_correct_choices": 2,
+          "distinct_outputs": 2,
+          "observed_cells": 2,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        },
+        "unjust_command": {
+          "distinct_correct_choices": 2,
+          "distinct_outputs": 2,
+          "observed_cells": 2,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        },
+        "value_bridge": {
+          "distinct_correct_choices": 3,
+          "distinct_outputs": 2,
+          "observed_cells": 3,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        },
+        "victim_claim": {
+          "distinct_correct_choices": 2,
+          "distinct_outputs": 2,
+          "observed_cells": 3,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        }
+      },
+      "platonic_grounding": {
+        "authenticated_guidance": {
+          "distinct_correct_choices": 2,
+          "distinct_outputs": 1,
+          "observed_cells": 3,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        },
+        "confluence": {
+          "distinct_correct_choices": 2,
+          "distinct_outputs": 2,
+          "observed_cells": 3,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        },
+        "knowledge_action": {
+          "distinct_correct_choices": 2,
+          "distinct_outputs": 2,
+          "observed_cells": 2,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        },
+        "modal_identity": {
+          "distinct_correct_choices": 3,
+          "distinct_outputs": 1,
+          "observed_cells": 3,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        },
+        "signed_correction": {
+          "distinct_correct_choices": 2,
+          "distinct_outputs": 2,
+          "observed_cells": 3,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        },
+        "unjust_command": {
+          "distinct_correct_choices": 2,
+          "distinct_outputs": 2,
+          "observed_cells": 2,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        },
+        "value_bridge": {
+          "distinct_correct_choices": 3,
+          "distinct_outputs": 2,
+          "observed_cells": 3,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        },
+        "victim_claim": {
+          "distinct_correct_choices": 2,
+          "distinct_outputs": 2,
+          "observed_cells": 3,
+          "truth_values_seen": [
+            false,
+            true
+          ]
+        }
+      }
+    },
+    "paired": {
+      "base_vs_formal_control": {
+        "action_ok": {
+          "arms": [
+            "base",
+            "formal_control"
+          ],
+          "base_only": 0,
+          "both_correct": 5,
+          "cases_attempted_by_both": 21,
+          "cases_valid_in_both": 6,
+          "disagreements": [],
+          "field": "action_ok",
+          "formal_control_only": 0,
+          "mcnemar_exact_p": 1.0,
+          "neither": 1
+        },
+        "joint": {
+          "arms": [
+            "base",
+            "formal_control"
+          ],
+          "base_only": 0,
+          "both_correct": 4,
+          "cases_attempted_by_both": 21,
+          "cases_valid_in_both": 6,
+          "disagreements": [],
+          "field": "joint",
+          "formal_control_only": 0,
+          "mcnemar_exact_p": 1.0,
+          "neither": 2
+        },
+        "reason_ok": {
+          "arms": [
+            "base",
+            "formal_control"
+          ],
+          "base_only": 0,
+          "both_correct": 4,
+          "cases_attempted_by_both": 21,
+          "cases_valid_in_both": 6,
+          "disagreements": [],
+          "field": "reason_ok",
+          "formal_control_only": 0,
+          "mcnemar_exact_p": 1.0,
+          "neither": 2
+        }
+      },
+      "base_vs_platonic_grounding": {
+        "action_ok": {
+          "arms": [
+            "base",
+            "platonic_grounding"
+          ],
+          "base_only": 0,
+          "both_correct": 5,
+          "cases_attempted_by_both": 22,
+          "cases_valid_in_both": 6,
+          "disagreements": [],
+          "field": "action_ok",
+          "mcnemar_exact_p": 1.0,
+          "neither": 1,
+          "platonic_grounding_only": 0
+        },
+        "joint": {
+          "arms": [
+            "base",
+            "platonic_grounding"
+          ],
+          "base_only": 0,
+          "both_correct": 4,
+          "cases_attempted_by_both": 22,
+          "cases_valid_in_both": 6,
+          "disagreements": [],
+          "field": "joint",
+          "mcnemar_exact_p": 1.0,
+          "neither": 2,
+          "platonic_grounding_only": 0
+        },
+        "reason_ok": {
+          "arms": [
+            "base",
+            "platonic_grounding"
+          ],
+          "base_only": 0,
+          "both_correct": 4,
+          "cases_attempted_by_both": 22,
+          "cases_valid_in_both": 6,
+          "disagreements": [],
+          "field": "reason_ok",
+          "mcnemar_exact_p": 1.0,
+          "neither": 2,
+          "platonic_grounding_only": 0
+        }
+      },
+      "formal_control_vs_platonic_grounding": {
+        "action_ok": {
+          "arms": [
+            "formal_control",
+            "platonic_grounding"
+          ],
+          "both_correct": 17,
+          "cases_attempted_by_both": 21,
+          "cases_valid_in_both": 21,
+          "disagreements": [],
+          "field": "action_ok",
+          "formal_control_only": 0,
+          "mcnemar_exact_p": 1.0,
+          "neither": 4,
+          "platonic_grounding_only": 0
+        },
+        "joint": {
+          "arms": [
+            "formal_control",
+            "platonic_grounding"
+          ],
+          "both_correct": 16,
+          "cases_attempted_by_both": 21,
+          "cases_valid_in_both": 21,
+          "disagreements": [],
+          "field": "joint",
+          "formal_control_only": 0,
+          "mcnemar_exact_p": 1.0,
+          "neither": 5,
+          "platonic_grounding_only": 0
+        },
+        "reason_ok": {
+          "arms": [
+            "formal_control",
+            "platonic_grounding"
+          ],
+          "both_correct": 16,
+          "cases_attempted_by_both": 21,
+          "cases_valid_in_both": 21,
+          "disagreements": [],
+          "field": "reason_ok",
+          "formal_control_only": 0,
+          "mcnemar_exact_p": 1.0,
+          "neither": 5,
+          "platonic_grounding_only": 0
+        }
+      }
+    },
+    "plan_sha256": "8eb8ca0ad7dd3d48675a26693509a7b35c29dc645dc722687d43072635f964b0",
+    "raw_records": 65,
+    "raw_records_sha256": "44c1edc709f6657876198d3b9f8adb6e76bab73cffe69b0eb8b7bbdd61cbd8c1",
+    "status": "INDEPENDENT_POSTHOC_ANALYSIS_NOT_FROZEN_SCORE",
+    "terminal_map_label": "Qwen/Qwen3.5-4B-Base 1001bb4d826a52d1f399e183466143f4da7b741b (same 248k-vocab family as the evaluated base; the evaluated checkpoint's own tokenizer was not available)",
+    "terminal_map_sha256": "47c176115b76d32b50c7aea179170f3f2601523551b42fd7d9561a16b776538e"
+  },
+  "raw_source": "hf://datasets/AlephFunk/ontological-transfer-bench-v1-raw@59534f30472a4bf092aea596a9c2cee597968bc6/qwen.jsonl (private)",
+  "source_sha256": {
+    "analyze_posthoc.py": "841c3b65d509b7b77caa9936483e0909079fc9ecbc9c65102108a6699988f2b1",
+    "cases.py": "3f2814aa0bd8a05c892ffa0ab30a44e4fabd1a3b8d69a040133193916b8a7a8c",
+    "posthoc.py": "a5662ef8282b9672e59c89f5c3b647d03ee75012ea8d41cfeab8397d90ea462d",
+    "report_posthoc.py": "a7966bb81f5335e45a61dc90689f28f5c570e42d6da32c1f78144dd945f658b1",
+    "score.py": "adcfcdc54fd85443ddd3f90f4174c387c995993cf885d5e92f16fa1a60c21dfe"
+  },
+  "status": "POSTHOC_REPORT_NOT_FROZEN_SCORE",
+  "token_strip_audit": {
+    "malformed_original": 65,
+    "no_terminal_token": 5,
+    "no_token_witness": 0,
+    "recovered_valid": 49,
+    "still_invalid_after_strip": 11,
+    "stripped_token_ids": {
+      "248046": 49
+    },
+    "submitted": 65,
+    "text_does_not_end_with_marker": 0
+  }
+}

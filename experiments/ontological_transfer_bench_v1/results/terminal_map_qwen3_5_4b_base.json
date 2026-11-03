@@ -1,0 +1,9 @@
+{
+  "eos_token_id": 248044,
+  "map": {
+    "248044": "<|endoftext|>",
+    "248046": "<|im_end|>",
+    "248069": "</think>"
+  },
+  "tokenizer_label": "Qwen/Qwen3.5-4B-Base 1001bb4d826a52d1f399e183466143f4da7b741b (same 248k-vocab family as the evaluated base; the evaluated checkpoint's own tokenizer was not available)"
+}

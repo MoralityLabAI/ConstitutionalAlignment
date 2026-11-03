@@ -308,7 +308,7 @@ def run_hf(plan,out,*,arm,base_model,model_revision,adapter_path=None,approval=F
 
 def run_hf_group(plan,out,*,base_model,model_revision,formal_adapter,platonic_adapter,
                  approval=False,max_assignments=192,max_new_tokens=1024,max_wall_seconds=900,
-                 thinking=False,protocol=None):
+                 thinking=False,protocol=None,arms=None):
     """Evaluate three Qwen arms with one weight load and two mounted adapters.
 
     The inference lease/provider cap must be enforced outside this worker too.
@@ -319,7 +319,9 @@ def run_hf_group(plan,out,*,base_model,model_revision,formal_adapter,platonic_ad
     verify_plan(plan)
     if not approval:raise PermissionError('explicit model-inference approval required')
     if len(model_revision)!=40 or any(c not in '0123456789abcdef' for c in model_revision):raise ValueError('40-hex revision required')
-    if type(max_assignments) is not int or not 1<=max_assignments<=len(list(assignments(plan,['base','formal_control','platonic_grounding']))):raise ValueError('max_assignments')
+    chosen=['base','formal_control','platonic_grounding'] if arms is None else list(arms)
+    if not chosen or len(set(chosen))!=len(chosen) or not set(chosen)<={'base','formal_control','platonic_grounding'}:raise ValueError('arms')
+    if type(max_assignments) is not int or not 1<=max_assignments<=len(list(assignments(plan,chosen))):raise ValueError('max_assignments')
     if not 1<=max_new_tokens<=8192 or not 1<=max_wall_seconds<=7200:raise ValueError('budgets')
     attest={'formal_control':adapter_files(formal_adapter),'platonic_grounding':adapter_files(platonic_adapter)}
     out=Path(out);out.parent.mkdir(parents=True,exist_ok=True)
@@ -343,7 +345,7 @@ def run_hf_group(plan,out,*,base_model,model_revision,formal_adapter,platonic_ad
     else:
         proto_meta={}
     with out.open('x',encoding='utf-8') as f:
-        for a in list(spread_assignments(plan,['base','formal_control','platonic_grounding']))[:max_assignments]:
+        for a in list(spread_assignments(plan,chosen))[:max_assignments]:
             if time.monotonic()-start>=max_wall_seconds:break
             raw=None;err=None;metadata={'checkpoint_safetensors_sha256':attest}
             try:
@@ -383,7 +385,7 @@ def run_hf_group(plan,out,*,base_model,model_revision,formal_adapter,platonic_ad
             row=record_for(plan,a,raw,error=err,metadata=metadata,model_id=model_revision+':'+a['arm'])
             f.write(canon(row)+'\n');f.flush()
             if err:break
-    summary=score(plan,read_records(out),['base','formal_control','platonic_grounding'])
+    summary=score(plan,read_records(out),chosen)
     summary['run_adapter_file_sha256']=attest
     summary.update(proto_meta)
     summary['reported_model_revision']=model_revision

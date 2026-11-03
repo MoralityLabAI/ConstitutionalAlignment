@@ -1,5 +1,7 @@
 # Post-hoc recovery of the failed Qwen smoke run
 
+> Resolved 2026-11-03: the file was obtained from the private dataset; see `POSTHOC_FINDINGS.md`. The terminal map named below (Qwen3-1.7B, ID 151645) is wrong for this model family; use `terminal_map_qwen3_5_4b_base.json` (ID 248046).
+
 Target: Silico experiment `exp_01m6ejeb5yfm5bd2c3ecvq1h7p`, artifact `artifact://moralitylab/experiments/exp_01m6ejeb5yfm5bd2c3ecvq1h7p/otb1-qwen-c775/`.
 
 ## Status: BLOCKED on private artifact access

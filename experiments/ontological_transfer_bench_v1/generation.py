@@ -23,6 +23,10 @@ PROTOCOLS = {
     # Thinking disabled: the chat template pre-closes the reasoning block, the
     # answer budget is the only budget. A verbose model fails by length, visibly.
     'direct_v1': {'thinking': False, 'reasoning_budget': 0, 'answer_budget': 64},
+    # The original run's behaviour, now bounded and stop-token aware: thinking off, the base
+    # model writes visible analysis then a fenced JSON block (about 600 tokens on average,
+    # 5 of 22 hit 1024). Adapters stop on their own after about 18 tokens, so the cap costs them nothing.
+    'cot_cap_v1': {'thinking': False, 'reasoning_budget': 0, 'answer_budget': 1024},
     # Thinking enabled with a hard reasoning budget. Reasoning that is still open
     # at the budget is closed with a fixed sentence and the model then has
     # answer_budget tokens to emit the JSON. Such records are flagged.
