@@ -23,6 +23,31 @@ def extract_final(text):
     return text.strip()
 
 
+def decode_hf_final(tokenizer, generated_ids):
+    """Decode strict final content, excluding only terminal model EOS tokens.
+
+    Preserve the verbatim rendering and token IDs for audit. Only identified
+    terminal EOS/end-of-message markers may be removed. An internal marker,
+    an unfinished reasoning block, or trailing explanatory prose remains
+    visible to the strict JSON parser.
+    """
+    ids = generated_ids.tolist() if hasattr(generated_ids, 'tolist') else list(generated_ids)
+    if not all(type(token) is int for token in ids):
+        raise TypeError('generated token ids must be integers')
+    full = tokenizer.decode(ids, skip_special_tokens=False)
+    terminal = {tokenizer.eos_token_id} if type(getattr(tokenizer, 'eos_token_id', None)) is int else set()
+    if hasattr(tokenizer, 'convert_tokens_to_ids'):
+        for name in ('<|im_end|>', '<|endoftext|>'):
+            value = tokenizer.convert_tokens_to_ids(name)
+            if type(value) is int and value >= 0 and value != getattr(tokenizer, 'unk_token_id', None):
+                terminal.add(value)
+    ending=[]
+    while ids and ids[-1] in terminal:
+        ending.append(ids.pop())
+    cleaned = tokenizer.decode(ids, skip_special_tokens=False)
+    return extract_final(cleaned), full, list(reversed(ending))
+
+
 def sha_file(path):
     h=hashlib.sha256()
     with Path(path).open('rb') as f:
@@ -268,9 +293,8 @@ def run_hf(plan,out,*,arm,base_model,model_revision,adapter_path=None,approval=F
                     res=model.generate(**model_inputs,max_new_tokens=max_new_tokens,do_sample=False,
                                        pad_token_id=tokenizer.eos_token_id)
                 tokens=res[0,prompt_length:]
-                generated_text=tokenizer.decode(tokens,skip_special_tokens=False)
-                raw=extract_final(generated_text)
-                meta={'raw_model_text':generated_text,'input_tokens':prompt_length,'generated_tokens':int(len(tokens)),
+                raw,generated_text,stripped_terminal_tokens=decode_hf_final(tokenizer,tokens)
+                meta={'raw_model_text':generated_text,'stripped_terminal_token_ids':stripped_terminal_tokens,'input_tokens':prompt_length,'generated_tokens':int(len(tokens)),
                       'raw_generated_token_ids':tokens.detach().cpu().tolist()}
             except (RuntimeError,ValueError,OSError,TypeError,AttributeError) as exc:
                 err=type(exc).__name__+': '+str(exc)
@@ -324,9 +348,8 @@ def run_hf_group(plan,out,*,base_model,model_revision,formal_adapter,platonic_ad
                     generated=model.generate(**model_inputs,max_new_tokens=max_new_tokens,do_sample=False,
                                              pad_token_id=tokenizer.eos_token_id)
                 out_ids=generated[0,prompt_length:]
-                full=tokenizer.decode(out_ids,skip_special_tokens=False)
-                raw=extract_final(full)
-                metadata.update(raw_model_text=full,input_tokens=prompt_length,
+                raw,full,stripped_terminal_tokens=decode_hf_final(tokenizer,out_ids)
+                metadata.update(raw_model_text=full,stripped_terminal_token_ids=stripped_terminal_tokens,input_tokens=prompt_length,
                                 output_tokens=int(len(out_ids)),raw_generated_token_ids=out_ids.detach().cpu().tolist())
             except (RuntimeError,ValueError,OSError,TypeError,AttributeError) as exc:
                 err=type(exc).__name__+': '+str(exc)

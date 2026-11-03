@@ -13,13 +13,17 @@ def cells(mode):
         # Orthogonal strength-2 8-run array for 5 binary factors.
         return [(bool(a^c),bool(a),bool(b),bool(c),bool(a^b))
                 for a,b,c in itertools.product((0,1),repeat=3)]
+    if mode == 'paired_smoke':
+        # Paired single-factor interventions, same semantic motif. Distinct from frozen smoke.
+        zero=(False,)*5
+        return [zero]+[tuple(i==k for i in range(5)) for k in range(5)]
     if mode == 'full':return list(itertools.product((False,True),repeat=5))
     raise ValueError('mode must be smoke or full')
 
 
 def make_plan(mode='smoke', motifs_per_family=None, seed=DEFAULT_SEED):
     if type(seed) is not int or not 0<=seed<2**63:raise ValueError('invalid seed')
-    if motifs_per_family is None:motifs_per_family=1 if mode=='smoke' else 2
+    if motifs_per_family is None:motifs_per_family=1 if mode in ('smoke','paired_smoke') else 2
     if type(motifs_per_family) is not int or not 1<=motifs_per_family<=12:raise ValueError('invalid motif count')
     block_list=[]
     for fi,family in enumerate(FAMILIES):

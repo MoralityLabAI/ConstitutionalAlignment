@@ -13,7 +13,7 @@ from unittest.mock import patch
 from experiments.ontological_transfer_bench_v1.cases import FAMILIES, make_case, verify_case, prompt, parse, scripted, canon
 from experiments.ontological_transfer_bench_v1.plan import make_plan,verify_plan,assignments,spread_assignments,public_cases,cells
 from experiments.ontological_transfer_bench_v1.score import score,record_for
-from experiments.ontological_transfer_bench_v1.run import run_fixture,run_endpoint,run_hf,run_hf_group,_safe_endpoint,read_records,_check_resumption,extract_final,adapter_files,_chat,_prepare_generation_inputs,preflight_hf_tokenizer
+from experiments.ontological_transfer_bench_v1.run import run_fixture,run_endpoint,run_hf,run_hf_group,_safe_endpoint,read_records,_check_resumption,extract_final,adapter_files,_chat,decode_hf_final,_prepare_generation_inputs,preflight_hf_tokenizer
 
 
 class CaseTests(unittest.TestCase):
@@ -35,6 +35,20 @@ class CaseTests(unittest.TestCase):
         for i in range(5):
             for j in range(i+1,5):
                 self.assertEqual({(x[i],x[j]) for x in a},{(False,False),(False,True),(True,False),(True,True)})
+    def test_paired_smoke_has_true_one_factor_interventions(self):
+        p=make_plan('paired_smoke')
+        self.assertEqual(p['records_per_arm'],48)
+        self.assertEqual(p['assigned_records_all_arms'],192)
+        self.assertNotEqual(p['sha256'],self.smoke['sha256'])
+        for block in p['blocks']:
+            by_flags={tuple(c['flags'].values()) for c in block['cells']}
+            origin=(False,)*5
+            self.assertIn(origin,by_flags)
+            for factor in range(5):
+                self.assertIn(tuple(i==factor for i in range(5)),by_flags)
+        self.assertEqual(len(cells('smoke')),8)
+        self.assertEqual(make_plan('smoke'),self.smoke)
+
     def test_nonempty_factorial(self):
         self.assertEqual(len(set(cells('full'))),32)
         self.assertEqual(len(set(cells('smoke'))),8)
@@ -250,6 +264,34 @@ class GatewayTests(unittest.TestCase):
         self.assertEqual(extract_final('<think>analysis</think> {"choice":2,"reason_code":1}'),'{"choice":2,"reason_code":1}')
         self.assertEqual(extract_final('  {"choice":2,"reason_code":1}  '),'{"choice":2,"reason_code":1}')
         self.assertNotEqual(extract_final('<think>unfinished'),'{"choice":2,"reason_code":1}')
+    def test_token_level_terminal_marker_decoding_preserves_raw(self):
+        class Tokenizer:
+            eos_token_id=99
+            unk_token_id=-1
+            def convert_tokens_to_ids(self, name):
+                return {'<|im_end|>':99,'<|endoftext|>':98}.get(name,-1)
+            def decode(self, ids, skip_special_tokens=False):
+                return ''.join({1:'{"choice":3,"reason_code":2}',2:' extra',99:'<|im_end|>',98:'<|endoftext|>'}[x] for x in ids)
+        t=Tokenizer()
+        cleaned, full, ends=decode_hf_final(t,[1,99])
+        self.assertEqual(cleaned,'{"choice":3,"reason_code":2}')
+        self.assertEqual(full,'{"choice":3,"reason_code":2}<|im_end|>')
+        self.assertEqual(ends,[99])
+        self.assertEqual(decode_hf_final(t,[1,99,98])[2],[99,98])
+        self.assertEqual(decode_hf_final(t,[1,99,2])[0],full+' extra')
+        self.assertEqual(decode_hf_final(t,[1,2,99])[0],'{"choice":3,"reason_code":2} extra')
+        with self.assertRaises(TypeError):decode_hf_final(t,['not-a-token'])
+    def test_different_terminal_token_renders_are_not_scrubbed(self):
+        class Tokenizer:
+            eos_token_id=99
+            unk_token_id=-1
+            def convert_tokens_to_ids(self, name):return -1
+            def decode(self, ids, skip_special_tokens=False):
+                return ''.join({1:'{"choice":0,"reason_code":0}',42:'<|unrecognized|>',99:'<|im_end|>'}[x] for x in ids)
+        t=Tokenizer()
+        self.assertEqual(decode_hf_final(t,[1,42])[0],'{"choice":0,"reason_code":0}<|unrecognized|>')
+        self.assertEqual(decode_hf_final(t,[1,99])[0],'{"choice":0,"reason_code":0}')
+
     def test_adapters_require_real_safetensors(self):
         with tempfile.TemporaryDirectory() as td:
             p=Path(td)
@@ -456,3 +498,28 @@ class GenerationInterfaceRegressionTests(unittest.TestCase):
 
 
 if __name__=='__main__':unittest.main()
+class PosthocDiagnosticTests(unittest.TestCase):
+    def test_posthoc_is_separate_from_frozen_strict_score(self):
+        from experiments.ontological_transfer_bench_v1.posthoc import diagnose
+        plan=make_plan('paired_smoke')
+        a=next(iter(assignments(plan,['formal_control'])))
+        c=next(c for b in plan['blocks'] for c in b['cells'] if c['case_id']==a['case_id'])
+        good=scripted(c)
+        marked=good+'<|im_end|>'
+        r=record_for(plan,a,marked,metadata={'raw_model_text':marked})
+        d=diagnose(plan,[r]);self.assertEqual(d['original_strict_score']['arms']['formal_control']['malformed'],1)
+        self.assertEqual(d['one_terminal_marker_diagnostic']['arms']['formal_control']['joint_correct'],1)
+        self.assertEqual(d['audit']['valid_after_one_terminal_marker'],1)
+        self.assertFalse(d['modifies_original_records'])
+        self.assertEqual(r['raw'],marked)
+    def test_posthoc_rejects_prose_after_suffix(self):
+        from experiments.ontological_transfer_bench_v1.posthoc import diagnose
+        plan=make_plan('paired_smoke')
+        a=next(iter(assignments(plan,['formal_control'])))
+        c=next(c for b in plan['blocks'] for c in b['cells'] if c['case_id']==a['case_id'])
+        raw=scripted(c)+'<|im_end|> notes'
+        r=record_for(plan,a,raw,metadata={'raw_model_text':raw})
+        d=diagnose(plan,[r])
+        self.assertEqual(d['audit']['valid_after_one_terminal_marker'],0)
+        self.assertEqual(d['one_terminal_marker_diagnostic']['arms']['formal_control']['malformed'],1)
+

@@ -13,9 +13,10 @@ def main(argv=None):
     p=argparse.ArgumentParser(prog='python -m experiments.ontological_transfer_bench_v1')
     sub=p.add_subparsers(dest='cmd',required=True)
     b=sub.add_parser('build')
-    b.add_argument('--mode',choices=('smoke','full'),default='smoke');b.add_argument('--motifs-per-family',type=int)
+    b.add_argument('--mode',choices=('smoke','paired_smoke','full'),default='smoke');b.add_argument('--motifs-per-family',type=int)
     b.add_argument('--seed',type=int,default=20261102);b.add_argument('--out',type=Path,required=True)
     v=sub.add_parser('verify');v.add_argument('--out',type=Path,required=True)
+    diag=sub.add_parser('posthoc');diag.add_argument('--plan',type=Path,required=True);diag.add_argument('--records',type=Path,nargs='+',required=True);diag.add_argument('--out',type=Path,required=True)
     e=sub.add_parser('score');e.add_argument('--plan',type=Path,required=True);e.add_argument('--records',type=Path,nargs='+',required=True);e.add_argument('--out',type=Path,required=True)
     f=sub.add_parser('fixture');f.add_argument('--plan',type=Path,required=True);f.add_argument('--out',type=Path,required=True)
     f.add_argument('--arm',default='platonic_grounding');f.add_argument('--policy',default='oracle')
@@ -54,6 +55,11 @@ def main(argv=None):
     else:
         plan=json.loads(args.plan.read_text(encoding='utf-8'));verify_plan(plan)
         if args.cmd=='tokenizer-preflight':result=preflight_hf_tokenizer(plan,base_model=args.base,model_revision=args.revision,out=args.out,thinking=args.thinking)
+        elif args.cmd=='posthoc':
+            from .posthoc import diagnose
+            rows=[r for src in args.records for r in read_records(src)]
+            result=diagnose(plan,rows)
+            write_json(args.out,result)
         elif args.cmd=='score':
             rows=[r for src in args.records for r in read_records(src)]
             result=score(plan,rows)
